@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "target": "es2020",
+        "module": "es2020",
+
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "removeComments": true,
+        "moduleResolution": "node"
+    },
+    "exclude": [
+        ".git",
+        ".app-cache",
+        ".npm",
+        ".npm-tmp",
+        "node_modules"
+    ]
+}

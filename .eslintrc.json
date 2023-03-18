@@ -1,0 +1,22 @@
+{
+    "env": {
+        "browser": true,
+        "node": true,
+        "commonjs": true,
+        "es2021": true
+    },
+    "globals": {
+        "mp": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": 2022,
+        "sourceType": "module"
+    },
+    "rules": {
+        "no-async-promise-executor": "off",
+        "no-unused-vars": "off",
+        "no-restricted-imports": "off",
+        "quotes": ["error", "single", { "avoidEscape": true, "allowTemplateLiterals": true }]
+    }
+}

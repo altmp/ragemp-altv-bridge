@@ -1,0 +1,23 @@
+{
+  "name": "ragemp-altv-bridge",
+  "version": "1.0.0",
+  "description": "To make it easy for you to get started with GitLab, here's a list of recommended next steps.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/majesticrp/ragemp-altv-bridge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/majesticrp/ragemp-altv-bridge/issues"
+  },
+  "homepage": "https://gitlab.com/majesticrp/ragemp-altv-bridge#readme",
+  "devDependencies": {
+    "@altv/types-server": "^2.5.7",
+    "@altv/types-shared": "^1.3.6"
+  }
+}
