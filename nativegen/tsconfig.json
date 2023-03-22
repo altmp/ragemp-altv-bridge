@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "module": "NodeNext",
+        "target": "es5",
+        "sourceMap": true,
+        "lib": ["esnext"]
+    },
+    "exclude": [
+        "node_modules"
+    ],
+    "ts-node": {
+        "experimentalResolver": true
+    }
+}
