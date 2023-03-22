@@ -252,8 +252,10 @@ function generateNativeCaller(native: ParsedNative, entity = false) {
     const outArgs = entity ? [`this.scriptID`, ...native.callArguments.slice(1)] : native.callArguments;
     const inArgs = native.functionArguments.slice(entity ? 1 : 0);
 
+    // TODO: Do not create $res when it is not used
     let res = `function (${inArgs.join(", ")}) {
     let $res = natives.${native.altNative.altName}(${outArgs.join(", ")});\n`;
+    // TODO: Avoid creating an array
     if (native.return) res += `    if (!Array.isArray($res)) $res = [$res];\n`;
     if (native.return && native.resObject && Object.values(native.resObject).length > 0) {
         res += `    let $resObj = ${native.resObjectInitialValue ?? "{}"};\n`;
@@ -295,7 +297,6 @@ esprima.parseScript(source, {}, (node) => {
     }
 
     if (node.type === "VariableDeclarator" && node.id.type === "Identifier") {
-        // if (node.id.name === `$26`) console.log(`bruh!`);
         // Find invoker functions
         if (node.init?.type === "MemberExpression"
             && node.init.property.type === "Identifier"
