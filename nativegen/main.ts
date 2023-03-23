@@ -203,7 +203,7 @@ function registerNativeFunction(id: Identifier, fn: FunctionExpression, invoker:
 
             const key = escodegen.generate(el.expression.left).split(".").slice(1).join(".");
             if (key.endsWith(".x")) {
-                parsed.resObject[key.substring(0, key.length - 2)] = `new mp.Vector3($res[${refId}].x, $res[${refId}].y, $res[${refId}].z)`
+                parsed.resObject[key.substring(0, key.length - 2)] = `new mp.Vector3($res[${refId}])`
             } else if (key.endsWith(".y") || key.endsWith(".z")) {
             } else if (key === "x" || key === "y" || key === "z" && invoker.vector) {
                 parsed.resObject[key] = `$res[0].${key}`;
@@ -253,7 +253,7 @@ function cleanWrapperName(wrapperName) {
 }
 
 function generateNativeCaller(native: ParsedNative, entity = false) {
-    const outArgs = entity ? [`this.scriptID`, ...native.callArguments.slice(1)] : native.callArguments;
+    const outArgs = entity ? [`this.handle`, ...native.callArguments.slice(1)] : native.callArguments;
     const inArgs = native.functionArguments.slice(entity ? 1 : 0);
 
     // TODO: Do not create $res when it is not used
@@ -275,7 +275,7 @@ function generateNativeCaller(native: ParsedNative, entity = false) {
 let outputCode = `
 import natives from "natives";
 import alt from "alt";
-if (!globalThis.mp) globalThis.mp = {};
+import mp from "../shared/mp.js";
 if (!mp.game2) mp.game2 = {};
 const hashes = {};
 
@@ -425,14 +425,14 @@ function generateInvokeFunction(native: AltNative) {
     const isVector = !!native.results.match(/^\[?Vector3/);
     output += `    const $res = natives.${native.altName}(${args.join(", ")});\n`
     if (refId === 1) {
-        if (isVector) output += `    return new mp.Vector3($res.x, $res.y, $res.z);\n}`
+        if (isVector) output += `    return new mp.Vector3($res);\n}`
         else output += `    return $res;\n}`
         return output;
     }
-    output += `    if (!Array.isArray($res)) return $res instanceof alt.Vector3 ? new mp.Vector3($res.x, $res.y, $res.z) : $res;\n`;
+    output += `    if (!Array.isArray($res)) return $res instanceof alt.Vector3 ? new mp.Vector3($res) : $res;\n`;
     output += result.map(e => `    ` + e).join(`\n`) + `\n`;
     if (output) {
-        if (isVector) output += `    return new mp.Vector3($res[0].x, $res[0].y, $res[0].z);\n}`;
+        if (isVector) output += `    return new mp.Vector3($res[0]);\n}`;
         else output += `    return $res[0];\n}`;
     }
     return output;
@@ -455,5 +455,4 @@ mp.game2.invoke = mp.game2.invokeFloat = mp.game2.invokeString = mp.game2.invoke
 mp.game = mp.game2;
 `
 
-if (!fs.existsSync("./dist/")) fs.mkdirSync("./dist");
-fs.writeFileSync("./dist/out.js", outputCode);
+fs.writeFileSync("../bindings/src/client/natives.js", outputCode);

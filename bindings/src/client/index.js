@@ -1,9 +1,8 @@
-// If global.mp exits, then it's not alt:V
-if (globalThis.mp) {
-    throw new Error('This is not alt:V');
-}
-
+import mp from "../shared/mp.js";
 import "../shared/index.js";
-// TODO: Import entities
-import "./natives.js"
-import "./extraNatives.js"
+import "./entities/index.js";
+import "./natives.js";
+import "./extraNatives.js";
+
+globalThis.mp = mp;
+export default mp;
