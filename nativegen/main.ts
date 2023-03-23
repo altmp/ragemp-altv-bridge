@@ -12,6 +12,7 @@ interface AltNative {
     altName: string;
     hashes: Record<string, string>;
     params: { type: string, name: string, ref: boolean }[];
+    results: string;
 }
 
 interface ParsedNative {
@@ -420,12 +421,20 @@ function generateInvokeFunction(native: AltNative) {
             result.push(`${name}[0] = ${resVar};`);
         }
     }
-    // TODO: Dont check for array on runtime
-    // TODO: Dont check for vector on runtime
-    output += `    const $res = natives.${native.altName}(${args.join(", ")});
-    if (!Array.isArray($res)) return $res instanceof alt.Vector3 ? new mp.Vector3($res.x, $res.y, $res.z) : $res;\n`;
+
+    const isVector = !!native.results.match(/^\[?Vector3/);
+    output += `    const $res = natives.${native.altName}(${args.join(", ")});\n`
+    if (refId === 1) {
+        if (isVector) output += `    return new mp.Vector3($res.x, $res.y, $res.z);\n}`
+        else output += `    return $res;\n}`
+        return output;
+    }
+    output += `    if (!Array.isArray($res)) return $res instanceof alt.Vector3 ? new mp.Vector3($res.x, $res.y, $res.z) : $res;\n`;
     output += result.map(e => `    ` + e).join(`\n`) + `\n`;
-    output += `    return $res[0] instanceof alt.Vector3 ? new mp.Vector3($res[0].x, $res[0].y, $res[0].z) : $res[0]\n};`;
+    if (output) {
+        if (isVector) output += `    return new mp.Vector3($res[0].x, $res[0].y, $res[0].z);\n}`;
+        else output += `    return $res[0];\n}`;
+    }
     return output;
 }
 
