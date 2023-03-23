@@ -21,6 +21,7 @@ interface ParsedNative {
     resObjectInitialValue?: string; // Initial value for result object, {} if not set
     resObject?: Record<string, string>; // Keys to set on resObject
     return?: string; // return value expression;
+    hash: string;
 }
 
 interface NativeInvoker {
@@ -53,8 +54,9 @@ while((result = reg.exec(nativesEnums)) != null) {
 }
 
 // hash (without 0x) to native object
+const rawAltNatives = await (await fetch("https://natives.altv.mp/natives")).json() as Record<string, Record<string, AltNative>>;
 let altNatives: Record<string, AltNative> = {};
-for (const namespace of Object.values(await (await fetch("https://natives.altv.mp/natives")).json())) {
+for (const namespace of Object.values(rawAltNatives)) {
     for (const [hash, native] of Object.entries(namespace as Record<string, AltNative>)) {
         altNatives[hash.substring(2)] = native;
         if (!native.hashes) continue;
@@ -132,6 +134,7 @@ function registerNativeFunction(id: Identifier, fn: FunctionExpression, invoker:
         callArguments: Array(paramsCount),
         resObject: {},
         resObjectInitialValue: invoker.vector ? "new mp.Vector3(0, 0, 0)" : "{}",
+        hash: "0x" + hash
     };
 
     let resObjectIdentifier = "";
@@ -270,8 +273,11 @@ function generateNativeCaller(native: ParsedNative, entity = false) {
 
 let outputCode = `
 import natives from "natives";
+import alt from "alt";
 if (!globalThis.mp) globalThis.mp = {};
 if (!mp.game2) mp.game2 = {};
+const hashes = {};
+
 `;
 
 let tempVars = {};
@@ -389,7 +395,54 @@ esprima.parseScript(source, {}, (node) => {
     }
 });
 
+
+function generateInvokeFunction(native: AltNative) {
+    let output = `function(${native.params.map((p, i) => `p${i}`).join(", ")}) {\n`;
+    const args = [];
+    const result = [];
+    let refId = 1;
+    let argId = 0;
+    for (const param of native.params) {
+        const name = `p${argId++}`;
+        if (!param.ref || param.type === "Any") {
+            args.push(name);
+            continue;
+        }
+        const currRef = refId++;
+        const resVar = `$res[${currRef}]`;
+        if (param.type === "Vector3") {
+            output += `    if (typeof ${name} != "object") throw new Error("Argument ${param.name} should be a Vector3 or an array");\n`;
+            args.push(`Array.isArray(${name}[0]) ? new alt.Vector3(${name}[0][0], ${name}[0][1], ${name}[0][2]) : new alt.Vector3(${name}[0].x, ${name}[0].y, ${name}[0].z)`);
+            result.push(`if (Array.isArray(${name}[0])) { ${name}[0][0] = ${resVar}.x; ${name}[0][1] = ${resVar}.y; ${name}[0][2] = ${resVar}.z }`);
+                result.push(`else { ${name}[0].x = ${resVar}.x; ${name}[0].y = ${resVar}.y; ${name}[0].z = ${resVar}.z; }`);
+        } else {
+            output += `    if (!Array.isArray(${name})) throw new Error("Argument ${param.name} should be an array");\n`
+            result.push(`${name}[0] = ${resVar};`);
+        }
+    }
+    // TODO: Dont check for array on runtime
+    // TODO: Dont check for vector on runtime
+    output += `    const $res = natives.${native.altName}(${args.join(", ")});
+    if (!Array.isArray($res)) return $res instanceof alt.Vector3 ? new mp.Vector3($res.x, $res.y, $res.z) : $res;\n`;
+    output += result.map(e => `    ` + e).join(`\n`) + `\n`;
+    output += `    return $res[0] instanceof alt.Vector3 ? new mp.Vector3($res[0].x, $res[0].y, $res[0].z) : $res[0]\n};`;
+    return output;
+}
+
+for (const namespace of Object.values(rawAltNatives)) {
+    for (const [key, value] of Object.entries(namespace)) {
+        outputCode += `hashes["${key}"] = ${generateInvokeFunction(value)}\n`;
+    }
+}
+
 outputCode += `
+mp.game2.invoke = mp.game2.invokeFloat = mp.game2.invokeString = mp.game2.invokeVector3 = function (hash, ...args) {
+    if (typeof hash === "number") hash = "0x" + hash.toString(16);
+    else if (typeof hash != "string") hash = String(hash);
+    if (hashes[hash]) return hashes[hash](...args);
+    throw new Error(\`Native \${hash} not found\`);
+}
+
 mp.game = mp.game2;
 `
 
