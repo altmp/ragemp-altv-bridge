@@ -31,8 +31,8 @@ export class _Vehicle {
     }
 
     // TODO: reverse and implement steeringAngle in core
-    // TODO: nosActive
-    // TODO: nosAmount
+    // TODO: nosActive (nitro)
+    // TODO: nosAmount (nitro)
     // TODO: getHandling
     // TODO: getDefaultHandling
 
