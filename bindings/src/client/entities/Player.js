@@ -2,52 +2,52 @@ import * as alt from "alt-client";
 import mp from "../../shared/mp.js";
 
 export class _Player {
-    #alt;
+    alt;
 
     /** @param {alt.Player} alt */
     constructor(alt) {
-        this.#alt = alt;
+        this.alt = alt;
     }
 
     get handle() {
-        return this.#alt.scriptID;
+        return this.alt.scriptID;
     }
 
     get id() {
-        return this.#alt.id;
+        return this.alt.id;
     }
 
     get remoteId() {
-        return this.#alt.remoteId;
+        return this.alt.remoteId;
     }
 
     get position() {
-        return new mp.Vector3(this.#alt.position);
+        return new mp.Vector3(this.alt.position);
     }
 
     get vehicle() {
-        return this.#alt.vehicle?.mp ?? null;
+        return this.alt.vehicle?.mp ?? null;
     }
 
     get name() {
-        return this.#alt.name;
+        return this.alt.name;
     }
 
     get model() {
-        return this.#alt.model;
+        return this.alt.model;
     }
 
     get voiceVolume() {
-        return this.#alt.spatialVolume; // TODO: what to do with non spatial volume?
+        return this.alt.spatialVolume; // TODO: what to do with non spatial volume?
     }
 
     set voiceVolume(value) {
-        this.#alt.spatialVolume = value;
-        this.#alt.nonSpatialVolume = value;
+        this.alt.spatialVolume = value;
+        this.alt.nonSpatialVolume = value;
     }
 
     get isPlayerTalking() {
-        return this.#alt.isTalking;
+        return this.alt.isTalking;
     }
 
     // TODO: isTypingInTextChat
@@ -61,6 +61,12 @@ export class _Player {
     
     get type() {
         return "player";
+    }
+
+    getVariable(key) {
+        if (alt.Player.local === this.alt)
+            if (alt.hasLocalMeta(key)) return alt.getLocalMeta(key);
+        return this.alt.getSyncedMeta(key);
     }
 }
 

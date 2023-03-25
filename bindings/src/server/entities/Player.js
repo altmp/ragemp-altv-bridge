@@ -1,4 +1,5 @@
 import * as alt from "alt-server";
+import { SyncedMetaProxy } from "../../shared/meta.js";
 import mp from "../../shared/mp.js";
 import { deg2rad, rad2deg, vdist, vdist2 } from "../../shared/utils.js";
 
@@ -8,6 +9,7 @@ export class _Player {
     /** @param {alt.Player} alt */
     constructor(alt) {
         this.alt = alt;
+        this.data = new SyncedMetaProxy(alt);
     }
 
     get id() {
@@ -318,6 +320,31 @@ export class _Player {
 
     distSquared(pos) {
         return vdist2(this.alt.pos, pos);
+    }
+
+    setVariable(key, value) {
+        if (typeof key === "object") {
+            for (const [innerKey, innerValue] of Object.entries(key)) this.setVariable(innerKey, innerValue);
+            return;
+        }
+
+        this.alt.setSyncedMeta(key, value);
+    }
+
+    getVariable(key) {
+        return this.alt.getSyncedMeta(key);
+    }
+
+    setOwnVariable(key, value) {
+        this.alt.setLocalMeta(key, value);
+    }
+
+    setOwnVariables(obj) {
+        for (const [key, value] of Object.entries(obj)) this.setOwnVariable(key, value);
+    }
+
+    getOwnVariable(key, value) {
+        return this.alt.getLocalMeta(key);
     }
 
     // TODO: variables
