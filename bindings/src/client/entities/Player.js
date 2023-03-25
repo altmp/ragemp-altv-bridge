@@ -72,6 +72,14 @@ mp.players = {};
 
 mp.players.local = alt.Player.local.mp;
 
+Object.defineProperty(mp.players, "length", { 
+    get() {
+        return alt.Player.all.length; // TODO: optimize, implement length in core
+    }
+});
+
+// TODO: size
+
 mp.players.at = function(id) {
     return alt.Player.getByID(id)?.mp ?? null;
 }
@@ -88,6 +96,8 @@ mp.players.forEach = function(fn) {
     alt.Player.all.forEach((player) => fn(player, player.id));
 }
 
+mp.players.apply = mp.players.forEach;
+
 mp.players.forEachInStreamRange = function(fn) {
     alt.Player.streamedIn.forEach((player) => fn(player, player.id));
 }
@@ -96,7 +106,6 @@ mp.players.toArray = function() {
     return alt.Player.all;
 }
 
-// TODO: apply
 // TODO: atRemoteId
 // TODO: remoteId
 // TODO: maxStreamed

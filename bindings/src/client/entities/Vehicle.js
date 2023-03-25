@@ -18,6 +18,10 @@ export class _Vehicle {
         return this.#alt.id;
     }
 
+    get remoteId() {
+        return this.#alt.remoteId;
+    }
+
     get position() {
         return new mp.Vector3(this.#alt.position);
     }
@@ -71,6 +75,8 @@ mp.vehicles.forEach = function(fn) {
     alt.Vehicle.all.forEach((vehicle) => fn(vehicle, vehicle.id));
 }
 
+mp.players.apply = mp.players.forEach;
+
 mp.players.forEachInStreamRange = function(fn) {
     alt.Vehicle.streamedIn.forEach((vehicle) => fn(vehicle, vehicle.id));
 }
@@ -79,7 +85,6 @@ mp.players.toArray = function() {
     return alt.Vehicle.all;
 }
 
-// TODO: apply
 // TODO: atRemoteId
 // TODO: remoteId
 // TODO: maxStreamed
