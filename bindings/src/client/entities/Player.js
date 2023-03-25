@@ -17,6 +17,10 @@ export class _Player {
         return this.#alt.id;
     }
 
+    get remoteId() {
+        return this.#alt.remoteId;
+    }
+
     get position() {
         return new mp.Vector3(this.#alt.position);
     }
