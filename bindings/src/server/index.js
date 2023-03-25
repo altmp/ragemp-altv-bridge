@@ -1,38 +1,39 @@
 import "../shared/index.js";
-import { Blip, BlipSprite, Colshape, ColshapeSphere, onClient, Player, PointBlip, RadiusBlip, Vector3, Vehicle } from 'alt-server';
-import alt, { emit, on, VehicleLockState } from 'alt-shared';
+import "./entities/index.js";
+// import { Blip, BlipSprite, Colshape, ColshapeSphere, onClient, Player, PointBlip, RadiusBlip, Vector3, Vehicle } from 'alt-server';
+// import alt, { emit, on, VehicleLockState } from 'alt-shared';
 
-// Events
-mp._events = {};
+// // Events
+// mp._events = {};
 
-// Can receive from both client and server
-mp._events.add = (eventName, ...args) => {
-    // TODO: Try to receive from client and server. If not, notify devs to rewrite their code
-    onClient(eventName, ...args);
-    on(eventName, ...args);
-};
+// // Can receive from both client and server
+// mp._events.add = (eventName, ...args) => {
+//     // TODO: Try to receive from client and server. If not, notify devs to rewrite their code
+//     onClient(eventName, ...args);
+//     on(eventName, ...args);
+// };
 
-// Can receive only from client. When player sends /command
-mp._events.addCommand = (commandName, ...args) => {
-    // TODO: When player sends /command, it should be sent to the server
-};
+// // Can receive only from client. When player sends /command
+// mp._events.addCommand = (commandName, ...args) => {
+//     // TODO: When player sends /command, it should be sent to the server
+// };
 
-// Can receive only from server
-mp._events.addLocal = (eventName, ...args) => {
-    return on(eventName, ...args);
-};
+// // Can receive only from server
+// mp._events.addLocal = (eventName, ...args) => {
+//     return on(eventName, ...args);
+// };
 
-// Call event in server
-mp._events.call = (eventName, ...args) => {
-    emit(eventName, ...args);
-};
+// // Call event in server
+// mp._events.call = (eventName, ...args) => {
+//     emit(eventName, ...args);
+// };
 
-// Call's an event only in server
-mp._events.callLocal = (eventName, ...args) => {
-    emit(eventName, ...args);
-}
+// // Call's an event only in server
+// mp._events.callLocal = (eventName, ...args) => {
+//     emit(eventName, ...args);
+// }
 
-mp.events = mp._events;
+// mp.events = mp._events;
 
 
 // // Players

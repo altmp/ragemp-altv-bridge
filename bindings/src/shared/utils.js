@@ -7,5 +7,12 @@ export const vdist2 = (v1, v2, useZ = true) => {
     let dy = v1.y - v2.y;
     let dz = useZ ? v1.z - v2.z : 0;
 
-    return Math.sqrt(dx * dx + dy * dy + dz * dz);
+    return (dx * dx + dy * dy + dz * dz);
 }
+
+export const vdist = (v1, v2, useZ = true) => {
+    return vdist2(v1, v2, useZ);
+}
+
+export const rad2deg = 180 / Math.PI;
+export const deg2rad = Math.PI / 180;
