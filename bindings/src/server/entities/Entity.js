@@ -1,5 +1,5 @@
-import * as alt from "alt-server";
-import { _WorldObject } from "./WorldObject";
+import * as alt from 'alt-server';
+import { _WorldObject } from './WorldObject';
 
 export class _Entity extends _WorldObject {
     #alt;
@@ -11,7 +11,7 @@ export class _Entity extends _WorldObject {
     }
     
     setStreamVariable(key, value) {
-        if (typeof key === "object") {
+        if (typeof key === 'object') {
             for (const [innerKey, innerValue] of Object.entries(key)) this.setStreamVariable(innerKey, innerValue);
             return;
         }

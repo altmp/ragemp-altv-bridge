@@ -1,12 +1,12 @@
-import * as alt from "alt-client";
-import mp from "../../shared/mp.js";
+import * as alt from 'alt-client';
+import mp from '../../shared/mp.js';
 
 const created = {};
 let list = [];
 let lastId = 0;
 
 function transformUrl(url) {
-    if (url.startsWith("package://")) return "http://resource/" + url.substring(10);
+    if (url.startsWith('package://')) return 'http://resource/' + url.substring(10);
     return url;
 }
 
@@ -24,13 +24,13 @@ export class _Browser {
     }
 
     get type() {
-        return "browser";
+        return 'browser';
     }
 
     // TODO: RPC (call, cancelPendingProc, hasPendingProc)
 
     execute(code) {
-        this.#alt.emit("$eval", code); // TODO: Implement in webview bridge
+        this.#alt.emit('$eval', code); // TODO: Implement in webview bridge
     }
 
     executeCached(code) {
@@ -60,7 +60,7 @@ export class _Browser {
     }
 
     reload() {
-        this.#alt.url = "data:text/html, ";
+        this.#alt.url = 'data:text/html, ';
         setTimeout(() => {
             if (!this.#_urlWasChanged) this.#alt.url = this.#_url;
         }, 500); // TODO: implement in core
@@ -75,7 +75,7 @@ export class _Browser {
     }
 }
 
-Object.defineProperty(alt.WebView.prototype, "mp", { 
+Object.defineProperty(alt.WebView.prototype, 'mp', { 
     get() {
         return this._mp ??= new _Browser(this);
     } 
@@ -85,7 +85,7 @@ mp.Browser = _Browser;
 
 mp.browsers = {};
 
-Object.defineProperties(mp.browsers, "length", {
+Object.defineProperties(mp.browsers, 'length', {
     get() {
         return list.length;
     }

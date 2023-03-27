@@ -1,4 +1,4 @@
-import { vdist2 } from "../shared/utils";
+import { vdist2 } from '../shared/utils';
 
 export class Pool {
     #getter;

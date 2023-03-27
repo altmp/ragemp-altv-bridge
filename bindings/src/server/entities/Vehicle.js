@@ -1,8 +1,9 @@
-import * as alt from "alt-server";
-import { SyncedMetaProxy } from "../../shared/meta.js";
-import mp from "../../shared/mp.js";
-import { deg2rad, rad2deg, vdist, vdist2 } from "../../shared/utils.js";
-import { _Entity } from "./Entity.js";
+import * as alt from 'alt-server';
+import { SyncedMetaProxy } from '../../shared/meta.js';
+import mp from '../../shared/mp.js';
+import { deg2rad, rad2deg, vdist, vdist2 } from '../../shared/utils.js';
+import { _Entity } from './Entity.js';
+import { Pool } from '../Pool.js';
 
 export class _Vehicle extends _Entity {
     alt;
@@ -181,7 +182,7 @@ export class _Vehicle extends _Entity {
     }
 
     get type() {
-        return "vehicle";
+        return 'vehicle';
     }
 
     destroy() {
@@ -260,11 +261,11 @@ export class _Vehicle extends _Entity {
     
     spawn(pos, heading) {
         this.alt.pos = pos;
-        this.alt.rot = new Vector3(0, 0, heading * deg2rad);
+        this.alt.rot = new alt.Vector3(0, 0, heading * deg2rad);
     }
 }
 
-Object.defineProperty(alt.Vehicle.prototype, "mp", { 
+Object.defineProperty(alt.Vehicle.prototype, 'mp', { 
     get() {
         return this._mp ??= new _Vehicle(this);
     } 
@@ -279,19 +280,19 @@ mp.vehicles.at = function(id) {
 }
 
 mp.vehicles.exists = function(id) {
-    if (typeof id === "object") return id.exists ?? id.mp?.exists;
+    if (typeof id === 'object') return id.exists ?? id.mp?.exists;
     return this.Vehicle.getByID(id) != null;
 }
 
 mp.vehicles.new = function(model, position, options = {}) {
     const heading = options?.heading ?? 0;
     const veh = new alt.Vehicle(model, position, new alt.Vector3(0, 0, heading * deg2rad));
-    if ("numberPlate" in options) veh.numberPlateText = options.numberPlate;
+    if ('numberPlate' in options) veh.numberPlateText = options.numberPlate;
     // TODO: alpha
-    if ("locked" in options) veh.mp.locked = options.locked;
-    if ("engine" in options) veh.engineOn = options.engine;
-    if ("dimension" in options) veh.dimension = options.dimension;
-    if ("color" in options) {
+    if ('locked' in options) veh.mp.locked = options.locked;
+    if ('engine' in options) veh.engineOn = options.engine;
+    if ('dimension' in options) veh.dimension = options.dimension;
+    if ('color' in options) {
         veh.customPrimaryColor = new alt.RGBA(options.color[0]);
         veh.customSecondaryColor = new alt.RGBA(options.color[1]);
     }

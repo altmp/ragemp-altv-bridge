@@ -1,5 +1,5 @@
-import * as alt from "alt-client";
-import mp from "../../shared/mp.js";
+import * as alt from 'alt-client';
+import mp from '../../shared/mp.js';
 
 const created = {};
 let list = [];
@@ -7,6 +7,7 @@ let lastId = 0;
 
 export class _Checkpoint {
     #alt;
+    #_url;
     id;
 
     /** @param {alt.Checkpoint} alt */
@@ -19,7 +20,7 @@ export class _Checkpoint {
     }
 
     get type() {
-        return "checkpoint";
+        return 'checkpoint';
     }
 
     destroy() {
@@ -29,7 +30,7 @@ export class _Checkpoint {
     }
 }
 
-Object.defineProperty(alt.Checkpoint.prototype, "mp", { 
+Object.defineProperty(alt.Checkpoint.prototype, 'mp', { 
     get() {
         return this._mp ??= new _Checkpoint(this);
     }
@@ -39,7 +40,7 @@ mp.Checkpoint = _Checkpoint;
 
 mp.checkpoints = {};
 
-Object.defineProperties(mp.checkpoints, "length", {
+Object.defineProperties(mp.checkpoints, 'length', {
     get() {
         return list.length;
     }

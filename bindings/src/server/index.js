@@ -1,5 +1,5 @@
-import "../shared/index.js";
-import "./entities/index.js";
+import '../shared/index.js';
+import './entities/index.js';
 // import { Blip, BlipSprite, Colshape, ColshapeSphere, onClient, Player, PointBlip, RadiusBlip, Vector3, Vehicle } from 'alt-server';
 // import alt, { emit, on, VehicleLockState } from 'alt-shared';
 

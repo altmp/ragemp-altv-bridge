@@ -1,9 +1,9 @@
-import * as alt from "alt-server";
-import { SyncedMetaProxy } from "../../shared/meta.js";
-import mp from "../../shared/mp.js";
-import { argsToAlt, deg2rad, rad2deg, vdist, vdist2 } from "../../shared/utils.js";
-import { Pool } from "../Pool.js";
-import { _Entity } from "./Entity.js";
+import * as alt from 'alt-server';
+import { SyncedMetaProxy } from '../../shared/meta.js';
+import mp from '../../shared/mp.js';
+import { argsToAlt, deg2rad, rad2deg, vdist, vdist2 } from '../../shared/utils.js';
+import { Pool } from '../Pool.js';
+import { _Entity } from './Entity.js';
 
 let bannedHwids = {};
 
@@ -18,8 +18,8 @@ export class _Player extends _Entity {
     }
 
     get action() { // TODO: check all the other existing values
-        if (this.alt.vehicle) return "in_vehicle";
-        return "stopped";
+        if (this.alt.vehicle) return 'in_vehicle';
+        return 'stopped';
     }
 
     get aimTarget() {
@@ -39,7 +39,7 @@ export class _Player extends _Entity {
     }
 
     set eyeColor(value) {
-        return this.alt.setEyeColor(value);
+        this.alt.setEyeColor(value);
     }
 
     // TODO: face features
@@ -57,7 +57,7 @@ export class _Player extends _Entity {
     }
 
     set hairHighlightColor(value) {
-        return this.alt.setHairHighlightColor(value);
+        this.alt.setHairHighlightColor(value);
     }
 
     get heading() {
@@ -140,10 +140,10 @@ export class _Player extends _Entity {
     }
     
     get type() {
-        return "player";
+        return 'player';
     }
 
-    ban(reason = "You were banned") {
+    ban(reason = 'You were banned') {
         this.bannedHwids[this.alt.hwidHash + this.alt.hwidExHash] = reason;
     }
 
@@ -207,7 +207,7 @@ export class _Player extends _Entity {
                 }
             } else {
                 for (const weapon of weapon) {
-                    this.giveWeapon(weapon[i], ammo);
+                    this.giveWeapon(weapon, ammo);
                 }
             }
             return;
@@ -217,7 +217,7 @@ export class _Player extends _Entity {
     }
 
     invoke(native, ...args) {
-        this.alt.emit("$invoke", native, ...argsToAlt(args));
+        this.alt.emit('$invoke', native, ...argsToAlt(args));
     }
     // TODO: invoke
 
@@ -244,6 +244,7 @@ export class _Player extends _Entity {
     }
 
     removeFromVehicle() {
+        // eslint-disable-next-line no-self-assign
         this.alt.pos = this.alt.pos; // TODO: implement better in core
     }
 
@@ -266,8 +267,8 @@ export class _Player extends _Entity {
     setCustomization(gender, shapeFirst, shapeSecond, shapeThird, skinFirst, skinSecond, skinThird, shapeMix, skinMix, thirdMix, eyeColor, hairColor, highlightColor, faceFeatures) {
         this.alt.removeAllWeapons(); // TODO: is needed?
         // TODO: is model set needed?
-        if (gender === true) this.alt.model = alt.hash("mp_m_freemode_01");
-        else this.alt.model = alt.hash("mp_f_freemode_01");
+        if (gender === true) this.alt.model = alt.hash('mp_m_freemode_01');
+        else this.alt.model = alt.hash('mp_f_freemode_01');
         this.alt.setHeadBlendData(shapeFirst, shapeSecond, shapeThird, skinFirst, skinSecond, skinThird, shapeMix, skinMix, thirdMix);
         this.alt.setEyeColor(eyeColor);
         this.alt.setHairColor(hairColor);
@@ -311,7 +312,7 @@ export class _Player extends _Entity {
         const headBlend = this.alt.getHeadBlendData();
         this.alt.setHeadBlendData(headBlend.shapeFirstID, headBlend.shapeSecondID, headBlend.shapeThirdID,
             headBlend.skinFirstID, headBlend.skinSecondID, headBlend.skinThirdID,
-            shapeMix, skinMix, thirdMix);
+            shape, skin, third);
     }
 
     // TODO: enableVoiceTo
@@ -335,13 +336,13 @@ export class _Player extends _Entity {
     }
 }
 
-Object.defineProperty(alt.Player.prototype, "mp", { 
+Object.defineProperty(alt.Player.prototype, 'mp', { 
     get() {
         return this._mp ??= new _Player(this);
     } 
 });
 
-alt.on("beforePlayerConnect", (info) => {
+alt.on('beforePlayerConnect', (info) => {
     const hwid = info.hwidHash + info.hwidExHash;
     if (hwid in bannedHwids) {
         return bannedHwids[hwid];
@@ -357,6 +358,6 @@ mp.players.at = function(id) {
 }
 
 mp.players.exists = function(id) {
-    if (typeof id === "object") return id.exists ?? id.mp?.exists;
+    if (typeof id === 'object') return id.exists ?? id.mp?.exists;
     return this.Player.getByID(id) != null;
 }

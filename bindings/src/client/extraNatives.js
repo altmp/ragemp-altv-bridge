@@ -1,5 +1,5 @@
-import * as natives from "natives";
-import mp from "../shared/mp.js";
+import * as natives from 'natives';
+import mp from '../shared/mp.js';
 
 // #region Namespaces
 

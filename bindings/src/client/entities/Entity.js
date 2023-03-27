@@ -1,5 +1,5 @@
-import * as alt from "alt-client";
-import { _WorldObject } from "./WorldObject";
+import * as alt from 'alt-client';
+import { _WorldObject } from './WorldObject';
 
 export class _Entity extends _WorldObject {
     #alt;

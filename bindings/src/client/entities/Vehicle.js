@@ -1,7 +1,7 @@
-import * as alt from "alt-client";
-import * as natives from "natives";
-import mp from "../../shared/mp.js";
-import { Pool } from "../Pool.js";
+import * as alt from 'alt-client';
+import * as natives from 'natives';
+import mp from '../../shared/mp.js';
+import { Pool } from '../Pool.js';
 
 export class _Vehicle {
     #alt;
@@ -46,11 +46,11 @@ export class _Vehicle {
     }
 
     get type() {
-        return "vehicle";
+        return 'vehicle';
     }
 }
 
-Object.defineProperty(alt.Vehicle.prototype, "mp", { 
+Object.defineProperty(alt.Vehicle.prototype, 'mp', { 
     get() {
         return this._mp ??= new _Vehicle(this);
     } 

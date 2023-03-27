@@ -1,1 +1,1 @@
-import "./Vector.js";
+import './Vector.js';

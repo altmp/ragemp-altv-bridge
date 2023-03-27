@@ -1,13 +1,14 @@
-import * as alt from "alt-client";
-import mp from "../../shared/mp.js";
-import { Pool } from "../Pool.js";
-import { _Entity } from "./Entity.js";
+import * as alt from 'alt-client';
+import mp from '../../shared/mp.js';
+import { Pool } from '../Pool.js';
+import { _Entity } from './Entity.js';
 
 export class _Player extends _Entity {
     alt;
 
     /** @param {alt.Player} alt */
     constructor(alt) {
+        super(alt);
         this.alt = alt;
     }
 
@@ -58,11 +59,11 @@ export class _Player extends _Entity {
     // TODO: setVoiceFx*
     
     get type() {
-        return "player";
+        return 'player';
     }
 }
 
-Object.defineProperty(alt.Player.prototype, "mp", { 
+Object.defineProperty(alt.Player.prototype, 'mp', { 
     get() {
         return this._mp ??= new _Player(this);
     } 

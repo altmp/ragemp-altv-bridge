@@ -1,10 +1,10 @@
-import * as alt from "alt-server";
-import { SyncedMetaProxy } from "../../shared/meta.js";
-import mp from "../../shared/mp.js";
-import { deg2rad, rad2deg, vdist, vdist2 } from "../../shared/utils.js";
-import { Pool } from "../Pool.js";
-import { _Entity } from "./Entity.js";
-import { _WorldObject } from "./WorldObject.js";
+import * as alt from 'alt-server';
+import { SyncedMetaProxy } from '../../shared/meta.js';
+import mp from '../../shared/mp.js';
+import { deg2rad, rad2deg, vdist, vdist2 } from '../../shared/utils.js';
+import { Pool } from '../Pool.js';
+import { _Entity } from './Entity.js';
+import { _WorldObject } from './WorldObject.js';
 
 export class _Blip extends _WorldObject {
     alt;
@@ -82,16 +82,16 @@ export class _Blip extends _WorldObject {
     }
 
     get type() {
-        return "blip";
+        return 'blip';
     }
 
     // TODO: routeFor
     // TODO: unrouteFor
 }
 
-Object.defineProperty(alt.Blip.prototype, "mp", { 
+Object.defineProperty(alt.Blip.prototype, 'mp', { 
     get() {
-        return this._mp ??= new _Player(this);
+        return this._mp ??= new _Blip(this);
     } 
 });
 
@@ -104,20 +104,20 @@ mp.blips.at = function(id) {
 }
 
 mp.blips.exists = function(id) {
-    if (typeof id === "object") return id.exists ?? id.mp?.exists;
+    if (typeof id === 'object') return id.exists ?? id.mp?.exists;
     return this.Blip.getByID(id) != null;
 }
 
 mp.blips.new = function(sprite, position, options) {
     const blip = new alt.PointBlip(position);
     blip.sprite = sprite;
-    if ("name" in options) blip.name = options.name;
-    if ("scale" in options) blip.scale = options.scale;
-    if ("color" in options) blip.color = options.color;
-    if ("alpha" in options) blip.alpha = options.alpha;
+    if ('name' in options) blip.name = options.name;
+    if ('scale' in options) blip.scale = options.scale;
+    if ('color' in options) blip.color = options.color;
+    if ('alpha' in options) blip.alpha = options.alpha;
     // TODO: drawDistance?
-    if ("shortRange" in options) blip.shortRange = options.shortRange;
-    if ("rotation" in options) blip.heading = options.rotation; // TODO: convert units?
-    if ("dimension" in options) blip.dimension = options.dimension;
+    if ('shortRange' in options) blip.shortRange = options.shortRange;
+    if ('rotation' in options) blip.heading = options.rotation; // TODO: convert units?
+    if ('dimension' in options) blip.dimension = options.dimension;
     // TODO: radius
 }

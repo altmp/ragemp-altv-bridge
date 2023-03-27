@@ -1,1 +1,1 @@
-import "./Player.js";
+import './Player.js';

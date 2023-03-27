@@ -1,4 +1,4 @@
-import * as alt from "alt-shared";
+import * as alt from 'alt-shared';
 
 export const vdist2 = (v1, v2, useZ = true) => {
     if (!v1 || !v2) {
@@ -19,7 +19,7 @@ export const vdist = (v1, v2, useZ = true) => {
 export const argsToMp = (args) => {
     for (let i = 0; i < args.length; i++) {
         const el = args[i];
-        if (typeof el === "object" && el instanceof alt.BaseObject && el.mp) {
+        if (typeof el === 'object' && el instanceof alt.BaseObject && el.mp) {
             args[i] = el.mp;
         }
     }
@@ -29,7 +29,7 @@ export const argsToMp = (args) => {
 export const argsToAlt = (args) => {
     for (let i = 0; i < args.length; i++) {
         const el = args[i];
-        if (typeof el === "object" && el.isMpWrapper) {
+        if (typeof el === 'object' && el.isMpWrapper) {
             args[i] = el.alt;
         }
     }

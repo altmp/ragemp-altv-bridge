@@ -1,4 +1,4 @@
-import mp from "./mp.js";
+import mp from './mp.js';
 
 class _Vector3 {
     constructor(x, y, z) {
