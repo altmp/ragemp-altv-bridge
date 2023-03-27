@@ -1,6 +1,7 @@
 import * as alt from "alt-client";
 import * as natives from "natives";
 import mp from "../../shared/mp.js";
+import { Pool } from "../Pool.js";
 
 export class _Vehicle {
     #alt;
@@ -57,10 +58,14 @@ Object.defineProperty(alt.Vehicle.prototype, "mp", {
 
 mp.Vehicle = _Vehicle;
 
-mp.vehicles = {};
+mp.vehicles = new Pool(() => alt.Player.all, () => alt.Player.streamedIn);
 
 mp.vehicles.at = function(id) {
     return alt.Vehicle.getByID(id)?.mp ?? null;
+}
+
+mp.vehicles.atRemoteId = function(id) {
+    return alt.Vehicle.getByRemoteID(id)?.mp ?? null;
 }
 
 mp.vehicles.atHandle = function(handle) {
@@ -70,21 +75,3 @@ mp.vehicles.atHandle = function(handle) {
 mp.vehicles.exists = function(id) {
     return alt.Vehicle.getByID(id) != null;
 }
-
-mp.vehicles.forEach = function(fn) {
-    alt.Vehicle.all.forEach((vehicle) => fn(vehicle, vehicle.id));
-}
-
-mp.players.apply = mp.players.forEach;
-
-mp.players.forEachInStreamRange = function(fn) {
-    alt.Vehicle.streamedIn.forEach((vehicle) => fn(vehicle, vehicle.id));
-}
-
-mp.players.toArray = function() {
-    return alt.Vehicle.all;
-}
-
-// TODO: atRemoteId
-// TODO: remoteId
-// TODO: maxStreamed

@@ -1,19 +1,20 @@
 import * as alt from "alt-server";
 import { SyncedMetaProxy } from "../../shared/meta.js";
 import mp from "../../shared/mp.js";
-import { deg2rad, rad2deg, vdist, vdist2 } from "../../shared/utils.js";
+import { argsToAlt, deg2rad, rad2deg, vdist, vdist2 } from "../../shared/utils.js";
+import { Pool } from "../Pool.js";
+import { _Entity } from "./Entity.js";
 
-export class _Player {
+let bannedHwids = {};
+
+export class _Player extends _Entity {
     alt;
 
     /** @param {alt.Player} alt */
     constructor(alt) {
+        super(alt);
         this.alt = alt;
         this.data = new SyncedMetaProxy(alt);
-    }
-
-    get id() {
-        return this.alt.id;
     }
 
     get action() { // TODO: check all the other existing values
@@ -91,7 +92,10 @@ export class _Player {
         return this.alt.name;
     }
 
-    // TODO: packetLoss
+    // TODO: implement it in core
+    get packetLoss() {
+        return 0;
+    }
     
     get ping() {
         return this.alt.ping;
@@ -119,14 +123,6 @@ export class _Player {
     // TODO: weapons
     // TODO: alpha
 
-    get dimension() {
-        return this.alt.dimension;
-    }
-
-    set dimension(value) {
-        this.alt.dimension = value;
-    }
-
     get model() {
         return this.alt.model;
     }
@@ -147,20 +143,29 @@ export class _Player {
         return "player";
     }
 
-    // TODO: ban
+    ban(reason = "You were banned") {
+        this.bannedHwids[this.alt.hwidHash + this.alt.hwidExHash] = reason;
+    }
 
     call(evt, args) {
         this.alt.emit(evt, ...args);
+    }
+
+    callUnreliable(evt, args) {
+        alt.emitClientUnreliable(this.alt, evt, ...args);
     }
     
     // TODO: rpc
 
     callToStreamed(includeSelf, evt, args) {
         if (includeSelf) this.call(evt, args);
-        this.streamedPlayers.forEach(e => e.call(evt, args));
+        alt.emitClient(alt.Player.all.filter(p => this.alt.isEntityInStreamRange(p)), evt, ...args);
     }
 
-    // TODO: callUnreliable
+    callToStreamedUnreliable(includeSelf, evt, args) {
+        if (includeSelf) this.call(evt, args);
+        alt.emitClientUnreliable(alt.Player.all.filter(p => this.alt.isEntityInStreamRange(p)), evt, ...args);
+    }
 
     // TODO: tattoos (decorations)
 
@@ -211,6 +216,9 @@ export class _Player {
         this.alt.giveWeapon(weapon, ammo, true); // TODO: is true?
     }
 
+    invoke(native, ...args) {
+        this.alt.emit("$invoke", native, ...argsToAlt(args));
+    }
     // TODO: invoke
 
     isStreamed(player) {
@@ -314,27 +322,6 @@ export class _Player {
         this.alt.destroy();
     }
 
-    dist(pos) {
-        return vdist(this.alt.pos, pos);
-    }
-
-    distSquared(pos) {
-        return vdist2(this.alt.pos, pos);
-    }
-
-    setVariable(key, value) {
-        if (typeof key === "object") {
-            for (const [innerKey, innerValue] of Object.entries(key)) this.setVariable(innerKey, innerValue);
-            return;
-        }
-
-        this.alt.setSyncedMeta(key, value);
-    }
-
-    getVariable(key) {
-        return this.alt.getSyncedMeta(key);
-    }
-
     setOwnVariable(key, value) {
         this.alt.setLocalMeta(key, value);
     }
@@ -343,11 +330,9 @@ export class _Player {
         for (const [key, value] of Object.entries(obj)) this.setOwnVariable(key, value);
     }
 
-    getOwnVariable(key, value) {
+    getOwnVariable(key) {
         return this.alt.getLocalMeta(key);
     }
-
-    // TODO: variables
 }
 
 Object.defineProperty(alt.Player.prototype, "mp", { 
@@ -356,14 +341,22 @@ Object.defineProperty(alt.Player.prototype, "mp", {
     } 
 });
 
-mp.Player = _Player;
-
-mp.players = {};
-
-Object.defineProperty(mp.players, "length", { 
-    get() {
-        return alt.Player.all.length; // TODO: optimize, implement length in core
+alt.on("beforePlayerConnect", (info) => {
+    const hwid = info.hwidHash + info.hwidExHash;
+    if (hwid in bannedHwids) {
+        return bannedHwids[hwid];
     }
 });
 
-// TODO: mp.players methods
+mp.Player = _Player;
+
+mp.players = new Pool(() => alt.Player.all);
+
+mp.players.at = function(id) {
+    return alt.Player.getByID(id)?.mp ?? null;
+}
+
+mp.players.exists = function(id) {
+    if (typeof id === "object") return id.exists ?? id.mp?.exists;
+    return this.Player.getByID(id) != null;
+}

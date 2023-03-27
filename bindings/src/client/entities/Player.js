@@ -1,7 +1,9 @@
 import * as alt from "alt-client";
 import mp from "../../shared/mp.js";
+import { Pool } from "../Pool.js";
+import { _Entity } from "./Entity.js";
 
-export class _Player {
+export class _Player extends _Entity {
     alt;
 
     /** @param {alt.Player} alt */
@@ -11,10 +13,6 @@ export class _Player {
 
     get handle() {
         return this.alt.scriptID;
-    }
-
-    get id() {
-        return this.alt.id;
     }
 
     get remoteId() {
@@ -62,12 +60,6 @@ export class _Player {
     get type() {
         return "player";
     }
-
-    getVariable(key) {
-        if (alt.Player.local === this.alt)
-            if (alt.hasLocalMeta(key)) return alt.getLocalMeta(key);
-        return this.alt.getSyncedMeta(key);
-    }
 }
 
 Object.defineProperty(alt.Player.prototype, "mp", { 
@@ -78,20 +70,16 @@ Object.defineProperty(alt.Player.prototype, "mp", {
 
 mp.Player = _Player;
 
-mp.players = {};
+mp.players = new Pool(() => alt.Player.all, () => alt.Player.streamedIn);
 
 mp.players.local = alt.Player.local.mp;
 
-Object.defineProperty(mp.players, "length", { 
-    get() {
-        return alt.Player.all.length; // TODO: optimize, implement length in core
-    }
-});
-
-// TODO: size
-
 mp.players.at = function(id) {
     return alt.Player.getByID(id)?.mp ?? null;
+}
+
+mp.players.atRemoteId = function(id) {
+    return alt.Player.getByRemoteID(id)?.mp ?? null;
 }
 
 mp.players.atHandle = function(handle) {
@@ -101,21 +89,3 @@ mp.players.atHandle = function(handle) {
 mp.players.exists = function(id) {
     return alt.Player.getByID(id) != null;
 }
-
-mp.players.forEach = function(fn) {
-    alt.Player.all.forEach((player) => fn(player, player.id));
-}
-
-mp.players.apply = mp.players.forEach;
-
-mp.players.forEachInStreamRange = function(fn) {
-    alt.Player.streamedIn.forEach((player) => fn(player, player.id));
-}
-
-mp.players.toArray = function() {
-    return alt.Player.all;
-}
-
-// TODO: atRemoteId
-// TODO: remoteId
-// TODO: maxStreamed

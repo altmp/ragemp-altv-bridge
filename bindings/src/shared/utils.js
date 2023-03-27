@@ -1,3 +1,5 @@
+import * as alt from "alt-shared";
+
 export const vdist2 = (v1, v2, useZ = true) => {
     if (!v1 || !v2) {
         return -1;
@@ -12,6 +14,26 @@ export const vdist2 = (v1, v2, useZ = true) => {
 
 export const vdist = (v1, v2, useZ = true) => {
     return vdist2(v1, v2, useZ);
+}
+
+export const argsToMp = (args) => {
+    for (let i = 0; i < args.length; i++) {
+        const el = args[i];
+        if (typeof el === "object" && el instanceof alt.BaseObject && el.mp) {
+            args[i] = el.mp;
+        }
+    }
+    return args;
+}
+
+export const argsToAlt = (args) => {
+    for (let i = 0; i < args.length; i++) {
+        const el = args[i];
+        if (typeof el === "object" && el.isMpWrapper) {
+            args[i] = el.alt;
+        }
+    }
+    return args;
 }
 
 export const rad2deg = 180 / Math.PI;
