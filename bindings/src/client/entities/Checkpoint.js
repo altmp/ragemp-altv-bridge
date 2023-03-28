@@ -1,17 +1,19 @@
 import * as alt from 'alt-client';
 import mp from '../../shared/mp.js';
 import { Pool } from '../Pool.js';
+import { _BaseObject } from './BaseObject.js';
 
 const created = {};
 let list = [];
 let lastId = 0;
 
-export class _Checkpoint {
+export class _Checkpoint extends _BaseObject {
     #alt;
     id;
 
     /** @param {alt.Checkpoint} alt */
     constructor(alt) {
+        super(alt);
         this.#alt = alt;
         this.id = lastId++;
         created[this.id] = this;

@@ -2,21 +2,19 @@ import * as alt from 'alt-client';
 import * as natives from 'natives';
 import mp from '../../shared/mp.js';
 import { Pool } from '../Pool.js';
+import { _Entity } from './Entity.js';
 
-export class _Vehicle {
+export class _Vehicle extends _Entity {
     #alt;
 
     /** @param {alt.Vehicle} alt */
     constructor(alt) {
+        super(alt);
         this.#alt = alt;
     }
 
     get handle() {
         return this.#alt.scriptID;
-    }
-
-    get id() {
-        return this.#alt.id;
     }
 
     get remoteId() {

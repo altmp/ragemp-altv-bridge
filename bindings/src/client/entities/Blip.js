@@ -1,12 +1,14 @@
 import * as alt from 'alt-client';
 import mp from '../../shared/mp.js';
 import { Pool } from '../Pool.js';
+import { _WorldObject } from './WorldObject.js';
 
-export class _Blip {
+export class _Blip extends _WorldObject {
     #alt;
 
     /** @param {alt.Blip} alt */
     constructor(alt) {
+        super(alt);
         this.#alt = alt;
     }
 

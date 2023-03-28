@@ -1,6 +1,7 @@
 import * as alt from 'alt-client';
 import mp from '../../shared/mp.js';
 import { Pool } from '../Pool.js';
+import { _BaseObject } from './BaseObject.js';
 
 const created = {};
 let list = [];
@@ -11,12 +12,13 @@ function transformUrl(url) {
     return url;
 }
 
-export class _Browser {
+export class _Browser extends _BaseObject {
     #alt;
     id;
 
     /** @param {alt.WebView} alt */
     constructor(alt) {
+        super(alt);
         this.#alt = alt;
         this.#_url = alt.url;
         this.id = lastId++;
