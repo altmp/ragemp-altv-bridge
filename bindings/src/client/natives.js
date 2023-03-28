@@ -1,6 +1,6 @@
 
 import natives from 'natives';
-import alt from 'alt-client';
+import alt from 'alt';
 import mp from '../shared/mp.js';
 if (!mp.game2) mp.game2 = {};
 const hashes = {};
@@ -190,12 +190,12 @@ mp.game2.app.appGetFloat = function (property) {
 mp.game2.app.getString = function (property) {
     let $res = natives.appGetString(property);
     if (!Array.isArray($res)) $res = [$res];
-    return $2m();
+    return $res[0];
 };
 mp.game2.app.appGetString = function (property) {
     let $res = natives.appGetString(property);
     if (!Array.isArray($res)) $res = [$res];
-    return $2m();
+    return $res[0];
 };
 mp.game2.app.setInt = function (property, value) {
     let $res = natives.appSetInt(property, value);
@@ -980,12 +980,12 @@ mp.game2.audio.getPlayerRadioStationIndex = function () {
 mp.game2.audio.getPlayerRadioStationName = function () {
     let $res = natives.getPlayerRadioStationName();
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.audio.getRadioStationName = function (radioStation) {
     let $res = natives.getRadioStationName(radioStation);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.audio.getPlayerRadioStationGenre = function () {
     let $res = natives.getPlayerRadioStationGenre();
@@ -1675,6 +1675,7 @@ mp.game2.audio.unk._0xC64A06D939F826F5 = function () {
     $resObj.p0 = $res[1];
     $resObj.p1 = $res[2];
     $resObj.p2 = $res[3];
+    $resObj.result = $res[1] == 1;
     return $resObj;
 };
 mp.game2.audio.unk._0x34D66BC058019CE0 = function (radioStationName) {
@@ -3679,7 +3680,7 @@ mp.game2.datafile.flushMissionHeader = function () {
 mp.game2.datafile.getFileDict = function (p0) {
     let $res = natives.datafileGetFileDict(p0 | 0);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.datafile.startSaveToCloud = function (filename, p1) {
     let $res = natives.datafileStartSaveToCloud(filename, p1);
@@ -3689,7 +3690,9 @@ mp.game2.datafile.startSaveToCloud = function (filename, p1) {
 mp.game2.datafile.updateSaveToCloud = function () {
     let $res = natives.datafileUpdateSaveToCloud(false);
     if (!Array.isArray($res)) $res = [$res];
-    return $res[1] == 1 ? $26.p0 : undefined;
+    let $resObj = {};
+    $resObj.p0 = $res[1] == 1;
+    return $res[1] == 1 ? $resObj.p0 : undefined;
 };
 mp.game2.datafile.isSavePending = function () {
     let $res = natives.datafileIsSavePending();
@@ -4396,12 +4399,16 @@ mp.game2.dlc.getIsLoadingScreenActive = function () {
 mp.game2.dlc.hasCloudRequestsFinished = function (unused) {
     let $res = natives.hasCloudRequestsFinished(false, unused);
     if (!Array.isArray($res)) $res = [$res];
-    return $res[1] == 1 ? $26.p0 : undefined;
+    let $resObj = {};
+    $resObj.p0 = $res[1] == 1;
+    return $res[1] == 1 ? $resObj.p0 : undefined;
 };
 mp.game2.dlc.nullify = function (unused) {
     let $res = natives.hasCloudRequestsFinished(false, unused);
     if (!Array.isArray($res)) $res = [$res];
-    return $res[1] == 1 ? $26.p0 : undefined;
+    let $resObj = {};
+    $resObj.p0 = $res[1] == 1;
+    return $res[1] == 1 ? $resObj.p0 : undefined;
 };
 mp.game2.dlc.onEnterSp = function () {
     let $res = natives.onEnterSp();
@@ -6744,22 +6751,62 @@ mp.Vehicle.prototype.setProofs = function (bulletProof, fireProof, explosionProo
 mp.Player.prototype.getProofs = function () {
     let $res = natives.getEntityProofs(this.handle, false, false, false, false, false, false, false, false);
     if (!Array.isArray($res)) $res = [$res];
-    return $26;
+    let $resObj = {};
+    $resObj.bulletProof = $res[1] == 1;
+    $resObj.fireProof = $res[2] == 1;
+    $resObj.explosionProof = $res[3] == 1;
+    $resObj.collisionProof = $res[4] == 1;
+    $resObj.meleeProof = $res[5] == 1;
+    $resObj.steamProof = $res[6] == 1;
+    $resObj.p7 = $res[7] == 1;
+    $resObj.drownProof = $res[8] == 1;
+    $resObj.result = $res[0] == 1;
+    return $resObj;
 };
 mp.Ped.prototype.getProofs = function () {
     let $res = natives.getEntityProofs(this.handle, false, false, false, false, false, false, false, false);
     if (!Array.isArray($res)) $res = [$res];
-    return $26;
+    let $resObj = {};
+    $resObj.bulletProof = $res[1] == 1;
+    $resObj.fireProof = $res[2] == 1;
+    $resObj.explosionProof = $res[3] == 1;
+    $resObj.collisionProof = $res[4] == 1;
+    $resObj.meleeProof = $res[5] == 1;
+    $resObj.steamProof = $res[6] == 1;
+    $resObj.p7 = $res[7] == 1;
+    $resObj.drownProof = $res[8] == 1;
+    $resObj.result = $res[0] == 1;
+    return $resObj;
 };
 mp.Object.prototype.getProofs = function () {
     let $res = natives.getEntityProofs(this.handle, false, false, false, false, false, false, false, false);
     if (!Array.isArray($res)) $res = [$res];
-    return $26;
+    let $resObj = {};
+    $resObj.bulletProof = $res[1] == 1;
+    $resObj.fireProof = $res[2] == 1;
+    $resObj.explosionProof = $res[3] == 1;
+    $resObj.collisionProof = $res[4] == 1;
+    $resObj.meleeProof = $res[5] == 1;
+    $resObj.steamProof = $res[6] == 1;
+    $resObj.p7 = $res[7] == 1;
+    $resObj.drownProof = $res[8] == 1;
+    $resObj.result = $res[0] == 1;
+    return $resObj;
 };
 mp.Vehicle.prototype.getProofs = function () {
     let $res = natives.getEntityProofs(this.handle, false, false, false, false, false, false, false, false);
     if (!Array.isArray($res)) $res = [$res];
-    return $26;
+    let $resObj = {};
+    $resObj.bulletProof = $res[1] == 1;
+    $resObj.fireProof = $res[2] == 1;
+    $resObj.explosionProof = $res[3] == 1;
+    $resObj.collisionProof = $res[4] == 1;
+    $resObj.meleeProof = $res[5] == 1;
+    $resObj.steamProof = $res[6] == 1;
+    $resObj.p7 = $res[7] == 1;
+    $resObj.drownProof = $res[8] == 1;
+    $resObj.result = $res[0] == 1;
+    return $resObj;
 };
 mp.Player.prototype.setQuaternion = function (x, y, z, w) {
     let $res = natives.setEntityQuaternion(this.handle, x, y, z, w);
@@ -7698,6 +7745,7 @@ mp.game2.entity.playSynchronizedMapAnim = function (p0, p1, p2, p3, p4, p5, p8, 
     let $resObj = {};
     $resObj.p6 = $res[0];
     $resObj.p7 = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.entity.playSynchronizedMapEntityAnim = function (p0, p1, p2, p3, p4, p5, p8, p9, p10, p11) {
@@ -7706,6 +7754,7 @@ mp.game2.entity.playSynchronizedMapEntityAnim = function (p0, p1, p2, p3, p4, p5
     let $resObj = {};
     $resObj.p6 = $res[0];
     $resObj.p7 = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.entity.stopSynchronizedMapAnim = function (p0, p1, p2, p3, p4, p5) {
@@ -7739,6 +7788,7 @@ mp.game2.entity.findAnimEventPhase = function (animDictionary, animName, p2) {
     let $resObj = {};
     $resObj.p3 = $res[0];
     $resObj.p4 = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.entity.setAnimCurrentTime = function (entity, animDictionary, animName, time) {
@@ -7853,7 +7903,17 @@ mp.game2.entity.setProofs = function (entity, bulletProof, fireProof, explosionP
 mp.game2.entity.getProofs = function (entity) {
     let $res = natives.getEntityProofs(entity, false, false, false, false, false, false, false, false);
     if (!Array.isArray($res)) $res = [$res];
-    return $26;
+    let $resObj = {};
+    $resObj.bulletProof = $res[1] == 1;
+    $resObj.fireProof = $res[2] == 1;
+    $resObj.explosionProof = $res[3] == 1;
+    $resObj.collisionProof = $res[4] == 1;
+    $resObj.meleeProof = $res[5] == 1;
+    $resObj.steamProof = $res[6] == 1;
+    $resObj.p7 = $res[7] == 1;
+    $resObj.drownProof = $res[8] == 1;
+    $resObj.result = $res[0] == 1;
+    return $resObj;
 };
 mp.game2.entity.setQuaternion = function (entity, x, y, z, w) {
     let $res = natives.setEntityQuaternion(entity, x, y, z, w);
@@ -9180,6 +9240,7 @@ mp.game2.graphics.getScreenCoordFromWorldCoord = function (worldX, worldY, world
     let $resObj = {};
     $resObj.screenX = $res[1];
     $resObj.screenY = $res[2];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.graphics.getTextureResolution = function (textureDict, textureName) {
@@ -9876,12 +9937,12 @@ mp.game2.graphics.getScaleformMovieMethodReturnValueBool = function (methodRetur
 mp.game2.graphics.getScaleformMovieMethodReturnValueString = function (methodReturn) {
     let $res = natives.getScaleformMovieMethodReturnValueString(methodReturn);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.graphics.sittingTv = function (methodReturn) {
     let $res = natives.getScaleformMovieMethodReturnValueString(methodReturn);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.graphics.scaleformMovieMethodAddParamInt = function (value) {
     let $res = natives.scaleformMovieMethodAddParamInt(value);
@@ -11108,22 +11169,22 @@ mp.game2.hud.setColourOfNextTextComponent = function (hudColor) {
 mp.game2.hud.getTextSubstring = function (text, position, length) {
     let $res = natives.getCharacterFromAudioConversationFilename(text, position, length);
     if (!Array.isArray($res)) $res = [$res];
-    return $2m();
+    return $res[0];
 };
 mp.game2.hud.getTextSubstringSafe = function (text, position, length, maxLength) {
     let $res = natives.getCharacterFromAudioConversationFilenameWithByteLimit(text, position, length, maxLength);
     if (!Array.isArray($res)) $res = [$res];
-    return $2m();
+    return $res[0];
 };
 mp.game2.hud.getTextSubstringSlice = function (text, startPosition, endPosition) {
     let $res = natives.getCharacterFromAudioConversationFilenameBytes(text, startPosition, endPosition);
     if (!Array.isArray($res)) $res = [$res];
-    return $2m();
+    return $res[0];
 };
 mp.game2.hud.getLabelText = function (labelName) {
     let $res = natives.getFilenameForAudioConversation(labelName);
     if (!Array.isArray($res)) $res = [$res];
-    return $2m();
+    return $res[0];
 };
 mp.game2.hud.clearPrints = function () {
     let $res = natives.clearPrints();
@@ -11200,7 +11261,7 @@ mp.game2.hud.getLengthOfLiteralStringInBytes = function (string) {
 mp.game2.hud.getStreetNameFromHashKey = function (hash) {
     let $res = natives.getStreetNameFromHashKey(hash);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.hud.isPreferenceSwitchedOn = function () {
     let $res = natives.isHudPreferenceSwitchedOn();
@@ -12104,6 +12165,7 @@ mp.game2.hud.getScreenPositionFromWorldPosition = function (worldX, worldY, worl
     let $resObj = {};
     $resObj.screenX = $res[1];
     $resObj.screenY = $res[2];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.hud.openReportugcMenu = function () {
@@ -12588,12 +12650,13 @@ mp.game2.hud.unk._0x632B2940C67F4EA9 = function (scaleformHandle) {
     $resObj.p1 = $res[0];
     $resObj.p2 = $res[0];
     $resObj.p3 = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.hud.unk._0x98C3CF913D895111 = function (string, length) {
     let $res = natives.getFirstNCharactersOfLiteralString(string, length);
     if (!Array.isArray($res)) $res = [$res];
-    return $2m();
+    return $res[0];
 };
 mp.game2.hud.unk._0xCD74233600C4EA6B = function (toggle) {
     let $res = natives.setFakeSpectatorMode(toggle | 0);
@@ -12758,6 +12821,7 @@ mp.game2.hud.unk._0xC8E1071177A23BE5 = function () {
     $resObj.p0 = $res[0];
     $resObj.p1 = $res[0];
     $resObj.p2 = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.hud.unk._0x4895BDEA16E7C080 = function (p0) {
@@ -12796,6 +12860,7 @@ mp.game2.hud.unk._0xA238192F33110615 = function () {
     $resObj.r = $res[1];
     $resObj.g = $res[2];
     $resObj.b = $res[3];
+    $resObj.result = $res[1] == 1;
     return $resObj;
 };
 mp.game2.hud.unk._0xCA6B2F7CE32AB653 = function (p0, p2) {
@@ -13363,6 +13428,7 @@ mp.Player.prototype.getProjectileNearPed = function (weaponHash, distance, p5) {
     let $resObj = {};
     $resObj.outCoords = new mp.Vector3($res[1]);
     $resObj.outProjectile = $res[2];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.Ped.prototype.getProjectileNearPed = function (weaponHash, distance, p5) {
@@ -13371,6 +13437,7 @@ mp.Ped.prototype.getProjectileNearPed = function (weaponHash, distance, p5) {
     let $resObj = {};
     $resObj.outCoords = new mp.Vector3($res[1]);
     $resObj.outProjectile = $res[2];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.Blip.prototype.isBulletInAngledArea = function (y1, z1, x2, y2, z2, width, ownedByPlayer) {
@@ -13490,7 +13557,7 @@ mp.game2.misc.getRandomEventFlag = function () {
 mp.game2.misc.getGlobalCharBuffer = function () {
     let $res = natives.getContentToLoad();
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.misc.hasResumedFromSuspend = function () {
     let $res = natives.hasResumedFromSuspend();
@@ -13503,6 +13570,7 @@ mp.game2.misc.getBaseElementMetadata = function (p2, p3) {
     let $resObj = {};
     $resObj.p0 = $res[0];
     $resObj.p1 = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.misc.getPrevWeatherTypeHashName = function () {
@@ -13725,6 +13793,7 @@ mp.game2.misc.getGroundZAndNormalFor3DCoord = function (x, y, z) {
     let $resObj = {};
     $resObj.groundZ = $res[1];
     $resObj.normal = new mp.Vector3($res[2]);
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.misc.getGroundZFor3DCoord2 = function (x, y, z, p4, p5) {
@@ -14123,6 +14192,7 @@ mp.game2.misc.getProjectileNearPed = function (ped, weaponHash, distance, p5) {
     let $resObj = {};
     $resObj.outCoords = new mp.Vector3($res[1]);
     $resObj.outProjectile = $res[2];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.misc.isBulletInAngledArea = function (x1, y1, z1, x2, y2, z2, width, ownedByPlayer) {
@@ -14567,7 +14637,7 @@ mp.game2.misc.updateOnscreenKeyboard = function () {
 mp.game2.misc.getOnscreenKeyboardResult = function () {
     let $res = natives.getOnscreenKeyboardResult();
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.misc.cancelOnscreenKeyboard = function () {
     let $res = natives.cancelOnscreenKeyboard();
@@ -14616,6 +14686,7 @@ mp.game2.misc.scriptRaceGetPlayerSplitTime = function (player) {
     let $resObj = {};
     $resObj.p1 = $res[1];
     $resObj.p2 = $res[2];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.misc.startBenchmarkRecording = function () {
@@ -14782,6 +14853,9 @@ mp.game2.misc.unk._0xA4A0065E39C9F25C = function () {
     let $resObj = {};
     $resObj.p0 = new mp.Vector3($res[1]);
     $resObj.p1 = $res[2];
+    $resObj.fadeInAfterLoad = $res[3] == 1;
+    $resObj.p3 = $res[4] == 1;
+    $resObj.result = $res[1] == 1;
     return $resObj;
 };
 mp.game2.misc.unk._0xEB2104E905C6F2E9 = function () {
@@ -15570,7 +15644,7 @@ if (!mp.game2.network) mp.game2.network = {};
 mp.game2.network.getOnlineVersion = function () {
     let $res = natives.getOnlineVersion();
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.network.isSignedIn = function () {
     let $res = natives.networkIsSignedIn();
@@ -16147,6 +16221,7 @@ mp.game2.network.doTransitionToNewFreemode = function (players, p3, p4, p5) {
     let $resObj = {};
     $resObj.p0 = $res[0];
     $resObj.p1 = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.network.isTransitionToGame = function () {
@@ -16279,6 +16354,7 @@ mp.game2.network.sendInviteViaPresence = function (p2, p3) {
     let $resObj = {};
     $resObj.gamerHandle = $res[0];
     $resObj.p1 = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.network.sendPresenceTransitionInvite = function (p2, p3) {
@@ -16287,6 +16363,7 @@ mp.game2.network.sendPresenceTransitionInvite = function (p2, p3) {
     let $resObj = {};
     $resObj.p0 = $res[0];
     $resObj.p1 = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.network.getNumPresenceInvites = function () {
@@ -16383,6 +16460,7 @@ mp.game2.network.inviteGamers = function (p1) {
     $resObj.p0 = $res[0];
     $resObj.p2 = $res[0];
     $resObj.p3 = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.network.hasInvitedGamer = function () {
@@ -16433,6 +16511,7 @@ mp.game2.network.filloutPmPlayerListWithNames = function (p2, p3) {
     let $resObj = {};
     $resObj.p0 = $res[0];
     $resObj.p1 = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.network.refreshPlayerListStats = function (p0) {
@@ -16964,6 +17043,7 @@ mp.game2.network.areHandlesTheSame = function () {
     let $resObj = {};
     $resObj.gamerHandle1 = $res[0];
     $resObj.gamerHandle2 = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.network.isHandleValid = function (gamerHandleSize) {
@@ -17005,7 +17085,7 @@ mp.game2.network.showProfileUi = function () {
 mp.game2.network.playerGetName = function (player) {
     let $res = natives.networkPlayerGetName(player);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.network.playerGetUserid = function (player) {
     let $res = natives.networkPlayerGetUserid(player, 0);
@@ -17049,12 +17129,12 @@ mp.game2.network.getFriendCount = function () {
 mp.game2.network.getFriendName = function (friendIndex) {
     let $res = natives.networkGetFriendName(friendIndex);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.network.getFriendNameFromIndex = function (friendIndex) {
     let $res = natives.networkGetFriendDisplayName(friendIndex);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.network.isFriendOnline = function (name) {
     let $res = natives.networkIsFriendOnline(name);
@@ -17362,6 +17442,7 @@ mp.game2.network.clanPlayerGetDesc = function (bufferSize) {
     let $resObj = {};
     $resObj.clanDesc = $res[0];
     $resObj.gamerHandle = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.network.clanIsRockstarClan = function (bufferSize) {
@@ -17437,6 +17518,7 @@ mp.game2.network.clanGetMembership = function (p2) {
     let $resObj = {};
     $resObj.p0 = $res[1];
     $resObj.clanMembership = $res[0];
+    $resObj.result = $res[1] == 1;
     return $resObj;
 };
 mp.game2.network.clanJoin = function (clanDesc) {
@@ -17454,6 +17536,7 @@ mp.game2.network.clanGetEmblemTxdName = function () {
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.netHandle = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.network.clanRequestEmblem = function (p0) {
@@ -17502,6 +17585,7 @@ mp.game2.network.getPrimaryClanDataNew = function () {
     let $resObj = {};
     $resObj.p0 = $res[0];
     $resObj.p1 = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.network.setIdCanMigrate = function (netId, toggle) {
@@ -17743,12 +17827,12 @@ mp.game2.network.getTimeDifference = function (timeA, timeB) {
 mp.game2.network.getTimeAsString = function (time) {
     let $res = natives.getTimeAsString(time);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.network.getCloudTimeAsString = function () {
     let $res = natives.getCloudTimeAsString();
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.network.getCloudTimeAsInt = function () {
     let $res = natives.getCloudTimeAsInt();
@@ -18081,7 +18165,9 @@ mp.game2.network.accessTunableBoolHash = function (tunableContext, tunableName) 
 mp.game2.network.registerTunableBoolHash = function (contextHash, nameHash) {
     let $res = natives.networkAccessTunableBoolModificationDetectionRegistrationHash(contextHash, nameHash, false);
     if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1 ? $26.value : undefined;
+    let $resObj = {};
+    $resObj.value = $res[1] == 1;
+    return $res[0] == 1 ? $resObj.value : undefined;
 };
 mp.game2.network.tryAccessTunableBoolHash = function (tunableContext, tunableName, defaultValue) {
     let $res = natives.networkTryAccessTunableBoolHash(tunableContext, tunableName, defaultValue | 0);
@@ -18151,17 +18237,17 @@ mp.game2.network.isCommerceDataValid = function () {
 mp.game2.network.getCommerceItemId = function (index) {
     let $res = natives.getCommerceItemId(index);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.network.getCommerceItemName = function (index) {
     let $res = natives.getCommerceItemName(index);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.network.getCommerceProductPrice = function (index) {
     let $res = natives.getCommerceProductPrice(index);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.network.getCommerceItemNumCats = function (index) {
     let $res = natives.getCommerceItemNumCats(index);
@@ -18171,7 +18257,7 @@ mp.game2.network.getCommerceItemNumCats = function (index) {
 mp.game2.network.getCommerceItemCat = function (index, index2) {
     let $res = natives.getCommerceItemCat(index, index2);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.network.openCommerceStore = function (p0, p1, p2) {
     let $res = natives.openCommerceStore(p0, p1, p2);
@@ -18195,7 +18281,7 @@ mp.game2.network.releaseAllCommerceItemImages = function () {
 mp.game2.network.getCommerceItemTexturename = function (index) {
     let $res = natives.getCommerceItemTexturename(index);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.network.isStoreAvailableToUser = function () {
     let $res = natives.isStoreAvailableToUser();
@@ -18239,6 +18325,7 @@ mp.game2.network.ugcCopyContent = function () {
     let $resObj = {};
     $resObj.p0 = $res[0];
     $resObj.p1 = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.network.ugcHasCreateFinished = function () {
@@ -18379,7 +18466,7 @@ mp.game2.network.ugcClearQueryResults = function () {
 mp.game2.network.ugcGetContentUserId = function (p0) {
     let $res = natives.ugcGetContentUserId(p0);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.network.ugcGetContentUserName = function (p0) {
     let $res = natives.ugcGetContentUserName(p0);
@@ -18394,12 +18481,12 @@ mp.game2.network.ugcGetContentCategory = function (p0) {
 mp.game2.network.ugcGetContentId = function (p0) {
     let $res = natives.ugcGetContentId(p0);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.network.ugcGetRootContentId = function (p0) {
     let $res = natives.ugcGetRootContentId(p0);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.network.ugcGetContentName = function (p0) {
     let $res = natives.ugcGetContentName(p0);
@@ -18414,7 +18501,7 @@ mp.game2.network.ugcGetContentDescriptionHash = function (p0) {
 mp.game2.network.ugcGetContentPath = function (p0, p1) {
     let $res = natives.ugcGetContentPath(p0, p1);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.network.ugcGetContentUpdatedDate = function (p0) {
     let $res = natives.ugcGetContentUpdatedDate(p0, 0);
@@ -18598,7 +18685,7 @@ mp.game2.network.textureDownloadHasFailed = function (p0) {
 mp.game2.network.textureDownloadGetName = function (p0) {
     let $res = natives.textureDownloadGetName(p0);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.network.getStatusOfTextureDownload = function (p0) {
     let $res = natives.getStatusOfTextureDownload(p0);
@@ -18656,6 +18743,7 @@ mp.game2.network.hasRosPrivilegeEndDate = function (privilege) {
     let $resObj = {};
     $resObj.banType = $res[1];
     $resObj.timeData = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.network.getRosPrivilege24 = function () {
@@ -18955,6 +19043,7 @@ mp.game2.network.unk._0x1171A97A3D3981B6 = function (p2, p3) {
     let $resObj = {};
     $resObj.p0 = $res[0];
     $resObj.p1 = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.network.unk._0x742B58F723233ED9 = function (p0) {
@@ -19273,6 +19362,7 @@ mp.game2.network.unk._0xA7862BC5ED1DFD7E = function (p0, p1) {
     let $resObj = {};
     $resObj.p2 = $res[0];
     $resObj.p3 = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.network.unk._0x97A770BEEF227E2B = function (p0, p1) {
@@ -19281,6 +19371,7 @@ mp.game2.network.unk._0x97A770BEEF227E2B = function (p0, p1) {
     let $resObj = {};
     $resObj.p2 = $res[0];
     $resObj.p3 = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.network.unk._0x5324A0E3E4CE3570 = function (p0, p1) {
@@ -19289,6 +19380,7 @@ mp.game2.network.unk._0x5324A0E3E4CE3570 = function (p0, p1) {
     let $resObj = {};
     $resObj.p2 = $res[0];
     $resObj.p3 = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.network.unk._0xC87E740D9F3872CC = function () {
@@ -19362,6 +19454,7 @@ mp.game2.network.unk._0xB746D20B17F2A229 = function () {
     let $resObj = {};
     $resObj.p0 = $res[0];
     $resObj.p1 = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.network.unk._0x63B406D7884BFA95 = function () {
@@ -19737,6 +19830,7 @@ mp.game2.object.getStateOfClosestDoorOfType = function (type, x, y, z) {
     let $res = natives.getStateOfClosestDoorOfType(type, x, y, z, false, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
+    $resObj.locked = $res[1] == 1;
     $resObj.heading = $res[2];
     return $resObj;
 };
@@ -20460,17 +20554,17 @@ mp.game2.pad.setCursorLocation = function (x, y) {
 mp.game2.pad.getControlInstructionalButton = function (padIndex, control, p2) {
     let $res = natives.getControlInstructionalButtonsString(padIndex, control, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.pad.getControlActionName = function (padIndex, control, p2) {
     let $res = natives.getControlInstructionalButtonsString(padIndex, control, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.pad.getControlGroupInstructionalButton = function (padIndex, controlGroup, p2) {
     let $res = natives.getControlGroupInstructionalButtonsString(padIndex, controlGroup, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.pad.setControlLightEffectColor = function (padIndex, red, green, blue) {
     let $res = natives.setControlLightEffectColor(padIndex, red, green, blue);
@@ -20603,6 +20697,7 @@ mp.Vehicle.prototype.getVehicleNodeProperties = function (y, z) {
     let $resObj = {};
     $resObj.density = $res[1];
     $resObj.flags = $res[2];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.Vehicle.prototype.isVehicleNodeIdValid = function () {
@@ -20670,6 +20765,7 @@ mp.game2.pathfind.getClosestVehicleNodeWithHeading = function (x, y, z, nodeType
     let $resObj = {};
     $resObj.outPosition = new mp.Vector3($res[1]);
     $resObj.outHeading = $res[2];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.pathfind.getNthClosestVehicleNode = function (x, y, z, nthClosest, unknown1, unknown2, unknown3) {
@@ -20691,6 +20787,7 @@ mp.game2.pathfind.getNthClosestVehicleNodeWithHeading = function (x, y, z, nthCl
     $resObj.outPosition = new mp.Vector3($res[1]);
     $resObj.outHeading = $res[2];
     $resObj.unknown1 = $res[3];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.pathfind.getNthClosestVehicleNodeIdWithHeading = function (x, y, z, nthClosest, p6, p7, p8) {
@@ -20708,6 +20805,7 @@ mp.game2.pathfind.getNthClosestVehicleNodeFavourDirection = function (x, y, z, d
     let $resObj = {};
     $resObj.outPosition = new mp.Vector3($res[1]);
     $resObj.outHeading = $res[2];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.pathfind.getVehicleNodeProperties = function (x, y, z) {
@@ -20716,6 +20814,7 @@ mp.game2.pathfind.getVehicleNodeProperties = function (x, y, z) {
     let $resObj = {};
     $resObj.density = $res[1];
     $resObj.flags = $res[2];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.pathfind.isVehicleNodeIdValid = function (vehicleNodeId) {
@@ -20796,6 +20895,7 @@ mp.game2.pathfind.getRandomVehicleNode = function (x, y, z, radius, p4, p5, p6) 
     let $resObj = {};
     $resObj.outPosition = new mp.Vector3($res[1]);
     $resObj.nodeId = $res[2];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.pathfind.getStreetNameAtCoord = function (x, y, z) {
@@ -24258,6 +24358,7 @@ mp.Player.prototype.getCurrentMovementSpeed = function () {
     let $resObj = {};
     $resObj.speedX = $res[1];
     $resObj.speedY = $res[2];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.Ped.prototype.getCurrentMovementSpeed = function () {
@@ -24266,6 +24367,7 @@ mp.Ped.prototype.getCurrentMovementSpeed = function () {
     let $resObj = {};
     $resObj.speedX = $res[1];
     $resObj.speedY = $res[2];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.Player.prototype.setMaxMoveBlendRatio = function (value) {
@@ -24409,12 +24511,12 @@ mp.Ped.prototype.isHeadshotReady = function () {
 mp.Player.prototype.getHeadshotTxdString = function () {
     let $res = natives.getPedheadshotTxdString(this.handle);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.Ped.prototype.getHeadshotTxdString = function () {
     let $res = natives.getPedheadshotTxdString(this.handle);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.Player.prototype.setHeatscaleOverride = function (heatScale) {
     let $res = natives.setPedHeatscaleOverride(this.handle, heatScale);
@@ -26622,6 +26724,7 @@ mp.game2.ped.getCurrentMovementSpeed = function (ped) {
     let $resObj = {};
     $resObj.speedX = $res[1];
     $resObj.speedY = $res[2];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.ped.setMaxMoveBlendRatio = function (ped, value) {
@@ -26709,12 +26812,12 @@ mp.game2.ped.isPedheadshotReady = function (id) {
 mp.game2.ped.getHeadshotTxdString = function (id) {
     let $res = natives.getPedheadshotTxdString(id);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.ped.getPedheadshotTxdString = function (id) {
     let $res = natives.getPedheadshotTxdString(id);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.ped.requestHeadshotImgUpload = function (id) {
     let $res = natives.requestPedheadshotImgUpload(id);
@@ -26941,6 +27044,7 @@ mp.game2.ped.unk._0x9E30E91FB03A2CAF = function () {
     let $resObj = {};
     $resObj.p0 = $res[0];
     $resObj.p1 = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.ped.unk._0x1E77FA7A62EE6C4C = function (p0) {
@@ -27467,7 +27571,7 @@ mp.game2.player.getNumberOfPlayersInTeam = function (team) {
 mp.game2.player.getName = function () {
     let $res = natives.getPlayerName(0);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.player.getWantedLevelRadius = function () {
     let $res = natives.getWantedLevelRadius(0);
@@ -28576,12 +28680,12 @@ mp.game2.script.isThreadActive = function (threadId) {
 mp.game2.script.getNameOfThread = function (threadId) {
     let $res = natives.getNameOfScriptWithThisId(threadId);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.script.getThreadName = function (threadId) {
     let $res = natives.getNameOfScriptWithThisId(threadId);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.script.threadIteratorReset = function () {
     let $res = natives.scriptThreadIteratorReset();
@@ -28612,7 +28716,7 @@ mp.game2.script.getNumberOfInstancesOfStreamedScript = function (scriptHash) {
 mp.game2.script.getThisName = function () {
     let $res = natives.getThisScriptName();
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.script.getHashOfThisName = function () {
     let $res = natives.getHashOfThisScriptName();
@@ -28814,6 +28918,7 @@ mp.game2.shapetest.getShapeTestResult = function (shapeTestHandle) {
     let $res = natives.getShapeTestResult(shapeTestHandle, false, undefined, undefined, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
+    $resObj.hit = $res[1] == 1;
     $resObj.endCoords = new mp.Vector3($res[2]);
     $resObj.surfaceNormal = new mp.Vector3($res[3]);
     $resObj.entityHit = $res[4];
@@ -28824,6 +28929,7 @@ mp.game2.shapetest.getShapeTestResultIncludingMaterial = function (shapeTestHand
     let $res = natives.getShapeTestResultIncludingMaterial(shapeTestHandle, false, undefined, undefined, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
+    $resObj.hit = $res[1] == 1;
     $resObj.endCoords = new mp.Vector3($res[2]);
     $resObj.surfaceNormal = new mp.Vector3($res[3]);
     $resObj.materialHash = $res[4];
@@ -28947,7 +29053,9 @@ mp.game2.stats.statGetFloat = function (statHash, p2) {
 mp.game2.stats.statGetBool = function (statHash, p2) {
     let $res = natives.statGetBool(statHash, false, p2);
     if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1 ? $26.outValue : undefined;
+    let $resObj = {};
+    $resObj.outValue = $res[1] == 1;
+    return $res[0] == 1 ? $resObj.outValue : undefined;
 };
 mp.game2.stats.statGetDate = function (statHash, p2, p3) {
     let $res = natives.statGetDate(statHash, 0, p2, p3);
@@ -28959,7 +29067,7 @@ mp.game2.stats.statGetDate = function (statHash, p2, p3) {
 mp.game2.stats.statGetString = function (statHash, p1) {
     let $res = natives.statGetString(statHash, p1);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.stats.statGetPos = function (p0, p4) {
     let $res = natives.statGetPos(p0, 0, 0, 0, p4);
@@ -28968,6 +29076,7 @@ mp.game2.stats.statGetPos = function (p0, p4) {
     $resObj.p1 = $res[1];
     $resObj.p2 = $res[2];
     $resObj.p3 = $res[3];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.stats.statGetMaskedInt = function (p0, p2, p3, p4) {
@@ -28980,12 +29089,12 @@ mp.game2.stats.statGetMaskedInt = function (p0, p2, p3, p4) {
 mp.game2.stats.statGetUserId = function (p0) {
     let $res = natives.statGetUserId(p0);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.stats.statGetLicensePlate = function (statName) {
     let $res = natives.statGetLicensePlate(statName);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.stats.statSetLicensePlate = function (statName, str) {
     let $res = natives.statSetLicensePlate(statName, str);
@@ -29333,6 +29442,7 @@ mp.game2.stats.leaderboards2ReadFriendsByRow = function (p2, p3, p4, p5) {
     let $resObj = {};
     $resObj.p0 = $res[0];
     $resObj.p1 = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.stats.leaderboards2ReadByHandle = function () {
@@ -29341,6 +29451,7 @@ mp.game2.stats.leaderboards2ReadByHandle = function () {
     let $resObj = {};
     $resObj.p0 = $res[0];
     $resObj.p1 = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.stats.leaderboards2ReadByRow = function (p2, p4, p6) {
@@ -29351,6 +29462,7 @@ mp.game2.stats.leaderboards2ReadByRow = function (p2, p4, p6) {
     $resObj.p1 = $res[0];
     $resObj.p3 = $res[0];
     $resObj.p5 = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.stats.leaderboards2ReadByRank = function (p1, p2) {
@@ -29366,6 +29478,7 @@ mp.game2.stats.leaderboards2ReadByRadius = function (p1) {
     let $resObj = {};
     $resObj.p0 = $res[0];
     $resObj.p2 = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.stats.leaderboards2ReadByScoreInt = function (p1, p2) {
@@ -29389,6 +29502,7 @@ mp.game2.stats.leaderboards2ReadRankPrediction = function () {
     $resObj.p0 = $res[0];
     $resObj.p1 = $res[0];
     $resObj.p2 = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.stats.leaderboards2ReadByPlatform = function (gamerHandleCsv, platformName) {
@@ -29461,6 +29575,7 @@ mp.game2.stats.leaderboards2WriteDataForEventType = function () {
     let $resObj = {};
     $resObj.p0 = $res[0];
     $resObj.p1 = $res[0];
+    $resObj.result = $res[0] == 1;
     return $resObj;
 };
 mp.game2.stats.statMigrateSave = function (platformName) {
@@ -30039,6 +30154,7 @@ mp.game2.stats.unk._0x6DEE77AFF8C21BD1 = function () {
     let $resObj = {};
     $resObj.playerAccountId = $res[1];
     $resObj.posixTime = $res[2];
+    $resObj.result = $res[1] == 1;
     return $resObj;
 };
 mp.game2.stats.unk._0xF8C54A461C3E11DC = function () {
@@ -31009,6 +31125,7 @@ mp.Player.prototype.getNavmeshRouteDistanceRemaining = function () {
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.distanceRemaining = $res[1];
+    $resObj.isPathReady = $res[2] == 1;
     $resObj.result = $res[0];
     return $resObj;
 };
@@ -31017,6 +31134,7 @@ mp.Ped.prototype.getNavmeshRouteDistanceRemaining = function () {
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.distanceRemaining = $res[1];
+    $resObj.isPathReady = $res[2] == 1;
     $resObj.result = $res[0];
     return $resObj;
 };
@@ -31958,12 +32076,12 @@ mp.Ped.prototype.requestMoveNetworkStateTransition = function (name) {
 mp.Player.prototype.getMoveNetworkState = function () {
     let $res = natives.getTaskMoveNetworkState(this.handle);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.Ped.prototype.getMoveNetworkState = function () {
     let $res = natives.getTaskMoveNetworkState(this.handle);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.Player.prototype.setMoveNetworkSignalFloat = function (signalName, value) {
     let $res = natives.setTaskMoveNetworkSignalFloat(this.handle, signalName, value);
@@ -32409,6 +32527,7 @@ mp.game2.task.getNavmeshRouteDistanceRemaining = function (ped) {
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.distanceRemaining = $res[1];
+    $resObj.isPathReady = $res[2] == 1;
     $resObj.result = $res[0];
     return $resObj;
 };
@@ -32620,7 +32739,7 @@ mp.game2.task.updateTaskAimGunScriptedTarget = function (p0, p1, p2, p3, p4, p5)
 mp.game2.task.getClipSetForScriptedGun = function (p0) {
     let $res = natives.getClipSetForScriptedGunTask(p0);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.task.aimGunAtEntity = function (ped, entity, duration, p3) {
     let $res = natives.taskAimGunAtEntity(ped, entity, duration, p3 | 0);
@@ -33424,7 +33543,7 @@ mp.game2.task.requestMoveNetworkStateTransition = function (ped, name) {
 mp.game2.task.getMoveNetworkState = function (ped) {
     let $res = natives.getTaskMoveNetworkState(ped);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.task.setMoveNetworkSignalFloat = function (ped, signalName, value) {
     let $res = natives.setTaskMoveNetworkSignalFloat(ped, signalName, value);
@@ -33870,7 +33989,11 @@ mp.Vehicle.prototype.getLastPedInSeat = function (seatIndex) {
 mp.Vehicle.prototype.getLightsState = function () {
     let $res = natives.getVehicleLightsState(this.handle, false, false);
     if (!Array.isArray($res)) $res = [$res];
-    return $26;
+    let $resObj = {};
+    $resObj.lightsOn = $res[1] == 1;
+    $resObj.highbeamsOn = $res[2] == 1;
+    $resObj.result = $res[0] == 1;
+    return $resObj;
 };
 mp.Vehicle.prototype.isTyreBurst = function (wheelID, completely) {
     let $res = natives.isVehicleTyreBurst(this.handle, wheelID, completely | 0);
@@ -34063,7 +34186,7 @@ mp.Vehicle.prototype.setNumberPlateText = function (plateText) {
 mp.Vehicle.prototype.getNumberPlateText = function () {
     let $res = natives.getVehicleNumberPlateText(this.handle);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.Vehicle.prototype.setNumberPlateTextIndex = function (plateIndex) {
     let $res = natives.setVehicleNumberPlateTextIndex(this.handle, plateIndex);
@@ -34894,12 +35017,12 @@ mp.Vehicle.prototype.getModColor2 = function () {
 mp.Vehicle.prototype.getModColor1Name = function (p1) {
     let $res = natives.getVehicleModColor1Name(this.handle, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.Vehicle.prototype.getModColor2Name = function () {
     let $res = natives.getVehicleModColor2Name(this.handle);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.Vehicle.prototype.haveModsStreamedIn = function () {
     let $res = natives.haveVehicleModsStreamedIn(this.handle);
@@ -34930,17 +35053,17 @@ mp.Vehicle.prototype.isToggleModOn = function (modType) {
 mp.Vehicle.prototype.getModTextLabel = function (modType, modValue) {
     let $res = natives.getModTextLabel(this.handle, modType, modValue);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.Vehicle.prototype.getModSlotName = function (modType) {
     let $res = natives.getModSlotName(this.handle, modType);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.Vehicle.prototype.getLiveryName = function (liveryIndex) {
     let $res = natives.getLiveryName(this.handle, liveryIndex);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.Vehicle.prototype.getModModifierValue = function (modType, modIndex) {
     let $res = natives.getVehicleModModifierValue(this.handle, modType, modIndex);
@@ -36071,7 +36194,11 @@ mp.game2.vehicle.getLastPedInSeat = function (vehicle, seatIndex) {
 mp.game2.vehicle.getLightsState = function (vehicle) {
     let $res = natives.getVehicleLightsState(vehicle, false, false);
     if (!Array.isArray($res)) $res = [$res];
-    return $26;
+    let $resObj = {};
+    $resObj.lightsOn = $res[1] == 1;
+    $resObj.highbeamsOn = $res[2] == 1;
+    $resObj.result = $res[0] == 1;
+    return $resObj;
 };
 mp.game2.vehicle.isTyreBurst = function (vehicle, wheelID, completely) {
     let $res = natives.isVehicleTyreBurst(vehicle, wheelID, completely | 0);
@@ -36237,7 +36364,7 @@ mp.game2.vehicle.setNumberPlateText = function (vehicle, plateText) {
 mp.game2.vehicle.getNumberPlateText = function (vehicle) {
     let $res = natives.getVehicleNumberPlateText(vehicle);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.vehicle.getNumberOfNumberPlates = function () {
     let $res = natives.getNumberOfVehicleNumberPlates();
@@ -36976,17 +37103,17 @@ mp.game2.vehicle.setHasStrongAxles = function (vehicle, toggle) {
 mp.game2.vehicle.getDisplayNameFromModel = function (modelHash) {
     let $res = natives.getDisplayNameFromVehicleModel(modelHash);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.vehicle.getDisplayNameFromVehicleModel = function (modelHash) {
     let $res = natives.getDisplayNameFromVehicleModel(modelHash);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.vehicle.getMakeNameFromModel = function (modelHash) {
     let $res = natives.getMakeNameFromVehicleModel(modelHash);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.vehicle.getDeformationAtPos = function (vehicle, offsetX, offsetY, offsetZ) {
     let $res = natives.getVehicleDeformationAtPos(vehicle, offsetX, offsetY, offsetZ);
@@ -37475,12 +37602,12 @@ mp.game2.vehicle.getModColor2 = function (vehicle) {
 mp.game2.vehicle.getModColor1Name = function (vehicle, p1) {
     let $res = natives.getVehicleModColor1Name(vehicle, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.vehicle.getModColor2Name = function (vehicle) {
     let $res = natives.getVehicleModColor2Name(vehicle);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.vehicle.haveModsStreamedIn = function (vehicle) {
     let $res = natives.haveVehicleModsStreamedIn(vehicle);
@@ -37527,17 +37654,17 @@ mp.game2.vehicle.isToggleModOn = function (vehicle, modType) {
 mp.game2.vehicle.getModTextLabel = function (vehicle, modType, modValue) {
     let $res = natives.getModTextLabel(vehicle, modType, modValue);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.vehicle.getModSlotName = function (vehicle, modType) {
     let $res = natives.getModSlotName(vehicle, modType);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.vehicle.getLiveryName = function (vehicle, liveryIndex) {
     let $res = natives.getLiveryName(vehicle, liveryIndex);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.vehicle.getModModifierValue = function (vehicle, modType, modIndex) {
     let $res = natives.getVehicleModModifierValue(vehicle, modType, modIndex);
@@ -38513,6 +38640,7 @@ mp.game2.vehicle.unk._0xA4822F1CF23F4810 = function (p1, p3, p4, p5, p6, p7, p8)
     let $resObj = {};
     $resObj.outVec = new mp.Vector3($res[1]);
     $resObj.outVec1 = new mp.Vector3($res[2]);
+    $resObj.result = $res[1] == 1;
     return $resObj;
 };
 mp.game2.vehicle.unk._0x51DB102F4A3BA5E0 = function (toggle) {
@@ -40142,12 +40270,12 @@ mp.game2.zone.getZonePopschedule = function (zoneId) {
 mp.game2.zone.getNameOf = function (x, y, z) {
     let $res = natives.getNameOfZone(x, y, z);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.zone.getNameOfZone = function (x, y, z) {
     let $res = natives.getNameOfZone(x, y, z);
     if (!Array.isArray($res)) $res = [$res];
-    return $m();
+    return $res[0];
 };
 mp.game2.zone.setEnabled = function (zoneId, toggle) {
     let $res = natives.setZoneEnabled(zoneId, toggle | 0);
