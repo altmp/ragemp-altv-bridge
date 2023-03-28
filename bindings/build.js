@@ -4,5 +4,9 @@ esbuild.build({
     entryPoints: ['src/client/index.js', 'src/server/index.js'],
     bundle: true,
     outdir: 'dist',
-    external: ['alt-client', 'alt-server', 'alt-shared', 'natives']
+    entryNames: '[dir]',
+    external: ['alt-client', 'alt-server', 'alt-shared', 'natives'],
+    format: 'esm',
+    target: 'es2017',
+    sourcemap: 'inline',
 });
