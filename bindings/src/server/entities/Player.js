@@ -148,23 +148,25 @@ export class _Player extends _Entity {
     }
 
     call(evt, args) {
-        this.alt.emit(evt, ...args);
+        this.alt.emit(evt, ...argsToAlt(args));
     }
 
     callUnreliable(evt, args) {
-        alt.emitClientUnreliable(this.alt, evt, ...args);
+        alt.emitClientUnreliable(this.alt, evt, ...argsToAlt(args));
     }
     
     // TODO: rpc
 
     callToStreamed(includeSelf, evt, args) {
-        if (includeSelf) this.call(evt, args);
-        alt.emitClient(alt.Player.all.filter(p => this.alt.isEntityInStreamRange(p)), evt, ...args);
+        const altArgs = argsToAlt(args);
+        if (includeSelf) this.alt.emitClient(evt, ...altArgs);
+        alt.emitClient(alt.Player.all.filter(p => this.alt.isEntityInStreamRange(p)), evt, ...altArgs);
     }
 
     callToStreamedUnreliable(includeSelf, evt, args) {
-        if (includeSelf) this.call(evt, args);
-        alt.emitClientUnreliable(alt.Player.all.filter(p => this.alt.isEntityInStreamRange(p)), evt, ...args);
+        const altArgs = argsToAlt(args);
+        if (includeSelf) this.alt.emitClient(evt, ...altArgs);
+        alt.emitClientUnreliable(alt.Player.all.filter(p => this.alt.isEntityInStreamRange(p)), evt, ...altArgs);
     }
 
     // TODO: tattoos (decorations)
