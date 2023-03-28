@@ -233,7 +233,6 @@ function registerNativeFunction(id: Identifier, fn: FunctionExpression, invoker:
         
         // Parse and adapt return expression
         if (el.type === 'ReturnStatement') {
-            if (parsed.altNative.altName === 'datafileUpdateSaveToCloud') console.log(resObjectIdentifier, el.argument);
             const expr = walk(el.argument, {
                 enter(node) {
                     if (node.type === 'Identifier' && node.name === resObjectIdentifier) {
@@ -293,8 +292,8 @@ function generateNativeCaller(native: ParsedNative, entity = false) {
 }
 
 let outputCode = `
-import natives from 'natives';
-import alt from 'alt';
+import * as natives from 'natives';
+import * as alt from 'alt-client';
 import mp from '../shared/mp.js';
 if (!mp.game2) mp.game2 = {};
 const hashes = {};

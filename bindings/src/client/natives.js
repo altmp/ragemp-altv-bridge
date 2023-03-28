@@ -1,6 +1,6 @@
 
-import natives from 'natives';
-import alt from 'alt';
+import * as natives from 'natives';
+import * as alt from 'alt-client';
 import mp from '../shared/mp.js';
 if (!mp.game2) mp.game2 = {};
 const hashes = {};
