@@ -1,5 +1,6 @@
 import * as alt from 'alt-client';
 import mp from '../../shared/mp.js';
+import { Pool } from '../Pool.js';
 
 export class _Blip {
     #alt;
@@ -26,7 +27,7 @@ Object.defineProperty(alt.Player.prototype, 'mp', {
 
 mp.Blip = _Blip;
 
-mp.blips = {};
+mp.blips = new Pool(() => alt.Blip.all, () => alt.Blip.all, alt.Blip.getByID);
 
 mp.blips.new = function(sprite, position, params) {
     const blip = new alt.PointBlip(position.x, position.y, position.z);

@@ -60,18 +60,10 @@ mp.Vehicle = _Vehicle;
 
 mp.vehicles = new Pool(() => alt.Player.all, () => alt.Player.streamedIn);
 
-mp.vehicles.at = function(id) {
-    return alt.Vehicle.getByID(id)?.mp ?? null;
-}
-
 mp.vehicles.atRemoteId = function(id) {
     return alt.Vehicle.getByRemoteID(id)?.mp ?? null;
 }
 
 mp.vehicles.atHandle = function(handle) {
     return alt.Vehicle.getByScriptID(handle)?.mp ?? null;
-}
-
-mp.vehicles.exists = function(id) {
-    return alt.Vehicle.getByID(id) != null;
 }

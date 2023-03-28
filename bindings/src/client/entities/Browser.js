@@ -1,5 +1,6 @@
 import * as alt from 'alt-client';
 import mp from '../../shared/mp.js';
+import { Pool } from '../Pool.js';
 
 const created = {};
 let list = [];
@@ -19,6 +20,7 @@ export class _Browser {
         this.#alt = alt;
         this.#_url = alt.url;
         this.id = lastId++;
+        this.alt.id = this.id; // TODO: remove when implemented in core
         created[this.id] = this;
         list = Object.values(created);
     }
@@ -83,39 +85,9 @@ Object.defineProperty(alt.WebView.prototype, 'mp', {
 
 mp.Browser = _Browser;
 
-mp.browsers = {};
-
-Object.defineProperties(mp.browsers, 'length', {
-    get() {
-        return list.length;
-    }
-});
-
-// TODO size
+mp.browsers = new Pool(() => list, () => list, (id) => created[id]);
 
 mp.browsers.new = function(url) {
     const webview = new alt.WebView(transformUrl(url));
     return webview.mp;
-}
-
-mp.browsers.toArray = function() {
-    return list;
-}
-
-mp.browsers.forEach = function(fn) {
-    list.forEach(browser => fn(browser, browser.id));
-}
-
-mp.browsers.apply = mp.browsers.forEach;
-
-mp.browsers.exists = function(id) {
-    return id in created;
-}
-
-mp.browsers.at = function(id) {
-    return created[id] ?? null;
-}
-
-mp.browsers.atRemoteId = function(id) {
-    return mp.browsers.at(id);
 }

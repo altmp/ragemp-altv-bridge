@@ -273,16 +273,7 @@ Object.defineProperty(alt.Vehicle.prototype, 'mp', {
 
 mp.Vehicle = _Vehicle;
 
-mp.vehicles = new Pool(() => alt.Vehicle.all);
-
-mp.vehicles.at = function(id) {
-    return alt.Vehicle.getByID(id)?.mp ?? null;
-}
-
-mp.vehicles.exists = function(id) {
-    if (typeof id === 'object') return id.exists ?? id.mp?.exists;
-    return this.Vehicle.getByID(id) != null;
-}
+mp.vehicles = new Pool(() => alt.Vehicle.all, alt.Vehicle.getByID);
 
 mp.vehicles.new = function(model, position, options = {}) {
     const heading = options?.heading ?? 0;

@@ -353,13 +353,4 @@ alt.on('beforePlayerConnect', (info) => {
 
 mp.Player = _Player;
 
-mp.players = new Pool(() => alt.Player.all);
-
-mp.players.at = function(id) {
-    return alt.Player.getByID(id)?.mp ?? null;
-}
-
-mp.players.exists = function(id) {
-    if (typeof id === 'object') return id.exists ?? id.mp?.exists;
-    return this.Player.getByID(id) != null;
-}
+mp.players = new Pool(() => alt.Player.all, alt.Player.getByID);

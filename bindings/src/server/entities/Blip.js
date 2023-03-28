@@ -97,16 +97,7 @@ Object.defineProperty(alt.Blip.prototype, 'mp', {
 
 mp.Blip = _Blip;
 
-mp.blips = new Pool(() => alt.Blip.all);
-
-mp.blips.at = function(id) {
-    return alt.Blip.getByID(id)?.mp ?? null;
-}
-
-mp.blips.exists = function(id) {
-    if (typeof id === 'object') return id.exists ?? id.mp?.exists;
-    return this.Blip.getByID(id) != null;
-}
+mp.blips = new Pool(() => alt.Blip.all, alt.Blip.getByID);
 
 mp.blips.new = function(sprite, position, options) {
     const blip = new alt.PointBlip(position);
