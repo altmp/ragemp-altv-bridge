@@ -36,5 +36,14 @@ export const argsToAlt = (args) => {
     return args;
 }
 
+// alt.Vector3, rotation in radians
+export const rotToDir = (rot) => {
+    return new alt.Vector3(
+        -Math.sin(rot.z) * Math.abs(Math.cos(rot.x)),
+        Math.cos(rot.z) * Math.abs(Math.cos(rot.x)),
+        Math.sin(rot.x)
+    );
+}
+
 export const rad2deg = 180 / Math.PI;
 export const deg2rad = Math.PI / 180;
