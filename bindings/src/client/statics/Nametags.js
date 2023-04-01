@@ -9,6 +9,7 @@ class _Nametags {
     #healthStyle;
 
     constructor() {
+        this.update();
         alt.everyTick(this.#tick.bind(this));
     }
 
@@ -31,16 +32,16 @@ class _Nametags {
             if (this.#healthStyle) {
                 natives.setDrawOrigin(pos.x, pos.y, pos.z + healthStyle.offset, false);
                 natives.drawRect(0, 0, healthStyle.size[0], healthStyle.size[1],
-                    healthStyle.bgColor[0], healthStyle.bgColor[1], healthStyle.bgColor[2], healthStyle.bgColor[3], false);
-                natives.drawRect(0, 0, healthStyle.size[0] * (p.health / p.maxHealth), healthStyle.size[1],
-                    healthStyle.color[0], healthStyle.color[1], healthStyle.color[2], healthStyle.color[3], false);
+                    healthStyle.bgColor.r, healthStyle.bgColor.g, healthStyle.bgColor.b, healthStyle.bgColor.a, false);
+                natives.drawRect(healthStyle.size[0] * (1 - (p.health / p.maxHealth)) / -2, 0, healthStyle.size[0] * (p.health / p.maxHealth), healthStyle.size[1],
+                    healthStyle.color.r, healthStyle.color.g, healthStyle.color.b, healthStyle.color.a, false);
                 natives.clearDrawOrigin();
             }
         })
     }
 
     update(font = 6, outline = true, size = 0.5, offset = 0.7, vehOffset = 1, color = [255, 255, 255, 255], 
-        healthSize = [0.06, 0.008], healthColor = [255, 0, 0, 255], healthBgColor = [255, 255, 255, 64], healthOffset = 0.5, healthBorder = false) {
+        healthSize = [0.06, 0.008], healthColor = [255, 255, 255, 255], healthBgColor = [255, 255, 255, 64], healthOffset = 0.5, healthBorder = false) {
 
         this.#style = {
             font, outline, size, offset, vehOffset,

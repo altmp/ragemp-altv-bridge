@@ -22,7 +22,7 @@ export class _Vehicle extends _Entity {
     }
 
     get position() {
-        return new mp.Vector3(this.alt.position);
+        return new mp.Vector3(this.alt.pos);
     }
 
     get gear() {
