@@ -77,3 +77,9 @@ mp.game.controls.applyDisableControlActionBatch = function() {
 };
 
 // #endregion
+
+mp.gui.execute = () => {}; // seems to be doing nothing
+
+// TODO: screenshot API
+
+mp.gui.isGpuRenderingEnabled = () => false;

@@ -91,3 +91,9 @@ class _Vector3 {
 }
 
 mp.Vector3 = _Vector3;
+
+Object.defineProperty(mp.Vector3, 'zero', {
+    get() {
+        return new _Vector3(0, 0, 0); // important to create the new vector on each access as the vector is mutable
+    }
+})
