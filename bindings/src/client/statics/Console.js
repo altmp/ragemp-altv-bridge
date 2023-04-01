@@ -47,3 +47,7 @@ class _Console {
 }
 
 mp.console = new _Console;
+
+alt.on('consoleCommand', (...args) => {
+    mp.events.dispatch('consoleCommand', args.join(' '), ...args)
+});

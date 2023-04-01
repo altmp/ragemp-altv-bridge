@@ -14,6 +14,7 @@ class _Events {
             this.dispatch(event, ...argsToMp(args));
         });
         alt.on((event, ...args) => {
+            if (event == 'consoleCommand') return; // dispatched in Console.js
             this.dispatch(event, ...argsToMp(args));
         });
         alt.onServer('$bridge$repl', (id, res) => {
@@ -26,6 +27,15 @@ class _Events {
         });
         alt.onServer('$bridge$call', (event, id, ...args) => {
             this.dispatchRemoteProc(event, id, ...args);
+        });
+        alt.everyTick(() => {
+            this.dispatch('render');
+        });
+        alt.on('gameEntityCreate', (entity) => {
+            this.dispatch('entityStreamIn', entity?.mp);
+        });
+        alt.on('gameEntityDestroy', (entity) => {
+            this.dispatch('entityStreamOut', entity?.mp);
         });
     }
 
@@ -73,6 +83,10 @@ class _Events {
 
     reset() {
         this.#handlers = {};
+    }
+
+    hasHandlers(event) {
+        return !!this.#handlers[event] && !!this.#handlers[event].size;
     }
 
     dispatch(event, ...args) {

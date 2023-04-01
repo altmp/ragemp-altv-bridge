@@ -25,6 +25,13 @@ export class _Browser extends _BaseObject {
         this.alt.id = this.id; // TODO: remove when implemented in core
         created[this.id] = this;
         list = Object.values(created);
+
+        // TODO: emit in webview bridge
+        this.alt.on('$bridge$loaded', () => {
+            mp.events.dispatch('browserDomReady', this);
+        });
+
+        // TODO: browserLoadingFailed
     }
 
     get type() {
@@ -93,3 +100,7 @@ mp.browsers.new = function(url) {
     const webview = new alt.WebView(transformUrl(url));
     return webview.mp;
 }
+
+alt.on('baseObjectCreate', (baseObject) => {
+    if (baseObject instanceof alt.WebView) mp.events.dispatch('browserCreated', baseObject.mp);
+});

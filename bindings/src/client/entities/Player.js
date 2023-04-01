@@ -851,3 +851,33 @@ mp.players.local = alt.Player.local.mp;
 mp.players.atHandle = function(handle) {
     return alt.Player.getByScriptID(handle)?.mp ?? null;
 }
+
+alt.onServer('$bridge$dead', (weapon, killer) => {
+    mp.events.dispatch('playerDeath', alt.Player.local.mp, weapon, killer?.mp);
+});
+
+alt.on('resourceStart', () => {
+    mp.events.dispatch('playerJoin', alt.Player.local.mp);
+});
+
+alt.on('resourceStop', () => {
+    mp.events.dispatch('playerQuit', alt.Player.local.mp);
+});
+
+alt.on('connectionComplete', () => {
+    mp.events.dispatch('playerReady', alt.Player.local.mp);
+});
+
+alt.on('spawned', () => {
+    mp.events.dispatch('playerResurrect');
+    mp.events.dispatch('playerSpawn', alt.Player.local.mp);
+});
+
+alt.on('enteredVehicle', (vehicle, seat) => {
+    mp.events.dispatch('playerEnterVehicle', vehicle?.mp, seat);
+    mp.events.dispatch('playerStartEnterVehicle', vehicle?.mp, seat);
+});
+
+alt.on('leftVehicle', (vehicle, seat) => {
+    mp.events.dispatch('playerLeaveVehicle', vehicle?.mp, seat);
+});
