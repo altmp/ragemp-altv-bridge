@@ -269,371 +269,371 @@ mp.game2.app.appDeleteAppData = function (appName) {
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isPedRingtonePlaying = function () {
+mp.Player.prototype.isPedRingtonePlaying ??= function () {
     let $res = natives.isPedRingtonePlaying(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isPedRingtonePlaying = function () {
+mp.Ped.prototype.isPedRingtonePlaying ??= function () {
     let $res = natives.isPedRingtonePlaying(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.stopPedRingtone = function () {
+mp.Player.prototype.stopPedRingtone ??= function () {
     let $res = natives.stopPedRingtone(this.handle);
 };
-mp.Ped.prototype.stopPedRingtone = function () {
+mp.Ped.prototype.stopPedRingtone ??= function () {
     let $res = natives.stopPedRingtone(this.handle);
 };
-mp.Player.prototype.interruptConversationAndPause = function (p1, p2) {
+mp.Player.prototype.interruptConversationAndPause ??= function (p1, p2) {
     let $res = natives.interruptConversationAndPause(this.handle, p1, p2);
 };
-mp.Ped.prototype.interruptConversationAndPause = function (p1, p2) {
+mp.Ped.prototype.interruptConversationAndPause ??= function (p1, p2) {
     let $res = natives.interruptConversationAndPause(this.handle, p1, p2);
 };
-mp.Player.prototype.playPedAmbientSpeechNative = function (speechName, speechParam, p3) {
+mp.Player.prototype.playPedAmbientSpeechNative ??= function (speechName, speechParam, p3) {
     let $res = natives.playPedAmbientSpeechNative(this.handle, speechName, speechParam, p3 | 0);
 };
-mp.Ped.prototype.playPedAmbientSpeechNative = function (speechName, speechParam, p3) {
+mp.Ped.prototype.playPedAmbientSpeechNative ??= function (speechName, speechParam, p3) {
     let $res = natives.playPedAmbientSpeechNative(this.handle, speechName, speechParam, p3 | 0);
 };
-mp.Player.prototype.playPedAmbientSpeechAndCloneNative = function (speechName, speechParam, p3) {
+mp.Player.prototype.playPedAmbientSpeechAndCloneNative ??= function (speechName, speechParam, p3) {
     let $res = natives.playPedAmbientSpeechAndCloneNative(this.handle, speechName, speechParam, p3 | 0);
 };
-mp.Ped.prototype.playPedAmbientSpeechAndCloneNative = function (speechName, speechParam, p3) {
+mp.Ped.prototype.playPedAmbientSpeechAndCloneNative ??= function (speechName, speechParam, p3) {
     let $res = natives.playPedAmbientSpeechAndCloneNative(this.handle, speechName, speechParam, p3 | 0);
 };
-mp.Player.prototype.playPedAmbientSpeechWithVoiceNative = function (speechName, voiceName, speechParam, p4) {
+mp.Player.prototype.playPedAmbientSpeechWithVoiceNative ??= function (speechName, voiceName, speechParam, p4) {
     let $res = natives.playPedAmbientSpeechWithVoiceNative(this.handle, speechName, voiceName, speechParam, p4 | 0);
 };
-mp.Ped.prototype.playPedAmbientSpeechWithVoiceNative = function (speechName, voiceName, speechParam, p4) {
+mp.Ped.prototype.playPedAmbientSpeechWithVoiceNative ??= function (speechName, voiceName, speechParam, p4) {
     let $res = natives.playPedAmbientSpeechWithVoiceNative(this.handle, speechName, voiceName, speechParam, p4 | 0);
 };
-mp.Player.prototype.setPlayerAngry = function (toggle) {
+mp.Player.prototype.setPlayerAngry ??= function (toggle) {
     let $res = natives.setPlayerAngry(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setPlayerAngry = function (toggle) {
+mp.Ped.prototype.setPlayerAngry ??= function (toggle) {
     let $res = natives.setPlayerAngry(this.handle, toggle | 0);
 };
-mp.Player.prototype.playPain = function (painID, p1, p3) {
+mp.Player.prototype.playPain ??= function (painID, p1, p3) {
     let $res = natives.playPain(this.handle, painID, p1, p3 | 0);
 };
-mp.Ped.prototype.playPain = function (painID, p1, p3) {
+mp.Ped.prototype.playPain ??= function (painID, p1, p3) {
     let $res = natives.playPain(this.handle, painID, p1, p3 | 0);
 };
-mp.Player.prototype.setAmbientVoiceName = function (name) {
+mp.Player.prototype.setAmbientVoiceName ??= function (name) {
     let $res = natives.setAmbientVoiceName(this.handle, name);
 };
-mp.Ped.prototype.setAmbientVoiceName = function (name) {
+mp.Ped.prototype.setAmbientVoiceName ??= function (name) {
     let $res = natives.setAmbientVoiceName(this.handle, name);
 };
-mp.Player.prototype.setAmbientVoiceNameHash = function (hash) {
+mp.Player.prototype.setAmbientVoiceNameHash ??= function (hash) {
     let $res = natives.setAmbientVoiceNameHash(this.handle, hash);
 };
-mp.Ped.prototype.setAmbientVoiceNameHash = function (hash) {
+mp.Ped.prototype.setAmbientVoiceNameHash ??= function (hash) {
     let $res = natives.setAmbientVoiceNameHash(this.handle, hash);
 };
-mp.Player.prototype.getAmbientVoiceNameHash = function () {
+mp.Player.prototype.getAmbientVoiceNameHash ??= function () {
     let $res = natives.getAmbientVoiceNameHash(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getAmbientVoiceNameHash = function () {
+mp.Ped.prototype.getAmbientVoiceNameHash ??= function () {
     let $res = natives.getAmbientVoiceNameHash(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setPedScream = function () {
+mp.Player.prototype.setPedScream ??= function () {
     let $res = natives.setPedVoiceFull(this.handle);
 };
-mp.Ped.prototype.setPedScream = function () {
+mp.Ped.prototype.setPedScream ??= function () {
     let $res = natives.setPedVoiceFull(this.handle);
 };
-mp.Player.prototype.setPedVoiceGroup = function (voiceGroupHash) {
+mp.Player.prototype.setPedVoiceGroup ??= function (voiceGroupHash) {
     let $res = natives.setPedVoiceGroup(this.handle, voiceGroupHash);
 };
-mp.Ped.prototype.setPedVoiceGroup = function (voiceGroupHash) {
+mp.Ped.prototype.setPedVoiceGroup ??= function (voiceGroupHash) {
     let $res = natives.setPedVoiceGroup(this.handle, voiceGroupHash);
 };
-mp.Player.prototype.setPedGender = function (p1) {
+mp.Player.prototype.setPedGender ??= function (p1) {
     let $res = natives.setPedGender(this.handle, p1 | 0);
 };
-mp.Ped.prototype.setPedGender = function (p1) {
+mp.Ped.prototype.setPedGender ??= function (p1) {
     let $res = natives.setPedGender(this.handle, p1 | 0);
 };
-mp.Player.prototype.stopCurrentPlayingSpeech = function () {
+mp.Player.prototype.stopCurrentPlayingSpeech ??= function () {
     let $res = natives.stopCurrentPlayingSpeech(this.handle);
 };
-mp.Ped.prototype.stopCurrentPlayingSpeech = function () {
+mp.Ped.prototype.stopCurrentPlayingSpeech ??= function () {
     let $res = natives.stopCurrentPlayingSpeech(this.handle);
 };
-mp.Player.prototype.stopCurrentPlayingAmbientSpeech = function () {
+mp.Player.prototype.stopCurrentPlayingAmbientSpeech ??= function () {
     let $res = natives.stopCurrentPlayingAmbientSpeech(this.handle);
 };
-mp.Ped.prototype.stopCurrentPlayingAmbientSpeech = function () {
+mp.Ped.prototype.stopCurrentPlayingAmbientSpeech ??= function () {
     let $res = natives.stopCurrentPlayingAmbientSpeech(this.handle);
 };
-mp.Player.prototype.isAmbientSpeechPlaying = function () {
+mp.Player.prototype.isAmbientSpeechPlaying ??= function () {
     let $res = natives.isAmbientSpeechPlaying(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isAmbientSpeechPlaying = function () {
+mp.Ped.prototype.isAmbientSpeechPlaying ??= function () {
     let $res = natives.isAmbientSpeechPlaying(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isAnySpeechPlaying = function () {
+mp.Player.prototype.isAnySpeechPlaying ??= function () {
     let $res = natives.isAnySpeechPlaying(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isAnySpeechPlaying = function () {
+mp.Ped.prototype.isAnySpeechPlaying ??= function () {
     let $res = natives.isAnySpeechPlaying(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.canPedSpeak = function (speechName, unk) {
+mp.Player.prototype.canPedSpeak ??= function (speechName, unk) {
     let $res = natives.doesContextExistForThisPed(this.handle, speechName, unk | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.canPedSpeak = function (speechName, unk) {
+mp.Ped.prototype.canPedSpeak ??= function (speechName, unk) {
     let $res = natives.doesContextExistForThisPed(this.handle, speechName, unk | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isPedInCurrentConversation = function () {
+mp.Player.prototype.isPedInCurrentConversation ??= function () {
     let $res = natives.isPedInCurrentConversation(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isPedInCurrentConversation = function () {
+mp.Ped.prototype.isPedInCurrentConversation ??= function () {
     let $res = natives.isPedInCurrentConversation(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setPedIsDrunk = function (toggle) {
+mp.Player.prototype.setPedIsDrunk ??= function (toggle) {
     let $res = natives.setPedIsDrunk(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setPedIsDrunk = function (toggle) {
+mp.Ped.prototype.setPedIsDrunk ??= function (toggle) {
     let $res = natives.setPedIsDrunk(this.handle, toggle | 0);
 };
-mp.Player.prototype.playAnimalVocalization = function (p1, speechName) {
+mp.Player.prototype.playAnimalVocalization ??= function (p1, speechName) {
     let $res = natives.playAnimalVocalization(this.handle, p1, speechName);
 };
-mp.Ped.prototype.playAnimalVocalization = function (p1, speechName) {
+mp.Ped.prototype.playAnimalVocalization ??= function (p1, speechName) {
     let $res = natives.playAnimalVocalization(this.handle, p1, speechName);
 };
-mp.Player.prototype.isAnimalVocalizationPlaying = function () {
+mp.Player.prototype.isAnimalVocalizationPlaying ??= function () {
     let $res = natives.isAnimalVocalizationPlaying(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isAnimalVocalizationPlaying = function () {
+mp.Ped.prototype.isAnimalVocalizationPlaying ??= function () {
     let $res = natives.isAnimalVocalizationPlaying(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setAnimalMood = function (mood) {
+mp.Player.prototype.setAnimalMood ??= function (mood) {
     let $res = natives.setAnimalMood(this.handle, mood);
 };
-mp.Ped.prototype.setAnimalMood = function (mood) {
+mp.Ped.prototype.setAnimalMood ??= function (mood) {
     let $res = natives.setAnimalMood(this.handle, mood);
 };
-mp.Vehicle.prototype.setVehRadioStation = function (radioStation) {
+mp.Vehicle.prototype.setVehRadioStation ??= function (radioStation) {
     let $res = natives.setVehRadioStation(this.handle, radioStation);
 };
-mp.Vehicle.prototype.setVehHasRadioOverride = function () {
+mp.Vehicle.prototype.setVehHasRadioOverride ??= function () {
     let $res = natives.setVehHasNormalRadio(this.handle);
 };
-mp.Vehicle.prototype.isVehicleRadioEnabled = function () {
+mp.Vehicle.prototype.isVehicleRadioEnabled ??= function () {
     let $res = natives.isVehicleRadioOn(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setVehicleRadioLoud = function (toggle) {
+mp.Vehicle.prototype.setVehicleRadioLoud ??= function (toggle) {
     let $res = natives.setVehicleRadioLoud(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.isVehicleRadioLoud = function () {
+mp.Vehicle.prototype.isVehicleRadioLoud ??= function () {
     let $res = natives.canVehicleReceiveCbRadio(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setVehicleRadioEnabled = function (toggle) {
+mp.Vehicle.prototype.setVehicleRadioEnabled ??= function (toggle) {
     let $res = natives.setVehicleRadioEnabled(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.blipSiren = function () {
+mp.Vehicle.prototype.blipSiren ??= function () {
     let $res = natives.blipSiren(this.handle);
 };
-mp.Vehicle.prototype.overrideVehHorn = function (override, hornHash) {
+mp.Vehicle.prototype.overrideVehHorn ??= function (override, hornHash) {
     let $res = natives.overrideVehHorn(this.handle, override | 0, hornHash);
 };
-mp.Vehicle.prototype.isHornActive = function () {
+mp.Vehicle.prototype.isHornActive ??= function () {
     let $res = natives.isHornActive(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.playStreamFromPed = function () {
+mp.Player.prototype.playStreamFromPed ??= function () {
     let $res = natives.playStreamFromPed(this.handle);
 };
-mp.Ped.prototype.playStreamFromPed = function () {
+mp.Ped.prototype.playStreamFromPed ??= function () {
     let $res = natives.playStreamFromPed(this.handle);
 };
-mp.Vehicle.prototype.playStreamFromVehicle = function () {
+mp.Vehicle.prototype.playStreamFromVehicle ??= function () {
     let $res = natives.playStreamFromVehicle(this.handle);
 };
-mp.Object.prototype.playStreamFromObject = function () {
+mp.Object.prototype.playStreamFromObject ??= function () {
     let $res = natives.playStreamFromObject(this.handle);
 };
-mp.Player.prototype.stopPedSpeaking = function (shaking) {
+mp.Player.prototype.stopPedSpeaking ??= function (shaking) {
     let $res = natives.stopPedSpeaking(this.handle, shaking | 0);
 };
-mp.Ped.prototype.stopPedSpeaking = function (shaking) {
+mp.Ped.prototype.stopPedSpeaking ??= function (shaking) {
     let $res = natives.stopPedSpeaking(this.handle, shaking | 0);
 };
-mp.Player.prototype.disablePedPain = function (toggle) {
+mp.Player.prototype.disablePedPain ??= function (toggle) {
     let $res = natives.disablePedPainAudio(this.handle, toggle | 0);
 };
-mp.Ped.prototype.disablePedPain = function (toggle) {
+mp.Ped.prototype.disablePedPain ??= function (toggle) {
     let $res = natives.disablePedPainAudio(this.handle, toggle | 0);
 };
-mp.Player.prototype.isAmbientSpeechDisabled = function () {
+mp.Player.prototype.isAmbientSpeechDisabled ??= function () {
     let $res = natives.isAmbientSpeechDisabled(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isAmbientSpeechDisabled = function () {
+mp.Ped.prototype.isAmbientSpeechDisabled ??= function () {
     let $res = natives.isAmbientSpeechDisabled(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setSirenWithNoDriver = function (toggle) {
+mp.Vehicle.prototype.setSirenWithNoDriver ??= function (toggle) {
     let $res = natives.setSirenWithNoDriver(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setSirenKeepOn = function (toggle) {
+mp.Vehicle.prototype.setSirenKeepOn ??= function (toggle) {
     let $res = natives.setSirenBypassMpDriverCheck(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.triggerSiren = function () {
+mp.Vehicle.prototype.triggerSiren ??= function () {
     let $res = natives.triggerSirenAudio(this.handle);
 };
-mp.Vehicle.prototype.setHornPermanentlyOn = function () {
+mp.Vehicle.prototype.setHornPermanentlyOn ??= function () {
     let $res = natives.setHornPermanentlyOn(this.handle);
 };
-mp.Vehicle.prototype.setHornEnabled = function (toggle) {
+mp.Vehicle.prototype.setHornEnabled ??= function (toggle) {
     let $res = natives.setHornEnabled(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setVehiclePriority = function (p1) {
+mp.Vehicle.prototype.setVehiclePriority ??= function (p1) {
     let $res = natives.setAudioVehiclePriority(this.handle, p1);
 };
-mp.Vehicle.prototype.setHornPermanentlyOnTime = function (time) {
+mp.Vehicle.prototype.setHornPermanentlyOnTime ??= function (time) {
     let $res = natives.setHornPermanentlyOnTime(this.handle, time);
 };
-mp.Vehicle.prototype.useSirenAsHorn = function (toggle) {
+mp.Vehicle.prototype.useSirenAsHorn ??= function (toggle) {
     let $res = natives.useSirenAsHorn(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.forceVehicleEngine = function (audioName) {
+mp.Vehicle.prototype.forceVehicleEngine ??= function (audioName) {
     let $res = natives.forceUseAudioGameObject(this.handle, audioName);
 };
-mp.Vehicle.prototype.setVehicleStartupRevSound = function (p1, p2) {
+mp.Vehicle.prototype.setVehicleStartupRevSound ??= function (p1, p2) {
     let $res = natives.setVehicleStartupRevSound(this.handle, p1, p2);
 };
-mp.Vehicle.prototype.resetVehicleStartupRevSound = function () {
+mp.Vehicle.prototype.resetVehicleStartupRevSound ??= function () {
     let $res = natives.resetVehicleStartupRevSound(this.handle);
 };
-mp.Vehicle.prototype.isVehicleAudiblyDamaged = function () {
+mp.Vehicle.prototype.isVehicleAudiblyDamaged ??= function () {
     let $res = natives.isVehicleAudiblyDamaged(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setVehicleEngineDamageFactor = function (damageFactor) {
+mp.Vehicle.prototype.setVehicleEngineDamageFactor ??= function (damageFactor) {
     let $res = natives.setVehicleAudioEngineDamageFactor(this.handle, damageFactor);
 };
-mp.Vehicle.prototype.setVehicleBodyDamageFactor = function (intensity) {
+mp.Vehicle.prototype.setVehicleBodyDamageFactor ??= function (intensity) {
     let $res = natives.setVehicleAudioBodyDamageFactor(this.handle, intensity);
 };
-mp.Vehicle.prototype.enableVehicleFanbeltDamage = function (toggle) {
+mp.Vehicle.prototype.enableVehicleFanbeltDamage ??= function (toggle) {
     let $res = natives.enableVehicleFanbeltDamage(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.enableVehicleExhaustPops = function (toggle) {
+mp.Vehicle.prototype.enableVehicleExhaustPops ??= function (toggle) {
     let $res = natives.enableVehicleExhaustPops(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setVehicleBoostActive = function (toggle) {
+mp.Vehicle.prototype.setVehicleBoostActive ??= function (toggle) {
     let $res = natives.setVehicleBoostActive(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.playVehicleDoorOpenSound = function (doorId) {
+mp.Vehicle.prototype.playVehicleDoorOpenSound ??= function (doorId) {
     let $res = natives.playVehicleDoorOpenSound(this.handle, doorId);
 };
-mp.Vehicle.prototype.playVehicleDoorCloseSound = function (doorId) {
+mp.Vehicle.prototype.playVehicleDoorCloseSound ??= function (doorId) {
     let $res = natives.playVehicleDoorCloseSound(this.handle, doorId);
 };
-mp.Vehicle.prototype.enableStallWarningSounds = function (toggle) {
+mp.Vehicle.prototype.enableStallWarningSounds ??= function (toggle) {
     let $res = natives.enableStallWarningSounds(this.handle, toggle | 0);
 };
-mp.Player.prototype.addEntityToMixGroup = function (groupName, p2) {
+mp.Player.prototype.addEntityToMixGroup ??= function (groupName, p2) {
     let $res = natives.addEntityToAudioMixGroup(this.handle, groupName, p2);
 };
-mp.Ped.prototype.addEntityToMixGroup = function (groupName, p2) {
+mp.Ped.prototype.addEntityToMixGroup ??= function (groupName, p2) {
     let $res = natives.addEntityToAudioMixGroup(this.handle, groupName, p2);
 };
-mp.Object.prototype.addEntityToMixGroup = function (groupName, p2) {
+mp.Object.prototype.addEntityToMixGroup ??= function (groupName, p2) {
     let $res = natives.addEntityToAudioMixGroup(this.handle, groupName, p2);
 };
-mp.Vehicle.prototype.addEntityToMixGroup = function (groupName, p2) {
+mp.Vehicle.prototype.addEntityToMixGroup ??= function (groupName, p2) {
     let $res = natives.addEntityToAudioMixGroup(this.handle, groupName, p2);
 };
-mp.Player.prototype.removeEntityFromMixGroup = function (p1) {
+mp.Player.prototype.removeEntityFromMixGroup ??= function (p1) {
     let $res = natives.removeEntityFromAudioMixGroup(this.handle, p1);
 };
-mp.Ped.prototype.removeEntityFromMixGroup = function (p1) {
+mp.Ped.prototype.removeEntityFromMixGroup ??= function (p1) {
     let $res = natives.removeEntityFromAudioMixGroup(this.handle, p1);
 };
-mp.Object.prototype.removeEntityFromMixGroup = function (p1) {
+mp.Object.prototype.removeEntityFromMixGroup ??= function (p1) {
     let $res = natives.removeEntityFromAudioMixGroup(this.handle, p1);
 };
-mp.Vehicle.prototype.removeEntityFromMixGroup = function (p1) {
+mp.Vehicle.prototype.removeEntityFromMixGroup ??= function (p1) {
     let $res = natives.removeEntityFromAudioMixGroup(this.handle, p1);
 };
-mp.Vehicle.prototype.getVehicleDefaultHorn = function () {
+mp.Vehicle.prototype.getVehicleDefaultHorn ??= function () {
     let $res = natives.getVehicleDefaultHorn(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getVehicleDefaultHornIgnoreMods = function () {
+mp.Vehicle.prototype.getVehicleDefaultHornIgnoreMods ??= function () {
     let $res = natives.getVehicleDefaultHornIgnoreMods(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.resetPedFlags = function () {
+mp.Player.prototype.resetPedFlags ??= function () {
     let $res = natives.resetPedAudioFlags(this.handle);
 };
-mp.Ped.prototype.resetPedFlags = function () {
+mp.Ped.prototype.resetPedFlags ??= function () {
     let $res = natives.resetPedAudioFlags(this.handle);
 };
-mp.Player.prototype.setPedFootstepLoud = function (toggle) {
+mp.Player.prototype.setPedFootstepLoud ??= function (toggle) {
     let $res = natives.setPedFootstepsEventsEnabled(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setPedFootstepLoud = function (toggle) {
+mp.Ped.prototype.setPedFootstepLoud ??= function (toggle) {
     let $res = natives.setPedFootstepsEventsEnabled(this.handle, toggle | 0);
 };
-mp.Player.prototype.setPedFootstepQuiet = function (toggle) {
+mp.Player.prototype.setPedFootstepQuiet ??= function (toggle) {
     let $res = natives.setPedClothEventsEnabled(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setPedFootstepQuiet = function (toggle) {
+mp.Ped.prototype.setPedFootstepQuiet ??= function (toggle) {
     let $res = natives.setPedClothEventsEnabled(this.handle, toggle | 0);
 };
-mp.Player.prototype.requestTennisBanks = function () {
+mp.Player.prototype.requestTennisBanks ??= function () {
     let $res = natives.requestTennisBanks(this.handle);
 };
-mp.Ped.prototype.requestTennisBanks = function () {
+mp.Ped.prototype.requestTennisBanks ??= function () {
     let $res = natives.requestTennisBanks(this.handle);
 };
-mp.Vehicle.prototype.getVehicleDefaultHornVariation = function () {
+mp.Vehicle.prototype.getVehicleDefaultHornVariation ??= function () {
     let $res = natives.getVehicleHornSoundIndex(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setVehicleHornVariation = function (value) {
+mp.Vehicle.prototype.setVehicleHornVariation ??= function (value) {
     let $res = natives.setVehicleHornSoundIndex(this.handle, value);
 };
 if (!mp.game2.audio) mp.game2.audio = {};
@@ -1750,7 +1750,7 @@ mp.game2.audio.unk._0xE4E6DD5566D28C82 = function () {
 mp.game2.audio.unk._0xBEF34B1D9624D5DD = function (p0) {
     let $res = natives.setSkipMinigunSpinUpAudio(p0 | 0);
 };
-mp.Object.prototype.isObjectWithinActivationRange = function () {
+mp.Object.prototype.isObjectWithinActivationRange ??= function () {
     let $res = natives.isObjectWithinBrainActivationRange(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
@@ -1812,25 +1812,25 @@ mp.game2.brain.unk._0x6D6840CEE8845831 = function (scriptName) {
 mp.game2.brain.unk._0x6E91B04E08773030 = function (scriptName) {
     let $res = natives.reactivateNamedObjectBrainsWaitingTillOutOfRange(scriptName);
 };
-mp.Camera.prototype.doesExist = function () {
+mp.Camera.prototype.doesExist ??= function () {
     let $res = natives.doesCamExist(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Camera.prototype.setActive = function (active) {
+mp.Camera.prototype.setActive ??= function (active) {
     let $res = natives.setCamActive(this.handle, active | 0);
 };
-mp.Camera.prototype.isActive = function () {
+mp.Camera.prototype.isActive ??= function () {
     let $res = natives.isCamActive(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Camera.prototype.isRendering = function () {
+mp.Camera.prototype.isRendering ??= function () {
     let $res = natives.isCamRendering(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Camera.prototype.getCoord = function () {
+mp.Camera.prototype.getCoord ??= function () {
     let $res = natives.getCamCoord(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -1839,7 +1839,7 @@ mp.Camera.prototype.getCoord = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Camera.prototype.getRot = function (rotationOrder) {
+mp.Camera.prototype.getRot ??= function (rotationOrder) {
     let $res = natives.getCamRot(this.handle, rotationOrder);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -1848,290 +1848,290 @@ mp.Camera.prototype.getRot = function (rotationOrder) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Camera.prototype.getFov = function () {
+mp.Camera.prototype.getFov ??= function () {
     let $res = natives.getCamFov(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Camera.prototype.getNearClip = function () {
+mp.Camera.prototype.getNearClip ??= function () {
     let $res = natives.getCamNearClip(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Camera.prototype.getFarClip = function () {
+mp.Camera.prototype.getFarClip ??= function () {
     let $res = natives.getCamFarClip(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Camera.prototype.getFarDof = function () {
+mp.Camera.prototype.getFarDof ??= function () {
     let $res = natives.getCamFarDof(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Camera.prototype.setParams = function (posX, posY, posZ, rotX, rotY, rotZ, fieldOfView, p8, p9, p10, p11) {
+mp.Camera.prototype.setParams ??= function (posX, posY, posZ, rotX, rotY, rotZ, fieldOfView, p8, p9, p10, p11) {
     let $res = natives.setCamParams(this.handle, posX, posY, posZ, rotX, rotY, rotZ, fieldOfView, p8, p9, p10, p11);
 };
-mp.Camera.prototype.setCoord = function (posX, posY, posZ) {
+mp.Camera.prototype.setCoord ??= function (posX, posY, posZ) {
     let $res = natives.setCamCoord(this.handle, posX, posY, posZ);
 };
-mp.Camera.prototype.setRot = function (rotX, rotY, rotZ, rotationOrder) {
+mp.Camera.prototype.setRot ??= function (rotX, rotY, rotZ, rotationOrder) {
     let $res = natives.setCamRot(this.handle, rotX, rotY, rotZ, rotationOrder);
 };
-mp.Camera.prototype.setFov = function (fieldOfView) {
+mp.Camera.prototype.setFov ??= function (fieldOfView) {
     let $res = natives.setCamFov(this.handle, fieldOfView);
 };
-mp.Camera.prototype.setNearClip = function (nearClip) {
+mp.Camera.prototype.setNearClip ??= function (nearClip) {
     let $res = natives.setCamNearClip(this.handle, nearClip);
 };
-mp.Camera.prototype.setFarClip = function (farClip) {
+mp.Camera.prototype.setFarClip ??= function (farClip) {
     let $res = natives.setCamFarClip(this.handle, farClip);
 };
-mp.Camera.prototype.setMotionBlurStrength = function (strength) {
+mp.Camera.prototype.setMotionBlurStrength ??= function (strength) {
     let $res = natives.setCamMotionBlurStrength(this.handle, strength);
 };
-mp.Camera.prototype.setNearDof = function (nearDOF) {
+mp.Camera.prototype.setNearDof ??= function (nearDOF) {
     let $res = natives.setCamNearDof(this.handle, nearDOF);
 };
-mp.Camera.prototype.setFarDof = function (farDOF) {
+mp.Camera.prototype.setFarDof ??= function (farDOF) {
     let $res = natives.setCamFarDof(this.handle, farDOF);
 };
-mp.Camera.prototype.setDofStrength = function (dofStrength) {
+mp.Camera.prototype.setDofStrength ??= function (dofStrength) {
     let $res = natives.setCamDofStrength(this.handle, dofStrength);
 };
-mp.Camera.prototype.setDofPlanes = function (p1, p2, p3, p4) {
+mp.Camera.prototype.setDofPlanes ??= function (p1, p2, p3, p4) {
     let $res = natives.setCamDofPlanes(this.handle, p1, p2, p3, p4);
 };
-mp.Camera.prototype.setUseShallowDofMode = function (toggle) {
+mp.Camera.prototype.setUseShallowDofMode ??= function (toggle) {
     let $res = natives.setCamUseShallowDofMode(this.handle, toggle | 0);
 };
-mp.Camera.prototype.setDofFnumberOfLens = function (p1) {
+mp.Camera.prototype.setDofFnumberOfLens ??= function (p1) {
     let $res = natives.setCamDofFnumberOfLens(this.handle, p1);
 };
-mp.Camera.prototype.setDofFocalLengthMultiplier = function (multiplier) {
+mp.Camera.prototype.setDofFocalLengthMultiplier ??= function (multiplier) {
     let $res = natives.setCamDofFocalLengthMultiplier(this.handle, multiplier);
 };
-mp.Camera.prototype.setDofFocusDistanceBias = function (p1) {
+mp.Camera.prototype.setDofFocusDistanceBias ??= function (p1) {
     let $res = natives.setCamDofFocusDistanceBias(this.handle, p1);
 };
-mp.Camera.prototype.setDofMaxNearInFocusDistance = function (p1) {
+mp.Camera.prototype.setDofMaxNearInFocusDistance ??= function (p1) {
     let $res = natives.setCamDofMaxNearInFocusDistance(this.handle, p1);
 };
-mp.Camera.prototype.setDofMaxNearInFocusDistanceBlendLevel = function (p1) {
+mp.Camera.prototype.setDofMaxNearInFocusDistanceBlendLevel ??= function (p1) {
     let $res = natives.setCamDofMaxNearInFocusDistanceBlendLevel(this.handle, p1);
 };
-mp.Camera.prototype.attachToEntity = function (entity, xOffset, yOffset, zOffset, isRelative) {
+mp.Camera.prototype.attachToEntity ??= function (entity, xOffset, yOffset, zOffset, isRelative) {
     let $res = natives.attachCamToEntity(this.handle, entity, xOffset, yOffset, zOffset, isRelative | 0);
 };
-mp.Camera.prototype.attachToPedBone = function (ped, boneIndex, x, y, z, heading) {
+mp.Camera.prototype.attachToPedBone ??= function (ped, boneIndex, x, y, z, heading) {
     let $res = natives.attachCamToPedBone(this.handle, ped, boneIndex, x, y, z, heading | 0);
 };
-mp.Camera.prototype.attachToPedBone2 = function (ped, boneIndex, p3, p4, p5, p6, p7, p8, p9) {
+mp.Camera.prototype.attachToPedBone2 ??= function (ped, boneIndex, p3, p4, p5, p6, p7, p8, p9) {
     let $res = natives.hardAttachCamToPedBone(this.handle, ped, boneIndex, p3, p4, p5, p6, p7, p8, p9 | 0);
 };
-mp.Camera.prototype.attachToVehicleBone = function (vehicle, boneIndex, relativeRotation, rotX, rotY, rotZ, offsetX, offsetY, offsetZ, fixedDirection) {
+mp.Camera.prototype.attachToVehicleBone ??= function (vehicle, boneIndex, relativeRotation, rotX, rotY, rotZ, offsetX, offsetY, offsetZ, fixedDirection) {
     let $res = natives.attachCamToVehicleBone(this.handle, vehicle, boneIndex, relativeRotation | 0, rotX, rotY, rotZ, offsetX, offsetY, offsetZ, fixedDirection | 0);
 };
-mp.Camera.prototype.detach = function () {
+mp.Camera.prototype.detach ??= function () {
     let $res = natives.detachCam(this.handle);
 };
-mp.Camera.prototype.setInheritRollVehicle = function (p1) {
+mp.Camera.prototype.setInheritRollVehicle ??= function (p1) {
     let $res = natives.setCamInheritRollVehicle(this.handle, p1 | 0);
 };
-mp.Camera.prototype.pointAtCoord = function (x, y, z) {
+mp.Camera.prototype.pointAtCoord ??= function (x, y, z) {
     let $res = natives.pointCamAtCoord(this.handle, x, y, z);
 };
-mp.Camera.prototype.pointAtEntity = function (entity, p2, p3, p4, p5) {
+mp.Camera.prototype.pointAtEntity ??= function (entity, p2, p3, p4, p5) {
     let $res = natives.pointCamAtEntity(this.handle, entity, p2, p3, p4, p5 | 0);
 };
-mp.Camera.prototype.pointAtPedBone = function (ped, boneIndex, x, y, z, p6) {
+mp.Camera.prototype.pointAtPedBone ??= function (ped, boneIndex, x, y, z, p6) {
     let $res = natives.pointCamAtPedBone(this.handle, ped, boneIndex, x, y, z, p6 | 0);
 };
-mp.Camera.prototype.stopPointing = function () {
+mp.Camera.prototype.stopPointing ??= function () {
     let $res = natives.stopCamPointing(this.handle);
 };
-mp.Camera.prototype.setAffectsAiming = function (toggle) {
+mp.Camera.prototype.setAffectsAiming ??= function (toggle) {
     let $res = natives.setCamAffectsAiming(this.handle, toggle | 0);
 };
-mp.Camera.prototype.setDebugName = function (name) {
+mp.Camera.prototype.setDebugName ??= function (name) {
     let $res = natives.setCamDebugName(this.handle, name);
 };
-mp.Camera.prototype.addSplineNode = function (x, y, z, xRot, yRot, zRot, length, smoothingStyle, rotationOrder) {
+mp.Camera.prototype.addSplineNode ??= function (x, y, z, xRot, yRot, zRot, length, smoothingStyle, rotationOrder) {
     let $res = natives.addCamSplineNode(this.handle, x, y, z, xRot, yRot, zRot, length, smoothingStyle, rotationOrder);
 };
-mp.Camera.prototype.addSplineNode = function (x, y, z, xRot, yRot, zRot, length, smoothingStyle, rotationOrder) {
+mp.Camera.prototype.addSplineNode ??= function (x, y, z, xRot, yRot, zRot, length, smoothingStyle, rotationOrder) {
     let $res = natives.addCamSplineNode(this.handle, x, y, z, xRot, yRot, zRot, length, smoothingStyle, rotationOrder);
 };
-mp.Camera.prototype.addSplineNodeUsingCameraFrame = function (cam2, p2, p3) {
+mp.Camera.prototype.addSplineNodeUsingCameraFrame ??= function (cam2, p2, p3) {
     let $res = natives.addCamSplineNodeUsingCameraFrame(this.handle, cam2, p2, p3);
 };
-mp.Camera.prototype.addSplineNodeUsingCamera = function (cam2, p2, p3) {
+mp.Camera.prototype.addSplineNodeUsingCamera ??= function (cam2, p2, p3) {
     let $res = natives.addCamSplineNodeUsingCamera(this.handle, cam2, p2, p3);
 };
-mp.Camera.prototype.addSplineNodeUsingGameplayFrame = function (p1, p2) {
+mp.Camera.prototype.addSplineNodeUsingGameplayFrame ??= function (p1, p2) {
     let $res = natives.addCamSplineNodeUsingGameplayFrame(this.handle, p1, p2);
 };
-mp.Camera.prototype.setSplinePhase = function (p1) {
+mp.Camera.prototype.setSplinePhase ??= function (p1) {
     let $res = natives.setCamSplinePhase(this.handle, p1);
 };
-mp.Camera.prototype.getSplinePhase = function () {
+mp.Camera.prototype.getSplinePhase ??= function () {
     let $res = natives.getCamSplinePhase(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Camera.prototype.getSplineNodePhase = function () {
+mp.Camera.prototype.getSplineNodePhase ??= function () {
     let $res = natives.getCamSplineNodePhase(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Camera.prototype.setSplineDuration = function (timeDuration) {
+mp.Camera.prototype.setSplineDuration ??= function (timeDuration) {
     let $res = natives.setCamSplineDuration(this.handle, timeDuration);
 };
-mp.Camera.prototype.setSplineSmoothingStyle = function (smoothingStyle) {
+mp.Camera.prototype.setSplineSmoothingStyle ??= function (smoothingStyle) {
     let $res = natives.setCamSplineSmoothingStyle(this.handle, smoothingStyle);
 };
-mp.Camera.prototype.getSplineNodeIndex = function () {
+mp.Camera.prototype.getSplineNodeIndex ??= function () {
     let $res = natives.getCamSplineNodeIndex(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Camera.prototype.setSplineNodeEase = function (easingFunction, p2, p3) {
+mp.Camera.prototype.setSplineNodeEase ??= function (easingFunction, p2, p3) {
     let $res = natives.setCamSplineNodeEase(this.handle, easingFunction, p2, p3);
 };
-mp.Camera.prototype.setSplineNodeVelocityScale = function (p1, scale) {
+mp.Camera.prototype.setSplineNodeVelocityScale ??= function (p1, scale) {
     let $res = natives.setCamSplineNodeVelocityScale(this.handle, p1, scale);
 };
-mp.Camera.prototype.overrideSplineVelocity = function (p1, p2, p3) {
+mp.Camera.prototype.overrideSplineVelocity ??= function (p1, p2, p3) {
     let $res = natives.overrideCamSplineVelocity(this.handle, p1, p2, p3);
 };
-mp.Camera.prototype.overrideSplineMotionBlur = function (p1, p2, p3) {
+mp.Camera.prototype.overrideSplineMotionBlur ??= function (p1, p2, p3) {
     let $res = natives.overrideCamSplineMotionBlur(this.handle, p1, p2, p3);
 };
-mp.Camera.prototype.setSplineNodeExtraFlags = function (p1, flags) {
+mp.Camera.prototype.setSplineNodeExtraFlags ??= function (p1, flags) {
     let $res = natives.setCamSplineNodeExtraFlags(this.handle, p1, flags);
 };
-mp.Camera.prototype.isSplinePaused = function () {
+mp.Camera.prototype.isSplinePaused ??= function () {
     let $res = natives.isCamSplinePaused(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Camera.prototype.setActiveWithInterp = function (camFrom, duration, easeLocation, easeRotation) {
+mp.Camera.prototype.setActiveWithInterp ??= function (camFrom, duration, easeLocation, easeRotation) {
     let $res = natives.setCamActiveWithInterp(this.handle, camFrom, duration, easeLocation, easeRotation);
 };
-mp.Camera.prototype.isInterpolating = function () {
+mp.Camera.prototype.isInterpolating ??= function () {
     let $res = natives.isCamInterpolating(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Camera.prototype.shake = function (type, amplitude) {
+mp.Camera.prototype.shake ??= function (type, amplitude) {
     let $res = natives.shakeCam(this.handle, type, amplitude);
 };
-mp.Camera.prototype.animatedShake = function (p1, p2, p3, amplitude) {
+mp.Camera.prototype.animatedShake ??= function (p1, p2, p3, amplitude) {
     let $res = natives.animatedShakeCam(this.handle, p1, p2, p3, amplitude);
 };
-mp.Camera.prototype.isShaking = function () {
+mp.Camera.prototype.isShaking ??= function () {
     let $res = natives.isCamShaking(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Camera.prototype.setShakeAmplitude = function (amplitude) {
+mp.Camera.prototype.setShakeAmplitude ??= function (amplitude) {
     let $res = natives.setCamShakeAmplitude(this.handle, amplitude);
 };
-mp.Camera.prototype.stopShaking = function (p1) {
+mp.Camera.prototype.stopShaking ??= function (p1) {
     let $res = natives.stopCamShaking(this.handle, p1 | 0);
 };
-mp.Camera.prototype.playAnim = function (animName, animDictionary, x, y, z, xRot, yRot, zRot, p9, p10) {
+mp.Camera.prototype.playAnim ??= function (animName, animDictionary, x, y, z, xRot, yRot, zRot, p9, p10) {
     let $res = natives.playCamAnim(this.handle, animName, animDictionary, x, y, z, xRot, yRot, zRot, p9 | 0, p10);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Camera.prototype.isPlayingAnim = function (animName, animDictionary) {
+mp.Camera.prototype.isPlayingAnim ??= function (animName, animDictionary) {
     let $res = natives.isCamPlayingAnim(this.handle, animName, animDictionary);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Camera.prototype.setAnimCurrentPhase = function (phase) {
+mp.Camera.prototype.setAnimCurrentPhase ??= function (phase) {
     let $res = natives.setCamAnimCurrentPhase(this.handle, phase);
 };
-mp.Camera.prototype.getAnimCurrentPhase = function () {
+mp.Camera.prototype.getAnimCurrentPhase ??= function () {
     let $res = natives.getCamAnimCurrentPhase(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Camera.prototype.setFlyHorizontalResponse = function (p1, p2, p3) {
+mp.Camera.prototype.setFlyHorizontalResponse ??= function (p1, p2, p3) {
     let $res = natives.setFlyCamHorizontalResponse(this.handle, p1, p2, p3);
 };
-mp.Camera.prototype.setFlyVerticalSpeedMultiplier = function (p1, p2, p3) {
+mp.Camera.prototype.setFlyVerticalSpeedMultiplier ??= function (p1, p2, p3) {
     let $res = natives.setFlyCamVerticalResponse(this.handle, p1, p2, p3);
 };
-mp.Camera.prototype.setFlyMaxHeight = function (height) {
+mp.Camera.prototype.setFlyMaxHeight ??= function (height) {
     let $res = natives.setFlyCamMaxHeight(this.handle, height);
 };
-mp.Camera.prototype.setFlyCoordAndConstrain = function (x, y, z) {
+mp.Camera.prototype.setFlyCoordAndConstrain ??= function (x, y, z) {
     let $res = natives.setFlyCamCoordAndConstrain(this.handle, x, y, z);
 };
-mp.Player.prototype.setGameplayFollowPedThisUpdate = function () {
+mp.Player.prototype.setGameplayFollowPedThisUpdate ??= function () {
     let $res = natives.setGameplayCamFollowPedThisUpdate(this.handle);
 };
-mp.Ped.prototype.setGameplayFollowPedThisUpdate = function () {
+mp.Ped.prototype.setGameplayFollowPedThisUpdate ??= function () {
     let $res = natives.setGameplayCamFollowPedThisUpdate(this.handle);
 };
-mp.Player.prototype.disableCollisionForEntity = function () {
+mp.Player.prototype.disableCollisionForEntity ??= function () {
     let $res = natives.setGameplayCamIgnoreEntityCollisionThisUpdate(this.handle);
 };
-mp.Ped.prototype.disableCollisionForEntity = function () {
+mp.Ped.prototype.disableCollisionForEntity ??= function () {
     let $res = natives.setGameplayCamIgnoreEntityCollisionThisUpdate(this.handle);
 };
-mp.Object.prototype.disableCollisionForEntity = function () {
+mp.Object.prototype.disableCollisionForEntity ??= function () {
     let $res = natives.setGameplayCamIgnoreEntityCollisionThisUpdate(this.handle);
 };
-mp.Vehicle.prototype.disableCollisionForEntity = function () {
+mp.Vehicle.prototype.disableCollisionForEntity ??= function () {
     let $res = natives.setGameplayCamIgnoreEntityCollisionThisUpdate(this.handle);
 };
-mp.Player.prototype.disableCollisionForObject = function () {
+mp.Player.prototype.disableCollisionForObject ??= function () {
     let $res = natives.disableCamCollisionForObject(this.handle);
 };
-mp.Ped.prototype.disableCollisionForObject = function () {
+mp.Ped.prototype.disableCollisionForObject ??= function () {
     let $res = natives.disableCamCollisionForObject(this.handle);
 };
-mp.Object.prototype.disableCollisionForObject = function () {
+mp.Object.prototype.disableCollisionForObject ??= function () {
     let $res = natives.disableCamCollisionForObject(this.handle);
 };
-mp.Vehicle.prototype.disableCollisionForObject = function () {
+mp.Vehicle.prototype.disableCollisionForObject ??= function () {
     let $res = natives.disableCamCollisionForObject(this.handle);
 };
-mp.Vehicle.prototype.setInVehicleStateThisUpdate = function (p1) {
+mp.Vehicle.prototype.setInVehicleStateThisUpdate ??= function (p1) {
     let $res = natives.setInVehicleCamStateThisUpdate(this.handle, p1);
 };
-mp.Camera.prototype.getViewModeForContext = function () {
+mp.Camera.prototype.getViewModeForContext ??= function () {
     let $res = natives.getCamViewModeForContext(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Camera.prototype.setViewModeForContext = function (viewMode) {
+mp.Camera.prototype.setViewModeForContext ??= function (viewMode) {
     let $res = natives.setCamViewModeForContext(this.handle, viewMode);
 };
-mp.Player.prototype.setGameplayPedHint = function (x1, y1, z1, p4, duration, blendOutDuration, blendInDuration) {
+mp.Player.prototype.setGameplayPedHint ??= function (x1, y1, z1, p4, duration, blendOutDuration, blendInDuration) {
     let $res = natives.setGameplayPedHint(this.handle, x1, y1, z1, p4 | 0, duration, blendOutDuration, blendInDuration);
 };
-mp.Ped.prototype.setGameplayPedHint = function (x1, y1, z1, p4, duration, blendOutDuration, blendInDuration) {
+mp.Ped.prototype.setGameplayPedHint ??= function (x1, y1, z1, p4, duration, blendOutDuration, blendInDuration) {
     let $res = natives.setGameplayPedHint(this.handle, x1, y1, z1, p4 | 0, duration, blendOutDuration, blendInDuration);
 };
-mp.Vehicle.prototype.setGameplayVehicleHint = function (offsetX, offsetY, offsetZ, p4, time, easeInTime, easeOutTime) {
+mp.Vehicle.prototype.setGameplayVehicleHint ??= function (offsetX, offsetY, offsetZ, p4, time, easeInTime, easeOutTime) {
     let $res = natives.setGameplayVehicleHint(this.handle, offsetX, offsetY, offsetZ, p4 | 0, time, easeInTime, easeOutTime);
 };
-mp.Player.prototype.setGameplayEntityHint = function (xOffset, yOffset, zOffset, p4, p5, p6, p7, p8) {
+mp.Player.prototype.setGameplayEntityHint ??= function (xOffset, yOffset, zOffset, p4, p5, p6, p7, p8) {
     let $res = natives.setGameplayEntityHint(this.handle, xOffset, yOffset, zOffset, p4 | 0, p5, p6, p7, p8);
 };
-mp.Ped.prototype.setGameplayEntityHint = function (xOffset, yOffset, zOffset, p4, p5, p6, p7, p8) {
+mp.Ped.prototype.setGameplayEntityHint ??= function (xOffset, yOffset, zOffset, p4, p5, p6, p7, p8) {
     let $res = natives.setGameplayEntityHint(this.handle, xOffset, yOffset, zOffset, p4 | 0, p5, p6, p7, p8);
 };
-mp.Object.prototype.setGameplayEntityHint = function (xOffset, yOffset, zOffset, p4, p5, p6, p7, p8) {
+mp.Object.prototype.setGameplayEntityHint ??= function (xOffset, yOffset, zOffset, p4, p5, p6, p7, p8) {
     let $res = natives.setGameplayEntityHint(this.handle, xOffset, yOffset, zOffset, p4 | 0, p5, p6, p7, p8);
 };
-mp.Vehicle.prototype.setGameplayEntityHint = function (xOffset, yOffset, zOffset, p4, p5, p6, p7, p8) {
+mp.Vehicle.prototype.setGameplayEntityHint ??= function (xOffset, yOffset, zOffset, p4, p5, p6, p7, p8) {
     let $res = natives.setGameplayEntityHint(this.handle, xOffset, yOffset, zOffset, p4 | 0, p5, p6, p7, p8);
 };
-mp.Camera.prototype.setEffect = function () {
+mp.Camera.prototype.setEffect ??= function () {
     let $res = natives.setCamDeathFailEffectState(this.handle);
 };
 if (!mp.game2.cam) mp.game2.cam = {};
@@ -3306,10 +3306,10 @@ mp.game2.clock.getLocalTime = function () {
     $resObj.second = $res[6];
     return $resObj;
 };
-mp.Player.prototype.registerEntityFor = function (cutsceneEntName, p2, modelHash, p4) {
+mp.Player.prototype.registerEntityFor ??= function (cutsceneEntName, p2, modelHash, p4) {
     let $res = natives.registerEntityForCutscene(this.handle, cutsceneEntName, p2, modelHash, p4);
 };
-mp.Ped.prototype.registerEntityFor = function (cutsceneEntName, p2, modelHash, p4) {
+mp.Ped.prototype.registerEntityFor ??= function (cutsceneEntName, p2, modelHash, p4) {
     let $res = natives.registerEntityForCutscene(this.handle, cutsceneEntName, p2, modelHash, p4);
 };
 if (!mp.game2.cutscene) mp.game2.cutscene = {};
@@ -4138,182 +4138,182 @@ mp.game2.datafile.unk._0xDBF860CF1DB8E599 = function (p0) {
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.decorSetTime = function (propertyName, timestamp) {
+mp.Player.prototype.decorSetTime ??= function (propertyName, timestamp) {
     let $res = natives.decorSetTime(this.handle, propertyName, timestamp);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.decorSetTime = function (propertyName, timestamp) {
+mp.Ped.prototype.decorSetTime ??= function (propertyName, timestamp) {
     let $res = natives.decorSetTime(this.handle, propertyName, timestamp);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.decorSetTime = function (propertyName, timestamp) {
+mp.Object.prototype.decorSetTime ??= function (propertyName, timestamp) {
     let $res = natives.decorSetTime(this.handle, propertyName, timestamp);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.decorSetTime = function (propertyName, timestamp) {
+mp.Vehicle.prototype.decorSetTime ??= function (propertyName, timestamp) {
     let $res = natives.decorSetTime(this.handle, propertyName, timestamp);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.decorSetBool = function (propertyName, value) {
+mp.Player.prototype.decorSetBool ??= function (propertyName, value) {
     let $res = natives.decorSetBool(this.handle, propertyName, value | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.decorSetBool = function (propertyName, value) {
+mp.Ped.prototype.decorSetBool ??= function (propertyName, value) {
     let $res = natives.decorSetBool(this.handle, propertyName, value | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.decorSetBool = function (propertyName, value) {
+mp.Object.prototype.decorSetBool ??= function (propertyName, value) {
     let $res = natives.decorSetBool(this.handle, propertyName, value | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.decorSetBool = function (propertyName, value) {
+mp.Vehicle.prototype.decorSetBool ??= function (propertyName, value) {
     let $res = natives.decorSetBool(this.handle, propertyName, value | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.decorSetFloat = function (propertyName, value) {
+mp.Player.prototype.decorSetFloat ??= function (propertyName, value) {
     let $res = natives.decorSetFloat(this.handle, propertyName, value);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.decorSetFloat = function (propertyName, value) {
+mp.Ped.prototype.decorSetFloat ??= function (propertyName, value) {
     let $res = natives.decorSetFloat(this.handle, propertyName, value);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.decorSetFloat = function (propertyName, value) {
+mp.Object.prototype.decorSetFloat ??= function (propertyName, value) {
     let $res = natives.decorSetFloat(this.handle, propertyName, value);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.decorSetFloat = function (propertyName, value) {
+mp.Vehicle.prototype.decorSetFloat ??= function (propertyName, value) {
     let $res = natives.decorSetFloat(this.handle, propertyName, value);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.decorSetInt = function (propertyName, value) {
+mp.Player.prototype.decorSetInt ??= function (propertyName, value) {
     let $res = natives.decorSetInt(this.handle, propertyName, value);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.decorSetInt = function (propertyName, value) {
+mp.Ped.prototype.decorSetInt ??= function (propertyName, value) {
     let $res = natives.decorSetInt(this.handle, propertyName, value);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.decorSetInt = function (propertyName, value) {
+mp.Object.prototype.decorSetInt ??= function (propertyName, value) {
     let $res = natives.decorSetInt(this.handle, propertyName, value);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.decorSetInt = function (propertyName, value) {
+mp.Vehicle.prototype.decorSetInt ??= function (propertyName, value) {
     let $res = natives.decorSetInt(this.handle, propertyName, value);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.decorGetBool = function (propertyName) {
+mp.Player.prototype.decorGetBool ??= function (propertyName) {
     let $res = natives.decorGetBool(this.handle, propertyName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.decorGetBool = function (propertyName) {
+mp.Ped.prototype.decorGetBool ??= function (propertyName) {
     let $res = natives.decorGetBool(this.handle, propertyName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.decorGetBool = function (propertyName) {
+mp.Object.prototype.decorGetBool ??= function (propertyName) {
     let $res = natives.decorGetBool(this.handle, propertyName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.decorGetBool = function (propertyName) {
+mp.Vehicle.prototype.decorGetBool ??= function (propertyName) {
     let $res = natives.decorGetBool(this.handle, propertyName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.decorGetFloat = function (propertyName) {
+mp.Player.prototype.decorGetFloat ??= function (propertyName) {
     let $res = natives.decorGetFloat(this.handle, propertyName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.decorGetFloat = function (propertyName) {
+mp.Ped.prototype.decorGetFloat ??= function (propertyName) {
     let $res = natives.decorGetFloat(this.handle, propertyName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.decorGetFloat = function (propertyName) {
+mp.Object.prototype.decorGetFloat ??= function (propertyName) {
     let $res = natives.decorGetFloat(this.handle, propertyName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.decorGetFloat = function (propertyName) {
+mp.Vehicle.prototype.decorGetFloat ??= function (propertyName) {
     let $res = natives.decorGetFloat(this.handle, propertyName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.decorGetInt = function (propertyName) {
+mp.Player.prototype.decorGetInt ??= function (propertyName) {
     let $res = natives.decorGetInt(this.handle, propertyName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.decorGetInt = function (propertyName) {
+mp.Ped.prototype.decorGetInt ??= function (propertyName) {
     let $res = natives.decorGetInt(this.handle, propertyName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.decorGetInt = function (propertyName) {
+mp.Object.prototype.decorGetInt ??= function (propertyName) {
     let $res = natives.decorGetInt(this.handle, propertyName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.decorGetInt = function (propertyName) {
+mp.Vehicle.prototype.decorGetInt ??= function (propertyName) {
     let $res = natives.decorGetInt(this.handle, propertyName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.decorExistOn = function (propertyName) {
+mp.Player.prototype.decorExistOn ??= function (propertyName) {
     let $res = natives.decorExistOn(this.handle, propertyName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.decorExistOn = function (propertyName) {
+mp.Ped.prototype.decorExistOn ??= function (propertyName) {
     let $res = natives.decorExistOn(this.handle, propertyName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.decorExistOn = function (propertyName) {
+mp.Object.prototype.decorExistOn ??= function (propertyName) {
     let $res = natives.decorExistOn(this.handle, propertyName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.decorExistOn = function (propertyName) {
+mp.Vehicle.prototype.decorExistOn ??= function (propertyName) {
     let $res = natives.decorExistOn(this.handle, propertyName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.decorRemove = function (propertyName) {
+mp.Player.prototype.decorRemove ??= function (propertyName) {
     let $res = natives.decorRemove(this.handle, propertyName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.decorRemove = function (propertyName) {
+mp.Ped.prototype.decorRemove ??= function (propertyName) {
     let $res = natives.decorRemove(this.handle, propertyName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.decorRemove = function (propertyName) {
+mp.Object.prototype.decorRemove ??= function (propertyName) {
     let $res = natives.decorRemove(this.handle, propertyName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.decorRemove = function (propertyName) {
+mp.Vehicle.prototype.decorRemove ??= function (propertyName) {
     let $res = natives.decorRemove(this.handle, propertyName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
@@ -4443,287 +4443,287 @@ mp.game2.dlc.unk._0xC4637A6D03C24CC3 = function () {
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.doesExist = function () {
+mp.Player.prototype.doesExist ??= function () {
     let $res = natives.doesEntityExist(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.doesExist = function () {
+mp.Ped.prototype.doesExist ??= function () {
     let $res = natives.doesEntityExist(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.doesExist = function () {
+mp.Object.prototype.doesExist ??= function () {
     let $res = natives.doesEntityExist(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.doesExist = function () {
+mp.Vehicle.prototype.doesExist ??= function () {
     let $res = natives.doesEntityExist(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.doesBelongToThisScript = function (p1) {
+mp.Player.prototype.doesBelongToThisScript ??= function (p1) {
     let $res = natives.doesEntityBelongToThisScript(this.handle, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.doesBelongToThisScript = function (p1) {
+mp.Ped.prototype.doesBelongToThisScript ??= function (p1) {
     let $res = natives.doesEntityBelongToThisScript(this.handle, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.doesBelongToThisScript = function (p1) {
+mp.Object.prototype.doesBelongToThisScript ??= function (p1) {
     let $res = natives.doesEntityBelongToThisScript(this.handle, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.doesBelongToThisScript = function (p1) {
+mp.Vehicle.prototype.doesBelongToThisScript ??= function (p1) {
     let $res = natives.doesEntityBelongToThisScript(this.handle, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.doesHaveDrawable = function () {
+mp.Player.prototype.doesHaveDrawable ??= function () {
     let $res = natives.doesEntityHaveDrawable(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.doesHaveDrawable = function () {
+mp.Ped.prototype.doesHaveDrawable ??= function () {
     let $res = natives.doesEntityHaveDrawable(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.doesHaveDrawable = function () {
+mp.Object.prototype.doesHaveDrawable ??= function () {
     let $res = natives.doesEntityHaveDrawable(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.doesHaveDrawable = function () {
+mp.Vehicle.prototype.doesHaveDrawable ??= function () {
     let $res = natives.doesEntityHaveDrawable(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.doesHavePhysics = function () {
+mp.Player.prototype.doesHavePhysics ??= function () {
     let $res = natives.doesEntityHavePhysics(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.doesHavePhysics = function () {
+mp.Ped.prototype.doesHavePhysics ??= function () {
     let $res = natives.doesEntityHavePhysics(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.doesHavePhysics = function () {
+mp.Object.prototype.doesHavePhysics ??= function () {
     let $res = natives.doesEntityHavePhysics(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.doesHavePhysics = function () {
+mp.Vehicle.prototype.doesHavePhysics ??= function () {
     let $res = natives.doesEntityHavePhysics(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.hasAnimFinished = function (animDict, animName, p3) {
+mp.Player.prototype.hasAnimFinished ??= function (animDict, animName, p3) {
     let $res = natives.hasEntityAnimFinished(this.handle, animDict, animName, p3);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.hasAnimFinished = function (animDict, animName, p3) {
+mp.Ped.prototype.hasAnimFinished ??= function (animDict, animName, p3) {
     let $res = natives.hasEntityAnimFinished(this.handle, animDict, animName, p3);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.hasAnimFinished = function (animDict, animName, p3) {
+mp.Object.prototype.hasAnimFinished ??= function (animDict, animName, p3) {
     let $res = natives.hasEntityAnimFinished(this.handle, animDict, animName, p3);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.hasAnimFinished = function (animDict, animName, p3) {
+mp.Vehicle.prototype.hasAnimFinished ??= function (animDict, animName, p3) {
     let $res = natives.hasEntityAnimFinished(this.handle, animDict, animName, p3);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.hasBeenDamagedByAnyObject = function () {
+mp.Player.prototype.hasBeenDamagedByAnyObject ??= function () {
     let $res = natives.hasEntityBeenDamagedByAnyObject(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.hasBeenDamagedByAnyObject = function () {
+mp.Ped.prototype.hasBeenDamagedByAnyObject ??= function () {
     let $res = natives.hasEntityBeenDamagedByAnyObject(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.hasBeenDamagedByAnyObject = function () {
+mp.Object.prototype.hasBeenDamagedByAnyObject ??= function () {
     let $res = natives.hasEntityBeenDamagedByAnyObject(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.hasBeenDamagedByAnyObject = function () {
+mp.Vehicle.prototype.hasBeenDamagedByAnyObject ??= function () {
     let $res = natives.hasEntityBeenDamagedByAnyObject(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.hasBeenDamagedByAnyPed = function () {
+mp.Player.prototype.hasBeenDamagedByAnyPed ??= function () {
     let $res = natives.hasEntityBeenDamagedByAnyPed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.hasBeenDamagedByAnyPed = function () {
+mp.Ped.prototype.hasBeenDamagedByAnyPed ??= function () {
     let $res = natives.hasEntityBeenDamagedByAnyPed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.hasBeenDamagedByAnyPed = function () {
+mp.Object.prototype.hasBeenDamagedByAnyPed ??= function () {
     let $res = natives.hasEntityBeenDamagedByAnyPed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.hasBeenDamagedByAnyPed = function () {
+mp.Vehicle.prototype.hasBeenDamagedByAnyPed ??= function () {
     let $res = natives.hasEntityBeenDamagedByAnyPed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.hasBeenDamagedByAnyVehicle = function () {
+mp.Player.prototype.hasBeenDamagedByAnyVehicle ??= function () {
     let $res = natives.hasEntityBeenDamagedByAnyVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.hasBeenDamagedByAnyVehicle = function () {
+mp.Ped.prototype.hasBeenDamagedByAnyVehicle ??= function () {
     let $res = natives.hasEntityBeenDamagedByAnyVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.hasBeenDamagedByAnyVehicle = function () {
+mp.Object.prototype.hasBeenDamagedByAnyVehicle ??= function () {
     let $res = natives.hasEntityBeenDamagedByAnyVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.hasBeenDamagedByAnyVehicle = function () {
+mp.Vehicle.prototype.hasBeenDamagedByAnyVehicle ??= function () {
     let $res = natives.hasEntityBeenDamagedByAnyVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.hasBeenDamagedByEntity = function (entity2, p2) {
+mp.Player.prototype.hasBeenDamagedByEntity ??= function (entity2, p2) {
     let $res = natives.hasEntityBeenDamagedByEntity(this.handle, entity2, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.hasBeenDamagedByEntity = function (entity2, p2) {
+mp.Ped.prototype.hasBeenDamagedByEntity ??= function (entity2, p2) {
     let $res = natives.hasEntityBeenDamagedByEntity(this.handle, entity2, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.hasBeenDamagedByEntity = function (entity2, p2) {
+mp.Object.prototype.hasBeenDamagedByEntity ??= function (entity2, p2) {
     let $res = natives.hasEntityBeenDamagedByEntity(this.handle, entity2, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.hasBeenDamagedByEntity = function (entity2, p2) {
+mp.Vehicle.prototype.hasBeenDamagedByEntity ??= function (entity2, p2) {
     let $res = natives.hasEntityBeenDamagedByEntity(this.handle, entity2, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.hasClearLosToEntity = function (entity2, traceType) {
+mp.Player.prototype.hasClearLosToEntity ??= function (entity2, traceType) {
     let $res = natives.hasEntityClearLosToEntity(this.handle, entity2, traceType);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.hasClearLosToEntity = function (entity2, traceType) {
+mp.Ped.prototype.hasClearLosToEntity ??= function (entity2, traceType) {
     let $res = natives.hasEntityClearLosToEntity(this.handle, entity2, traceType);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.hasClearLosToEntity = function (entity2, traceType) {
+mp.Object.prototype.hasClearLosToEntity ??= function (entity2, traceType) {
     let $res = natives.hasEntityClearLosToEntity(this.handle, entity2, traceType);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.hasClearLosToEntity = function (entity2, traceType) {
+mp.Vehicle.prototype.hasClearLosToEntity ??= function (entity2, traceType) {
     let $res = natives.hasEntityClearLosToEntity(this.handle, entity2, traceType);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.hasClearLosToEntity2 = function (entity2, traceType) {
+mp.Player.prototype.hasClearLosToEntity2 ??= function (entity2, traceType) {
     let $res = natives.hasEntityClearLosToEntityAdjustForCover(this.handle, entity2, traceType);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.hasClearLosToEntity2 = function (entity2, traceType) {
+mp.Ped.prototype.hasClearLosToEntity2 ??= function (entity2, traceType) {
     let $res = natives.hasEntityClearLosToEntityAdjustForCover(this.handle, entity2, traceType);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.hasClearLosToEntity2 = function (entity2, traceType) {
+mp.Object.prototype.hasClearLosToEntity2 ??= function (entity2, traceType) {
     let $res = natives.hasEntityClearLosToEntityAdjustForCover(this.handle, entity2, traceType);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.hasClearLosToEntity2 = function (entity2, traceType) {
+mp.Vehicle.prototype.hasClearLosToEntity2 ??= function (entity2, traceType) {
     let $res = natives.hasEntityClearLosToEntityAdjustForCover(this.handle, entity2, traceType);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.hasClearLosToEntityInFront = function (entity2) {
+mp.Player.prototype.hasClearLosToEntityInFront ??= function (entity2) {
     let $res = natives.hasEntityClearLosToEntityInFront(this.handle, entity2);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.hasClearLosToEntityInFront = function (entity2) {
+mp.Ped.prototype.hasClearLosToEntityInFront ??= function (entity2) {
     let $res = natives.hasEntityClearLosToEntityInFront(this.handle, entity2);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.hasClearLosToEntityInFront = function (entity2) {
+mp.Object.prototype.hasClearLosToEntityInFront ??= function (entity2) {
     let $res = natives.hasEntityClearLosToEntityInFront(this.handle, entity2);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.hasClearLosToEntityInFront = function (entity2) {
+mp.Vehicle.prototype.hasClearLosToEntityInFront ??= function (entity2) {
     let $res = natives.hasEntityClearLosToEntityInFront(this.handle, entity2);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.hasCollidedWithAnything = function () {
+mp.Player.prototype.hasCollidedWithAnything ??= function () {
     let $res = natives.hasEntityCollidedWithAnything(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.hasCollidedWithAnything = function () {
+mp.Ped.prototype.hasCollidedWithAnything ??= function () {
     let $res = natives.hasEntityCollidedWithAnything(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.hasCollidedWithAnything = function () {
+mp.Object.prototype.hasCollidedWithAnything ??= function () {
     let $res = natives.hasEntityCollidedWithAnything(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.hasCollidedWithAnything = function () {
+mp.Vehicle.prototype.hasCollidedWithAnything ??= function () {
     let $res = natives.hasEntityCollidedWithAnything(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getLastMaterialHitBy = function () {
+mp.Player.prototype.getLastMaterialHitBy ??= function () {
     let $res = natives.getLastMaterialHitByEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getLastMaterialHitBy = function () {
+mp.Ped.prototype.getLastMaterialHitBy ??= function () {
     let $res = natives.getLastMaterialHitByEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getLastMaterialHitBy = function () {
+mp.Object.prototype.getLastMaterialHitBy ??= function () {
     let $res = natives.getLastMaterialHitByEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getLastMaterialHitBy = function () {
+mp.Vehicle.prototype.getLastMaterialHitBy ??= function () {
     let $res = natives.getLastMaterialHitByEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getCollisionNormalOfLastHitFor = function () {
+mp.Player.prototype.getCollisionNormalOfLastHitFor ??= function () {
     let $res = natives.getCollisionNormalOfLastHitForEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -4732,7 +4732,7 @@ mp.Player.prototype.getCollisionNormalOfLastHitFor = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Ped.prototype.getCollisionNormalOfLastHitFor = function () {
+mp.Ped.prototype.getCollisionNormalOfLastHitFor ??= function () {
     let $res = natives.getCollisionNormalOfLastHitForEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -4741,7 +4741,7 @@ mp.Ped.prototype.getCollisionNormalOfLastHitFor = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Object.prototype.getCollisionNormalOfLastHitFor = function () {
+mp.Object.prototype.getCollisionNormalOfLastHitFor ??= function () {
     let $res = natives.getCollisionNormalOfLastHitForEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -4750,7 +4750,7 @@ mp.Object.prototype.getCollisionNormalOfLastHitFor = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Vehicle.prototype.getCollisionNormalOfLastHitFor = function () {
+mp.Vehicle.prototype.getCollisionNormalOfLastHitFor ??= function () {
     let $res = natives.getCollisionNormalOfLastHitForEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -4759,79 +4759,79 @@ mp.Vehicle.prototype.getCollisionNormalOfLastHitFor = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Player.prototype.forceAiAndAnimationUpdate = function () {
+mp.Player.prototype.forceAiAndAnimationUpdate ??= function () {
     let $res = natives.forceEntityAiAndAnimationUpdate(this.handle);
 };
-mp.Ped.prototype.forceAiAndAnimationUpdate = function () {
+mp.Ped.prototype.forceAiAndAnimationUpdate ??= function () {
     let $res = natives.forceEntityAiAndAnimationUpdate(this.handle);
 };
-mp.Object.prototype.forceAiAndAnimationUpdate = function () {
+mp.Object.prototype.forceAiAndAnimationUpdate ??= function () {
     let $res = natives.forceEntityAiAndAnimationUpdate(this.handle);
 };
-mp.Vehicle.prototype.forceAiAndAnimationUpdate = function () {
+mp.Vehicle.prototype.forceAiAndAnimationUpdate ??= function () {
     let $res = natives.forceEntityAiAndAnimationUpdate(this.handle);
 };
-mp.Player.prototype.getAnimCurrentTime = function (animDict, animName) {
+mp.Player.prototype.getAnimCurrentTime ??= function (animDict, animName) {
     let $res = natives.getEntityAnimCurrentTime(this.handle, animDict, animName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getAnimCurrentTime = function (animDict, animName) {
+mp.Ped.prototype.getAnimCurrentTime ??= function (animDict, animName) {
     let $res = natives.getEntityAnimCurrentTime(this.handle, animDict, animName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getAnimCurrentTime = function (animDict, animName) {
+mp.Object.prototype.getAnimCurrentTime ??= function (animDict, animName) {
     let $res = natives.getEntityAnimCurrentTime(this.handle, animDict, animName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getAnimCurrentTime = function (animDict, animName) {
+mp.Vehicle.prototype.getAnimCurrentTime ??= function (animDict, animName) {
     let $res = natives.getEntityAnimCurrentTime(this.handle, animDict, animName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getAnimTotalTime = function (animDict, animName) {
+mp.Player.prototype.getAnimTotalTime ??= function (animDict, animName) {
     let $res = natives.getEntityAnimTotalTime(this.handle, animDict, animName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getAnimTotalTime = function (animDict, animName) {
+mp.Ped.prototype.getAnimTotalTime ??= function (animDict, animName) {
     let $res = natives.getEntityAnimTotalTime(this.handle, animDict, animName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getAnimTotalTime = function (animDict, animName) {
+mp.Object.prototype.getAnimTotalTime ??= function (animDict, animName) {
     let $res = natives.getEntityAnimTotalTime(this.handle, animDict, animName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getAnimTotalTime = function (animDict, animName) {
+mp.Vehicle.prototype.getAnimTotalTime ??= function (animDict, animName) {
     let $res = natives.getEntityAnimTotalTime(this.handle, animDict, animName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getAttachedTo = function () {
+mp.Player.prototype.getAttachedTo ??= function () {
     let $res = natives.getEntityAttachedTo(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getAttachedTo = function () {
+mp.Ped.prototype.getAttachedTo ??= function () {
     let $res = natives.getEntityAttachedTo(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getAttachedTo = function () {
+mp.Object.prototype.getAttachedTo ??= function () {
     let $res = natives.getEntityAttachedTo(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getAttachedTo = function () {
+mp.Vehicle.prototype.getAttachedTo ??= function () {
     let $res = natives.getEntityAttachedTo(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getCoords = function (alive) {
+mp.Player.prototype.getCoords ??= function (alive) {
     let $res = natives.getEntityCoords(this.handle, alive | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -4840,7 +4840,7 @@ mp.Player.prototype.getCoords = function (alive) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Ped.prototype.getCoords = function (alive) {
+mp.Ped.prototype.getCoords ??= function (alive) {
     let $res = natives.getEntityCoords(this.handle, alive | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -4849,7 +4849,7 @@ mp.Ped.prototype.getCoords = function (alive) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Object.prototype.getCoords = function (alive) {
+mp.Object.prototype.getCoords ??= function (alive) {
     let $res = natives.getEntityCoords(this.handle, alive | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -4858,7 +4858,7 @@ mp.Object.prototype.getCoords = function (alive) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Vehicle.prototype.getCoords = function (alive) {
+mp.Vehicle.prototype.getCoords ??= function (alive) {
     let $res = natives.getEntityCoords(this.handle, alive | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -4867,7 +4867,7 @@ mp.Vehicle.prototype.getCoords = function (alive) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Player.prototype.getForwardVector = function () {
+mp.Player.prototype.getForwardVector ??= function () {
     let $res = natives.getEntityForwardVector(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -4876,7 +4876,7 @@ mp.Player.prototype.getForwardVector = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Ped.prototype.getForwardVector = function () {
+mp.Ped.prototype.getForwardVector ??= function () {
     let $res = natives.getEntityForwardVector(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -4885,7 +4885,7 @@ mp.Ped.prototype.getForwardVector = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Object.prototype.getForwardVector = function () {
+mp.Object.prototype.getForwardVector ??= function () {
     let $res = natives.getEntityForwardVector(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -4894,7 +4894,7 @@ mp.Object.prototype.getForwardVector = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Vehicle.prototype.getForwardVector = function () {
+mp.Vehicle.prototype.getForwardVector ??= function () {
     let $res = natives.getEntityForwardVector(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -4903,169 +4903,169 @@ mp.Vehicle.prototype.getForwardVector = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Player.prototype.getForwardX = function () {
+mp.Player.prototype.getForwardX ??= function () {
     let $res = natives.getEntityForwardX(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getForwardX = function () {
+mp.Ped.prototype.getForwardX ??= function () {
     let $res = natives.getEntityForwardX(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getForwardX = function () {
+mp.Object.prototype.getForwardX ??= function () {
     let $res = natives.getEntityForwardX(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getForwardX = function () {
+mp.Vehicle.prototype.getForwardX ??= function () {
     let $res = natives.getEntityForwardX(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getForwardY = function () {
+mp.Player.prototype.getForwardY ??= function () {
     let $res = natives.getEntityForwardY(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getForwardY = function () {
+mp.Ped.prototype.getForwardY ??= function () {
     let $res = natives.getEntityForwardY(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getForwardY = function () {
+mp.Object.prototype.getForwardY ??= function () {
     let $res = natives.getEntityForwardY(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getForwardY = function () {
+mp.Vehicle.prototype.getForwardY ??= function () {
     let $res = natives.getEntityForwardY(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getHeading = function () {
+mp.Player.prototype.getHeading ??= function () {
     let $res = natives.getEntityHeading(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getHeading = function () {
+mp.Ped.prototype.getHeading ??= function () {
     let $res = natives.getEntityHeading(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getHeading = function () {
+mp.Object.prototype.getHeading ??= function () {
     let $res = natives.getEntityHeading(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getHeading = function () {
+mp.Vehicle.prototype.getHeading ??= function () {
     let $res = natives.getEntityHeading(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getPhysicsHeading = function () {
+mp.Player.prototype.getPhysicsHeading ??= function () {
     let $res = natives.getEntityHeadingFromEulers(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getPhysicsHeading = function () {
+mp.Ped.prototype.getPhysicsHeading ??= function () {
     let $res = natives.getEntityHeadingFromEulers(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getPhysicsHeading = function () {
+mp.Object.prototype.getPhysicsHeading ??= function () {
     let $res = natives.getEntityHeadingFromEulers(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getPhysicsHeading = function () {
+mp.Vehicle.prototype.getPhysicsHeading ??= function () {
     let $res = natives.getEntityHeadingFromEulers(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getHealth = function () {
+mp.Object.prototype.getHealth ??= function () {
     let $res = natives.getEntityHealth(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getHealth = function () {
+mp.Vehicle.prototype.getHealth ??= function () {
     let $res = natives.getEntityHealth(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getMaxHealth = function () {
+mp.Player.prototype.getMaxHealth ??= function () {
     let $res = natives.getEntityMaxHealth(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getMaxHealth = function () {
+mp.Ped.prototype.getMaxHealth ??= function () {
     let $res = natives.getEntityMaxHealth(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getMaxHealth = function () {
+mp.Object.prototype.getMaxHealth ??= function () {
     let $res = natives.getEntityMaxHealth(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getMaxHealth = function () {
+mp.Vehicle.prototype.getMaxHealth ??= function () {
     let $res = natives.getEntityMaxHealth(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setMaxHealth = function (value) {
+mp.Player.prototype.setMaxHealth ??= function (value) {
     let $res = natives.setEntityMaxHealth(this.handle, value);
 };
-mp.Ped.prototype.setMaxHealth = function (value) {
+mp.Ped.prototype.setMaxHealth ??= function (value) {
     let $res = natives.setEntityMaxHealth(this.handle, value);
 };
-mp.Object.prototype.setMaxHealth = function (value) {
+mp.Object.prototype.setMaxHealth ??= function (value) {
     let $res = natives.setEntityMaxHealth(this.handle, value);
 };
-mp.Vehicle.prototype.setMaxHealth = function (value) {
+mp.Vehicle.prototype.setMaxHealth ??= function (value) {
     let $res = natives.setEntityMaxHealth(this.handle, value);
 };
-mp.Player.prototype.getHeight = function (X, Y, Z, atTop, inWorldCoords) {
+mp.Player.prototype.getHeight ??= function (X, Y, Z, atTop, inWorldCoords) {
     let $res = natives.getEntityHeight(this.handle, X, Y, Z, atTop | 0, inWorldCoords | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getHeight = function (X, Y, Z, atTop, inWorldCoords) {
+mp.Ped.prototype.getHeight ??= function (X, Y, Z, atTop, inWorldCoords) {
     let $res = natives.getEntityHeight(this.handle, X, Y, Z, atTop | 0, inWorldCoords | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getHeight = function (X, Y, Z, atTop, inWorldCoords) {
+mp.Object.prototype.getHeight ??= function (X, Y, Z, atTop, inWorldCoords) {
     let $res = natives.getEntityHeight(this.handle, X, Y, Z, atTop | 0, inWorldCoords | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getHeight = function (X, Y, Z, atTop, inWorldCoords) {
+mp.Vehicle.prototype.getHeight ??= function (X, Y, Z, atTop, inWorldCoords) {
     let $res = natives.getEntityHeight(this.handle, X, Y, Z, atTop | 0, inWorldCoords | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getHeightAboveGround = function () {
+mp.Player.prototype.getHeightAboveGround ??= function () {
     let $res = natives.getEntityHeightAboveGround(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getHeightAboveGround = function () {
+mp.Ped.prototype.getHeightAboveGround ??= function () {
     let $res = natives.getEntityHeightAboveGround(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getHeightAboveGround = function () {
+mp.Object.prototype.getHeightAboveGround ??= function () {
     let $res = natives.getEntityHeightAboveGround(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getHeightAboveGround = function () {
+mp.Vehicle.prototype.getHeightAboveGround ??= function () {
     let $res = natives.getEntityHeightAboveGround(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getMatrix = function () {
+mp.Player.prototype.getMatrix ??= function () {
     let $res = natives.getEntityMatrix(this.handle, undefined, undefined, undefined, undefined);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -5075,7 +5075,7 @@ mp.Player.prototype.getMatrix = function () {
     $resObj.position = new mp.Vector3($res[4]);
     return $resObj;
 };
-mp.Ped.prototype.getMatrix = function () {
+mp.Ped.prototype.getMatrix ??= function () {
     let $res = natives.getEntityMatrix(this.handle, undefined, undefined, undefined, undefined);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -5085,7 +5085,7 @@ mp.Ped.prototype.getMatrix = function () {
     $resObj.position = new mp.Vector3($res[4]);
     return $resObj;
 };
-mp.Object.prototype.getMatrix = function () {
+mp.Object.prototype.getMatrix ??= function () {
     let $res = natives.getEntityMatrix(this.handle, undefined, undefined, undefined, undefined);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -5095,7 +5095,7 @@ mp.Object.prototype.getMatrix = function () {
     $resObj.position = new mp.Vector3($res[4]);
     return $resObj;
 };
-mp.Vehicle.prototype.getMatrix = function () {
+mp.Vehicle.prototype.getMatrix ??= function () {
     let $res = natives.getEntityMatrix(this.handle, undefined, undefined, undefined, undefined);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -5105,12 +5105,12 @@ mp.Vehicle.prototype.getMatrix = function () {
     $resObj.position = new mp.Vector3($res[4]);
     return $resObj;
 };
-mp.Ped.prototype.getModel = function () {
+mp.Ped.prototype.getModel ??= function () {
     let $res = natives.getEntityModel(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getOffsetFromGivenWorldCoords = function (posX, posY, posZ) {
+mp.Player.prototype.getOffsetFromGivenWorldCoords ??= function (posX, posY, posZ) {
     let $res = natives.getOffsetFromEntityGivenWorldCoords(this.handle, posX, posY, posZ);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -5119,7 +5119,7 @@ mp.Player.prototype.getOffsetFromGivenWorldCoords = function (posX, posY, posZ) 
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Ped.prototype.getOffsetFromGivenWorldCoords = function (posX, posY, posZ) {
+mp.Ped.prototype.getOffsetFromGivenWorldCoords ??= function (posX, posY, posZ) {
     let $res = natives.getOffsetFromEntityGivenWorldCoords(this.handle, posX, posY, posZ);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -5128,7 +5128,7 @@ mp.Ped.prototype.getOffsetFromGivenWorldCoords = function (posX, posY, posZ) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Object.prototype.getOffsetFromGivenWorldCoords = function (posX, posY, posZ) {
+mp.Object.prototype.getOffsetFromGivenWorldCoords ??= function (posX, posY, posZ) {
     let $res = natives.getOffsetFromEntityGivenWorldCoords(this.handle, posX, posY, posZ);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -5137,7 +5137,7 @@ mp.Object.prototype.getOffsetFromGivenWorldCoords = function (posX, posY, posZ) 
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Vehicle.prototype.getOffsetFromGivenWorldCoords = function (posX, posY, posZ) {
+mp.Vehicle.prototype.getOffsetFromGivenWorldCoords ??= function (posX, posY, posZ) {
     let $res = natives.getOffsetFromEntityGivenWorldCoords(this.handle, posX, posY, posZ);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -5146,7 +5146,7 @@ mp.Vehicle.prototype.getOffsetFromGivenWorldCoords = function (posX, posY, posZ)
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Player.prototype.getOffsetFromInWorldCoords = function (offsetX, offsetY, offsetZ) {
+mp.Player.prototype.getOffsetFromInWorldCoords ??= function (offsetX, offsetY, offsetZ) {
     let $res = natives.getOffsetFromEntityInWorldCoords(this.handle, offsetX, offsetY, offsetZ);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -5155,7 +5155,7 @@ mp.Player.prototype.getOffsetFromInWorldCoords = function (offsetX, offsetY, off
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Ped.prototype.getOffsetFromInWorldCoords = function (offsetX, offsetY, offsetZ) {
+mp.Ped.prototype.getOffsetFromInWorldCoords ??= function (offsetX, offsetY, offsetZ) {
     let $res = natives.getOffsetFromEntityInWorldCoords(this.handle, offsetX, offsetY, offsetZ);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -5164,7 +5164,7 @@ mp.Ped.prototype.getOffsetFromInWorldCoords = function (offsetX, offsetY, offset
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Object.prototype.getOffsetFromInWorldCoords = function (offsetX, offsetY, offsetZ) {
+mp.Object.prototype.getOffsetFromInWorldCoords ??= function (offsetX, offsetY, offsetZ) {
     let $res = natives.getOffsetFromEntityInWorldCoords(this.handle, offsetX, offsetY, offsetZ);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -5173,7 +5173,7 @@ mp.Object.prototype.getOffsetFromInWorldCoords = function (offsetX, offsetY, off
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Vehicle.prototype.getOffsetFromInWorldCoords = function (offsetX, offsetY, offsetZ) {
+mp.Vehicle.prototype.getOffsetFromInWorldCoords ??= function (offsetX, offsetY, offsetZ) {
     let $res = natives.getOffsetFromEntityInWorldCoords(this.handle, offsetX, offsetY, offsetZ);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -5182,27 +5182,27 @@ mp.Vehicle.prototype.getOffsetFromInWorldCoords = function (offsetX, offsetY, of
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Player.prototype.getPitch = function () {
+mp.Player.prototype.getPitch ??= function () {
     let $res = natives.getEntityPitch(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getPitch = function () {
+mp.Ped.prototype.getPitch ??= function () {
     let $res = natives.getEntityPitch(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getPitch = function () {
+mp.Object.prototype.getPitch ??= function () {
     let $res = natives.getEntityPitch(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getPitch = function () {
+mp.Vehicle.prototype.getPitch ??= function () {
     let $res = natives.getEntityPitch(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getQuaternion = function () {
+mp.Player.prototype.getQuaternion ??= function () {
     let $res = natives.getEntityQuaternion(this.handle, 0, 0, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -5212,7 +5212,7 @@ mp.Player.prototype.getQuaternion = function () {
     $resObj.w = $res[4];
     return $resObj;
 };
-mp.Ped.prototype.getQuaternion = function () {
+mp.Ped.prototype.getQuaternion ??= function () {
     let $res = natives.getEntityQuaternion(this.handle, 0, 0, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -5222,7 +5222,7 @@ mp.Ped.prototype.getQuaternion = function () {
     $resObj.w = $res[4];
     return $resObj;
 };
-mp.Object.prototype.getQuaternion = function () {
+mp.Object.prototype.getQuaternion ??= function () {
     let $res = natives.getEntityQuaternion(this.handle, 0, 0, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -5232,7 +5232,7 @@ mp.Object.prototype.getQuaternion = function () {
     $resObj.w = $res[4];
     return $resObj;
 };
-mp.Vehicle.prototype.getQuaternion = function () {
+mp.Vehicle.prototype.getQuaternion ??= function () {
     let $res = natives.getEntityQuaternion(this.handle, 0, 0, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -5242,27 +5242,27 @@ mp.Vehicle.prototype.getQuaternion = function () {
     $resObj.w = $res[4];
     return $resObj;
 };
-mp.Player.prototype.getRoll = function () {
+mp.Player.prototype.getRoll ??= function () {
     let $res = natives.getEntityRoll(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getRoll = function () {
+mp.Ped.prototype.getRoll ??= function () {
     let $res = natives.getEntityRoll(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getRoll = function () {
+mp.Object.prototype.getRoll ??= function () {
     let $res = natives.getEntityRoll(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getRoll = function () {
+mp.Vehicle.prototype.getRoll ??= function () {
     let $res = natives.getEntityRoll(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getRotation = function (rotationOrder) {
+mp.Player.prototype.getRotation ??= function (rotationOrder) {
     let $res = natives.getEntityRotation(this.handle, rotationOrder);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -5271,7 +5271,7 @@ mp.Player.prototype.getRotation = function (rotationOrder) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Ped.prototype.getRotation = function (rotationOrder) {
+mp.Ped.prototype.getRotation ??= function (rotationOrder) {
     let $res = natives.getEntityRotation(this.handle, rotationOrder);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -5280,7 +5280,7 @@ mp.Ped.prototype.getRotation = function (rotationOrder) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Object.prototype.getRotation = function (rotationOrder) {
+mp.Object.prototype.getRotation ??= function (rotationOrder) {
     let $res = natives.getEntityRotation(this.handle, rotationOrder);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -5289,7 +5289,7 @@ mp.Object.prototype.getRotation = function (rotationOrder) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Vehicle.prototype.getRotation = function (rotationOrder) {
+mp.Vehicle.prototype.getRotation ??= function (rotationOrder) {
     let $res = natives.getEntityRotation(this.handle, rotationOrder);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -5298,7 +5298,7 @@ mp.Vehicle.prototype.getRotation = function (rotationOrder) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Player.prototype.getRotationVelocity = function () {
+mp.Player.prototype.getRotationVelocity ??= function () {
     let $res = natives.getEntityRotationVelocity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -5307,7 +5307,7 @@ mp.Player.prototype.getRotationVelocity = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Ped.prototype.getRotationVelocity = function () {
+mp.Ped.prototype.getRotationVelocity ??= function () {
     let $res = natives.getEntityRotationVelocity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -5316,7 +5316,7 @@ mp.Ped.prototype.getRotationVelocity = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Object.prototype.getRotationVelocity = function () {
+mp.Object.prototype.getRotationVelocity ??= function () {
     let $res = natives.getEntityRotationVelocity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -5325,7 +5325,7 @@ mp.Object.prototype.getRotationVelocity = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Vehicle.prototype.getRotationVelocity = function () {
+mp.Vehicle.prototype.getRotationVelocity ??= function () {
     let $res = natives.getEntityRotationVelocity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -5334,55 +5334,55 @@ mp.Vehicle.prototype.getRotationVelocity = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Player.prototype.getScript = function () {
+mp.Player.prototype.getScript ??= function () {
     let $res = natives.getEntityScript(this.handle, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.script = $res[1];
     return $resObj;
 };
-mp.Ped.prototype.getScript = function () {
+mp.Ped.prototype.getScript ??= function () {
     let $res = natives.getEntityScript(this.handle, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.script = $res[1];
     return $resObj;
 };
-mp.Object.prototype.getScript = function () {
+mp.Object.prototype.getScript ??= function () {
     let $res = natives.getEntityScript(this.handle, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.script = $res[1];
     return $resObj;
 };
-mp.Vehicle.prototype.getScript = function () {
+mp.Vehicle.prototype.getScript ??= function () {
     let $res = natives.getEntityScript(this.handle, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.script = $res[1];
     return $resObj;
 };
-mp.Player.prototype.getSpeed = function () {
+mp.Player.prototype.getSpeed ??= function () {
     let $res = natives.getEntitySpeed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getSpeed = function () {
+mp.Ped.prototype.getSpeed ??= function () {
     let $res = natives.getEntitySpeed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getSpeed = function () {
+mp.Object.prototype.getSpeed ??= function () {
     let $res = natives.getEntitySpeed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getSpeed = function () {
+mp.Vehicle.prototype.getSpeed ??= function () {
     let $res = natives.getEntitySpeed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getSpeedVector = function (relative) {
+mp.Player.prototype.getSpeedVector ??= function (relative) {
     let $res = natives.getEntitySpeedVector(this.handle, relative | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -5391,7 +5391,7 @@ mp.Player.prototype.getSpeedVector = function (relative) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Ped.prototype.getSpeedVector = function (relative) {
+mp.Ped.prototype.getSpeedVector ??= function (relative) {
     let $res = natives.getEntitySpeedVector(this.handle, relative | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -5400,7 +5400,7 @@ mp.Ped.prototype.getSpeedVector = function (relative) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Object.prototype.getSpeedVector = function (relative) {
+mp.Object.prototype.getSpeedVector ??= function (relative) {
     let $res = natives.getEntitySpeedVector(this.handle, relative | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -5409,7 +5409,7 @@ mp.Object.prototype.getSpeedVector = function (relative) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Vehicle.prototype.getSpeedVector = function (relative) {
+mp.Vehicle.prototype.getSpeedVector ??= function (relative) {
     let $res = natives.getEntitySpeedVector(this.handle, relative | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -5418,27 +5418,27 @@ mp.Vehicle.prototype.getSpeedVector = function (relative) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Player.prototype.getUprightValue = function () {
+mp.Player.prototype.getUprightValue ??= function () {
     let $res = natives.getEntityUprightValue(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getUprightValue = function () {
+mp.Ped.prototype.getUprightValue ??= function () {
     let $res = natives.getEntityUprightValue(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getUprightValue = function () {
+mp.Object.prototype.getUprightValue ??= function () {
     let $res = natives.getEntityUprightValue(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getUprightValue = function () {
+mp.Vehicle.prototype.getUprightValue ??= function () {
     let $res = natives.getEntityUprightValue(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getVelocity = function () {
+mp.Ped.prototype.getVelocity ??= function () {
     let $res = natives.getEntityVelocity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -5447,7 +5447,7 @@ mp.Ped.prototype.getVelocity = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Object.prototype.getVelocity = function () {
+mp.Object.prototype.getVelocity ??= function () {
     let $res = natives.getEntityVelocity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -5456,27 +5456,27 @@ mp.Object.prototype.getVelocity = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Object.prototype.getObjectIndexFromIndex = function () {
+mp.Object.prototype.getObjectIndexFromIndex ??= function () {
     let $res = natives.getObjectIndexFromEntityIndex(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getPedIndexFromIndex = function () {
+mp.Player.prototype.getPedIndexFromIndex ??= function () {
     let $res = natives.getPedIndexFromEntityIndex(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getPedIndexFromIndex = function () {
+mp.Ped.prototype.getPedIndexFromIndex ??= function () {
     let $res = natives.getPedIndexFromEntityIndex(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getVehicleIndexFromIndex = function () {
+mp.Vehicle.prototype.getVehicleIndexFromIndex ??= function () {
     let $res = natives.getVehicleIndexFromEntityIndex(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getWorldPositionOfBone = function (boneIndex) {
+mp.Player.prototype.getWorldPositionOfBone ??= function (boneIndex) {
     let $res = natives.getWorldPositionOfEntityBone(this.handle, boneIndex);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -5485,7 +5485,7 @@ mp.Player.prototype.getWorldPositionOfBone = function (boneIndex) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Ped.prototype.getWorldPositionOfBone = function (boneIndex) {
+mp.Ped.prototype.getWorldPositionOfBone ??= function (boneIndex) {
     let $res = natives.getWorldPositionOfEntityBone(this.handle, boneIndex);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -5494,7 +5494,7 @@ mp.Ped.prototype.getWorldPositionOfBone = function (boneIndex) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Object.prototype.getWorldPositionOfBone = function (boneIndex) {
+mp.Object.prototype.getWorldPositionOfBone ??= function (boneIndex) {
     let $res = natives.getWorldPositionOfEntityBone(this.handle, boneIndex);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -5503,7 +5503,7 @@ mp.Object.prototype.getWorldPositionOfBone = function (boneIndex) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Vehicle.prototype.getWorldPositionOfBone = function (boneIndex) {
+mp.Vehicle.prototype.getWorldPositionOfBone ??= function (boneIndex) {
     let $res = natives.getWorldPositionOfEntityBone(this.handle, boneIndex);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -5512,1243 +5512,1243 @@ mp.Vehicle.prototype.getWorldPositionOfBone = function (boneIndex) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Player.prototype.getNearestPlayerTo = function () {
+mp.Player.prototype.getNearestPlayerTo ??= function () {
     let $res = natives.getNearestPlayerToEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getNearestPlayerTo = function () {
+mp.Ped.prototype.getNearestPlayerTo ??= function () {
     let $res = natives.getNearestPlayerToEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getNearestPlayerTo = function () {
+mp.Object.prototype.getNearestPlayerTo ??= function () {
     let $res = natives.getNearestPlayerToEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getNearestPlayerTo = function () {
+mp.Vehicle.prototype.getNearestPlayerTo ??= function () {
     let $res = natives.getNearestPlayerToEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getNearestPlayerToOnTeam = function (team) {
+mp.Player.prototype.getNearestPlayerToOnTeam ??= function (team) {
     let $res = natives.getNearestPlayerToEntityOnTeam(this.handle, team);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getNearestPlayerToOnTeam = function (team) {
+mp.Ped.prototype.getNearestPlayerToOnTeam ??= function (team) {
     let $res = natives.getNearestPlayerToEntityOnTeam(this.handle, team);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getNearestPlayerToOnTeam = function (team) {
+mp.Object.prototype.getNearestPlayerToOnTeam ??= function (team) {
     let $res = natives.getNearestPlayerToEntityOnTeam(this.handle, team);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getNearestPlayerToOnTeam = function (team) {
+mp.Vehicle.prototype.getNearestPlayerToOnTeam ??= function (team) {
     let $res = natives.getNearestPlayerToEntityOnTeam(this.handle, team);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getType = function () {
+mp.Player.prototype.getType ??= function () {
     let $res = natives.getEntityType(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getType = function () {
+mp.Ped.prototype.getType ??= function () {
     let $res = natives.getEntityType(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getType = function () {
+mp.Object.prototype.getType ??= function () {
     let $res = natives.getEntityType(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getType = function () {
+mp.Vehicle.prototype.getType ??= function () {
     let $res = natives.getEntityType(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getPopulationType = function () {
+mp.Player.prototype.getPopulationType ??= function () {
     let $res = natives.getEntityPopulationType(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getPopulationType = function () {
+mp.Ped.prototype.getPopulationType ??= function () {
     let $res = natives.getEntityPopulationType(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getPopulationType = function () {
+mp.Object.prototype.getPopulationType ??= function () {
     let $res = natives.getEntityPopulationType(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getPopulationType = function () {
+mp.Vehicle.prototype.getPopulationType ??= function () {
     let $res = natives.getEntityPopulationType(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.isAPed = function () {
+mp.Player.prototype.isAPed ??= function () {
     let $res = natives.isEntityAPed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isAPed = function () {
+mp.Ped.prototype.isAPed ??= function () {
     let $res = natives.isEntityAPed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isAPed = function () {
+mp.Object.prototype.isAPed ??= function () {
     let $res = natives.isEntityAPed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isAPed = function () {
+mp.Vehicle.prototype.isAPed ??= function () {
     let $res = natives.isEntityAPed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isAMissionEntity = function () {
+mp.Player.prototype.isAMissionEntity ??= function () {
     let $res = natives.isEntityAMissionEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isAMissionEntity = function () {
+mp.Ped.prototype.isAMissionEntity ??= function () {
     let $res = natives.isEntityAMissionEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isAMissionEntity = function () {
+mp.Object.prototype.isAMissionEntity ??= function () {
     let $res = natives.isEntityAMissionEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isAMissionEntity = function () {
+mp.Vehicle.prototype.isAMissionEntity ??= function () {
     let $res = natives.isEntityAMissionEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isAVehicle = function () {
+mp.Player.prototype.isAVehicle ??= function () {
     let $res = natives.isEntityAVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isAVehicle = function () {
+mp.Ped.prototype.isAVehicle ??= function () {
     let $res = natives.isEntityAVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isAVehicle = function () {
+mp.Object.prototype.isAVehicle ??= function () {
     let $res = natives.isEntityAVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isAVehicle = function () {
+mp.Vehicle.prototype.isAVehicle ??= function () {
     let $res = natives.isEntityAVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isAnObject = function () {
+mp.Player.prototype.isAnObject ??= function () {
     let $res = natives.isEntityAnObject(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isAnObject = function () {
+mp.Ped.prototype.isAnObject ??= function () {
     let $res = natives.isEntityAnObject(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isAnObject = function () {
+mp.Object.prototype.isAnObject ??= function () {
     let $res = natives.isEntityAnObject(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isAnObject = function () {
+mp.Vehicle.prototype.isAnObject ??= function () {
     let $res = natives.isEntityAnObject(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isAtCoord = function (xPos, yPos, zPos, xSize, ySize, zSize, p7, p8, p9) {
+mp.Player.prototype.isAtCoord ??= function (xPos, yPos, zPos, xSize, ySize, zSize, p7, p8, p9) {
     let $res = natives.isEntityAtCoord(this.handle, xPos, yPos, zPos, xSize, ySize, zSize, p7 | 0, p8 | 0, p9);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isAtCoord = function (xPos, yPos, zPos, xSize, ySize, zSize, p7, p8, p9) {
+mp.Ped.prototype.isAtCoord ??= function (xPos, yPos, zPos, xSize, ySize, zSize, p7, p8, p9) {
     let $res = natives.isEntityAtCoord(this.handle, xPos, yPos, zPos, xSize, ySize, zSize, p7 | 0, p8 | 0, p9);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isAtCoord = function (xPos, yPos, zPos, xSize, ySize, zSize, p7, p8, p9) {
+mp.Object.prototype.isAtCoord ??= function (xPos, yPos, zPos, xSize, ySize, zSize, p7, p8, p9) {
     let $res = natives.isEntityAtCoord(this.handle, xPos, yPos, zPos, xSize, ySize, zSize, p7 | 0, p8 | 0, p9);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isAtCoord = function (xPos, yPos, zPos, xSize, ySize, zSize, p7, p8, p9) {
+mp.Vehicle.prototype.isAtCoord ??= function (xPos, yPos, zPos, xSize, ySize, zSize, p7, p8, p9) {
     let $res = natives.isEntityAtCoord(this.handle, xPos, yPos, zPos, xSize, ySize, zSize, p7 | 0, p8 | 0, p9);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isAtEntity = function (entity2, xSize, ySize, zSize, p5, p6, p7) {
+mp.Player.prototype.isAtEntity ??= function (entity2, xSize, ySize, zSize, p5, p6, p7) {
     let $res = natives.isEntityAtEntity(this.handle, entity2, xSize, ySize, zSize, p5 | 0, p6 | 0, p7);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isAtEntity = function (entity2, xSize, ySize, zSize, p5, p6, p7) {
+mp.Ped.prototype.isAtEntity ??= function (entity2, xSize, ySize, zSize, p5, p6, p7) {
     let $res = natives.isEntityAtEntity(this.handle, entity2, xSize, ySize, zSize, p5 | 0, p6 | 0, p7);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isAtEntity = function (entity2, xSize, ySize, zSize, p5, p6, p7) {
+mp.Object.prototype.isAtEntity ??= function (entity2, xSize, ySize, zSize, p5, p6, p7) {
     let $res = natives.isEntityAtEntity(this.handle, entity2, xSize, ySize, zSize, p5 | 0, p6 | 0, p7);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isAtEntity = function (entity2, xSize, ySize, zSize, p5, p6, p7) {
+mp.Vehicle.prototype.isAtEntity ??= function (entity2, xSize, ySize, zSize, p5, p6, p7) {
     let $res = natives.isEntityAtEntity(this.handle, entity2, xSize, ySize, zSize, p5 | 0, p6 | 0, p7);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isAttached = function () {
+mp.Player.prototype.isAttached ??= function () {
     let $res = natives.isEntityAttached(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isAttached = function () {
+mp.Ped.prototype.isAttached ??= function () {
     let $res = natives.isEntityAttached(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isAttached = function () {
+mp.Object.prototype.isAttached ??= function () {
     let $res = natives.isEntityAttached(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isAttached = function () {
+mp.Vehicle.prototype.isAttached ??= function () {
     let $res = natives.isEntityAttached(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isAttachedToAnyObject = function () {
+mp.Player.prototype.isAttachedToAnyObject ??= function () {
     let $res = natives.isEntityAttachedToAnyObject(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isAttachedToAnyObject = function () {
+mp.Ped.prototype.isAttachedToAnyObject ??= function () {
     let $res = natives.isEntityAttachedToAnyObject(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isAttachedToAnyObject = function () {
+mp.Object.prototype.isAttachedToAnyObject ??= function () {
     let $res = natives.isEntityAttachedToAnyObject(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isAttachedToAnyObject = function () {
+mp.Vehicle.prototype.isAttachedToAnyObject ??= function () {
     let $res = natives.isEntityAttachedToAnyObject(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isAttachedToAnyPed = function () {
+mp.Player.prototype.isAttachedToAnyPed ??= function () {
     let $res = natives.isEntityAttachedToAnyPed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isAttachedToAnyPed = function () {
+mp.Ped.prototype.isAttachedToAnyPed ??= function () {
     let $res = natives.isEntityAttachedToAnyPed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isAttachedToAnyPed = function () {
+mp.Object.prototype.isAttachedToAnyPed ??= function () {
     let $res = natives.isEntityAttachedToAnyPed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isAttachedToAnyPed = function () {
+mp.Vehicle.prototype.isAttachedToAnyPed ??= function () {
     let $res = natives.isEntityAttachedToAnyPed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isAttachedToAnyVehicle = function () {
+mp.Player.prototype.isAttachedToAnyVehicle ??= function () {
     let $res = natives.isEntityAttachedToAnyVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isAttachedToAnyVehicle = function () {
+mp.Ped.prototype.isAttachedToAnyVehicle ??= function () {
     let $res = natives.isEntityAttachedToAnyVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isAttachedToAnyVehicle = function () {
+mp.Object.prototype.isAttachedToAnyVehicle ??= function () {
     let $res = natives.isEntityAttachedToAnyVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isAttachedToAnyVehicle = function () {
+mp.Vehicle.prototype.isAttachedToAnyVehicle ??= function () {
     let $res = natives.isEntityAttachedToAnyVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isAttachedToEntity = function (to) {
+mp.Player.prototype.isAttachedToEntity ??= function (to) {
     let $res = natives.isEntityAttachedToEntity(this.handle, to);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isAttachedToEntity = function (to) {
+mp.Ped.prototype.isAttachedToEntity ??= function (to) {
     let $res = natives.isEntityAttachedToEntity(this.handle, to);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isAttachedToEntity = function (to) {
+mp.Object.prototype.isAttachedToEntity ??= function (to) {
     let $res = natives.isEntityAttachedToEntity(this.handle, to);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isAttachedToEntity = function (to) {
+mp.Vehicle.prototype.isAttachedToEntity ??= function (to) {
     let $res = natives.isEntityAttachedToEntity(this.handle, to);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isDead = function (p1) {
+mp.Player.prototype.isDead ??= function (p1) {
     let $res = natives.isEntityDead(this.handle, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isDead = function (p1) {
+mp.Ped.prototype.isDead ??= function (p1) {
     let $res = natives.isEntityDead(this.handle, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isDead = function (p1) {
+mp.Object.prototype.isDead ??= function (p1) {
     let $res = natives.isEntityDead(this.handle, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isDead = function (p1) {
+mp.Vehicle.prototype.isDead ??= function (p1) {
     let $res = natives.isEntityDead(this.handle, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isInAir = function () {
+mp.Player.prototype.isInAir ??= function () {
     let $res = natives.isEntityInAir(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isInAir = function () {
+mp.Ped.prototype.isInAir ??= function () {
     let $res = natives.isEntityInAir(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isInAir = function () {
+mp.Object.prototype.isInAir ??= function () {
     let $res = natives.isEntityInAir(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isInAir = function () {
+mp.Vehicle.prototype.isInAir ??= function () {
     let $res = natives.isEntityInAir(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isInAngledArea = function (x1, y1, z1, x2, y2, z2, width, debug, includeZ, p10) {
+mp.Player.prototype.isInAngledArea ??= function (x1, y1, z1, x2, y2, z2, width, debug, includeZ, p10) {
     let $res = natives.isEntityInAngledArea(this.handle, x1, y1, z1, x2, y2, z2, width, debug | 0, includeZ | 0, p10);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isInAngledArea = function (x1, y1, z1, x2, y2, z2, width, debug, includeZ, p10) {
+mp.Ped.prototype.isInAngledArea ??= function (x1, y1, z1, x2, y2, z2, width, debug, includeZ, p10) {
     let $res = natives.isEntityInAngledArea(this.handle, x1, y1, z1, x2, y2, z2, width, debug | 0, includeZ | 0, p10);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isInAngledArea = function (x1, y1, z1, x2, y2, z2, width, debug, includeZ, p10) {
+mp.Object.prototype.isInAngledArea ??= function (x1, y1, z1, x2, y2, z2, width, debug, includeZ, p10) {
     let $res = natives.isEntityInAngledArea(this.handle, x1, y1, z1, x2, y2, z2, width, debug | 0, includeZ | 0, p10);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isInAngledArea = function (x1, y1, z1, x2, y2, z2, width, debug, includeZ, p10) {
+mp.Vehicle.prototype.isInAngledArea ??= function (x1, y1, z1, x2, y2, z2, width, debug, includeZ, p10) {
     let $res = natives.isEntityInAngledArea(this.handle, x1, y1, z1, x2, y2, z2, width, debug | 0, includeZ | 0, p10);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isInArea = function (x1, y1, z1, x2, y2, z2, p7, p8, p9) {
+mp.Player.prototype.isInArea ??= function (x1, y1, z1, x2, y2, z2, p7, p8, p9) {
     let $res = natives.isEntityInArea(this.handle, x1, y1, z1, x2, y2, z2, p7 | 0, p8 | 0, p9);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isInArea = function (x1, y1, z1, x2, y2, z2, p7, p8, p9) {
+mp.Ped.prototype.isInArea ??= function (x1, y1, z1, x2, y2, z2, p7, p8, p9) {
     let $res = natives.isEntityInArea(this.handle, x1, y1, z1, x2, y2, z2, p7 | 0, p8 | 0, p9);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isInArea = function (x1, y1, z1, x2, y2, z2, p7, p8, p9) {
+mp.Object.prototype.isInArea ??= function (x1, y1, z1, x2, y2, z2, p7, p8, p9) {
     let $res = natives.isEntityInArea(this.handle, x1, y1, z1, x2, y2, z2, p7 | 0, p8 | 0, p9);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isInArea = function (x1, y1, z1, x2, y2, z2, p7, p8, p9) {
+mp.Vehicle.prototype.isInArea ??= function (x1, y1, z1, x2, y2, z2, p7, p8, p9) {
     let $res = natives.isEntityInArea(this.handle, x1, y1, z1, x2, y2, z2, p7 | 0, p8 | 0, p9);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isInZone = function (zone) {
+mp.Player.prototype.isInZone ??= function (zone) {
     let $res = natives.isEntityInZone(this.handle, zone);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isInZone = function (zone) {
+mp.Ped.prototype.isInZone ??= function (zone) {
     let $res = natives.isEntityInZone(this.handle, zone);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isInZone = function (zone) {
+mp.Object.prototype.isInZone ??= function (zone) {
     let $res = natives.isEntityInZone(this.handle, zone);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isInZone = function (zone) {
+mp.Vehicle.prototype.isInZone ??= function (zone) {
     let $res = natives.isEntityInZone(this.handle, zone);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isInWater = function () {
+mp.Player.prototype.isInWater ??= function () {
     let $res = natives.isEntityInWater(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isInWater = function () {
+mp.Ped.prototype.isInWater ??= function () {
     let $res = natives.isEntityInWater(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isInWater = function () {
+mp.Object.prototype.isInWater ??= function () {
     let $res = natives.isEntityInWater(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isInWater = function () {
+mp.Vehicle.prototype.isInWater ??= function () {
     let $res = natives.isEntityInWater(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getSubmergedLevel = function () {
+mp.Player.prototype.getSubmergedLevel ??= function () {
     let $res = natives.getEntitySubmergedLevel(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getSubmergedLevel = function () {
+mp.Ped.prototype.getSubmergedLevel ??= function () {
     let $res = natives.getEntitySubmergedLevel(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getSubmergedLevel = function () {
+mp.Object.prototype.getSubmergedLevel ??= function () {
     let $res = natives.getEntitySubmergedLevel(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getSubmergedLevel = function () {
+mp.Vehicle.prototype.getSubmergedLevel ??= function () {
     let $res = natives.getEntitySubmergedLevel(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.isOnScreen = function () {
+mp.Player.prototype.isOnScreen ??= function () {
     let $res = natives.isEntityOnScreen(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isOnScreen = function () {
+mp.Ped.prototype.isOnScreen ??= function () {
     let $res = natives.isEntityOnScreen(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isOnScreen = function () {
+mp.Object.prototype.isOnScreen ??= function () {
     let $res = natives.isEntityOnScreen(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isOnScreen = function () {
+mp.Vehicle.prototype.isOnScreen ??= function () {
     let $res = natives.isEntityOnScreen(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isPlayingAnim = function (animDict, animName, taskFlag) {
+mp.Player.prototype.isPlayingAnim ??= function (animDict, animName, taskFlag) {
     let $res = natives.isEntityPlayingAnim(this.handle, animDict, animName, taskFlag);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isPlayingAnim = function (animDict, animName, taskFlag) {
+mp.Ped.prototype.isPlayingAnim ??= function (animDict, animName, taskFlag) {
     let $res = natives.isEntityPlayingAnim(this.handle, animDict, animName, taskFlag);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isPlayingAnim = function (animDict, animName, taskFlag) {
+mp.Object.prototype.isPlayingAnim ??= function (animDict, animName, taskFlag) {
     let $res = natives.isEntityPlayingAnim(this.handle, animDict, animName, taskFlag);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isPlayingAnim = function (animDict, animName, taskFlag) {
+mp.Vehicle.prototype.isPlayingAnim ??= function (animDict, animName, taskFlag) {
     let $res = natives.isEntityPlayingAnim(this.handle, animDict, animName, taskFlag);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isStatic = function () {
+mp.Player.prototype.isStatic ??= function () {
     let $res = natives.isEntityStatic(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isStatic = function () {
+mp.Ped.prototype.isStatic ??= function () {
     let $res = natives.isEntityStatic(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isStatic = function () {
+mp.Object.prototype.isStatic ??= function () {
     let $res = natives.isEntityStatic(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isStatic = function () {
+mp.Vehicle.prototype.isStatic ??= function () {
     let $res = natives.isEntityStatic(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isTouchingEntity = function (targetEntity) {
+mp.Player.prototype.isTouchingEntity ??= function (targetEntity) {
     let $res = natives.isEntityTouchingEntity(this.handle, targetEntity);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isTouchingEntity = function (targetEntity) {
+mp.Ped.prototype.isTouchingEntity ??= function (targetEntity) {
     let $res = natives.isEntityTouchingEntity(this.handle, targetEntity);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isTouchingEntity = function (targetEntity) {
+mp.Object.prototype.isTouchingEntity ??= function (targetEntity) {
     let $res = natives.isEntityTouchingEntity(this.handle, targetEntity);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isTouchingEntity = function (targetEntity) {
+mp.Vehicle.prototype.isTouchingEntity ??= function (targetEntity) {
     let $res = natives.isEntityTouchingEntity(this.handle, targetEntity);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isTouchingModel = function (modelHash) {
+mp.Player.prototype.isTouchingModel ??= function (modelHash) {
     let $res = natives.isEntityTouchingModel(this.handle, modelHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isTouchingModel = function (modelHash) {
+mp.Ped.prototype.isTouchingModel ??= function (modelHash) {
     let $res = natives.isEntityTouchingModel(this.handle, modelHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isTouchingModel = function (modelHash) {
+mp.Object.prototype.isTouchingModel ??= function (modelHash) {
     let $res = natives.isEntityTouchingModel(this.handle, modelHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isTouchingModel = function (modelHash) {
+mp.Vehicle.prototype.isTouchingModel ??= function (modelHash) {
     let $res = natives.isEntityTouchingModel(this.handle, modelHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isUpright = function (angle) {
+mp.Player.prototype.isUpright ??= function (angle) {
     let $res = natives.isEntityUpright(this.handle, angle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isUpright = function (angle) {
+mp.Ped.prototype.isUpright ??= function (angle) {
     let $res = natives.isEntityUpright(this.handle, angle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isUpright = function (angle) {
+mp.Object.prototype.isUpright ??= function (angle) {
     let $res = natives.isEntityUpright(this.handle, angle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isUpright = function (angle) {
+mp.Vehicle.prototype.isUpright ??= function (angle) {
     let $res = natives.isEntityUpright(this.handle, angle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isUpsidedown = function () {
+mp.Player.prototype.isUpsidedown ??= function () {
     let $res = natives.isEntityUpsidedown(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isUpsidedown = function () {
+mp.Ped.prototype.isUpsidedown ??= function () {
     let $res = natives.isEntityUpsidedown(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isUpsidedown = function () {
+mp.Object.prototype.isUpsidedown ??= function () {
     let $res = natives.isEntityUpsidedown(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isUpsidedown = function () {
+mp.Vehicle.prototype.isUpsidedown ??= function () {
     let $res = natives.isEntityUpsidedown(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isVisible = function () {
+mp.Player.prototype.isVisible ??= function () {
     let $res = natives.isEntityVisible(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isVisible = function () {
+mp.Ped.prototype.isVisible ??= function () {
     let $res = natives.isEntityVisible(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isVisible = function () {
+mp.Object.prototype.isVisible ??= function () {
     let $res = natives.isEntityVisible(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isVisible = function () {
+mp.Vehicle.prototype.isVisible ??= function () {
     let $res = natives.isEntityVisible(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isVisibleToScript = function () {
+mp.Player.prototype.isVisibleToScript ??= function () {
     let $res = natives.isEntityVisibleToScript(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isVisibleToScript = function () {
+mp.Ped.prototype.isVisibleToScript ??= function () {
     let $res = natives.isEntityVisibleToScript(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isVisibleToScript = function () {
+mp.Object.prototype.isVisibleToScript ??= function () {
     let $res = natives.isEntityVisibleToScript(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isVisibleToScript = function () {
+mp.Vehicle.prototype.isVisibleToScript ??= function () {
     let $res = natives.isEntityVisibleToScript(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isOccluded = function () {
+mp.Player.prototype.isOccluded ??= function () {
     let $res = natives.isEntityOccluded(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isOccluded = function () {
+mp.Ped.prototype.isOccluded ??= function () {
     let $res = natives.isEntityOccluded(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isOccluded = function () {
+mp.Object.prototype.isOccluded ??= function () {
     let $res = natives.isEntityOccluded(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isOccluded = function () {
+mp.Vehicle.prototype.isOccluded ??= function () {
     let $res = natives.isEntityOccluded(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isWaitingForWorldCollision = function () {
+mp.Player.prototype.isWaitingForWorldCollision ??= function () {
     let $res = natives.isEntityWaitingForWorldCollision(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isWaitingForWorldCollision = function () {
+mp.Ped.prototype.isWaitingForWorldCollision ??= function () {
     let $res = natives.isEntityWaitingForWorldCollision(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isWaitingForWorldCollision = function () {
+mp.Object.prototype.isWaitingForWorldCollision ??= function () {
     let $res = natives.isEntityWaitingForWorldCollision(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isWaitingForWorldCollision = function () {
+mp.Vehicle.prototype.isWaitingForWorldCollision ??= function () {
     let $res = natives.isEntityWaitingForWorldCollision(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.applyForceToCenterOfMass = function (forceType, x, y, z, p5, isDirectionRel, isForceRel, p8) {
+mp.Player.prototype.applyForceToCenterOfMass ??= function (forceType, x, y, z, p5, isDirectionRel, isForceRel, p8) {
     let $res = natives.applyForceToEntityCenterOfMass(this.handle, forceType, x, y, z, p5 | 0, isDirectionRel | 0, isForceRel | 0, p8 | 0);
 };
-mp.Ped.prototype.applyForceToCenterOfMass = function (forceType, x, y, z, p5, isDirectionRel, isForceRel, p8) {
+mp.Ped.prototype.applyForceToCenterOfMass ??= function (forceType, x, y, z, p5, isDirectionRel, isForceRel, p8) {
     let $res = natives.applyForceToEntityCenterOfMass(this.handle, forceType, x, y, z, p5 | 0, isDirectionRel | 0, isForceRel | 0, p8 | 0);
 };
-mp.Object.prototype.applyForceToCenterOfMass = function (forceType, x, y, z, p5, isDirectionRel, isForceRel, p8) {
+mp.Object.prototype.applyForceToCenterOfMass ??= function (forceType, x, y, z, p5, isDirectionRel, isForceRel, p8) {
     let $res = natives.applyForceToEntityCenterOfMass(this.handle, forceType, x, y, z, p5 | 0, isDirectionRel | 0, isForceRel | 0, p8 | 0);
 };
-mp.Vehicle.prototype.applyForceToCenterOfMass = function (forceType, x, y, z, p5, isDirectionRel, isForceRel, p8) {
+mp.Vehicle.prototype.applyForceToCenterOfMass ??= function (forceType, x, y, z, p5, isDirectionRel, isForceRel, p8) {
     let $res = natives.applyForceToEntityCenterOfMass(this.handle, forceType, x, y, z, p5 | 0, isDirectionRel | 0, isForceRel | 0, p8 | 0);
 };
-mp.Player.prototype.applyForceTo = function (forceFlags, x, y, z, offX, offY, offZ, boneIndex, isDirectionRel, ignoreUpVec, isForceRel, p12, p13) {
+mp.Player.prototype.applyForceTo ??= function (forceFlags, x, y, z, offX, offY, offZ, boneIndex, isDirectionRel, ignoreUpVec, isForceRel, p12, p13) {
     let $res = natives.applyForceToEntity(this.handle, forceFlags, x, y, z, offX, offY, offZ, boneIndex, isDirectionRel | 0, ignoreUpVec | 0, isForceRel | 0, p12 | 0, p13 | 0);
 };
-mp.Ped.prototype.applyForceTo = function (forceFlags, x, y, z, offX, offY, offZ, boneIndex, isDirectionRel, ignoreUpVec, isForceRel, p12, p13) {
+mp.Ped.prototype.applyForceTo ??= function (forceFlags, x, y, z, offX, offY, offZ, boneIndex, isDirectionRel, ignoreUpVec, isForceRel, p12, p13) {
     let $res = natives.applyForceToEntity(this.handle, forceFlags, x, y, z, offX, offY, offZ, boneIndex, isDirectionRel | 0, ignoreUpVec | 0, isForceRel | 0, p12 | 0, p13 | 0);
 };
-mp.Object.prototype.applyForceTo = function (forceFlags, x, y, z, offX, offY, offZ, boneIndex, isDirectionRel, ignoreUpVec, isForceRel, p12, p13) {
+mp.Object.prototype.applyForceTo ??= function (forceFlags, x, y, z, offX, offY, offZ, boneIndex, isDirectionRel, ignoreUpVec, isForceRel, p12, p13) {
     let $res = natives.applyForceToEntity(this.handle, forceFlags, x, y, z, offX, offY, offZ, boneIndex, isDirectionRel | 0, ignoreUpVec | 0, isForceRel | 0, p12 | 0, p13 | 0);
 };
-mp.Vehicle.prototype.applyForceTo = function (forceFlags, x, y, z, offX, offY, offZ, boneIndex, isDirectionRel, ignoreUpVec, isForceRel, p12, p13) {
+mp.Vehicle.prototype.applyForceTo ??= function (forceFlags, x, y, z, offX, offY, offZ, boneIndex, isDirectionRel, ignoreUpVec, isForceRel, p12, p13) {
     let $res = natives.applyForceToEntity(this.handle, forceFlags, x, y, z, offX, offY, offZ, boneIndex, isDirectionRel | 0, ignoreUpVec | 0, isForceRel | 0, p12 | 0, p13 | 0);
 };
-mp.Player.prototype.attachToEntity = function (entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9, useSoftPinning, collision, isPed, vertexIndex, fixedRot) {
+mp.Player.prototype.attachToEntity ??= function (entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9, useSoftPinning, collision, isPed, vertexIndex, fixedRot) {
     let $res = natives.attachEntityToEntity(this.handle, entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9 | 0, useSoftPinning | 0, collision | 0, isPed | 0, vertexIndex, fixedRot | 0, 0);
 };
-mp.Ped.prototype.attachToEntity = function (entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9, useSoftPinning, collision, isPed, vertexIndex, fixedRot) {
+mp.Ped.prototype.attachToEntity ??= function (entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9, useSoftPinning, collision, isPed, vertexIndex, fixedRot) {
     let $res = natives.attachEntityToEntity(this.handle, entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9 | 0, useSoftPinning | 0, collision | 0, isPed | 0, vertexIndex, fixedRot | 0, 0);
 };
-mp.Object.prototype.attachToEntity = function (entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9, useSoftPinning, collision, isPed, vertexIndex, fixedRot) {
+mp.Object.prototype.attachToEntity ??= function (entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9, useSoftPinning, collision, isPed, vertexIndex, fixedRot) {
     let $res = natives.attachEntityToEntity(this.handle, entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9 | 0, useSoftPinning | 0, collision | 0, isPed | 0, vertexIndex, fixedRot | 0, 0);
 };
-mp.Vehicle.prototype.attachToEntity = function (entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9, useSoftPinning, collision, isPed, vertexIndex, fixedRot) {
+mp.Vehicle.prototype.attachToEntity ??= function (entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9, useSoftPinning, collision, isPed, vertexIndex, fixedRot) {
     let $res = natives.attachEntityToEntity(this.handle, entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9 | 0, useSoftPinning | 0, collision | 0, isPed | 0, vertexIndex, fixedRot | 0, 0);
 };
-mp.Player.prototype.attachBoneToEntityBone = function (entity2, boneIndex1, boneIndex2, p4, p5) {
+mp.Player.prototype.attachBoneToEntityBone ??= function (entity2, boneIndex1, boneIndex2, p4, p5) {
     let $res = natives.attachEntityBoneToEntityBone(this.handle, entity2, boneIndex1, boneIndex2, p4 | 0, p5 | 0);
 };
-mp.Ped.prototype.attachBoneToEntityBone = function (entity2, boneIndex1, boneIndex2, p4, p5) {
+mp.Ped.prototype.attachBoneToEntityBone ??= function (entity2, boneIndex1, boneIndex2, p4, p5) {
     let $res = natives.attachEntityBoneToEntityBone(this.handle, entity2, boneIndex1, boneIndex2, p4 | 0, p5 | 0);
 };
-mp.Object.prototype.attachBoneToEntityBone = function (entity2, boneIndex1, boneIndex2, p4, p5) {
+mp.Object.prototype.attachBoneToEntityBone ??= function (entity2, boneIndex1, boneIndex2, p4, p5) {
     let $res = natives.attachEntityBoneToEntityBone(this.handle, entity2, boneIndex1, boneIndex2, p4 | 0, p5 | 0);
 };
-mp.Vehicle.prototype.attachBoneToEntityBone = function (entity2, boneIndex1, boneIndex2, p4, p5) {
+mp.Vehicle.prototype.attachBoneToEntityBone ??= function (entity2, boneIndex1, boneIndex2, p4, p5) {
     let $res = natives.attachEntityBoneToEntityBone(this.handle, entity2, boneIndex1, boneIndex2, p4 | 0, p5 | 0);
 };
-mp.Player.prototype.attachBoneToEntityBonePhysically = function (entity2, boneIndex1, boneIndex2, p4, p5) {
+mp.Player.prototype.attachBoneToEntityBonePhysically ??= function (entity2, boneIndex1, boneIndex2, p4, p5) {
     let $res = natives.attachEntityBoneToEntityBoneYForward(this.handle, entity2, boneIndex1, boneIndex2, p4 | 0, p5 | 0);
 };
-mp.Ped.prototype.attachBoneToEntityBonePhysically = function (entity2, boneIndex1, boneIndex2, p4, p5) {
+mp.Ped.prototype.attachBoneToEntityBonePhysically ??= function (entity2, boneIndex1, boneIndex2, p4, p5) {
     let $res = natives.attachEntityBoneToEntityBoneYForward(this.handle, entity2, boneIndex1, boneIndex2, p4 | 0, p5 | 0);
 };
-mp.Object.prototype.attachBoneToEntityBonePhysically = function (entity2, boneIndex1, boneIndex2, p4, p5) {
+mp.Object.prototype.attachBoneToEntityBonePhysically ??= function (entity2, boneIndex1, boneIndex2, p4, p5) {
     let $res = natives.attachEntityBoneToEntityBoneYForward(this.handle, entity2, boneIndex1, boneIndex2, p4 | 0, p5 | 0);
 };
-mp.Vehicle.prototype.attachBoneToEntityBonePhysically = function (entity2, boneIndex1, boneIndex2, p4, p5) {
+mp.Vehicle.prototype.attachBoneToEntityBonePhysically ??= function (entity2, boneIndex1, boneIndex2, p4, p5) {
     let $res = natives.attachEntityBoneToEntityBoneYForward(this.handle, entity2, boneIndex1, boneIndex2, p4 | 0, p5 | 0);
 };
-mp.Player.prototype.attachToEntityPhysically = function (entity2, boneIndex1, boneIndex2, xPos1, yPos1, zPos1, xPos2, yPos2, zPos2, xRot, yRot, zRot, breakForce, fixedRot, p15, collision, p17, p18) {
+mp.Player.prototype.attachToEntityPhysically ??= function (entity2, boneIndex1, boneIndex2, xPos1, yPos1, zPos1, xPos2, yPos2, zPos2, xRot, yRot, zRot, breakForce, fixedRot, p15, collision, p17, p18) {
     let $res = natives.attachEntityToEntityPhysically(this.handle, entity2, boneIndex1, boneIndex2, xPos1, yPos1, zPos1, xPos2, yPos2, zPos2, xRot, yRot, zRot, breakForce, fixedRot | 0, p15 | 0, collision | 0, p17 | 0, p18);
 };
-mp.Ped.prototype.attachToEntityPhysically = function (entity2, boneIndex1, boneIndex2, xPos1, yPos1, zPos1, xPos2, yPos2, zPos2, xRot, yRot, zRot, breakForce, fixedRot, p15, collision, p17, p18) {
+mp.Ped.prototype.attachToEntityPhysically ??= function (entity2, boneIndex1, boneIndex2, xPos1, yPos1, zPos1, xPos2, yPos2, zPos2, xRot, yRot, zRot, breakForce, fixedRot, p15, collision, p17, p18) {
     let $res = natives.attachEntityToEntityPhysically(this.handle, entity2, boneIndex1, boneIndex2, xPos1, yPos1, zPos1, xPos2, yPos2, zPos2, xRot, yRot, zRot, breakForce, fixedRot | 0, p15 | 0, collision | 0, p17 | 0, p18);
 };
-mp.Object.prototype.attachToEntityPhysically = function (entity2, boneIndex1, boneIndex2, xPos1, yPos1, zPos1, xPos2, yPos2, zPos2, xRot, yRot, zRot, breakForce, fixedRot, p15, collision, p17, p18) {
+mp.Object.prototype.attachToEntityPhysically ??= function (entity2, boneIndex1, boneIndex2, xPos1, yPos1, zPos1, xPos2, yPos2, zPos2, xRot, yRot, zRot, breakForce, fixedRot, p15, collision, p17, p18) {
     let $res = natives.attachEntityToEntityPhysically(this.handle, entity2, boneIndex1, boneIndex2, xPos1, yPos1, zPos1, xPos2, yPos2, zPos2, xRot, yRot, zRot, breakForce, fixedRot | 0, p15 | 0, collision | 0, p17 | 0, p18);
 };
-mp.Vehicle.prototype.attachToEntityPhysically = function (entity2, boneIndex1, boneIndex2, xPos1, yPos1, zPos1, xPos2, yPos2, zPos2, xRot, yRot, zRot, breakForce, fixedRot, p15, collision, p17, p18) {
+mp.Vehicle.prototype.attachToEntityPhysically ??= function (entity2, boneIndex1, boneIndex2, xPos1, yPos1, zPos1, xPos2, yPos2, zPos2, xRot, yRot, zRot, breakForce, fixedRot, p15, collision, p17, p18) {
     let $res = natives.attachEntityToEntityPhysically(this.handle, entity2, boneIndex1, boneIndex2, xPos1, yPos1, zPos1, xPos2, yPos2, zPos2, xRot, yRot, zRot, breakForce, fixedRot | 0, p15 | 0, collision | 0, p17 | 0, p18);
 };
-mp.Player.prototype.processAttachments = function () {
+mp.Player.prototype.processAttachments ??= function () {
     let $res = natives.processEntityAttachments(this.handle);
 };
-mp.Ped.prototype.processAttachments = function () {
+mp.Ped.prototype.processAttachments ??= function () {
     let $res = natives.processEntityAttachments(this.handle);
 };
-mp.Object.prototype.processAttachments = function () {
+mp.Object.prototype.processAttachments ??= function () {
     let $res = natives.processEntityAttachments(this.handle);
 };
-mp.Vehicle.prototype.processAttachments = function () {
+mp.Vehicle.prototype.processAttachments ??= function () {
     let $res = natives.processEntityAttachments(this.handle);
 };
-mp.Player.prototype.getBoneIndexByName = function (boneName) {
+mp.Player.prototype.getBoneIndexByName ??= function (boneName) {
     let $res = natives.getEntityBoneIndexByName(this.handle, boneName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getBoneIndexByName = function (boneName) {
+mp.Ped.prototype.getBoneIndexByName ??= function (boneName) {
     let $res = natives.getEntityBoneIndexByName(this.handle, boneName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getBoneIndexByName = function (boneName) {
+mp.Object.prototype.getBoneIndexByName ??= function (boneName) {
     let $res = natives.getEntityBoneIndexByName(this.handle, boneName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getBoneIndexByName = function (boneName) {
+mp.Vehicle.prototype.getBoneIndexByName ??= function (boneName) {
     let $res = natives.getEntityBoneIndexByName(this.handle, boneName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.clearLastDamageEntity = function () {
+mp.Player.prototype.clearLastDamageEntity ??= function () {
     let $res = natives.clearEntityLastDamageEntity(this.handle);
 };
-mp.Ped.prototype.clearLastDamageEntity = function () {
+mp.Ped.prototype.clearLastDamageEntity ??= function () {
     let $res = natives.clearEntityLastDamageEntity(this.handle);
 };
-mp.Object.prototype.clearLastDamageEntity = function () {
+mp.Object.prototype.clearLastDamageEntity ??= function () {
     let $res = natives.clearEntityLastDamageEntity(this.handle);
 };
-mp.Vehicle.prototype.clearLastDamageEntity = function () {
+mp.Vehicle.prototype.clearLastDamageEntity ??= function () {
     let $res = natives.clearEntityLastDamageEntity(this.handle);
 };
-mp.Player.prototype.detach = function (dynamic, collision) {
+mp.Player.prototype.detach ??= function (dynamic, collision) {
     let $res = natives.detachEntity(this.handle, dynamic | 0, collision | 0);
 };
-mp.Ped.prototype.detach = function (dynamic, collision) {
+mp.Ped.prototype.detach ??= function (dynamic, collision) {
     let $res = natives.detachEntity(this.handle, dynamic | 0, collision | 0);
 };
-mp.Object.prototype.detach = function (dynamic, collision) {
+mp.Object.prototype.detach ??= function (dynamic, collision) {
     let $res = natives.detachEntity(this.handle, dynamic | 0, collision | 0);
 };
-mp.Vehicle.prototype.detach = function (dynamic, collision) {
+mp.Vehicle.prototype.detach ??= function (dynamic, collision) {
     let $res = natives.detachEntity(this.handle, dynamic | 0, collision | 0);
 };
-mp.Player.prototype.freezePosition = function (toggle) {
+mp.Player.prototype.freezePosition ??= function (toggle) {
     let $res = natives.freezeEntityPosition(this.handle, toggle | 0);
 };
-mp.Ped.prototype.freezePosition = function (toggle) {
+mp.Ped.prototype.freezePosition ??= function (toggle) {
     let $res = natives.freezeEntityPosition(this.handle, toggle | 0);
 };
-mp.Object.prototype.freezePosition = function (toggle) {
+mp.Object.prototype.freezePosition ??= function (toggle) {
     let $res = natives.freezeEntityPosition(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.freezePosition = function (toggle) {
+mp.Vehicle.prototype.freezePosition ??= function (toggle) {
     let $res = natives.freezeEntityPosition(this.handle, toggle | 0);
 };
-mp.Player.prototype.setCleanupByEngine = function (toggle) {
+mp.Player.prototype.setCleanupByEngine ??= function (toggle) {
     let $res = natives.setEntityShouldFreezeWaitingOnCollision(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setCleanupByEngine = function (toggle) {
+mp.Ped.prototype.setCleanupByEngine ??= function (toggle) {
     let $res = natives.setEntityShouldFreezeWaitingOnCollision(this.handle, toggle | 0);
 };
-mp.Object.prototype.setCleanupByEngine = function (toggle) {
+mp.Object.prototype.setCleanupByEngine ??= function (toggle) {
     let $res = natives.setEntityShouldFreezeWaitingOnCollision(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setCleanupByEngine = function (toggle) {
+mp.Vehicle.prototype.setCleanupByEngine ??= function (toggle) {
     let $res = natives.setEntityShouldFreezeWaitingOnCollision(this.handle, toggle | 0);
 };
-mp.Player.prototype.playAnim = function (animName, animDict, p3, loop, stayInAnim, p6, delta, bitset) {
+mp.Player.prototype.playAnim ??= function (animName, animDict, p3, loop, stayInAnim, p6, delta, bitset) {
     let $res = natives.playEntityAnim(this.handle, animName, animDict, p3, loop | 0, stayInAnim | 0, p6 | 0, delta, bitset);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.playAnim = function (animName, animDict, p3, loop, stayInAnim, p6, delta, bitset) {
+mp.Ped.prototype.playAnim ??= function (animName, animDict, p3, loop, stayInAnim, p6, delta, bitset) {
     let $res = natives.playEntityAnim(this.handle, animName, animDict, p3, loop | 0, stayInAnim | 0, p6 | 0, delta, bitset);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.playAnim = function (animName, animDict, p3, loop, stayInAnim, p6, delta, bitset) {
+mp.Object.prototype.playAnim ??= function (animName, animDict, p3, loop, stayInAnim, p6, delta, bitset) {
     let $res = natives.playEntityAnim(this.handle, animName, animDict, p3, loop | 0, stayInAnim | 0, p6 | 0, delta, bitset);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.playAnim = function (animName, animDict, p3, loop, stayInAnim, p6, delta, bitset) {
+mp.Vehicle.prototype.playAnim ??= function (animName, animDict, p3, loop, stayInAnim, p6, delta, bitset) {
     let $res = natives.playEntityAnim(this.handle, animName, animDict, p3, loop | 0, stayInAnim | 0, p6 | 0, delta, bitset);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.playSynchronizedAnim = function (syncedScene, animation, propName, p4, p5, p6, p7) {
+mp.Player.prototype.playSynchronizedAnim ??= function (syncedScene, animation, propName, p4, p5, p6, p7) {
     let $res = natives.playSynchronizedEntityAnim(this.handle, syncedScene, animation, propName, p4, p5, p6, p7);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.playSynchronizedAnim = function (syncedScene, animation, propName, p4, p5, p6, p7) {
+mp.Ped.prototype.playSynchronizedAnim ??= function (syncedScene, animation, propName, p4, p5, p6, p7) {
     let $res = natives.playSynchronizedEntityAnim(this.handle, syncedScene, animation, propName, p4, p5, p6, p7);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.playSynchronizedAnim = function (syncedScene, animation, propName, p4, p5, p6, p7) {
+mp.Object.prototype.playSynchronizedAnim ??= function (syncedScene, animation, propName, p4, p5, p6, p7) {
     let $res = natives.playSynchronizedEntityAnim(this.handle, syncedScene, animation, propName, p4, p5, p6, p7);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.playSynchronizedAnim = function (syncedScene, animation, propName, p4, p5, p6, p7) {
+mp.Vehicle.prototype.playSynchronizedAnim ??= function (syncedScene, animation, propName, p4, p5, p6, p7) {
     let $res = natives.playSynchronizedEntityAnim(this.handle, syncedScene, animation, propName, p4, p5, p6, p7);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.stopAnim = function (animation, animGroup, p3) {
+mp.Player.prototype.stopAnim ??= function (animation, animGroup, p3) {
     let $res = natives.stopEntityAnim(this.handle, animation, animGroup, p3);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.stopAnim = function (animation, animGroup, p3) {
+mp.Ped.prototype.stopAnim ??= function (animation, animGroup, p3) {
     let $res = natives.stopEntityAnim(this.handle, animation, animGroup, p3);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.stopAnim = function (animation, animGroup, p3) {
+mp.Object.prototype.stopAnim ??= function (animation, animGroup, p3) {
     let $res = natives.stopEntityAnim(this.handle, animation, animGroup, p3);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.stopAnim = function (animation, animGroup, p3) {
+mp.Vehicle.prototype.stopAnim ??= function (animation, animGroup, p3) {
     let $res = natives.stopEntityAnim(this.handle, animation, animGroup, p3);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.stopSynchronizedAnim = function (p1, p2) {
+mp.Player.prototype.stopSynchronizedAnim ??= function (p1, p2) {
     let $res = natives.stopSynchronizedEntityAnim(this.handle, p1, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.stopSynchronizedAnim = function (p1, p2) {
+mp.Ped.prototype.stopSynchronizedAnim ??= function (p1, p2) {
     let $res = natives.stopSynchronizedEntityAnim(this.handle, p1, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.stopSynchronizedAnim = function (p1, p2) {
+mp.Object.prototype.stopSynchronizedAnim ??= function (p1, p2) {
     let $res = natives.stopSynchronizedEntityAnim(this.handle, p1, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.stopSynchronizedAnim = function (p1, p2) {
+mp.Vehicle.prototype.stopSynchronizedAnim ??= function (p1, p2) {
     let $res = natives.stopSynchronizedEntityAnim(this.handle, p1, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.hasAnimEventFired = function (actionHash) {
+mp.Player.prototype.hasAnimEventFired ??= function (actionHash) {
     let $res = natives.hasAnimEventFired(this.handle, actionHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.hasAnimEventFired = function (actionHash) {
+mp.Ped.prototype.hasAnimEventFired ??= function (actionHash) {
     let $res = natives.hasAnimEventFired(this.handle, actionHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.hasAnimEventFired = function (actionHash) {
+mp.Object.prototype.hasAnimEventFired ??= function (actionHash) {
     let $res = natives.hasAnimEventFired(this.handle, actionHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.hasAnimEventFired = function (actionHash) {
+mp.Vehicle.prototype.hasAnimEventFired ??= function (actionHash) {
     let $res = natives.hasAnimEventFired(this.handle, actionHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setAnimCurrentTime = function (animDictionary, animName, time) {
+mp.Player.prototype.setAnimCurrentTime ??= function (animDictionary, animName, time) {
     let $res = natives.setEntityAnimCurrentTime(this.handle, animDictionary, animName, time);
 };
-mp.Ped.prototype.setAnimCurrentTime = function (animDictionary, animName, time) {
+mp.Ped.prototype.setAnimCurrentTime ??= function (animDictionary, animName, time) {
     let $res = natives.setEntityAnimCurrentTime(this.handle, animDictionary, animName, time);
 };
-mp.Object.prototype.setAnimCurrentTime = function (animDictionary, animName, time) {
+mp.Object.prototype.setAnimCurrentTime ??= function (animDictionary, animName, time) {
     let $res = natives.setEntityAnimCurrentTime(this.handle, animDictionary, animName, time);
 };
-mp.Vehicle.prototype.setAnimCurrentTime = function (animDictionary, animName, time) {
+mp.Vehicle.prototype.setAnimCurrentTime ??= function (animDictionary, animName, time) {
     let $res = natives.setEntityAnimCurrentTime(this.handle, animDictionary, animName, time);
 };
-mp.Player.prototype.setAnimSpeed = function (animDictionary, animName, speedMultiplier) {
+mp.Player.prototype.setAnimSpeed ??= function (animDictionary, animName, speedMultiplier) {
     let $res = natives.setEntityAnimSpeed(this.handle, animDictionary, animName, speedMultiplier);
 };
-mp.Ped.prototype.setAnimSpeed = function (animDictionary, animName, speedMultiplier) {
+mp.Ped.prototype.setAnimSpeed ??= function (animDictionary, animName, speedMultiplier) {
     let $res = natives.setEntityAnimSpeed(this.handle, animDictionary, animName, speedMultiplier);
 };
-mp.Object.prototype.setAnimSpeed = function (animDictionary, animName, speedMultiplier) {
+mp.Object.prototype.setAnimSpeed ??= function (animDictionary, animName, speedMultiplier) {
     let $res = natives.setEntityAnimSpeed(this.handle, animDictionary, animName, speedMultiplier);
 };
-mp.Vehicle.prototype.setAnimSpeed = function (animDictionary, animName, speedMultiplier) {
+mp.Vehicle.prototype.setAnimSpeed ??= function (animDictionary, animName, speedMultiplier) {
     let $res = natives.setEntityAnimSpeed(this.handle, animDictionary, animName, speedMultiplier);
 };
-mp.Player.prototype.setAsMissionEntity = function (p1, p2) {
+mp.Player.prototype.setAsMissionEntity ??= function (p1, p2) {
     let $res = natives.setEntityAsMissionEntity(this.handle, p1 | 0, p2 | 0);
 };
-mp.Ped.prototype.setAsMissionEntity = function (p1, p2) {
+mp.Ped.prototype.setAsMissionEntity ??= function (p1, p2) {
     let $res = natives.setEntityAsMissionEntity(this.handle, p1 | 0, p2 | 0);
 };
-mp.Object.prototype.setAsMissionEntity = function (p1, p2) {
+mp.Object.prototype.setAsMissionEntity ??= function (p1, p2) {
     let $res = natives.setEntityAsMissionEntity(this.handle, p1 | 0, p2 | 0);
 };
-mp.Vehicle.prototype.setAsMissionEntity = function (p1, p2) {
+mp.Vehicle.prototype.setAsMissionEntity ??= function (p1, p2) {
     let $res = natives.setEntityAsMissionEntity(this.handle, p1 | 0, p2 | 0);
 };
-mp.Player.prototype.setCanBeDamaged = function (toggle) {
+mp.Player.prototype.setCanBeDamaged ??= function (toggle) {
     let $res = natives.setEntityCanBeDamaged(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setCanBeDamaged = function (toggle) {
+mp.Ped.prototype.setCanBeDamaged ??= function (toggle) {
     let $res = natives.setEntityCanBeDamaged(this.handle, toggle | 0);
 };
-mp.Object.prototype.setCanBeDamaged = function (toggle) {
+mp.Object.prototype.setCanBeDamaged ??= function (toggle) {
     let $res = natives.setEntityCanBeDamaged(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setCanBeDamaged = function (toggle) {
+mp.Vehicle.prototype.setCanBeDamaged ??= function (toggle) {
     let $res = natives.setEntityCanBeDamaged(this.handle, toggle | 0);
 };
-mp.Player.prototype.getCanBeDamaged = function () {
+mp.Player.prototype.getCanBeDamaged ??= function () {
     let $res = natives.getEntityCanBeDamaged(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.getCanBeDamaged = function () {
+mp.Ped.prototype.getCanBeDamaged ??= function () {
     let $res = natives.getEntityCanBeDamaged(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.getCanBeDamaged = function () {
+mp.Object.prototype.getCanBeDamaged ??= function () {
     let $res = natives.getEntityCanBeDamaged(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getCanBeDamaged = function () {
+mp.Vehicle.prototype.getCanBeDamaged ??= function () {
     let $res = natives.getEntityCanBeDamaged(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setCanBeDamagedByRelationshipGroup = function (bCanBeDamaged, relGroup) {
+mp.Player.prototype.setCanBeDamagedByRelationshipGroup ??= function (bCanBeDamaged, relGroup) {
     let $res = natives.setEntityCanBeDamagedByRelationshipGroup(this.handle, bCanBeDamaged | 0, relGroup);
 };
-mp.Ped.prototype.setCanBeDamagedByRelationshipGroup = function (bCanBeDamaged, relGroup) {
+mp.Ped.prototype.setCanBeDamagedByRelationshipGroup ??= function (bCanBeDamaged, relGroup) {
     let $res = natives.setEntityCanBeDamagedByRelationshipGroup(this.handle, bCanBeDamaged | 0, relGroup);
 };
-mp.Object.prototype.setCanBeDamagedByRelationshipGroup = function (bCanBeDamaged, relGroup) {
+mp.Object.prototype.setCanBeDamagedByRelationshipGroup ??= function (bCanBeDamaged, relGroup) {
     let $res = natives.setEntityCanBeDamagedByRelationshipGroup(this.handle, bCanBeDamaged | 0, relGroup);
 };
-mp.Vehicle.prototype.setCanBeDamagedByRelationshipGroup = function (bCanBeDamaged, relGroup) {
+mp.Vehicle.prototype.setCanBeDamagedByRelationshipGroup ??= function (bCanBeDamaged, relGroup) {
     let $res = natives.setEntityCanBeDamagedByRelationshipGroup(this.handle, bCanBeDamaged | 0, relGroup);
 };
-mp.Player.prototype.setCanBeTargetedWithoutLos = function (toggle) {
+mp.Player.prototype.setCanBeTargetedWithoutLos ??= function (toggle) {
     let $res = natives.setEntityCanBeTargetedWithoutLos(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setCanBeTargetedWithoutLos = function (toggle) {
+mp.Ped.prototype.setCanBeTargetedWithoutLos ??= function (toggle) {
     let $res = natives.setEntityCanBeTargetedWithoutLos(this.handle, toggle | 0);
 };
-mp.Object.prototype.setCanBeTargetedWithoutLos = function (toggle) {
+mp.Object.prototype.setCanBeTargetedWithoutLos ??= function (toggle) {
     let $res = natives.setEntityCanBeTargetedWithoutLos(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setCanBeTargetedWithoutLos = function (toggle) {
+mp.Vehicle.prototype.setCanBeTargetedWithoutLos ??= function (toggle) {
     let $res = natives.setEntityCanBeTargetedWithoutLos(this.handle, toggle | 0);
 };
-mp.Player.prototype.setCollision = function (toggle, keepPhysics) {
+mp.Player.prototype.setCollision ??= function (toggle, keepPhysics) {
     let $res = natives.setEntityCollision(this.handle, toggle | 0, keepPhysics | 0);
 };
-mp.Ped.prototype.setCollision = function (toggle, keepPhysics) {
+mp.Ped.prototype.setCollision ??= function (toggle, keepPhysics) {
     let $res = natives.setEntityCollision(this.handle, toggle | 0, keepPhysics | 0);
 };
-mp.Object.prototype.setCollision = function (toggle, keepPhysics) {
+mp.Object.prototype.setCollision ??= function (toggle, keepPhysics) {
     let $res = natives.setEntityCollision(this.handle, toggle | 0, keepPhysics | 0);
 };
-mp.Vehicle.prototype.setCollision = function (toggle, keepPhysics) {
+mp.Vehicle.prototype.setCollision ??= function (toggle, keepPhysics) {
     let $res = natives.setEntityCollision(this.handle, toggle | 0, keepPhysics | 0);
 };
-mp.Player.prototype.getCollisionDisabled = function () {
+mp.Player.prototype.getCollisionDisabled ??= function () {
     let $res = natives.getEntityCollisionDisabled(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.getCollisionDisabled = function () {
+mp.Ped.prototype.getCollisionDisabled ??= function () {
     let $res = natives.getEntityCollisionDisabled(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.getCollisionDisabled = function () {
+mp.Object.prototype.getCollisionDisabled ??= function () {
     let $res = natives.getEntityCollisionDisabled(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getCollisionDisabled = function () {
+mp.Vehicle.prototype.getCollisionDisabled ??= function () {
     let $res = natives.getEntityCollisionDisabled(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setCompletelyDisableCollision = function (toggle, keepPhysics) {
+mp.Player.prototype.setCompletelyDisableCollision ??= function (toggle, keepPhysics) {
     let $res = natives.setEntityCompletelyDisableCollision(this.handle, toggle | 0, keepPhysics | 0);
 };
-mp.Ped.prototype.setCompletelyDisableCollision = function (toggle, keepPhysics) {
+mp.Ped.prototype.setCompletelyDisableCollision ??= function (toggle, keepPhysics) {
     let $res = natives.setEntityCompletelyDisableCollision(this.handle, toggle | 0, keepPhysics | 0);
 };
-mp.Object.prototype.setCompletelyDisableCollision = function (toggle, keepPhysics) {
+mp.Object.prototype.setCompletelyDisableCollision ??= function (toggle, keepPhysics) {
     let $res = natives.setEntityCompletelyDisableCollision(this.handle, toggle | 0, keepPhysics | 0);
 };
-mp.Vehicle.prototype.setCompletelyDisableCollision = function (toggle, keepPhysics) {
+mp.Vehicle.prototype.setCompletelyDisableCollision ??= function (toggle, keepPhysics) {
     let $res = natives.setEntityCompletelyDisableCollision(this.handle, toggle | 0, keepPhysics | 0);
 };
-mp.Player.prototype.setCoords = function (xPos, yPos, zPos, xAxis, yAxis, zAxis, clearArea) {
+mp.Player.prototype.setCoords ??= function (xPos, yPos, zPos, xAxis, yAxis, zAxis, clearArea) {
     let $res = natives.setEntityCoords(this.handle, xPos, yPos, zPos, xAxis | 0, yAxis | 0, zAxis | 0, clearArea | 0);
 };
-mp.Ped.prototype.setCoords = function (xPos, yPos, zPos, xAxis, yAxis, zAxis, clearArea) {
+mp.Ped.prototype.setCoords ??= function (xPos, yPos, zPos, xAxis, yAxis, zAxis, clearArea) {
     let $res = natives.setEntityCoords(this.handle, xPos, yPos, zPos, xAxis | 0, yAxis | 0, zAxis | 0, clearArea | 0);
 };
-mp.Object.prototype.setCoords = function (xPos, yPos, zPos, xAxis, yAxis, zAxis, clearArea) {
+mp.Object.prototype.setCoords ??= function (xPos, yPos, zPos, xAxis, yAxis, zAxis, clearArea) {
     let $res = natives.setEntityCoords(this.handle, xPos, yPos, zPos, xAxis | 0, yAxis | 0, zAxis | 0, clearArea | 0);
 };
-mp.Vehicle.prototype.setCoords = function (xPos, yPos, zPos, xAxis, yAxis, zAxis, clearArea) {
+mp.Vehicle.prototype.setCoords ??= function (xPos, yPos, zPos, xAxis, yAxis, zAxis, clearArea) {
     let $res = natives.setEntityCoords(this.handle, xPos, yPos, zPos, xAxis | 0, yAxis | 0, zAxis | 0, clearArea | 0);
 };
-mp.Player.prototype.setCoordsWithoutPlantsReset = function (xPos, yPos, zPos, alive, deadFlag, ragdollFlag, clearArea) {
+mp.Player.prototype.setCoordsWithoutPlantsReset ??= function (xPos, yPos, zPos, alive, deadFlag, ragdollFlag, clearArea) {
     let $res = natives.setEntityCoordsWithoutPlantsReset(this.handle, xPos, yPos, zPos, alive | 0, deadFlag | 0, ragdollFlag | 0, clearArea | 0);
 };
-mp.Ped.prototype.setCoordsWithoutPlantsReset = function (xPos, yPos, zPos, alive, deadFlag, ragdollFlag, clearArea) {
+mp.Ped.prototype.setCoordsWithoutPlantsReset ??= function (xPos, yPos, zPos, alive, deadFlag, ragdollFlag, clearArea) {
     let $res = natives.setEntityCoordsWithoutPlantsReset(this.handle, xPos, yPos, zPos, alive | 0, deadFlag | 0, ragdollFlag | 0, clearArea | 0);
 };
-mp.Object.prototype.setCoordsWithoutPlantsReset = function (xPos, yPos, zPos, alive, deadFlag, ragdollFlag, clearArea) {
+mp.Object.prototype.setCoordsWithoutPlantsReset ??= function (xPos, yPos, zPos, alive, deadFlag, ragdollFlag, clearArea) {
     let $res = natives.setEntityCoordsWithoutPlantsReset(this.handle, xPos, yPos, zPos, alive | 0, deadFlag | 0, ragdollFlag | 0, clearArea | 0);
 };
-mp.Vehicle.prototype.setCoordsWithoutPlantsReset = function (xPos, yPos, zPos, alive, deadFlag, ragdollFlag, clearArea) {
+mp.Vehicle.prototype.setCoordsWithoutPlantsReset ??= function (xPos, yPos, zPos, alive, deadFlag, ragdollFlag, clearArea) {
     let $res = natives.setEntityCoordsWithoutPlantsReset(this.handle, xPos, yPos, zPos, alive | 0, deadFlag | 0, ragdollFlag | 0, clearArea | 0);
 };
-mp.Player.prototype.setCoordsNoOffset = function (xPos, yPos, zPos, xAxis, yAxis, zAxis) {
+mp.Player.prototype.setCoordsNoOffset ??= function (xPos, yPos, zPos, xAxis, yAxis, zAxis) {
     let $res = natives.setEntityCoordsNoOffset(this.handle, xPos, yPos, zPos, xAxis | 0, yAxis | 0, zAxis | 0);
 };
-mp.Ped.prototype.setCoordsNoOffset = function (xPos, yPos, zPos, xAxis, yAxis, zAxis) {
+mp.Ped.prototype.setCoordsNoOffset ??= function (xPos, yPos, zPos, xAxis, yAxis, zAxis) {
     let $res = natives.setEntityCoordsNoOffset(this.handle, xPos, yPos, zPos, xAxis | 0, yAxis | 0, zAxis | 0);
 };
-mp.Object.prototype.setCoordsNoOffset = function (xPos, yPos, zPos, xAxis, yAxis, zAxis) {
+mp.Object.prototype.setCoordsNoOffset ??= function (xPos, yPos, zPos, xAxis, yAxis, zAxis) {
     let $res = natives.setEntityCoordsNoOffset(this.handle, xPos, yPos, zPos, xAxis | 0, yAxis | 0, zAxis | 0);
 };
-mp.Vehicle.prototype.setCoordsNoOffset = function (xPos, yPos, zPos, xAxis, yAxis, zAxis) {
+mp.Vehicle.prototype.setCoordsNoOffset ??= function (xPos, yPos, zPos, xAxis, yAxis, zAxis) {
     let $res = natives.setEntityCoordsNoOffset(this.handle, xPos, yPos, zPos, xAxis | 0, yAxis | 0, zAxis | 0);
 };
-mp.Player.prototype.setDynamic = function (toggle) {
+mp.Player.prototype.setDynamic ??= function (toggle) {
     let $res = natives.setEntityDynamic(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setDynamic = function (toggle) {
+mp.Ped.prototype.setDynamic ??= function (toggle) {
     let $res = natives.setEntityDynamic(this.handle, toggle | 0);
 };
-mp.Object.prototype.setDynamic = function (toggle) {
+mp.Object.prototype.setDynamic ??= function (toggle) {
     let $res = natives.setEntityDynamic(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setDynamic = function (toggle) {
+mp.Vehicle.prototype.setDynamic ??= function (toggle) {
     let $res = natives.setEntityDynamic(this.handle, toggle | 0);
 };
-mp.Player.prototype.setHeading = function (heading) {
+mp.Player.prototype.setHeading ??= function (heading) {
     let $res = natives.setEntityHeading(this.handle, heading);
 };
-mp.Ped.prototype.setHeading = function (heading) {
+mp.Ped.prototype.setHeading ??= function (heading) {
     let $res = natives.setEntityHeading(this.handle, heading);
 };
-mp.Object.prototype.setHeading = function (heading) {
+mp.Object.prototype.setHeading ??= function (heading) {
     let $res = natives.setEntityHeading(this.handle, heading);
 };
-mp.Vehicle.prototype.setHeading = function (heading) {
+mp.Vehicle.prototype.setHeading ??= function (heading) {
     let $res = natives.setEntityHeading(this.handle, heading);
 };
-mp.Player.prototype.setHealth = function (health, p2) {
+mp.Player.prototype.setHealth ??= function (health, p2) {
     let $res = natives.setEntityHealth(this.handle, health, p2 | 0);
 };
-mp.Ped.prototype.setHealth = function (health, p2) {
+mp.Ped.prototype.setHealth ??= function (health, p2) {
     let $res = natives.setEntityHealth(this.handle, health, p2 | 0);
 };
-mp.Object.prototype.setHealth = function (health, p2) {
+mp.Object.prototype.setHealth ??= function (health, p2) {
     let $res = natives.setEntityHealth(this.handle, health, p2 | 0);
 };
-mp.Vehicle.prototype.setHealth = function (health, p2) {
+mp.Vehicle.prototype.setHealth ??= function (health, p2) {
     let $res = natives.setEntityHealth(this.handle, health, p2 | 0);
 };
-mp.Player.prototype.setInvincible = function (toggle) {
+mp.Player.prototype.setInvincible ??= function (toggle) {
     let $res = natives.setEntityInvincible(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setInvincible = function (toggle) {
+mp.Ped.prototype.setInvincible ??= function (toggle) {
     let $res = natives.setEntityInvincible(this.handle, toggle | 0);
 };
-mp.Object.prototype.setInvincible = function (toggle) {
+mp.Object.prototype.setInvincible ??= function (toggle) {
     let $res = natives.setEntityInvincible(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setInvincible = function (toggle) {
+mp.Vehicle.prototype.setInvincible ??= function (toggle) {
     let $res = natives.setEntityInvincible(this.handle, toggle | 0);
 };
-mp.Player.prototype.setIsTargetPriority = function (p1, p2) {
+mp.Player.prototype.setIsTargetPriority ??= function (p1, p2) {
     let $res = natives.setEntityIsTargetPriority(this.handle, p1 | 0, p2);
 };
-mp.Ped.prototype.setIsTargetPriority = function (p1, p2) {
+mp.Ped.prototype.setIsTargetPriority ??= function (p1, p2) {
     let $res = natives.setEntityIsTargetPriority(this.handle, p1 | 0, p2);
 };
-mp.Object.prototype.setIsTargetPriority = function (p1, p2) {
+mp.Object.prototype.setIsTargetPriority ??= function (p1, p2) {
     let $res = natives.setEntityIsTargetPriority(this.handle, p1 | 0, p2);
 };
-mp.Vehicle.prototype.setIsTargetPriority = function (p1, p2) {
+mp.Vehicle.prototype.setIsTargetPriority ??= function (p1, p2) {
     let $res = natives.setEntityIsTargetPriority(this.handle, p1 | 0, p2);
 };
-mp.Player.prototype.setLights = function (toggle) {
+mp.Player.prototype.setLights ??= function (toggle) {
     let $res = natives.setEntityLights(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setLights = function (toggle) {
+mp.Ped.prototype.setLights ??= function (toggle) {
     let $res = natives.setEntityLights(this.handle, toggle | 0);
 };
-mp.Object.prototype.setLights = function (toggle) {
+mp.Object.prototype.setLights ??= function (toggle) {
     let $res = natives.setEntityLights(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setLights = function (toggle) {
+mp.Vehicle.prototype.setLights ??= function (toggle) {
     let $res = natives.setEntityLights(this.handle, toggle | 0);
 };
-mp.Player.prototype.setLoadCollisionFlag = function (toggle, p2) {
+mp.Player.prototype.setLoadCollisionFlag ??= function (toggle, p2) {
     let $res = natives.setEntityLoadCollisionFlag(this.handle, toggle | 0, p2 | 0);
 };
-mp.Ped.prototype.setLoadCollisionFlag = function (toggle, p2) {
+mp.Ped.prototype.setLoadCollisionFlag ??= function (toggle, p2) {
     let $res = natives.setEntityLoadCollisionFlag(this.handle, toggle | 0, p2 | 0);
 };
-mp.Object.prototype.setLoadCollisionFlag = function (toggle, p2) {
+mp.Object.prototype.setLoadCollisionFlag ??= function (toggle, p2) {
     let $res = natives.setEntityLoadCollisionFlag(this.handle, toggle | 0, p2 | 0);
 };
-mp.Vehicle.prototype.setLoadCollisionFlag = function (toggle, p2) {
+mp.Vehicle.prototype.setLoadCollisionFlag ??= function (toggle, p2) {
     let $res = natives.setEntityLoadCollisionFlag(this.handle, toggle | 0, p2 | 0);
 };
-mp.Player.prototype.hasCollisionLoadedAround = function () {
+mp.Player.prototype.hasCollisionLoadedAround ??= function () {
     let $res = natives.hasCollisionLoadedAroundEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.hasCollisionLoadedAround = function () {
+mp.Ped.prototype.hasCollisionLoadedAround ??= function () {
     let $res = natives.hasCollisionLoadedAroundEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.hasCollisionLoadedAround = function () {
+mp.Object.prototype.hasCollisionLoadedAround ??= function () {
     let $res = natives.hasCollisionLoadedAroundEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.hasCollisionLoadedAround = function () {
+mp.Vehicle.prototype.hasCollisionLoadedAround ??= function () {
     let $res = natives.hasCollisionLoadedAroundEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setMaxSpeed = function (speed) {
+mp.Player.prototype.setMaxSpeed ??= function (speed) {
     let $res = natives.setEntityMaxSpeed(this.handle, speed);
 };
-mp.Ped.prototype.setMaxSpeed = function (speed) {
+mp.Ped.prototype.setMaxSpeed ??= function (speed) {
     let $res = natives.setEntityMaxSpeed(this.handle, speed);
 };
-mp.Object.prototype.setMaxSpeed = function (speed) {
+mp.Object.prototype.setMaxSpeed ??= function (speed) {
     let $res = natives.setEntityMaxSpeed(this.handle, speed);
 };
-mp.Vehicle.prototype.setMaxSpeed = function (speed) {
+mp.Vehicle.prototype.setMaxSpeed ??= function (speed) {
     let $res = natives.setEntityMaxSpeed(this.handle, speed);
 };
-mp.Player.prototype.setOnlyDamagedByPlayer = function (toggle) {
+mp.Player.prototype.setOnlyDamagedByPlayer ??= function (toggle) {
     let $res = natives.setEntityOnlyDamagedByPlayer(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setOnlyDamagedByPlayer = function (toggle) {
+mp.Ped.prototype.setOnlyDamagedByPlayer ??= function (toggle) {
     let $res = natives.setEntityOnlyDamagedByPlayer(this.handle, toggle | 0);
 };
-mp.Object.prototype.setOnlyDamagedByPlayer = function (toggle) {
+mp.Object.prototype.setOnlyDamagedByPlayer ??= function (toggle) {
     let $res = natives.setEntityOnlyDamagedByPlayer(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setOnlyDamagedByPlayer = function (toggle) {
+mp.Vehicle.prototype.setOnlyDamagedByPlayer ??= function (toggle) {
     let $res = natives.setEntityOnlyDamagedByPlayer(this.handle, toggle | 0);
 };
-mp.Player.prototype.setOnlyDamagedByRelationshipGroup = function (p1, p2) {
+mp.Player.prototype.setOnlyDamagedByRelationshipGroup ??= function (p1, p2) {
     let $res = natives.setEntityOnlyDamagedByRelationshipGroup(this.handle, p1 | 0, p2);
 };
-mp.Ped.prototype.setOnlyDamagedByRelationshipGroup = function (p1, p2) {
+mp.Ped.prototype.setOnlyDamagedByRelationshipGroup ??= function (p1, p2) {
     let $res = natives.setEntityOnlyDamagedByRelationshipGroup(this.handle, p1 | 0, p2);
 };
-mp.Object.prototype.setOnlyDamagedByRelationshipGroup = function (p1, p2) {
+mp.Object.prototype.setOnlyDamagedByRelationshipGroup ??= function (p1, p2) {
     let $res = natives.setEntityOnlyDamagedByRelationshipGroup(this.handle, p1 | 0, p2);
 };
-mp.Vehicle.prototype.setOnlyDamagedByRelationshipGroup = function (p1, p2) {
+mp.Vehicle.prototype.setOnlyDamagedByRelationshipGroup ??= function (p1, p2) {
     let $res = natives.setEntityOnlyDamagedByRelationshipGroup(this.handle, p1 | 0, p2);
 };
-mp.Player.prototype.setProofs = function (bulletProof, fireProof, explosionProof, collisionProof, meleeProof, p6, p7, drownProof) {
+mp.Player.prototype.setProofs ??= function (bulletProof, fireProof, explosionProof, collisionProof, meleeProof, p6, p7, drownProof) {
     let $res = natives.setEntityProofs(this.handle, bulletProof | 0, fireProof | 0, explosionProof | 0, collisionProof | 0, meleeProof | 0, p6 | 0, p7 | 0, drownProof | 0);
 };
-mp.Ped.prototype.setProofs = function (bulletProof, fireProof, explosionProof, collisionProof, meleeProof, p6, p7, drownProof) {
+mp.Ped.prototype.setProofs ??= function (bulletProof, fireProof, explosionProof, collisionProof, meleeProof, p6, p7, drownProof) {
     let $res = natives.setEntityProofs(this.handle, bulletProof | 0, fireProof | 0, explosionProof | 0, collisionProof | 0, meleeProof | 0, p6 | 0, p7 | 0, drownProof | 0);
 };
-mp.Object.prototype.setProofs = function (bulletProof, fireProof, explosionProof, collisionProof, meleeProof, p6, p7, drownProof) {
+mp.Object.prototype.setProofs ??= function (bulletProof, fireProof, explosionProof, collisionProof, meleeProof, p6, p7, drownProof) {
     let $res = natives.setEntityProofs(this.handle, bulletProof | 0, fireProof | 0, explosionProof | 0, collisionProof | 0, meleeProof | 0, p6 | 0, p7 | 0, drownProof | 0);
 };
-mp.Vehicle.prototype.setProofs = function (bulletProof, fireProof, explosionProof, collisionProof, meleeProof, p6, p7, drownProof) {
+mp.Vehicle.prototype.setProofs ??= function (bulletProof, fireProof, explosionProof, collisionProof, meleeProof, p6, p7, drownProof) {
     let $res = natives.setEntityProofs(this.handle, bulletProof | 0, fireProof | 0, explosionProof | 0, collisionProof | 0, meleeProof | 0, p6 | 0, p7 | 0, drownProof | 0);
 };
-mp.Player.prototype.getProofs = function () {
+mp.Player.prototype.getProofs ??= function () {
     let $res = natives.getEntityProofs(this.handle, false, false, false, false, false, false, false, false);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -6763,7 +6763,7 @@ mp.Player.prototype.getProofs = function () {
     $resObj.result = $res[0] == 1;
     return $resObj;
 };
-mp.Ped.prototype.getProofs = function () {
+mp.Ped.prototype.getProofs ??= function () {
     let $res = natives.getEntityProofs(this.handle, false, false, false, false, false, false, false, false);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -6778,7 +6778,7 @@ mp.Ped.prototype.getProofs = function () {
     $resObj.result = $res[0] == 1;
     return $resObj;
 };
-mp.Object.prototype.getProofs = function () {
+mp.Object.prototype.getProofs ??= function () {
     let $res = natives.getEntityProofs(this.handle, false, false, false, false, false, false, false, false);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -6793,7 +6793,7 @@ mp.Object.prototype.getProofs = function () {
     $resObj.result = $res[0] == 1;
     return $resObj;
 };
-mp.Vehicle.prototype.getProofs = function () {
+mp.Vehicle.prototype.getProofs ??= function () {
     let $res = natives.getEntityProofs(this.handle, false, false, false, false, false, false, false, false);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -6808,239 +6808,239 @@ mp.Vehicle.prototype.getProofs = function () {
     $resObj.result = $res[0] == 1;
     return $resObj;
 };
-mp.Player.prototype.setQuaternion = function (x, y, z, w) {
+mp.Player.prototype.setQuaternion ??= function (x, y, z, w) {
     let $res = natives.setEntityQuaternion(this.handle, x, y, z, w);
 };
-mp.Ped.prototype.setQuaternion = function (x, y, z, w) {
+mp.Ped.prototype.setQuaternion ??= function (x, y, z, w) {
     let $res = natives.setEntityQuaternion(this.handle, x, y, z, w);
 };
-mp.Object.prototype.setQuaternion = function (x, y, z, w) {
+mp.Object.prototype.setQuaternion ??= function (x, y, z, w) {
     let $res = natives.setEntityQuaternion(this.handle, x, y, z, w);
 };
-mp.Vehicle.prototype.setQuaternion = function (x, y, z, w) {
+mp.Vehicle.prototype.setQuaternion ??= function (x, y, z, w) {
     let $res = natives.setEntityQuaternion(this.handle, x, y, z, w);
 };
-mp.Player.prototype.setRecordsCollisions = function (toggle) {
+mp.Player.prototype.setRecordsCollisions ??= function (toggle) {
     let $res = natives.setEntityRecordsCollisions(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setRecordsCollisions = function (toggle) {
+mp.Ped.prototype.setRecordsCollisions ??= function (toggle) {
     let $res = natives.setEntityRecordsCollisions(this.handle, toggle | 0);
 };
-mp.Object.prototype.setRecordsCollisions = function (toggle) {
+mp.Object.prototype.setRecordsCollisions ??= function (toggle) {
     let $res = natives.setEntityRecordsCollisions(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setRecordsCollisions = function (toggle) {
+mp.Vehicle.prototype.setRecordsCollisions ??= function (toggle) {
     let $res = natives.setEntityRecordsCollisions(this.handle, toggle | 0);
 };
-mp.Player.prototype.setRotation = function (pitch, roll, yaw, rotationOrder, p5) {
+mp.Player.prototype.setRotation ??= function (pitch, roll, yaw, rotationOrder, p5) {
     let $res = natives.setEntityRotation(this.handle, pitch, roll, yaw, rotationOrder, p5 | 0);
 };
-mp.Ped.prototype.setRotation = function (pitch, roll, yaw, rotationOrder, p5) {
+mp.Ped.prototype.setRotation ??= function (pitch, roll, yaw, rotationOrder, p5) {
     let $res = natives.setEntityRotation(this.handle, pitch, roll, yaw, rotationOrder, p5 | 0);
 };
-mp.Object.prototype.setRotation = function (pitch, roll, yaw, rotationOrder, p5) {
+mp.Object.prototype.setRotation ??= function (pitch, roll, yaw, rotationOrder, p5) {
     let $res = natives.setEntityRotation(this.handle, pitch, roll, yaw, rotationOrder, p5 | 0);
 };
-mp.Vehicle.prototype.setRotation = function (pitch, roll, yaw, rotationOrder, p5) {
+mp.Vehicle.prototype.setRotation ??= function (pitch, roll, yaw, rotationOrder, p5) {
     let $res = natives.setEntityRotation(this.handle, pitch, roll, yaw, rotationOrder, p5 | 0);
 };
-mp.Player.prototype.setVisible = function (toggle, unk) {
+mp.Player.prototype.setVisible ??= function (toggle, unk) {
     let $res = natives.setEntityVisible(this.handle, toggle | 0, unk | 0);
 };
-mp.Ped.prototype.setVisible = function (toggle, unk) {
+mp.Ped.prototype.setVisible ??= function (toggle, unk) {
     let $res = natives.setEntityVisible(this.handle, toggle | 0, unk | 0);
 };
-mp.Object.prototype.setVisible = function (toggle, unk) {
+mp.Object.prototype.setVisible ??= function (toggle, unk) {
     let $res = natives.setEntityVisible(this.handle, toggle | 0, unk | 0);
 };
-mp.Vehicle.prototype.setVisible = function (toggle, unk) {
+mp.Vehicle.prototype.setVisible ??= function (toggle, unk) {
     let $res = natives.setEntityVisible(this.handle, toggle | 0, unk | 0);
 };
-mp.Player.prototype.setVelocity = function (x, y, z) {
+mp.Player.prototype.setVelocity ??= function (x, y, z) {
     let $res = natives.setEntityVelocity(this.handle, x, y, z);
 };
-mp.Ped.prototype.setVelocity = function (x, y, z) {
+mp.Ped.prototype.setVelocity ??= function (x, y, z) {
     let $res = natives.setEntityVelocity(this.handle, x, y, z);
 };
-mp.Object.prototype.setVelocity = function (x, y, z) {
+mp.Object.prototype.setVelocity ??= function (x, y, z) {
     let $res = natives.setEntityVelocity(this.handle, x, y, z);
 };
-mp.Vehicle.prototype.setVelocity = function (x, y, z) {
+mp.Vehicle.prototype.setVelocity ??= function (x, y, z) {
     let $res = natives.setEntityVelocity(this.handle, x, y, z);
 };
-mp.Player.prototype.setAngularVelocity = function (x, y, z) {
+mp.Player.prototype.setAngularVelocity ??= function (x, y, z) {
     let $res = natives.setEntityAngularVelocity(this.handle, x, y, z);
 };
-mp.Ped.prototype.setAngularVelocity = function (x, y, z) {
+mp.Ped.prototype.setAngularVelocity ??= function (x, y, z) {
     let $res = natives.setEntityAngularVelocity(this.handle, x, y, z);
 };
-mp.Object.prototype.setAngularVelocity = function (x, y, z) {
+mp.Object.prototype.setAngularVelocity ??= function (x, y, z) {
     let $res = natives.setEntityAngularVelocity(this.handle, x, y, z);
 };
-mp.Vehicle.prototype.setAngularVelocity = function (x, y, z) {
+mp.Vehicle.prototype.setAngularVelocity ??= function (x, y, z) {
     let $res = natives.setEntityAngularVelocity(this.handle, x, y, z);
 };
-mp.Player.prototype.setHasGravity = function (toggle) {
+mp.Player.prototype.setHasGravity ??= function (toggle) {
     let $res = natives.setEntityHasGravity(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setHasGravity = function (toggle) {
+mp.Ped.prototype.setHasGravity ??= function (toggle) {
     let $res = natives.setEntityHasGravity(this.handle, toggle | 0);
 };
-mp.Object.prototype.setHasGravity = function (toggle) {
+mp.Object.prototype.setHasGravity ??= function (toggle) {
     let $res = natives.setEntityHasGravity(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setHasGravity = function (toggle) {
+mp.Vehicle.prototype.setHasGravity ??= function (toggle) {
     let $res = natives.setEntityHasGravity(this.handle, toggle | 0);
 };
-mp.Player.prototype.setLodDist = function (value) {
+mp.Player.prototype.setLodDist ??= function (value) {
     let $res = natives.setEntityLodDist(this.handle, value);
 };
-mp.Ped.prototype.setLodDist = function (value) {
+mp.Ped.prototype.setLodDist ??= function (value) {
     let $res = natives.setEntityLodDist(this.handle, value);
 };
-mp.Object.prototype.setLodDist = function (value) {
+mp.Object.prototype.setLodDist ??= function (value) {
     let $res = natives.setEntityLodDist(this.handle, value);
 };
-mp.Vehicle.prototype.setLodDist = function (value) {
+mp.Vehicle.prototype.setLodDist ??= function (value) {
     let $res = natives.setEntityLodDist(this.handle, value);
 };
-mp.Player.prototype.getLodDist = function () {
+mp.Player.prototype.getLodDist ??= function () {
     let $res = natives.getEntityLodDist(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getLodDist = function () {
+mp.Ped.prototype.getLodDist ??= function () {
     let $res = natives.getEntityLodDist(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getLodDist = function () {
+mp.Object.prototype.getLodDist ??= function () {
     let $res = natives.getEntityLodDist(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getLodDist = function () {
+mp.Vehicle.prototype.getLodDist ??= function () {
     let $res = natives.getEntityLodDist(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.setAlpha = function (alphaLevel, skin) {
+mp.Ped.prototype.setAlpha ??= function (alphaLevel, skin) {
     let $res = natives.setEntityAlpha(this.handle, alphaLevel, skin | 0);
 };
-mp.Ped.prototype.getAlpha = function () {
+mp.Ped.prototype.getAlpha ??= function () {
     let $res = natives.getEntityAlpha(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.resetAlpha = function () {
+mp.Player.prototype.resetAlpha ??= function () {
     let $res = natives.resetEntityAlpha(this.handle);
 };
-mp.Ped.prototype.resetAlpha = function () {
+mp.Ped.prototype.resetAlpha ??= function () {
     let $res = natives.resetEntityAlpha(this.handle);
 };
-mp.Object.prototype.resetAlpha = function () {
+mp.Object.prototype.resetAlpha ??= function () {
     let $res = natives.resetEntityAlpha(this.handle);
 };
-mp.Vehicle.prototype.resetAlpha = function () {
+mp.Vehicle.prototype.resetAlpha ??= function () {
     let $res = natives.resetEntityAlpha(this.handle);
 };
-mp.Player.prototype.setAlwaysPrerender = function (toggle) {
+mp.Player.prototype.setAlwaysPrerender ??= function (toggle) {
     let $res = natives.setEntityAlwaysPrerender(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setAlwaysPrerender = function (toggle) {
+mp.Ped.prototype.setAlwaysPrerender ??= function (toggle) {
     let $res = natives.setEntityAlwaysPrerender(this.handle, toggle | 0);
 };
-mp.Object.prototype.setAlwaysPrerender = function (toggle) {
+mp.Object.prototype.setAlwaysPrerender ??= function (toggle) {
     let $res = natives.setEntityAlwaysPrerender(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setAlwaysPrerender = function (toggle) {
+mp.Vehicle.prototype.setAlwaysPrerender ??= function (toggle) {
     let $res = natives.setEntityAlwaysPrerender(this.handle, toggle | 0);
 };
-mp.Player.prototype.setRenderScorched = function (toggle) {
+mp.Player.prototype.setRenderScorched ??= function (toggle) {
     let $res = natives.setEntityRenderScorched(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setRenderScorched = function (toggle) {
+mp.Ped.prototype.setRenderScorched ??= function (toggle) {
     let $res = natives.setEntityRenderScorched(this.handle, toggle | 0);
 };
-mp.Object.prototype.setRenderScorched = function (toggle) {
+mp.Object.prototype.setRenderScorched ??= function (toggle) {
     let $res = natives.setEntityRenderScorched(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setRenderScorched = function (toggle) {
+mp.Vehicle.prototype.setRenderScorched ??= function (toggle) {
     let $res = natives.setEntityRenderScorched(this.handle, toggle | 0);
 };
-mp.Player.prototype.setTrafficlightOverride = function (state) {
+mp.Player.prototype.setTrafficlightOverride ??= function (state) {
     let $res = natives.setEntityTrafficlightOverride(this.handle, state);
 };
-mp.Ped.prototype.setTrafficlightOverride = function (state) {
+mp.Ped.prototype.setTrafficlightOverride ??= function (state) {
     let $res = natives.setEntityTrafficlightOverride(this.handle, state);
 };
-mp.Object.prototype.setTrafficlightOverride = function (state) {
+mp.Object.prototype.setTrafficlightOverride ??= function (state) {
     let $res = natives.setEntityTrafficlightOverride(this.handle, state);
 };
-mp.Vehicle.prototype.setTrafficlightOverride = function (state) {
+mp.Vehicle.prototype.setTrafficlightOverride ??= function (state) {
     let $res = natives.setEntityTrafficlightOverride(this.handle, state);
 };
-mp.Player.prototype.setNoCollisionEntity = function (entity2, thisFrameOnly) {
+mp.Player.prototype.setNoCollisionEntity ??= function (entity2, thisFrameOnly) {
     let $res = natives.setEntityNoCollisionEntity(this.handle, entity2, thisFrameOnly | 0);
 };
-mp.Ped.prototype.setNoCollisionEntity = function (entity2, thisFrameOnly) {
+mp.Ped.prototype.setNoCollisionEntity ??= function (entity2, thisFrameOnly) {
     let $res = natives.setEntityNoCollisionEntity(this.handle, entity2, thisFrameOnly | 0);
 };
-mp.Object.prototype.setNoCollisionEntity = function (entity2, thisFrameOnly) {
+mp.Object.prototype.setNoCollisionEntity ??= function (entity2, thisFrameOnly) {
     let $res = natives.setEntityNoCollisionEntity(this.handle, entity2, thisFrameOnly | 0);
 };
-mp.Vehicle.prototype.setNoCollisionEntity = function (entity2, thisFrameOnly) {
+mp.Vehicle.prototype.setNoCollisionEntity ??= function (entity2, thisFrameOnly) {
     let $res = natives.setEntityNoCollisionEntity(this.handle, entity2, thisFrameOnly | 0);
 };
-mp.Player.prototype.setMotionBlur = function (toggle) {
+mp.Player.prototype.setMotionBlur ??= function (toggle) {
     let $res = natives.setEntityMotionBlur(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setMotionBlur = function (toggle) {
+mp.Ped.prototype.setMotionBlur ??= function (toggle) {
     let $res = natives.setEntityMotionBlur(this.handle, toggle | 0);
 };
-mp.Object.prototype.setMotionBlur = function (toggle) {
+mp.Object.prototype.setMotionBlur ??= function (toggle) {
     let $res = natives.setEntityMotionBlur(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setMotionBlur = function (toggle) {
+mp.Vehicle.prototype.setMotionBlur ??= function (toggle) {
     let $res = natives.setEntityMotionBlur(this.handle, toggle | 0);
 };
-mp.Player.prototype.setCanAutoVaultOn = function (toggle) {
+mp.Player.prototype.setCanAutoVaultOn ??= function (toggle) {
     let $res = natives.setCanAutoVaultOnEntity(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setCanAutoVaultOn = function (toggle) {
+mp.Ped.prototype.setCanAutoVaultOn ??= function (toggle) {
     let $res = natives.setCanAutoVaultOnEntity(this.handle, toggle | 0);
 };
-mp.Object.prototype.setCanAutoVaultOn = function (toggle) {
+mp.Object.prototype.setCanAutoVaultOn ??= function (toggle) {
     let $res = natives.setCanAutoVaultOnEntity(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setCanAutoVaultOn = function (toggle) {
+mp.Vehicle.prototype.setCanAutoVaultOn ??= function (toggle) {
     let $res = natives.setCanAutoVaultOnEntity(this.handle, toggle | 0);
 };
-mp.Player.prototype.setCanClimbOn = function (toggle) {
+mp.Player.prototype.setCanClimbOn ??= function (toggle) {
     let $res = natives.setCanClimbOnEntity(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setCanClimbOn = function (toggle) {
+mp.Ped.prototype.setCanClimbOn ??= function (toggle) {
     let $res = natives.setCanClimbOnEntity(this.handle, toggle | 0);
 };
-mp.Object.prototype.setCanClimbOn = function (toggle) {
+mp.Object.prototype.setCanClimbOn ??= function (toggle) {
     let $res = natives.setCanClimbOnEntity(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setCanClimbOn = function (toggle) {
+mp.Vehicle.prototype.setCanClimbOn ??= function (toggle) {
     let $res = natives.setCanClimbOnEntity(this.handle, toggle | 0);
 };
-mp.Player.prototype.setDecalsDisabled = function (p1) {
+mp.Player.prototype.setDecalsDisabled ??= function (p1) {
     let $res = natives.setEntityNoweapondecals(this.handle, p1 | 0);
 };
-mp.Ped.prototype.setDecalsDisabled = function (p1) {
+mp.Ped.prototype.setDecalsDisabled ??= function (p1) {
     let $res = natives.setEntityNoweapondecals(this.handle, p1 | 0);
 };
-mp.Object.prototype.setDecalsDisabled = function (p1) {
+mp.Object.prototype.setDecalsDisabled ??= function (p1) {
     let $res = natives.setEntityNoweapondecals(this.handle, p1 | 0);
 };
-mp.Vehicle.prototype.setDecalsDisabled = function (p1) {
+mp.Vehicle.prototype.setDecalsDisabled ??= function (p1) {
     let $res = natives.setEntityNoweapondecals(this.handle, p1 | 0);
 };
-mp.Player.prototype.getBoneRotation = function (boneIndex) {
+mp.Player.prototype.getBoneRotation ??= function (boneIndex) {
     let $res = natives.getEntityBoneRotation(this.handle, boneIndex);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -7049,7 +7049,7 @@ mp.Player.prototype.getBoneRotation = function (boneIndex) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Ped.prototype.getBoneRotation = function (boneIndex) {
+mp.Ped.prototype.getBoneRotation ??= function (boneIndex) {
     let $res = natives.getEntityBoneRotation(this.handle, boneIndex);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -7058,7 +7058,7 @@ mp.Ped.prototype.getBoneRotation = function (boneIndex) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Object.prototype.getBoneRotation = function (boneIndex) {
+mp.Object.prototype.getBoneRotation ??= function (boneIndex) {
     let $res = natives.getEntityBoneRotation(this.handle, boneIndex);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -7067,7 +7067,7 @@ mp.Object.prototype.getBoneRotation = function (boneIndex) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Vehicle.prototype.getBoneRotation = function (boneIndex) {
+mp.Vehicle.prototype.getBoneRotation ??= function (boneIndex) {
     let $res = natives.getEntityBoneRotation(this.handle, boneIndex);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -7076,7 +7076,7 @@ mp.Vehicle.prototype.getBoneRotation = function (boneIndex) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Player.prototype.getBonePosition2 = function (boneIndex) {
+mp.Player.prototype.getBonePosition2 ??= function (boneIndex) {
     let $res = natives.getEntityBonePostion(this.handle, boneIndex);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -7085,7 +7085,7 @@ mp.Player.prototype.getBonePosition2 = function (boneIndex) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Ped.prototype.getBonePosition2 = function (boneIndex) {
+mp.Ped.prototype.getBonePosition2 ??= function (boneIndex) {
     let $res = natives.getEntityBonePostion(this.handle, boneIndex);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -7094,7 +7094,7 @@ mp.Ped.prototype.getBonePosition2 = function (boneIndex) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Object.prototype.getBonePosition2 = function (boneIndex) {
+mp.Object.prototype.getBonePosition2 ??= function (boneIndex) {
     let $res = natives.getEntityBonePostion(this.handle, boneIndex);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -7103,7 +7103,7 @@ mp.Object.prototype.getBonePosition2 = function (boneIndex) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Vehicle.prototype.getBonePosition2 = function (boneIndex) {
+mp.Vehicle.prototype.getBonePosition2 ??= function (boneIndex) {
     let $res = natives.getEntityBonePostion(this.handle, boneIndex);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -7112,7 +7112,7 @@ mp.Vehicle.prototype.getBonePosition2 = function (boneIndex) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Player.prototype.getBoneRotationLocal = function (boneIndex) {
+mp.Player.prototype.getBoneRotationLocal ??= function (boneIndex) {
     let $res = natives.getEntityBoneObjectRotation(this.handle, boneIndex);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -7121,7 +7121,7 @@ mp.Player.prototype.getBoneRotationLocal = function (boneIndex) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Ped.prototype.getBoneRotationLocal = function (boneIndex) {
+mp.Ped.prototype.getBoneRotationLocal ??= function (boneIndex) {
     let $res = natives.getEntityBoneObjectRotation(this.handle, boneIndex);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -7130,7 +7130,7 @@ mp.Ped.prototype.getBoneRotationLocal = function (boneIndex) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Object.prototype.getBoneRotationLocal = function (boneIndex) {
+mp.Object.prototype.getBoneRotationLocal ??= function (boneIndex) {
     let $res = natives.getEntityBoneObjectRotation(this.handle, boneIndex);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -7139,7 +7139,7 @@ mp.Object.prototype.getBoneRotationLocal = function (boneIndex) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Vehicle.prototype.getBoneRotationLocal = function (boneIndex) {
+mp.Vehicle.prototype.getBoneRotationLocal ??= function (boneIndex) {
     let $res = natives.getEntityBoneObjectRotation(this.handle, boneIndex);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -7148,54 +7148,54 @@ mp.Vehicle.prototype.getBoneRotationLocal = function (boneIndex) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Player.prototype.getBoneCount = function () {
+mp.Player.prototype.getBoneCount ??= function () {
     let $res = natives.getEntityBoneCount(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getBoneCount = function () {
+mp.Ped.prototype.getBoneCount ??= function () {
     let $res = natives.getEntityBoneCount(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getBoneCount = function () {
+mp.Object.prototype.getBoneCount ??= function () {
     let $res = natives.getEntityBoneCount(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getBoneCount = function () {
+mp.Vehicle.prototype.getBoneCount ??= function () {
     let $res = natives.getEntityBoneCount(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.enableUnk = function () {
+mp.Player.prototype.enableUnk ??= function () {
     let $res = natives.enableEntityBulletCollision(this.handle);
 };
-mp.Ped.prototype.enableUnk = function () {
+mp.Ped.prototype.enableUnk ??= function () {
     let $res = natives.enableEntityBulletCollision(this.handle);
 };
-mp.Object.prototype.enableUnk = function () {
+mp.Object.prototype.enableUnk ??= function () {
     let $res = natives.enableEntityBulletCollision(this.handle);
 };
-mp.Vehicle.prototype.enableUnk = function () {
+mp.Vehicle.prototype.enableUnk ??= function () {
     let $res = natives.enableEntityBulletCollision(this.handle);
 };
-mp.Player.prototype.getPickup = function (modelHash) {
+mp.Player.prototype.getPickup ??= function (modelHash) {
     let $res = natives.getEntityOfTypeAttachedToEntity(this.handle, modelHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getPickup = function (modelHash) {
+mp.Ped.prototype.getPickup ??= function (modelHash) {
     let $res = natives.getEntityOfTypeAttachedToEntity(this.handle, modelHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getPickup = function (modelHash) {
+mp.Object.prototype.getPickup ??= function (modelHash) {
     let $res = natives.getEntityOfTypeAttachedToEntity(this.handle, modelHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getPickup = function (modelHash) {
+mp.Vehicle.prototype.getPickup ??= function (modelHash) {
     let $res = natives.getEntityOfTypeAttachedToEntity(this.handle, modelHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
@@ -8084,10 +8084,10 @@ mp.game2.entity.unk._0x36F32DE87082343E = function (p0, p1) {
 mp.game2.entity.unk._0xD7B80E7C3BEFC396 = function (pickup, toggle) {
     let $res = natives.setPickUpByCargobobDisabled(pickup, toggle | 0);
 };
-mp.Player.prototype.setDecisionMaker = function (name) {
+mp.Player.prototype.setDecisionMaker ??= function (name) {
     let $res = natives.setDecisionMaker(this.handle, name);
 };
-mp.Ped.prototype.setDecisionMaker = function (name) {
+mp.Ped.prototype.setDecisionMaker ??= function (name) {
     let $res = natives.setDecisionMaker(this.handle, name);
 };
 if (!mp.game2.event) mp.game2.event = {};
@@ -8173,42 +8173,42 @@ mp.game2.event.suppressShockingEventTypeNextFrame = function (eventType) {
 mp.game2.event.suppressAgitationEventsNextFrame = function () {
     let $res = natives.suppressAgitationEventsNextFrame();
 };
-mp.Player.prototype.getHashNameForComponent = function (componentId, drawableVariant, textureVariant) {
+mp.Player.prototype.getHashNameForComponent ??= function (componentId, drawableVariant, textureVariant) {
     let $res = natives.getHashNameForComponent(this.handle, componentId, drawableVariant, textureVariant);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getHashNameForComponent = function (componentId, drawableVariant, textureVariant) {
+mp.Ped.prototype.getHashNameForComponent ??= function (componentId, drawableVariant, textureVariant) {
     let $res = natives.getHashNameForComponent(this.handle, componentId, drawableVariant, textureVariant);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getHashNameForComponent = function (componentId, drawableVariant, textureVariant) {
+mp.Object.prototype.getHashNameForComponent ??= function (componentId, drawableVariant, textureVariant) {
     let $res = natives.getHashNameForComponent(this.handle, componentId, drawableVariant, textureVariant);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getHashNameForComponent = function (componentId, drawableVariant, textureVariant) {
+mp.Vehicle.prototype.getHashNameForComponent ??= function (componentId, drawableVariant, textureVariant) {
     let $res = natives.getHashNameForComponent(this.handle, componentId, drawableVariant, textureVariant);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getHashNameForProp = function (componentId, propIndex, propTextureIndex) {
+mp.Player.prototype.getHashNameForProp ??= function (componentId, propIndex, propTextureIndex) {
     let $res = natives.getHashNameForProp(this.handle, componentId, propIndex, propTextureIndex);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getHashNameForProp = function (componentId, propIndex, propTextureIndex) {
+mp.Ped.prototype.getHashNameForProp ??= function (componentId, propIndex, propTextureIndex) {
     let $res = natives.getHashNameForProp(this.handle, componentId, propIndex, propTextureIndex);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getHashNameForProp = function (componentId, propIndex, propTextureIndex) {
+mp.Object.prototype.getHashNameForProp ??= function (componentId, propIndex, propTextureIndex) {
     let $res = natives.getHashNameForProp(this.handle, componentId, propIndex, propTextureIndex);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getHashNameForProp = function (componentId, propIndex, propTextureIndex) {
+mp.Vehicle.prototype.getHashNameForProp ??= function (componentId, propIndex, propTextureIndex) {
     let $res = natives.getHashNameForProp(this.handle, componentId, propIndex, propTextureIndex);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
@@ -8517,80 +8517,80 @@ mp.game2.files.unk._0x6CEBE002E58DEE97 = function (componentHash) {
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.startEntity = function () {
+mp.Player.prototype.startEntity ??= function () {
     let $res = natives.startEntityFire(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.startEntity = function () {
+mp.Ped.prototype.startEntity ??= function () {
     let $res = natives.startEntityFire(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.startEntity = function () {
+mp.Object.prototype.startEntity ??= function () {
     let $res = natives.startEntityFire(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.startEntity = function () {
+mp.Vehicle.prototype.startEntity ??= function () {
     let $res = natives.startEntityFire(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.stopEntity = function () {
+mp.Player.prototype.stopEntity ??= function () {
     let $res = natives.stopEntityFire(this.handle);
 };
-mp.Ped.prototype.stopEntity = function () {
+mp.Ped.prototype.stopEntity ??= function () {
     let $res = natives.stopEntityFire(this.handle);
 };
-mp.Object.prototype.stopEntity = function () {
+mp.Object.prototype.stopEntity ??= function () {
     let $res = natives.stopEntityFire(this.handle);
 };
-mp.Vehicle.prototype.stopEntity = function () {
+mp.Vehicle.prototype.stopEntity ??= function () {
     let $res = natives.stopEntityFire(this.handle);
 };
-mp.Player.prototype.isEntityOn = function () {
+mp.Player.prototype.isEntityOn ??= function () {
     let $res = natives.isEntityOnFire(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isEntityOn = function () {
+mp.Ped.prototype.isEntityOn ??= function () {
     let $res = natives.isEntityOnFire(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isEntityOn = function () {
+mp.Object.prototype.isEntityOn ??= function () {
     let $res = natives.isEntityOnFire(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isEntityOn = function () {
+mp.Vehicle.prototype.isEntityOn ??= function () {
     let $res = natives.isEntityOnFire(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.addOwnedExplosion = function (x, y, z, explosionType, damageScale, isAudible, isInvisible, cameraShake) {
+mp.Player.prototype.addOwnedExplosion ??= function (x, y, z, explosionType, damageScale, isAudible, isInvisible, cameraShake) {
     let $res = natives.addOwnedExplosion(this.handle, x, y, z, explosionType, damageScale, isAudible | 0, isInvisible | 0, cameraShake);
 };
-mp.Ped.prototype.addOwnedExplosion = function (x, y, z, explosionType, damageScale, isAudible, isInvisible, cameraShake) {
+mp.Ped.prototype.addOwnedExplosion ??= function (x, y, z, explosionType, damageScale, isAudible, isInvisible, cameraShake) {
     let $res = natives.addOwnedExplosion(this.handle, x, y, z, explosionType, damageScale, isAudible | 0, isInvisible | 0, cameraShake);
 };
-mp.Player.prototype.getEntityInsideExplosionSphere = function (x, y, z, radius) {
+mp.Player.prototype.getEntityInsideExplosionSphere ??= function (x, y, z, radius) {
     let $res = natives.getOwnerOfExplosionInSphere(this.handle, x, y, z, radius);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getEntityInsideExplosionSphere = function (x, y, z, radius) {
+mp.Ped.prototype.getEntityInsideExplosionSphere ??= function (x, y, z, radius) {
     let $res = natives.getOwnerOfExplosionInSphere(this.handle, x, y, z, radius);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getEntityInsideExplosionSphere = function (x, y, z, radius) {
+mp.Object.prototype.getEntityInsideExplosionSphere ??= function (x, y, z, radius) {
     let $res = natives.getOwnerOfExplosionInSphere(this.handle, x, y, z, radius);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getEntityInsideExplosionSphere = function (x, y, z, radius) {
+mp.Vehicle.prototype.getEntityInsideExplosionSphere ??= function (x, y, z, radius) {
     let $res = natives.getOwnerOfExplosionInSphere(this.handle, x, y, z, radius);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
@@ -8700,168 +8700,168 @@ mp.game2.fire.getPedInsideExplosionArea = function (explosionType, x1, y1, z1, x
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Blip.prototype.setBackfaceculling = function () {
+mp.Blip.prototype.setBackfaceculling ??= function () {
     let $res = natives.setBackfaceculling(this.handle);
 };
-mp.Player.prototype.updateLightsOnEntity = function () {
+mp.Player.prototype.updateLightsOnEntity ??= function () {
     let $res = natives.updateLightsOnEntity(this.handle);
 };
-mp.Ped.prototype.updateLightsOnEntity = function () {
+mp.Ped.prototype.updateLightsOnEntity ??= function () {
     let $res = natives.updateLightsOnEntity(this.handle);
 };
-mp.Object.prototype.updateLightsOnEntity = function () {
+mp.Object.prototype.updateLightsOnEntity ??= function () {
     let $res = natives.updateLightsOnEntity(this.handle);
 };
-mp.Vehicle.prototype.updateLightsOnEntity = function () {
+mp.Vehicle.prototype.updateLightsOnEntity ??= function () {
     let $res = natives.updateLightsOnEntity(this.handle);
 };
-mp.Checkpoint.prototype.setCheckpointScale = function (p0) {
+mp.Checkpoint.prototype.setCheckpointScale ??= function (p0) {
     let $res = natives.setCheckpointInsideCylinderHeightScale(this.handle, p0);
 };
-mp.Checkpoint.prototype.setCheckpointIconScale = function (scale) {
+mp.Checkpoint.prototype.setCheckpointIconScale ??= function (scale) {
     let $res = natives.setCheckpointInsideCylinderScale(this.handle, scale);
 };
-mp.Checkpoint.prototype.setCheckpointCylinderHeight = function (nearHeight, farHeight, radius) {
+mp.Checkpoint.prototype.setCheckpointCylinderHeight ??= function (nearHeight, farHeight, radius) {
     let $res = natives.setCheckpointCylinderHeight(this.handle, nearHeight, farHeight, radius);
 };
-mp.Checkpoint.prototype.setCheckpointRgba = function (red, green, blue, alpha) {
+mp.Checkpoint.prototype.setCheckpointRgba ??= function (red, green, blue, alpha) {
     let $res = natives.setCheckpointRgba(this.handle, red, green, blue, alpha);
 };
-mp.Checkpoint.prototype.setCheckpointRgba2 = function (red, green, blue, alpha) {
+mp.Checkpoint.prototype.setCheckpointRgba2 ??= function (red, green, blue, alpha) {
     let $res = natives.setCheckpointRgba2(this.handle, red, green, blue, alpha);
 };
-mp.Checkpoint.prototype.deleteCheckpoint = function () {
+mp.Checkpoint.prototype.deleteCheckpoint ??= function () {
     let $res = natives.deleteCheckpoint(this.handle);
 };
-mp.Player.prototype.addEntityIcon = function (icon) {
+mp.Player.prototype.addEntityIcon ??= function (icon) {
     let $res = natives.addEntityIcon(this.handle, icon);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.addEntityIcon = function (icon) {
+mp.Ped.prototype.addEntityIcon ??= function (icon) {
     let $res = natives.addEntityIcon(this.handle, icon);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.addEntityIcon = function (icon) {
+mp.Object.prototype.addEntityIcon ??= function (icon) {
     let $res = natives.addEntityIcon(this.handle, icon);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.addEntityIcon = function (icon) {
+mp.Vehicle.prototype.addEntityIcon ??= function (icon) {
     let $res = natives.addEntityIcon(this.handle, icon);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setEntityIconVisibility = function (toggle) {
+mp.Player.prototype.setEntityIconVisibility ??= function (toggle) {
     let $res = natives.setEntityIconVisibility(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setEntityIconVisibility = function (toggle) {
+mp.Ped.prototype.setEntityIconVisibility ??= function (toggle) {
     let $res = natives.setEntityIconVisibility(this.handle, toggle | 0);
 };
-mp.Object.prototype.setEntityIconVisibility = function (toggle) {
+mp.Object.prototype.setEntityIconVisibility ??= function (toggle) {
     let $res = natives.setEntityIconVisibility(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setEntityIconVisibility = function (toggle) {
+mp.Vehicle.prototype.setEntityIconVisibility ??= function (toggle) {
     let $res = natives.setEntityIconVisibility(this.handle, toggle | 0);
 };
-mp.Player.prototype.setEntityIconColor = function (red, green, blue, alpha) {
+mp.Player.prototype.setEntityIconColor ??= function (red, green, blue, alpha) {
     let $res = natives.setEntityIconColor(this.handle, red, green, blue, alpha);
 };
-mp.Ped.prototype.setEntityIconColor = function (red, green, blue, alpha) {
+mp.Ped.prototype.setEntityIconColor ??= function (red, green, blue, alpha) {
     let $res = natives.setEntityIconColor(this.handle, red, green, blue, alpha);
 };
-mp.Object.prototype.setEntityIconColor = function (red, green, blue, alpha) {
+mp.Object.prototype.setEntityIconColor ??= function (red, green, blue, alpha) {
     let $res = natives.setEntityIconColor(this.handle, red, green, blue, alpha);
 };
-mp.Vehicle.prototype.setEntityIconColor = function (red, green, blue, alpha) {
+mp.Vehicle.prototype.setEntityIconColor ??= function (red, green, blue, alpha) {
     let $res = natives.setEntityIconColor(this.handle, red, green, blue, alpha);
 };
-mp.Blip.prototype.setBinkMovieTime = function (progress) {
+mp.Blip.prototype.setBinkMovieTime ??= function (progress) {
     let $res = natives.setBinkMovieTime(this.handle, progress);
 };
-mp.Blip.prototype.getBinkMovieTime = function () {
+mp.Blip.prototype.getBinkMovieTime ??= function () {
     let $res = natives.getBinkMovieTime(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Blip.prototype.setBinkMovieVolume = function (value) {
+mp.Blip.prototype.setBinkMovieVolume ??= function (value) {
     let $res = natives.setBinkMovieVolume(this.handle, value);
 };
-mp.Player.prototype.attachTvAudioToEntity = function () {
+mp.Player.prototype.attachTvAudioToEntity ??= function () {
     let $res = natives.attachTvAudioToEntity(this.handle);
 };
-mp.Ped.prototype.attachTvAudioToEntity = function () {
+mp.Ped.prototype.attachTvAudioToEntity ??= function () {
     let $res = natives.attachTvAudioToEntity(this.handle);
 };
-mp.Object.prototype.attachTvAudioToEntity = function () {
+mp.Object.prototype.attachTvAudioToEntity ??= function () {
     let $res = natives.attachTvAudioToEntity(this.handle);
 };
-mp.Vehicle.prototype.attachTvAudioToEntity = function () {
+mp.Vehicle.prototype.attachTvAudioToEntity ??= function () {
     let $res = natives.attachTvAudioToEntity(this.handle);
 };
-mp.Blip.prototype.setBinkMovieUnk2 = function (p1) {
+mp.Blip.prototype.setBinkMovieUnk2 ??= function (p1) {
     let $res = natives.setBinkMovieAudioFrontend(this.handle, p1 | 0);
 };
-mp.Blip.prototype.setBinkShouldSkip = function (bShouldSkip) {
+mp.Blip.prototype.setBinkShouldSkip ??= function (bShouldSkip) {
     let $res = natives.setBinkShouldSkip(this.handle, bShouldSkip | 0);
 };
-mp.Blip.prototype.getAspectRatio = function () {
+mp.Blip.prototype.getAspectRatio ??= function () {
     let $res = natives.getAspectRatio(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.overridePedBadgeTexture = function (txd, txn) {
+mp.Player.prototype.overridePedBadgeTexture ??= function (txd, txn) {
     let $res = natives.overridePedCrewLogoTexture(this.handle, txd, txn);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.overridePedBadgeTexture = function (txd, txn) {
+mp.Ped.prototype.overridePedBadgeTexture ??= function (txd, txn) {
     let $res = natives.overridePedCrewLogoTexture(this.handle, txd, txn);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.removeParticleFxFromEntity = function () {
+mp.Player.prototype.removeParticleFxFromEntity ??= function () {
     let $res = natives.removeParticleFxFromEntity(this.handle);
 };
-mp.Ped.prototype.removeParticleFxFromEntity = function () {
+mp.Ped.prototype.removeParticleFxFromEntity ??= function () {
     let $res = natives.removeParticleFxFromEntity(this.handle);
 };
-mp.Object.prototype.removeParticleFxFromEntity = function () {
+mp.Object.prototype.removeParticleFxFromEntity ??= function () {
     let $res = natives.removeParticleFxFromEntity(this.handle);
 };
-mp.Vehicle.prototype.removeParticleFxFromEntity = function () {
+mp.Vehicle.prototype.removeParticleFxFromEntity ??= function () {
     let $res = natives.removeParticleFxFromEntity(this.handle);
 };
-mp.Vehicle.prototype.setParticleFxCamInsideNonplayerVehicle = function (p1) {
+mp.Vehicle.prototype.setParticleFxCamInsideNonplayerVehicle ??= function (p1) {
     let $res = natives.setParticleFxCamInsideNonplayerVehicle(this.handle, p1 | 0);
 };
-mp.Vehicle.prototype.washDecalsFromVehicle = function (p1) {
+mp.Vehicle.prototype.washDecalsFromVehicle ??= function (p1) {
     let $res = natives.washDecalsFromVehicle(this.handle, p1);
 };
-mp.Object.prototype.removeDecalsFromObject = function () {
+mp.Object.prototype.removeDecalsFromObject ??= function () {
     let $res = natives.removeDecalsFromObject(this.handle);
 };
-mp.Object.prototype.removeDecalsFromObjectFacing = function (x, y, z) {
+mp.Object.prototype.removeDecalsFromObjectFacing ??= function (x, y, z) {
     let $res = natives.removeDecalsFromObjectFacing(this.handle, x, y, z);
 };
-mp.Vehicle.prototype.removeDecalsFromVehicle = function () {
+mp.Vehicle.prototype.removeDecalsFromVehicle ??= function () {
     let $res = natives.removeDecalsFromVehicle(this.handle);
 };
-mp.Vehicle.prototype.addVehicleCrewEmblem = function (ped, boneIndex, x1, x2, x3, y1, y2, y3, z1, z2, z3, scale, p13, alpha) {
+mp.Vehicle.prototype.addVehicleCrewEmblem ??= function (ped, boneIndex, x1, x2, x3, y1, y2, y3, z1, z2, z3, scale, p13, alpha) {
     let $res = natives.addVehicleCrewEmblem(this.handle, ped, boneIndex, x1, x2, x3, y1, y2, y3, z1, z2, z3, scale, p13, alpha);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.removeVehicleCrewEmblem = function (p1) {
+mp.Vehicle.prototype.removeVehicleCrewEmblem ??= function (p1) {
     let $res = natives.removeVehicleCrewEmblem(this.handle, p1);
 };
-mp.Vehicle.prototype.getVehicleCrewEmblemRequestState = function (p1) {
+mp.Vehicle.prototype.getVehicleCrewEmblemRequestState ??= function (p1) {
     let $res = natives.getVehicleCrewEmblemRequestState(this.handle, p1);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.doesVehicleHaveCrewEmblem = function (p1) {
+mp.Vehicle.prototype.doesVehicleHaveCrewEmblem ??= function (p1) {
     let $res = natives.doesVehicleHaveCrewEmblem(this.handle, p1);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
@@ -10430,13 +10430,13 @@ mp.game2.graphics.unk._0x7A42B2E236E71415 = function () {
 mp.game2.graphics.unk._0x108BE26959A9D9BB = function (toggle) {
     let $res = natives.ui3dsceneMakePushedPresetPersistent(toggle | 0);
 };
-mp.Blip.prototype.setBlipRoute = function (enabled) {
+mp.Blip.prototype.setBlipRoute ??= function (enabled) {
     let $res = natives.setBlipRoute(this.handle, enabled | 0);
 };
-mp.Blip.prototype.setBlipRouteColour = function (colour) {
+mp.Blip.prototype.setBlipRouteColour ??= function (colour) {
     let $res = natives.setBlipRouteColour(this.handle, colour);
 };
-mp.Blip.prototype.getBlipInfoIdCoord = function () {
+mp.Blip.prototype.getBlipInfoIdCoord ??= function () {
     let $res = natives.getBlipInfoIdCoord(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -10445,55 +10445,55 @@ mp.Blip.prototype.getBlipInfoIdCoord = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Blip.prototype.getBlipInfoIdDisplay = function () {
+mp.Blip.prototype.getBlipInfoIdDisplay ??= function () {
     let $res = natives.getBlipInfoIdDisplay(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Blip.prototype.getBlipInfoIdType = function () {
+mp.Blip.prototype.getBlipInfoIdType ??= function () {
     let $res = natives.getBlipInfoIdType(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Blip.prototype.getBlipInfoIdEntityIndex = function () {
+mp.Blip.prototype.getBlipInfoIdEntityIndex ??= function () {
     let $res = natives.getBlipInfoIdEntityIndex(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Blip.prototype.getBlipInfoIdPickupIndex = function () {
+mp.Blip.prototype.getBlipInfoIdPickupIndex ??= function () {
     let $res = natives.getBlipInfoIdPickupIndex(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Blip.prototype.getBlipFromEntity = function () {
+mp.Blip.prototype.getBlipFromEntity ??= function () {
     let $res = natives.getBlipFromEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.addBlipForEntity = function () {
+mp.Player.prototype.addBlipForEntity ??= function () {
     let $res = natives.addBlipForEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.addBlipForEntity = function () {
+mp.Ped.prototype.addBlipForEntity ??= function () {
     let $res = natives.addBlipForEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.addBlipForEntity = function () {
+mp.Object.prototype.addBlipForEntity ??= function () {
     let $res = natives.addBlipForEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.addBlipForEntity = function () {
+mp.Vehicle.prototype.addBlipForEntity ??= function () {
     let $res = natives.addBlipForEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Blip.prototype.setBlipCoords = function (posX, posY, posZ) {
+mp.Blip.prototype.setBlipCoords ??= function (posX, posY, posZ) {
     let $res = natives.setBlipCoords(this.handle, posX, posY, posZ);
 };
-mp.Blip.prototype.getBlipCoords = function () {
+mp.Blip.prototype.getBlipCoords ??= function () {
     let $res = natives.getBlipCoords(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -10502,229 +10502,229 @@ mp.Blip.prototype.getBlipCoords = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Blip.prototype.setBlipSprite = function (spriteId) {
+mp.Blip.prototype.setBlipSprite ??= function (spriteId) {
     let $res = natives.setBlipSprite(this.handle, spriteId);
 };
-mp.Blip.prototype.getBlipSprite = function () {
+mp.Blip.prototype.getBlipSprite ??= function () {
     let $res = natives.getBlipSprite(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Blip.prototype.setBlipNameFromTextFile = function (gxtEntry) {
+mp.Blip.prototype.setBlipNameFromTextFile ??= function (gxtEntry) {
     let $res = natives.setBlipNameFromTextFile(this.handle, gxtEntry);
 };
-mp.Blip.prototype.setBlipNameToPlayerName = function (player) {
+mp.Blip.prototype.setBlipNameToPlayerName ??= function (player) {
     let $res = natives.setBlipNameToPlayerName(this.handle, player);
 };
-mp.Blip.prototype.setBlipAlpha = function (alpha) {
+mp.Blip.prototype.setBlipAlpha ??= function (alpha) {
     let $res = natives.setBlipAlpha(this.handle, alpha);
 };
-mp.Blip.prototype.getBlipAlpha = function () {
+mp.Blip.prototype.getBlipAlpha ??= function () {
     let $res = natives.getBlipAlpha(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Blip.prototype.setBlipFade = function (opacity, duration) {
+mp.Blip.prototype.setBlipFade ??= function (opacity, duration) {
     let $res = natives.setBlipFade(this.handle, opacity, duration);
 };
-mp.Blip.prototype.getBlipFadeStatus = function () {
+mp.Blip.prototype.getBlipFadeStatus ??= function () {
     let $res = natives.getBlipFadeDirection(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Blip.prototype.setBlipRotation = function (rotation) {
+mp.Blip.prototype.setBlipRotation ??= function (rotation) {
     let $res = natives.setBlipRotation(this.handle, rotation);
 };
-mp.Blip.prototype.setBlipSquaredRotation = function (heading) {
+mp.Blip.prototype.setBlipSquaredRotation ??= function (heading) {
     let $res = natives.setBlipRotationWithFloat(this.handle, heading);
 };
-mp.Blip.prototype.getBlipRotation = function () {
+mp.Blip.prototype.getBlipRotation ??= function () {
     let $res = natives.getBlipRotation(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Blip.prototype.setBlipFlashTimer = function (duration) {
+mp.Blip.prototype.setBlipFlashTimer ??= function (duration) {
     let $res = natives.setBlipFlashTimer(this.handle, duration);
 };
-mp.Blip.prototype.setBlipFlashInterval = function (p1) {
+mp.Blip.prototype.setBlipFlashInterval ??= function (p1) {
     let $res = natives.setBlipFlashInterval(this.handle, p1);
 };
-mp.Blip.prototype.setBlipColour = function (color) {
+mp.Blip.prototype.setBlipColour ??= function (color) {
     let $res = natives.setBlipColour(this.handle, color);
 };
-mp.Blip.prototype.setBlipSecondaryColour = function (r, g, b) {
+mp.Blip.prototype.setBlipSecondaryColour ??= function (r, g, b) {
     let $res = natives.setBlipSecondaryColour(this.handle, r, g, b);
 };
-mp.Blip.prototype.getBlipColour = function () {
+mp.Blip.prototype.getBlipColour ??= function () {
     let $res = natives.getBlipColour(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Blip.prototype.getBlipColour = function () {
+mp.Blip.prototype.getBlipColour ??= function () {
     let $res = natives.getBlipHudColour(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Blip.prototype.isBlipShortRange = function () {
+mp.Blip.prototype.isBlipShortRange ??= function () {
     let $res = natives.isBlipShortRange(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Blip.prototype.isBlipOnMinimap = function () {
+mp.Blip.prototype.isBlipOnMinimap ??= function () {
     let $res = natives.isBlipOnMinimap(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Blip.prototype.doesBlipHaveGpsRoute = function () {
+mp.Blip.prototype.doesBlipHaveGpsRoute ??= function () {
     let $res = natives.doesBlipHaveGpsRoute(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Blip.prototype.setBlipHiddenOnLegend = function (toggle) {
+mp.Blip.prototype.setBlipHiddenOnLegend ??= function (toggle) {
     let $res = natives.setBlipHiddenOnLegend(this.handle, toggle | 0);
 };
-mp.Blip.prototype.setBlipHighDetail = function (toggle) {
+mp.Blip.prototype.setBlipHighDetail ??= function (toggle) {
     let $res = natives.setBlipHighDetail(this.handle, toggle | 0);
 };
-mp.Blip.prototype.setBlipAsMissionCreatorBlip = function (toggle) {
+mp.Blip.prototype.setBlipAsMissionCreatorBlip ??= function (toggle) {
     let $res = natives.setBlipAsMissionCreatorBlip(this.handle, toggle | 0);
 };
-mp.Blip.prototype.setBlipFlashes = function (toggle) {
+mp.Blip.prototype.setBlipFlashes ??= function (toggle) {
     let $res = natives.setBlipFlashes(this.handle, toggle | 0);
 };
-mp.Blip.prototype.setBlipFlashesAlternate = function (toggle) {
+mp.Blip.prototype.setBlipFlashesAlternate ??= function (toggle) {
     let $res = natives.setBlipFlashesAlternate(this.handle, toggle | 0);
 };
-mp.Blip.prototype.isBlipFlashing = function () {
+mp.Blip.prototype.isBlipFlashing ??= function () {
     let $res = natives.isBlipFlashing(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Blip.prototype.setBlipAsShortRange = function (toggle) {
+mp.Blip.prototype.setBlipAsShortRange ??= function (toggle) {
     let $res = natives.setBlipAsShortRange(this.handle, toggle | 0);
 };
-mp.Blip.prototype.setBlipScale = function (scale) {
+mp.Blip.prototype.setBlipScale ??= function (scale) {
     let $res = natives.setBlipScale(this.handle, scale);
 };
-mp.Blip.prototype.setBlipScaleTransformation = function (xScale, yScale) {
+mp.Blip.prototype.setBlipScaleTransformation ??= function (xScale, yScale) {
     let $res = natives.setBlipScale2d(this.handle, xScale, yScale);
 };
-mp.Blip.prototype.setBlipPriority = function (priority) {
+mp.Blip.prototype.setBlipPriority ??= function (priority) {
     let $res = natives.setBlipPriority(this.handle, priority);
 };
-mp.Blip.prototype.setBlipDisplay = function (displayId) {
+mp.Blip.prototype.setBlipDisplay ??= function (displayId) {
     let $res = natives.setBlipDisplay(this.handle, displayId);
 };
-mp.Blip.prototype.setBlipCategory = function (index) {
+mp.Blip.prototype.setBlipCategory ??= function (index) {
     let $res = natives.setBlipCategory(this.handle, index);
 };
-mp.Blip.prototype.setBlipAsFriendly = function (toggle) {
+mp.Blip.prototype.setBlipAsFriendly ??= function (toggle) {
     let $res = natives.setBlipAsFriendly(this.handle, toggle | 0);
 };
-mp.Blip.prototype.setBlipDisplayIndicatorOnBlip = function (toggle) {
+mp.Blip.prototype.setBlipDisplayIndicatorOnBlip ??= function (toggle) {
     let $res = natives.setBlipExtendedHeightThreshold(this.handle, toggle | 0);
 };
-mp.Blip.prototype.setBlipAsMinimalOnEdge = function (toggle) {
+mp.Blip.prototype.setBlipAsMinimalOnEdge ??= function (toggle) {
     let $res = natives.setBlipAsMinimalOnEdge(this.handle, toggle | 0);
 };
-mp.Blip.prototype.doesBlipExist = function () {
+mp.Blip.prototype.doesBlipExist ??= function () {
     let $res = natives.doesBlipExist(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Blip.prototype.setBlipBright = function (toggle) {
+mp.Blip.prototype.setBlipBright ??= function (toggle) {
     let $res = natives.setBlipBright(this.handle, toggle | 0);
 };
-mp.Blip.prototype.setBlipShowCone = function (toggle, p2) {
+mp.Blip.prototype.setBlipShowCone ??= function (toggle, p2) {
     let $res = natives.setBlipShowCone(this.handle, toggle | 0, p2 | 0);
 };
-mp.Blip.prototype.setBigmapActive = function (showFullMap) {
+mp.Blip.prototype.setBigmapActive ??= function (showFullMap) {
     let $res = natives.setBigmapActive(this.handle, showFullMap | 0);
 };
-mp.Player.prototype.createFakeMpGamerTag = function (username, pointedClanTag, isRockstarClan, clanTag, clanFlag) {
+mp.Player.prototype.createFakeMpGamerTag ??= function (username, pointedClanTag, isRockstarClan, clanTag, clanFlag) {
     let $res = natives.createFakeMpGamerTag(this.handle, username, pointedClanTag | 0, isRockstarClan | 0, clanTag, clanFlag);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.createFakeMpGamerTag = function (username, pointedClanTag, isRockstarClan, clanTag, clanFlag) {
+mp.Ped.prototype.createFakeMpGamerTag ??= function (username, pointedClanTag, isRockstarClan, clanTag, clanFlag) {
     let $res = natives.createFakeMpGamerTag(this.handle, username, pointedClanTag | 0, isRockstarClan | 0, clanTag, clanFlag);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.givePedToPauseMenu = function (p1) {
+mp.Player.prototype.givePedToPauseMenu ??= function (p1) {
     let $res = natives.givePedToPauseMenu(this.handle, p1);
 };
-mp.Ped.prototype.givePedToPauseMenu = function (p1) {
+mp.Ped.prototype.givePedToPauseMenu ??= function (p1) {
     let $res = natives.givePedToPauseMenu(this.handle, p1);
 };
-mp.Player.prototype.setPedHasAiBlip = function (hasCone) {
+mp.Player.prototype.setPedHasAiBlip ??= function (hasCone) {
     let $res = natives.setPedHasAiBlip(this.handle, hasCone | 0);
 };
-mp.Ped.prototype.setPedHasAiBlip = function (hasCone) {
+mp.Ped.prototype.setPedHasAiBlip ??= function (hasCone) {
     let $res = natives.setPedHasAiBlip(this.handle, hasCone | 0);
 };
-mp.Player.prototype.setPedHasAiBlipWithColor = function (hasCone, color) {
+mp.Player.prototype.setPedHasAiBlipWithColor ??= function (hasCone, color) {
     let $res = natives.setPedHasAiBlipWithColour(this.handle, hasCone | 0, color);
 };
-mp.Ped.prototype.setPedHasAiBlipWithColor = function (hasCone, color) {
+mp.Ped.prototype.setPedHasAiBlipWithColor ??= function (hasCone, color) {
     let $res = natives.setPedHasAiBlipWithColour(this.handle, hasCone | 0, color);
 };
-mp.Player.prototype.doesPedHaveAiBlip = function () {
+mp.Player.prototype.doesPedHaveAiBlip ??= function () {
     let $res = natives.doesPedHaveAiBlip(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.doesPedHaveAiBlip = function () {
+mp.Ped.prototype.doesPedHaveAiBlip ??= function () {
     let $res = natives.doesPedHaveAiBlip(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setPedAiBlipGangId = function (gangId) {
+mp.Player.prototype.setPedAiBlipGangId ??= function (gangId) {
     let $res = natives.setPedAiBlipGangId(this.handle, gangId);
 };
-mp.Ped.prototype.setPedAiBlipGangId = function (gangId) {
+mp.Ped.prototype.setPedAiBlipGangId ??= function (gangId) {
     let $res = natives.setPedAiBlipGangId(this.handle, gangId);
 };
-mp.Player.prototype.setPedAiBlipHasCone = function (toggle) {
+mp.Player.prototype.setPedAiBlipHasCone ??= function (toggle) {
     let $res = natives.setPedAiBlipHasCone(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setPedAiBlipHasCone = function (toggle) {
+mp.Ped.prototype.setPedAiBlipHasCone ??= function (toggle) {
     let $res = natives.setPedAiBlipHasCone(this.handle, toggle | 0);
 };
-mp.Player.prototype.setPedAiBlipForcedOn = function (toggle) {
+mp.Player.prototype.setPedAiBlipForcedOn ??= function (toggle) {
     let $res = natives.setPedAiBlipForcedOn(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setPedAiBlipForcedOn = function (toggle) {
+mp.Ped.prototype.setPedAiBlipForcedOn ??= function (toggle) {
     let $res = natives.setPedAiBlipForcedOn(this.handle, toggle | 0);
 };
-mp.Player.prototype.setPedAiBlipNoticeRange = function (range) {
+mp.Player.prototype.setPedAiBlipNoticeRange ??= function (range) {
     let $res = natives.setPedAiBlipNoticeRange(this.handle, range);
 };
-mp.Ped.prototype.setPedAiBlipNoticeRange = function (range) {
+mp.Ped.prototype.setPedAiBlipNoticeRange ??= function (range) {
     let $res = natives.setPedAiBlipNoticeRange(this.handle, range);
 };
-mp.Player.prototype.setPedAiBlipSprite = function (spriteId) {
+mp.Player.prototype.setPedAiBlipSprite ??= function (spriteId) {
     let $res = natives.setPedAiBlipSprite(this.handle, spriteId);
 };
-mp.Ped.prototype.setPedAiBlipSprite = function (spriteId) {
+mp.Ped.prototype.setPedAiBlipSprite ??= function (spriteId) {
     let $res = natives.setPedAiBlipSprite(this.handle, spriteId);
 };
-mp.Player.prototype.getAiBlip2 = function () {
+mp.Player.prototype.getAiBlip2 ??= function () {
     let $res = natives.getAiPedPedBlipIndex(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getAiBlip2 = function () {
+mp.Ped.prototype.getAiBlip2 ??= function () {
     let $res = natives.getAiPedPedBlipIndex(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getAiBlip = function () {
+mp.Player.prototype.getAiBlip ??= function () {
     let $res = natives.getAiPedVehicleBlipIndex(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getAiBlip = function () {
+mp.Ped.prototype.getAiBlip ??= function () {
     let $res = natives.getAiPedVehicleBlipIndex(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
@@ -12904,100 +12904,100 @@ mp.game2.hud.unk._0x04655F9D075D0AE5 = function (toggle) {
 mp.game2.hud.unk._0x243296A510B562B6 = function () {
     let $res = natives.hideHudmarkersThisFrame();
 };
-mp.Player.prototype.clearRoomForEntity = function () {
+mp.Player.prototype.clearRoomForEntity ??= function () {
     let $res = natives.clearRoomForEntity(this.handle);
 };
-mp.Ped.prototype.clearRoomForEntity = function () {
+mp.Ped.prototype.clearRoomForEntity ??= function () {
     let $res = natives.clearRoomForEntity(this.handle);
 };
-mp.Object.prototype.clearRoomForEntity = function () {
+mp.Object.prototype.clearRoomForEntity ??= function () {
     let $res = natives.clearRoomForEntity(this.handle);
 };
-mp.Vehicle.prototype.clearRoomForEntity = function () {
+mp.Vehicle.prototype.clearRoomForEntity ??= function () {
     let $res = natives.clearRoomForEntity(this.handle);
 };
-mp.Player.prototype.forceRoomForEntity = function (interior, roomHashKey) {
+mp.Player.prototype.forceRoomForEntity ??= function (interior, roomHashKey) {
     let $res = natives.forceRoomForEntity(this.handle, interior, roomHashKey);
 };
-mp.Ped.prototype.forceRoomForEntity = function (interior, roomHashKey) {
+mp.Ped.prototype.forceRoomForEntity ??= function (interior, roomHashKey) {
     let $res = natives.forceRoomForEntity(this.handle, interior, roomHashKey);
 };
-mp.Object.prototype.forceRoomForEntity = function (interior, roomHashKey) {
+mp.Object.prototype.forceRoomForEntity ??= function (interior, roomHashKey) {
     let $res = natives.forceRoomForEntity(this.handle, interior, roomHashKey);
 };
-mp.Vehicle.prototype.forceRoomForEntity = function (interior, roomHashKey) {
+mp.Vehicle.prototype.forceRoomForEntity ??= function (interior, roomHashKey) {
     let $res = natives.forceRoomForEntity(this.handle, interior, roomHashKey);
 };
-mp.Player.prototype.getRoomKeyFromEntity = function () {
+mp.Player.prototype.getRoomKeyFromEntity ??= function () {
     let $res = natives.getRoomKeyFromEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getRoomKeyFromEntity = function () {
+mp.Ped.prototype.getRoomKeyFromEntity ??= function () {
     let $res = natives.getRoomKeyFromEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getRoomKeyFromEntity = function () {
+mp.Object.prototype.getRoomKeyFromEntity ??= function () {
     let $res = natives.getRoomKeyFromEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getRoomKeyFromEntity = function () {
+mp.Vehicle.prototype.getRoomKeyFromEntity ??= function () {
     let $res = natives.getRoomKeyFromEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getKeyForEntityInRoom = function () {
+mp.Player.prototype.getKeyForEntityInRoom ??= function () {
     let $res = natives.getKeyForEntityInRoom(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getKeyForEntityInRoom = function () {
+mp.Ped.prototype.getKeyForEntityInRoom ??= function () {
     let $res = natives.getKeyForEntityInRoom(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getKeyForEntityInRoom = function () {
+mp.Object.prototype.getKeyForEntityInRoom ??= function () {
     let $res = natives.getKeyForEntityInRoom(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getKeyForEntityInRoom = function () {
+mp.Vehicle.prototype.getKeyForEntityInRoom ??= function () {
     let $res = natives.getKeyForEntityInRoom(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getFromEntity = function () {
+mp.Player.prototype.getFromEntity ??= function () {
     let $res = natives.getInteriorFromEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getFromEntity = function () {
+mp.Ped.prototype.getFromEntity ??= function () {
     let $res = natives.getInteriorFromEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getFromEntity = function () {
+mp.Object.prototype.getFromEntity ??= function () {
     let $res = natives.getInteriorFromEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getFromEntity = function () {
+mp.Vehicle.prototype.getFromEntity ??= function () {
     let $res = natives.getInteriorFromEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.clearForEntity = function () {
+mp.Player.prototype.clearForEntity ??= function () {
     let $res = natives.clearInteriorStateOfEntity(this.handle);
 };
-mp.Ped.prototype.clearForEntity = function () {
+mp.Ped.prototype.clearForEntity ??= function () {
     let $res = natives.clearInteriorStateOfEntity(this.handle);
 };
-mp.Object.prototype.clearForEntity = function () {
+mp.Object.prototype.clearForEntity ??= function () {
     let $res = natives.clearInteriorStateOfEntity(this.handle);
 };
-mp.Vehicle.prototype.clearForEntity = function () {
+mp.Vehicle.prototype.clearForEntity ??= function () {
     let $res = natives.clearInteriorStateOfEntity(this.handle);
 };
 if (!mp.game2.interior) mp.game2.interior = {};
@@ -13408,21 +13408,21 @@ mp.game2.localization.getSystemDateFormat = function () {
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getCoordsOfProjectileTypeWithinDistance = function (weaponHash, distance, p4) {
+mp.Player.prototype.getCoordsOfProjectileTypeWithinDistance ??= function (weaponHash, distance, p4) {
     let $res = natives.getCoordsOfProjectileTypeWithinDistance(this.handle, weaponHash, distance, undefined, p4 | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.outCoords = new mp.Vector3($res[1]);
     return $res[0] == 1 ? $resObj.outCoords : undefined;
 };
-mp.Ped.prototype.getCoordsOfProjectileTypeWithinDistance = function (weaponHash, distance, p4) {
+mp.Ped.prototype.getCoordsOfProjectileTypeWithinDistance ??= function (weaponHash, distance, p4) {
     let $res = natives.getCoordsOfProjectileTypeWithinDistance(this.handle, weaponHash, distance, undefined, p4 | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.outCoords = new mp.Vector3($res[1]);
     return $res[0] == 1 ? $resObj.outCoords : undefined;
 };
-mp.Player.prototype.getProjectileNearPed = function (weaponHash, distance, p5) {
+mp.Player.prototype.getProjectileNearPed ??= function (weaponHash, distance, p5) {
     let $res = natives.getProjectileOfProjectileTypeWithinDistance(this.handle, weaponHash, distance, undefined, 0, p5 | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -13431,7 +13431,7 @@ mp.Player.prototype.getProjectileNearPed = function (weaponHash, distance, p5) {
     $resObj.result = $res[0] == 1;
     return $resObj;
 };
-mp.Ped.prototype.getProjectileNearPed = function (weaponHash, distance, p5) {
+mp.Ped.prototype.getProjectileNearPed ??= function (weaponHash, distance, p5) {
     let $res = natives.getProjectileOfProjectileTypeWithinDistance(this.handle, weaponHash, distance, undefined, 0, p5 | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -13440,80 +13440,80 @@ mp.Ped.prototype.getProjectileNearPed = function (weaponHash, distance, p5) {
     $resObj.result = $res[0] == 1;
     return $resObj;
 };
-mp.Blip.prototype.isBulletInAngledArea = function (y1, z1, x2, y2, z2, width, ownedByPlayer) {
+mp.Blip.prototype.isBulletInAngledArea ??= function (y1, z1, x2, y2, z2, width, ownedByPlayer) {
     let $res = natives.isBulletInAngledArea(this.handle, y1, z1, x2, y2, z2, width, ownedByPlayer | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Blip.prototype.isBulletInArea = function (y, z, radius, ownedByPlayer) {
+mp.Blip.prototype.isBulletInArea ??= function (y, z, radius, ownedByPlayer) {
     let $res = natives.isBulletInArea(this.handle, y, z, radius, ownedByPlayer | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Blip.prototype.isBulletInBox = function (y1, z1, x2, y2, z2, ownedByPlayer) {
+mp.Blip.prototype.isBulletInBox ??= function (y1, z1, x2, y2, z2, ownedByPlayer) {
     let $res = natives.isBulletInBox(this.handle, y1, z1, x2, y2, z2, ownedByPlayer | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Blip.prototype.hasBulletImpactedInArea = function (y, z, p3, p4, p5) {
+mp.Blip.prototype.hasBulletImpactedInArea ??= function (y, z, p3, p4, p5) {
     let $res = natives.hasBulletImpactedInArea(this.handle, y, z, p3, p4 | 0, p5 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Blip.prototype.hasBulletImpactedInBox = function (p1, p2, p3, p4, p5, p6, p7) {
+mp.Blip.prototype.hasBulletImpactedInBox ??= function (p1, p2, p3, p4, p5, p6, p7) {
     let $res = natives.hasBulletImpactedInBox(this.handle, p1, p2, p3, p4, p5, p6 | 0, p7 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Blip.prototype.getBitsInRange = function (rangeStart, rangeEnd) {
+mp.Blip.prototype.getBitsInRange ??= function (rangeStart, rangeEnd) {
     let $res = natives.getBitsInRange(this.handle, rangeStart, rangeEnd);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Blip.prototype.hasButtonCombinationJustBeenEntered = function (amount) {
+mp.Blip.prototype.hasButtonCombinationJustBeenEntered ??= function (amount) {
     let $res = natives.hasCheatWithHashBeenActivated(this.handle, amount);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.enableTennisMode = function (toggle, p2) {
+mp.Player.prototype.enableTennisMode ??= function (toggle, p2) {
     let $res = natives.enableTennisMode(this.handle, toggle | 0, p2 | 0);
 };
-mp.Ped.prototype.enableTennisMode = function (toggle, p2) {
+mp.Ped.prototype.enableTennisMode ??= function (toggle, p2) {
     let $res = natives.enableTennisMode(this.handle, toggle | 0, p2 | 0);
 };
-mp.Player.prototype.isTennisMode = function () {
+mp.Player.prototype.isTennisMode ??= function () {
     let $res = natives.isTennisMode(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isTennisMode = function () {
+mp.Ped.prototype.isTennisMode ??= function () {
     let $res = natives.isTennisMode(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.playTennisSwingAnim = function (animDict, animName, p3, p4, p5) {
+mp.Player.prototype.playTennisSwingAnim ??= function (animDict, animName, p3, p4, p5) {
     let $res = natives.playTennisSwingAnim(this.handle, animDict, animName, p3, p4, p5 | 0);
 };
-mp.Ped.prototype.playTennisSwingAnim = function (animDict, animName, p3, p4, p5) {
+mp.Ped.prototype.playTennisSwingAnim ??= function (animDict, animName, p3, p4, p5) {
     let $res = natives.playTennisSwingAnim(this.handle, animDict, animName, p3, p4, p5 | 0);
 };
-mp.Player.prototype.getTennisSwingAnimComplete = function () {
+mp.Player.prototype.getTennisSwingAnimComplete ??= function () {
     let $res = natives.getTennisSwingAnimComplete(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.getTennisSwingAnimComplete = function () {
+mp.Ped.prototype.getTennisSwingAnimComplete ??= function () {
     let $res = natives.getTennisSwingAnimComplete(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.playTennisDiveAnim = function (p1, p2, p3, p4, p5) {
+mp.Player.prototype.playTennisDiveAnim ??= function (p1, p2, p3, p4, p5) {
     let $res = natives.playTennisDiveAnim(this.handle, p1, p2, p3, p4, p5 | 0);
 };
-mp.Ped.prototype.playTennisDiveAnim = function (p1, p2, p3, p4, p5) {
+mp.Ped.prototype.playTennisDiveAnim ??= function (p1, p2, p3, p4, p5) {
     let $res = natives.playTennisDiveAnim(this.handle, p1, p2, p3, p4, p5 | 0);
 };
-mp.Blip.prototype.setBeastModeActive = function () {
+mp.Blip.prototype.setBeastModeActive ??= function () {
     let $res = natives.setBeastJumpThisFrame(this.handle);
 };
 if (!mp.game2.misc) mp.game2.misc = {};
@@ -14937,22 +14937,22 @@ mp.game2.misc.unk._0xD10282B6E3751BA0 = function () {
 mp.game2.misc.unk._0x693478ACBD7F18E7 = function () {
     let $res = natives.useActiveCameraForTimeslicingCentre();
 };
-mp.Player.prototype.cellCamIsCharVisibleNoFaceCheck = function () {
+mp.Player.prototype.cellCamIsCharVisibleNoFaceCheck ??= function () {
     let $res = natives.cellCamIsCharVisibleNoFaceCheck(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.cellCamIsCharVisibleNoFaceCheck = function () {
+mp.Ped.prototype.cellCamIsCharVisibleNoFaceCheck ??= function () {
     let $res = natives.cellCamIsCharVisibleNoFaceCheck(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.cellCamIsCharVisibleNoFaceCheck = function () {
+mp.Object.prototype.cellCamIsCharVisibleNoFaceCheck ??= function () {
     let $res = natives.cellCamIsCharVisibleNoFaceCheck(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.cellCamIsCharVisibleNoFaceCheck = function () {
+mp.Vehicle.prototype.cellCamIsCharVisibleNoFaceCheck ??= function () {
     let $res = natives.cellCamIsCharVisibleNoFaceCheck(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
@@ -15092,23 +15092,23 @@ mp.game2.mobile.unk._0xF1E22DC13F5EEBAD = function (p0) {
 mp.game2.mobile.unk._0x466DA42C89865553 = function (p0) {
     let $res = natives.cellCamSetSelfieModeHeadPitchOffset(p0);
 };
-mp.Player.prototype.applyPedScarData = function (p1) {
+mp.Player.prototype.applyPedScarData ??= function (p1) {
     let $res = natives.networkApplyPedScarData(this.handle, p1);
 };
-mp.Ped.prototype.applyPedScarData = function (p1) {
+mp.Ped.prototype.applyPedScarData ??= function (p1) {
     let $res = natives.networkApplyPedScarData(this.handle, p1);
 };
-mp.Player.prototype.getPlayerIndexFromPed = function () {
+mp.Player.prototype.getPlayerIndexFromPed ??= function () {
     let $res = natives.networkGetPlayerIndexFromPed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getPlayerIndexFromPed = function () {
+mp.Ped.prototype.getPlayerIndexFromPed ??= function () {
     let $res = natives.networkGetPlayerIndexFromPed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getDestroyerOfEntity = function () {
+mp.Player.prototype.getDestroyerOfEntity ??= function () {
     let $res = natives.networkGetAssistedDamageOfEntity(this.handle, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -15116,7 +15116,7 @@ mp.Player.prototype.getDestroyerOfEntity = function () {
     $resObj.result = $res[0];
     return $resObj;
 };
-mp.Ped.prototype.getDestroyerOfEntity = function () {
+mp.Ped.prototype.getDestroyerOfEntity ??= function () {
     let $res = natives.networkGetAssistedDamageOfEntity(this.handle, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -15124,7 +15124,7 @@ mp.Ped.prototype.getDestroyerOfEntity = function () {
     $resObj.result = $res[0];
     return $resObj;
 };
-mp.Object.prototype.getDestroyerOfEntity = function () {
+mp.Object.prototype.getDestroyerOfEntity ??= function () {
     let $res = natives.networkGetAssistedDamageOfEntity(this.handle, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -15132,7 +15132,7 @@ mp.Object.prototype.getDestroyerOfEntity = function () {
     $resObj.result = $res[0];
     return $resObj;
 };
-mp.Vehicle.prototype.getDestroyerOfEntity = function () {
+mp.Vehicle.prototype.getDestroyerOfEntity ??= function () {
     let $res = natives.networkGetAssistedDamageOfEntity(this.handle, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -15140,471 +15140,471 @@ mp.Vehicle.prototype.getDestroyerOfEntity = function () {
     $resObj.result = $res[0];
     return $resObj;
 };
-mp.Player.prototype.pedForceGameStateUpdate = function () {
+mp.Player.prototype.pedForceGameStateUpdate ??= function () {
     let $res = natives.networkPatchPostCutsceneHs4fTunEnt(this.handle);
 };
-mp.Ped.prototype.pedForceGameStateUpdate = function () {
+mp.Ped.prototype.pedForceGameStateUpdate ??= function () {
     let $res = natives.networkPatchPostCutsceneHs4fTunEnt(this.handle);
 };
-mp.Player.prototype.hasEntityBeenRegisteredWithThisThread = function () {
+mp.Player.prototype.hasEntityBeenRegisteredWithThisThread ??= function () {
     let $res = natives.networkHasEntityBeenRegisteredWithThisThread(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.hasEntityBeenRegisteredWithThisThread = function () {
+mp.Ped.prototype.hasEntityBeenRegisteredWithThisThread ??= function () {
     let $res = natives.networkHasEntityBeenRegisteredWithThisThread(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.hasEntityBeenRegisteredWithThisThread = function () {
+mp.Object.prototype.hasEntityBeenRegisteredWithThisThread ??= function () {
     let $res = natives.networkHasEntityBeenRegisteredWithThisThread(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.hasEntityBeenRegisteredWithThisThread = function () {
+mp.Vehicle.prototype.hasEntityBeenRegisteredWithThisThread ??= function () {
     let $res = natives.networkHasEntityBeenRegisteredWithThisThread(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getNetworkIdFromEntity = function () {
+mp.Player.prototype.getNetworkIdFromEntity ??= function () {
     let $res = natives.networkGetNetworkIdFromEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getNetworkIdFromEntity = function () {
+mp.Ped.prototype.getNetworkIdFromEntity ??= function () {
     let $res = natives.networkGetNetworkIdFromEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getNetworkIdFromEntity = function () {
+mp.Object.prototype.getNetworkIdFromEntity ??= function () {
     let $res = natives.networkGetNetworkIdFromEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getNetworkIdFromEntity = function () {
+mp.Vehicle.prototype.getNetworkIdFromEntity ??= function () {
     let $res = natives.networkGetNetworkIdFromEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getEntityIsNetworked = function () {
+mp.Player.prototype.getEntityIsNetworked ??= function () {
     let $res = natives.networkGetEntityIsNetworked(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.getEntityIsNetworked = function () {
+mp.Ped.prototype.getEntityIsNetworked ??= function () {
     let $res = natives.networkGetEntityIsNetworked(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.getEntityIsNetworked = function () {
+mp.Object.prototype.getEntityIsNetworked ??= function () {
     let $res = natives.networkGetEntityIsNetworked(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getEntityIsNetworked = function () {
+mp.Vehicle.prototype.getEntityIsNetworked ??= function () {
     let $res = natives.networkGetEntityIsNetworked(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getEntityIsLocal = function () {
+mp.Player.prototype.getEntityIsLocal ??= function () {
     let $res = natives.networkGetEntityIsLocal(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.getEntityIsLocal = function () {
+mp.Ped.prototype.getEntityIsLocal ??= function () {
     let $res = natives.networkGetEntityIsLocal(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.getEntityIsLocal = function () {
+mp.Object.prototype.getEntityIsLocal ??= function () {
     let $res = natives.networkGetEntityIsLocal(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getEntityIsLocal = function () {
+mp.Vehicle.prototype.getEntityIsLocal ??= function () {
     let $res = natives.networkGetEntityIsLocal(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.registerEntityAsNetworked = function () {
+mp.Player.prototype.registerEntityAsNetworked ??= function () {
     let $res = natives.networkRegisterEntityAsNetworked(this.handle);
 };
-mp.Ped.prototype.registerEntityAsNetworked = function () {
+mp.Ped.prototype.registerEntityAsNetworked ??= function () {
     let $res = natives.networkRegisterEntityAsNetworked(this.handle);
 };
-mp.Object.prototype.registerEntityAsNetworked = function () {
+mp.Object.prototype.registerEntityAsNetworked ??= function () {
     let $res = natives.networkRegisterEntityAsNetworked(this.handle);
 };
-mp.Vehicle.prototype.registerEntityAsNetworked = function () {
+mp.Vehicle.prototype.registerEntityAsNetworked ??= function () {
     let $res = natives.networkRegisterEntityAsNetworked(this.handle);
 };
-mp.Player.prototype.unregisterNetworkedEntity = function () {
+mp.Player.prototype.unregisterNetworkedEntity ??= function () {
     let $res = natives.networkUnregisterNetworkedEntity(this.handle);
 };
-mp.Ped.prototype.unregisterNetworkedEntity = function () {
+mp.Ped.prototype.unregisterNetworkedEntity ??= function () {
     let $res = natives.networkUnregisterNetworkedEntity(this.handle);
 };
-mp.Object.prototype.unregisterNetworkedEntity = function () {
+mp.Object.prototype.unregisterNetworkedEntity ??= function () {
     let $res = natives.networkUnregisterNetworkedEntity(this.handle);
 };
-mp.Vehicle.prototype.unregisterNetworkedEntity = function () {
+mp.Vehicle.prototype.unregisterNetworkedEntity ??= function () {
     let $res = natives.networkUnregisterNetworkedEntity(this.handle);
 };
-mp.Player.prototype.requestControlOfEntity = function () {
+mp.Player.prototype.requestControlOfEntity ??= function () {
     let $res = natives.networkRequestControlOfEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.requestControlOfEntity = function () {
+mp.Ped.prototype.requestControlOfEntity ??= function () {
     let $res = natives.networkRequestControlOfEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.requestControlOfEntity = function () {
+mp.Object.prototype.requestControlOfEntity ??= function () {
     let $res = natives.networkRequestControlOfEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.requestControlOfEntity = function () {
+mp.Vehicle.prototype.requestControlOfEntity ??= function () {
     let $res = natives.networkRequestControlOfEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.hasControlOfEntity = function () {
+mp.Player.prototype.hasControlOfEntity ??= function () {
     let $res = natives.networkHasControlOfEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.hasControlOfEntity = function () {
+mp.Ped.prototype.hasControlOfEntity ??= function () {
     let $res = natives.networkHasControlOfEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.hasControlOfEntity = function () {
+mp.Object.prototype.hasControlOfEntity ??= function () {
     let $res = natives.networkHasControlOfEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.hasControlOfEntity = function () {
+mp.Vehicle.prototype.hasControlOfEntity ??= function () {
     let $res = natives.networkHasControlOfEntity(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.vehToNet = function () {
+mp.Vehicle.prototype.vehToNet ??= function () {
     let $res = natives.vehToNet(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.pedToNet = function () {
+mp.Player.prototype.pedToNet ??= function () {
     let $res = natives.pedToNet(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.pedToNet = function () {
+mp.Ped.prototype.pedToNet ??= function () {
     let $res = natives.pedToNet(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.objToNet = function () {
+mp.Object.prototype.objToNet ??= function () {
     let $res = natives.objToNet(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getEntityNetScriptId = function () {
+mp.Player.prototype.getEntityNetScriptId ??= function () {
     let $res = natives.networkEntityGetObjectId(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getEntityNetScriptId = function () {
+mp.Ped.prototype.getEntityNetScriptId ??= function () {
     let $res = natives.networkEntityGetObjectId(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getEntityNetScriptId = function () {
+mp.Object.prototype.getEntityNetScriptId ??= function () {
     let $res = natives.networkEntityGetObjectId(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getEntityNetScriptId = function () {
+mp.Vehicle.prototype.getEntityNetScriptId ??= function () {
     let $res = natives.networkEntityGetObjectId(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.removeAllStickyBombsFromEntity = function (ped) {
+mp.Player.prototype.removeAllStickyBombsFromEntity ??= function (ped) {
     let $res = natives.removeAllStickyBombsFromEntity(this.handle, ped);
 };
-mp.Ped.prototype.removeAllStickyBombsFromEntity = function (ped) {
+mp.Ped.prototype.removeAllStickyBombsFromEntity ??= function (ped) {
     let $res = natives.removeAllStickyBombsFromEntity(this.handle, ped);
 };
-mp.Object.prototype.removeAllStickyBombsFromEntity = function (ped) {
+mp.Object.prototype.removeAllStickyBombsFromEntity ??= function (ped) {
     let $res = natives.removeAllStickyBombsFromEntity(this.handle, ped);
 };
-mp.Vehicle.prototype.removeAllStickyBombsFromEntity = function (ped) {
+mp.Vehicle.prototype.removeAllStickyBombsFromEntity ??= function (ped) {
     let $res = natives.removeAllStickyBombsFromEntity(this.handle, ped);
 };
-mp.Player.prototype.setEntityCanBlend = function (toggle) {
+mp.Player.prototype.setEntityCanBlend ??= function (toggle) {
     let $res = natives.networkSetEntityCanBlend(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setEntityCanBlend = function (toggle) {
+mp.Ped.prototype.setEntityCanBlend ??= function (toggle) {
     let $res = natives.networkSetEntityCanBlend(this.handle, toggle | 0);
 };
-mp.Object.prototype.setEntityCanBlend = function (toggle) {
+mp.Object.prototype.setEntityCanBlend ??= function (toggle) {
     let $res = natives.networkSetEntityCanBlend(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setEntityCanBlend = function (toggle) {
+mp.Vehicle.prototype.setEntityCanBlend ??= function (toggle) {
     let $res = natives.networkSetEntityCanBlend(this.handle, toggle | 0);
 };
-mp.Player.prototype.setEntityInvisibleToNetwork = function (toggle) {
+mp.Player.prototype.setEntityInvisibleToNetwork ??= function (toggle) {
     let $res = natives.networkSetEntityOnlyExistsForParticipants(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setEntityInvisibleToNetwork = function (toggle) {
+mp.Ped.prototype.setEntityInvisibleToNetwork ??= function (toggle) {
     let $res = natives.networkSetEntityOnlyExistsForParticipants(this.handle, toggle | 0);
 };
-mp.Object.prototype.setEntityInvisibleToNetwork = function (toggle) {
+mp.Object.prototype.setEntityInvisibleToNetwork ??= function (toggle) {
     let $res = natives.networkSetEntityOnlyExistsForParticipants(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setEntityInvisibleToNetwork = function (toggle) {
+mp.Vehicle.prototype.setEntityInvisibleToNetwork ??= function (toggle) {
     let $res = natives.networkSetEntityOnlyExistsForParticipants(this.handle, toggle | 0);
 };
-mp.Player.prototype.fadeOutEntity = function (normal, slow) {
+mp.Player.prototype.fadeOutEntity ??= function (normal, slow) {
     let $res = natives.networkFadeOutEntity(this.handle, normal | 0, slow | 0);
 };
-mp.Ped.prototype.fadeOutEntity = function (normal, slow) {
+mp.Ped.prototype.fadeOutEntity ??= function (normal, slow) {
     let $res = natives.networkFadeOutEntity(this.handle, normal | 0, slow | 0);
 };
-mp.Object.prototype.fadeOutEntity = function (normal, slow) {
+mp.Object.prototype.fadeOutEntity ??= function (normal, slow) {
     let $res = natives.networkFadeOutEntity(this.handle, normal | 0, slow | 0);
 };
-mp.Vehicle.prototype.fadeOutEntity = function (normal, slow) {
+mp.Vehicle.prototype.fadeOutEntity ??= function (normal, slow) {
     let $res = natives.networkFadeOutEntity(this.handle, normal | 0, slow | 0);
 };
-mp.Player.prototype.fadeInEntity = function (state, p2) {
+mp.Player.prototype.fadeInEntity ??= function (state, p2) {
     let $res = natives.networkFadeInEntity(this.handle, state | 0, p2 | 0);
 };
-mp.Ped.prototype.fadeInEntity = function (state, p2) {
+mp.Ped.prototype.fadeInEntity ??= function (state, p2) {
     let $res = natives.networkFadeInEntity(this.handle, state | 0, p2 | 0);
 };
-mp.Object.prototype.fadeInEntity = function (state, p2) {
+mp.Object.prototype.fadeInEntity ??= function (state, p2) {
     let $res = natives.networkFadeInEntity(this.handle, state | 0, p2 | 0);
 };
-mp.Vehicle.prototype.fadeInEntity = function (state, p2) {
+mp.Vehicle.prototype.fadeInEntity ??= function (state, p2) {
     let $res = natives.networkFadeInEntity(this.handle, state | 0, p2 | 0);
 };
-mp.Player.prototype.isEntityFading = function () {
+mp.Player.prototype.isEntityFading ??= function () {
     let $res = natives.networkIsEntityFading(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isEntityFading = function () {
+mp.Ped.prototype.isEntityFading ??= function () {
     let $res = natives.networkIsEntityFading(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isEntityFading = function () {
+mp.Object.prototype.isEntityFading ??= function () {
     let $res = natives.networkIsEntityFading(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isEntityFading = function () {
+mp.Vehicle.prototype.isEntityFading ??= function () {
     let $res = natives.networkIsEntityFading(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setEntityVisibleInCutscene = function (p1, p2) {
+mp.Player.prototype.setEntityVisibleInCutscene ??= function (p1, p2) {
     let $res = natives.setEntityVisibleInCutscene(this.handle, p1 | 0, p2 | 0);
 };
-mp.Ped.prototype.setEntityVisibleInCutscene = function (p1, p2) {
+mp.Ped.prototype.setEntityVisibleInCutscene ??= function (p1, p2) {
     let $res = natives.setEntityVisibleInCutscene(this.handle, p1 | 0, p2 | 0);
 };
-mp.Object.prototype.setEntityVisibleInCutscene = function (p1, p2) {
+mp.Object.prototype.setEntityVisibleInCutscene ??= function (p1, p2) {
     let $res = natives.setEntityVisibleInCutscene(this.handle, p1 | 0, p2 | 0);
 };
-mp.Vehicle.prototype.setEntityVisibleInCutscene = function (p1, p2) {
+mp.Vehicle.prototype.setEntityVisibleInCutscene ??= function (p1, p2) {
     let $res = natives.setEntityVisibleInCutscene(this.handle, p1 | 0, p2 | 0);
 };
-mp.Player.prototype.setEntityLocallyInvisible = function () {
+mp.Player.prototype.setEntityLocallyInvisible ??= function () {
     let $res = natives.setEntityLocallyInvisible(this.handle);
 };
-mp.Ped.prototype.setEntityLocallyInvisible = function () {
+mp.Ped.prototype.setEntityLocallyInvisible ??= function () {
     let $res = natives.setEntityLocallyInvisible(this.handle);
 };
-mp.Object.prototype.setEntityLocallyInvisible = function () {
+mp.Object.prototype.setEntityLocallyInvisible ??= function () {
     let $res = natives.setEntityLocallyInvisible(this.handle);
 };
-mp.Vehicle.prototype.setEntityLocallyInvisible = function () {
+mp.Vehicle.prototype.setEntityLocallyInvisible ??= function () {
     let $res = natives.setEntityLocallyInvisible(this.handle);
 };
-mp.Player.prototype.setEntityLocallyVisible = function () {
+mp.Player.prototype.setEntityLocallyVisible ??= function () {
     let $res = natives.setEntityLocallyVisible(this.handle);
 };
-mp.Ped.prototype.setEntityLocallyVisible = function () {
+mp.Ped.prototype.setEntityLocallyVisible ??= function () {
     let $res = natives.setEntityLocallyVisible(this.handle);
 };
-mp.Object.prototype.setEntityLocallyVisible = function () {
+mp.Object.prototype.setEntityLocallyVisible ??= function () {
     let $res = natives.setEntityLocallyVisible(this.handle);
 };
-mp.Vehicle.prototype.setEntityLocallyVisible = function () {
+mp.Vehicle.prototype.setEntityLocallyVisible ??= function () {
     let $res = natives.setEntityLocallyVisible(this.handle);
 };
-mp.Object.prototype.setObjectInterestRange = function (range) {
+mp.Object.prototype.setObjectInterestRange ??= function (range) {
     let $res = natives.networkSetObjectScopeDistance(this.handle, range);
 };
-mp.Vehicle.prototype.setVehicleAsGhost = function (toggle) {
+mp.Vehicle.prototype.setVehicleAsGhost ??= function (toggle) {
     let $res = natives.setNetworkVehicleAsGhost(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setVehiclePositionUpdateMultiplier = function (multiplier) {
+mp.Vehicle.prototype.setVehiclePositionUpdateMultiplier ??= function (multiplier) {
     let $res = natives.setNetworkVehicleMaxPositionDeltaMultiplier(this.handle, multiplier);
 };
-mp.Vehicle.prototype.setEnableVehiclePositionCorrection = function (toggle) {
+mp.Vehicle.prototype.setEnableVehiclePositionCorrection ??= function (toggle) {
     let $res = natives.setNetworkEnableHighSpeedEdgeFallDetection(this.handle, toggle | 0);
 };
-mp.Player.prototype.isEntityGhostedToLocalPlayer = function () {
+mp.Player.prototype.isEntityGhostedToLocalPlayer ??= function () {
     let $res = natives.isEntityAGhost(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isEntityGhostedToLocalPlayer = function () {
+mp.Ped.prototype.isEntityGhostedToLocalPlayer ??= function () {
     let $res = natives.isEntityAGhost(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isEntityGhostedToLocalPlayer = function () {
+mp.Object.prototype.isEntityGhostedToLocalPlayer ??= function () {
     let $res = natives.isEntityAGhost(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isEntityGhostedToLocalPlayer = function () {
+mp.Vehicle.prototype.isEntityGhostedToLocalPlayer ??= function () {
     let $res = natives.isEntityAGhost(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setEntityGhostedWithOwner = function (p1) {
+mp.Player.prototype.setEntityGhostedWithOwner ??= function (p1) {
     let $res = natives.setEntityGhostedForGhostPlayers(this.handle, p1 | 0);
 };
-mp.Ped.prototype.setEntityGhostedWithOwner = function (p1) {
+mp.Ped.prototype.setEntityGhostedWithOwner ??= function (p1) {
     let $res = natives.setEntityGhostedForGhostPlayers(this.handle, p1 | 0);
 };
-mp.Object.prototype.setEntityGhostedWithOwner = function (p1) {
+mp.Object.prototype.setEntityGhostedWithOwner ??= function (p1) {
     let $res = natives.setEntityGhostedForGhostPlayers(this.handle, p1 | 0);
 };
-mp.Vehicle.prototype.setEntityGhostedWithOwner = function (p1) {
+mp.Vehicle.prototype.setEntityGhostedWithOwner ??= function (p1) {
     let $res = natives.setEntityGhostedForGhostPlayers(this.handle, p1 | 0);
 };
-mp.Player.prototype.addPedToSynchronisedScene = function (netScene, animDict, animnName, speed, speedMultiplier, duration, flag, playbackRate, p9) {
+mp.Player.prototype.addPedToSynchronisedScene ??= function (netScene, animDict, animnName, speed, speedMultiplier, duration, flag, playbackRate, p9) {
     let $res = natives.networkAddPedToSynchronisedScene(this.handle, netScene, animDict, animnName, speed, speedMultiplier, duration, flag, playbackRate, p9);
 };
-mp.Ped.prototype.addPedToSynchronisedScene = function (netScene, animDict, animnName, speed, speedMultiplier, duration, flag, playbackRate, p9) {
+mp.Ped.prototype.addPedToSynchronisedScene ??= function (netScene, animDict, animnName, speed, speedMultiplier, duration, flag, playbackRate, p9) {
     let $res = natives.networkAddPedToSynchronisedScene(this.handle, netScene, animDict, animnName, speed, speedMultiplier, duration, flag, playbackRate, p9);
 };
-mp.Player.prototype.addEntityToSynchronisedScene = function (netScene, animDict, animName, speed, speedMulitiplier, flag) {
+mp.Player.prototype.addEntityToSynchronisedScene ??= function (netScene, animDict, animName, speed, speedMulitiplier, flag) {
     let $res = natives.networkAddEntityToSynchronisedScene(this.handle, netScene, animDict, animName, speed, speedMulitiplier, flag);
 };
-mp.Ped.prototype.addEntityToSynchronisedScene = function (netScene, animDict, animName, speed, speedMulitiplier, flag) {
+mp.Ped.prototype.addEntityToSynchronisedScene ??= function (netScene, animDict, animName, speed, speedMulitiplier, flag) {
     let $res = natives.networkAddEntityToSynchronisedScene(this.handle, netScene, animDict, animName, speed, speedMulitiplier, flag);
 };
-mp.Object.prototype.addEntityToSynchronisedScene = function (netScene, animDict, animName, speed, speedMulitiplier, flag) {
+mp.Object.prototype.addEntityToSynchronisedScene ??= function (netScene, animDict, animName, speed, speedMulitiplier, flag) {
     let $res = natives.networkAddEntityToSynchronisedScene(this.handle, netScene, animDict, animName, speed, speedMulitiplier, flag);
 };
-mp.Vehicle.prototype.addEntityToSynchronisedScene = function (netScene, animDict, animName, speed, speedMulitiplier, flag) {
+mp.Vehicle.prototype.addEntityToSynchronisedScene ??= function (netScene, animDict, animName, speed, speedMulitiplier, flag) {
     let $res = natives.networkAddEntityToSynchronisedScene(this.handle, netScene, animDict, animName, speed, speedMulitiplier, flag);
 };
-mp.Player.prototype.concealEntity = function (toggle) {
+mp.Player.prototype.concealEntity ??= function (toggle) {
     let $res = natives.networkConcealEntity(this.handle, toggle | 0);
 };
-mp.Ped.prototype.concealEntity = function (toggle) {
+mp.Ped.prototype.concealEntity ??= function (toggle) {
     let $res = natives.networkConcealEntity(this.handle, toggle | 0);
 };
-mp.Object.prototype.concealEntity = function (toggle) {
+mp.Object.prototype.concealEntity ??= function (toggle) {
     let $res = natives.networkConcealEntity(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.concealEntity = function (toggle) {
+mp.Vehicle.prototype.concealEntity ??= function (toggle) {
     let $res = natives.networkConcealEntity(this.handle, toggle | 0);
 };
-mp.Player.prototype.isEntityConcealed = function () {
+mp.Player.prototype.isEntityConcealed ??= function () {
     let $res = natives.networkIsEntityConcealed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isEntityConcealed = function () {
+mp.Ped.prototype.isEntityConcealed ??= function () {
     let $res = natives.networkIsEntityConcealed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isEntityConcealed = function () {
+mp.Object.prototype.isEntityConcealed ??= function () {
     let $res = natives.networkIsEntityConcealed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isEntityConcealed = function () {
+mp.Vehicle.prototype.isEntityConcealed ??= function () {
     let $res = natives.networkIsEntityConcealed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setVehicleWheelsDestructible = function (toggle) {
+mp.Player.prototype.setVehicleWheelsDestructible ??= function (toggle) {
     let $res = natives.networkTriggerDamageEventForZeroDamage(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setVehicleWheelsDestructible = function (toggle) {
+mp.Ped.prototype.setVehicleWheelsDestructible ??= function (toggle) {
     let $res = natives.networkTriggerDamageEventForZeroDamage(this.handle, toggle | 0);
 };
-mp.Object.prototype.setVehicleWheelsDestructible = function (toggle) {
+mp.Object.prototype.setVehicleWheelsDestructible ??= function (toggle) {
     let $res = natives.networkTriggerDamageEventForZeroDamage(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setVehicleWheelsDestructible = function (toggle) {
+mp.Vehicle.prototype.setVehicleWheelsDestructible ??= function (toggle) {
     let $res = natives.networkTriggerDamageEventForZeroDamage(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.explodeVehicle = function (isAudible, isInvisible, netId) {
+mp.Vehicle.prototype.explodeVehicle ??= function (isAudible, isInvisible, netId) {
     let $res = natives.networkExplodeVehicle(this.handle, isAudible | 0, isInvisible | 0, netId | 0);
 };
-mp.Vehicle.prototype.explodeHeli = function (isAudible, isInvisible, netId) {
+mp.Vehicle.prototype.explodeHeli ??= function (isAudible, isInvisible, netId) {
     let $res = natives.networkExplodeHeli(this.handle, isAudible | 0, isInvisible | 0, netId);
 };
-mp.Player.prototype.useLogarithmicBlendingThisFrame = function () {
+mp.Player.prototype.useLogarithmicBlendingThisFrame ??= function () {
     let $res = natives.networkUseLogarithmicBlendingThisFrame(this.handle);
 };
-mp.Ped.prototype.useLogarithmicBlendingThisFrame = function () {
+mp.Ped.prototype.useLogarithmicBlendingThisFrame ??= function () {
     let $res = natives.networkUseLogarithmicBlendingThisFrame(this.handle);
 };
-mp.Object.prototype.useLogarithmicBlendingThisFrame = function () {
+mp.Object.prototype.useLogarithmicBlendingThisFrame ??= function () {
     let $res = natives.networkUseLogarithmicBlendingThisFrame(this.handle);
 };
-mp.Vehicle.prototype.useLogarithmicBlendingThisFrame = function () {
+mp.Vehicle.prototype.useLogarithmicBlendingThisFrame ??= function () {
     let $res = natives.networkUseLogarithmicBlendingThisFrame(this.handle);
 };
-mp.Player.prototype.overrideCoordsAndHeading = function (x, y, z, heading) {
+mp.Player.prototype.overrideCoordsAndHeading ??= function (x, y, z, heading) {
     let $res = natives.networkOverrideCoordsAndHeading(this.handle, x, y, z, heading);
 };
-mp.Ped.prototype.overrideCoordsAndHeading = function (x, y, z, heading) {
+mp.Ped.prototype.overrideCoordsAndHeading ??= function (x, y, z, heading) {
     let $res = natives.networkOverrideCoordsAndHeading(this.handle, x, y, z, heading);
 };
-mp.Object.prototype.overrideCoordsAndHeading = function (x, y, z, heading) {
+mp.Object.prototype.overrideCoordsAndHeading ??= function (x, y, z, heading) {
     let $res = natives.networkOverrideCoordsAndHeading(this.handle, x, y, z, heading);
 };
-mp.Vehicle.prototype.overrideCoordsAndHeading = function (x, y, z, heading) {
+mp.Vehicle.prototype.overrideCoordsAndHeading ??= function (x, y, z, heading) {
     let $res = natives.networkOverrideCoordsAndHeading(this.handle, x, y, z, heading);
 };
-mp.Player.prototype.applyCachedPlayerHeadBlendData = function (player) {
+mp.Player.prototype.applyCachedPlayerHeadBlendData ??= function (player) {
     let $res = natives.networkApplyCachedPlayerHeadBlendData(this.handle, player);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.applyCachedPlayerHeadBlendData = function (player) {
+mp.Ped.prototype.applyCachedPlayerHeadBlendData ??= function (player) {
     let $res = natives.networkApplyCachedPlayerHeadBlendData(this.handle, player);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.allowLocalEntityAttachment = function (toggle) {
+mp.Player.prototype.allowLocalEntityAttachment ??= function (toggle) {
     let $res = natives.networkAllowRemoteAttachmentModification(this.handle, toggle | 0);
 };
-mp.Ped.prototype.allowLocalEntityAttachment = function (toggle) {
+mp.Ped.prototype.allowLocalEntityAttachment ??= function (toggle) {
     let $res = natives.networkAllowRemoteAttachmentModification(this.handle, toggle | 0);
 };
-mp.Object.prototype.allowLocalEntityAttachment = function (toggle) {
+mp.Object.prototype.allowLocalEntityAttachment ??= function (toggle) {
     let $res = natives.networkAllowRemoteAttachmentModification(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.allowLocalEntityAttachment = function (toggle) {
+mp.Vehicle.prototype.allowLocalEntityAttachment ??= function (toggle) {
     let $res = natives.networkAllowRemoteAttachmentModification(this.handle, toggle | 0);
 };
-mp.Player.prototype.getLastVelocityReceived = function () {
+mp.Player.prototype.getLastVelocityReceived ??= function () {
     let $res = natives.networkGetLastVelReceivedOverNetwork(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -15613,7 +15613,7 @@ mp.Player.prototype.getLastVelocityReceived = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Ped.prototype.getLastVelocityReceived = function () {
+mp.Ped.prototype.getLastVelocityReceived ??= function () {
     let $res = natives.networkGetLastVelReceivedOverNetwork(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -15622,7 +15622,7 @@ mp.Ped.prototype.getLastVelocityReceived = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Object.prototype.getLastVelocityReceived = function () {
+mp.Object.prototype.getLastVelocityReceived ??= function () {
     let $res = natives.networkGetLastVelReceivedOverNetwork(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -15631,7 +15631,7 @@ mp.Object.prototype.getLastVelocityReceived = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Vehicle.prototype.getLastVelocityReceived = function () {
+mp.Vehicle.prototype.getLastVelocityReceived ??= function () {
     let $res = natives.networkGetLastVelReceivedOverNetwork(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -19538,33 +19538,33 @@ mp.game2.network.unk._0xDB663CC9FF3407A9 = function (player) {
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.placeOnGroundProperly = function () {
+mp.Object.prototype.placeOnGroundProperly ??= function () {
     let $res = natives.placeObjectOnGroundProperly(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.placeOnGroundProperly2 = function () {
+mp.Object.prototype.placeOnGroundProperly2 ??= function () {
     let $res = natives.placeObjectOnGroundOrObjectProperly(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.slide = function (toX, toY, toZ, speedX, speedY, speedZ, collision) {
+mp.Object.prototype.slide ??= function (toX, toY, toZ, speedX, speedY, speedZ, collision) {
     let $res = natives.slideObject(this.handle, toX, toY, toZ, speedX, speedY, speedZ, collision | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.setTargettable = function (targettable) {
+mp.Object.prototype.setTargettable ??= function (targettable) {
     let $res = natives.setObjectTargettable(this.handle, targettable | 0);
 };
-mp.Object.prototype.setForceVehiclesToAvoid = function (toggle) {
+mp.Object.prototype.setForceVehiclesToAvoid ??= function (toggle) {
     let $res = natives.setObjectForceVehiclesToAvoid(this.handle, toggle | 0);
 };
-mp.Object.prototype.hasBeenBroken = function (p1) {
+mp.Object.prototype.hasBeenBroken ??= function (p1) {
     let $res = natives.hasObjectBeenBroken(this.handle, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.getOffsetFromCoords = function (yPos, zPos, heading, xOffset, yOffset, zOffset) {
+mp.Object.prototype.getOffsetFromCoords ??= function (yPos, zPos, heading, xOffset, yOffset, zOffset) {
     let $res = natives.getOffsetFromCoordAndHeadingInWorldCoords(this.handle, yPos, zPos, heading, xOffset, yOffset, zOffset);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -19573,139 +19573,139 @@ mp.Object.prototype.getOffsetFromCoords = function (yPos, zPos, heading, xOffset
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Object.prototype.isEntirelyInsideGarage = function (entity, p2, p3) {
+mp.Object.prototype.isEntirelyInsideGarage ??= function (entity, p2, p3) {
     let $res = natives.isObjectEntirelyInsideGarage(this.handle, entity, p2, p3);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isPartiallyInsideGarage = function (entity, p2) {
+mp.Object.prototype.isPartiallyInsideGarage ??= function (entity, p2) {
     let $res = natives.isObjectPartiallyInsideGarage(this.handle, entity, p2);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.doesOfTypeExistAtCoords = function (y, z, radius, hash, p5) {
+mp.Object.prototype.doesOfTypeExistAtCoords ??= function (y, z, radius, hash, p5) {
     let $res = natives.doesObjectOfTypeExistAtCoords(this.handle, y, z, radius, hash, p5 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.setAllowLowLodBuoyancy = function (toggle) {
+mp.Object.prototype.setAllowLowLodBuoyancy ??= function (toggle) {
     let $res = natives.setObjectAllowLowLodBuoyancy(this.handle, toggle | 0);
 };
-mp.Object.prototype.setPhysicsParams = function (weight, p2, p3, p4, p5, gravity, p7, p8, p9, p10, buoyancy) {
+mp.Object.prototype.setPhysicsParams ??= function (weight, p2, p3, p4, p5, gravity, p7, p8, p9, p10, buoyancy) {
     let $res = natives.setObjectPhysicsParams(this.handle, weight, p2, p3, p4, p5, gravity, p7, p8, p9, p10, buoyancy);
 };
-mp.Object.prototype.getFragmentDamageHealth = function (p1) {
+mp.Object.prototype.getFragmentDamageHealth ??= function (p1) {
     let $res = natives.getObjectFragmentDamageHealth(this.handle, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.setActivatePhysicsAsSoonAsItIsUnfrozen = function (toggle) {
+mp.Object.prototype.setActivatePhysicsAsSoonAsItIsUnfrozen ??= function (toggle) {
     let $res = natives.setActivateObjectPhysicsAsSoonAsItIsUnfrozen(this.handle, toggle | 0);
 };
-mp.Object.prototype.isNearPoint = function (x, y, z, range) {
+mp.Object.prototype.isNearPoint ??= function (x, y, z, range) {
     let $res = natives.isObjectNearPoint(this.handle, x, y, z, range);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.removeHighDetailModel = function () {
+mp.Object.prototype.removeHighDetailModel ??= function () {
     let $res = natives.removeObjectHighDetailModel(this.handle);
 };
-mp.Object.prototype.breakFragmentChild = function (p1, p2) {
+mp.Object.prototype.breakFragmentChild ??= function (p1, p2) {
     let $res = natives.breakObjectFragmentChild(this.handle, p1, p2 | 0);
 };
-mp.Object.prototype.trackVisibility = function () {
+mp.Object.prototype.trackVisibility ??= function () {
     let $res = natives.trackObjectVisibility(this.handle);
 };
-mp.Object.prototype.isVisible = function () {
+mp.Object.prototype.isVisible ??= function () {
     let $res = natives.isObjectVisible(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.setCreateWeaponLightSource = function (toggle) {
+mp.Object.prototype.setCreateWeaponLightSource ??= function (toggle) {
     let $res = natives.setCutscenesWeaponFlashlightOnThisFrame(this.handle, toggle | 0);
 };
-mp.Object.prototype.setStateOfRayfireMap = function (state) {
+mp.Object.prototype.setStateOfRayfireMap ??= function (state) {
     let $res = natives.setStateOfRayfireMapObject(this.handle, state);
 };
-mp.Object.prototype.getStateOfRayfireMap = function () {
+mp.Object.prototype.getStateOfRayfireMap ??= function () {
     let $res = natives.getStateOfRayfireMapObject(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.doesRayfireMapExist = function () {
+mp.Object.prototype.doesRayfireMapExist ??= function () {
     let $res = natives.doesRayfireMapObjectExist(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.getRayfireMapAnimPhase = function () {
+mp.Object.prototype.getRayfireMapAnimPhase ??= function () {
     let $res = natives.getRayfireMapObjectAnimPhase(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.attachPortablePickupToPed = function (ped) {
+mp.Object.prototype.attachPortablePickupToPed ??= function (ped) {
     let $res = natives.attachPortablePickupToPed(this.handle, ped);
 };
-mp.Object.prototype.detachPortablePickupFromPed = function () {
+mp.Object.prototype.detachPortablePickupFromPed ??= function () {
     let $res = natives.detachPortablePickupFromPed(this.handle);
 };
-mp.Object.prototype.hidePickup = function (toggle) {
+mp.Object.prototype.hidePickup ??= function (toggle) {
     let $res = natives.hidePortablePickupWhenDetached(this.handle, toggle | 0);
 };
-mp.Object.prototype.doesPickupExist = function () {
+mp.Object.prototype.doesPickupExist ??= function () {
     let $res = natives.doesPickupObjectExist(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isAPortablePickup = function () {
+mp.Object.prototype.isAPortablePickup ??= function () {
     let $res = natives.isObjectAPickup(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isAPickup = function () {
+mp.Object.prototype.isAPickup ??= function () {
     let $res = natives.isObjectAPortablePickup(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.setTeamPickup = function (p1, p2) {
+mp.Object.prototype.setTeamPickup ??= function (p1, p2) {
     let $res = natives.setTeamPickupObject(this.handle, p1, p2 | 0);
 };
-mp.Object.prototype.preventCollectionOfPortablePickup = function (p1, p2) {
+mp.Object.prototype.preventCollectionOfPortablePickup ??= function (p1, p2) {
     let $res = natives.preventCollectionOfPortablePickup(this.handle, p1 | 0, p2 | 0);
 };
-mp.Object.prototype.isPickupWeaponValid = function () {
+mp.Object.prototype.isPickupWeaponValid ??= function () {
     let $res = natives.isPickupWeaponObjectValid(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.getTextureVariation = function () {
+mp.Object.prototype.getTextureVariation ??= function () {
     let $res = natives.getObjectTintIndex(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.setTextureVariation = function (textureVariation) {
+mp.Object.prototype.setTextureVariation ??= function (textureVariation) {
     let $res = natives.setObjectTintIndex(this.handle, textureVariation);
 };
-mp.Object.prototype.setLightColor = function (p1, r, g, b) {
+mp.Object.prototype.setLightColor ??= function (p1, r, g, b) {
     let $res = natives.setPropLightColor(this.handle, p1 | 0, r, g, b);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.setStuntPropSpeedup = function (p1) {
+mp.Object.prototype.setStuntPropSpeedup ??= function (p1) {
     let $res = natives.setObjectSpeedBoostAmount(this.handle, p1);
 };
-mp.Object.prototype.setStuntPropDuration = function (duration) {
+mp.Object.prototype.setStuntPropDuration ??= function (duration) {
     let $res = natives.setObjectSpeedBoostDuration(this.handle, duration);
 };
-mp.Object.prototype.markForDeletion = function () {
+mp.Object.prototype.markForDeletion ??= function () {
     let $res = natives.onlyCleanUpObjectWhenOutOfRange(this.handle);
 };
-mp.Object.prototype.setEnableArenaPropPhysics = function (toggle, p2) {
+mp.Object.prototype.setEnableArenaPropPhysics ??= function (toggle, p2) {
     let $res = natives.setDriveArticulatedJoint(this.handle, toggle | 0, p2);
 };
-mp.Object.prototype.setEnableArenaPropPhysicsOnPed = function (toggle, p2, ped) {
+mp.Object.prototype.setEnableArenaPropPhysicsOnPed ??= function (toggle, p2, ped) {
     let $res = natives.setDriveArticulatedJointWithInflictor(this.handle, toggle | 0, p2, ped);
 };
-mp.Object.prototype.getIsArenaPropPhysicsDisabled = function (p1) {
+mp.Object.prototype.getIsArenaPropPhysicsDisabled ??= function (p1) {
     let $res = natives.getIsArticulatedJointAtMinAngle(this.handle, p1);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
@@ -20685,13 +20685,13 @@ mp.game2.pad.unk._0x25AAA32BDC98F2A3 = function () {
 mp.game2.pad.unk._0x7F4724035FDCA1DD = function (padIndex) {
     let $res = natives.disableInputGroup(padIndex);
 };
-mp.Player.prototype.setPedPathsInArea = function (y1, z1, x2, y2, z2, unknown, p7) {
+mp.Player.prototype.setPedPathsInArea ??= function (y1, z1, x2, y2, z2, unknown, p7) {
     let $res = natives.setPedPathsInArea(this.handle, y1, z1, x2, y2, z2, unknown | 0, p7 | 0);
 };
-mp.Ped.prototype.setPedPathsInArea = function (y1, z1, x2, y2, z2, unknown, p7) {
+mp.Ped.prototype.setPedPathsInArea ??= function (y1, z1, x2, y2, z2, unknown, p7) {
     let $res = natives.setPedPathsInArea(this.handle, y1, z1, x2, y2, z2, unknown | 0, p7 | 0);
 };
-mp.Vehicle.prototype.getVehicleNodeProperties = function (y, z) {
+mp.Vehicle.prototype.getVehicleNodeProperties ??= function (y, z) {
     let $res = natives.getVehicleNodeProperties(this.handle, y, z, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -20700,32 +20700,32 @@ mp.Vehicle.prototype.getVehicleNodeProperties = function (y, z) {
     $resObj.result = $res[0] == 1;
     return $resObj;
 };
-mp.Vehicle.prototype.isVehicleNodeIdValid = function () {
+mp.Vehicle.prototype.isVehicleNodeIdValid ??= function () {
     let $res = natives.isVehicleNodeIdValid(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getVehicleNodePosition = function () {
+mp.Vehicle.prototype.getVehicleNodePosition ??= function () {
     let $res = natives.getVehicleNodePosition(this.handle, undefined);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.outPosition = new mp.Vector3($res[1]);
     return $resObj.outPosition;
 };
-mp.Vehicle.prototype.getVehicleNodeIsGpsAllowed = function () {
+mp.Vehicle.prototype.getVehicleNodeIsGpsAllowed ??= function () {
     let $res = natives.getVehicleNodeIsGpsAllowed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getVehicleNodeIsSwitchedOff = function () {
+mp.Vehicle.prototype.getVehicleNodeIsSwitchedOff ??= function () {
     let $res = natives.getVehicleNodeIsSwitchedOff(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setPedPathsBackToOriginal = function (p1, p2, p3, p4, p5, p6) {
+mp.Player.prototype.setPedPathsBackToOriginal ??= function (p1, p2, p3, p4, p5, p6) {
     let $res = natives.setPedPathsBackToOriginal(this.handle, p1, p2, p3, p4, p5, p6 | 0);
 };
-mp.Ped.prototype.setPedPathsBackToOriginal = function (p1, p2, p3, p4, p5, p6) {
+mp.Ped.prototype.setPedPathsBackToOriginal ??= function (p1, p2, p3, p4, p5, p6) {
     let $res = natives.setPedPathsBackToOriginal(this.handle, p1, p2, p3, p4, p5, p6 | 0);
 };
 if (!mp.game2.pathfind) mp.game2.pathfind = {};
@@ -21045,444 +21045,444 @@ mp.game2.pathfind.unk._0x01708E8DD3FF8C65 = function (p0, p1, p2, p3, p4, p5) {
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.clone = function (isNetwork, bScriptHostPed, copyHeadBlendFlag) {
+mp.Player.prototype.clone ??= function (isNetwork, bScriptHostPed, copyHeadBlendFlag) {
     let $res = natives.clonePed(this.handle, isNetwork | 0, bScriptHostPed | 0, copyHeadBlendFlag | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.clone = function (isNetwork, bScriptHostPed, copyHeadBlendFlag) {
+mp.Ped.prototype.clone ??= function (isNetwork, bScriptHostPed, copyHeadBlendFlag) {
     let $res = natives.clonePed(this.handle, isNetwork | 0, bScriptHostPed | 0, copyHeadBlendFlag | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.cloneEx = function (isNetwork, bScriptHostPed, copyHeadBlendFlag, p4) {
+mp.Player.prototype.cloneEx ??= function (isNetwork, bScriptHostPed, copyHeadBlendFlag, p4) {
     let $res = natives.clonePedAlt(this.handle, isNetwork | 0, bScriptHostPed | 0, copyHeadBlendFlag | 0, p4 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.cloneEx = function (isNetwork, bScriptHostPed, copyHeadBlendFlag, p4) {
+mp.Ped.prototype.cloneEx ??= function (isNetwork, bScriptHostPed, copyHeadBlendFlag, p4) {
     let $res = natives.clonePedAlt(this.handle, isNetwork | 0, bScriptHostPed | 0, copyHeadBlendFlag | 0, p4 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.cloneToTarget = function (targetPed) {
+mp.Player.prototype.cloneToTarget ??= function (targetPed) {
     let $res = natives.clonePedToTarget(this.handle, targetPed);
 };
-mp.Ped.prototype.cloneToTarget = function (targetPed) {
+mp.Ped.prototype.cloneToTarget ??= function (targetPed) {
     let $res = natives.clonePedToTarget(this.handle, targetPed);
 };
-mp.Player.prototype.cloneToTargetEx = function (targetPed, p2) {
+mp.Player.prototype.cloneToTargetEx ??= function (targetPed, p2) {
     let $res = natives.clonePedToTargetAlt(this.handle, targetPed, p2 | 0);
 };
-mp.Ped.prototype.cloneToTargetEx = function (targetPed, p2) {
+mp.Ped.prototype.cloneToTargetEx ??= function (targetPed, p2) {
     let $res = natives.clonePedToTargetAlt(this.handle, targetPed, p2 | 0);
 };
-mp.Player.prototype.isInVehicle = function (vehicle, atGetIn) {
+mp.Player.prototype.isInVehicle ??= function (vehicle, atGetIn) {
     let $res = natives.isPedInVehicle(this.handle, vehicle, atGetIn | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isInVehicle = function (vehicle, atGetIn) {
+mp.Ped.prototype.isInVehicle ??= function (vehicle, atGetIn) {
     let $res = natives.isPedInVehicle(this.handle, vehicle, atGetIn | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isInModel = function (modelHash) {
+mp.Player.prototype.isInModel ??= function (modelHash) {
     let $res = natives.isPedInModel(this.handle, modelHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isInModel = function (modelHash) {
+mp.Ped.prototype.isInModel ??= function (modelHash) {
     let $res = natives.isPedInModel(this.handle, modelHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isInAnyVehicle = function (atGetIn) {
+mp.Player.prototype.isInAnyVehicle ??= function (atGetIn) {
     let $res = natives.isPedInAnyVehicle(this.handle, atGetIn | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isInAnyVehicle = function (atGetIn) {
+mp.Ped.prototype.isInAnyVehicle ??= function (atGetIn) {
     let $res = natives.isPedInAnyVehicle(this.handle, atGetIn | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isInjured = function () {
+mp.Player.prototype.isInjured ??= function () {
     let $res = natives.isPedInjured(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isInjured = function () {
+mp.Ped.prototype.isInjured ??= function () {
     let $res = natives.isPedInjured(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isHurt = function () {
+mp.Player.prototype.isHurt ??= function () {
     let $res = natives.isPedHurt(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isHurt = function () {
+mp.Ped.prototype.isHurt ??= function () {
     let $res = natives.isPedHurt(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isFatallyInjured = function () {
+mp.Player.prototype.isFatallyInjured ??= function () {
     let $res = natives.isPedFatallyInjured(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isFatallyInjured = function () {
+mp.Ped.prototype.isFatallyInjured ??= function () {
     let $res = natives.isPedFatallyInjured(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isDeadOrDying = function (p1) {
+mp.Player.prototype.isDeadOrDying ??= function (p1) {
     let $res = natives.isPedDeadOrDying(this.handle, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isDeadOrDying = function (p1) {
+mp.Ped.prototype.isDeadOrDying ??= function (p1) {
     let $res = natives.isPedDeadOrDying(this.handle, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isConversationDead = function () {
+mp.Player.prototype.isConversationDead ??= function () {
     let $res = natives.isConversationPedDead(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isConversationDead = function () {
+mp.Ped.prototype.isConversationDead ??= function () {
     let $res = natives.isConversationPedDead(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isAimingFromCover = function () {
+mp.Player.prototype.isAimingFromCover ??= function () {
     let $res = natives.isPedAimingFromCover(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isAimingFromCover = function () {
+mp.Ped.prototype.isAimingFromCover ??= function () {
     let $res = natives.isPedAimingFromCover(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isReloading = function () {
+mp.Player.prototype.isReloading ??= function () {
     let $res = natives.isPedReloading(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isReloading = function () {
+mp.Ped.prototype.isReloading ??= function () {
     let $res = natives.isPedReloading(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isAPlayer = function () {
+mp.Player.prototype.isAPlayer ??= function () {
     let $res = natives.isPedAPlayer(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isAPlayer = function () {
+mp.Ped.prototype.isAPlayer ??= function () {
     let $res = natives.isPedAPlayer(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.createInsideVehicle = function (pedType, modelHash, seat, isNetwork, bScriptHostPed) {
+mp.Vehicle.prototype.createInsideVehicle ??= function (pedType, modelHash, seat, isNetwork, bScriptHostPed) {
     let $res = natives.createPedInsideVehicle(this.handle, pedType, modelHash, seat, isNetwork | 0, bScriptHostPed | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setDesiredHeading = function (heading) {
+mp.Player.prototype.setDesiredHeading ??= function (heading) {
     let $res = natives.setPedDesiredHeading(this.handle, heading);
 };
-mp.Ped.prototype.setDesiredHeading = function (heading) {
+mp.Ped.prototype.setDesiredHeading ??= function (heading) {
     let $res = natives.setPedDesiredHeading(this.handle, heading);
 };
-mp.Player.prototype.freezeCameraRotation = function () {
+mp.Player.prototype.freezeCameraRotation ??= function () {
     let $res = natives.forceAllHeadingValuesToAlign(this.handle);
 };
-mp.Ped.prototype.freezeCameraRotation = function () {
+mp.Ped.prototype.freezeCameraRotation ??= function () {
     let $res = natives.forceAllHeadingValuesToAlign(this.handle);
 };
-mp.Player.prototype.isFacingPed = function (otherPed, angle) {
+mp.Player.prototype.isFacingPed ??= function (otherPed, angle) {
     let $res = natives.isPedFacingPed(this.handle, otherPed, angle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isFacingPed = function (otherPed, angle) {
+mp.Ped.prototype.isFacingPed ??= function (otherPed, angle) {
     let $res = natives.isPedFacingPed(this.handle, otherPed, angle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isInMeleeCombat = function () {
+mp.Player.prototype.isInMeleeCombat ??= function () {
     let $res = natives.isPedInMeleeCombat(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isInMeleeCombat = function () {
+mp.Ped.prototype.isInMeleeCombat ??= function () {
     let $res = natives.isPedInMeleeCombat(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isStopped = function () {
+mp.Player.prototype.isStopped ??= function () {
     let $res = natives.isPedStopped(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isStopped = function () {
+mp.Ped.prototype.isStopped ??= function () {
     let $res = natives.isPedStopped(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isShootingInArea = function (x1, y1, z1, x2, y2, z2, p7, p8) {
+mp.Player.prototype.isShootingInArea ??= function (x1, y1, z1, x2, y2, z2, p7, p8) {
     let $res = natives.isPedShootingInArea(this.handle, x1, y1, z1, x2, y2, z2, p7 | 0, p8 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isShootingInArea = function (x1, y1, z1, x2, y2, z2, p7, p8) {
+mp.Ped.prototype.isShootingInArea ??= function (x1, y1, z1, x2, y2, z2, p7, p8) {
     let $res = natives.isPedShootingInArea(this.handle, x1, y1, z1, x2, y2, z2, p7 | 0, p8 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isShooting = function () {
+mp.Player.prototype.isShooting ??= function () {
     let $res = natives.isPedShooting(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isShooting = function () {
+mp.Ped.prototype.isShooting ??= function () {
     let $res = natives.isPedShooting(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setAccuracy = function (accuracy) {
+mp.Player.prototype.setAccuracy ??= function (accuracy) {
     let $res = natives.setPedAccuracy(this.handle, accuracy);
 };
-mp.Ped.prototype.setAccuracy = function (accuracy) {
+mp.Ped.prototype.setAccuracy ??= function (accuracy) {
     let $res = natives.setPedAccuracy(this.handle, accuracy);
 };
-mp.Player.prototype.getAccuracy = function () {
+mp.Player.prototype.getAccuracy ??= function () {
     let $res = natives.getPedAccuracy(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getAccuracy = function () {
+mp.Ped.prototype.getAccuracy ??= function () {
     let $res = natives.getPedAccuracy(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.isModel = function (modelHash) {
+mp.Player.prototype.isModel ??= function (modelHash) {
     let $res = natives.isPedModel(this.handle, modelHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isModel = function (modelHash) {
+mp.Ped.prototype.isModel ??= function (modelHash) {
     let $res = natives.isPedModel(this.handle, modelHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.explodeHead = function (weaponHash) {
+mp.Player.prototype.explodeHead ??= function (weaponHash) {
     let $res = natives.explodePedHead(this.handle, weaponHash);
 };
-mp.Ped.prototype.explodeHead = function (weaponHash) {
+mp.Ped.prototype.explodeHead ??= function (weaponHash) {
     let $res = natives.explodePedHead(this.handle, weaponHash);
 };
-mp.Player.prototype.addArmourTo = function (amount) {
+mp.Player.prototype.addArmourTo ??= function (amount) {
     let $res = natives.addArmourToPed(this.handle, amount);
 };
-mp.Ped.prototype.addArmourTo = function (amount) {
+mp.Ped.prototype.addArmourTo ??= function (amount) {
     let $res = natives.addArmourToPed(this.handle, amount);
 };
-mp.Player.prototype.setArmour = function (amount) {
+mp.Player.prototype.setArmour ??= function (amount) {
     let $res = natives.setPedArmour(this.handle, amount);
 };
-mp.Ped.prototype.setArmour = function (amount) {
+mp.Ped.prototype.setArmour ??= function (amount) {
     let $res = natives.setPedArmour(this.handle, amount);
 };
-mp.Player.prototype.setIntoVehicle = function (vehicle, seatIndex) {
+mp.Player.prototype.setIntoVehicle ??= function (vehicle, seatIndex) {
     let $res = natives.setPedIntoVehicle(this.handle, vehicle, seatIndex);
 };
-mp.Ped.prototype.setIntoVehicle = function (vehicle, seatIndex) {
+mp.Ped.prototype.setIntoVehicle ??= function (vehicle, seatIndex) {
     let $res = natives.setPedIntoVehicle(this.handle, vehicle, seatIndex);
 };
-mp.Player.prototype.setAllowVehiclesOverride = function (toggle) {
+mp.Player.prototype.setAllowVehiclesOverride ??= function (toggle) {
     let $res = natives.setPedAllowVehiclesOverride(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setAllowVehiclesOverride = function (toggle) {
+mp.Ped.prototype.setAllowVehiclesOverride ??= function (toggle) {
     let $res = natives.setPedAllowVehiclesOverride(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.createRandomAsDriver = function (returnHandle) {
+mp.Vehicle.prototype.createRandomAsDriver ??= function (returnHandle) {
     let $res = natives.createRandomPedAsDriver(this.handle, returnHandle | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setMoveAnimsBlendOut = function () {
+mp.Player.prototype.setMoveAnimsBlendOut ??= function () {
     let $res = natives.setPedMoveAnimsBlendOut(this.handle);
 };
-mp.Ped.prototype.setMoveAnimsBlendOut = function () {
+mp.Ped.prototype.setMoveAnimsBlendOut ??= function () {
     let $res = natives.setPedMoveAnimsBlendOut(this.handle);
 };
-mp.Player.prototype.setCanBeDraggedOut = function (toggle) {
+mp.Player.prototype.setCanBeDraggedOut ??= function (toggle) {
     let $res = natives.setPedCanBeDraggedOut(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setCanBeDraggedOut = function (toggle) {
+mp.Ped.prototype.setCanBeDraggedOut ??= function (toggle) {
     let $res = natives.setPedCanBeDraggedOut(this.handle, toggle | 0);
 };
-mp.Player.prototype.isMale = function () {
+mp.Player.prototype.isMale ??= function () {
     let $res = natives.isPedMale(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isMale = function () {
+mp.Ped.prototype.isMale ??= function () {
     let $res = natives.isPedMale(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isHuman = function () {
+mp.Player.prototype.isHuman ??= function () {
     let $res = natives.isPedHuman(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isHuman = function () {
+mp.Ped.prototype.isHuman ??= function () {
     let $res = natives.isPedHuman(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getVehicleIsIn = function (includeLastVehicle) {
+mp.Vehicle.prototype.getVehicleIsIn ??= function (includeLastVehicle) {
     let $res = natives.getVehiclePedIsIn(this.handle, includeLastVehicle | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.resetLastVehicle = function () {
+mp.Player.prototype.resetLastVehicle ??= function () {
     let $res = natives.resetPedLastVehicle(this.handle);
 };
-mp.Ped.prototype.resetLastVehicle = function () {
+mp.Ped.prototype.resetLastVehicle ??= function () {
     let $res = natives.resetPedLastVehicle(this.handle);
 };
-mp.Player.prototype.setDensityMultiplierThisFrame = function () {
+mp.Player.prototype.setDensityMultiplierThisFrame ??= function () {
     let $res = natives.setPedDensityMultiplierThisFrame(this.handle);
 };
-mp.Ped.prototype.setDensityMultiplierThisFrame = function () {
+mp.Ped.prototype.setDensityMultiplierThisFrame ??= function () {
     let $res = natives.setPedDensityMultiplierThisFrame(this.handle);
 };
-mp.Player.prototype.setNonCreationArea = function (y1, z1, x2, y2, z2) {
+mp.Player.prototype.setNonCreationArea ??= function (y1, z1, x2, y2, z2) {
     let $res = natives.setPedNonCreationArea(this.handle, y1, z1, x2, y2, z2);
 };
-mp.Ped.prototype.setNonCreationArea = function (y1, z1, x2, y2, z2) {
+mp.Ped.prototype.setNonCreationArea ??= function (y1, z1, x2, y2, z2) {
     let $res = natives.setPedNonCreationArea(this.handle, y1, z1, x2, y2, z2);
 };
-mp.Player.prototype.isOnMount = function () {
+mp.Player.prototype.isOnMount ??= function () {
     let $res = natives.isPedOnMount(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isOnMount = function () {
+mp.Ped.prototype.isOnMount ??= function () {
     let $res = natives.isPedOnMount(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getMount = function () {
+mp.Player.prototype.getMount ??= function () {
     let $res = natives.getMount(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getMount = function () {
+mp.Ped.prototype.getMount ??= function () {
     let $res = natives.getMount(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.isOnVehicle = function () {
+mp.Player.prototype.isOnVehicle ??= function () {
     let $res = natives.isPedOnVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isOnVehicle = function () {
+mp.Ped.prototype.isOnVehicle ??= function () {
     let $res = natives.isPedOnVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isOnSpecificVehicle = function (vehicle) {
+mp.Player.prototype.isOnSpecificVehicle ??= function (vehicle) {
     let $res = natives.isPedOnSpecificVehicle(this.handle, vehicle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isOnSpecificVehicle = function (vehicle) {
+mp.Ped.prototype.isOnSpecificVehicle ??= function (vehicle) {
     let $res = natives.isPedOnSpecificVehicle(this.handle, vehicle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setMoney = function (amount) {
+mp.Player.prototype.setMoney ??= function (amount) {
     let $res = natives.setPedMoney(this.handle, amount);
 };
-mp.Ped.prototype.setMoney = function (amount) {
+mp.Ped.prototype.setMoney ??= function (amount) {
     let $res = natives.setPedMoney(this.handle, amount);
 };
-mp.Player.prototype.getMoney = function () {
+mp.Player.prototype.getMoney ??= function () {
     let $res = natives.getPedMoney(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getMoney = function () {
+mp.Ped.prototype.getMoney ??= function () {
     let $res = natives.getPedMoney(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setSuffersCriticalHits = function (toggle) {
+mp.Player.prototype.setSuffersCriticalHits ??= function (toggle) {
     let $res = natives.setPedSuffersCriticalHits(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setSuffersCriticalHits = function (toggle) {
+mp.Ped.prototype.setSuffersCriticalHits ??= function (toggle) {
     let $res = natives.setPedSuffersCriticalHits(this.handle, toggle | 0);
 };
-mp.Player.prototype.isSittingInVehicle = function (vehicle) {
+mp.Player.prototype.isSittingInVehicle ??= function (vehicle) {
     let $res = natives.isPedSittingInVehicle(this.handle, vehicle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isSittingInVehicle = function (vehicle) {
+mp.Ped.prototype.isSittingInVehicle ??= function (vehicle) {
     let $res = natives.isPedSittingInVehicle(this.handle, vehicle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isSittingInAnyVehicle = function () {
+mp.Player.prototype.isSittingInAnyVehicle ??= function () {
     let $res = natives.isPedSittingInAnyVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isSittingInAnyVehicle = function () {
+mp.Ped.prototype.isSittingInAnyVehicle ??= function () {
     let $res = natives.isPedSittingInAnyVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isOnFoot = function () {
+mp.Player.prototype.isOnFoot ??= function () {
     let $res = natives.isPedOnFoot(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isOnFoot = function () {
+mp.Ped.prototype.isOnFoot ??= function () {
     let $res = natives.isPedOnFoot(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isOnAnyBike = function () {
+mp.Player.prototype.isOnAnyBike ??= function () {
     let $res = natives.isPedOnAnyBike(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isOnAnyBike = function () {
+mp.Ped.prototype.isOnAnyBike ??= function () {
     let $res = natives.isPedOnAnyBike(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isPlantingBomb = function () {
+mp.Player.prototype.isPlantingBomb ??= function () {
     let $res = natives.isPedPlantingBomb(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isPlantingBomb = function () {
+mp.Ped.prototype.isPlantingBomb ??= function () {
     let $res = natives.isPedPlantingBomb(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getDeadPickupCoords = function (p1, p2) {
+mp.Player.prototype.getDeadPickupCoords ??= function (p1, p2) {
     let $res = natives.getDeadPedPickupCoords(this.handle, p1, p2);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -21491,7 +21491,7 @@ mp.Player.prototype.getDeadPickupCoords = function (p1, p2) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Ped.prototype.getDeadPickupCoords = function (p1, p2) {
+mp.Ped.prototype.getDeadPickupCoords ??= function (p1, p2) {
     let $res = natives.getDeadPedPickupCoords(this.handle, p1, p2);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -21500,1351 +21500,1351 @@ mp.Ped.prototype.getDeadPickupCoords = function (p1, p2) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Player.prototype.isInAnyBoat = function () {
+mp.Player.prototype.isInAnyBoat ??= function () {
     let $res = natives.isPedInAnyBoat(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isInAnyBoat = function () {
+mp.Ped.prototype.isInAnyBoat ??= function () {
     let $res = natives.isPedInAnyBoat(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isInAnySub = function () {
+mp.Player.prototype.isInAnySub ??= function () {
     let $res = natives.isPedInAnySub(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isInAnySub = function () {
+mp.Ped.prototype.isInAnySub ??= function () {
     let $res = natives.isPedInAnySub(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isInAnyHeli = function () {
+mp.Player.prototype.isInAnyHeli ??= function () {
     let $res = natives.isPedInAnyHeli(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isInAnyHeli = function () {
+mp.Ped.prototype.isInAnyHeli ??= function () {
     let $res = natives.isPedInAnyHeli(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isInAnyPlane = function () {
+mp.Player.prototype.isInAnyPlane ??= function () {
     let $res = natives.isPedInAnyPlane(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isInAnyPlane = function () {
+mp.Ped.prototype.isInAnyPlane ??= function () {
     let $res = natives.isPedInAnyPlane(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isInFlyingVehicle = function () {
+mp.Player.prototype.isInFlyingVehicle ??= function () {
     let $res = natives.isPedInFlyingVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isInFlyingVehicle = function () {
+mp.Ped.prototype.isInFlyingVehicle ??= function () {
     let $res = natives.isPedInFlyingVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setDiesInWater = function (toggle) {
+mp.Player.prototype.setDiesInWater ??= function (toggle) {
     let $res = natives.setPedDiesInWater(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setDiesInWater = function (toggle) {
+mp.Ped.prototype.setDiesInWater ??= function (toggle) {
     let $res = natives.setPedDiesInWater(this.handle, toggle | 0);
 };
-mp.Player.prototype.setDiesInSinkingVehicle = function (toggle) {
+mp.Player.prototype.setDiesInSinkingVehicle ??= function (toggle) {
     let $res = natives.setPedDiesInSinkingVehicle(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setDiesInSinkingVehicle = function (toggle) {
+mp.Ped.prototype.setDiesInSinkingVehicle ??= function (toggle) {
     let $res = natives.setPedDiesInSinkingVehicle(this.handle, toggle | 0);
 };
-mp.Player.prototype.getArmour = function () {
+mp.Player.prototype.getArmour ??= function () {
     let $res = natives.getPedArmour(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getArmour = function () {
+mp.Ped.prototype.getArmour ??= function () {
     let $res = natives.getPedArmour(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setStayInVehicleWhenJacked = function (toggle) {
+mp.Player.prototype.setStayInVehicleWhenJacked ??= function (toggle) {
     let $res = natives.setPedStayInVehicleWhenJacked(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setStayInVehicleWhenJacked = function (toggle) {
+mp.Ped.prototype.setStayInVehicleWhenJacked ??= function (toggle) {
     let $res = natives.setPedStayInVehicleWhenJacked(this.handle, toggle | 0);
 };
-mp.Player.prototype.setCanBeShotInVehicle = function (toggle) {
+mp.Player.prototype.setCanBeShotInVehicle ??= function (toggle) {
     let $res = natives.setPedCanBeShotInVehicle(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setCanBeShotInVehicle = function (toggle) {
+mp.Ped.prototype.setCanBeShotInVehicle ??= function (toggle) {
     let $res = natives.setPedCanBeShotInVehicle(this.handle, toggle | 0);
 };
-mp.Player.prototype.getLastDamageBone = function () {
+mp.Player.prototype.getLastDamageBone ??= function () {
     let $res = natives.getPedLastDamageBone(this.handle, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.outBone = $res[1];
     return $res[0] == 1 ? $resObj.outBone : undefined;
 };
-mp.Ped.prototype.getLastDamageBone = function () {
+mp.Ped.prototype.getLastDamageBone ??= function () {
     let $res = natives.getPedLastDamageBone(this.handle, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.outBone = $res[1];
     return $res[0] == 1 ? $resObj.outBone : undefined;
 };
-mp.Player.prototype.clearLastDamageBone = function () {
+mp.Player.prototype.clearLastDamageBone ??= function () {
     let $res = natives.clearPedLastDamageBone(this.handle);
 };
-mp.Ped.prototype.clearLastDamageBone = function () {
+mp.Ped.prototype.clearLastDamageBone ??= function () {
     let $res = natives.clearPedLastDamageBone(this.handle);
 };
-mp.Player.prototype.setCanBeTargetted = function (toggle) {
+mp.Player.prototype.setCanBeTargetted ??= function (toggle) {
     let $res = natives.setPedCanBeTargetted(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setCanBeTargetted = function (toggle) {
+mp.Ped.prototype.setCanBeTargetted ??= function (toggle) {
     let $res = natives.setPedCanBeTargetted(this.handle, toggle | 0);
 };
-mp.Player.prototype.setCanBeTargettedByTeam = function (team, toggle) {
+mp.Player.prototype.setCanBeTargettedByTeam ??= function (team, toggle) {
     let $res = natives.setPedCanBeTargettedByTeam(this.handle, team, toggle | 0);
 };
-mp.Ped.prototype.setCanBeTargettedByTeam = function (team, toggle) {
+mp.Ped.prototype.setCanBeTargettedByTeam ??= function (team, toggle) {
     let $res = natives.setPedCanBeTargettedByTeam(this.handle, team, toggle | 0);
 };
-mp.Player.prototype.setCanBeTargettedByPlayer = function (player, toggle) {
+mp.Player.prototype.setCanBeTargettedByPlayer ??= function (player, toggle) {
     let $res = natives.setPedCanBeTargettedByPlayer(this.handle, player, toggle | 0);
 };
-mp.Ped.prototype.setCanBeTargettedByPlayer = function (player, toggle) {
+mp.Ped.prototype.setCanBeTargettedByPlayer ??= function (player, toggle) {
     let $res = natives.setPedCanBeTargettedByPlayer(this.handle, player, toggle | 0);
 };
-mp.Player.prototype.isInAnyPoliceVehicle = function () {
+mp.Player.prototype.isInAnyPoliceVehicle ??= function () {
     let $res = natives.isPedInAnyPoliceVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isInAnyPoliceVehicle = function () {
+mp.Ped.prototype.isInAnyPoliceVehicle ??= function () {
     let $res = natives.isPedInAnyPoliceVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.forceToOpenParachute = function () {
+mp.Player.prototype.forceToOpenParachute ??= function () {
     let $res = natives.forcePedToOpenParachute(this.handle);
 };
-mp.Ped.prototype.forceToOpenParachute = function () {
+mp.Ped.prototype.forceToOpenParachute ??= function () {
     let $res = natives.forcePedToOpenParachute(this.handle);
 };
-mp.Player.prototype.isInParachuteFreeFall = function () {
+mp.Player.prototype.isInParachuteFreeFall ??= function () {
     let $res = natives.isPedInParachuteFreeFall(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isInParachuteFreeFall = function () {
+mp.Ped.prototype.isInParachuteFreeFall ??= function () {
     let $res = natives.isPedInParachuteFreeFall(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isFalling = function () {
+mp.Player.prototype.isFalling ??= function () {
     let $res = natives.isPedFalling(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isFalling = function () {
+mp.Ped.prototype.isFalling ??= function () {
     let $res = natives.isPedFalling(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isJumping = function () {
+mp.Player.prototype.isJumping ??= function () {
     let $res = natives.isPedJumping(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isJumping = function () {
+mp.Ped.prototype.isJumping ??= function () {
     let $res = natives.isPedJumping(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isClimbing = function () {
+mp.Player.prototype.isClimbing ??= function () {
     let $res = natives.isPedClimbing(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isClimbing = function () {
+mp.Ped.prototype.isClimbing ??= function () {
     let $res = natives.isPedClimbing(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isVaulting = function () {
+mp.Player.prototype.isVaulting ??= function () {
     let $res = natives.isPedVaulting(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isVaulting = function () {
+mp.Ped.prototype.isVaulting ??= function () {
     let $res = natives.isPedVaulting(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isDiving = function () {
+mp.Player.prototype.isDiving ??= function () {
     let $res = natives.isPedDiving(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isDiving = function () {
+mp.Ped.prototype.isDiving ??= function () {
     let $res = natives.isPedDiving(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isJumpingOutOfVehicle = function () {
+mp.Player.prototype.isJumpingOutOfVehicle ??= function () {
     let $res = natives.isPedJumpingOutOfVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isJumpingOutOfVehicle = function () {
+mp.Ped.prototype.isJumpingOutOfVehicle ??= function () {
     let $res = natives.isPedJumpingOutOfVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isOpeningADoor = function () {
+mp.Player.prototype.isOpeningADoor ??= function () {
     let $res = natives.isPedOpeningDoor(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isOpeningADoor = function () {
+mp.Ped.prototype.isOpeningADoor ??= function () {
     let $res = natives.isPedOpeningDoor(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getParachuteState = function () {
+mp.Player.prototype.getParachuteState ??= function () {
     let $res = natives.getPedParachuteState(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getParachuteState = function () {
+mp.Ped.prototype.getParachuteState ??= function () {
     let $res = natives.getPedParachuteState(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getParachuteLandingType = function () {
+mp.Player.prototype.getParachuteLandingType ??= function () {
     let $res = natives.getPedParachuteLandingType(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getParachuteLandingType = function () {
+mp.Ped.prototype.getParachuteLandingType ??= function () {
     let $res = natives.getPedParachuteLandingType(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setParachuteTintIndex = function (tintIndex) {
+mp.Player.prototype.setParachuteTintIndex ??= function (tintIndex) {
     let $res = natives.setPedParachuteTintIndex(this.handle, tintIndex);
 };
-mp.Ped.prototype.setParachuteTintIndex = function (tintIndex) {
+mp.Ped.prototype.setParachuteTintIndex ??= function (tintIndex) {
     let $res = natives.setPedParachuteTintIndex(this.handle, tintIndex);
 };
-mp.Player.prototype.getParachuteTintIndex = function () {
+mp.Player.prototype.getParachuteTintIndex ??= function () {
     let $res = natives.getPedParachuteTintIndex(this.handle, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.outTintIndex = $res[1];
     return $resObj.outTintIndex;
 };
-mp.Ped.prototype.getParachuteTintIndex = function () {
+mp.Ped.prototype.getParachuteTintIndex ??= function () {
     let $res = natives.getPedParachuteTintIndex(this.handle, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.outTintIndex = $res[1];
     return $resObj.outTintIndex;
 };
-mp.Player.prototype.setReserveParachuteTintIndex = function (p1) {
+mp.Player.prototype.setReserveParachuteTintIndex ??= function (p1) {
     let $res = natives.setPedReserveParachuteTintIndex(this.handle, p1);
 };
-mp.Ped.prototype.setReserveParachuteTintIndex = function (p1) {
+mp.Ped.prototype.setReserveParachuteTintIndex ??= function (p1) {
     let $res = natives.setPedReserveParachuteTintIndex(this.handle, p1);
 };
-mp.Player.prototype.createParachuteBagObject = function (p1, p2) {
+mp.Player.prototype.createParachuteBagObject ??= function (p1, p2) {
     let $res = natives.createParachuteBagObject(this.handle, p1 | 0, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.createParachuteBagObject = function (p1, p2) {
+mp.Ped.prototype.createParachuteBagObject ??= function (p1, p2) {
     let $res = natives.createParachuteBagObject(this.handle, p1 | 0, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setDucking = function (toggle) {
+mp.Player.prototype.setDucking ??= function (toggle) {
     let $res = natives.setPedDucking(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setDucking = function (toggle) {
+mp.Ped.prototype.setDucking ??= function (toggle) {
     let $res = natives.setPedDucking(this.handle, toggle | 0);
 };
-mp.Player.prototype.isDucking = function () {
+mp.Player.prototype.isDucking ??= function () {
     let $res = natives.isPedDucking(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isDucking = function () {
+mp.Ped.prototype.isDucking ??= function () {
     let $res = natives.isPedDucking(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isInAnyTaxi = function () {
+mp.Player.prototype.isInAnyTaxi ??= function () {
     let $res = natives.isPedInAnyTaxi(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isInAnyTaxi = function () {
+mp.Ped.prototype.isInAnyTaxi ??= function () {
     let $res = natives.isPedInAnyTaxi(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setIdRange = function (value) {
+mp.Player.prototype.setIdRange ??= function (value) {
     let $res = natives.setPedIdRange(this.handle, value);
 };
-mp.Ped.prototype.setIdRange = function (value) {
+mp.Ped.prototype.setIdRange ??= function (value) {
     let $res = natives.setPedIdRange(this.handle, value);
 };
-mp.Player.prototype.setHighlyPerceptive = function (toggle) {
+mp.Player.prototype.setHighlyPerceptive ??= function (toggle) {
     let $res = natives.setPedHighlyPerceptive(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setHighlyPerceptive = function (toggle) {
+mp.Ped.prototype.setHighlyPerceptive ??= function (toggle) {
     let $res = natives.setPedHighlyPerceptive(this.handle, toggle | 0);
 };
-mp.Player.prototype.setSeeingRange = function (value) {
+mp.Player.prototype.setSeeingRange ??= function (value) {
     let $res = natives.setPedSeeingRange(this.handle, value);
 };
-mp.Ped.prototype.setSeeingRange = function (value) {
+mp.Ped.prototype.setSeeingRange ??= function (value) {
     let $res = natives.setPedSeeingRange(this.handle, value);
 };
-mp.Player.prototype.setHearingRange = function (value) {
+mp.Player.prototype.setHearingRange ??= function (value) {
     let $res = natives.setPedHearingRange(this.handle, value);
 };
-mp.Ped.prototype.setHearingRange = function (value) {
+mp.Ped.prototype.setHearingRange ??= function (value) {
     let $res = natives.setPedHearingRange(this.handle, value);
 };
-mp.Player.prototype.setVisualFieldMinAngle = function (value) {
+mp.Player.prototype.setVisualFieldMinAngle ??= function (value) {
     let $res = natives.setPedVisualFieldMinAngle(this.handle, value);
 };
-mp.Ped.prototype.setVisualFieldMinAngle = function (value) {
+mp.Ped.prototype.setVisualFieldMinAngle ??= function (value) {
     let $res = natives.setPedVisualFieldMinAngle(this.handle, value);
 };
-mp.Player.prototype.setVisualFieldMaxAngle = function (value) {
+mp.Player.prototype.setVisualFieldMaxAngle ??= function (value) {
     let $res = natives.setPedVisualFieldMaxAngle(this.handle, value);
 };
-mp.Ped.prototype.setVisualFieldMaxAngle = function (value) {
+mp.Ped.prototype.setVisualFieldMaxAngle ??= function (value) {
     let $res = natives.setPedVisualFieldMaxAngle(this.handle, value);
 };
-mp.Player.prototype.setVisualFieldMinElevationAngle = function (angle) {
+mp.Player.prototype.setVisualFieldMinElevationAngle ??= function (angle) {
     let $res = natives.setPedVisualFieldMinElevationAngle(this.handle, angle);
 };
-mp.Ped.prototype.setVisualFieldMinElevationAngle = function (angle) {
+mp.Ped.prototype.setVisualFieldMinElevationAngle ??= function (angle) {
     let $res = natives.setPedVisualFieldMinElevationAngle(this.handle, angle);
 };
-mp.Player.prototype.setVisualFieldMaxElevationAngle = function (angle) {
+mp.Player.prototype.setVisualFieldMaxElevationAngle ??= function (angle) {
     let $res = natives.setPedVisualFieldMaxElevationAngle(this.handle, angle);
 };
-mp.Ped.prototype.setVisualFieldMaxElevationAngle = function (angle) {
+mp.Ped.prototype.setVisualFieldMaxElevationAngle ??= function (angle) {
     let $res = natives.setPedVisualFieldMaxElevationAngle(this.handle, angle);
 };
-mp.Player.prototype.setVisualFieldPeripheralRange = function (range) {
+mp.Player.prototype.setVisualFieldPeripheralRange ??= function (range) {
     let $res = natives.setPedVisualFieldPeripheralRange(this.handle, range);
 };
-mp.Ped.prototype.setVisualFieldPeripheralRange = function (range) {
+mp.Ped.prototype.setVisualFieldPeripheralRange ??= function (range) {
     let $res = natives.setPedVisualFieldPeripheralRange(this.handle, range);
 };
-mp.Player.prototype.setVisualFieldCenterAngle = function (angle) {
+mp.Player.prototype.setVisualFieldCenterAngle ??= function (angle) {
     let $res = natives.setPedVisualFieldCenterAngle(this.handle, angle);
 };
-mp.Ped.prototype.setVisualFieldCenterAngle = function (angle) {
+mp.Ped.prototype.setVisualFieldCenterAngle ??= function (angle) {
     let $res = natives.setPedVisualFieldCenterAngle(this.handle, angle);
 };
-mp.Player.prototype.getVisualFieldCenterAngle = function () {
+mp.Player.prototype.getVisualFieldCenterAngle ??= function () {
     let $res = natives.getPedVisualFieldCenterAngle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getVisualFieldCenterAngle = function () {
+mp.Ped.prototype.getVisualFieldCenterAngle ??= function () {
     let $res = natives.getPedVisualFieldCenterAngle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setStealthMovement = function (p1, action) {
+mp.Player.prototype.setStealthMovement ??= function (p1, action) {
     let $res = natives.setPedStealthMovement(this.handle, p1 | 0, action);
 };
-mp.Ped.prototype.setStealthMovement = function (p1, action) {
+mp.Ped.prototype.setStealthMovement ??= function (p1, action) {
     let $res = natives.setPedStealthMovement(this.handle, p1 | 0, action);
 };
-mp.Player.prototype.getStealthMovement = function () {
+mp.Player.prototype.getStealthMovement ??= function () {
     let $res = natives.getPedStealthMovement(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.getStealthMovement = function () {
+mp.Ped.prototype.getStealthMovement ??= function () {
     let $res = natives.getPedStealthMovement(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setAsGroupLeader = function (groupId) {
+mp.Player.prototype.setAsGroupLeader ??= function (groupId) {
     let $res = natives.setPedAsGroupLeader(this.handle, groupId);
 };
-mp.Ped.prototype.setAsGroupLeader = function (groupId) {
+mp.Ped.prototype.setAsGroupLeader ??= function (groupId) {
     let $res = natives.setPedAsGroupLeader(this.handle, groupId);
 };
-mp.Player.prototype.setAsGroupMember = function (groupId) {
+mp.Player.prototype.setAsGroupMember ??= function (groupId) {
     let $res = natives.setPedAsGroupMember(this.handle, groupId);
 };
-mp.Ped.prototype.setAsGroupMember = function (groupId) {
+mp.Ped.prototype.setAsGroupMember ??= function (groupId) {
     let $res = natives.setPedAsGroupMember(this.handle, groupId);
 };
-mp.Player.prototype.setCanTeleportToGroupLeader = function (groupHandle, toggle) {
+mp.Player.prototype.setCanTeleportToGroupLeader ??= function (groupHandle, toggle) {
     let $res = natives.setPedCanTeleportToGroupLeader(this.handle, groupHandle, toggle | 0);
 };
-mp.Ped.prototype.setCanTeleportToGroupLeader = function (groupHandle, toggle) {
+mp.Ped.prototype.setCanTeleportToGroupLeader ??= function (groupHandle, toggle) {
     let $res = natives.setPedCanTeleportToGroupLeader(this.handle, groupHandle, toggle | 0);
 };
-mp.Player.prototype.removeFromGroup = function () {
+mp.Player.prototype.removeFromGroup ??= function () {
     let $res = natives.removePedFromGroup(this.handle);
 };
-mp.Ped.prototype.removeFromGroup = function () {
+mp.Ped.prototype.removeFromGroup ??= function () {
     let $res = natives.removePedFromGroup(this.handle);
 };
-mp.Player.prototype.isGroupMember = function (groupId) {
+mp.Player.prototype.isGroupMember ??= function (groupId) {
     let $res = natives.isPedGroupMember(this.handle, groupId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isGroupMember = function (groupId) {
+mp.Ped.prototype.isGroupMember ??= function (groupId) {
     let $res = natives.isPedGroupMember(this.handle, groupId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isHangingOnToVehicle = function () {
+mp.Player.prototype.isHangingOnToVehicle ??= function () {
     let $res = natives.isPedHangingOnToVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isHangingOnToVehicle = function () {
+mp.Ped.prototype.isHangingOnToVehicle ??= function () {
     let $res = natives.isPedHangingOnToVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setMinGroundTimeForStungun = function (ms) {
+mp.Player.prototype.setMinGroundTimeForStungun ??= function (ms) {
     let $res = natives.setPedMinGroundTimeForStungun(this.handle, ms);
 };
-mp.Ped.prototype.setMinGroundTimeForStungun = function (ms) {
+mp.Ped.prototype.setMinGroundTimeForStungun ??= function (ms) {
     let $res = natives.setPedMinGroundTimeForStungun(this.handle, ms);
 };
-mp.Player.prototype.isProne = function () {
+mp.Player.prototype.isProne ??= function () {
     let $res = natives.isPedProne(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isProne = function () {
+mp.Ped.prototype.isProne ??= function () {
     let $res = natives.isPedProne(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isInCombat = function (target) {
+mp.Player.prototype.isInCombat ??= function (target) {
     let $res = natives.isPedInCombat(this.handle, target);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isInCombat = function (target) {
+mp.Ped.prototype.isInCombat ??= function (target) {
     let $res = natives.isPedInCombat(this.handle, target);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getTaskCombatTarget = function (p1) {
+mp.Player.prototype.getTaskCombatTarget ??= function (p1) {
     let $res = natives.getPedTargetFromCombatPed(this.handle, p1);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getTaskCombatTarget = function (p1) {
+mp.Ped.prototype.getTaskCombatTarget ??= function (p1) {
     let $res = natives.getPedTargetFromCombatPed(this.handle, p1);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.canInCombatSeeTarget = function (target) {
+mp.Player.prototype.canInCombatSeeTarget ??= function (target) {
     let $res = natives.canPedInCombatSeeTarget(this.handle, target);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.canInCombatSeeTarget = function (target) {
+mp.Ped.prototype.canInCombatSeeTarget ??= function (target) {
     let $res = natives.canPedInCombatSeeTarget(this.handle, target);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isDoingDriveby = function () {
+mp.Player.prototype.isDoingDriveby ??= function () {
     let $res = natives.isPedDoingDriveby(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isDoingDriveby = function () {
+mp.Ped.prototype.isDoingDriveby ??= function () {
     let $res = natives.isPedDoingDriveby(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isJacking = function () {
+mp.Player.prototype.isJacking ??= function () {
     let $res = natives.isPedJacking(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isJacking = function () {
+mp.Ped.prototype.isJacking ??= function () {
     let $res = natives.isPedJacking(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isBeingJacked = function () {
+mp.Player.prototype.isBeingJacked ??= function () {
     let $res = natives.isPedBeingJacked(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isBeingJacked = function () {
+mp.Ped.prototype.isBeingJacked ??= function () {
     let $res = natives.isPedBeingJacked(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isBeingStunned = function (p1) {
+mp.Player.prototype.isBeingStunned ??= function (p1) {
     let $res = natives.isPedBeingStunned(this.handle, p1);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isBeingStunned = function (p1) {
+mp.Ped.prototype.isBeingStunned ??= function (p1) {
     let $res = natives.isPedBeingStunned(this.handle, p1);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getPedsJacker = function () {
+mp.Player.prototype.getPedsJacker ??= function () {
     let $res = natives.getPedsJacker(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getPedsJacker = function () {
+mp.Ped.prototype.getPedsJacker ??= function () {
     let $res = natives.getPedsJacker(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getJackTarget = function () {
+mp.Player.prototype.getJackTarget ??= function () {
     let $res = natives.getJackTarget(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getJackTarget = function () {
+mp.Ped.prototype.getJackTarget ??= function () {
     let $res = natives.getJackTarget(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.isFleeing = function () {
+mp.Player.prototype.isFleeing ??= function () {
     let $res = natives.isPedFleeing(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isFleeing = function () {
+mp.Ped.prototype.isFleeing ??= function () {
     let $res = natives.isPedFleeing(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isInCover = function (exceptUseWeapon) {
+mp.Player.prototype.isInCover ??= function (exceptUseWeapon) {
     let $res = natives.isPedInCover(this.handle, exceptUseWeapon | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isInCover = function (exceptUseWeapon) {
+mp.Ped.prototype.isInCover ??= function (exceptUseWeapon) {
     let $res = natives.isPedInCover(this.handle, exceptUseWeapon | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isInCoverFacingLeft = function () {
+mp.Player.prototype.isInCoverFacingLeft ??= function () {
     let $res = natives.isPedInCoverFacingLeft(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isInCoverFacingLeft = function () {
+mp.Ped.prototype.isInCoverFacingLeft ??= function () {
     let $res = natives.isPedInCoverFacingLeft(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isInHighCover = function () {
+mp.Player.prototype.isInHighCover ??= function () {
     let $res = natives.isPedInHighCover(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isInHighCover = function () {
+mp.Ped.prototype.isInHighCover ??= function () {
     let $res = natives.isPedInHighCover(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isGoingIntoCover = function () {
+mp.Player.prototype.isGoingIntoCover ??= function () {
     let $res = natives.isPedGoingIntoCover(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isGoingIntoCover = function () {
+mp.Ped.prototype.isGoingIntoCover ??= function () {
     let $res = natives.isPedGoingIntoCover(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setPinnedDown = function (pinned, i) {
+mp.Player.prototype.setPinnedDown ??= function (pinned, i) {
     let $res = natives.setPedPinnedDown(this.handle, pinned | 0, i);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.setPinnedDown = function (pinned, i) {
+mp.Ped.prototype.setPinnedDown ??= function (pinned, i) {
     let $res = natives.setPedPinnedDown(this.handle, pinned | 0, i);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getSeatIsTryingToEnter = function () {
+mp.Player.prototype.getSeatIsTryingToEnter ??= function () {
     let $res = natives.getSeatPedIsTryingToEnter(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getSeatIsTryingToEnter = function () {
+mp.Ped.prototype.getSeatIsTryingToEnter ??= function () {
     let $res = natives.getSeatPedIsTryingToEnter(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getVehicleIsTryingToEnter = function () {
+mp.Vehicle.prototype.getVehicleIsTryingToEnter ??= function () {
     let $res = natives.getVehiclePedIsTryingToEnter(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getSourceOfDeath = function () {
+mp.Player.prototype.getSourceOfDeath ??= function () {
     let $res = natives.getPedSourceOfDeath(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getSourceOfDeath = function () {
+mp.Ped.prototype.getSourceOfDeath ??= function () {
     let $res = natives.getPedSourceOfDeath(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getCauseOfDeath = function () {
+mp.Player.prototype.getCauseOfDeath ??= function () {
     let $res = natives.getPedCauseOfDeath(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getCauseOfDeath = function () {
+mp.Ped.prototype.getCauseOfDeath ??= function () {
     let $res = natives.getPedCauseOfDeath(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getTimeOfDeath = function () {
+mp.Player.prototype.getTimeOfDeath ??= function () {
     let $res = natives.getPedTimeOfDeath(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getTimeOfDeath = function () {
+mp.Ped.prototype.getTimeOfDeath ??= function () {
     let $res = natives.getPedTimeOfDeath(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setRelationshipGroupDefaultHash = function (hash) {
+mp.Player.prototype.setRelationshipGroupDefaultHash ??= function (hash) {
     let $res = natives.setPedRelationshipGroupDefaultHash(this.handle, hash);
 };
-mp.Ped.prototype.setRelationshipGroupDefaultHash = function (hash) {
+mp.Ped.prototype.setRelationshipGroupDefaultHash ??= function (hash) {
     let $res = natives.setPedRelationshipGroupDefaultHash(this.handle, hash);
 };
-mp.Player.prototype.setRelationshipGroupHash = function (hash) {
+mp.Player.prototype.setRelationshipGroupHash ??= function (hash) {
     let $res = natives.setPedRelationshipGroupHash(this.handle, hash);
 };
-mp.Ped.prototype.setRelationshipGroupHash = function (hash) {
+mp.Ped.prototype.setRelationshipGroupHash ??= function (hash) {
     let $res = natives.setPedRelationshipGroupHash(this.handle, hash);
 };
-mp.Player.prototype.getRelationshipBetweenS = function (ped2) {
+mp.Player.prototype.getRelationshipBetweenS ??= function (ped2) {
     let $res = natives.getRelationshipBetweenPeds(this.handle, ped2);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getRelationshipBetweenS = function (ped2) {
+mp.Ped.prototype.getRelationshipBetweenS ??= function (ped2) {
     let $res = natives.getRelationshipBetweenPeds(this.handle, ped2);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getRelationshipGroupDefaultHash = function () {
+mp.Player.prototype.getRelationshipGroupDefaultHash ??= function () {
     let $res = natives.getPedRelationshipGroupDefaultHash(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getRelationshipGroupDefaultHash = function () {
+mp.Ped.prototype.getRelationshipGroupDefaultHash ??= function () {
     let $res = natives.getPedRelationshipGroupDefaultHash(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getRelationshipGroupHash = function () {
+mp.Player.prototype.getRelationshipGroupHash ??= function () {
     let $res = natives.getPedRelationshipGroupHash(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getRelationshipGroupHash = function () {
+mp.Ped.prototype.getRelationshipGroupHash ??= function () {
     let $res = natives.getPedRelationshipGroupHash(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setCanBeTargetedWithoutLos = function (toggle) {
+mp.Player.prototype.setCanBeTargetedWithoutLos ??= function (toggle) {
     let $res = natives.setPedCanBeTargetedWithoutLos(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setCanBeTargetedWithoutLos = function (toggle) {
+mp.Ped.prototype.setCanBeTargetedWithoutLos ??= function (toggle) {
     let $res = natives.setPedCanBeTargetedWithoutLos(this.handle, toggle | 0);
 };
-mp.Player.prototype.setToInformRespectedFriends = function (radius, maxFriends) {
+mp.Player.prototype.setToInformRespectedFriends ??= function (radius, maxFriends) {
     let $res = natives.setPedToInformRespectedFriends(this.handle, radius, maxFriends);
 };
-mp.Ped.prototype.setToInformRespectedFriends = function (radius, maxFriends) {
+mp.Ped.prototype.setToInformRespectedFriends ??= function (radius, maxFriends) {
     let $res = natives.setPedToInformRespectedFriends(this.handle, radius, maxFriends);
 };
-mp.Player.prototype.isRespondingToEvent = function (event) {
+mp.Player.prototype.isRespondingToEvent ??= function (event) {
     let $res = natives.isPedRespondingToEvent(this.handle, event);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isRespondingToEvent = function (event) {
+mp.Ped.prototype.isRespondingToEvent ??= function (event) {
     let $res = natives.isPedRespondingToEvent(this.handle, event);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getEventData = function (eventType) {
+mp.Player.prototype.getEventData ??= function (eventType) {
     let $res = natives.getPosFromFiredEvent(this.handle, eventType, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.outData = $res[0];
     return $res[0] == 1 ? $resObj.outData : undefined;
 };
-mp.Ped.prototype.getEventData = function (eventType) {
+mp.Ped.prototype.getEventData ??= function (eventType) {
     let $res = natives.getPosFromFiredEvent(this.handle, eventType, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.outData = $res[0];
     return $res[0] == 1 ? $resObj.outData : undefined;
 };
-mp.Player.prototype.setFiringPattern = function (patternHash) {
+mp.Player.prototype.setFiringPattern ??= function (patternHash) {
     let $res = natives.setPedFiringPattern(this.handle, patternHash);
 };
-mp.Ped.prototype.setFiringPattern = function (patternHash) {
+mp.Ped.prototype.setFiringPattern ??= function (patternHash) {
     let $res = natives.setPedFiringPattern(this.handle, patternHash);
 };
-mp.Player.prototype.setShootRate = function (shootRate) {
+mp.Player.prototype.setShootRate ??= function (shootRate) {
     let $res = natives.setPedShootRate(this.handle, shootRate);
 };
-mp.Ped.prototype.setShootRate = function (shootRate) {
+mp.Ped.prototype.setShootRate ??= function (shootRate) {
     let $res = natives.setPedShootRate(this.handle, shootRate);
 };
-mp.Player.prototype.setCombatFloat = function (combatType, p2) {
+mp.Player.prototype.setCombatFloat ??= function (combatType, p2) {
     let $res = natives.setCombatFloat(this.handle, combatType, p2);
 };
-mp.Ped.prototype.setCombatFloat = function (combatType, p2) {
+mp.Ped.prototype.setCombatFloat ??= function (combatType, p2) {
     let $res = natives.setCombatFloat(this.handle, combatType, p2);
 };
-mp.Player.prototype.getCombatFloat = function (p1) {
+mp.Player.prototype.getCombatFloat ??= function (p1) {
     let $res = natives.getCombatFloat(this.handle, p1);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getCombatFloat = function (p1) {
+mp.Ped.prototype.getCombatFloat ??= function (p1) {
     let $res = natives.getCombatFloat(this.handle, p1);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getGroupIndex = function () {
+mp.Player.prototype.getGroupIndex ??= function () {
     let $res = natives.getPedGroupIndex(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getGroupIndex = function () {
+mp.Ped.prototype.getGroupIndex ??= function () {
     let $res = natives.getPedGroupIndex(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.isInGroup = function () {
+mp.Player.prototype.isInGroup ??= function () {
     let $res = natives.isPedInGroup(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isInGroup = function () {
+mp.Ped.prototype.isInGroup ??= function () {
     let $res = natives.isPedInGroup(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getPlayerIsFollowing = function () {
+mp.Player.prototype.getPlayerIsFollowing ??= function () {
     let $res = natives.getPlayerPedIsFollowing(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getPlayerIsFollowing = function () {
+mp.Ped.prototype.getPlayerIsFollowing ??= function () {
     let $res = natives.getPlayerPedIsFollowing(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getVehicleIsUsing = function () {
+mp.Vehicle.prototype.getVehicleIsUsing ??= function () {
     let $res = natives.getVehiclePedIsUsing(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getVehicleIsEntering = function () {
+mp.Vehicle.prototype.getVehicleIsEntering ??= function () {
     let $res = natives.getVehiclePedIsEntering(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setGravity = function (toggle) {
+mp.Player.prototype.setGravity ??= function (toggle) {
     let $res = natives.setPedGravity(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setGravity = function (toggle) {
+mp.Ped.prototype.setGravity ??= function (toggle) {
     let $res = natives.setPedGravity(this.handle, toggle | 0);
 };
-mp.Player.prototype.applyDamageTo = function (damageAmount, p2, p3) {
+mp.Player.prototype.applyDamageTo ??= function (damageAmount, p2, p3) {
     let $res = natives.applyDamageToPed(this.handle, damageAmount, p2 | 0, p3 | 0);
 };
-mp.Ped.prototype.applyDamageTo = function (damageAmount, p2, p3) {
+mp.Ped.prototype.applyDamageTo ??= function (damageAmount, p2, p3) {
     let $res = natives.applyDamageToPed(this.handle, damageAmount, p2 | 0, p3 | 0);
 };
-mp.Player.prototype.getTimeOfLastWeaponDamage = function (weaponHash) {
+mp.Player.prototype.getTimeOfLastWeaponDamage ??= function (weaponHash) {
     let $res = natives.getTimePedDamagedByWeapon(this.handle, weaponHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getTimeOfLastWeaponDamage = function (weaponHash) {
+mp.Ped.prototype.getTimeOfLastWeaponDamage ??= function (weaponHash) {
     let $res = natives.getTimePedDamagedByWeapon(this.handle, weaponHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setAllowedToDuck = function (toggle) {
+mp.Player.prototype.setAllowedToDuck ??= function (toggle) {
     let $res = natives.setPedAllowedToDuck(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setAllowedToDuck = function (toggle) {
+mp.Ped.prototype.setAllowedToDuck ??= function (toggle) {
     let $res = natives.setPedAllowedToDuck(this.handle, toggle | 0);
 };
-mp.Player.prototype.setNeverLeavesGroup = function (toggle) {
+mp.Player.prototype.setNeverLeavesGroup ??= function (toggle) {
     let $res = natives.setPedNeverLeavesGroup(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setNeverLeavesGroup = function (toggle) {
+mp.Ped.prototype.setNeverLeavesGroup ??= function (toggle) {
     let $res = natives.setPedNeverLeavesGroup(this.handle, toggle | 0);
 };
-mp.Player.prototype.getType = function () {
+mp.Player.prototype.getType ??= function () {
     let $res = natives.getPedType(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getType = function () {
+mp.Ped.prototype.getType ??= function () {
     let $res = natives.getPedType(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setAsCop = function (toggle) {
+mp.Player.prototype.setAsCop ??= function (toggle) {
     let $res = natives.setPedAsCop(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setAsCop = function (toggle) {
+mp.Ped.prototype.setAsCop ??= function (toggle) {
     let $res = natives.setPedAsCop(this.handle, toggle | 0);
 };
-mp.Player.prototype.setMaxHealth = function (value) {
+mp.Player.prototype.setMaxHealth ??= function (value) {
     let $res = natives.setPedMaxHealth(this.handle, value);
 };
-mp.Ped.prototype.setMaxHealth = function (value) {
+mp.Ped.prototype.setMaxHealth ??= function (value) {
     let $res = natives.setPedMaxHealth(this.handle, value);
 };
-mp.Player.prototype.getMaxHealth = function () {
+mp.Player.prototype.getMaxHealth ??= function () {
     let $res = natives.getPedMaxHealth(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getMaxHealth = function () {
+mp.Ped.prototype.getMaxHealth ??= function () {
     let $res = natives.getPedMaxHealth(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setMaxTimeInWater = function (value) {
+mp.Player.prototype.setMaxTimeInWater ??= function (value) {
     let $res = natives.setPedMaxTimeInWater(this.handle, value);
 };
-mp.Ped.prototype.setMaxTimeInWater = function (value) {
+mp.Ped.prototype.setMaxTimeInWater ??= function (value) {
     let $res = natives.setPedMaxTimeInWater(this.handle, value);
 };
-mp.Player.prototype.setMaxTimeUnderwater = function (value) {
+mp.Player.prototype.setMaxTimeUnderwater ??= function (value) {
     let $res = natives.setPedMaxTimeUnderwater(this.handle, value);
 };
-mp.Ped.prototype.setMaxTimeUnderwater = function (value) {
+mp.Ped.prototype.setMaxTimeUnderwater ??= function (value) {
     let $res = natives.setPedMaxTimeUnderwater(this.handle, value);
 };
-mp.Player.prototype.setVehicleForcedSeatUsage = function (vehicle, seatIndex, flags, p4) {
+mp.Player.prototype.setVehicleForcedSeatUsage ??= function (vehicle, seatIndex, flags, p4) {
     let $res = natives.setPedVehicleForcedSeatUsage(this.handle, vehicle, seatIndex, flags, p4);
 };
-mp.Ped.prototype.setVehicleForcedSeatUsage = function (vehicle, seatIndex, flags, p4) {
+mp.Ped.prototype.setVehicleForcedSeatUsage ??= function (vehicle, seatIndex, flags, p4) {
     let $res = natives.setPedVehicleForcedSeatUsage(this.handle, vehicle, seatIndex, flags, p4);
 };
-mp.Player.prototype.clearAllVehicleForcedSeatUsage = function () {
+mp.Player.prototype.clearAllVehicleForcedSeatUsage ??= function () {
     let $res = natives.clearAllPedVehicleForcedSeatUsage(this.handle);
 };
-mp.Ped.prototype.clearAllVehicleForcedSeatUsage = function () {
+mp.Ped.prototype.clearAllVehicleForcedSeatUsage ??= function () {
     let $res = natives.clearAllPedVehicleForcedSeatUsage(this.handle);
 };
-mp.Player.prototype.setCanBeKnockedOffVehicle = function (state) {
+mp.Player.prototype.setCanBeKnockedOffVehicle ??= function (state) {
     let $res = natives.setPedCanBeKnockedOffVehicle(this.handle, state);
 };
-mp.Ped.prototype.setCanBeKnockedOffVehicle = function (state) {
+mp.Ped.prototype.setCanBeKnockedOffVehicle ??= function (state) {
     let $res = natives.setPedCanBeKnockedOffVehicle(this.handle, state);
 };
-mp.Player.prototype.canKnockOffVehicle = function () {
+mp.Player.prototype.canKnockOffVehicle ??= function () {
     let $res = natives.canKnockPedOffVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.canKnockOffVehicle = function () {
+mp.Ped.prototype.canKnockOffVehicle ??= function () {
     let $res = natives.canKnockPedOffVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.knockOffVehicle = function () {
+mp.Player.prototype.knockOffVehicle ??= function () {
     let $res = natives.knockPedOffVehicle(this.handle);
 };
-mp.Ped.prototype.knockOffVehicle = function () {
+mp.Ped.prototype.knockOffVehicle ??= function () {
     let $res = natives.knockPedOffVehicle(this.handle);
 };
-mp.Player.prototype.setCoordsNoGang = function (posX, posY, posZ) {
+mp.Player.prototype.setCoordsNoGang ??= function (posX, posY, posZ) {
     let $res = natives.setPedCoordsNoGang(this.handle, posX, posY, posZ);
 };
-mp.Ped.prototype.setCoordsNoGang = function (posX, posY, posZ) {
+mp.Ped.prototype.setCoordsNoGang ??= function (posX, posY, posZ) {
     let $res = natives.setPedCoordsNoGang(this.handle, posX, posY, posZ);
 };
-mp.Player.prototype.getAsGroupMember = function (memberNumber) {
+mp.Player.prototype.getAsGroupMember ??= function (memberNumber) {
     let $res = natives.getPedAsGroupMember(this.handle, memberNumber);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getAsGroupMember = function (memberNumber) {
+mp.Ped.prototype.getAsGroupMember ??= function (memberNumber) {
     let $res = natives.getPedAsGroupMember(this.handle, memberNumber);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getAsGroupLeader = function () {
+mp.Player.prototype.getAsGroupLeader ??= function () {
     let $res = natives.getPedAsGroupLeader(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getAsGroupLeader = function () {
+mp.Ped.prototype.getAsGroupLeader ??= function () {
     let $res = natives.getPedAsGroupLeader(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setKeepTask = function (toggle) {
+mp.Player.prototype.setKeepTask ??= function (toggle) {
     let $res = natives.setPedKeepTask(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setKeepTask = function (toggle) {
+mp.Ped.prototype.setKeepTask ??= function (toggle) {
     let $res = natives.setPedKeepTask(this.handle, toggle | 0);
 };
-mp.Player.prototype.isSwimming = function () {
+mp.Player.prototype.isSwimming ??= function () {
     let $res = natives.isPedSwimming(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isSwimming = function () {
+mp.Ped.prototype.isSwimming ??= function () {
     let $res = natives.isPedSwimming(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isSwimmingUnderWater = function () {
+mp.Player.prototype.isSwimmingUnderWater ??= function () {
     let $res = natives.isPedSwimmingUnderWater(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isSwimmingUnderWater = function () {
+mp.Ped.prototype.isSwimmingUnderWater ??= function () {
     let $res = natives.isPedSwimmingUnderWater(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setCoordsKeepVehicle = function (posX, posY, posZ) {
+mp.Player.prototype.setCoordsKeepVehicle ??= function (posX, posY, posZ) {
     let $res = natives.setPedCoordsKeepVehicle(this.handle, posX, posY, posZ);
 };
-mp.Ped.prototype.setCoordsKeepVehicle = function (posX, posY, posZ) {
+mp.Ped.prototype.setCoordsKeepVehicle ??= function (posX, posY, posZ) {
     let $res = natives.setPedCoordsKeepVehicle(this.handle, posX, posY, posZ);
 };
-mp.Player.prototype.setDiesInVehicle = function (toggle) {
+mp.Player.prototype.setDiesInVehicle ??= function (toggle) {
     let $res = natives.setPedDiesInVehicle(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setDiesInVehicle = function (toggle) {
+mp.Ped.prototype.setDiesInVehicle ??= function (toggle) {
     let $res = natives.setPedDiesInVehicle(this.handle, toggle | 0);
 };
-mp.Player.prototype.setAsEnemy = function (toggle) {
+mp.Player.prototype.setAsEnemy ??= function (toggle) {
     let $res = natives.setPedAsEnemy(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setAsEnemy = function (toggle) {
+mp.Ped.prototype.setAsEnemy ??= function (toggle) {
     let $res = natives.setPedAsEnemy(this.handle, toggle | 0);
 };
-mp.Player.prototype.setCanSmashGlass = function (p1, p2) {
+mp.Player.prototype.setCanSmashGlass ??= function (p1, p2) {
     let $res = natives.setPedCanSmashGlass(this.handle, p1 | 0, p2 | 0);
 };
-mp.Ped.prototype.setCanSmashGlass = function (p1, p2) {
+mp.Ped.prototype.setCanSmashGlass ??= function (p1, p2) {
     let $res = natives.setPedCanSmashGlass(this.handle, p1 | 0, p2 | 0);
 };
-mp.Player.prototype.isInAnyTrain = function () {
+mp.Player.prototype.isInAnyTrain ??= function () {
     let $res = natives.isPedInAnyTrain(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isInAnyTrain = function () {
+mp.Ped.prototype.isInAnyTrain ??= function () {
     let $res = natives.isPedInAnyTrain(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isGettingIntoAVehicle = function () {
+mp.Player.prototype.isGettingIntoAVehicle ??= function () {
     let $res = natives.isPedGettingIntoAVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isGettingIntoAVehicle = function () {
+mp.Ped.prototype.isGettingIntoAVehicle ??= function () {
     let $res = natives.isPedGettingIntoAVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isTryingToEnterALockedVehicle = function () {
+mp.Player.prototype.isTryingToEnterALockedVehicle ??= function () {
     let $res = natives.isPedTryingToEnterALockedVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isTryingToEnterALockedVehicle = function () {
+mp.Ped.prototype.isTryingToEnterALockedVehicle ??= function () {
     let $res = natives.isPedTryingToEnterALockedVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setEnableHandcuffs = function (toggle) {
+mp.Player.prototype.setEnableHandcuffs ??= function (toggle) {
     let $res = natives.setEnableHandcuffs(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setEnableHandcuffs = function (toggle) {
+mp.Ped.prototype.setEnableHandcuffs ??= function (toggle) {
     let $res = natives.setEnableHandcuffs(this.handle, toggle | 0);
 };
-mp.Player.prototype.setEnableBoundAnkles = function (toggle) {
+mp.Player.prototype.setEnableBoundAnkles ??= function (toggle) {
     let $res = natives.setEnableBoundAnkles(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setEnableBoundAnkles = function (toggle) {
+mp.Ped.prototype.setEnableBoundAnkles ??= function (toggle) {
     let $res = natives.setEnableBoundAnkles(this.handle, toggle | 0);
 };
-mp.Player.prototype.setEnableScuba = function (toggle) {
+mp.Player.prototype.setEnableScuba ??= function (toggle) {
     let $res = natives.setEnableScuba(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setEnableScuba = function (toggle) {
+mp.Ped.prototype.setEnableScuba ??= function (toggle) {
     let $res = natives.setEnableScuba(this.handle, toggle | 0);
 };
-mp.Player.prototype.setCanAttackFriendly = function (toggle, p2) {
+mp.Player.prototype.setCanAttackFriendly ??= function (toggle, p2) {
     let $res = natives.setCanAttackFriendly(this.handle, toggle | 0, p2 | 0);
 };
-mp.Ped.prototype.setCanAttackFriendly = function (toggle, p2) {
+mp.Ped.prototype.setCanAttackFriendly ??= function (toggle, p2) {
     let $res = natives.setCanAttackFriendly(this.handle, toggle | 0, p2 | 0);
 };
-mp.Player.prototype.getAlertness = function () {
+mp.Player.prototype.getAlertness ??= function () {
     let $res = natives.getPedAlertness(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getAlertness = function () {
+mp.Ped.prototype.getAlertness ??= function () {
     let $res = natives.getPedAlertness(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setAlertness = function (value) {
+mp.Player.prototype.setAlertness ??= function (value) {
     let $res = natives.setPedAlertness(this.handle, value);
 };
-mp.Ped.prototype.setAlertness = function (value) {
+mp.Ped.prototype.setAlertness ??= function (value) {
     let $res = natives.setPedAlertness(this.handle, value);
 };
-mp.Player.prototype.setGetOutUpsideDownVehicle = function (toggle) {
+mp.Player.prototype.setGetOutUpsideDownVehicle ??= function (toggle) {
     let $res = natives.setPedGetOutUpsideDownVehicle(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setGetOutUpsideDownVehicle = function (toggle) {
+mp.Ped.prototype.setGetOutUpsideDownVehicle ??= function (toggle) {
     let $res = natives.setPedGetOutUpsideDownVehicle(this.handle, toggle | 0);
 };
-mp.Player.prototype.setMovementClipset = function (clipSet, transitionSpeed) {
+mp.Player.prototype.setMovementClipset ??= function (clipSet, transitionSpeed) {
     let $res = natives.setPedMovementClipset(this.handle, clipSet, transitionSpeed);
 };
-mp.Ped.prototype.setMovementClipset = function (clipSet, transitionSpeed) {
+mp.Ped.prototype.setMovementClipset ??= function (clipSet, transitionSpeed) {
     let $res = natives.setPedMovementClipset(this.handle, clipSet, transitionSpeed);
 };
-mp.Player.prototype.resetMovementClipset = function (p1) {
+mp.Player.prototype.resetMovementClipset ??= function (p1) {
     let $res = natives.resetPedMovementClipset(this.handle, p1);
 };
-mp.Ped.prototype.resetMovementClipset = function (p1) {
+mp.Ped.prototype.resetMovementClipset ??= function (p1) {
     let $res = natives.resetPedMovementClipset(this.handle, p1);
 };
-mp.Player.prototype.setStrafeClipset = function (clipSet) {
+mp.Player.prototype.setStrafeClipset ??= function (clipSet) {
     let $res = natives.setPedStrafeClipset(this.handle, clipSet);
 };
-mp.Ped.prototype.setStrafeClipset = function (clipSet) {
+mp.Ped.prototype.setStrafeClipset ??= function (clipSet) {
     let $res = natives.setPedStrafeClipset(this.handle, clipSet);
 };
-mp.Player.prototype.resetStrafeClipset = function () {
+mp.Player.prototype.resetStrafeClipset ??= function () {
     let $res = natives.resetPedStrafeClipset(this.handle);
 };
-mp.Ped.prototype.resetStrafeClipset = function () {
+mp.Ped.prototype.resetStrafeClipset ??= function () {
     let $res = natives.resetPedStrafeClipset(this.handle);
 };
-mp.Player.prototype.setWeaponMovementClipset = function (clipSet) {
+mp.Player.prototype.setWeaponMovementClipset ??= function (clipSet) {
     let $res = natives.setPedWeaponMovementClipset(this.handle, clipSet);
 };
-mp.Ped.prototype.setWeaponMovementClipset = function (clipSet) {
+mp.Ped.prototype.setWeaponMovementClipset ??= function (clipSet) {
     let $res = natives.setPedWeaponMovementClipset(this.handle, clipSet);
 };
-mp.Player.prototype.resetWeaponMovementClipset = function () {
+mp.Player.prototype.resetWeaponMovementClipset ??= function () {
     let $res = natives.resetPedWeaponMovementClipset(this.handle);
 };
-mp.Ped.prototype.resetWeaponMovementClipset = function () {
+mp.Ped.prototype.resetWeaponMovementClipset ??= function () {
     let $res = natives.resetPedWeaponMovementClipset(this.handle);
 };
-mp.Player.prototype.setDriveByClipsetOverride = function (clipset) {
+mp.Player.prototype.setDriveByClipsetOverride ??= function (clipset) {
     let $res = natives.setPedDriveByClipsetOverride(this.handle, clipset);
 };
-mp.Ped.prototype.setDriveByClipsetOverride = function (clipset) {
+mp.Ped.prototype.setDriveByClipsetOverride ??= function (clipset) {
     let $res = natives.setPedDriveByClipsetOverride(this.handle, clipset);
 };
-mp.Player.prototype.clearDriveByClipsetOverride = function () {
+mp.Player.prototype.clearDriveByClipsetOverride ??= function () {
     let $res = natives.clearPedDriveByClipsetOverride(this.handle);
 };
-mp.Ped.prototype.clearDriveByClipsetOverride = function () {
+mp.Ped.prototype.clearDriveByClipsetOverride ??= function () {
     let $res = natives.clearPedDriveByClipsetOverride(this.handle);
 };
-mp.Player.prototype.setCoverClipsetOverride = function (p1) {
+mp.Player.prototype.setCoverClipsetOverride ??= function (p1) {
     let $res = natives.setPedMotionInCoverClipsetOverride(this.handle, p1);
 };
-mp.Ped.prototype.setCoverClipsetOverride = function (p1) {
+mp.Ped.prototype.setCoverClipsetOverride ??= function (p1) {
     let $res = natives.setPedMotionInCoverClipsetOverride(this.handle, p1);
 };
-mp.Player.prototype.clearCoverClipsetOverride = function () {
+mp.Player.prototype.clearCoverClipsetOverride ??= function () {
     let $res = natives.clearPedMotionInCoverClipsetOverride(this.handle);
 };
-mp.Ped.prototype.clearCoverClipsetOverride = function () {
+mp.Ped.prototype.clearCoverClipsetOverride ??= function () {
     let $res = natives.clearPedMotionInCoverClipsetOverride(this.handle);
 };
-mp.Player.prototype.setInVehicleContext = function (context) {
+mp.Player.prototype.setInVehicleContext ??= function (context) {
     let $res = natives.setPedInVehicleContext(this.handle, context);
 };
-mp.Ped.prototype.setInVehicleContext = function (context) {
+mp.Ped.prototype.setInVehicleContext ??= function (context) {
     let $res = natives.setPedInVehicleContext(this.handle, context);
 };
-mp.Player.prototype.resetInVehicleContext = function () {
+mp.Player.prototype.resetInVehicleContext ??= function () {
     let $res = natives.resetPedInVehicleContext(this.handle);
 };
-mp.Ped.prototype.resetInVehicleContext = function () {
+mp.Ped.prototype.resetInVehicleContext ??= function () {
     let $res = natives.resetPedInVehicleContext(this.handle);
 };
-mp.Player.prototype.isScriptedScenarioUsingConditionalAnim = function (animDict, anim) {
+mp.Player.prototype.isScriptedScenarioUsingConditionalAnim ??= function (animDict, anim) {
     let $res = natives.isScriptedScenarioPedUsingConditionalAnim(this.handle, animDict, anim);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isScriptedScenarioUsingConditionalAnim = function (animDict, anim) {
+mp.Ped.prototype.isScriptedScenarioUsingConditionalAnim ??= function (animDict, anim) {
     let $res = natives.isScriptedScenarioPedUsingConditionalAnim(this.handle, animDict, anim);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setAlternateWalkAnim = function (animDict, animName, p3, p4) {
+mp.Player.prototype.setAlternateWalkAnim ??= function (animDict, animName, p3, p4) {
     let $res = natives.setPedAlternateWalkAnim(this.handle, animDict, animName, p3, p4 | 0);
 };
-mp.Ped.prototype.setAlternateWalkAnim = function (animDict, animName, p3, p4) {
+mp.Ped.prototype.setAlternateWalkAnim ??= function (animDict, animName, p3, p4) {
     let $res = natives.setPedAlternateWalkAnim(this.handle, animDict, animName, p3, p4 | 0);
 };
-mp.Player.prototype.clearAlternateWalkAnim = function (p1) {
+mp.Player.prototype.clearAlternateWalkAnim ??= function (p1) {
     let $res = natives.clearPedAlternateWalkAnim(this.handle, p1);
 };
-mp.Ped.prototype.clearAlternateWalkAnim = function (p1) {
+mp.Ped.prototype.clearAlternateWalkAnim ??= function (p1) {
     let $res = natives.clearPedAlternateWalkAnim(this.handle, p1);
 };
-mp.Player.prototype.setAlternateMovementAnim = function (stance, animDictionary, animationName, p4, p5) {
+mp.Player.prototype.setAlternateMovementAnim ??= function (stance, animDictionary, animationName, p4, p5) {
     let $res = natives.setPedAlternateMovementAnim(this.handle, stance, animDictionary, animationName, p4, p5 | 0);
 };
-mp.Ped.prototype.setAlternateMovementAnim = function (stance, animDictionary, animationName, p4, p5) {
+mp.Ped.prototype.setAlternateMovementAnim ??= function (stance, animDictionary, animationName, p4, p5) {
     let $res = natives.setPedAlternateMovementAnim(this.handle, stance, animDictionary, animationName, p4, p5 | 0);
 };
-mp.Player.prototype.clearAlternateMovementAnim = function (stance, p2) {
+mp.Player.prototype.clearAlternateMovementAnim ??= function (stance, p2) {
     let $res = natives.clearPedAlternateMovementAnim(this.handle, stance, p2);
 };
-mp.Ped.prototype.clearAlternateMovementAnim = function (stance, p2) {
+mp.Ped.prototype.clearAlternateMovementAnim ??= function (stance, p2) {
     let $res = natives.clearPedAlternateMovementAnim(this.handle, stance, p2);
 };
-mp.Player.prototype.setGestureGroup = function (animGroupGesture) {
+mp.Player.prototype.setGestureGroup ??= function (animGroupGesture) {
     let $res = natives.setPedGestureGroup(this.handle, animGroupGesture);
 };
-mp.Ped.prototype.setGestureGroup = function (animGroupGesture) {
+mp.Ped.prototype.setGestureGroup ??= function (animGroupGesture) {
     let $res = natives.setPedGestureGroup(this.handle, animGroupGesture);
 };
-mp.Player.prototype.getDrawableVariation = function (componentId) {
+mp.Player.prototype.getDrawableVariation ??= function (componentId) {
     let $res = natives.getPedDrawableVariation(this.handle, componentId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getDrawableVariation = function (componentId) {
+mp.Ped.prototype.getDrawableVariation ??= function (componentId) {
     let $res = natives.getPedDrawableVariation(this.handle, componentId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getNumberOfDrawableVariations = function (componentId) {
+mp.Player.prototype.getNumberOfDrawableVariations ??= function (componentId) {
     let $res = natives.getNumberOfPedDrawableVariations(this.handle, componentId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getNumberOfDrawableVariations = function (componentId) {
+mp.Ped.prototype.getNumberOfDrawableVariations ??= function (componentId) {
     let $res = natives.getNumberOfPedDrawableVariations(this.handle, componentId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getTextureVariation = function (componentId) {
+mp.Player.prototype.getTextureVariation ??= function (componentId) {
     let $res = natives.getPedTextureVariation(this.handle, componentId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getTextureVariation = function (componentId) {
+mp.Ped.prototype.getTextureVariation ??= function (componentId) {
     let $res = natives.getPedTextureVariation(this.handle, componentId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getNumberOfTextureVariations = function (componentId, drawableId) {
+mp.Player.prototype.getNumberOfTextureVariations ??= function (componentId, drawableId) {
     let $res = natives.getNumberOfPedTextureVariations(this.handle, componentId, drawableId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getNumberOfTextureVariations = function (componentId, drawableId) {
+mp.Ped.prototype.getNumberOfTextureVariations ??= function (componentId, drawableId) {
     let $res = natives.getNumberOfPedTextureVariations(this.handle, componentId, drawableId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getNumberOfPropDrawableVariations = function (propId) {
+mp.Player.prototype.getNumberOfPropDrawableVariations ??= function (propId) {
     let $res = natives.getNumberOfPedPropDrawableVariations(this.handle, propId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getNumberOfPropDrawableVariations = function (propId) {
+mp.Ped.prototype.getNumberOfPropDrawableVariations ??= function (propId) {
     let $res = natives.getNumberOfPedPropDrawableVariations(this.handle, propId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getNumberOfPropTextureVariations = function (propId, drawableId) {
+mp.Player.prototype.getNumberOfPropTextureVariations ??= function (propId, drawableId) {
     let $res = natives.getNumberOfPedPropTextureVariations(this.handle, propId, drawableId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getNumberOfPropTextureVariations = function (propId, drawableId) {
+mp.Ped.prototype.getNumberOfPropTextureVariations ??= function (propId, drawableId) {
     let $res = natives.getNumberOfPedPropTextureVariations(this.handle, propId, drawableId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getPaletteVariation = function (componentId) {
+mp.Player.prototype.getPaletteVariation ??= function (componentId) {
     let $res = natives.getPedPaletteVariation(this.handle, componentId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getPaletteVariation = function (componentId) {
+mp.Ped.prototype.getPaletteVariation ??= function (componentId) {
     let $res = natives.getPedPaletteVariation(this.handle, componentId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.isComponentVariationValid = function (componentId, drawableId, textureId) {
+mp.Player.prototype.isComponentVariationValid ??= function (componentId, drawableId, textureId) {
     let $res = natives.isPedComponentVariationValid(this.handle, componentId, drawableId, textureId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isComponentVariationValid = function (componentId, drawableId, textureId) {
+mp.Ped.prototype.isComponentVariationValid ??= function (componentId, drawableId, textureId) {
     let $res = natives.isPedComponentVariationValid(this.handle, componentId, drawableId, textureId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setComponentVariation = function (componentId, drawableId, textureId, paletteId) {
+mp.Player.prototype.setComponentVariation ??= function (componentId, drawableId, textureId, paletteId) {
     let $res = natives.setPedComponentVariation(this.handle, componentId, drawableId, textureId, paletteId);
 };
-mp.Ped.prototype.setComponentVariation = function (componentId, drawableId, textureId, paletteId) {
+mp.Ped.prototype.setComponentVariation ??= function (componentId, drawableId, textureId, paletteId) {
     let $res = natives.setPedComponentVariation(this.handle, componentId, drawableId, textureId, paletteId);
 };
-mp.Player.prototype.setRandomComponentVariation = function (p1) {
+mp.Player.prototype.setRandomComponentVariation ??= function (p1) {
     let $res = natives.setPedRandomComponentVariation(this.handle, p1 | 0);
 };
-mp.Ped.prototype.setRandomComponentVariation = function (p1) {
+mp.Ped.prototype.setRandomComponentVariation ??= function (p1) {
     let $res = natives.setPedRandomComponentVariation(this.handle, p1 | 0);
 };
-mp.Player.prototype.setRandomProps = function () {
+mp.Player.prototype.setRandomProps ??= function () {
     let $res = natives.setPedRandomProps(this.handle);
 };
-mp.Ped.prototype.setRandomProps = function () {
+mp.Ped.prototype.setRandomProps ??= function () {
     let $res = natives.setPedRandomProps(this.handle);
 };
-mp.Player.prototype.setDefaultComponentVariation = function () {
+mp.Player.prototype.setDefaultComponentVariation ??= function () {
     let $res = natives.setPedDefaultComponentVariation(this.handle);
 };
-mp.Ped.prototype.setDefaultComponentVariation = function () {
+mp.Ped.prototype.setDefaultComponentVariation ??= function () {
     let $res = natives.setPedDefaultComponentVariation(this.handle);
 };
-mp.Player.prototype.setBlendFromParents = function (p1, p2, p3, p4) {
+mp.Player.prototype.setBlendFromParents ??= function (p1, p2, p3, p4) {
     let $res = natives.setPedBlendFromParents(this.handle, p1, p2, p3, p4);
 };
-mp.Ped.prototype.setBlendFromParents = function (p1, p2, p3, p4) {
+mp.Ped.prototype.setBlendFromParents ??= function (p1, p2, p3, p4) {
     let $res = natives.setPedBlendFromParents(this.handle, p1, p2, p3, p4);
 };
-mp.Player.prototype.setHeadBlendData = function (shapeFirstID, shapeSecondID, shapeThirdID, skinFirstID, skinSecondID, skinThirdID, shapeMix, skinMix, thirdMix, isParent) {
+mp.Player.prototype.setHeadBlendData ??= function (shapeFirstID, shapeSecondID, shapeThirdID, skinFirstID, skinSecondID, skinThirdID, shapeMix, skinMix, thirdMix, isParent) {
     let $res = natives.setPedHeadBlendData(this.handle, shapeFirstID, shapeSecondID, shapeThirdID, skinFirstID, skinSecondID, skinThirdID, shapeMix, skinMix, thirdMix, isParent | 0);
 };
-mp.Ped.prototype.setHeadBlendData = function (shapeFirstID, shapeSecondID, shapeThirdID, skinFirstID, skinSecondID, skinThirdID, shapeMix, skinMix, thirdMix, isParent) {
+mp.Ped.prototype.setHeadBlendData ??= function (shapeFirstID, shapeSecondID, shapeThirdID, skinFirstID, skinSecondID, skinThirdID, shapeMix, skinMix, thirdMix, isParent) {
     let $res = natives.setPedHeadBlendData(this.handle, shapeFirstID, shapeSecondID, shapeThirdID, skinFirstID, skinSecondID, skinThirdID, shapeMix, skinMix, thirdMix, isParent | 0);
 };
-mp.Player.prototype.getHeadBlendData = function () {
+mp.Player.prototype.getHeadBlendData ??= function () {
     let $res = natives.getPedHeadBlendData(this.handle, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.headBlendData = $res[0];
     return $res[0] == 1 ? $resObj.headBlendData : undefined;
 };
-mp.Ped.prototype.getHeadBlendData = function () {
+mp.Ped.prototype.getHeadBlendData ??= function () {
     let $res = natives.getPedHeadBlendData(this.handle, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.headBlendData = $res[0];
     return $res[0] == 1 ? $resObj.headBlendData : undefined;
 };
-mp.Player.prototype.updateHeadBlendData = function (shapeMix, skinMix, thirdMix) {
+mp.Player.prototype.updateHeadBlendData ??= function (shapeMix, skinMix, thirdMix) {
     let $res = natives.updatePedHeadBlendData(this.handle, shapeMix, skinMix, thirdMix);
 };
-mp.Ped.prototype.updateHeadBlendData = function (shapeMix, skinMix, thirdMix) {
+mp.Ped.prototype.updateHeadBlendData ??= function (shapeMix, skinMix, thirdMix) {
     let $res = natives.updatePedHeadBlendData(this.handle, shapeMix, skinMix, thirdMix);
 };
-mp.Ped.prototype.setEyeColor = function (index) {
+mp.Ped.prototype.setEyeColor ??= function (index) {
     let $res = natives.setHeadBlendEyeColor(this.handle, index);
 };
-mp.Player.prototype.getEyeColor = function () {
+mp.Player.prototype.getEyeColor ??= function () {
     let $res = natives.getHeadBlendEyeColor(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getEyeColor = function () {
+mp.Ped.prototype.getEyeColor ??= function () {
     let $res = natives.getHeadBlendEyeColor(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.setHeadOverlay = function (overlayID, index, opacity) {
+mp.Ped.prototype.setHeadOverlay ??= function (overlayID, index, opacity) {
     let $res = natives.setPedHeadOverlay(this.handle, overlayID, index, opacity);
 };
-mp.Player.prototype.getHeadOverlayValue = function (overlayID) {
+mp.Player.prototype.getHeadOverlayValue ??= function (overlayID) {
     let $res = natives.getPedHeadOverlay(this.handle, overlayID);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getHeadOverlayValue = function (overlayID) {
+mp.Ped.prototype.getHeadOverlayValue ??= function (overlayID) {
     let $res = natives.getPedHeadOverlay(this.handle, overlayID);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getHeadOverlayNum = function () {
+mp.Player.prototype.getHeadOverlayNum ??= function () {
     let $res = natives.getPedHeadOverlayNum(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getHeadOverlayNum = function () {
+mp.Ped.prototype.getHeadOverlayNum ??= function () {
     let $res = natives.getPedHeadOverlayNum(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setHeadOverlayColor = function (overlayID, colorType, colorID, secondColorID) {
+mp.Player.prototype.setHeadOverlayColor ??= function (overlayID, colorType, colorID, secondColorID) {
     let $res = natives.setPedHeadOverlayTint(this.handle, overlayID, colorType, colorID, secondColorID);
 };
-mp.Ped.prototype.setHeadOverlayColor = function (overlayID, colorType, colorID, secondColorID) {
+mp.Ped.prototype.setHeadOverlayColor ??= function (overlayID, colorType, colorID, secondColorID) {
     let $res = natives.setPedHeadOverlayTint(this.handle, overlayID, colorType, colorID, secondColorID);
 };
-mp.Ped.prototype.setHairColor = function (colorID, highlightColorID) {
+mp.Ped.prototype.setHairColor ??= function (colorID, highlightColorID) {
     let $res = natives.setPedHairTint(this.handle, colorID, highlightColorID);
 };
-mp.Player.prototype.getHairRgbColor = function () {
+mp.Player.prototype.getHairRgbColor ??= function () {
     let $res = natives.getPedHairTintColor(this.handle, 0, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -22853,7 +22853,7 @@ mp.Player.prototype.getHairRgbColor = function () {
     $resObj.outB = $res[3];
     return $resObj;
 };
-mp.Ped.prototype.getHairRgbColor = function () {
+mp.Ped.prototype.getHairRgbColor ??= function () {
     let $res = natives.getPedHairTintColor(this.handle, 0, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -22862,7 +22862,7 @@ mp.Ped.prototype.getHairRgbColor = function () {
     $resObj.outB = $res[3];
     return $resObj;
 };
-mp.Player.prototype.getMakeupRgbColor = function () {
+mp.Player.prototype.getMakeupRgbColor ??= function () {
     let $res = natives.getPedMakeupTintColor(this.handle, 0, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -22871,7 +22871,7 @@ mp.Player.prototype.getMakeupRgbColor = function () {
     $resObj.outB = $res[3];
     return $resObj;
 };
-mp.Ped.prototype.getMakeupRgbColor = function () {
+mp.Ped.prototype.getMakeupRgbColor ??= function () {
     let $res = natives.getPedMakeupTintColor(this.handle, 0, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -22880,445 +22880,445 @@ mp.Ped.prototype.getMakeupRgbColor = function () {
     $resObj.outB = $res[3];
     return $resObj;
 };
-mp.Player.prototype.isHairColorValid2 = function () {
+mp.Player.prototype.isHairColorValid2 ??= function () {
     let $res = natives.isPedHairTintForCreator(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isHairColorValid2 = function () {
+mp.Ped.prototype.isHairColorValid2 ??= function () {
     let $res = natives.isPedHairTintForCreator(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isLipstickColorValid2 = function () {
+mp.Player.prototype.isLipstickColorValid2 ??= function () {
     let $res = natives.isPedLipstickTintForCreator(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isLipstickColorValid2 = function () {
+mp.Ped.prototype.isLipstickColorValid2 ??= function () {
     let $res = natives.isPedLipstickTintForCreator(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isBlushColorValid2 = function () {
+mp.Player.prototype.isBlushColorValid2 ??= function () {
     let $res = natives.isPedBlushTintForCreator(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isBlushColorValid2 = function () {
+mp.Ped.prototype.isBlushColorValid2 ??= function () {
     let $res = natives.isPedBlushTintForCreator(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isHairColorValid = function () {
+mp.Player.prototype.isHairColorValid ??= function () {
     let $res = natives.isPedHairTintForBarber(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isHairColorValid = function () {
+mp.Ped.prototype.isHairColorValid ??= function () {
     let $res = natives.isPedHairTintForBarber(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isLipstickColorValid = function () {
+mp.Player.prototype.isLipstickColorValid ??= function () {
     let $res = natives.isPedLipstickTintForBarber(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isLipstickColorValid = function () {
+mp.Ped.prototype.isLipstickColorValid ??= function () {
     let $res = natives.isPedLipstickTintForBarber(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isBlushColorValid = function () {
+mp.Player.prototype.isBlushColorValid ??= function () {
     let $res = natives.isPedBlushTintForBarber(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isBlushColorValid = function () {
+mp.Ped.prototype.isBlushColorValid ??= function () {
     let $res = natives.isPedBlushTintForBarber(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isBodyBlemishValid = function () {
+mp.Player.prototype.isBodyBlemishValid ??= function () {
     let $res = natives.isPedBlushFacepaintTintForBarber(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isBodyBlemishValid = function () {
+mp.Ped.prototype.isBodyBlemishValid ??= function () {
     let $res = natives.isPedBlushFacepaintTintForBarber(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.setFaceFeature = function (index, scale) {
+mp.Ped.prototype.setFaceFeature ??= function (index, scale) {
     let $res = natives.setPedMicroMorph(this.handle, index, scale);
 };
-mp.Player.prototype.hasHeadBlendFinished = function () {
+mp.Player.prototype.hasHeadBlendFinished ??= function () {
     let $res = natives.hasPedHeadBlendFinished(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.hasHeadBlendFinished = function () {
+mp.Ped.prototype.hasHeadBlendFinished ??= function () {
     let $res = natives.hasPedHeadBlendFinished(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.finalizeHeadBlend = function () {
+mp.Player.prototype.finalizeHeadBlend ??= function () {
     let $res = natives.finalizeHeadBlend(this.handle);
 };
-mp.Ped.prototype.finalizeHeadBlend = function () {
+mp.Ped.prototype.finalizeHeadBlend ??= function () {
     let $res = natives.finalizeHeadBlend(this.handle);
 };
-mp.Player.prototype.setHeadBlendPaletteColor = function (r, g, b, id) {
+mp.Player.prototype.setHeadBlendPaletteColor ??= function (r, g, b, id) {
     let $res = natives.setHeadBlendPaletteColor(this.handle, r, g, b, id);
 };
-mp.Ped.prototype.setHeadBlendPaletteColor = function (r, g, b, id) {
+mp.Ped.prototype.setHeadBlendPaletteColor ??= function (r, g, b, id) {
     let $res = natives.setHeadBlendPaletteColor(this.handle, r, g, b, id);
 };
-mp.Player.prototype.disableHeadBlendPaletteColor = function () {
+mp.Player.prototype.disableHeadBlendPaletteColor ??= function () {
     let $res = natives.disableHeadBlendPaletteColor(this.handle);
 };
-mp.Ped.prototype.disableHeadBlendPaletteColor = function () {
+mp.Ped.prototype.disableHeadBlendPaletteColor ??= function () {
     let $res = natives.disableHeadBlendPaletteColor(this.handle);
 };
-mp.Player.prototype.getHeadBlendFirstIndex = function () {
+mp.Player.prototype.getHeadBlendFirstIndex ??= function () {
     let $res = natives.getPedHeadBlendFirstIndex(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getHeadBlendFirstIndex = function () {
+mp.Ped.prototype.getHeadBlendFirstIndex ??= function () {
     let $res = natives.getPedHeadBlendFirstIndex(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getHeadBlendNumHeads = function () {
+mp.Player.prototype.getHeadBlendNumHeads ??= function () {
     let $res = natives.getPedHeadBlendNumHeads(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getHeadBlendNumHeads = function () {
+mp.Ped.prototype.getHeadBlendNumHeads ??= function () {
     let $res = natives.getPedHeadBlendNumHeads(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setPreloadVariationData = function (slot, drawableId, textureId) {
+mp.Player.prototype.setPreloadVariationData ??= function (slot, drawableId, textureId) {
     let $res = natives.setPedPreloadVariationData(this.handle, slot, drawableId, textureId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.setPreloadVariationData = function (slot, drawableId, textureId) {
+mp.Ped.prototype.setPreloadVariationData ??= function (slot, drawableId, textureId) {
     let $res = natives.setPedPreloadVariationData(this.handle, slot, drawableId, textureId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.hasPreloadVariationDataFinished = function () {
+mp.Player.prototype.hasPreloadVariationDataFinished ??= function () {
     let $res = natives.hasPedPreloadVariationDataFinished(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.hasPreloadVariationDataFinished = function () {
+mp.Ped.prototype.hasPreloadVariationDataFinished ??= function () {
     let $res = natives.hasPedPreloadVariationDataFinished(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.releasePreloadVariationData = function () {
+mp.Player.prototype.releasePreloadVariationData ??= function () {
     let $res = natives.releasePedPreloadVariationData(this.handle);
 };
-mp.Ped.prototype.releasePreloadVariationData = function () {
+mp.Ped.prototype.releasePreloadVariationData ??= function () {
     let $res = natives.releasePedPreloadVariationData(this.handle);
 };
-mp.Player.prototype.setPreloadPropData = function (componentId, drawableId, TextureId) {
+mp.Player.prototype.setPreloadPropData ??= function (componentId, drawableId, TextureId) {
     let $res = natives.setPedPreloadPropData(this.handle, componentId, drawableId, TextureId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.setPreloadPropData = function (componentId, drawableId, TextureId) {
+mp.Ped.prototype.setPreloadPropData ??= function (componentId, drawableId, TextureId) {
     let $res = natives.setPedPreloadPropData(this.handle, componentId, drawableId, TextureId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.hasPreloadPropDataFinished = function () {
+mp.Player.prototype.hasPreloadPropDataFinished ??= function () {
     let $res = natives.hasPedPreloadPropDataFinished(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.hasPreloadPropDataFinished = function () {
+mp.Ped.prototype.hasPreloadPropDataFinished ??= function () {
     let $res = natives.hasPedPreloadPropDataFinished(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.releasePreloadPropData = function () {
+mp.Player.prototype.releasePreloadPropData ??= function () {
     let $res = natives.releasePedPreloadPropData(this.handle);
 };
-mp.Ped.prototype.releasePreloadPropData = function () {
+mp.Ped.prototype.releasePreloadPropData ??= function () {
     let $res = natives.releasePedPreloadPropData(this.handle);
 };
-mp.Player.prototype.getPropIndex = function (componentId) {
+mp.Player.prototype.getPropIndex ??= function (componentId) {
     let $res = natives.getPedPropIndex(this.handle, componentId, 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getPropIndex = function (componentId) {
+mp.Ped.prototype.getPropIndex ??= function (componentId) {
     let $res = natives.getPedPropIndex(this.handle, componentId, 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setPropIndex = function (componentId, drawableId, TextureId, attach) {
+mp.Player.prototype.setPropIndex ??= function (componentId, drawableId, TextureId, attach) {
     let $res = natives.setPedPropIndex(this.handle, componentId, drawableId, TextureId, attach | 0, 0);
 };
-mp.Ped.prototype.setPropIndex = function (componentId, drawableId, TextureId, attach) {
+mp.Ped.prototype.setPropIndex ??= function (componentId, drawableId, TextureId, attach) {
     let $res = natives.setPedPropIndex(this.handle, componentId, drawableId, TextureId, attach | 0, 0);
 };
-mp.Player.prototype.knockOffProp = function (p1, p2, p3, p4) {
+mp.Player.prototype.knockOffProp ??= function (p1, p2, p3, p4) {
     let $res = natives.knockOffPedProp(this.handle, p1 | 0, p2 | 0, p3 | 0, p4 | 0);
 };
-mp.Ped.prototype.knockOffProp = function (p1, p2, p3, p4) {
+mp.Ped.prototype.knockOffProp ??= function (p1, p2, p3, p4) {
     let $res = natives.knockOffPedProp(this.handle, p1 | 0, p2 | 0, p3 | 0, p4 | 0);
 };
-mp.Player.prototype.clearProp = function (propId) {
+mp.Player.prototype.clearProp ??= function (propId) {
     let $res = natives.clearPedProp(this.handle, propId, 0);
 };
-mp.Ped.prototype.clearProp = function (propId) {
+mp.Ped.prototype.clearProp ??= function (propId) {
     let $res = natives.clearPedProp(this.handle, propId, 0);
 };
-mp.Player.prototype.clearAllProps = function () {
+mp.Player.prototype.clearAllProps ??= function () {
     let $res = natives.clearAllPedProps(this.handle, 0);
 };
-mp.Ped.prototype.clearAllProps = function () {
+mp.Ped.prototype.clearAllProps ??= function () {
     let $res = natives.clearAllPedProps(this.handle, 0);
 };
-mp.Player.prototype.dropAmbientProp = function () {
+mp.Player.prototype.dropAmbientProp ??= function () {
     let $res = natives.dropAmbientProp(this.handle);
 };
-mp.Ped.prototype.dropAmbientProp = function () {
+mp.Ped.prototype.dropAmbientProp ??= function () {
     let $res = natives.dropAmbientProp(this.handle);
 };
-mp.Player.prototype.getPropTextureIndex = function (componentId) {
+mp.Player.prototype.getPropTextureIndex ??= function (componentId) {
     let $res = natives.getPedPropTextureIndex(this.handle, componentId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getPropTextureIndex = function (componentId) {
+mp.Ped.prototype.getPropTextureIndex ??= function (componentId) {
     let $res = natives.getPedPropTextureIndex(this.handle, componentId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.clearParachutePackVariation = function () {
+mp.Player.prototype.clearParachutePackVariation ??= function () {
     let $res = natives.clearPedParachutePackVariation(this.handle);
 };
-mp.Ped.prototype.clearParachutePackVariation = function () {
+mp.Ped.prototype.clearParachutePackVariation ??= function () {
     let $res = natives.clearPedParachutePackVariation(this.handle);
 };
-mp.Player.prototype.setScubaGearVariation = function () {
+mp.Player.prototype.setScubaGearVariation ??= function () {
     let $res = natives.setPedScubaGearVariation(this.handle);
 };
-mp.Ped.prototype.setScubaGearVariation = function () {
+mp.Ped.prototype.setScubaGearVariation ??= function () {
     let $res = natives.setPedScubaGearVariation(this.handle);
 };
-mp.Player.prototype.clearScubaGearVariation = function () {
+mp.Player.prototype.clearScubaGearVariation ??= function () {
     let $res = natives.clearPedScubaGearVariation(this.handle);
 };
-mp.Ped.prototype.clearScubaGearVariation = function () {
+mp.Ped.prototype.clearScubaGearVariation ??= function () {
     let $res = natives.clearPedScubaGearVariation(this.handle);
 };
-mp.Blip.prototype.setBlockingOfNonTemporaryEvents = function (toggle) {
+mp.Blip.prototype.setBlockingOfNonTemporaryEvents ??= function (toggle) {
     let $res = natives.setBlockingOfNonTemporaryEvents(this.handle, toggle | 0);
 };
-mp.Player.prototype.setBoundsOrientation = function (p1, p2, p3, p4, p5) {
+mp.Player.prototype.setBoundsOrientation ??= function (p1, p2, p3, p4, p5) {
     let $res = natives.setPedBoundsOrientation(this.handle, p1, p2, p3, p4, p5);
 };
-mp.Ped.prototype.setBoundsOrientation = function (p1, p2, p3, p4, p5) {
+mp.Ped.prototype.setBoundsOrientation ??= function (p1, p2, p3, p4, p5) {
     let $res = natives.setPedBoundsOrientation(this.handle, p1, p2, p3, p4, p5);
 };
-mp.Player.prototype.registerTarget = function (target) {
+mp.Player.prototype.registerTarget ??= function (target) {
     let $res = natives.registerTarget(this.handle, target);
 };
-mp.Ped.prototype.registerTarget = function (target) {
+mp.Ped.prototype.registerTarget ??= function (target) {
     let $res = natives.registerTarget(this.handle, target);
 };
-mp.Player.prototype.registerHatedTargetsAround = function (radius) {
+mp.Player.prototype.registerHatedTargetsAround ??= function (radius) {
     let $res = natives.registerHatedTargetsAroundPed(this.handle, radius);
 };
-mp.Ped.prototype.registerHatedTargetsAround = function (radius) {
+mp.Ped.prototype.registerHatedTargetsAround ??= function (radius) {
     let $res = natives.registerHatedTargetsAroundPed(this.handle, radius);
 };
-mp.Player.prototype.setDriverRacingModifier = function (modifier) {
+mp.Player.prototype.setDriverRacingModifier ??= function (modifier) {
     let $res = natives.setDriverRacingModifier(this.handle, modifier);
 };
-mp.Ped.prototype.setDriverRacingModifier = function (modifier) {
+mp.Ped.prototype.setDriverRacingModifier ??= function (modifier) {
     let $res = natives.setDriverRacingModifier(this.handle, modifier);
 };
-mp.Player.prototype.setDriverAbility = function (ability) {
+mp.Player.prototype.setDriverAbility ??= function (ability) {
     let $res = natives.setDriverAbility(this.handle, ability);
 };
-mp.Ped.prototype.setDriverAbility = function (ability) {
+mp.Ped.prototype.setDriverAbility ??= function (ability) {
     let $res = natives.setDriverAbility(this.handle, ability);
 };
-mp.Player.prototype.setDriverAggressiveness = function (aggressiveness) {
+mp.Player.prototype.setDriverAggressiveness ??= function (aggressiveness) {
     let $res = natives.setDriverAggressiveness(this.handle, aggressiveness);
 };
-mp.Ped.prototype.setDriverAggressiveness = function (aggressiveness) {
+mp.Ped.prototype.setDriverAggressiveness ??= function (aggressiveness) {
     let $res = natives.setDriverAggressiveness(this.handle, aggressiveness);
 };
-mp.Player.prototype.canRagdoll = function () {
+mp.Player.prototype.canRagdoll ??= function () {
     let $res = natives.canPedRagdoll(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.canRagdoll = function () {
+mp.Ped.prototype.canRagdoll ??= function () {
     let $res = natives.canPedRagdoll(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setToRagdoll = function (time1, time2, ragdollType, p4, p5, p6) {
+mp.Player.prototype.setToRagdoll ??= function (time1, time2, ragdollType, p4, p5, p6) {
     let $res = natives.setPedToRagdoll(this.handle, time1, time2, ragdollType, p4 | 0, p5 | 0, p6 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.setToRagdoll = function (time1, time2, ragdollType, p4, p5, p6) {
+mp.Ped.prototype.setToRagdoll ??= function (time1, time2, ragdollType, p4, p5, p6) {
     let $res = natives.setPedToRagdoll(this.handle, time1, time2, ragdollType, p4 | 0, p5 | 0, p6 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setToRagdollWithFall = function (time, p2, ragdollType, x, y, z, p7, p8, p9, p10, p11, p12, p13) {
+mp.Player.prototype.setToRagdollWithFall ??= function (time, p2, ragdollType, x, y, z, p7, p8, p9, p10, p11, p12, p13) {
     let $res = natives.setPedToRagdollWithFall(this.handle, time, p2, ragdollType, x, y, z, p7, p8, p9, p10, p11, p12, p13);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.setToRagdollWithFall = function (time, p2, ragdollType, x, y, z, p7, p8, p9, p10, p11, p12, p13) {
+mp.Ped.prototype.setToRagdollWithFall ??= function (time, p2, ragdollType, x, y, z, p7, p8, p9, p10, p11, p12, p13) {
     let $res = natives.setPedToRagdollWithFall(this.handle, time, p2, ragdollType, x, y, z, p7, p8, p9, p10, p11, p12, p13);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setRagdollOnCollision = function (toggle) {
+mp.Player.prototype.setRagdollOnCollision ??= function (toggle) {
     let $res = natives.setPedRagdollOnCollision(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setRagdollOnCollision = function (toggle) {
+mp.Ped.prototype.setRagdollOnCollision ??= function (toggle) {
     let $res = natives.setPedRagdollOnCollision(this.handle, toggle | 0);
 };
-mp.Player.prototype.isRagdoll = function () {
+mp.Player.prototype.isRagdoll ??= function () {
     let $res = natives.isPedRagdoll(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isRagdoll = function () {
+mp.Ped.prototype.isRagdoll ??= function () {
     let $res = natives.isPedRagdoll(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isRunningRagdollTask = function () {
+mp.Player.prototype.isRunningRagdollTask ??= function () {
     let $res = natives.isPedRunningRagdollTask(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isRunningRagdollTask = function () {
+mp.Ped.prototype.isRunningRagdollTask ??= function () {
     let $res = natives.isPedRunningRagdollTask(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setRagdollForceFall = function () {
+mp.Player.prototype.setRagdollForceFall ??= function () {
     let $res = natives.setPedRagdollForceFall(this.handle);
 };
-mp.Ped.prototype.setRagdollForceFall = function () {
+mp.Ped.prototype.setRagdollForceFall ??= function () {
     let $res = natives.setPedRagdollForceFall(this.handle);
 };
-mp.Player.prototype.resetRagdollTimer = function () {
+mp.Player.prototype.resetRagdollTimer ??= function () {
     let $res = natives.resetPedRagdollTimer(this.handle);
 };
-mp.Ped.prototype.resetRagdollTimer = function () {
+mp.Ped.prototype.resetRagdollTimer ??= function () {
     let $res = natives.resetPedRagdollTimer(this.handle);
 };
-mp.Player.prototype.setCanRagdoll = function (toggle) {
+mp.Player.prototype.setCanRagdoll ??= function (toggle) {
     let $res = natives.setPedCanRagdoll(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setCanRagdoll = function (toggle) {
+mp.Ped.prototype.setCanRagdoll ??= function (toggle) {
     let $res = natives.setPedCanRagdoll(this.handle, toggle | 0);
 };
-mp.Player.prototype.isRunningMeleeTask = function () {
+mp.Player.prototype.isRunningMeleeTask ??= function () {
     let $res = natives.isPedRunningMeleeTask(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isRunningMeleeTask = function () {
+mp.Ped.prototype.isRunningMeleeTask ??= function () {
     let $res = natives.isPedRunningMeleeTask(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isRunningMobilePhoneTask = function () {
+mp.Player.prototype.isRunningMobilePhoneTask ??= function () {
     let $res = natives.isPedRunningMobilePhoneTask(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isRunningMobilePhoneTask = function () {
+mp.Ped.prototype.isRunningMobilePhoneTask ??= function () {
     let $res = natives.isPedRunningMobilePhoneTask(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isMobilePhoneToEar = function () {
+mp.Player.prototype.isMobilePhoneToEar ??= function () {
     let $res = natives.isMobilePhoneToPedEar(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isMobilePhoneToEar = function () {
+mp.Ped.prototype.isMobilePhoneToEar ??= function () {
     let $res = natives.isMobilePhoneToPedEar(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setRagdollBlockingFlags = function (flags) {
+mp.Player.prototype.setRagdollBlockingFlags ??= function (flags) {
     let $res = natives.setRagdollBlockingFlags(this.handle, flags);
 };
-mp.Ped.prototype.setRagdollBlockingFlags = function (flags) {
+mp.Ped.prototype.setRagdollBlockingFlags ??= function (flags) {
     let $res = natives.setRagdollBlockingFlags(this.handle, flags);
 };
-mp.Player.prototype.clearRagdollBlockingFlags = function (flags) {
+mp.Player.prototype.clearRagdollBlockingFlags ??= function (flags) {
     let $res = natives.clearRagdollBlockingFlags(this.handle, flags);
 };
-mp.Ped.prototype.clearRagdollBlockingFlags = function (flags) {
+mp.Ped.prototype.clearRagdollBlockingFlags ??= function (flags) {
     let $res = natives.clearRagdollBlockingFlags(this.handle, flags);
 };
-mp.Player.prototype.setAngledDefensiveArea = function (p1, p2, p3, p4, p5, p6, p7, p8, p9) {
+mp.Player.prototype.setAngledDefensiveArea ??= function (p1, p2, p3, p4, p5, p6, p7, p8, p9) {
     let $res = natives.setPedAngledDefensiveArea(this.handle, p1, p2, p3, p4, p5, p6, p7, p8 | 0, p9 | 0);
 };
-mp.Ped.prototype.setAngledDefensiveArea = function (p1, p2, p3, p4, p5, p6, p7, p8, p9) {
+mp.Ped.prototype.setAngledDefensiveArea ??= function (p1, p2, p3, p4, p5, p6, p7, p8, p9) {
     let $res = natives.setPedAngledDefensiveArea(this.handle, p1, p2, p3, p4, p5, p6, p7, p8 | 0, p9 | 0);
 };
-mp.Player.prototype.setSphereDefensiveArea = function (x, y, z, radius, p5, p6) {
+mp.Player.prototype.setSphereDefensiveArea ??= function (x, y, z, radius, p5, p6) {
     let $res = natives.setPedSphereDefensiveArea(this.handle, x, y, z, radius, p5 | 0, p6 | 0);
 };
-mp.Ped.prototype.setSphereDefensiveArea = function (x, y, z, radius, p5, p6) {
+mp.Ped.prototype.setSphereDefensiveArea ??= function (x, y, z, radius, p5, p6) {
     let $res = natives.setPedSphereDefensiveArea(this.handle, x, y, z, radius, p5 | 0, p6 | 0);
 };
-mp.Player.prototype.setDefensiveSphereAttachedToPed = function (target, xOffset, yOffset, zOffset, radius, p6) {
+mp.Player.prototype.setDefensiveSphereAttachedToPed ??= function (target, xOffset, yOffset, zOffset, radius, p6) {
     let $res = natives.setPedDefensiveSphereAttachedToPed(this.handle, target, xOffset, yOffset, zOffset, radius, p6 | 0);
 };
-mp.Ped.prototype.setDefensiveSphereAttachedToPed = function (target, xOffset, yOffset, zOffset, radius, p6) {
+mp.Ped.prototype.setDefensiveSphereAttachedToPed ??= function (target, xOffset, yOffset, zOffset, radius, p6) {
     let $res = natives.setPedDefensiveSphereAttachedToPed(this.handle, target, xOffset, yOffset, zOffset, radius, p6 | 0);
 };
-mp.Player.prototype.setDefensiveSphereAttachedToVehicle = function (target, xOffset, yOffset, zOffset, radius, p6) {
+mp.Player.prototype.setDefensiveSphereAttachedToVehicle ??= function (target, xOffset, yOffset, zOffset, radius, p6) {
     let $res = natives.setPedDefensiveSphereAttachedToVehicle(this.handle, target, xOffset, yOffset, zOffset, radius, p6 | 0);
 };
-mp.Ped.prototype.setDefensiveSphereAttachedToVehicle = function (target, xOffset, yOffset, zOffset, radius, p6) {
+mp.Ped.prototype.setDefensiveSphereAttachedToVehicle ??= function (target, xOffset, yOffset, zOffset, radius, p6) {
     let $res = natives.setPedDefensiveSphereAttachedToVehicle(this.handle, target, xOffset, yOffset, zOffset, radius, p6 | 0);
 };
-mp.Player.prototype.setDefensiveAreaAttachedToPed = function (attachPed, p2, p3, p4, p5, p6, p7, p8, p9, p10) {
+mp.Player.prototype.setDefensiveAreaAttachedToPed ??= function (attachPed, p2, p3, p4, p5, p6, p7, p8, p9, p10) {
     let $res = natives.setPedDefensiveAreaAttachedToPed(this.handle, attachPed, p2, p3, p4, p5, p6, p7, p8, p9 | 0, p10 | 0);
 };
-mp.Ped.prototype.setDefensiveAreaAttachedToPed = function (attachPed, p2, p3, p4, p5, p6, p7, p8, p9, p10) {
+mp.Ped.prototype.setDefensiveAreaAttachedToPed ??= function (attachPed, p2, p3, p4, p5, p6, p7, p8, p9, p10) {
     let $res = natives.setPedDefensiveAreaAttachedToPed(this.handle, attachPed, p2, p3, p4, p5, p6, p7, p8, p9 | 0, p10 | 0);
 };
-mp.Player.prototype.setDefensiveAreaDirection = function (p1, p2, p3, p4) {
+mp.Player.prototype.setDefensiveAreaDirection ??= function (p1, p2, p3, p4) {
     let $res = natives.setPedDefensiveAreaDirection(this.handle, p1, p2, p3, p4 | 0);
 };
-mp.Ped.prototype.setDefensiveAreaDirection = function (p1, p2, p3, p4) {
+mp.Ped.prototype.setDefensiveAreaDirection ??= function (p1, p2, p3, p4) {
     let $res = natives.setPedDefensiveAreaDirection(this.handle, p1, p2, p3, p4 | 0);
 };
-mp.Player.prototype.removeDefensiveArea = function (toggle) {
+mp.Player.prototype.removeDefensiveArea ??= function (toggle) {
     let $res = natives.removePedDefensiveArea(this.handle, toggle | 0);
 };
-mp.Ped.prototype.removeDefensiveArea = function (toggle) {
+mp.Ped.prototype.removeDefensiveArea ??= function (toggle) {
     let $res = natives.removePedDefensiveArea(this.handle, toggle | 0);
 };
-mp.Player.prototype.getDefensiveAreaPosition = function (p1) {
+mp.Player.prototype.getDefensiveAreaPosition ??= function (p1) {
     let $res = natives.getPedDefensiveAreaPosition(this.handle, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -23327,7 +23327,7 @@ mp.Player.prototype.getDefensiveAreaPosition = function (p1) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Ped.prototype.getDefensiveAreaPosition = function (p1) {
+mp.Ped.prototype.getDefensiveAreaPosition ??= function (p1) {
     let $res = natives.getPedDefensiveAreaPosition(this.handle, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -23336,47 +23336,47 @@ mp.Ped.prototype.getDefensiveAreaPosition = function (p1) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Player.prototype.isDefensiveAreaActive = function (p1) {
+mp.Player.prototype.isDefensiveAreaActive ??= function (p1) {
     let $res = natives.isPedDefensiveAreaActive(this.handle, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isDefensiveAreaActive = function (p1) {
+mp.Ped.prototype.isDefensiveAreaActive ??= function (p1) {
     let $res = natives.isPedDefensiveAreaActive(this.handle, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setPreferredCoverSet = function (itemSet) {
+mp.Player.prototype.setPreferredCoverSet ??= function (itemSet) {
     let $res = natives.setPedPreferredCoverSet(this.handle, itemSet);
 };
-mp.Ped.prototype.setPreferredCoverSet = function (itemSet) {
+mp.Ped.prototype.setPreferredCoverSet ??= function (itemSet) {
     let $res = natives.setPedPreferredCoverSet(this.handle, itemSet);
 };
-mp.Player.prototype.removePreferredCoverSet = function () {
+mp.Player.prototype.removePreferredCoverSet ??= function () {
     let $res = natives.removePedPreferredCoverSet(this.handle);
 };
-mp.Ped.prototype.removePreferredCoverSet = function () {
+mp.Ped.prototype.removePreferredCoverSet ??= function () {
     let $res = natives.removePedPreferredCoverSet(this.handle);
 };
-mp.Player.prototype.reviveInjured = function () {
+mp.Player.prototype.reviveInjured ??= function () {
     let $res = natives.reviveInjuredPed(this.handle);
 };
-mp.Ped.prototype.reviveInjured = function () {
+mp.Ped.prototype.reviveInjured ??= function () {
     let $res = natives.reviveInjuredPed(this.handle);
 };
-mp.Player.prototype.resurrect = function () {
+mp.Player.prototype.resurrect ??= function () {
     let $res = natives.resurrectPed(this.handle);
 };
-mp.Ped.prototype.resurrect = function () {
+mp.Ped.prototype.resurrect ??= function () {
     let $res = natives.resurrectPed(this.handle);
 };
-mp.Player.prototype.setNameDebug = function (name) {
+mp.Player.prototype.setNameDebug ??= function (name) {
     let $res = natives.setPedNameDebug(this.handle, name);
 };
-mp.Ped.prototype.setNameDebug = function (name) {
+mp.Ped.prototype.setNameDebug ??= function (name) {
     let $res = natives.setPedNameDebug(this.handle, name);
 };
-mp.Player.prototype.getExtractedDisplacement = function (worldSpace) {
+mp.Player.prototype.getExtractedDisplacement ??= function (worldSpace) {
     let $res = natives.getPedExtractedDisplacement(this.handle, worldSpace | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -23385,7 +23385,7 @@ mp.Player.prototype.getExtractedDisplacement = function (worldSpace) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Ped.prototype.getExtractedDisplacement = function (worldSpace) {
+mp.Ped.prototype.getExtractedDisplacement ??= function (worldSpace) {
     let $res = natives.getPedExtractedDisplacement(this.handle, worldSpace | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -23394,169 +23394,169 @@ mp.Ped.prototype.getExtractedDisplacement = function (worldSpace) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Player.prototype.setDiesWhenInjured = function (toggle) {
+mp.Player.prototype.setDiesWhenInjured ??= function (toggle) {
     let $res = natives.setPedDiesWhenInjured(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setDiesWhenInjured = function (toggle) {
+mp.Ped.prototype.setDiesWhenInjured ??= function (toggle) {
     let $res = natives.setPedDiesWhenInjured(this.handle, toggle | 0);
 };
-mp.Player.prototype.setEnableWeaponBlocking = function (toggle) {
+mp.Player.prototype.setEnableWeaponBlocking ??= function (toggle) {
     let $res = natives.setPedEnableWeaponBlocking(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setEnableWeaponBlocking = function (toggle) {
+mp.Ped.prototype.setEnableWeaponBlocking ??= function (toggle) {
     let $res = natives.setPedEnableWeaponBlocking(this.handle, toggle | 0);
 };
-mp.Player.prototype.resetVisibleDamage = function () {
+mp.Player.prototype.resetVisibleDamage ??= function () {
     let $res = natives.resetPedVisibleDamage(this.handle);
 };
-mp.Ped.prototype.resetVisibleDamage = function () {
+mp.Ped.prototype.resetVisibleDamage ??= function () {
     let $res = natives.resetPedVisibleDamage(this.handle);
 };
-mp.Player.prototype.applyBloodDamageByZone = function (p1, p2, p3, p4) {
+mp.Player.prototype.applyBloodDamageByZone ??= function (p1, p2, p3, p4) {
     let $res = natives.applyPedBloodDamageByZone(this.handle, p1, p2, p3, p4);
 };
-mp.Ped.prototype.applyBloodDamageByZone = function (p1, p2, p3, p4) {
+mp.Ped.prototype.applyBloodDamageByZone ??= function (p1, p2, p3, p4) {
     let $res = natives.applyPedBloodDamageByZone(this.handle, p1, p2, p3, p4);
 };
-mp.Player.prototype.applyBlood = function (boneIndex, xRot, yRot, zRot, woundType) {
+mp.Player.prototype.applyBlood ??= function (boneIndex, xRot, yRot, zRot, woundType) {
     let $res = natives.applyPedBlood(this.handle, boneIndex, xRot, yRot, zRot, woundType);
 };
-mp.Ped.prototype.applyBlood = function (boneIndex, xRot, yRot, zRot, woundType) {
+mp.Ped.prototype.applyBlood ??= function (boneIndex, xRot, yRot, zRot, woundType) {
     let $res = natives.applyPedBlood(this.handle, boneIndex, xRot, yRot, zRot, woundType);
 };
-mp.Player.prototype.applyBloodByZone = function (p1, p2, p3, p4) {
+mp.Player.prototype.applyBloodByZone ??= function (p1, p2, p3, p4) {
     let $res = natives.applyPedBloodByZone(this.handle, p1, p2, p3, p4);
 };
-mp.Ped.prototype.applyBloodByZone = function (p1, p2, p3, p4) {
+mp.Ped.prototype.applyBloodByZone ??= function (p1, p2, p3, p4) {
     let $res = natives.applyPedBloodByZone(this.handle, p1, p2, p3, p4);
 };
-mp.Player.prototype.applyBloodSpecific = function (p1, p2, p3, p4, p5, p6, p7, p8) {
+mp.Player.prototype.applyBloodSpecific ??= function (p1, p2, p3, p4, p5, p6, p7, p8) {
     let $res = natives.applyPedBloodSpecific(this.handle, p1, p2, p3, p4, p5, p6, p7, p8);
 };
-mp.Ped.prototype.applyBloodSpecific = function (p1, p2, p3, p4, p5, p6, p7, p8) {
+mp.Ped.prototype.applyBloodSpecific ??= function (p1, p2, p3, p4, p5, p6, p7, p8) {
     let $res = natives.applyPedBloodSpecific(this.handle, p1, p2, p3, p4, p5, p6, p7, p8);
 };
-mp.Player.prototype.applyDamageDecal = function (damageZone, xOffset, yOffset, heading, scale, alpha, variation, fadeIn, decalName) {
+mp.Player.prototype.applyDamageDecal ??= function (damageZone, xOffset, yOffset, heading, scale, alpha, variation, fadeIn, decalName) {
     let $res = natives.applyPedDamageDecal(this.handle, damageZone, xOffset, yOffset, heading, scale, alpha, variation, fadeIn | 0, decalName);
 };
-mp.Ped.prototype.applyDamageDecal = function (damageZone, xOffset, yOffset, heading, scale, alpha, variation, fadeIn, decalName) {
+mp.Ped.prototype.applyDamageDecal ??= function (damageZone, xOffset, yOffset, heading, scale, alpha, variation, fadeIn, decalName) {
     let $res = natives.applyPedDamageDecal(this.handle, damageZone, xOffset, yOffset, heading, scale, alpha, variation, fadeIn | 0, decalName);
 };
-mp.Player.prototype.applyDamagePack = function (damagePack, damage, mult) {
+mp.Player.prototype.applyDamagePack ??= function (damagePack, damage, mult) {
     let $res = natives.applyPedDamagePack(this.handle, damagePack, damage, mult);
 };
-mp.Ped.prototype.applyDamagePack = function (damagePack, damage, mult) {
+mp.Ped.prototype.applyDamagePack ??= function (damagePack, damage, mult) {
     let $res = natives.applyPedDamagePack(this.handle, damagePack, damage, mult);
 };
-mp.Player.prototype.clearBloodDamage = function () {
+mp.Player.prototype.clearBloodDamage ??= function () {
     let $res = natives.clearPedBloodDamage(this.handle);
 };
-mp.Ped.prototype.clearBloodDamage = function () {
+mp.Ped.prototype.clearBloodDamage ??= function () {
     let $res = natives.clearPedBloodDamage(this.handle);
 };
-mp.Player.prototype.clearBloodDamageByZone = function (p1) {
+mp.Player.prototype.clearBloodDamageByZone ??= function (p1) {
     let $res = natives.clearPedBloodDamageByZone(this.handle, p1);
 };
-mp.Ped.prototype.clearBloodDamageByZone = function (p1) {
+mp.Ped.prototype.clearBloodDamageByZone ??= function (p1) {
     let $res = natives.clearPedBloodDamageByZone(this.handle, p1);
 };
-mp.Player.prototype.hideBloodDamageByZone = function (p1, p2) {
+mp.Player.prototype.hideBloodDamageByZone ??= function (p1, p2) {
     let $res = natives.hidePedBloodDamageByZone(this.handle, p1, p2 | 0);
 };
-mp.Ped.prototype.hideBloodDamageByZone = function (p1, p2) {
+mp.Ped.prototype.hideBloodDamageByZone ??= function (p1, p2) {
     let $res = natives.hidePedBloodDamageByZone(this.handle, p1, p2 | 0);
 };
-mp.Player.prototype.clearDamageDecalByZone = function (p1, p2) {
+mp.Player.prototype.clearDamageDecalByZone ??= function (p1, p2) {
     let $res = natives.clearPedDamageDecalByZone(this.handle, p1, p2);
 };
-mp.Ped.prototype.clearDamageDecalByZone = function (p1, p2) {
+mp.Ped.prototype.clearDamageDecalByZone ??= function (p1, p2) {
     let $res = natives.clearPedDamageDecalByZone(this.handle, p1, p2);
 };
-mp.Player.prototype.getDecorationsState = function () {
+mp.Player.prototype.getDecorationsState ??= function () {
     let $res = natives.getPedDecorationsState(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getDecorationsState = function () {
+mp.Ped.prototype.getDecorationsState ??= function () {
     let $res = natives.getPedDecorationsState(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.clearWetness = function () {
+mp.Player.prototype.clearWetness ??= function () {
     let $res = natives.clearPedWetness(this.handle);
 };
-mp.Ped.prototype.clearWetness = function () {
+mp.Ped.prototype.clearWetness ??= function () {
     let $res = natives.clearPedWetness(this.handle);
 };
-mp.Player.prototype.setWetnessHeight = function (height) {
+mp.Player.prototype.setWetnessHeight ??= function (height) {
     let $res = natives.setPedWetnessHeight(this.handle, height);
 };
-mp.Ped.prototype.setWetnessHeight = function (height) {
+mp.Ped.prototype.setWetnessHeight ??= function (height) {
     let $res = natives.setPedWetnessHeight(this.handle, height);
 };
-mp.Player.prototype.setWetnessEnabledThisFrame = function () {
+mp.Player.prototype.setWetnessEnabledThisFrame ??= function () {
     let $res = natives.setPedWetnessEnabledThisFrame(this.handle);
 };
-mp.Ped.prototype.setWetnessEnabledThisFrame = function () {
+mp.Ped.prototype.setWetnessEnabledThisFrame ??= function () {
     let $res = natives.setPedWetnessEnabledThisFrame(this.handle);
 };
-mp.Player.prototype.clearEnvDirt = function () {
+mp.Player.prototype.clearEnvDirt ??= function () {
     let $res = natives.clearPedEnvDirt(this.handle);
 };
-mp.Ped.prototype.clearEnvDirt = function () {
+mp.Ped.prototype.clearEnvDirt ??= function () {
     let $res = natives.clearPedEnvDirt(this.handle);
 };
-mp.Player.prototype.setSweat = function (sweat) {
+mp.Player.prototype.setSweat ??= function (sweat) {
     let $res = natives.setPedSweat(this.handle, sweat);
 };
-mp.Ped.prototype.setSweat = function (sweat) {
+mp.Ped.prototype.setSweat ??= function (sweat) {
     let $res = natives.setPedSweat(this.handle, sweat);
 };
-mp.Player.prototype.addDecorationFromHashes = function (collection, overlay) {
+mp.Player.prototype.addDecorationFromHashes ??= function (collection, overlay) {
     let $res = natives.addPedDecorationFromHashes(this.handle, collection, overlay);
 };
-mp.Ped.prototype.addDecorationFromHashes = function (collection, overlay) {
+mp.Ped.prototype.addDecorationFromHashes ??= function (collection, overlay) {
     let $res = natives.addPedDecorationFromHashes(this.handle, collection, overlay);
 };
-mp.Player.prototype.addDecorationFromHashesInCorona = function (collection, overlay) {
+mp.Player.prototype.addDecorationFromHashesInCorona ??= function (collection, overlay) {
     let $res = natives.addPedDecorationFromHashesInCorona(this.handle, collection, overlay);
 };
-mp.Ped.prototype.addDecorationFromHashesInCorona = function (collection, overlay) {
+mp.Ped.prototype.addDecorationFromHashesInCorona ??= function (collection, overlay) {
     let $res = natives.addPedDecorationFromHashesInCorona(this.handle, collection, overlay);
 };
-mp.Player.prototype.getDecorationZoneFromHashes = function (overlay) {
+mp.Player.prototype.getDecorationZoneFromHashes ??= function (overlay) {
     let $res = natives.getPedDecorationZoneFromHashes(this.handle, overlay);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getDecorationZoneFromHashes = function (overlay) {
+mp.Ped.prototype.getDecorationZoneFromHashes ??= function (overlay) {
     let $res = natives.getPedDecorationZoneFromHashes(this.handle, overlay);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.clearDecorations = function () {
+mp.Player.prototype.clearDecorations ??= function () {
     let $res = natives.clearPedDecorations(this.handle);
 };
-mp.Ped.prototype.clearDecorations = function () {
+mp.Ped.prototype.clearDecorations ??= function () {
     let $res = natives.clearPedDecorations(this.handle);
 };
-mp.Player.prototype.clearDecorationsLeaveScars = function () {
+mp.Player.prototype.clearDecorationsLeaveScars ??= function () {
     let $res = natives.clearPedDecorationsLeaveScars(this.handle);
 };
-mp.Ped.prototype.clearDecorationsLeaveScars = function () {
+mp.Ped.prototype.clearDecorationsLeaveScars ??= function () {
     let $res = natives.clearPedDecorationsLeaveScars(this.handle);
 };
-mp.Player.prototype.wasSkeletonUpdated = function () {
+mp.Player.prototype.wasSkeletonUpdated ??= function () {
     let $res = natives.wasPedSkeletonUpdated(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.wasSkeletonUpdated = function () {
+mp.Ped.prototype.wasSkeletonUpdated ??= function () {
     let $res = natives.wasPedSkeletonUpdated(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getBoneCoords = function (boneId, offsetX, offsetY, offsetZ) {
+mp.Player.prototype.getBoneCoords ??= function (boneId, offsetX, offsetY, offsetZ) {
     let $res = natives.getPedBoneCoords(this.handle, boneId, offsetX, offsetY, offsetZ);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -23565,7 +23565,7 @@ mp.Player.prototype.getBoneCoords = function (boneId, offsetX, offsetY, offsetZ)
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Ped.prototype.getBoneCoords = function (boneId, offsetX, offsetY, offsetZ) {
+mp.Ped.prototype.getBoneCoords ??= function (boneId, offsetX, offsetY, offsetZ) {
     let $res = natives.getPedBoneCoords(this.handle, boneId, offsetX, offsetY, offsetZ);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -23574,785 +23574,785 @@ mp.Ped.prototype.getBoneCoords = function (boneId, offsetX, offsetY, offsetZ) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Player.prototype.giveNmMessage = function () {
+mp.Player.prototype.giveNmMessage ??= function () {
     let $res = natives.givePedNmMessage(this.handle);
 };
-mp.Ped.prototype.giveNmMessage = function () {
+mp.Ped.prototype.giveNmMessage ??= function () {
     let $res = natives.givePedNmMessage(this.handle);
 };
-mp.Player.prototype.isUsingScenario = function (scenario) {
+mp.Player.prototype.isUsingScenario ??= function (scenario) {
     let $res = natives.isPedUsingScenario(this.handle, scenario);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isUsingScenario = function (scenario) {
+mp.Ped.prototype.isUsingScenario ??= function (scenario) {
     let $res = natives.isPedUsingScenario(this.handle, scenario);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isUsingAnyScenario = function () {
+mp.Player.prototype.isUsingAnyScenario ??= function () {
     let $res = natives.isPedUsingAnyScenario(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isUsingAnyScenario = function () {
+mp.Ped.prototype.isUsingAnyScenario ??= function () {
     let $res = natives.isPedUsingAnyScenario(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setPanicExitScenario = function (p1, p2, p3) {
+mp.Player.prototype.setPanicExitScenario ??= function (p1, p2, p3) {
     let $res = natives.setPedPanicExitScenario(this.handle, p1, p2, p3);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.setPanicExitScenario = function (p1, p2, p3) {
+mp.Ped.prototype.setPanicExitScenario ??= function (p1, p2, p3) {
     let $res = natives.setPedPanicExitScenario(this.handle, p1, p2, p3);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setShouldPlayDirectedScenarioExit = function (p1, p2, p3) {
+mp.Player.prototype.setShouldPlayDirectedScenarioExit ??= function (p1, p2, p3) {
     let $res = natives.setPedShouldPlayDirectedNormalScenarioExit(this.handle, p1, p2, p3);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.setShouldPlayDirectedScenarioExit = function (p1, p2, p3) {
+mp.Ped.prototype.setShouldPlayDirectedScenarioExit ??= function (p1, p2, p3) {
     let $res = natives.setPedShouldPlayDirectedNormalScenarioExit(this.handle, p1, p2, p3);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setShouldPlayNormalScenarioExit = function () {
+mp.Player.prototype.setShouldPlayNormalScenarioExit ??= function () {
     let $res = natives.setPedShouldPlayNormalScenarioExit(this.handle);
 };
-mp.Ped.prototype.setShouldPlayNormalScenarioExit = function () {
+mp.Ped.prototype.setShouldPlayNormalScenarioExit ??= function () {
     let $res = natives.setPedShouldPlayNormalScenarioExit(this.handle);
 };
-mp.Player.prototype.setShouldPlayImmediateScenarioExit = function () {
+mp.Player.prototype.setShouldPlayImmediateScenarioExit ??= function () {
     let $res = natives.setPedShouldPlayImmediateScenarioExit(this.handle);
 };
-mp.Ped.prototype.setShouldPlayImmediateScenarioExit = function () {
+mp.Ped.prototype.setShouldPlayImmediateScenarioExit ??= function () {
     let $res = natives.setPedShouldPlayImmediateScenarioExit(this.handle);
 };
-mp.Player.prototype.setShouldPlayFleeScenarioExit = function (p1, p2, p3) {
+mp.Player.prototype.setShouldPlayFleeScenarioExit ??= function (p1, p2, p3) {
     let $res = natives.setPedShouldPlayFleeScenarioExit(this.handle, p1, p2, p3);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.setShouldPlayFleeScenarioExit = function (p1, p2, p3) {
+mp.Ped.prototype.setShouldPlayFleeScenarioExit ??= function (p1, p2, p3) {
     let $res = natives.setPedShouldPlayFleeScenarioExit(this.handle, p1, p2, p3);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.playFacialAnim = function (animName, animDict) {
+mp.Player.prototype.playFacialAnim ??= function (animName, animDict) {
     let $res = natives.playFacialAnim(this.handle, animName, animDict);
 };
-mp.Ped.prototype.playFacialAnim = function (animName, animDict) {
+mp.Ped.prototype.playFacialAnim ??= function (animName, animDict) {
     let $res = natives.playFacialAnim(this.handle, animName, animDict);
 };
-mp.Player.prototype.setFacialClipsetOverride = function (animDict) {
+mp.Player.prototype.setFacialClipsetOverride ??= function (animDict) {
     let $res = natives.setFacialClipset(this.handle, animDict);
 };
-mp.Ped.prototype.setFacialClipsetOverride = function (animDict) {
+mp.Ped.prototype.setFacialClipsetOverride ??= function (animDict) {
     let $res = natives.setFacialClipset(this.handle, animDict);
 };
-mp.Player.prototype.setFacialIdleAnimOverride = function (animName, animDict) {
+mp.Player.prototype.setFacialIdleAnimOverride ??= function (animName, animDict) {
     let $res = natives.setFacialIdleAnimOverride(this.handle, animName, animDict);
 };
-mp.Ped.prototype.setFacialIdleAnimOverride = function (animName, animDict) {
+mp.Ped.prototype.setFacialIdleAnimOverride ??= function (animName, animDict) {
     let $res = natives.setFacialIdleAnimOverride(this.handle, animName, animDict);
 };
-mp.Player.prototype.clearFacialIdleAnimOverride = function () {
+mp.Player.prototype.clearFacialIdleAnimOverride ??= function () {
     let $res = natives.clearFacialIdleAnimOverride(this.handle);
 };
-mp.Ped.prototype.clearFacialIdleAnimOverride = function () {
+mp.Ped.prototype.clearFacialIdleAnimOverride ??= function () {
     let $res = natives.clearFacialIdleAnimOverride(this.handle);
 };
-mp.Player.prototype.setCanPlayGestureAnims = function (toggle) {
+mp.Player.prototype.setCanPlayGestureAnims ??= function (toggle) {
     let $res = natives.setPedCanPlayGestureAnims(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setCanPlayGestureAnims = function (toggle) {
+mp.Ped.prototype.setCanPlayGestureAnims ??= function (toggle) {
     let $res = natives.setPedCanPlayGestureAnims(this.handle, toggle | 0);
 };
-mp.Player.prototype.setCanPlayVisemeAnims = function (toggle, p2) {
+mp.Player.prototype.setCanPlayVisemeAnims ??= function (toggle, p2) {
     let $res = natives.setPedCanPlayVisemeAnims(this.handle, toggle | 0, p2 | 0);
 };
-mp.Ped.prototype.setCanPlayVisemeAnims = function (toggle, p2) {
+mp.Ped.prototype.setCanPlayVisemeAnims ??= function (toggle, p2) {
     let $res = natives.setPedCanPlayVisemeAnims(this.handle, toggle | 0, p2 | 0);
 };
-mp.Player.prototype.setCanPlayInjuredAnims = function (p1) {
+mp.Player.prototype.setCanPlayInjuredAnims ??= function (p1) {
     let $res = natives.setPedIsIgnoredByAutoOpenDoors(this.handle, p1 | 0);
 };
-mp.Ped.prototype.setCanPlayInjuredAnims = function (p1) {
+mp.Ped.prototype.setCanPlayInjuredAnims ??= function (p1) {
     let $res = natives.setPedIsIgnoredByAutoOpenDoors(this.handle, p1 | 0);
 };
-mp.Player.prototype.setCanPlayAmbientAnims = function (toggle) {
+mp.Player.prototype.setCanPlayAmbientAnims ??= function (toggle) {
     let $res = natives.setPedCanPlayAmbientAnims(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setCanPlayAmbientAnims = function (toggle) {
+mp.Ped.prototype.setCanPlayAmbientAnims ??= function (toggle) {
     let $res = natives.setPedCanPlayAmbientAnims(this.handle, toggle | 0);
 };
-mp.Player.prototype.setCanPlayAmbientBaseAnims = function (toggle) {
+mp.Player.prototype.setCanPlayAmbientBaseAnims ??= function (toggle) {
     let $res = natives.setPedCanPlayAmbientBaseAnims(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setCanPlayAmbientBaseAnims = function (toggle) {
+mp.Ped.prototype.setCanPlayAmbientBaseAnims ??= function (toggle) {
     let $res = natives.setPedCanPlayAmbientBaseAnims(this.handle, toggle | 0);
 };
-mp.Player.prototype.setCanArmIk = function (toggle) {
+mp.Player.prototype.setCanArmIk ??= function (toggle) {
     let $res = natives.setPedCanArmIk(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setCanArmIk = function (toggle) {
+mp.Ped.prototype.setCanArmIk ??= function (toggle) {
     let $res = natives.setPedCanArmIk(this.handle, toggle | 0);
 };
-mp.Player.prototype.setCanHeadIk = function (toggle) {
+mp.Player.prototype.setCanHeadIk ??= function (toggle) {
     let $res = natives.setPedCanHeadIk(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setCanHeadIk = function (toggle) {
+mp.Ped.prototype.setCanHeadIk ??= function (toggle) {
     let $res = natives.setPedCanHeadIk(this.handle, toggle | 0);
 };
-mp.Player.prototype.setCanLegIk = function (toggle) {
+mp.Player.prototype.setCanLegIk ??= function (toggle) {
     let $res = natives.setPedCanLegIk(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setCanLegIk = function (toggle) {
+mp.Ped.prototype.setCanLegIk ??= function (toggle) {
     let $res = natives.setPedCanLegIk(this.handle, toggle | 0);
 };
-mp.Player.prototype.setCanTorsoIk = function (toggle) {
+mp.Player.prototype.setCanTorsoIk ??= function (toggle) {
     let $res = natives.setPedCanTorsoIk(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setCanTorsoIk = function (toggle) {
+mp.Ped.prototype.setCanTorsoIk ??= function (toggle) {
     let $res = natives.setPedCanTorsoIk(this.handle, toggle | 0);
 };
-mp.Player.prototype.setCanTorsoReactIk = function (p1) {
+mp.Player.prototype.setCanTorsoReactIk ??= function (p1) {
     let $res = natives.setPedCanTorsoReactIk(this.handle, p1 | 0);
 };
-mp.Ped.prototype.setCanTorsoReactIk = function (p1) {
+mp.Ped.prototype.setCanTorsoReactIk ??= function (p1) {
     let $res = natives.setPedCanTorsoReactIk(this.handle, p1 | 0);
 };
-mp.Player.prototype.setCanUseAutoConversationLookat = function (toggle) {
+mp.Player.prototype.setCanUseAutoConversationLookat ??= function (toggle) {
     let $res = natives.setPedCanUseAutoConversationLookat(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setCanUseAutoConversationLookat = function (toggle) {
+mp.Ped.prototype.setCanUseAutoConversationLookat ??= function (toggle) {
     let $res = natives.setPedCanUseAutoConversationLookat(this.handle, toggle | 0);
 };
-mp.Player.prototype.isHeadtrackingPed = function (ped2) {
+mp.Player.prototype.isHeadtrackingPed ??= function (ped2) {
     let $res = natives.isPedHeadtrackingPed(this.handle, ped2);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isHeadtrackingPed = function (ped2) {
+mp.Ped.prototype.isHeadtrackingPed ??= function (ped2) {
     let $res = natives.isPedHeadtrackingPed(this.handle, ped2);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isHeadtrackingEntity = function (entity) {
+mp.Player.prototype.isHeadtrackingEntity ??= function (entity) {
     let $res = natives.isPedHeadtrackingEntity(this.handle, entity);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isHeadtrackingEntity = function (entity) {
+mp.Ped.prototype.isHeadtrackingEntity ??= function (entity) {
     let $res = natives.isPedHeadtrackingEntity(this.handle, entity);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setPrimaryLookat = function (lookAt) {
+mp.Player.prototype.setPrimaryLookat ??= function (lookAt) {
     let $res = natives.setPedPrimaryLookat(this.handle, lookAt);
 };
-mp.Ped.prototype.setPrimaryLookat = function (lookAt) {
+mp.Ped.prototype.setPrimaryLookat ??= function (lookAt) {
     let $res = natives.setPedPrimaryLookat(this.handle, lookAt);
 };
-mp.Player.prototype.setClothPackageIndex = function (p1) {
+mp.Player.prototype.setClothPackageIndex ??= function (p1) {
     let $res = natives.setPedClothPinFrames(this.handle, p1);
 };
-mp.Ped.prototype.setClothPackageIndex = function (p1) {
+mp.Ped.prototype.setClothPackageIndex ??= function (p1) {
     let $res = natives.setPedClothPinFrames(this.handle, p1);
 };
-mp.Player.prototype.setClothProne = function (p1) {
+mp.Player.prototype.setClothProne ??= function (p1) {
     let $res = natives.setPedClothPackageIndex(this.handle, p1);
 };
-mp.Ped.prototype.setClothProne = function (p1) {
+mp.Ped.prototype.setClothProne ??= function (p1) {
     let $res = natives.setPedClothPackageIndex(this.handle, p1);
 };
-mp.Player.prototype.setConfigFlag = function (flagId, value) {
+mp.Player.prototype.setConfigFlag ??= function (flagId, value) {
     let $res = natives.setPedConfigFlag(this.handle, flagId, value | 0);
 };
-mp.Ped.prototype.setConfigFlag = function (flagId, value) {
+mp.Ped.prototype.setConfigFlag ??= function (flagId, value) {
     let $res = natives.setPedConfigFlag(this.handle, flagId, value | 0);
 };
-mp.Player.prototype.setResetFlag = function (flagId, doReset) {
+mp.Player.prototype.setResetFlag ??= function (flagId, doReset) {
     let $res = natives.setPedResetFlag(this.handle, flagId, doReset | 0);
 };
-mp.Ped.prototype.setResetFlag = function (flagId, doReset) {
+mp.Ped.prototype.setResetFlag ??= function (flagId, doReset) {
     let $res = natives.setPedResetFlag(this.handle, flagId, doReset | 0);
 };
-mp.Player.prototype.getConfigFlag = function (flagId, p2) {
+mp.Player.prototype.getConfigFlag ??= function (flagId, p2) {
     let $res = natives.getPedConfigFlag(this.handle, flagId, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.getConfigFlag = function (flagId, p2) {
+mp.Ped.prototype.getConfigFlag ??= function (flagId, p2) {
     let $res = natives.getPedConfigFlag(this.handle, flagId, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getResetFlag = function (flagId) {
+mp.Player.prototype.getResetFlag ??= function (flagId) {
     let $res = natives.getPedResetFlag(this.handle, flagId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.getResetFlag = function (flagId) {
+mp.Ped.prototype.getResetFlag ??= function (flagId) {
     let $res = natives.getPedResetFlag(this.handle, flagId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setGroupMemberPassengerIndex = function (index) {
+mp.Player.prototype.setGroupMemberPassengerIndex ??= function (index) {
     let $res = natives.setPedGroupMemberPassengerIndex(this.handle, index);
 };
-mp.Ped.prototype.setGroupMemberPassengerIndex = function (index) {
+mp.Ped.prototype.setGroupMemberPassengerIndex ??= function (index) {
     let $res = natives.setPedGroupMemberPassengerIndex(this.handle, index);
 };
-mp.Player.prototype.setCanEvasiveDive = function (toggle) {
+mp.Player.prototype.setCanEvasiveDive ??= function (toggle) {
     let $res = natives.setPedCanEvasiveDive(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setCanEvasiveDive = function (toggle) {
+mp.Ped.prototype.setCanEvasiveDive ??= function (toggle) {
     let $res = natives.setPedCanEvasiveDive(this.handle, toggle | 0);
 };
-mp.Player.prototype.isEvasiveDiving = function () {
+mp.Player.prototype.isEvasiveDiving ??= function () {
     let $res = natives.isPedEvasiveDiving(this.handle, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.evadingEntity = $res[1];
     return $res[0] == 1 ? $resObj.evadingEntity : undefined;
 };
-mp.Ped.prototype.isEvasiveDiving = function () {
+mp.Ped.prototype.isEvasiveDiving ??= function () {
     let $res = natives.isPedEvasiveDiving(this.handle, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.evadingEntity = $res[1];
     return $res[0] == 1 ? $resObj.evadingEntity : undefined;
 };
-mp.Player.prototype.setShootsAtCoord = function (x, y, z, toggle) {
+mp.Player.prototype.setShootsAtCoord ??= function (x, y, z, toggle) {
     let $res = natives.setPedShootsAtCoord(this.handle, x, y, z, toggle | 0);
 };
-mp.Ped.prototype.setShootsAtCoord = function (x, y, z, toggle) {
+mp.Ped.prototype.setShootsAtCoord ??= function (x, y, z, toggle) {
     let $res = natives.setPedShootsAtCoord(this.handle, x, y, z, toggle | 0);
 };
-mp.Player.prototype.setModelIsSuppressed = function (toggle) {
+mp.Player.prototype.setModelIsSuppressed ??= function (toggle) {
     let $res = natives.setPedModelIsSuppressed(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setModelIsSuppressed = function (toggle) {
+mp.Ped.prototype.setModelIsSuppressed ??= function (toggle) {
     let $res = natives.setPedModelIsSuppressed(this.handle, toggle | 0);
 };
-mp.Player.prototype.setCanBeTargetedWhenInjured = function (toggle) {
+mp.Player.prototype.setCanBeTargetedWhenInjured ??= function (toggle) {
     let $res = natives.setPedCanBeTargetedWhenInjured(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setCanBeTargetedWhenInjured = function (toggle) {
+mp.Ped.prototype.setCanBeTargetedWhenInjured ??= function (toggle) {
     let $res = natives.setPedCanBeTargetedWhenInjured(this.handle, toggle | 0);
 };
-mp.Player.prototype.setGeneratesDeadBodyEvents = function (toggle) {
+mp.Player.prototype.setGeneratesDeadBodyEvents ??= function (toggle) {
     let $res = natives.setPedGeneratesDeadBodyEvents(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setGeneratesDeadBodyEvents = function (toggle) {
+mp.Ped.prototype.setGeneratesDeadBodyEvents ??= function (toggle) {
     let $res = natives.setPedGeneratesDeadBodyEvents(this.handle, toggle | 0);
 };
-mp.Player.prototype.blockDeadBodyShockingEvents = function (toggle) {
+mp.Player.prototype.blockDeadBodyShockingEvents ??= function (toggle) {
     let $res = natives.blockPedFromGeneratingDeadBodyEventsWhenDead(this.handle, toggle | 0);
 };
-mp.Ped.prototype.blockDeadBodyShockingEvents = function (toggle) {
+mp.Ped.prototype.blockDeadBodyShockingEvents ??= function (toggle) {
     let $res = natives.blockPedFromGeneratingDeadBodyEventsWhenDead(this.handle, toggle | 0);
 };
-mp.Player.prototype.setCanRagdollFromPlayerImpact = function (toggle) {
+mp.Player.prototype.setCanRagdollFromPlayerImpact ??= function (toggle) {
     let $res = natives.setPedCanRagdollFromPlayerImpact(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setCanRagdollFromPlayerImpact = function (toggle) {
+mp.Ped.prototype.setCanRagdollFromPlayerImpact ??= function (toggle) {
     let $res = natives.setPedCanRagdollFromPlayerImpact(this.handle, toggle | 0);
 };
-mp.Player.prototype.giveHelmet = function (cannotRemove, helmetFlag, textureIndex) {
+mp.Player.prototype.giveHelmet ??= function (cannotRemove, helmetFlag, textureIndex) {
     let $res = natives.givePedHelmet(this.handle, cannotRemove | 0, helmetFlag, textureIndex);
 };
-mp.Ped.prototype.giveHelmet = function (cannotRemove, helmetFlag, textureIndex) {
+mp.Ped.prototype.giveHelmet ??= function (cannotRemove, helmetFlag, textureIndex) {
     let $res = natives.givePedHelmet(this.handle, cannotRemove | 0, helmetFlag, textureIndex);
 };
-mp.Player.prototype.removeHelmet = function (instantly) {
+mp.Player.prototype.removeHelmet ??= function (instantly) {
     let $res = natives.removePedHelmet(this.handle, instantly | 0);
 };
-mp.Ped.prototype.removeHelmet = function (instantly) {
+mp.Ped.prototype.removeHelmet ??= function (instantly) {
     let $res = natives.removePedHelmet(this.handle, instantly | 0);
 };
-mp.Player.prototype.isTakingOffHelmet = function () {
+mp.Player.prototype.isTakingOffHelmet ??= function () {
     let $res = natives.isPedTakingOffHelmet(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isTakingOffHelmet = function () {
+mp.Ped.prototype.isTakingOffHelmet ??= function () {
     let $res = natives.isPedTakingOffHelmet(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setHelmet = function (canWearHelmet) {
+mp.Player.prototype.setHelmet ??= function (canWearHelmet) {
     let $res = natives.setPedHelmet(this.handle, canWearHelmet | 0);
 };
-mp.Ped.prototype.setHelmet = function (canWearHelmet) {
+mp.Ped.prototype.setHelmet ??= function (canWearHelmet) {
     let $res = natives.setPedHelmet(this.handle, canWearHelmet | 0);
 };
-mp.Player.prototype.setHelmetFlag = function (helmetFlag) {
+mp.Player.prototype.setHelmetFlag ??= function (helmetFlag) {
     let $res = natives.setPedHelmetFlag(this.handle, helmetFlag);
 };
-mp.Ped.prototype.setHelmetFlag = function (helmetFlag) {
+mp.Ped.prototype.setHelmetFlag ??= function (helmetFlag) {
     let $res = natives.setPedHelmetFlag(this.handle, helmetFlag);
 };
-mp.Player.prototype.setHelmetPropIndex = function (propIndex, p2) {
+mp.Player.prototype.setHelmetPropIndex ??= function (propIndex, p2) {
     let $res = natives.setPedHelmetPropIndex(this.handle, propIndex, p2 | 0);
 };
-mp.Ped.prototype.setHelmetPropIndex = function (propIndex, p2) {
+mp.Ped.prototype.setHelmetPropIndex ??= function (propIndex, p2) {
     let $res = natives.setPedHelmetPropIndex(this.handle, propIndex, p2 | 0);
 };
-mp.Player.prototype.setHelmetUnk = function (p1, p2, p3) {
+mp.Player.prototype.setHelmetUnk ??= function (p1, p2, p3) {
     let $res = natives.setPedHelmetVisorPropIndices(this.handle, p1 | 0, p2, p3);
 };
-mp.Ped.prototype.setHelmetUnk = function (p1, p2, p3) {
+mp.Ped.prototype.setHelmetUnk ??= function (p1, p2, p3) {
     let $res = natives.setPedHelmetVisorPropIndices(this.handle, p1 | 0, p2, p3);
 };
-mp.Player.prototype.isHelmetUnk = function () {
+mp.Player.prototype.isHelmetUnk ??= function () {
     let $res = natives.isPedHelmetVisorUp(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isHelmetUnk = function () {
+mp.Ped.prototype.isHelmetUnk ??= function () {
     let $res = natives.isPedHelmetVisorUp(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setHelmetTextureIndex = function (textureIndex) {
+mp.Player.prototype.setHelmetTextureIndex ??= function (textureIndex) {
     let $res = natives.setPedHelmetTextureIndex(this.handle, textureIndex);
 };
-mp.Ped.prototype.setHelmetTextureIndex = function (textureIndex) {
+mp.Ped.prototype.setHelmetTextureIndex ??= function (textureIndex) {
     let $res = natives.setPedHelmetTextureIndex(this.handle, textureIndex);
 };
-mp.Player.prototype.isWearingHelmet = function () {
+mp.Player.prototype.isWearingHelmet ??= function () {
     let $res = natives.isPedWearingHelmet(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isWearingHelmet = function () {
+mp.Ped.prototype.isWearingHelmet ??= function () {
     let $res = natives.isPedWearingHelmet(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.clearStoredHatProp = function () {
+mp.Player.prototype.clearStoredHatProp ??= function () {
     let $res = natives.clearPedStoredHatProp(this.handle);
 };
-mp.Ped.prototype.clearStoredHatProp = function () {
+mp.Ped.prototype.clearStoredHatProp ??= function () {
     let $res = natives.clearPedStoredHatProp(this.handle);
 };
-mp.Player.prototype.getHelmetStoredHatPropIndex = function () {
+mp.Player.prototype.getHelmetStoredHatPropIndex ??= function () {
     let $res = natives.getPedHelmetStoredHatPropIndex(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getHelmetStoredHatPropIndex = function () {
+mp.Ped.prototype.getHelmetStoredHatPropIndex ??= function () {
     let $res = natives.getPedHelmetStoredHatPropIndex(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getHelmetStoredHatTexIndex = function () {
+mp.Player.prototype.getHelmetStoredHatTexIndex ??= function () {
     let $res = natives.getPedHelmetStoredHatTexIndex(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getHelmetStoredHatTexIndex = function () {
+mp.Ped.prototype.getHelmetStoredHatTexIndex ??= function () {
     let $res = natives.getPedHelmetStoredHatTexIndex(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setToLoadCover = function (toggle) {
+mp.Player.prototype.setToLoadCover ??= function (toggle) {
     let $res = natives.setPedToLoadCover(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setToLoadCover = function (toggle) {
+mp.Ped.prototype.setToLoadCover ??= function (toggle) {
     let $res = natives.setPedToLoadCover(this.handle, toggle | 0);
 };
-mp.Player.prototype.setCanCowerInCover = function (toggle) {
+mp.Player.prototype.setCanCowerInCover ??= function (toggle) {
     let $res = natives.setPedCanCowerInCover(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setCanCowerInCover = function (toggle) {
+mp.Ped.prototype.setCanCowerInCover ??= function (toggle) {
     let $res = natives.setPedCanCowerInCover(this.handle, toggle | 0);
 };
-mp.Player.prototype.setCanPeekInCover = function (toggle) {
+mp.Player.prototype.setCanPeekInCover ??= function (toggle) {
     let $res = natives.setPedCanPeekInCover(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setCanPeekInCover = function (toggle) {
+mp.Ped.prototype.setCanPeekInCover ??= function (toggle) {
     let $res = natives.setPedCanPeekInCover(this.handle, toggle | 0);
 };
-mp.Player.prototype.setPlaysHeadOnHornAnimWhenDiesInVehicle = function (toggle) {
+mp.Player.prototype.setPlaysHeadOnHornAnimWhenDiesInVehicle ??= function (toggle) {
     let $res = natives.setPedPlaysHeadOnHornAnimWhenDiesInVehicle(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setPlaysHeadOnHornAnimWhenDiesInVehicle = function (toggle) {
+mp.Ped.prototype.setPlaysHeadOnHornAnimWhenDiesInVehicle ??= function (toggle) {
     let $res = natives.setPedPlaysHeadOnHornAnimWhenDiesInVehicle(this.handle, toggle | 0);
 };
-mp.Player.prototype.setLegIkMode = function (mode) {
+mp.Player.prototype.setLegIkMode ??= function (mode) {
     let $res = natives.setPedLegIkMode(this.handle, mode);
 };
-mp.Ped.prototype.setLegIkMode = function (mode) {
+mp.Ped.prototype.setLegIkMode ??= function (mode) {
     let $res = natives.setPedLegIkMode(this.handle, mode);
 };
-mp.Player.prototype.setMotionBlur = function (toggle) {
+mp.Player.prototype.setMotionBlur ??= function (toggle) {
     let $res = natives.setPedMotionBlur(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setMotionBlur = function (toggle) {
+mp.Ped.prototype.setMotionBlur ??= function (toggle) {
     let $res = natives.setPedMotionBlur(this.handle, toggle | 0);
 };
-mp.Player.prototype.setCanSwitchWeapon = function (toggle) {
+mp.Player.prototype.setCanSwitchWeapon ??= function (toggle) {
     let $res = natives.setPedCanSwitchWeapon(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setCanSwitchWeapon = function (toggle) {
+mp.Ped.prototype.setCanSwitchWeapon ??= function (toggle) {
     let $res = natives.setPedCanSwitchWeapon(this.handle, toggle | 0);
 };
-mp.Player.prototype.setDiesInstantlyInWater = function (toggle) {
+mp.Player.prototype.setDiesInstantlyInWater ??= function (toggle) {
     let $res = natives.setPedDiesInstantlyInWater(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setDiesInstantlyInWater = function (toggle) {
+mp.Ped.prototype.setDiesInstantlyInWater ??= function (toggle) {
     let $res = natives.setPedDiesInstantlyInWater(this.handle, toggle | 0);
 };
-mp.Player.prototype.stopWeaponFiringWhenDropped = function () {
+mp.Player.prototype.stopWeaponFiringWhenDropped ??= function () {
     let $res = natives.stopPedWeaponFiringWhenDropped(this.handle);
 };
-mp.Ped.prototype.stopWeaponFiringWhenDropped = function () {
+mp.Ped.prototype.stopWeaponFiringWhenDropped ??= function () {
     let $res = natives.stopPedWeaponFiringWhenDropped(this.handle);
 };
-mp.Player.prototype.setScriptedAnimSeatOffset = function (p1) {
+mp.Player.prototype.setScriptedAnimSeatOffset ??= function (p1) {
     let $res = natives.setScriptedAnimSeatOffset(this.handle, p1);
 };
-mp.Ped.prototype.setScriptedAnimSeatOffset = function (p1) {
+mp.Ped.prototype.setScriptedAnimSeatOffset ??= function (p1) {
     let $res = natives.setScriptedAnimSeatOffset(this.handle, p1);
 };
-mp.Player.prototype.setCombatMovement = function (combatMovement) {
+mp.Player.prototype.setCombatMovement ??= function (combatMovement) {
     let $res = natives.setPedCombatMovement(this.handle, combatMovement);
 };
-mp.Ped.prototype.setCombatMovement = function (combatMovement) {
+mp.Ped.prototype.setCombatMovement ??= function (combatMovement) {
     let $res = natives.setPedCombatMovement(this.handle, combatMovement);
 };
-mp.Player.prototype.getCombatMovement = function () {
+mp.Player.prototype.getCombatMovement ??= function () {
     let $res = natives.getPedCombatMovement(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getCombatMovement = function () {
+mp.Ped.prototype.getCombatMovement ??= function () {
     let $res = natives.getPedCombatMovement(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setCombatAbility = function (abilityLevel) {
+mp.Player.prototype.setCombatAbility ??= function (abilityLevel) {
     let $res = natives.setPedCombatAbility(this.handle, abilityLevel);
 };
-mp.Ped.prototype.setCombatAbility = function (abilityLevel) {
+mp.Ped.prototype.setCombatAbility ??= function (abilityLevel) {
     let $res = natives.setPedCombatAbility(this.handle, abilityLevel);
 };
-mp.Player.prototype.setCombatRange = function (combatRange) {
+mp.Player.prototype.setCombatRange ??= function (combatRange) {
     let $res = natives.setPedCombatRange(this.handle, combatRange);
 };
-mp.Ped.prototype.setCombatRange = function (combatRange) {
+mp.Ped.prototype.setCombatRange ??= function (combatRange) {
     let $res = natives.setPedCombatRange(this.handle, combatRange);
 };
-mp.Player.prototype.getCombatRange = function () {
+mp.Player.prototype.getCombatRange ??= function () {
     let $res = natives.getPedCombatRange(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getCombatRange = function () {
+mp.Ped.prototype.getCombatRange ??= function () {
     let $res = natives.getPedCombatRange(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setCombatAttributes = function (attributeId, enabled) {
+mp.Player.prototype.setCombatAttributes ??= function (attributeId, enabled) {
     let $res = natives.setPedCombatAttributes(this.handle, attributeId, enabled | 0);
 };
-mp.Ped.prototype.setCombatAttributes = function (attributeId, enabled) {
+mp.Ped.prototype.setCombatAttributes ??= function (attributeId, enabled) {
     let $res = natives.setPedCombatAttributes(this.handle, attributeId, enabled | 0);
 };
-mp.Player.prototype.setTargetLossResponse = function (responseType) {
+mp.Player.prototype.setTargetLossResponse ??= function (responseType) {
     let $res = natives.setPedTargetLossResponse(this.handle, responseType);
 };
-mp.Ped.prototype.setTargetLossResponse = function (responseType) {
+mp.Ped.prototype.setTargetLossResponse ??= function (responseType) {
     let $res = natives.setPedTargetLossResponse(this.handle, responseType);
 };
-mp.Player.prototype.isPerformingMeleeAction = function () {
+mp.Player.prototype.isPerformingMeleeAction ??= function () {
     let $res = natives.isPedPerformingMeleeAction(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isPerformingMeleeAction = function () {
+mp.Ped.prototype.isPerformingMeleeAction ??= function () {
     let $res = natives.isPedPerformingMeleeAction(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isPerformingStealthKill = function () {
+mp.Player.prototype.isPerformingStealthKill ??= function () {
     let $res = natives.isPedPerformingStealthKill(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isPerformingStealthKill = function () {
+mp.Ped.prototype.isPerformingStealthKill ??= function () {
     let $res = natives.isPedPerformingStealthKill(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isPerformingDependentComboLimit = function () {
+mp.Player.prototype.isPerformingDependentComboLimit ??= function () {
     let $res = natives.isPedPerformingACounterAttack(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isPerformingDependentComboLimit = function () {
+mp.Ped.prototype.isPerformingDependentComboLimit ??= function () {
     let $res = natives.isPedPerformingACounterAttack(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isBeingStealthKilled = function () {
+mp.Player.prototype.isBeingStealthKilled ??= function () {
     let $res = natives.isPedBeingStealthKilled(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isBeingStealthKilled = function () {
+mp.Ped.prototype.isBeingStealthKilled ??= function () {
     let $res = natives.isPedBeingStealthKilled(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getMeleeTargetFor = function () {
+mp.Player.prototype.getMeleeTargetFor ??= function () {
     let $res = natives.getMeleeTargetForPed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getMeleeTargetFor = function () {
+mp.Ped.prototype.getMeleeTargetFor ??= function () {
     let $res = natives.getMeleeTargetForPed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.wasKilledByStealth = function () {
+mp.Player.prototype.wasKilledByStealth ??= function () {
     let $res = natives.wasPedKilledByStealth(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.wasKilledByStealth = function () {
+mp.Ped.prototype.wasKilledByStealth ??= function () {
     let $res = natives.wasPedKilledByStealth(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.wasKilledByTakedown = function () {
+mp.Player.prototype.wasKilledByTakedown ??= function () {
     let $res = natives.wasPedKilledByTakedown(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.wasKilledByTakedown = function () {
+mp.Ped.prototype.wasKilledByTakedown ??= function () {
     let $res = natives.wasPedKilledByTakedown(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.wasKnockedOut = function () {
+mp.Player.prototype.wasKnockedOut ??= function () {
     let $res = natives.wasPedKnockedOut(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.wasKnockedOut = function () {
+mp.Ped.prototype.wasKnockedOut ??= function () {
     let $res = natives.wasPedKnockedOut(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setFleeAttributes = function (attributeFlags, enable) {
+mp.Player.prototype.setFleeAttributes ??= function (attributeFlags, enable) {
     let $res = natives.setPedFleeAttributes(this.handle, attributeFlags, enable | 0);
 };
-mp.Ped.prototype.setFleeAttributes = function (attributeFlags, enable) {
+mp.Ped.prototype.setFleeAttributes ??= function (attributeFlags, enable) {
     let $res = natives.setPedFleeAttributes(this.handle, attributeFlags, enable | 0);
 };
-mp.Player.prototype.setCowerHash = function (p1) {
+mp.Player.prototype.setCowerHash ??= function (p1) {
     let $res = natives.setPedCowerHash(this.handle, p1);
 };
-mp.Ped.prototype.setCowerHash = function (p1) {
+mp.Ped.prototype.setCowerHash ??= function (p1) {
     let $res = natives.setPedCowerHash(this.handle, p1);
 };
-mp.Player.prototype.setSteersAroundPeds = function (toggle) {
+mp.Player.prototype.setSteersAroundPeds ??= function (toggle) {
     let $res = natives.setPedSteersAroundPeds(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setSteersAroundPeds = function (toggle) {
+mp.Ped.prototype.setSteersAroundPeds ??= function (toggle) {
     let $res = natives.setPedSteersAroundPeds(this.handle, toggle | 0);
 };
-mp.Player.prototype.setSteersAroundObjects = function (toggle) {
+mp.Player.prototype.setSteersAroundObjects ??= function (toggle) {
     let $res = natives.setPedSteersAroundObjects(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setSteersAroundObjects = function (toggle) {
+mp.Ped.prototype.setSteersAroundObjects ??= function (toggle) {
     let $res = natives.setPedSteersAroundObjects(this.handle, toggle | 0);
 };
-mp.Player.prototype.setSteersAroundVehicles = function (toggle) {
+mp.Player.prototype.setSteersAroundVehicles ??= function (toggle) {
     let $res = natives.setPedSteersAroundVehicles(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setSteersAroundVehicles = function (toggle) {
+mp.Ped.prototype.setSteersAroundVehicles ??= function (toggle) {
     let $res = natives.setPedSteersAroundVehicles(this.handle, toggle | 0);
 };
-mp.Player.prototype.setIncreasedAvoidanceRadius = function () {
+mp.Player.prototype.setIncreasedAvoidanceRadius ??= function () {
     let $res = natives.setPedIncreasedAvoidanceRadius(this.handle);
 };
-mp.Ped.prototype.setIncreasedAvoidanceRadius = function () {
+mp.Ped.prototype.setIncreasedAvoidanceRadius ??= function () {
     let $res = natives.setPedIncreasedAvoidanceRadius(this.handle);
 };
-mp.Player.prototype.setBlocksPathingWhenDead = function (toggle) {
+mp.Player.prototype.setBlocksPathingWhenDead ??= function (toggle) {
     let $res = natives.setPedBlocksPathingWhenDead(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setBlocksPathingWhenDead = function (toggle) {
+mp.Ped.prototype.setBlocksPathingWhenDead ??= function (toggle) {
     let $res = natives.setPedBlocksPathingWhenDead(this.handle, toggle | 0);
 };
-mp.Player.prototype.forceAiAndAnimationUpdate = function (p1, p2) {
+mp.Player.prototype.forceAiAndAnimationUpdate ??= function (p1, p2) {
     let $res = natives.forcePedAiAndAnimationUpdate(this.handle, p1 | 0, p2 | 0);
 };
-mp.Ped.prototype.forceAiAndAnimationUpdate = function (p1, p2) {
+mp.Ped.prototype.forceAiAndAnimationUpdate ??= function (p1, p2) {
     let $res = natives.forcePedAiAndAnimationUpdate(this.handle, p1 | 0, p2 | 0);
 };
-mp.Player.prototype.isHeadingTowardsPosition = function (x, y, z, p4) {
+mp.Player.prototype.isHeadingTowardsPosition ??= function (x, y, z, p4) {
     let $res = natives.isPedHeadingTowardsPosition(this.handle, x, y, z, p4);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isHeadingTowardsPosition = function (x, y, z, p4) {
+mp.Ped.prototype.isHeadingTowardsPosition ??= function (x, y, z, p4) {
     let $res = natives.isPedHeadingTowardsPosition(this.handle, x, y, z, p4);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.requestVisibilityTracking = function () {
+mp.Player.prototype.requestVisibilityTracking ??= function () {
     let $res = natives.requestPedVisibilityTracking(this.handle);
 };
-mp.Ped.prototype.requestVisibilityTracking = function () {
+mp.Ped.prototype.requestVisibilityTracking ??= function () {
     let $res = natives.requestPedVisibilityTracking(this.handle);
 };
-mp.Player.prototype.requestVehicleVisibilityTracking = function (p1) {
+mp.Player.prototype.requestVehicleVisibilityTracking ??= function (p1) {
     let $res = natives.requestPedVehicleVisibilityTracking(this.handle, p1 | 0);
 };
-mp.Ped.prototype.requestVehicleVisibilityTracking = function (p1) {
+mp.Ped.prototype.requestVehicleVisibilityTracking ??= function (p1) {
     let $res = natives.requestPedVehicleVisibilityTracking(this.handle, p1 | 0);
 };
-mp.Player.prototype.isTrackedVisible = function () {
+mp.Player.prototype.isTrackedVisible ??= function () {
     let $res = natives.isTrackedPedVisible(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isTrackedVisible = function () {
+mp.Ped.prototype.isTrackedVisible ??= function () {
     let $res = natives.isTrackedPedVisible(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isTracked = function () {
+mp.Player.prototype.isTracked ??= function () {
     let $res = natives.isPedTracked(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isTracked = function () {
+mp.Ped.prototype.isTracked ??= function () {
     let $res = natives.isPedTracked(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.hasReceivedEvent = function (eventId) {
+mp.Player.prototype.hasReceivedEvent ??= function (eventId) {
     let $res = natives.hasPedReceivedEvent(this.handle, eventId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.hasReceivedEvent = function (eventId) {
+mp.Ped.prototype.hasReceivedEvent ??= function (eventId) {
     let $res = natives.hasPedReceivedEvent(this.handle, eventId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.canSeeHatedPed = function (ped2) {
+mp.Player.prototype.canSeeHatedPed ??= function (ped2) {
     let $res = natives.canPedSeeHatedPed(this.handle, ped2);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.canSeeHatedPed = function (ped2) {
+mp.Ped.prototype.canSeeHatedPed ??= function (ped2) {
     let $res = natives.canPedSeeHatedPed(this.handle, ped2);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getBoneIndex = function (boneId) {
+mp.Player.prototype.getBoneIndex ??= function (boneId) {
     let $res = natives.getPedBoneIndex(this.handle, boneId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getBoneIndex = function (boneId) {
+mp.Ped.prototype.getBoneIndex ??= function (boneId) {
     let $res = natives.getPedBoneIndex(this.handle, boneId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getRagdollBoneIndex = function (bone) {
+mp.Player.prototype.getRagdollBoneIndex ??= function (bone) {
     let $res = natives.getPedRagdollBoneIndex(this.handle, bone);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getRagdollBoneIndex = function (bone) {
+mp.Ped.prototype.getRagdollBoneIndex ??= function (bone) {
     let $res = natives.getPedRagdollBoneIndex(this.handle, bone);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setEnveffScale = function (value) {
+mp.Player.prototype.setEnveffScale ??= function (value) {
     let $res = natives.setPedEnveffScale(this.handle, value);
 };
-mp.Ped.prototype.setEnveffScale = function (value) {
+mp.Ped.prototype.setEnveffScale ??= function (value) {
     let $res = natives.setPedEnveffScale(this.handle, value);
 };
-mp.Player.prototype.getEnveffScale = function () {
+mp.Player.prototype.getEnveffScale ??= function () {
     let $res = natives.getPedEnveffScale(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getEnveffScale = function () {
+mp.Ped.prototype.getEnveffScale ??= function () {
     let $res = natives.getPedEnveffScale(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setEnableEnveffScale = function (toggle) {
+mp.Player.prototype.setEnableEnveffScale ??= function (toggle) {
     let $res = natives.setEnablePedEnveffScale(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setEnableEnveffScale = function (toggle) {
+mp.Ped.prototype.setEnableEnveffScale ??= function (toggle) {
     let $res = natives.setEnablePedEnveffScale(this.handle, toggle | 0);
 };
-mp.Player.prototype.setEnveffColorModulator = function (p1, p2, p3) {
+mp.Player.prototype.setEnveffColorModulator ??= function (p1, p2, p3) {
     let $res = natives.setPedEnveffColorModulator(this.handle, p1, p2, p3);
 };
-mp.Ped.prototype.setEnveffColorModulator = function (p1, p2, p3) {
+mp.Ped.prototype.setEnveffColorModulator ??= function (p1, p2, p3) {
     let $res = natives.setPedEnveffColorModulator(this.handle, p1, p2, p3);
 };
-mp.Player.prototype.setEmissiveIntensity = function (intensity) {
+mp.Player.prototype.setEmissiveIntensity ??= function (intensity) {
     let $res = natives.setPedEmissiveScale(this.handle, intensity);
 };
-mp.Ped.prototype.setEmissiveIntensity = function (intensity) {
+mp.Ped.prototype.setEmissiveIntensity ??= function (intensity) {
     let $res = natives.setPedEmissiveScale(this.handle, intensity);
 };
-mp.Player.prototype.getEmissiveIntensity = function () {
+mp.Player.prototype.getEmissiveIntensity ??= function () {
     let $res = natives.getPedEmissiveScale(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getEmissiveIntensity = function () {
+mp.Ped.prototype.getEmissiveIntensity ??= function () {
     let $res = natives.getPedEmissiveScale(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.isShaderEffectValid = function () {
+mp.Player.prototype.isShaderEffectValid ??= function () {
     let $res = natives.isPedShaderReady(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isShaderEffectValid = function () {
+mp.Ped.prototype.isShaderEffectValid ??= function () {
     let $res = natives.isPedShaderReady(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setAoBlobRendering = function (toggle) {
+mp.Player.prototype.setAoBlobRendering ??= function (toggle) {
     let $res = natives.setPedAoBlobRendering(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setAoBlobRendering = function (toggle) {
+mp.Ped.prototype.setAoBlobRendering ??= function (toggle) {
     let $res = natives.setPedAoBlobRendering(this.handle, toggle | 0);
 };
-mp.Player.prototype.forceMotionState = function (motionStateHash, p2, p3, p4) {
+mp.Player.prototype.forceMotionState ??= function (motionStateHash, p2, p3, p4) {
     let $res = natives.forcePedMotionState(this.handle, motionStateHash, p2 | 0, p3 | 0, p4 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.forceMotionState = function (motionStateHash, p2, p3, p4) {
+mp.Ped.prototype.forceMotionState ??= function (motionStateHash, p2, p3, p4) {
     let $res = natives.forcePedMotionState(this.handle, motionStateHash, p2 | 0, p3 | 0, p4 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getCurrentMovementSpeed = function () {
+mp.Player.prototype.getCurrentMovementSpeed ??= function () {
     let $res = natives.getPedCurrentMoveBlendRatio(this.handle, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -24361,7 +24361,7 @@ mp.Player.prototype.getCurrentMovementSpeed = function () {
     $resObj.result = $res[0] == 1;
     return $resObj;
 };
-mp.Ped.prototype.getCurrentMovementSpeed = function () {
+mp.Ped.prototype.getCurrentMovementSpeed ??= function () {
     let $res = natives.getPedCurrentMoveBlendRatio(this.handle, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -24370,25 +24370,25 @@ mp.Ped.prototype.getCurrentMovementSpeed = function () {
     $resObj.result = $res[0] == 1;
     return $resObj;
 };
-mp.Player.prototype.setMaxMoveBlendRatio = function (value) {
+mp.Player.prototype.setMaxMoveBlendRatio ??= function (value) {
     let $res = natives.setPedMaxMoveBlendRatio(this.handle, value);
 };
-mp.Ped.prototype.setMaxMoveBlendRatio = function (value) {
+mp.Ped.prototype.setMaxMoveBlendRatio ??= function (value) {
     let $res = natives.setPedMaxMoveBlendRatio(this.handle, value);
 };
-mp.Player.prototype.setMinMoveBlendRatio = function (value) {
+mp.Player.prototype.setMinMoveBlendRatio ??= function (value) {
     let $res = natives.setPedMinMoveBlendRatio(this.handle, value);
 };
-mp.Ped.prototype.setMinMoveBlendRatio = function (value) {
+mp.Ped.prototype.setMinMoveBlendRatio ??= function (value) {
     let $res = natives.setPedMinMoveBlendRatio(this.handle, value);
 };
-mp.Player.prototype.setMoveRateOverride = function (value) {
+mp.Player.prototype.setMoveRateOverride ??= function (value) {
     let $res = natives.setPedMoveRateOverride(this.handle, value);
 };
-mp.Ped.prototype.setMoveRateOverride = function (value) {
+mp.Ped.prototype.setMoveRateOverride ??= function (value) {
     let $res = natives.setPedMoveRateOverride(this.handle, value);
 };
-mp.Player.prototype.getNearbyVehicles = function () {
+mp.Player.prototype.getNearbyVehicles ??= function () {
     let $res = natives.getPedNearbyVehicles(this.handle, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -24396,7 +24396,7 @@ mp.Player.prototype.getNearbyVehicles = function () {
     $resObj.result = $res[0];
     return $resObj;
 };
-mp.Ped.prototype.getNearbyVehicles = function () {
+mp.Ped.prototype.getNearbyVehicles ??= function () {
     let $res = natives.getPedNearbyVehicles(this.handle, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -24404,7 +24404,7 @@ mp.Ped.prototype.getNearbyVehicles = function () {
     $resObj.result = $res[0];
     return $resObj;
 };
-mp.Player.prototype.getNearbyPeds = function (ignore) {
+mp.Player.prototype.getNearbyPeds ??= function (ignore) {
     let $res = natives.getPedNearbyPeds(this.handle, 0, ignore);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -24412,7 +24412,7 @@ mp.Player.prototype.getNearbyPeds = function (ignore) {
     $resObj.result = $res[0];
     return $resObj;
 };
-mp.Ped.prototype.getNearbyPeds = function (ignore) {
+mp.Ped.prototype.getNearbyPeds ??= function (ignore) {
     let $res = natives.getPedNearbyPeds(this.handle, 0, ignore);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -24420,208 +24420,208 @@ mp.Ped.prototype.getNearbyPeds = function (ignore) {
     $resObj.result = $res[0];
     return $resObj;
 };
-mp.Player.prototype.haveAllStreamingRequestsCompleted = function () {
+mp.Player.prototype.haveAllStreamingRequestsCompleted ??= function () {
     let $res = natives.haveAllStreamingRequestsCompleted(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.haveAllStreamingRequestsCompleted = function () {
+mp.Ped.prototype.haveAllStreamingRequestsCompleted ??= function () {
     let $res = natives.haveAllStreamingRequestsCompleted(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isUsingActionMode = function () {
+mp.Player.prototype.isUsingActionMode ??= function () {
     let $res = natives.isPedUsingActionMode(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isUsingActionMode = function () {
+mp.Ped.prototype.isUsingActionMode ??= function () {
     let $res = natives.isPedUsingActionMode(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setUsingActionMode = function (p1, p2, action) {
+mp.Player.prototype.setUsingActionMode ??= function (p1, p2, action) {
     let $res = natives.setPedUsingActionMode(this.handle, p1 | 0, p2, action);
 };
-mp.Ped.prototype.setUsingActionMode = function (p1, p2, action) {
+mp.Ped.prototype.setUsingActionMode ??= function (p1, p2, action) {
     let $res = natives.setPedUsingActionMode(this.handle, p1 | 0, p2, action);
 };
-mp.Player.prototype.setMovementModeOverride = function (name) {
+mp.Player.prototype.setMovementModeOverride ??= function (name) {
     let $res = natives.setMovementModeOverride(this.handle, name);
 };
-mp.Ped.prototype.setMovementModeOverride = function (name) {
+mp.Ped.prototype.setMovementModeOverride ??= function (name) {
     let $res = natives.setMovementModeOverride(this.handle, name);
 };
-mp.Player.prototype.setCapsule = function (value) {
+mp.Player.prototype.setCapsule ??= function (value) {
     let $res = natives.setPedCapsule(this.handle, value);
 };
-mp.Ped.prototype.setCapsule = function (value) {
+mp.Ped.prototype.setCapsule ??= function (value) {
     let $res = natives.setPedCapsule(this.handle, value);
 };
-mp.Player.prototype.registerHeadshot = function () {
+mp.Player.prototype.registerHeadshot ??= function () {
     let $res = natives.registerPedheadshot(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.registerHeadshot = function () {
+mp.Ped.prototype.registerHeadshot ??= function () {
     let $res = natives.registerPedheadshot(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.registerHeadshot3 = function () {
+mp.Player.prototype.registerHeadshot3 ??= function () {
     let $res = natives.registerPedheadshotHires(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.registerHeadshot3 = function () {
+mp.Ped.prototype.registerHeadshot3 ??= function () {
     let $res = natives.registerPedheadshotHires(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.registerHeadshotTransparent = function () {
+mp.Player.prototype.registerHeadshotTransparent ??= function () {
     let $res = natives.registerPedheadshotTransparent(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.registerHeadshotTransparent = function () {
+mp.Ped.prototype.registerHeadshotTransparent ??= function () {
     let $res = natives.registerPedheadshotTransparent(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.isHeadshotValid = function () {
+mp.Player.prototype.isHeadshotValid ??= function () {
     let $res = natives.isPedheadshotValid(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isHeadshotValid = function () {
+mp.Ped.prototype.isHeadshotValid ??= function () {
     let $res = natives.isPedheadshotValid(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isHeadshotReady = function () {
+mp.Player.prototype.isHeadshotReady ??= function () {
     let $res = natives.isPedheadshotReady(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isHeadshotReady = function () {
+mp.Ped.prototype.isHeadshotReady ??= function () {
     let $res = natives.isPedheadshotReady(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getHeadshotTxdString = function () {
+mp.Player.prototype.getHeadshotTxdString ??= function () {
     let $res = natives.getPedheadshotTxdString(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getHeadshotTxdString = function () {
+mp.Ped.prototype.getHeadshotTxdString ??= function () {
     let $res = natives.getPedheadshotTxdString(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setHeatscaleOverride = function (heatScale) {
+mp.Player.prototype.setHeatscaleOverride ??= function (heatScale) {
     let $res = natives.setPedHeatscaleOverride(this.handle, heatScale);
 };
-mp.Ped.prototype.setHeatscaleOverride = function (heatScale) {
+mp.Ped.prototype.setHeatscaleOverride ??= function (heatScale) {
     let $res = natives.setPedHeatscaleOverride(this.handle, heatScale);
 };
-mp.Player.prototype.disableHeatscaleOverride = function () {
+mp.Player.prototype.disableHeatscaleOverride ??= function () {
     let $res = natives.disablePedHeatscaleOverride(this.handle);
 };
-mp.Ped.prototype.disableHeatscaleOverride = function () {
+mp.Ped.prototype.disableHeatscaleOverride ??= function () {
     let $res = natives.disablePedHeatscaleOverride(this.handle);
 };
-mp.Player.prototype.setIkTarget = function (ikIndex, entityLookAt, boneLookAt, offsetX, offsetY, offsetZ, p7, blendInDuration, blendOutDuration) {
+mp.Player.prototype.setIkTarget ??= function (ikIndex, entityLookAt, boneLookAt, offsetX, offsetY, offsetZ, p7, blendInDuration, blendOutDuration) {
     let $res = natives.setIkTarget(this.handle, ikIndex, entityLookAt, boneLookAt, offsetX, offsetY, offsetZ, p7, blendInDuration, blendOutDuration);
 };
-mp.Ped.prototype.setIkTarget = function (ikIndex, entityLookAt, boneLookAt, offsetX, offsetY, offsetZ, p7, blendInDuration, blendOutDuration) {
+mp.Ped.prototype.setIkTarget ??= function (ikIndex, entityLookAt, boneLookAt, offsetX, offsetY, offsetZ, p7, blendInDuration, blendOutDuration) {
     let $res = natives.setIkTarget(this.handle, ikIndex, entityLookAt, boneLookAt, offsetX, offsetY, offsetZ, p7, blendInDuration, blendOutDuration);
 };
-mp.Player.prototype.setLodMultiplier = function (multiplier) {
+mp.Player.prototype.setLodMultiplier ??= function (multiplier) {
     let $res = natives.setPedLodMultiplier(this.handle, multiplier);
 };
-mp.Ped.prototype.setLodMultiplier = function (multiplier) {
+mp.Ped.prototype.setLodMultiplier ??= function (multiplier) {
     let $res = natives.setPedLodMultiplier(this.handle, multiplier);
 };
-mp.Player.prototype.setCanLosePropsOnDamage = function (toggle, p2) {
+mp.Player.prototype.setCanLosePropsOnDamage ??= function (toggle, p2) {
     let $res = natives.setPedCanLosePropsOnDamage(this.handle, toggle | 0, p2);
 };
-mp.Ped.prototype.setCanLosePropsOnDamage = function (toggle, p2) {
+mp.Ped.prototype.setCanLosePropsOnDamage ??= function (toggle, p2) {
     let $res = natives.setPedCanLosePropsOnDamage(this.handle, toggle | 0, p2);
 };
-mp.Player.prototype.setForceFootstepUpdate = function (toggle) {
+mp.Player.prototype.setForceFootstepUpdate ??= function (toggle) {
     let $res = natives.setForceFootstepUpdate(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setForceFootstepUpdate = function (toggle) {
+mp.Ped.prototype.setForceFootstepUpdate ??= function (toggle) {
     let $res = natives.setForceFootstepUpdate(this.handle, toggle | 0);
 };
-mp.Player.prototype.setForceStepType = function (p1, type, p3) {
+mp.Player.prototype.setForceStepType ??= function (p1, type, p3) {
     let $res = natives.setForceStepType(this.handle, p1 | 0, type, p3);
 };
-mp.Ped.prototype.setForceStepType = function (p1, type, p3) {
+mp.Ped.prototype.setForceStepType ??= function (p1, type, p3) {
     let $res = natives.setForceStepType(this.handle, p1 | 0, type, p3);
 };
-mp.Player.prototype.isAnyHostileNearPoint = function (x, y, z, radius) {
+mp.Player.prototype.isAnyHostileNearPoint ??= function (x, y, z, radius) {
     let $res = natives.isAnyHostilePedNearPoint(this.handle, x, y, z, radius);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isAnyHostileNearPoint = function (x, y, z, radius) {
+mp.Ped.prototype.isAnyHostileNearPoint ??= function (x, y, z, radius) {
     let $res = natives.isAnyHostilePedNearPoint(this.handle, x, y, z, radius);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setCanPlayInCarIdles = function (toggle) {
+mp.Player.prototype.setCanPlayInCarIdles ??= function (toggle) {
     let $res = natives.setPedCanPlayInCarIdles(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setCanPlayInCarIdles = function (toggle) {
+mp.Ped.prototype.setCanPlayInCarIdles ??= function (toggle) {
     let $res = natives.setPedCanPlayInCarIdles(this.handle, toggle | 0);
 };
-mp.Player.prototype.isTargetInPerceptionArea = function (targetPed, p2, p3, p4, p5) {
+mp.Player.prototype.isTargetInPerceptionArea ??= function (targetPed, p2, p3, p4, p5) {
     let $res = natives.isTargetPedInPerceptionArea(this.handle, targetPed, p2, p3, p4, p5);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isTargetInPerceptionArea = function (targetPed, p2, p3, p4, p5) {
+mp.Ped.prototype.isTargetInPerceptionArea ??= function (targetPed, p2, p3, p4, p5) {
     let $res = natives.isTargetPedInPerceptionArea(this.handle, targetPed, p2, p3, p4, p5);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setDisableFallDamage = function (toggle) {
+mp.Player.prototype.setDisableFallDamage ??= function (toggle) {
     let $res = natives.setDisableHighFallDeath(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setDisableFallDamage = function (toggle) {
+mp.Ped.prototype.setDisableFallDamage ??= function (toggle) {
     let $res = natives.setDisableHighFallDeath(this.handle, toggle | 0);
 };
-mp.Player.prototype.isSwappingWeapon = function () {
+mp.Player.prototype.isSwappingWeapon ??= function () {
     let $res = natives.isPedSwitchingWeapon(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isSwappingWeapon = function () {
+mp.Ped.prototype.isSwappingWeapon ??= function () {
     let $res = natives.isPedSwitchingWeapon(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setEnableScubaGearLight = function (toggle) {
+mp.Player.prototype.setEnableScubaGearLight ??= function (toggle) {
     let $res = natives.enableMpLight(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setEnableScubaGearLight = function (toggle) {
+mp.Ped.prototype.setEnableScubaGearLight ??= function (toggle) {
     let $res = natives.enableMpLight(this.handle, toggle | 0);
 };
-mp.Player.prototype.isScubaGearLightEnabled = function () {
+mp.Player.prototype.isScubaGearLightEnabled ??= function () {
     let $res = natives.getMpLightEnabled(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isScubaGearLightEnabled = function () {
+mp.Ped.prototype.isScubaGearLightEnabled ??= function () {
     let $res = natives.getMpLightEnabled(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.clearFacialClipsetOverride = function () {
+mp.Player.prototype.clearFacialClipsetOverride ??= function () {
     let $res = natives.clearCoverPointForPed(this.handle);
 };
-mp.Ped.prototype.clearFacialClipsetOverride = function () {
+mp.Ped.prototype.clearFacialClipsetOverride ??= function () {
     let $res = natives.clearCoverPointForPed(this.handle);
 };
 if (!mp.game2.ped) mp.game2.ped = {};
@@ -27207,43 +27207,43 @@ mp.game2.ped.unk._0xDFE68C4B787E1BFB = function (ped) {
 mp.game2.ped.unk._0xFAB944D4D481ACCB = function (ped, toggle) {
     let $res = natives.setAllowStuntJumpCamera(ped, toggle | 0);
 };
-mp.Player.prototype.setDamping = function (vertex, value) {
+mp.Player.prototype.setDamping ??= function (vertex, value) {
     let $res = natives.setDamping(this.handle, vertex, value);
 };
-mp.Ped.prototype.setDamping = function (vertex, value) {
+mp.Ped.prototype.setDamping ??= function (vertex, value) {
     let $res = natives.setDamping(this.handle, vertex, value);
 };
-mp.Object.prototype.setDamping = function (vertex, value) {
+mp.Object.prototype.setDamping ??= function (vertex, value) {
     let $res = natives.setDamping(this.handle, vertex, value);
 };
-mp.Vehicle.prototype.setDamping = function (vertex, value) {
+mp.Vehicle.prototype.setDamping ??= function (vertex, value) {
     let $res = natives.setDamping(this.handle, vertex, value);
 };
-mp.Player.prototype.activate = function () {
+mp.Player.prototype.activate ??= function () {
     let $res = natives.activatePhysics(this.handle);
 };
-mp.Ped.prototype.activate = function () {
+mp.Ped.prototype.activate ??= function () {
     let $res = natives.activatePhysics(this.handle);
 };
-mp.Object.prototype.activate = function () {
+mp.Object.prototype.activate ??= function () {
     let $res = natives.activatePhysics(this.handle);
 };
-mp.Vehicle.prototype.activate = function () {
+mp.Vehicle.prototype.activate ??= function () {
     let $res = natives.activatePhysics(this.handle);
 };
-mp.Player.prototype.setCgoffset = function (x, y, z) {
+mp.Player.prototype.setCgoffset ??= function (x, y, z) {
     let $res = natives.setCgoffset(this.handle, x, y, z);
 };
-mp.Ped.prototype.setCgoffset = function (x, y, z) {
+mp.Ped.prototype.setCgoffset ??= function (x, y, z) {
     let $res = natives.setCgoffset(this.handle, x, y, z);
 };
-mp.Object.prototype.setCgoffset = function (x, y, z) {
+mp.Object.prototype.setCgoffset ??= function (x, y, z) {
     let $res = natives.setCgoffset(this.handle, x, y, z);
 };
-mp.Vehicle.prototype.setCgoffset = function (x, y, z) {
+mp.Vehicle.prototype.setCgoffset ??= function (x, y, z) {
     let $res = natives.setCgoffset(this.handle, x, y, z);
 };
-mp.Player.prototype.getCgoffset = function () {
+mp.Player.prototype.getCgoffset ??= function () {
     let $res = natives.getCgoffset(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -27252,7 +27252,7 @@ mp.Player.prototype.getCgoffset = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Ped.prototype.getCgoffset = function () {
+mp.Ped.prototype.getCgoffset ??= function () {
     let $res = natives.getCgoffset(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -27261,7 +27261,7 @@ mp.Ped.prototype.getCgoffset = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Object.prototype.getCgoffset = function () {
+mp.Object.prototype.getCgoffset ??= function () {
     let $res = natives.getCgoffset(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -27270,7 +27270,7 @@ mp.Object.prototype.getCgoffset = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Vehicle.prototype.getCgoffset = function () {
+mp.Vehicle.prototype.getCgoffset ??= function () {
     let $res = natives.getCgoffset(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -27279,39 +27279,39 @@ mp.Vehicle.prototype.getCgoffset = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Player.prototype.setCgAtBoundcenter = function () {
+mp.Player.prototype.setCgAtBoundcenter ??= function () {
     let $res = natives.setCgAtBoundcenter(this.handle);
 };
-mp.Ped.prototype.setCgAtBoundcenter = function () {
+mp.Ped.prototype.setCgAtBoundcenter ??= function () {
     let $res = natives.setCgAtBoundcenter(this.handle);
 };
-mp.Object.prototype.setCgAtBoundcenter = function () {
+mp.Object.prototype.setCgAtBoundcenter ??= function () {
     let $res = natives.setCgAtBoundcenter(this.handle);
 };
-mp.Vehicle.prototype.setCgAtBoundcenter = function () {
+mp.Vehicle.prototype.setCgAtBoundcenter ??= function () {
     let $res = natives.setCgAtBoundcenter(this.handle);
 };
-mp.Player.prototype.breakEntityGlass = function (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) {
+mp.Player.prototype.breakEntityGlass ??= function (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) {
     let $res = natives.breakEntityGlass(this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10 | 0);
 };
-mp.Ped.prototype.breakEntityGlass = function (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) {
+mp.Ped.prototype.breakEntityGlass ??= function (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) {
     let $res = natives.breakEntityGlass(this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10 | 0);
 };
-mp.Object.prototype.breakEntityGlass = function (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) {
+mp.Object.prototype.breakEntityGlass ??= function (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) {
     let $res = natives.breakEntityGlass(this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10 | 0);
 };
-mp.Vehicle.prototype.breakEntityGlass = function (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) {
+mp.Vehicle.prototype.breakEntityGlass ??= function (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) {
     let $res = natives.breakEntityGlass(this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10 | 0);
 };
-mp.Object.prototype.getHasObjectFragInst = function () {
+mp.Object.prototype.getHasObjectFragInst ??= function () {
     let $res = natives.getIsEntityAFrag(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.setDisableBreaking = function (toggle) {
+mp.Object.prototype.setDisableBreaking ??= function (toggle) {
     let $res = natives.setDisableBreaking(this.handle, toggle | 0);
 };
-mp.Object.prototype.setDisableFragDamage = function (toggle) {
+mp.Object.prototype.setDisableFragDamage ??= function (toggle) {
     let $res = natives.setDisableFragDamage(this.handle, toggle | 0);
 };
 if (!mp.game2.physics) mp.game2.physics = {};
@@ -28817,56 +28817,56 @@ mp.game2.script.unk._0x829CD22E043A2577 = function (p0) {
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.startShapeTestBoundingBox = function (flags1, flags2) {
+mp.Player.prototype.startShapeTestBoundingBox ??= function (flags1, flags2) {
     let $res = natives.startShapeTestBoundingBox(this.handle, flags1, flags2);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.startShapeTestBoundingBox = function (flags1, flags2) {
+mp.Ped.prototype.startShapeTestBoundingBox ??= function (flags1, flags2) {
     let $res = natives.startShapeTestBoundingBox(this.handle, flags1, flags2);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.startShapeTestBoundingBox = function (flags1, flags2) {
+mp.Object.prototype.startShapeTestBoundingBox ??= function (flags1, flags2) {
     let $res = natives.startShapeTestBoundingBox(this.handle, flags1, flags2);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.startShapeTestBoundingBox = function (flags1, flags2) {
+mp.Vehicle.prototype.startShapeTestBoundingBox ??= function (flags1, flags2) {
     let $res = natives.startShapeTestBoundingBox(this.handle, flags1, flags2);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.startShapeTestBound = function (flags1, flags2) {
+mp.Player.prototype.startShapeTestBound ??= function (flags1, flags2) {
     let $res = natives.startShapeTestBound(this.handle, flags1, flags2);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.startShapeTestBound = function (flags1, flags2) {
+mp.Ped.prototype.startShapeTestBound ??= function (flags1, flags2) {
     let $res = natives.startShapeTestBound(this.handle, flags1, flags2);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.startShapeTestBound = function (flags1, flags2) {
+mp.Object.prototype.startShapeTestBound ??= function (flags1, flags2) {
     let $res = natives.startShapeTestBound(this.handle, flags1, flags2);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.startShapeTestBound = function (flags1, flags2) {
+mp.Vehicle.prototype.startShapeTestBound ??= function (flags1, flags2) {
     let $res = natives.startShapeTestBound(this.handle, flags1, flags2);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.releaseScriptGuidFromEntity = function () {
+mp.Player.prototype.releaseScriptGuidFromEntity ??= function () {
     let $res = natives.releaseScriptGuidFromEntity(this.handle);
 };
-mp.Ped.prototype.releaseScriptGuidFromEntity = function () {
+mp.Ped.prototype.releaseScriptGuidFromEntity ??= function () {
     let $res = natives.releaseScriptGuidFromEntity(this.handle);
 };
-mp.Object.prototype.releaseScriptGuidFromEntity = function () {
+mp.Object.prototype.releaseScriptGuidFromEntity ??= function () {
     let $res = natives.releaseScriptGuidFromEntity(this.handle);
 };
-mp.Vehicle.prototype.releaseScriptGuidFromEntity = function () {
+mp.Vehicle.prototype.releaseScriptGuidFromEntity ??= function () {
     let $res = natives.releaseScriptGuidFromEntity(this.handle);
 };
 if (!mp.game2.shapetest) mp.game2.shapetest = {};
@@ -30311,63 +30311,63 @@ mp.game2.stats.unk._0x6BC0ACD0673ACEBE = function (p0, p1, p2) {
 mp.game2.stats.unk._0x4AFF7E02E485E92B = function () {
     let $res = natives.playstatsKillYourself();
 };
-mp.Vehicle.prototype.setVehiclePopulationBudget = function () {
+mp.Vehicle.prototype.setVehiclePopulationBudget ??= function () {
     let $res = natives.setVehiclePopulationBudget(this.handle);
 };
-mp.Player.prototype.setPedPopulationBudget = function () {
+mp.Player.prototype.setPedPopulationBudget ??= function () {
     let $res = natives.setPedPopulationBudget(this.handle);
 };
-mp.Ped.prototype.setPedPopulationBudget = function () {
+mp.Ped.prototype.setPedPopulationBudget ??= function () {
     let $res = natives.setPedPopulationBudget(this.handle);
 };
-mp.Player.prototype.setFocusEntity = function () {
+mp.Player.prototype.setFocusEntity ??= function () {
     let $res = natives.setFocusEntity(this.handle);
 };
-mp.Ped.prototype.setFocusEntity = function () {
+mp.Ped.prototype.setFocusEntity ??= function () {
     let $res = natives.setFocusEntity(this.handle);
 };
-mp.Object.prototype.setFocusEntity = function () {
+mp.Object.prototype.setFocusEntity ??= function () {
     let $res = natives.setFocusEntity(this.handle);
 };
-mp.Vehicle.prototype.setFocusEntity = function () {
+mp.Vehicle.prototype.setFocusEntity ??= function () {
     let $res = natives.setFocusEntity(this.handle);
 };
-mp.Player.prototype.isEntityFocus = function () {
+mp.Player.prototype.isEntityFocus ??= function () {
     let $res = natives.isEntityFocus(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isEntityFocus = function () {
+mp.Ped.prototype.isEntityFocus ??= function () {
     let $res = natives.isEntityFocus(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isEntityFocus = function () {
+mp.Object.prototype.isEntityFocus ??= function () {
     let $res = natives.isEntityFocus(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isEntityFocus = function () {
+mp.Vehicle.prototype.isEntityFocus ??= function () {
     let $res = natives.isEntityFocus(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.startPlayerSwitch = function (to, flags, switchType) {
+mp.Player.prototype.startPlayerSwitch ??= function (to, flags, switchType) {
     let $res = natives.startPlayerSwitch(this.handle, to, flags, switchType);
 };
-mp.Ped.prototype.startPlayerSwitch = function (to, flags, switchType) {
+mp.Ped.prototype.startPlayerSwitch ??= function (to, flags, switchType) {
     let $res = natives.startPlayerSwitch(this.handle, to, flags, switchType);
 };
-mp.Player.prototype.switchOutPlayer = function (flags, switchType) {
+mp.Player.prototype.switchOutPlayer ??= function (flags, switchType) {
     let $res = natives.switchToMultiFirstpart(this.handle, flags, switchType);
 };
-mp.Ped.prototype.switchOutPlayer = function (flags, switchType) {
+mp.Ped.prototype.switchOutPlayer ??= function (flags, switchType) {
     let $res = natives.switchToMultiFirstpart(this.handle, flags, switchType);
 };
-mp.Player.prototype.switchInPlayer = function () {
+mp.Player.prototype.switchInPlayer ??= function () {
     let $res = natives.switchToMultiSecondpart(this.handle);
 };
-mp.Ped.prototype.switchInPlayer = function () {
+mp.Ped.prototype.switchInPlayer ??= function () {
     let $res = natives.switchToMultiSecondpart(this.handle);
 };
 if (!mp.game2.streaming) mp.game2.streaming = {};
@@ -30850,277 +30850,277 @@ mp.game2.streaming.unk._0x20C6C7E4EB082A7F = function (p0) {
 mp.game2.streaming.unk._0xF8155A7F03DDFC8E = function (p0) {
     let $res = natives.setSrlForcePrestream(p0);
 };
-mp.Player.prototype.pause = function (ms) {
+mp.Player.prototype.pause ??= function (ms) {
     let $res = natives.taskPause(this.handle, ms);
 };
-mp.Ped.prototype.pause = function (ms) {
+mp.Ped.prototype.pause ??= function (ms) {
     let $res = natives.taskPause(this.handle, ms);
 };
-mp.Player.prototype.standStill = function (time) {
+mp.Player.prototype.standStill ??= function (time) {
     let $res = natives.taskStandStill(this.handle, time);
 };
-mp.Ped.prototype.standStill = function (time) {
+mp.Ped.prototype.standStill ??= function (time) {
     let $res = natives.taskStandStill(this.handle, time);
 };
-mp.Player.prototype.jump = function (unused, p2, p3) {
+mp.Player.prototype.jump ??= function (unused, p2, p3) {
     let $res = natives.taskJump(this.handle, unused | 0, p2 | 0, p3 | 0);
 };
-mp.Ped.prototype.jump = function (unused, p2, p3) {
+mp.Ped.prototype.jump ??= function (unused, p2, p3) {
     let $res = natives.taskJump(this.handle, unused | 0, p2 | 0, p3 | 0);
 };
-mp.Player.prototype.cower = function (duration) {
+mp.Player.prototype.cower ??= function (duration) {
     let $res = natives.taskCower(this.handle, duration);
 };
-mp.Ped.prototype.cower = function (duration) {
+mp.Ped.prototype.cower ??= function (duration) {
     let $res = natives.taskCower(this.handle, duration);
 };
-mp.Player.prototype.handsUp = function (duration, facingPed, p3, p4) {
+mp.Player.prototype.handsUp ??= function (duration, facingPed, p3, p4) {
     let $res = natives.taskHandsUp(this.handle, duration, facingPed, p3, p4 | 0);
 };
-mp.Ped.prototype.handsUp = function (duration, facingPed, p3, p4) {
+mp.Ped.prototype.handsUp ??= function (duration, facingPed, p3, p4) {
     let $res = natives.taskHandsUp(this.handle, duration, facingPed, p3, p4 | 0);
 };
-mp.Player.prototype.updateHandsUpDuration = function (duration) {
+mp.Player.prototype.updateHandsUpDuration ??= function (duration) {
     let $res = natives.updateTaskHandsUpDuration(this.handle, duration);
 };
-mp.Ped.prototype.updateHandsUpDuration = function (duration) {
+mp.Ped.prototype.updateHandsUpDuration ??= function (duration) {
     let $res = natives.updateTaskHandsUpDuration(this.handle, duration);
 };
-mp.Player.prototype.openVehicleDoor = function (vehicle, timeOut, seat, speed) {
+mp.Player.prototype.openVehicleDoor ??= function (vehicle, timeOut, seat, speed) {
     let $res = natives.taskOpenVehicleDoor(this.handle, vehicle, timeOut, seat, speed);
 };
-mp.Ped.prototype.openVehicleDoor = function (vehicle, timeOut, seat, speed) {
+mp.Ped.prototype.openVehicleDoor ??= function (vehicle, timeOut, seat, speed) {
     let $res = natives.taskOpenVehicleDoor(this.handle, vehicle, timeOut, seat, speed);
 };
-mp.Player.prototype.enterVehicle = function (vehicle, timeout, seat, speed, flag, p6) {
+mp.Player.prototype.enterVehicle ??= function (vehicle, timeout, seat, speed, flag, p6) {
     let $res = natives.taskEnterVehicle(this.handle, vehicle, timeout, seat, speed, flag, p6);
 };
-mp.Ped.prototype.enterVehicle = function (vehicle, timeout, seat, speed, flag, p6) {
+mp.Ped.prototype.enterVehicle ??= function (vehicle, timeout, seat, speed, flag, p6) {
     let $res = natives.taskEnterVehicle(this.handle, vehicle, timeout, seat, speed, flag, p6);
 };
-mp.Player.prototype.leaveVehicle = function (vehicle, flags) {
+mp.Player.prototype.leaveVehicle ??= function (vehicle, flags) {
     let $res = natives.taskLeaveVehicle(this.handle, vehicle, flags);
 };
-mp.Ped.prototype.leaveVehicle = function (vehicle, flags) {
+mp.Ped.prototype.leaveVehicle ??= function (vehicle, flags) {
     let $res = natives.taskLeaveVehicle(this.handle, vehicle, flags);
 };
-mp.Player.prototype.getOffBoat = function (boat) {
+mp.Player.prototype.getOffBoat ??= function (boat) {
     let $res = natives.taskGetOffBoat(this.handle, boat);
 };
-mp.Ped.prototype.getOffBoat = function (boat) {
+mp.Ped.prototype.getOffBoat ??= function (boat) {
     let $res = natives.taskGetOffBoat(this.handle, boat);
 };
-mp.Player.prototype.skyDive = function (p1) {
+mp.Player.prototype.skyDive ??= function (p1) {
     let $res = natives.taskSkyDive(this.handle, p1 | 0);
 };
-mp.Ped.prototype.skyDive = function (p1) {
+mp.Ped.prototype.skyDive ??= function (p1) {
     let $res = natives.taskSkyDive(this.handle, p1 | 0);
 };
-mp.Player.prototype.parachute = function (p1, p2) {
+mp.Player.prototype.parachute ??= function (p1, p2) {
     let $res = natives.taskParachute(this.handle, p1 | 0, p2 | 0);
 };
-mp.Ped.prototype.parachute = function (p1, p2) {
+mp.Ped.prototype.parachute ??= function (p1, p2) {
     let $res = natives.taskParachute(this.handle, p1 | 0, p2 | 0);
 };
-mp.Player.prototype.parachuteToTarget = function (x, y, z) {
+mp.Player.prototype.parachuteToTarget ??= function (x, y, z) {
     let $res = natives.taskParachuteToTarget(this.handle, x, y, z);
 };
-mp.Ped.prototype.parachuteToTarget = function (x, y, z) {
+mp.Ped.prototype.parachuteToTarget ??= function (x, y, z) {
     let $res = natives.taskParachuteToTarget(this.handle, x, y, z);
 };
-mp.Player.prototype.setParachuteTarget = function (x, y, z) {
+mp.Player.prototype.setParachuteTarget ??= function (x, y, z) {
     let $res = natives.setParachuteTaskTarget(this.handle, x, y, z);
 };
-mp.Ped.prototype.setParachuteTarget = function (x, y, z) {
+mp.Ped.prototype.setParachuteTarget ??= function (x, y, z) {
     let $res = natives.setParachuteTaskTarget(this.handle, x, y, z);
 };
-mp.Player.prototype.setParachuteThrust = function (thrust) {
+mp.Player.prototype.setParachuteThrust ??= function (thrust) {
     let $res = natives.setParachuteTaskThrust(this.handle, thrust);
 };
-mp.Ped.prototype.setParachuteThrust = function (thrust) {
+mp.Ped.prototype.setParachuteThrust ??= function (thrust) {
     let $res = natives.setParachuteTaskThrust(this.handle, thrust);
 };
-mp.Player.prototype.rappelFromHeli = function (p1) {
+mp.Player.prototype.rappelFromHeli ??= function (p1) {
     let $res = natives.taskRappelFromHeli(this.handle, p1);
 };
-mp.Ped.prototype.rappelFromHeli = function (p1) {
+mp.Ped.prototype.rappelFromHeli ??= function (p1) {
     let $res = natives.taskRappelFromHeli(this.handle, p1);
 };
-mp.Player.prototype.vehicleDriveToCoord = function (vehicle, x, y, z, speed, p6, vehicleModel, drivingMode, stopRange, p10) {
+mp.Player.prototype.vehicleDriveToCoord ??= function (vehicle, x, y, z, speed, p6, vehicleModel, drivingMode, stopRange, p10) {
     let $res = natives.taskVehicleDriveToCoord(this.handle, vehicle, x, y, z, speed, p6, vehicleModel, drivingMode, stopRange, p10);
 };
-mp.Ped.prototype.vehicleDriveToCoord = function (vehicle, x, y, z, speed, p6, vehicleModel, drivingMode, stopRange, p10) {
+mp.Ped.prototype.vehicleDriveToCoord ??= function (vehicle, x, y, z, speed, p6, vehicleModel, drivingMode, stopRange, p10) {
     let $res = natives.taskVehicleDriveToCoord(this.handle, vehicle, x, y, z, speed, p6, vehicleModel, drivingMode, stopRange, p10);
 };
-mp.Player.prototype.vehicleDriveToCoordLongrange = function (vehicle, x, y, z, speed, driveMode, stopRange) {
+mp.Player.prototype.vehicleDriveToCoordLongrange ??= function (vehicle, x, y, z, speed, driveMode, stopRange) {
     let $res = natives.taskVehicleDriveToCoordLongrange(this.handle, vehicle, x, y, z, speed, driveMode, stopRange);
 };
-mp.Ped.prototype.vehicleDriveToCoordLongrange = function (vehicle, x, y, z, speed, driveMode, stopRange) {
+mp.Ped.prototype.vehicleDriveToCoordLongrange ??= function (vehicle, x, y, z, speed, driveMode, stopRange) {
     let $res = natives.taskVehicleDriveToCoordLongrange(this.handle, vehicle, x, y, z, speed, driveMode, stopRange);
 };
-mp.Player.prototype.vehicleDriveWander = function (vehicle, speed, drivingStyle) {
+mp.Player.prototype.vehicleDriveWander ??= function (vehicle, speed, drivingStyle) {
     let $res = natives.taskVehicleDriveWander(this.handle, vehicle, speed, drivingStyle);
 };
-mp.Ped.prototype.vehicleDriveWander = function (vehicle, speed, drivingStyle) {
+mp.Ped.prototype.vehicleDriveWander ??= function (vehicle, speed, drivingStyle) {
     let $res = natives.taskVehicleDriveWander(this.handle, vehicle, speed, drivingStyle);
 };
-mp.Player.prototype.followToOffsetOfEntity = function (entity, offsetX, offsetY, offsetZ, movementSpeed, timeout, stoppingRange, persistFollowing) {
+mp.Player.prototype.followToOffsetOfEntity ??= function (entity, offsetX, offsetY, offsetZ, movementSpeed, timeout, stoppingRange, persistFollowing) {
     let $res = natives.taskFollowToOffsetOfEntity(this.handle, entity, offsetX, offsetY, offsetZ, movementSpeed, timeout, stoppingRange, persistFollowing | 0);
 };
-mp.Ped.prototype.followToOffsetOfEntity = function (entity, offsetX, offsetY, offsetZ, movementSpeed, timeout, stoppingRange, persistFollowing) {
+mp.Ped.prototype.followToOffsetOfEntity ??= function (entity, offsetX, offsetY, offsetZ, movementSpeed, timeout, stoppingRange, persistFollowing) {
     let $res = natives.taskFollowToOffsetOfEntity(this.handle, entity, offsetX, offsetY, offsetZ, movementSpeed, timeout, stoppingRange, persistFollowing | 0);
 };
-mp.Player.prototype.goStraightToCoord = function (x, y, z, speed, timeout, targetHeading, distanceToSlide) {
+mp.Player.prototype.goStraightToCoord ??= function (x, y, z, speed, timeout, targetHeading, distanceToSlide) {
     let $res = natives.taskGoStraightToCoord(this.handle, x, y, z, speed, timeout, targetHeading, distanceToSlide);
 };
-mp.Ped.prototype.goStraightToCoord = function (x, y, z, speed, timeout, targetHeading, distanceToSlide) {
+mp.Ped.prototype.goStraightToCoord ??= function (x, y, z, speed, timeout, targetHeading, distanceToSlide) {
     let $res = natives.taskGoStraightToCoord(this.handle, x, y, z, speed, timeout, targetHeading, distanceToSlide);
 };
-mp.Player.prototype.goStraightToCoordRelativeToEntity = function (entity2, p2, p3, p4, p5, p6) {
+mp.Player.prototype.goStraightToCoordRelativeToEntity ??= function (entity2, p2, p3, p4, p5, p6) {
     let $res = natives.taskGoStraightToCoordRelativeToEntity(this.handle, entity2, p2, p3, p4, p5, p6);
 };
-mp.Ped.prototype.goStraightToCoordRelativeToEntity = function (entity2, p2, p3, p4, p5, p6) {
+mp.Ped.prototype.goStraightToCoordRelativeToEntity ??= function (entity2, p2, p3, p4, p5, p6) {
     let $res = natives.taskGoStraightToCoordRelativeToEntity(this.handle, entity2, p2, p3, p4, p5, p6);
 };
-mp.Object.prototype.goStraightToCoordRelativeToEntity = function (entity2, p2, p3, p4, p5, p6) {
+mp.Object.prototype.goStraightToCoordRelativeToEntity ??= function (entity2, p2, p3, p4, p5, p6) {
     let $res = natives.taskGoStraightToCoordRelativeToEntity(this.handle, entity2, p2, p3, p4, p5, p6);
 };
-mp.Vehicle.prototype.goStraightToCoordRelativeToEntity = function (entity2, p2, p3, p4, p5, p6) {
+mp.Vehicle.prototype.goStraightToCoordRelativeToEntity ??= function (entity2, p2, p3, p4, p5, p6) {
     let $res = natives.taskGoStraightToCoordRelativeToEntity(this.handle, entity2, p2, p3, p4, p5, p6);
 };
-mp.Player.prototype.achieveHeading = function (heading, timeout) {
+mp.Player.prototype.achieveHeading ??= function (heading, timeout) {
     let $res = natives.taskAchieveHeading(this.handle, heading, timeout);
 };
-mp.Ped.prototype.achieveHeading = function (heading, timeout) {
+mp.Ped.prototype.achieveHeading ??= function (heading, timeout) {
     let $res = natives.taskAchieveHeading(this.handle, heading, timeout);
 };
-mp.Player.prototype.followPointRoute = function (speed, unknown) {
+mp.Player.prototype.followPointRoute ??= function (speed, unknown) {
     let $res = natives.taskFollowPointRoute(this.handle, speed, unknown);
 };
-mp.Ped.prototype.followPointRoute = function (speed, unknown) {
+mp.Ped.prototype.followPointRoute ??= function (speed, unknown) {
     let $res = natives.taskFollowPointRoute(this.handle, speed, unknown);
 };
-mp.Player.prototype.goToEntity = function (target, duration, distance, speed, p5, p6) {
+mp.Player.prototype.goToEntity ??= function (target, duration, distance, speed, p5, p6) {
     let $res = natives.taskGoToEntity(this.handle, target, duration, distance, speed, p5, p6);
 };
-mp.Ped.prototype.goToEntity = function (target, duration, distance, speed, p5, p6) {
+mp.Ped.prototype.goToEntity ??= function (target, duration, distance, speed, p5, p6) {
     let $res = natives.taskGoToEntity(this.handle, target, duration, distance, speed, p5, p6);
 };
-mp.Object.prototype.goToEntity = function (target, duration, distance, speed, p5, p6) {
+mp.Object.prototype.goToEntity ??= function (target, duration, distance, speed, p5, p6) {
     let $res = natives.taskGoToEntity(this.handle, target, duration, distance, speed, p5, p6);
 };
-mp.Vehicle.prototype.goToEntity = function (target, duration, distance, speed, p5, p6) {
+mp.Vehicle.prototype.goToEntity ??= function (target, duration, distance, speed, p5, p6) {
     let $res = natives.taskGoToEntity(this.handle, target, duration, distance, speed, p5, p6);
 };
-mp.Player.prototype.smartFleeCoord = function (x, y, z, distance, time, p6, p7) {
+mp.Player.prototype.smartFleeCoord ??= function (x, y, z, distance, time, p6, p7) {
     let $res = natives.taskSmartFleeCoord(this.handle, x, y, z, distance, time, p6 | 0, p7 | 0);
 };
-mp.Ped.prototype.smartFleeCoord = function (x, y, z, distance, time, p6, p7) {
+mp.Ped.prototype.smartFleeCoord ??= function (x, y, z, distance, time, p6, p7) {
     let $res = natives.taskSmartFleeCoord(this.handle, x, y, z, distance, time, p6 | 0, p7 | 0);
 };
-mp.Player.prototype.smartFleePed = function (fleeTarget, distance, fleeTime, p4, p5) {
+mp.Player.prototype.smartFleePed ??= function (fleeTarget, distance, fleeTime, p4, p5) {
     let $res = natives.taskSmartFleePed(this.handle, fleeTarget, distance, fleeTime, p4 | 0, p5 | 0);
 };
-mp.Ped.prototype.smartFleePed = function (fleeTarget, distance, fleeTime, p4, p5) {
+mp.Ped.prototype.smartFleePed ??= function (fleeTarget, distance, fleeTime, p4, p5) {
     let $res = natives.taskSmartFleePed(this.handle, fleeTarget, distance, fleeTime, p4 | 0, p5 | 0);
 };
-mp.Player.prototype.reactAndFleePed = function (fleeTarget) {
+mp.Player.prototype.reactAndFleePed ??= function (fleeTarget) {
     let $res = natives.taskReactAndFleePed(this.handle, fleeTarget);
 };
-mp.Ped.prototype.reactAndFleePed = function (fleeTarget) {
+mp.Ped.prototype.reactAndFleePed ??= function (fleeTarget) {
     let $res = natives.taskReactAndFleePed(this.handle, fleeTarget);
 };
-mp.Player.prototype.shockingEventReact = function (eventHandle) {
+mp.Player.prototype.shockingEventReact ??= function (eventHandle) {
     let $res = natives.taskShockingEventReact(this.handle, eventHandle);
 };
-mp.Ped.prototype.shockingEventReact = function (eventHandle) {
+mp.Ped.prototype.shockingEventReact ??= function (eventHandle) {
     let $res = natives.taskShockingEventReact(this.handle, eventHandle);
 };
-mp.Player.prototype.wanderInArea = function (x, y, z, radius, minimalLength, timeBetweenWalks) {
+mp.Player.prototype.wanderInArea ??= function (x, y, z, radius, minimalLength, timeBetweenWalks) {
     let $res = natives.taskWanderInArea(this.handle, x, y, z, radius, minimalLength, timeBetweenWalks);
 };
-mp.Ped.prototype.wanderInArea = function (x, y, z, radius, minimalLength, timeBetweenWalks) {
+mp.Ped.prototype.wanderInArea ??= function (x, y, z, radius, minimalLength, timeBetweenWalks) {
     let $res = natives.taskWanderInArea(this.handle, x, y, z, radius, minimalLength, timeBetweenWalks);
 };
-mp.Player.prototype.wanderStandard = function (p1, p2) {
+mp.Player.prototype.wanderStandard ??= function (p1, p2) {
     let $res = natives.taskWanderStandard(this.handle, p1, p2);
 };
-mp.Ped.prototype.wanderStandard = function (p1, p2) {
+mp.Ped.prototype.wanderStandard ??= function (p1, p2) {
     let $res = natives.taskWanderStandard(this.handle, p1, p2);
 };
-mp.Player.prototype.vehiclePark = function (vehicle, x, y, z, heading, mode, radius, keepEngineOn) {
+mp.Player.prototype.vehiclePark ??= function (vehicle, x, y, z, heading, mode, radius, keepEngineOn) {
     let $res = natives.taskVehiclePark(this.handle, vehicle, x, y, z, heading, mode, radius, keepEngineOn | 0);
 };
-mp.Ped.prototype.vehiclePark = function (vehicle, x, y, z, heading, mode, radius, keepEngineOn) {
+mp.Ped.prototype.vehiclePark ??= function (vehicle, x, y, z, heading, mode, radius, keepEngineOn) {
     let $res = natives.taskVehiclePark(this.handle, vehicle, x, y, z, heading, mode, radius, keepEngineOn | 0);
 };
-mp.Player.prototype.stealthKill = function (target, actionType, p3, p4) {
+mp.Player.prototype.stealthKill ??= function (target, actionType, p3, p4) {
     let $res = natives.taskStealthKill(this.handle, target, actionType, p3, p4 | 0);
 };
-mp.Ped.prototype.stealthKill = function (target, actionType, p3, p4) {
+mp.Ped.prototype.stealthKill ??= function (target, actionType, p3, p4) {
     let $res = natives.taskStealthKill(this.handle, target, actionType, p3, p4 | 0);
 };
-mp.Player.prototype.plantBomb = function (x, y, z, heading) {
+mp.Player.prototype.plantBomb ??= function (x, y, z, heading) {
     let $res = natives.taskPlantBomb(this.handle, x, y, z, heading);
 };
-mp.Ped.prototype.plantBomb = function (x, y, z, heading) {
+mp.Ped.prototype.plantBomb ??= function (x, y, z, heading) {
     let $res = natives.taskPlantBomb(this.handle, x, y, z, heading);
 };
-mp.Player.prototype.followNavMeshToCoord = function (x, y, z, speed, timeout, stoppingRange, persistFollowing, unk) {
+mp.Player.prototype.followNavMeshToCoord ??= function (x, y, z, speed, timeout, stoppingRange, persistFollowing, unk) {
     let $res = natives.taskFollowNavMeshToCoord(this.handle, x, y, z, speed, timeout, stoppingRange, persistFollowing | 0, unk);
 };
-mp.Ped.prototype.followNavMeshToCoord = function (x, y, z, speed, timeout, stoppingRange, persistFollowing, unk) {
+mp.Ped.prototype.followNavMeshToCoord ??= function (x, y, z, speed, timeout, stoppingRange, persistFollowing, unk) {
     let $res = natives.taskFollowNavMeshToCoord(this.handle, x, y, z, speed, timeout, stoppingRange, persistFollowing | 0, unk);
 };
-mp.Player.prototype.followNavMeshToCoordAdvanced = function (x, y, z, speed, timeout, unkFloat, unkInt, unkX, unkY, unkZ, unk_40000f) {
+mp.Player.prototype.followNavMeshToCoordAdvanced ??= function (x, y, z, speed, timeout, unkFloat, unkInt, unkX, unkY, unkZ, unk_40000f) {
     let $res = natives.taskFollowNavMeshToCoordAdvanced(this.handle, x, y, z, speed, timeout, unkFloat, unkInt, unkX, unkY, unkZ, unk_40000f);
 };
-mp.Ped.prototype.followNavMeshToCoordAdvanced = function (x, y, z, speed, timeout, unkFloat, unkInt, unkX, unkY, unkZ, unk_40000f) {
+mp.Ped.prototype.followNavMeshToCoordAdvanced ??= function (x, y, z, speed, timeout, unkFloat, unkInt, unkX, unkY, unkZ, unk_40000f) {
     let $res = natives.taskFollowNavMeshToCoordAdvanced(this.handle, x, y, z, speed, timeout, unkFloat, unkInt, unkX, unkY, unkZ, unk_40000f);
 };
-mp.Player.prototype.setPedPathCanUseClimbovers = function (Toggle) {
+mp.Player.prototype.setPedPathCanUseClimbovers ??= function (Toggle) {
     let $res = natives.setPedPathCanUseClimbovers(this.handle, Toggle | 0);
 };
-mp.Ped.prototype.setPedPathCanUseClimbovers = function (Toggle) {
+mp.Ped.prototype.setPedPathCanUseClimbovers ??= function (Toggle) {
     let $res = natives.setPedPathCanUseClimbovers(this.handle, Toggle | 0);
 };
-mp.Player.prototype.setPedPathCanUseLadders = function (Toggle) {
+mp.Player.prototype.setPedPathCanUseLadders ??= function (Toggle) {
     let $res = natives.setPedPathCanUseLadders(this.handle, Toggle | 0);
 };
-mp.Ped.prototype.setPedPathCanUseLadders = function (Toggle) {
+mp.Ped.prototype.setPedPathCanUseLadders ??= function (Toggle) {
     let $res = natives.setPedPathCanUseLadders(this.handle, Toggle | 0);
 };
-mp.Player.prototype.setPedPathCanDropFromHeight = function (Toggle) {
+mp.Player.prototype.setPedPathCanDropFromHeight ??= function (Toggle) {
     let $res = natives.setPedPathCanDropFromHeight(this.handle, Toggle | 0);
 };
-mp.Ped.prototype.setPedPathCanDropFromHeight = function (Toggle) {
+mp.Ped.prototype.setPedPathCanDropFromHeight ??= function (Toggle) {
     let $res = natives.setPedPathCanDropFromHeight(this.handle, Toggle | 0);
 };
-mp.Player.prototype.setPedPathClimbCostModifier = function (modifier) {
+mp.Player.prototype.setPedPathClimbCostModifier ??= function (modifier) {
     let $res = natives.setPedPathClimbCostModifier(this.handle, modifier);
 };
-mp.Ped.prototype.setPedPathClimbCostModifier = function (modifier) {
+mp.Ped.prototype.setPedPathClimbCostModifier ??= function (modifier) {
     let $res = natives.setPedPathClimbCostModifier(this.handle, modifier);
 };
-mp.Player.prototype.setPedPathMayEnterWater = function (mayEnterWater) {
+mp.Player.prototype.setPedPathMayEnterWater ??= function (mayEnterWater) {
     let $res = natives.setPedPathMayEnterWater(this.handle, mayEnterWater | 0);
 };
-mp.Ped.prototype.setPedPathMayEnterWater = function (mayEnterWater) {
+mp.Ped.prototype.setPedPathMayEnterWater ??= function (mayEnterWater) {
     let $res = natives.setPedPathMayEnterWater(this.handle, mayEnterWater | 0);
 };
-mp.Player.prototype.setPedPathPreferToAvoidWater = function (avoidWater) {
+mp.Player.prototype.setPedPathPreferToAvoidWater ??= function (avoidWater) {
     let $res = natives.setPedPathPreferToAvoidWater(this.handle, avoidWater | 0);
 };
-mp.Ped.prototype.setPedPathPreferToAvoidWater = function (avoidWater) {
+mp.Ped.prototype.setPedPathPreferToAvoidWater ??= function (avoidWater) {
     let $res = natives.setPedPathPreferToAvoidWater(this.handle, avoidWater | 0);
 };
-mp.Player.prototype.setPedPathAvoidFire = function (avoidFire) {
+mp.Player.prototype.setPedPathAvoidFire ??= function (avoidFire) {
     let $res = natives.setPedPathAvoidFire(this.handle, avoidFire | 0);
 };
-mp.Ped.prototype.setPedPathAvoidFire = function (avoidFire) {
+mp.Ped.prototype.setPedPathAvoidFire ??= function (avoidFire) {
     let $res = natives.setPedPathAvoidFire(this.handle, avoidFire | 0);
 };
-mp.Player.prototype.getNavmeshRouteDistanceRemaining = function () {
+mp.Player.prototype.getNavmeshRouteDistanceRemaining ??= function () {
     let $res = natives.getNavmeshRouteDistanceRemaining(this.handle, 0, false);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -31129,7 +31129,7 @@ mp.Player.prototype.getNavmeshRouteDistanceRemaining = function () {
     $resObj.result = $res[0];
     return $resObj;
 };
-mp.Ped.prototype.getNavmeshRouteDistanceRemaining = function () {
+mp.Ped.prototype.getNavmeshRouteDistanceRemaining ??= function () {
     let $res = natives.getNavmeshRouteDistanceRemaining(this.handle, 0, false);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -31138,53 +31138,53 @@ mp.Ped.prototype.getNavmeshRouteDistanceRemaining = function () {
     $resObj.result = $res[0];
     return $resObj;
 };
-mp.Player.prototype.getNavmeshRouteResult = function () {
+mp.Player.prototype.getNavmeshRouteResult ??= function () {
     let $res = natives.getNavmeshRouteResult(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getNavmeshRouteResult = function () {
+mp.Ped.prototype.getNavmeshRouteResult ??= function () {
     let $res = natives.getNavmeshRouteResult(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.goToCoordAnyMeans = function (x, y, z, speed, p5, p6, walkingStyle, p8) {
+mp.Player.prototype.goToCoordAnyMeans ??= function (x, y, z, speed, p5, p6, walkingStyle, p8) {
     let $res = natives.taskGoToCoordAnyMeans(this.handle, x, y, z, speed, p5, p6 | 0, walkingStyle, p8);
 };
-mp.Ped.prototype.goToCoordAnyMeans = function (x, y, z, speed, p5, p6, walkingStyle, p8) {
+mp.Ped.prototype.goToCoordAnyMeans ??= function (x, y, z, speed, p5, p6, walkingStyle, p8) {
     let $res = natives.taskGoToCoordAnyMeans(this.handle, x, y, z, speed, p5, p6 | 0, walkingStyle, p8);
 };
-mp.Player.prototype.goToCoordAnyMeansExtraParams = function (x, y, z, speed, p5, p6, walkingStyle, p8, p9, p10, p11, p12) {
+mp.Player.prototype.goToCoordAnyMeansExtraParams ??= function (x, y, z, speed, p5, p6, walkingStyle, p8, p9, p10, p11, p12) {
     let $res = natives.taskGoToCoordAnyMeansExtraParams(this.handle, x, y, z, speed, p5, p6 | 0, walkingStyle, p8, p9, p10, p11, p12 | 0);
 };
-mp.Ped.prototype.goToCoordAnyMeansExtraParams = function (x, y, z, speed, p5, p6, walkingStyle, p8, p9, p10, p11, p12) {
+mp.Ped.prototype.goToCoordAnyMeansExtraParams ??= function (x, y, z, speed, p5, p6, walkingStyle, p8, p9, p10, p11, p12) {
     let $res = natives.taskGoToCoordAnyMeansExtraParams(this.handle, x, y, z, speed, p5, p6 | 0, walkingStyle, p8, p9, p10, p11, p12 | 0);
 };
-mp.Player.prototype.goToCoordAnyMeansExtraParamsWithCruiseSpeed = function (x, y, z, speed, p5, p6, walkingStyle, p8, p9, p10, p11, p12, p13) {
+mp.Player.prototype.goToCoordAnyMeansExtraParamsWithCruiseSpeed ??= function (x, y, z, speed, p5, p6, walkingStyle, p8, p9, p10, p11, p12, p13) {
     let $res = natives.taskGoToCoordAnyMeansExtraParamsWithCruiseSpeed(this.handle, x, y, z, speed, p5, p6 | 0, walkingStyle, p8, p9, p10, p11, p12, p13 | 0);
 };
-mp.Ped.prototype.goToCoordAnyMeansExtraParamsWithCruiseSpeed = function (x, y, z, speed, p5, p6, walkingStyle, p8, p9, p10, p11, p12, p13) {
+mp.Ped.prototype.goToCoordAnyMeansExtraParamsWithCruiseSpeed ??= function (x, y, z, speed, p5, p6, walkingStyle, p8, p9, p10, p11, p12, p13) {
     let $res = natives.taskGoToCoordAnyMeansExtraParamsWithCruiseSpeed(this.handle, x, y, z, speed, p5, p6 | 0, walkingStyle, p8, p9, p10, p11, p12, p13 | 0);
 };
-mp.Player.prototype.playAnim = function (animDictionary, animationName, blendInSpeed, blendOutSpeed, duration, flag, playbackRate, lockX, lockY, lockZ) {
+mp.Player.prototype.playAnim ??= function (animDictionary, animationName, blendInSpeed, blendOutSpeed, duration, flag, playbackRate, lockX, lockY, lockZ) {
     let $res = natives.taskPlayAnim(this.handle, animDictionary, animationName, blendInSpeed, blendOutSpeed, duration, flag, playbackRate, lockX | 0, lockY | 0, lockZ | 0);
 };
-mp.Ped.prototype.playAnim = function (animDictionary, animationName, blendInSpeed, blendOutSpeed, duration, flag, playbackRate, lockX, lockY, lockZ) {
+mp.Ped.prototype.playAnim ??= function (animDictionary, animationName, blendInSpeed, blendOutSpeed, duration, flag, playbackRate, lockX, lockY, lockZ) {
     let $res = natives.taskPlayAnim(this.handle, animDictionary, animationName, blendInSpeed, blendOutSpeed, duration, flag, playbackRate, lockX | 0, lockY | 0, lockZ | 0);
 };
-mp.Player.prototype.playAnimAdvanced = function (animDict, animName, posX, posY, posZ, rotX, rotY, rotZ, animEnterSpeed, animExitSpeed, duration, flag, animTime, p14, p15) {
+mp.Player.prototype.playAnimAdvanced ??= function (animDict, animName, posX, posY, posZ, rotX, rotY, rotZ, animEnterSpeed, animExitSpeed, duration, flag, animTime, p14, p15) {
     let $res = natives.taskPlayAnimAdvanced(this.handle, animDict, animName, posX, posY, posZ, rotX, rotY, rotZ, animEnterSpeed, animExitSpeed, duration, flag, animTime, p14, p15);
 };
-mp.Ped.prototype.playAnimAdvanced = function (animDict, animName, posX, posY, posZ, rotX, rotY, rotZ, animEnterSpeed, animExitSpeed, duration, flag, animTime, p14, p15) {
+mp.Ped.prototype.playAnimAdvanced ??= function (animDict, animName, posX, posY, posZ, rotX, rotY, rotZ, animEnterSpeed, animExitSpeed, duration, flag, animTime, p14, p15) {
     let $res = natives.taskPlayAnimAdvanced(this.handle, animDict, animName, posX, posY, posZ, rotX, rotY, rotZ, animEnterSpeed, animExitSpeed, duration, flag, animTime, p14, p15);
 };
-mp.Player.prototype.stopAnim = function (animDictionary, animationName, p3) {
+mp.Player.prototype.stopAnim ??= function (animDictionary, animationName, p3) {
     let $res = natives.stopAnimTask(this.handle, animDictionary, animationName, p3);
 };
-mp.Ped.prototype.stopAnim = function (animDictionary, animationName, p3) {
+mp.Ped.prototype.stopAnim ??= function (animDictionary, animationName, p3) {
     let $res = natives.stopAnimTask(this.handle, animDictionary, animationName, p3);
 };
-mp.Player.prototype.scriptedAnimation = function (p4, p5) {
+mp.Player.prototype.scriptedAnimation ??= function (p4, p5) {
     let $res = natives.taskScriptedAnimation(this.handle, 0, 0, 0, p4, p5);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -31193,7 +31193,7 @@ mp.Player.prototype.scriptedAnimation = function (p4, p5) {
     $resObj.p3 = $res[3];
     return $resObj;
 };
-mp.Ped.prototype.scriptedAnimation = function (p4, p5) {
+mp.Ped.prototype.scriptedAnimation ??= function (p4, p5) {
     let $res = natives.taskScriptedAnimation(this.handle, 0, 0, 0, p4, p5);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -31202,1087 +31202,1087 @@ mp.Ped.prototype.scriptedAnimation = function (p4, p5) {
     $resObj.p3 = $res[3];
     return $resObj;
 };
-mp.Player.prototype.stopAnimPlayback = function (p1, p2) {
+mp.Player.prototype.stopAnimPlayback ??= function (p1, p2) {
     let $res = natives.stopAnimPlayback(this.handle, p1, p2 | 0);
 };
-mp.Ped.prototype.stopAnimPlayback = function (p1, p2) {
+mp.Ped.prototype.stopAnimPlayback ??= function (p1, p2) {
     let $res = natives.stopAnimPlayback(this.handle, p1, p2 | 0);
 };
-mp.Player.prototype.setAnimPlaybackTime = function (p1, p2, p3) {
+mp.Player.prototype.setAnimPlaybackTime ??= function (p1, p2, p3) {
     let $res = natives.setAnimPhase(this.handle, p1, p2, p3 | 0);
 };
-mp.Ped.prototype.setAnimPlaybackTime = function (p1, p2, p3) {
+mp.Ped.prototype.setAnimPlaybackTime ??= function (p1, p2, p3) {
     let $res = natives.setAnimPhase(this.handle, p1, p2, p3 | 0);
 };
-mp.Object.prototype.setAnimPlaybackTime = function (p1, p2, p3) {
+mp.Object.prototype.setAnimPlaybackTime ??= function (p1, p2, p3) {
     let $res = natives.setAnimPhase(this.handle, p1, p2, p3 | 0);
 };
-mp.Vehicle.prototype.setAnimPlaybackTime = function (p1, p2, p3) {
+mp.Vehicle.prototype.setAnimPlaybackTime ??= function (p1, p2, p3) {
     let $res = natives.setAnimPhase(this.handle, p1, p2, p3 | 0);
 };
-mp.Player.prototype.playPhoneGestureAnimation = function (animDict, animation, boneMaskType, p4, p5, p6, p7) {
+mp.Player.prototype.playPhoneGestureAnimation ??= function (animDict, animation, boneMaskType, p4, p5, p6, p7) {
     let $res = natives.taskPlayPhoneGestureAnimation(this.handle, animDict, animation, boneMaskType, p4, p5, p6 | 0, p7 | 0);
 };
-mp.Ped.prototype.playPhoneGestureAnimation = function (animDict, animation, boneMaskType, p4, p5, p6, p7) {
+mp.Ped.prototype.playPhoneGestureAnimation ??= function (animDict, animation, boneMaskType, p4, p5, p6, p7) {
     let $res = natives.taskPlayPhoneGestureAnimation(this.handle, animDict, animation, boneMaskType, p4, p5, p6 | 0, p7 | 0);
 };
-mp.Player.prototype.stopPhoneGestureAnimation = function (p1) {
+mp.Player.prototype.stopPhoneGestureAnimation ??= function (p1) {
     let $res = natives.taskStopPhoneGestureAnimation(this.handle, p1 | 0);
 };
-mp.Ped.prototype.stopPhoneGestureAnimation = function (p1) {
+mp.Ped.prototype.stopPhoneGestureAnimation ??= function (p1) {
     let $res = natives.taskStopPhoneGestureAnimation(this.handle, p1 | 0);
 };
-mp.Player.prototype.isPlayingPhoneGestureAnim = function () {
+mp.Player.prototype.isPlayingPhoneGestureAnim ??= function () {
     let $res = natives.isPlayingPhoneGestureAnim(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isPlayingPhoneGestureAnim = function () {
+mp.Ped.prototype.isPlayingPhoneGestureAnim ??= function () {
     let $res = natives.isPlayingPhoneGestureAnim(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getPhoneGestureAnimCurrentTime = function () {
+mp.Player.prototype.getPhoneGestureAnimCurrentTime ??= function () {
     let $res = natives.getPhoneGestureAnimCurrentTime(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getPhoneGestureAnimCurrentTime = function () {
+mp.Ped.prototype.getPhoneGestureAnimCurrentTime ??= function () {
     let $res = natives.getPhoneGestureAnimCurrentTime(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getPhoneGestureAnimTotalTime = function () {
+mp.Player.prototype.getPhoneGestureAnimTotalTime ??= function () {
     let $res = natives.getPhoneGestureAnimTotalTime(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getPhoneGestureAnimTotalTime = function () {
+mp.Ped.prototype.getPhoneGestureAnimTotalTime ??= function () {
     let $res = natives.getPhoneGestureAnimTotalTime(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.vehiclePlayAnim = function (animationSet, animationName) {
+mp.Vehicle.prototype.vehiclePlayAnim ??= function (animationSet, animationName) {
     let $res = natives.taskVehiclePlayAnim(this.handle, animationSet, animationName);
 };
-mp.Player.prototype.lookAtCoord = function (x, y, z, duration, p5, p6) {
+mp.Player.prototype.lookAtCoord ??= function (x, y, z, duration, p5, p6) {
     let $res = natives.taskLookAtCoord(this.handle, x, y, z, duration, p5, p6);
 };
-mp.Ped.prototype.lookAtCoord = function (x, y, z, duration, p5, p6) {
+mp.Ped.prototype.lookAtCoord ??= function (x, y, z, duration, p5, p6) {
     let $res = natives.taskLookAtCoord(this.handle, x, y, z, duration, p5, p6);
 };
-mp.Object.prototype.lookAtCoord = function (x, y, z, duration, p5, p6) {
+mp.Object.prototype.lookAtCoord ??= function (x, y, z, duration, p5, p6) {
     let $res = natives.taskLookAtCoord(this.handle, x, y, z, duration, p5, p6);
 };
-mp.Vehicle.prototype.lookAtCoord = function (x, y, z, duration, p5, p6) {
+mp.Vehicle.prototype.lookAtCoord ??= function (x, y, z, duration, p5, p6) {
     let $res = natives.taskLookAtCoord(this.handle, x, y, z, duration, p5, p6);
 };
-mp.Player.prototype.lookAtEntity = function (lookAt, duration, unknown1, unknown2) {
+mp.Player.prototype.lookAtEntity ??= function (lookAt, duration, unknown1, unknown2) {
     let $res = natives.taskLookAtEntity(this.handle, lookAt, duration, unknown1, unknown2);
 };
-mp.Ped.prototype.lookAtEntity = function (lookAt, duration, unknown1, unknown2) {
+mp.Ped.prototype.lookAtEntity ??= function (lookAt, duration, unknown1, unknown2) {
     let $res = natives.taskLookAtEntity(this.handle, lookAt, duration, unknown1, unknown2);
 };
-mp.Player.prototype.clearLookAt = function () {
+mp.Player.prototype.clearLookAt ??= function () {
     let $res = natives.taskClearLookAt(this.handle);
 };
-mp.Ped.prototype.clearLookAt = function () {
+mp.Ped.prototype.clearLookAt ??= function () {
     let $res = natives.taskClearLookAt(this.handle);
 };
-mp.Player.prototype.performSequence = function (taskSequenceId) {
+mp.Player.prototype.performSequence ??= function (taskSequenceId) {
     let $res = natives.taskPerformSequence(this.handle, taskSequenceId);
 };
-mp.Ped.prototype.performSequence = function (taskSequenceId) {
+mp.Ped.prototype.performSequence ??= function (taskSequenceId) {
     let $res = natives.taskPerformSequence(this.handle, taskSequenceId);
 };
-mp.Player.prototype.performSequenceLocally = function (taskSequenceId) {
+mp.Player.prototype.performSequenceLocally ??= function (taskSequenceId) {
     let $res = natives.taskPerformSequenceLocally(this.handle, taskSequenceId);
 };
-mp.Ped.prototype.performSequenceLocally = function (taskSequenceId) {
+mp.Ped.prototype.performSequenceLocally ??= function (taskSequenceId) {
     let $res = natives.taskPerformSequenceLocally(this.handle, taskSequenceId);
 };
-mp.Player.prototype.getSequenceProgress = function () {
+mp.Player.prototype.getSequenceProgress ??= function () {
     let $res = natives.getSequenceProgress(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getSequenceProgress = function () {
+mp.Ped.prototype.getSequenceProgress ??= function () {
     let $res = natives.getSequenceProgress(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getIsActive = function (taskIndex) {
+mp.Player.prototype.getIsActive ??= function (taskIndex) {
     let $res = natives.getIsTaskActive(this.handle, taskIndex);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.getIsActive = function (taskIndex) {
+mp.Ped.prototype.getIsActive ??= function (taskIndex) {
     let $res = natives.getIsTaskActive(this.handle, taskIndex);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getScriptStatus = function (taskHash) {
+mp.Player.prototype.getScriptStatus ??= function (taskHash) {
     let $res = natives.getScriptTaskStatus(this.handle, taskHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getScriptStatus = function (taskHash) {
+mp.Ped.prototype.getScriptStatus ??= function (taskHash) {
     let $res = natives.getScriptTaskStatus(this.handle, taskHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getActiveVehicleMissionType = function () {
+mp.Vehicle.prototype.getActiveVehicleMissionType ??= function () {
     let $res = natives.getActiveVehicleMissionType(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.leaveAnyVehicle = function (p1, flags) {
+mp.Player.prototype.leaveAnyVehicle ??= function (p1, flags) {
     let $res = natives.taskLeaveAnyVehicle(this.handle, p1, flags);
 };
-mp.Ped.prototype.leaveAnyVehicle = function (p1, flags) {
+mp.Ped.prototype.leaveAnyVehicle ??= function (p1, flags) {
     let $res = natives.taskLeaveAnyVehicle(this.handle, p1, flags);
 };
-mp.Player.prototype.aimGunScripted = function (scriptTask, p2, p3) {
+mp.Player.prototype.aimGunScripted ??= function (scriptTask, p2, p3) {
     let $res = natives.taskAimGunScripted(this.handle, scriptTask, p2 | 0, p3 | 0);
 };
-mp.Ped.prototype.aimGunScripted = function (scriptTask, p2, p3) {
+mp.Ped.prototype.aimGunScripted ??= function (scriptTask, p2, p3) {
     let $res = natives.taskAimGunScripted(this.handle, scriptTask, p2 | 0, p3 | 0);
 };
-mp.Player.prototype.updateAimGunScriptedTarget = function (p1, p2, p3, p4, p5) {
+mp.Player.prototype.updateAimGunScriptedTarget ??= function (p1, p2, p3, p4, p5) {
     let $res = natives.updateTaskAimGunScriptedTarget(this.handle, p1, p2, p3, p4, p5 | 0);
 };
-mp.Ped.prototype.updateAimGunScriptedTarget = function (p1, p2, p3, p4, p5) {
+mp.Ped.prototype.updateAimGunScriptedTarget ??= function (p1, p2, p3, p4, p5) {
     let $res = natives.updateTaskAimGunScriptedTarget(this.handle, p1, p2, p3, p4, p5 | 0);
 };
-mp.Player.prototype.aimGunAtEntity = function (entity, duration, p3) {
+mp.Player.prototype.aimGunAtEntity ??= function (entity, duration, p3) {
     let $res = natives.taskAimGunAtEntity(this.handle, entity, duration, p3 | 0);
 };
-mp.Ped.prototype.aimGunAtEntity = function (entity, duration, p3) {
+mp.Ped.prototype.aimGunAtEntity ??= function (entity, duration, p3) {
     let $res = natives.taskAimGunAtEntity(this.handle, entity, duration, p3 | 0);
 };
-mp.Player.prototype.turnPedToFaceEntity = function (entity, duration) {
+mp.Player.prototype.turnPedToFaceEntity ??= function (entity, duration) {
     let $res = natives.taskTurnPedToFaceEntity(this.handle, entity, duration);
 };
-mp.Ped.prototype.turnPedToFaceEntity = function (entity, duration) {
+mp.Ped.prototype.turnPedToFaceEntity ??= function (entity, duration) {
     let $res = natives.taskTurnPedToFaceEntity(this.handle, entity, duration);
 };
-mp.Player.prototype.aimGunAtCoord = function (x, y, z, time, p5, p6) {
+mp.Player.prototype.aimGunAtCoord ??= function (x, y, z, time, p5, p6) {
     let $res = natives.taskAimGunAtCoord(this.handle, x, y, z, time, p5 | 0, p6 | 0);
 };
-mp.Ped.prototype.aimGunAtCoord = function (x, y, z, time, p5, p6) {
+mp.Ped.prototype.aimGunAtCoord ??= function (x, y, z, time, p5, p6) {
     let $res = natives.taskAimGunAtCoord(this.handle, x, y, z, time, p5 | 0, p6 | 0);
 };
-mp.Player.prototype.shootAtCoord = function (x, y, z, duration, firingPattern) {
+mp.Player.prototype.shootAtCoord ??= function (x, y, z, duration, firingPattern) {
     let $res = natives.taskShootAtCoord(this.handle, x, y, z, duration, firingPattern);
 };
-mp.Ped.prototype.shootAtCoord = function (x, y, z, duration, firingPattern) {
+mp.Ped.prototype.shootAtCoord ??= function (x, y, z, duration, firingPattern) {
     let $res = natives.taskShootAtCoord(this.handle, x, y, z, duration, firingPattern);
 };
-mp.Player.prototype.shuffleToNextVehicleSeat = function (vehicle, p2) {
+mp.Player.prototype.shuffleToNextVehicleSeat ??= function (vehicle, p2) {
     let $res = natives.taskShuffleToNextVehicleSeat(this.handle, vehicle, p2 | 0);
 };
-mp.Ped.prototype.shuffleToNextVehicleSeat = function (vehicle, p2) {
+mp.Ped.prototype.shuffleToNextVehicleSeat ??= function (vehicle, p2) {
     let $res = natives.taskShuffleToNextVehicleSeat(this.handle, vehicle, p2 | 0);
 };
-mp.Player.prototype.clearPedS = function () {
+mp.Player.prototype.clearPedS ??= function () {
     let $res = natives.clearPedTasks(this.handle);
 };
-mp.Ped.prototype.clearPedS = function () {
+mp.Ped.prototype.clearPedS ??= function () {
     let $res = natives.clearPedTasks(this.handle);
 };
-mp.Player.prototype.clearPedSecondary = function () {
+mp.Player.prototype.clearPedSecondary ??= function () {
     let $res = natives.clearPedSecondaryTask(this.handle);
 };
-mp.Ped.prototype.clearPedSecondary = function () {
+mp.Ped.prototype.clearPedSecondary ??= function () {
     let $res = natives.clearPedSecondaryTask(this.handle);
 };
-mp.Vehicle.prototype.everyoneLeaveVehicle = function () {
+mp.Vehicle.prototype.everyoneLeaveVehicle ??= function () {
     let $res = natives.taskEveryoneLeaveVehicle(this.handle);
 };
-mp.Player.prototype.gotoEntityOffset = function (p1, p2, x, y, z, duration) {
+mp.Player.prototype.gotoEntityOffset ??= function (p1, p2, x, y, z, duration) {
     let $res = natives.taskGotoEntityOffset(this.handle, p1, p2, x, y, z, duration);
 };
-mp.Ped.prototype.gotoEntityOffset = function (p1, p2, x, y, z, duration) {
+mp.Ped.prototype.gotoEntityOffset ??= function (p1, p2, x, y, z, duration) {
     let $res = natives.taskGotoEntityOffset(this.handle, p1, p2, x, y, z, duration);
 };
-mp.Player.prototype.turnPedToFaceCoord = function (x, y, z, duration) {
+mp.Player.prototype.turnPedToFaceCoord ??= function (x, y, z, duration) {
     let $res = natives.taskTurnPedToFaceCoord(this.handle, x, y, z, duration);
 };
-mp.Ped.prototype.turnPedToFaceCoord = function (x, y, z, duration) {
+mp.Ped.prototype.turnPedToFaceCoord ??= function (x, y, z, duration) {
     let $res = natives.taskTurnPedToFaceCoord(this.handle, x, y, z, duration);
 };
-mp.Player.prototype.vehicleTempAction = function (vehicle, action, time) {
+mp.Player.prototype.vehicleTempAction ??= function (vehicle, action, time) {
     let $res = natives.taskVehicleTempAction(this.handle, vehicle, action, time);
 };
-mp.Ped.prototype.vehicleTempAction = function (vehicle, action, time) {
+mp.Ped.prototype.vehicleTempAction ??= function (vehicle, action, time) {
     let $res = natives.taskVehicleTempAction(this.handle, vehicle, action, time);
 };
-mp.Player.prototype.vehicleMission = function (vehicle, vehicleTarget, missionType, p4, p5, p6, p7, DriveAgainstTraffic) {
+mp.Player.prototype.vehicleMission ??= function (vehicle, vehicleTarget, missionType, p4, p5, p6, p7, DriveAgainstTraffic) {
     let $res = natives.taskVehicleMission(this.handle, vehicle, vehicleTarget, missionType, p4, p5, p6, p7, DriveAgainstTraffic | 0);
 };
-mp.Ped.prototype.vehicleMission = function (vehicle, vehicleTarget, missionType, p4, p5, p6, p7, DriveAgainstTraffic) {
+mp.Ped.prototype.vehicleMission ??= function (vehicle, vehicleTarget, missionType, p4, p5, p6, p7, DriveAgainstTraffic) {
     let $res = natives.taskVehicleMission(this.handle, vehicle, vehicleTarget, missionType, p4, p5, p6, p7, DriveAgainstTraffic | 0);
 };
-mp.Player.prototype.vehicleMissionPedTarget = function (vehicle, pedTarget, missionType, maxSpeed, drivingStyle, minDistance, p7, DriveAgainstTraffic) {
+mp.Player.prototype.vehicleMissionPedTarget ??= function (vehicle, pedTarget, missionType, maxSpeed, drivingStyle, minDistance, p7, DriveAgainstTraffic) {
     let $res = natives.taskVehicleMissionPedTarget(this.handle, vehicle, pedTarget, missionType, maxSpeed, drivingStyle, minDistance, p7, DriveAgainstTraffic | 0);
 };
-mp.Ped.prototype.vehicleMissionPedTarget = function (vehicle, pedTarget, missionType, maxSpeed, drivingStyle, minDistance, p7, DriveAgainstTraffic) {
+mp.Ped.prototype.vehicleMissionPedTarget ??= function (vehicle, pedTarget, missionType, maxSpeed, drivingStyle, minDistance, p7, DriveAgainstTraffic) {
     let $res = natives.taskVehicleMissionPedTarget(this.handle, vehicle, pedTarget, missionType, maxSpeed, drivingStyle, minDistance, p7, DriveAgainstTraffic | 0);
 };
-mp.Player.prototype.vehicleMissionCoorsTarget = function (vehicle, x, y, z, p5, p6, p7, p8, p9, DriveAgainstTraffic) {
+mp.Player.prototype.vehicleMissionCoorsTarget ??= function (vehicle, x, y, z, p5, p6, p7, p8, p9, DriveAgainstTraffic) {
     let $res = natives.taskVehicleMissionCoorsTarget(this.handle, vehicle, x, y, z, p5, p6, p7, p8, p9, DriveAgainstTraffic | 0);
 };
-mp.Ped.prototype.vehicleMissionCoorsTarget = function (vehicle, x, y, z, p5, p6, p7, p8, p9, DriveAgainstTraffic) {
+mp.Ped.prototype.vehicleMissionCoorsTarget ??= function (vehicle, x, y, z, p5, p6, p7, p8, p9, DriveAgainstTraffic) {
     let $res = natives.taskVehicleMissionCoorsTarget(this.handle, vehicle, x, y, z, p5, p6, p7, p8, p9, DriveAgainstTraffic | 0);
 };
-mp.Player.prototype.vehicleEscort = function (vehicle, targetVehicle, mode, speed, drivingStyle, minDistance, p7, noRoadsDistance) {
+mp.Player.prototype.vehicleEscort ??= function (vehicle, targetVehicle, mode, speed, drivingStyle, minDistance, p7, noRoadsDistance) {
     let $res = natives.taskVehicleEscort(this.handle, vehicle, targetVehicle, mode, speed, drivingStyle, minDistance, p7, noRoadsDistance);
 };
-mp.Ped.prototype.vehicleEscort = function (vehicle, targetVehicle, mode, speed, drivingStyle, minDistance, p7, noRoadsDistance) {
+mp.Ped.prototype.vehicleEscort ??= function (vehicle, targetVehicle, mode, speed, drivingStyle, minDistance, p7, noRoadsDistance) {
     let $res = natives.taskVehicleEscort(this.handle, vehicle, targetVehicle, mode, speed, drivingStyle, minDistance, p7, noRoadsDistance);
 };
-mp.Player.prototype.vehicleFollow = function (vehicle, targetEntity, speed, drivingStyle, minDistance) {
+mp.Player.prototype.vehicleFollow ??= function (vehicle, targetEntity, speed, drivingStyle, minDistance) {
     let $res = natives.taskVehicleFollow(this.handle, vehicle, targetEntity, speed, drivingStyle, minDistance);
 };
-mp.Ped.prototype.vehicleFollow = function (vehicle, targetEntity, speed, drivingStyle, minDistance) {
+mp.Ped.prototype.vehicleFollow ??= function (vehicle, targetEntity, speed, drivingStyle, minDistance) {
     let $res = natives.taskVehicleFollow(this.handle, vehicle, targetEntity, speed, drivingStyle, minDistance);
 };
-mp.Player.prototype.vehicleChase = function (targetEnt) {
+mp.Player.prototype.vehicleChase ??= function (targetEnt) {
     let $res = natives.taskVehicleChase(this.handle, targetEnt);
 };
-mp.Ped.prototype.vehicleChase = function (targetEnt) {
+mp.Ped.prototype.vehicleChase ??= function (targetEnt) {
     let $res = natives.taskVehicleChase(this.handle, targetEnt);
 };
-mp.Player.prototype.vehicleHeliProtect = function (vehicle, entityToFollow, targetSpeed, p4, radius, altitude, p7) {
+mp.Player.prototype.vehicleHeliProtect ??= function (vehicle, entityToFollow, targetSpeed, p4, radius, altitude, p7) {
     let $res = natives.taskVehicleHeliProtect(this.handle, vehicle, entityToFollow, targetSpeed, p4, radius, altitude, p7);
 };
-mp.Ped.prototype.vehicleHeliProtect = function (vehicle, entityToFollow, targetSpeed, p4, radius, altitude, p7) {
+mp.Ped.prototype.vehicleHeliProtect ??= function (vehicle, entityToFollow, targetSpeed, p4, radius, altitude, p7) {
     let $res = natives.taskVehicleHeliProtect(this.handle, vehicle, entityToFollow, targetSpeed, p4, radius, altitude, p7);
 };
-mp.Player.prototype.setVehicleChaseBehaviorFlag = function (flag, set) {
+mp.Player.prototype.setVehicleChaseBehaviorFlag ??= function (flag, set) {
     let $res = natives.setTaskVehicleChaseBehaviorFlag(this.handle, flag, set | 0);
 };
-mp.Ped.prototype.setVehicleChaseBehaviorFlag = function (flag, set) {
+mp.Ped.prototype.setVehicleChaseBehaviorFlag ??= function (flag, set) {
     let $res = natives.setTaskVehicleChaseBehaviorFlag(this.handle, flag, set | 0);
 };
-mp.Player.prototype.setVehicleChaseIdealPursuitDistance = function (distance) {
+mp.Player.prototype.setVehicleChaseIdealPursuitDistance ??= function (distance) {
     let $res = natives.setTaskVehicleChaseIdealPursuitDistance(this.handle, distance);
 };
-mp.Ped.prototype.setVehicleChaseIdealPursuitDistance = function (distance) {
+mp.Ped.prototype.setVehicleChaseIdealPursuitDistance ??= function (distance) {
     let $res = natives.setTaskVehicleChaseIdealPursuitDistance(this.handle, distance);
 };
-mp.Player.prototype.heliChase = function (entityToFollow, x, y, z) {
+mp.Player.prototype.heliChase ??= function (entityToFollow, x, y, z) {
     let $res = natives.taskHeliChase(this.handle, entityToFollow, x, y, z);
 };
-mp.Ped.prototype.heliChase = function (entityToFollow, x, y, z) {
+mp.Ped.prototype.heliChase ??= function (entityToFollow, x, y, z) {
     let $res = natives.taskHeliChase(this.handle, entityToFollow, x, y, z);
 };
-mp.Player.prototype.planeChase = function (entityToFollow, x, y, z) {
+mp.Player.prototype.planeChase ??= function (entityToFollow, x, y, z) {
     let $res = natives.taskPlaneChase(this.handle, entityToFollow, x, y, z);
 };
-mp.Ped.prototype.planeChase = function (entityToFollow, x, y, z) {
+mp.Ped.prototype.planeChase ??= function (entityToFollow, x, y, z) {
     let $res = natives.taskPlaneChase(this.handle, entityToFollow, x, y, z);
 };
-mp.Player.prototype.planeLand = function (plane, runwayStartX, runwayStartY, runwayStartZ, runwayEndX, runwayEndY, runwayEndZ) {
+mp.Player.prototype.planeLand ??= function (plane, runwayStartX, runwayStartY, runwayStartZ, runwayEndX, runwayEndY, runwayEndZ) {
     let $res = natives.taskPlaneLand(this.handle, plane, runwayStartX, runwayStartY, runwayStartZ, runwayEndX, runwayEndY, runwayEndZ);
 };
-mp.Ped.prototype.planeLand = function (plane, runwayStartX, runwayStartY, runwayStartZ, runwayEndX, runwayEndY, runwayEndZ) {
+mp.Ped.prototype.planeLand ??= function (plane, runwayStartX, runwayStartY, runwayStartZ, runwayEndX, runwayEndY, runwayEndZ) {
     let $res = natives.taskPlaneLand(this.handle, plane, runwayStartX, runwayStartY, runwayStartZ, runwayEndX, runwayEndY, runwayEndZ);
 };
-mp.Vehicle.prototype.clearVehicleS = function () {
+mp.Vehicle.prototype.clearVehicleS ??= function () {
     let $res = natives.clearPrimaryVehicleTask(this.handle);
 };
-mp.Player.prototype.planeGotoPreciseVtol = function (vehicle, p2, p3, p4, p5, p6, p7, p8, p9) {
+mp.Player.prototype.planeGotoPreciseVtol ??= function (vehicle, p2, p3, p4, p5, p6, p7, p8, p9) {
     let $res = natives.taskPlaneGotoPreciseVtol(this.handle, vehicle, p2, p3, p4, p5, p6, p7, p8, p9);
 };
-mp.Ped.prototype.planeGotoPreciseVtol = function (vehicle, p2, p3, p4, p5, p6, p7, p8, p9) {
+mp.Ped.prototype.planeGotoPreciseVtol ??= function (vehicle, p2, p3, p4, p5, p6, p7, p8, p9) {
     let $res = natives.taskPlaneGotoPreciseVtol(this.handle, vehicle, p2, p3, p4, p5, p6, p7, p8, p9);
 };
-mp.Player.prototype.heliMission = function (aircraft, targetVehicle, targetPed, destinationX, destinationY, destinationZ, missionFlag, maxSpeed, radius, targetHeading, maxHeight, minHeight, unk3, behaviorFlags) {
+mp.Player.prototype.heliMission ??= function (aircraft, targetVehicle, targetPed, destinationX, destinationY, destinationZ, missionFlag, maxSpeed, radius, targetHeading, maxHeight, minHeight, unk3, behaviorFlags) {
     let $res = natives.taskHeliMission(this.handle, aircraft, targetVehicle, targetPed, destinationX, destinationY, destinationZ, missionFlag, maxSpeed, radius, targetHeading, maxHeight, minHeight, unk3, behaviorFlags);
 };
-mp.Ped.prototype.heliMission = function (aircraft, targetVehicle, targetPed, destinationX, destinationY, destinationZ, missionFlag, maxSpeed, radius, targetHeading, maxHeight, minHeight, unk3, behaviorFlags) {
+mp.Ped.prototype.heliMission ??= function (aircraft, targetVehicle, targetPed, destinationX, destinationY, destinationZ, missionFlag, maxSpeed, radius, targetHeading, maxHeight, minHeight, unk3, behaviorFlags) {
     let $res = natives.taskHeliMission(this.handle, aircraft, targetVehicle, targetPed, destinationX, destinationY, destinationZ, missionFlag, maxSpeed, radius, targetHeading, maxHeight, minHeight, unk3, behaviorFlags);
 };
-mp.Player.prototype.heliEscortHeli = function (heli1, heli2, p3, p4, p5) {
+mp.Player.prototype.heliEscortHeli ??= function (heli1, heli2, p3, p4, p5) {
     let $res = natives.taskHeliEscortHeli(this.handle, heli1, heli2, p3, p4, p5);
 };
-mp.Ped.prototype.heliEscortHeli = function (heli1, heli2, p3, p4, p5) {
+mp.Ped.prototype.heliEscortHeli ??= function (heli1, heli2, p3, p4, p5) {
     let $res = natives.taskHeliEscortHeli(this.handle, heli1, heli2, p3, p4, p5);
 };
-mp.Player.prototype.planeMission = function (aircraft, targetVehicle, targetPed, destinationX, destinationY, destinationZ, missionFlag, angularDrag, unk, targetHeading, maxZ, minZ, p13) {
+mp.Player.prototype.planeMission ??= function (aircraft, targetVehicle, targetPed, destinationX, destinationY, destinationZ, missionFlag, angularDrag, unk, targetHeading, maxZ, minZ, p13) {
     let $res = natives.taskPlaneMission(this.handle, aircraft, targetVehicle, targetPed, destinationX, destinationY, destinationZ, missionFlag, angularDrag, unk, targetHeading, maxZ, minZ, p13 | 0);
 };
-mp.Ped.prototype.planeMission = function (aircraft, targetVehicle, targetPed, destinationX, destinationY, destinationZ, missionFlag, angularDrag, unk, targetHeading, maxZ, minZ, p13) {
+mp.Ped.prototype.planeMission ??= function (aircraft, targetVehicle, targetPed, destinationX, destinationY, destinationZ, missionFlag, angularDrag, unk, targetHeading, maxZ, minZ, p13) {
     let $res = natives.taskPlaneMission(this.handle, aircraft, targetVehicle, targetPed, destinationX, destinationY, destinationZ, missionFlag, angularDrag, unk, targetHeading, maxZ, minZ, p13 | 0);
 };
-mp.Player.prototype.planeTaxi = function (aircraft, p2, p3, p4, p5, p6) {
+mp.Player.prototype.planeTaxi ??= function (aircraft, p2, p3, p4, p5, p6) {
     let $res = natives.taskPlaneTaxi(this.handle, aircraft, p2, p3, p4, p5, p6);
 };
-mp.Ped.prototype.planeTaxi = function (aircraft, p2, p3, p4, p5, p6) {
+mp.Ped.prototype.planeTaxi ??= function (aircraft, p2, p3, p4, p5, p6) {
     let $res = natives.taskPlaneTaxi(this.handle, aircraft, p2, p3, p4, p5, p6);
 };
-mp.Player.prototype.boatMission = function (boat, p2, p3, x, y, z, p7, maxSpeed, drivingStyle, p10, p11) {
+mp.Player.prototype.boatMission ??= function (boat, p2, p3, x, y, z, p7, maxSpeed, drivingStyle, p10, p11) {
     let $res = natives.taskBoatMission(this.handle, boat, p2, p3, x, y, z, p7, maxSpeed, drivingStyle, p10, p11);
 };
-mp.Ped.prototype.boatMission = function (boat, p2, p3, x, y, z, p7, maxSpeed, drivingStyle, p10, p11) {
+mp.Ped.prototype.boatMission ??= function (boat, p2, p3, x, y, z, p7, maxSpeed, drivingStyle, p10, p11) {
     let $res = natives.taskBoatMission(this.handle, boat, p2, p3, x, y, z, p7, maxSpeed, drivingStyle, p10, p11);
 };
-mp.Player.prototype.driveBy = function (targetPed, targetVehicle, targetX, targetY, targetZ, distanceToShoot, pedAccuracy, p8, firingPattern) {
+mp.Player.prototype.driveBy ??= function (targetPed, targetVehicle, targetX, targetY, targetZ, distanceToShoot, pedAccuracy, p8, firingPattern) {
     let $res = natives.taskDriveBy(this.handle, targetPed, targetVehicle, targetX, targetY, targetZ, distanceToShoot, pedAccuracy, p8 | 0, firingPattern);
 };
-mp.Ped.prototype.driveBy = function (targetPed, targetVehicle, targetX, targetY, targetZ, distanceToShoot, pedAccuracy, p8, firingPattern) {
+mp.Ped.prototype.driveBy ??= function (targetPed, targetVehicle, targetX, targetY, targetZ, distanceToShoot, pedAccuracy, p8, firingPattern) {
     let $res = natives.taskDriveBy(this.handle, targetPed, targetVehicle, targetX, targetY, targetZ, distanceToShoot, pedAccuracy, p8 | 0, firingPattern);
 };
-mp.Player.prototype.setDrivebyTarget = function (targetPed, targetVehicle, x, y, z) {
+mp.Player.prototype.setDrivebyTarget ??= function (targetPed, targetVehicle, x, y, z) {
     let $res = natives.setDrivebyTaskTarget(this.handle, targetPed, targetVehicle, x, y, z);
 };
-mp.Ped.prototype.setDrivebyTarget = function (targetPed, targetVehicle, x, y, z) {
+mp.Ped.prototype.setDrivebyTarget ??= function (targetPed, targetVehicle, x, y, z) {
     let $res = natives.setDrivebyTaskTarget(this.handle, targetPed, targetVehicle, x, y, z);
 };
-mp.Player.prototype.clearDrivebyUnderneathDrivingTask = function () {
+mp.Player.prototype.clearDrivebyUnderneathDrivingTask ??= function () {
     let $res = natives.clearDrivebyTaskUnderneathDrivingTask(this.handle);
 };
-mp.Ped.prototype.clearDrivebyUnderneathDrivingTask = function () {
+mp.Ped.prototype.clearDrivebyUnderneathDrivingTask ??= function () {
     let $res = natives.clearDrivebyTaskUnderneathDrivingTask(this.handle);
 };
-mp.Player.prototype.isDrivebyUnderneathDrivingTask = function () {
+mp.Player.prototype.isDrivebyUnderneathDrivingTask ??= function () {
     let $res = natives.isDrivebyTaskUnderneathDrivingTask(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isDrivebyUnderneathDrivingTask = function () {
+mp.Ped.prototype.isDrivebyUnderneathDrivingTask ??= function () {
     let $res = natives.isDrivebyTaskUnderneathDrivingTask(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.controlMountedWeapon = function () {
+mp.Player.prototype.controlMountedWeapon ??= function () {
     let $res = natives.controlMountedWeapon(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.controlMountedWeapon = function () {
+mp.Ped.prototype.controlMountedWeapon ??= function () {
     let $res = natives.controlMountedWeapon(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setMountedWeaponTarget = function (targetPed, targetVehicle, x, y, z, p6, p7) {
+mp.Player.prototype.setMountedWeaponTarget ??= function (targetPed, targetVehicle, x, y, z, p6, p7) {
     let $res = natives.setMountedWeaponTarget(this.handle, targetPed, targetVehicle, x, y, z, p6 | 0, p7 | 0);
 };
-mp.Ped.prototype.setMountedWeaponTarget = function (targetPed, targetVehicle, x, y, z, p6, p7) {
+mp.Ped.prototype.setMountedWeaponTarget ??= function (targetPed, targetVehicle, x, y, z, p6, p7) {
     let $res = natives.setMountedWeaponTarget(this.handle, targetPed, targetVehicle, x, y, z, p6 | 0, p7 | 0);
 };
-mp.Player.prototype.isMountedWeaponUnderneathDrivingTask = function () {
+mp.Player.prototype.isMountedWeaponUnderneathDrivingTask ??= function () {
     let $res = natives.isMountedWeaponTaskUnderneathDrivingTask(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isMountedWeaponUnderneathDrivingTask = function () {
+mp.Ped.prototype.isMountedWeaponUnderneathDrivingTask ??= function () {
     let $res = natives.isMountedWeaponTaskUnderneathDrivingTask(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.useMobilePhone = function (p1, p2) {
+mp.Player.prototype.useMobilePhone ??= function (p1, p2) {
     let $res = natives.taskUseMobilePhone(this.handle, p1, p2 | 0);
 };
-mp.Ped.prototype.useMobilePhone = function (p1, p2) {
+mp.Ped.prototype.useMobilePhone ??= function (p1, p2) {
     let $res = natives.taskUseMobilePhone(this.handle, p1, p2 | 0);
 };
-mp.Player.prototype.useMobilePhoneTimed = function (duration) {
+mp.Player.prototype.useMobilePhoneTimed ??= function (duration) {
     let $res = natives.taskUseMobilePhoneTimed(this.handle, duration);
 };
-mp.Ped.prototype.useMobilePhoneTimed = function (duration) {
+mp.Ped.prototype.useMobilePhoneTimed ??= function (duration) {
     let $res = natives.taskUseMobilePhoneTimed(this.handle, duration);
 };
-mp.Player.prototype.chatToPed = function (target, p2, p3, p4, p5, p6, p7) {
+mp.Player.prototype.chatToPed ??= function (target, p2, p3, p4, p5, p6, p7) {
     let $res = natives.taskChatToPed(this.handle, target, p2, p3, p4, p5, p6, p7);
 };
-mp.Ped.prototype.chatToPed = function (target, p2, p3, p4, p5, p6, p7) {
+mp.Ped.prototype.chatToPed ??= function (target, p2, p3, p4, p5, p6, p7) {
     let $res = natives.taskChatToPed(this.handle, target, p2, p3, p4, p5, p6, p7);
 };
-mp.Player.prototype.warpPedIntoVehicle = function (vehicle, seat) {
+mp.Player.prototype.warpPedIntoVehicle ??= function (vehicle, seat) {
     let $res = natives.taskWarpPedIntoVehicle(this.handle, vehicle, seat);
 };
-mp.Ped.prototype.warpPedIntoVehicle = function (vehicle, seat) {
+mp.Ped.prototype.warpPedIntoVehicle ??= function (vehicle, seat) {
     let $res = natives.taskWarpPedIntoVehicle(this.handle, vehicle, seat);
 };
-mp.Player.prototype.shootAtEntity = function (target, duration, firingPattern) {
+mp.Player.prototype.shootAtEntity ??= function (target, duration, firingPattern) {
     let $res = natives.taskShootAtEntity(this.handle, target, duration, firingPattern);
 };
-mp.Ped.prototype.shootAtEntity = function (target, duration, firingPattern) {
+mp.Ped.prototype.shootAtEntity ??= function (target, duration, firingPattern) {
     let $res = natives.taskShootAtEntity(this.handle, target, duration, firingPattern);
 };
-mp.Object.prototype.shootAtEntity = function (target, duration, firingPattern) {
+mp.Object.prototype.shootAtEntity ??= function (target, duration, firingPattern) {
     let $res = natives.taskShootAtEntity(this.handle, target, duration, firingPattern);
 };
-mp.Vehicle.prototype.shootAtEntity = function (target, duration, firingPattern) {
+mp.Vehicle.prototype.shootAtEntity ??= function (target, duration, firingPattern) {
     let $res = natives.taskShootAtEntity(this.handle, target, duration, firingPattern);
 };
-mp.Player.prototype.climb = function (unused) {
+mp.Player.prototype.climb ??= function (unused) {
     let $res = natives.taskClimb(this.handle, unused | 0);
 };
-mp.Ped.prototype.climb = function (unused) {
+mp.Ped.prototype.climb ??= function (unused) {
     let $res = natives.taskClimb(this.handle, unused | 0);
 };
-mp.Player.prototype.climbLadder = function (p1) {
+mp.Player.prototype.climbLadder ??= function (p1) {
     let $res = natives.taskClimbLadder(this.handle, p1);
 };
-mp.Ped.prototype.climbLadder = function (p1) {
+mp.Ped.prototype.climbLadder ??= function (p1) {
     let $res = natives.taskClimbLadder(this.handle, p1);
 };
-mp.Player.prototype.clearPedTasksImmediately = function () {
+mp.Player.prototype.clearPedTasksImmediately ??= function () {
     let $res = natives.clearPedTasksImmediately(this.handle);
 };
-mp.Ped.prototype.clearPedTasksImmediately = function () {
+mp.Ped.prototype.clearPedTasksImmediately ??= function () {
     let $res = natives.clearPedTasksImmediately(this.handle);
 };
-mp.Player.prototype.setPedDesiredMoveBlendRatio = function (p1) {
+mp.Player.prototype.setPedDesiredMoveBlendRatio ??= function (p1) {
     let $res = natives.setPedDesiredMoveBlendRatio(this.handle, p1);
 };
-mp.Ped.prototype.setPedDesiredMoveBlendRatio = function (p1) {
+mp.Ped.prototype.setPedDesiredMoveBlendRatio ??= function (p1) {
     let $res = natives.setPedDesiredMoveBlendRatio(this.handle, p1);
 };
-mp.Player.prototype.getPedDesiredMoveBlendRatio = function () {
+mp.Player.prototype.getPedDesiredMoveBlendRatio ??= function () {
     let $res = natives.getPedDesiredMoveBlendRatio(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getPedDesiredMoveBlendRatio = function () {
+mp.Ped.prototype.getPedDesiredMoveBlendRatio ??= function () {
     let $res = natives.getPedDesiredMoveBlendRatio(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.gotoEntityAiming = function (target, distanceToStopAt, StartAimingDist) {
+mp.Player.prototype.gotoEntityAiming ??= function (target, distanceToStopAt, StartAimingDist) {
     let $res = natives.taskGotoEntityAiming(this.handle, target, distanceToStopAt, StartAimingDist);
 };
-mp.Ped.prototype.gotoEntityAiming = function (target, distanceToStopAt, StartAimingDist) {
+mp.Ped.prototype.gotoEntityAiming ??= function (target, distanceToStopAt, StartAimingDist) {
     let $res = natives.taskGotoEntityAiming(this.handle, target, distanceToStopAt, StartAimingDist);
 };
-mp.Player.prototype.setDecisionMaker = function (p1) {
+mp.Player.prototype.setDecisionMaker ??= function (p1) {
     let $res = natives.taskSetDecisionMaker(this.handle, p1);
 };
-mp.Ped.prototype.setDecisionMaker = function (p1) {
+mp.Ped.prototype.setDecisionMaker ??= function (p1) {
     let $res = natives.taskSetDecisionMaker(this.handle, p1);
 };
-mp.Player.prototype.pedSlideToCoord = function (x, y, z, heading, p5) {
+mp.Player.prototype.pedSlideToCoord ??= function (x, y, z, heading, p5) {
     let $res = natives.taskPedSlideToCoord(this.handle, x, y, z, heading, p5);
 };
-mp.Ped.prototype.pedSlideToCoord = function (x, y, z, heading, p5) {
+mp.Ped.prototype.pedSlideToCoord ??= function (x, y, z, heading, p5) {
     let $res = natives.taskPedSlideToCoord(this.handle, x, y, z, heading, p5);
 };
-mp.Player.prototype.pedSlideToCoordHdgRate = function (x, y, z, heading, p5, p6) {
+mp.Player.prototype.pedSlideToCoordHdgRate ??= function (x, y, z, heading, p5, p6) {
     let $res = natives.taskPedSlideToCoordHdgRate(this.handle, x, y, z, heading, p5, p6);
 };
-mp.Ped.prototype.pedSlideToCoordHdgRate = function (x, y, z, heading, p5, p6) {
+mp.Ped.prototype.pedSlideToCoordHdgRate ??= function (x, y, z, heading, p5, p6) {
     let $res = natives.taskPedSlideToCoordHdgRate(this.handle, x, y, z, heading, p5, p6);
 };
-mp.Player.prototype.combatPed = function (targetPed, p2, p3) {
+mp.Player.prototype.combatPed ??= function (targetPed, p2, p3) {
     let $res = natives.taskCombatPed(this.handle, targetPed, p2, p3);
 };
-mp.Ped.prototype.combatPed = function (targetPed, p2, p3) {
+mp.Ped.prototype.combatPed ??= function (targetPed, p2, p3) {
     let $res = natives.taskCombatPed(this.handle, targetPed, p2, p3);
 };
-mp.Player.prototype.seekCoverFromPos = function (x, y, z, duration, p5) {
+mp.Player.prototype.seekCoverFromPos ??= function (x, y, z, duration, p5) {
     let $res = natives.taskSeekCoverFromPos(this.handle, x, y, z, duration, p5 | 0);
 };
-mp.Ped.prototype.seekCoverFromPos = function (x, y, z, duration, p5) {
+mp.Ped.prototype.seekCoverFromPos ??= function (x, y, z, duration, p5) {
     let $res = natives.taskSeekCoverFromPos(this.handle, x, y, z, duration, p5 | 0);
 };
-mp.Player.prototype.seekCoverFromPed = function (target, duration, p3) {
+mp.Player.prototype.seekCoverFromPed ??= function (target, duration, p3) {
     let $res = natives.taskSeekCoverFromPed(this.handle, target, duration, p3 | 0);
 };
-mp.Ped.prototype.seekCoverFromPed = function (target, duration, p3) {
+mp.Ped.prototype.seekCoverFromPed ??= function (target, duration, p3) {
     let $res = natives.taskSeekCoverFromPed(this.handle, target, duration, p3 | 0);
 };
-mp.Player.prototype.seekCoverToCoords = function (x1, y1, z1, x2, y2, z2, p7, p8) {
+mp.Player.prototype.seekCoverToCoords ??= function (x1, y1, z1, x2, y2, z2, p7, p8) {
     let $res = natives.taskSeekCoverToCoords(this.handle, x1, y1, z1, x2, y2, z2, p7, p8 | 0);
 };
-mp.Ped.prototype.seekCoverToCoords = function (x1, y1, z1, x2, y2, z2, p7, p8) {
+mp.Ped.prototype.seekCoverToCoords ??= function (x1, y1, z1, x2, y2, z2, p7, p8) {
     let $res = natives.taskSeekCoverToCoords(this.handle, x1, y1, z1, x2, y2, z2, p7, p8 | 0);
 };
-mp.Player.prototype.putPedDirectlyIntoCover = function (x, y, z, timeout, p5, p6, p7, p8, p9, p10) {
+mp.Player.prototype.putPedDirectlyIntoCover ??= function (x, y, z, timeout, p5, p6, p7, p8, p9, p10) {
     let $res = natives.taskPutPedDirectlyIntoCover(this.handle, x, y, z, timeout, p5 | 0, p6, p7 | 0, p8 | 0, p9, p10 | 0);
 };
-mp.Ped.prototype.putPedDirectlyIntoCover = function (x, y, z, timeout, p5, p6, p7, p8, p9, p10) {
+mp.Ped.prototype.putPedDirectlyIntoCover ??= function (x, y, z, timeout, p5, p6, p7, p8, p9, p10) {
     let $res = natives.taskPutPedDirectlyIntoCover(this.handle, x, y, z, timeout, p5 | 0, p6, p7 | 0, p8 | 0, p9, p10 | 0);
 };
-mp.Player.prototype.putPedDirectlyIntoMelee = function (meleeTarget, p2, p3, p4, p5) {
+mp.Player.prototype.putPedDirectlyIntoMelee ??= function (meleeTarget, p2, p3, p4, p5) {
     let $res = natives.taskPutPedDirectlyIntoMelee(this.handle, meleeTarget, p2, p3, p4, p5 | 0);
 };
-mp.Ped.prototype.putPedDirectlyIntoMelee = function (meleeTarget, p2, p3, p4, p5) {
+mp.Ped.prototype.putPedDirectlyIntoMelee ??= function (meleeTarget, p2, p3, p4, p5) {
     let $res = natives.taskPutPedDirectlyIntoMelee(this.handle, meleeTarget, p2, p3, p4, p5 | 0);
 };
-mp.Player.prototype.guardCurrentPosition = function (p1, p2, p3) {
+mp.Player.prototype.guardCurrentPosition ??= function (p1, p2, p3) {
     let $res = natives.taskGuardCurrentPosition(this.handle, p1, p2, p3 | 0);
 };
-mp.Ped.prototype.guardCurrentPosition = function (p1, p2, p3) {
+mp.Ped.prototype.guardCurrentPosition ??= function (p1, p2, p3) {
     let $res = natives.taskGuardCurrentPosition(this.handle, p1, p2, p3 | 0);
 };
-mp.Player.prototype.guardSphereDefensiveArea = function (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) {
+mp.Player.prototype.guardSphereDefensiveArea ??= function (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) {
     let $res = natives.taskGuardSphereDefensiveArea(this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10);
 };
-mp.Ped.prototype.guardSphereDefensiveArea = function (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) {
+mp.Ped.prototype.guardSphereDefensiveArea ??= function (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) {
     let $res = natives.taskGuardSphereDefensiveArea(this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10);
 };
-mp.Player.prototype.standGuard = function (x, y, z, heading, scenarioName) {
+mp.Player.prototype.standGuard ??= function (x, y, z, heading, scenarioName) {
     let $res = natives.taskStandGuard(this.handle, x, y, z, heading, scenarioName);
 };
-mp.Ped.prototype.standGuard = function (x, y, z, heading, scenarioName) {
+mp.Ped.prototype.standGuard ??= function (x, y, z, heading, scenarioName) {
     let $res = natives.taskStandGuard(this.handle, x, y, z, heading, scenarioName);
 };
-mp.Player.prototype.setDriveCruiseSpeed = function (cruiseSpeed) {
+mp.Player.prototype.setDriveCruiseSpeed ??= function (cruiseSpeed) {
     let $res = natives.setDriveTaskCruiseSpeed(this.handle, cruiseSpeed);
 };
-mp.Ped.prototype.setDriveCruiseSpeed = function (cruiseSpeed) {
+mp.Ped.prototype.setDriveCruiseSpeed ??= function (cruiseSpeed) {
     let $res = natives.setDriveTaskCruiseSpeed(this.handle, cruiseSpeed);
 };
-mp.Player.prototype.setDriveDrivingStyle = function (drivingStyle) {
+mp.Player.prototype.setDriveDrivingStyle ??= function (drivingStyle) {
     let $res = natives.setDriveTaskDrivingStyle(this.handle, drivingStyle);
 };
-mp.Ped.prototype.setDriveDrivingStyle = function (drivingStyle) {
+mp.Ped.prototype.setDriveDrivingStyle ??= function (drivingStyle) {
     let $res = natives.setDriveTaskDrivingStyle(this.handle, drivingStyle);
 };
-mp.Player.prototype.startScenarioInPlace = function (scenarioName, unkDelay, playEnterAnim) {
+mp.Player.prototype.startScenarioInPlace ??= function (scenarioName, unkDelay, playEnterAnim) {
     let $res = natives.taskStartScenarioInPlace(this.handle, scenarioName, unkDelay, playEnterAnim | 0);
 };
-mp.Ped.prototype.startScenarioInPlace = function (scenarioName, unkDelay, playEnterAnim) {
+mp.Ped.prototype.startScenarioInPlace ??= function (scenarioName, unkDelay, playEnterAnim) {
     let $res = natives.taskStartScenarioInPlace(this.handle, scenarioName, unkDelay, playEnterAnim | 0);
 };
-mp.Player.prototype.startScenarioAtPosition = function (scenarioName, x, y, z, heading, duration, sittingScenario, teleport) {
+mp.Player.prototype.startScenarioAtPosition ??= function (scenarioName, x, y, z, heading, duration, sittingScenario, teleport) {
     let $res = natives.taskStartScenarioAtPosition(this.handle, scenarioName, x, y, z, heading, duration, sittingScenario | 0, teleport | 0);
 };
-mp.Ped.prototype.startScenarioAtPosition = function (scenarioName, x, y, z, heading, duration, sittingScenario, teleport) {
+mp.Ped.prototype.startScenarioAtPosition ??= function (scenarioName, x, y, z, heading, duration, sittingScenario, teleport) {
     let $res = natives.taskStartScenarioAtPosition(this.handle, scenarioName, x, y, z, heading, duration, sittingScenario | 0, teleport | 0);
 };
-mp.Player.prototype.useNearestScenarioToCoord = function (x, y, z, distance, duration) {
+mp.Player.prototype.useNearestScenarioToCoord ??= function (x, y, z, distance, duration) {
     let $res = natives.taskUseNearestScenarioToCoord(this.handle, x, y, z, distance, duration);
 };
-mp.Ped.prototype.useNearestScenarioToCoord = function (x, y, z, distance, duration) {
+mp.Ped.prototype.useNearestScenarioToCoord ??= function (x, y, z, distance, duration) {
     let $res = natives.taskUseNearestScenarioToCoord(this.handle, x, y, z, distance, duration);
 };
-mp.Player.prototype.useNearestScenarioToCoordWarp = function (x, y, z, radius, p5) {
+mp.Player.prototype.useNearestScenarioToCoordWarp ??= function (x, y, z, radius, p5) {
     let $res = natives.taskUseNearestScenarioToCoordWarp(this.handle, x, y, z, radius, p5);
 };
-mp.Ped.prototype.useNearestScenarioToCoordWarp = function (x, y, z, radius, p5) {
+mp.Ped.prototype.useNearestScenarioToCoordWarp ??= function (x, y, z, radius, p5) {
     let $res = natives.taskUseNearestScenarioToCoordWarp(this.handle, x, y, z, radius, p5);
 };
-mp.Player.prototype.pedHasUseScenario = function () {
+mp.Player.prototype.pedHasUseScenario ??= function () {
     let $res = natives.pedHasUseScenarioTask(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.pedHasUseScenario = function () {
+mp.Ped.prototype.pedHasUseScenario ??= function () {
     let $res = natives.pedHasUseScenarioTask(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.playAnimOnRunningScenario = function (animDict, animName) {
+mp.Player.prototype.playAnimOnRunningScenario ??= function (animDict, animName) {
     let $res = natives.playAnimOnRunningScenario(this.handle, animDict, animName);
 };
-mp.Ped.prototype.playAnimOnRunningScenario = function (animDict, animName) {
+mp.Ped.prototype.playAnimOnRunningScenario ??= function (animDict, animName) {
     let $res = natives.playAnimOnRunningScenario(this.handle, animDict, animName);
 };
-mp.Player.prototype.isPedActiveInScenario = function () {
+mp.Player.prototype.isPedActiveInScenario ??= function () {
     let $res = natives.isPedActiveInScenario(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isPedActiveInScenario = function () {
+mp.Ped.prototype.isPedActiveInScenario ??= function () {
     let $res = natives.isPedActiveInScenario(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isPedPlayingBaseClipInScenario = function () {
+mp.Player.prototype.isPedPlayingBaseClipInScenario ??= function () {
     let $res = natives.isPedPlayingBaseClipInScenario(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isPedPlayingBaseClipInScenario = function () {
+mp.Ped.prototype.isPedPlayingBaseClipInScenario ??= function () {
     let $res = natives.isPedPlayingBaseClipInScenario(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setPedCanPlayAmbientIdles = function (p1, p2) {
+mp.Player.prototype.setPedCanPlayAmbientIdles ??= function (p1, p2) {
     let $res = natives.setPedCanPlayAmbientIdles(this.handle, p1 | 0, p2 | 0);
 };
-mp.Ped.prototype.setPedCanPlayAmbientIdles = function (p1, p2) {
+mp.Ped.prototype.setPedCanPlayAmbientIdles ??= function (p1, p2) {
     let $res = natives.setPedCanPlayAmbientIdles(this.handle, p1 | 0, p2 | 0);
 };
-mp.Player.prototype.combatHatedTargetsInArea = function (x, y, z, radius, p5) {
+mp.Player.prototype.combatHatedTargetsInArea ??= function (x, y, z, radius, p5) {
     let $res = natives.taskCombatHatedTargetsInArea(this.handle, x, y, z, radius, p5);
 };
-mp.Ped.prototype.combatHatedTargetsInArea = function (x, y, z, radius, p5) {
+mp.Ped.prototype.combatHatedTargetsInArea ??= function (x, y, z, radius, p5) {
     let $res = natives.taskCombatHatedTargetsInArea(this.handle, x, y, z, radius, p5);
 };
-mp.Player.prototype.combatHatedTargetsAroundPed = function (radius, p2) {
+mp.Player.prototype.combatHatedTargetsAroundPed ??= function (radius, p2) {
     let $res = natives.taskCombatHatedTargetsAroundPed(this.handle, radius, p2);
 };
-mp.Ped.prototype.combatHatedTargetsAroundPed = function (radius, p2) {
+mp.Ped.prototype.combatHatedTargetsAroundPed ??= function (radius, p2) {
     let $res = natives.taskCombatHatedTargetsAroundPed(this.handle, radius, p2);
 };
-mp.Player.prototype.throwProjectile = function (x, y, z, p4, p5) {
+mp.Player.prototype.throwProjectile ??= function (x, y, z, p4, p5) {
     let $res = natives.taskThrowProjectile(this.handle, x, y, z, p4 | 0, p5 | 0);
 };
-mp.Ped.prototype.throwProjectile = function (x, y, z, p4, p5) {
+mp.Ped.prototype.throwProjectile ??= function (x, y, z, p4, p5) {
     let $res = natives.taskThrowProjectile(this.handle, x, y, z, p4 | 0, p5 | 0);
 };
-mp.Player.prototype.swapWeapon = function (p1) {
+mp.Player.prototype.swapWeapon ??= function (p1) {
     let $res = natives.taskSwapWeapon(this.handle, p1 | 0);
 };
-mp.Ped.prototype.swapWeapon = function (p1) {
+mp.Ped.prototype.swapWeapon ??= function (p1) {
     let $res = natives.taskSwapWeapon(this.handle, p1 | 0);
 };
-mp.Player.prototype.reloadWeapon = function (unused) {
+mp.Player.prototype.reloadWeapon ??= function (unused) {
     let $res = natives.taskReloadWeapon(this.handle, unused | 0);
 };
-mp.Ped.prototype.reloadWeapon = function (unused) {
+mp.Ped.prototype.reloadWeapon ??= function (unused) {
     let $res = natives.taskReloadWeapon(this.handle, unused | 0);
 };
-mp.Player.prototype.isPedGettingUp = function () {
+mp.Player.prototype.isPedGettingUp ??= function () {
     let $res = natives.isPedGettingUp(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isPedGettingUp = function () {
+mp.Ped.prototype.isPedGettingUp ??= function () {
     let $res = natives.isPedGettingUp(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.writhe = function (target, time, p3, p4, p5) {
+mp.Player.prototype.writhe ??= function (target, time, p3, p4, p5) {
     let $res = natives.taskWrithe(this.handle, target, time, p3, p4 | 0, p5 | 0);
 };
-mp.Ped.prototype.writhe = function (target, time, p3, p4, p5) {
+mp.Ped.prototype.writhe ??= function (target, time, p3, p4, p5) {
     let $res = natives.taskWrithe(this.handle, target, time, p3, p4 | 0, p5 | 0);
 };
-mp.Player.prototype.isPedInWrithe = function () {
+mp.Player.prototype.isPedInWrithe ??= function () {
     let $res = natives.isPedInWrithe(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isPedInWrithe = function () {
+mp.Ped.prototype.isPedInWrithe ??= function () {
     let $res = natives.isPedInWrithe(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.patrol = function (p1, p2, p3, p4) {
+mp.Player.prototype.patrol ??= function (p1, p2, p3, p4) {
     let $res = natives.taskPatrol(this.handle, p1, p2, p3 | 0, p4 | 0);
 };
-mp.Ped.prototype.patrol = function (p1, p2, p3, p4) {
+mp.Ped.prototype.patrol ??= function (p1, p2, p3, p4) {
     let $res = natives.taskPatrol(this.handle, p1, p2, p3 | 0, p4 | 0);
 };
-mp.Player.prototype.stayInCover = function () {
+mp.Player.prototype.stayInCover ??= function () {
     let $res = natives.taskStayInCover(this.handle);
 };
-mp.Ped.prototype.stayInCover = function () {
+mp.Ped.prototype.stayInCover ??= function () {
     let $res = natives.taskStayInCover(this.handle);
 };
-mp.Player.prototype.addVehicleSubAttackCoord = function (x, y, z) {
+mp.Player.prototype.addVehicleSubAttackCoord ??= function (x, y, z) {
     let $res = natives.addVehicleSubtaskAttackCoord(this.handle, x, y, z);
 };
-mp.Ped.prototype.addVehicleSubAttackCoord = function (x, y, z) {
+mp.Ped.prototype.addVehicleSubAttackCoord ??= function (x, y, z) {
     let $res = natives.addVehicleSubtaskAttackCoord(this.handle, x, y, z);
 };
-mp.Player.prototype.addVehicleSubAttackPed = function (ped2) {
+mp.Player.prototype.addVehicleSubAttackPed ??= function (ped2) {
     let $res = natives.addVehicleSubtaskAttackPed(this.handle, ped2);
 };
-mp.Ped.prototype.addVehicleSubAttackPed = function (ped2) {
+mp.Ped.prototype.addVehicleSubAttackPed ??= function (ped2) {
     let $res = natives.addVehicleSubtaskAttackPed(this.handle, ped2);
 };
-mp.Player.prototype.vehicleShootAtPed = function (target, p2) {
+mp.Player.prototype.vehicleShootAtPed ??= function (target, p2) {
     let $res = natives.taskVehicleShootAtPed(this.handle, target, p2);
 };
-mp.Ped.prototype.vehicleShootAtPed = function (target, p2) {
+mp.Ped.prototype.vehicleShootAtPed ??= function (target, p2) {
     let $res = natives.taskVehicleShootAtPed(this.handle, target, p2);
 };
-mp.Player.prototype.vehicleAimAtPed = function (target) {
+mp.Player.prototype.vehicleAimAtPed ??= function (target) {
     let $res = natives.taskVehicleAimAtPed(this.handle, target);
 };
-mp.Ped.prototype.vehicleAimAtPed = function (target) {
+mp.Ped.prototype.vehicleAimAtPed ??= function (target) {
     let $res = natives.taskVehicleAimAtPed(this.handle, target);
 };
-mp.Player.prototype.vehicleShootAtCoord = function (x, y, z, p4) {
+mp.Player.prototype.vehicleShootAtCoord ??= function (x, y, z, p4) {
     let $res = natives.taskVehicleShootAtCoord(this.handle, x, y, z, p4);
 };
-mp.Ped.prototype.vehicleShootAtCoord = function (x, y, z, p4) {
+mp.Ped.prototype.vehicleShootAtCoord ??= function (x, y, z, p4) {
     let $res = natives.taskVehicleShootAtCoord(this.handle, x, y, z, p4);
 };
-mp.Player.prototype.vehicleAimAtCoord = function (x, y, z) {
+mp.Player.prototype.vehicleAimAtCoord ??= function (x, y, z) {
     let $res = natives.taskVehicleAimAtCoord(this.handle, x, y, z);
 };
-mp.Ped.prototype.vehicleAimAtCoord = function (x, y, z) {
+mp.Ped.prototype.vehicleAimAtCoord ??= function (x, y, z) {
     let $res = natives.taskVehicleAimAtCoord(this.handle, x, y, z);
 };
-mp.Player.prototype.vehicleGotoNavmesh = function (vehicle, x, y, z, speed, behaviorFlag, stoppingRange) {
+mp.Player.prototype.vehicleGotoNavmesh ??= function (vehicle, x, y, z, speed, behaviorFlag, stoppingRange) {
     let $res = natives.taskVehicleGotoNavmesh(this.handle, vehicle, x, y, z, speed, behaviorFlag, stoppingRange);
 };
-mp.Ped.prototype.vehicleGotoNavmesh = function (vehicle, x, y, z, speed, behaviorFlag, stoppingRange) {
+mp.Ped.prototype.vehicleGotoNavmesh ??= function (vehicle, x, y, z, speed, behaviorFlag, stoppingRange) {
     let $res = natives.taskVehicleGotoNavmesh(this.handle, vehicle, x, y, z, speed, behaviorFlag, stoppingRange);
 };
-mp.Player.prototype.goToCoordWhileAimingAtCoord = function (x, y, z, aimAtX, aimAtY, aimAtZ, moveSpeed, p8, p9, p10, p11, flags, p13, firingPattern) {
+mp.Player.prototype.goToCoordWhileAimingAtCoord ??= function (x, y, z, aimAtX, aimAtY, aimAtZ, moveSpeed, p8, p9, p10, p11, flags, p13, firingPattern) {
     let $res = natives.taskGoToCoordWhileAimingAtCoord(this.handle, x, y, z, aimAtX, aimAtY, aimAtZ, moveSpeed, p8 | 0, p9, p10, p11 | 0, flags, p13 | 0, firingPattern);
 };
-mp.Ped.prototype.goToCoordWhileAimingAtCoord = function (x, y, z, aimAtX, aimAtY, aimAtZ, moveSpeed, p8, p9, p10, p11, flags, p13, firingPattern) {
+mp.Ped.prototype.goToCoordWhileAimingAtCoord ??= function (x, y, z, aimAtX, aimAtY, aimAtZ, moveSpeed, p8, p9, p10, p11, flags, p13, firingPattern) {
     let $res = natives.taskGoToCoordWhileAimingAtCoord(this.handle, x, y, z, aimAtX, aimAtY, aimAtZ, moveSpeed, p8 | 0, p9, p10, p11 | 0, flags, p13 | 0, firingPattern);
 };
-mp.Player.prototype.goToCoordAndAimAtHatedEntitiesNearCoord = function (goToLocationX, goToLocationY, goToLocationZ, focusLocationX, focusLocationY, focusLocationZ, speed, shootAtEnemies, distanceToStopAt, noRoadsDistance, unkTrue, unkFlag, aimingFlag, firingPattern) {
+mp.Player.prototype.goToCoordAndAimAtHatedEntitiesNearCoord ??= function (goToLocationX, goToLocationY, goToLocationZ, focusLocationX, focusLocationY, focusLocationZ, speed, shootAtEnemies, distanceToStopAt, noRoadsDistance, unkTrue, unkFlag, aimingFlag, firingPattern) {
     let $res = natives.taskGoToCoordAndAimAtHatedEntitiesNearCoord(this.handle, goToLocationX, goToLocationY, goToLocationZ, focusLocationX, focusLocationY, focusLocationZ, speed, shootAtEnemies | 0, distanceToStopAt, noRoadsDistance, unkTrue | 0, unkFlag, aimingFlag | 0, firingPattern);
 };
-mp.Ped.prototype.goToCoordAndAimAtHatedEntitiesNearCoord = function (goToLocationX, goToLocationY, goToLocationZ, focusLocationX, focusLocationY, focusLocationZ, speed, shootAtEnemies, distanceToStopAt, noRoadsDistance, unkTrue, unkFlag, aimingFlag, firingPattern) {
+mp.Ped.prototype.goToCoordAndAimAtHatedEntitiesNearCoord ??= function (goToLocationX, goToLocationY, goToLocationZ, focusLocationX, focusLocationY, focusLocationZ, speed, shootAtEnemies, distanceToStopAt, noRoadsDistance, unkTrue, unkFlag, aimingFlag, firingPattern) {
     let $res = natives.taskGoToCoordAndAimAtHatedEntitiesNearCoord(this.handle, goToLocationX, goToLocationY, goToLocationZ, focusLocationX, focusLocationY, focusLocationZ, speed, shootAtEnemies | 0, distanceToStopAt, noRoadsDistance, unkTrue | 0, unkFlag, aimingFlag | 0, firingPattern);
 };
-mp.Player.prototype.goToEntityWhileAimingAtEntity = function (entityToWalkTo, entityToAimAt, speed, shootatEntity, p5, p6, p7, p8, firingPattern) {
+mp.Player.prototype.goToEntityWhileAimingAtEntity ??= function (entityToWalkTo, entityToAimAt, speed, shootatEntity, p5, p6, p7, p8, firingPattern) {
     let $res = natives.taskGoToEntityWhileAimingAtEntity(this.handle, entityToWalkTo, entityToAimAt, speed, shootatEntity | 0, p5, p6, p7 | 0, p8 | 0, firingPattern);
 };
-mp.Ped.prototype.goToEntityWhileAimingAtEntity = function (entityToWalkTo, entityToAimAt, speed, shootatEntity, p5, p6, p7, p8, firingPattern) {
+mp.Ped.prototype.goToEntityWhileAimingAtEntity ??= function (entityToWalkTo, entityToAimAt, speed, shootatEntity, p5, p6, p7, p8, firingPattern) {
     let $res = natives.taskGoToEntityWhileAimingAtEntity(this.handle, entityToWalkTo, entityToAimAt, speed, shootatEntity | 0, p5, p6, p7 | 0, p8 | 0, firingPattern);
 };
-mp.Player.prototype.setHighFall = function (p1, p2, p3) {
+mp.Player.prototype.setHighFall ??= function (p1, p2, p3) {
     let $res = natives.setHighFallTask(this.handle, p1, p2, p3);
 };
-mp.Ped.prototype.setHighFall = function (p1, p2, p3) {
+mp.Ped.prototype.setHighFall ??= function (p1, p2, p3) {
     let $res = natives.setHighFallTask(this.handle, p1, p2, p3);
 };
-mp.Player.prototype.getPedWaypointProgress = function () {
+mp.Player.prototype.getPedWaypointProgress ??= function () {
     let $res = natives.getPedWaypointProgress(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getPedWaypointProgress = function () {
+mp.Ped.prototype.getPedWaypointProgress ??= function () {
     let $res = natives.getPedWaypointProgress(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getPedWaypointDistance = function () {
+mp.Player.prototype.getPedWaypointDistance ??= function () {
     let $res = natives.getPedWaypointDistance(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getPedWaypointDistance = function () {
+mp.Ped.prototype.getPedWaypointDistance ??= function () {
     let $res = natives.getPedWaypointDistance(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setPedWaypointRouteOffset = function (p1, p2, p3) {
+mp.Player.prototype.setPedWaypointRouteOffset ??= function (p1, p2, p3) {
     let $res = natives.setPedWaypointRouteOffset(this.handle, p1, p2, p3);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.setPedWaypointRouteOffset = function (p1, p2, p3) {
+mp.Ped.prototype.setPedWaypointRouteOffset ??= function (p1, p2, p3) {
     let $res = natives.setPedWaypointRouteOffset(this.handle, p1, p2, p3);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.vehicleFollowWaypointRecording = function (vehicle, WPRecording, p3, p4, p5, p6, p7, p8, p9) {
+mp.Player.prototype.vehicleFollowWaypointRecording ??= function (vehicle, WPRecording, p3, p4, p5, p6, p7, p8, p9) {
     let $res = natives.taskVehicleFollowWaypointRecording(this.handle, vehicle, WPRecording, p3, p4, p5, p6, p7, p8 | 0, p9);
 };
-mp.Ped.prototype.vehicleFollowWaypointRecording = function (vehicle, WPRecording, p3, p4, p5, p6, p7, p8, p9) {
+mp.Ped.prototype.vehicleFollowWaypointRecording ??= function (vehicle, WPRecording, p3, p4, p5, p6, p7, p8, p9) {
     let $res = natives.taskVehicleFollowWaypointRecording(this.handle, vehicle, WPRecording, p3, p4, p5, p6, p7, p8 | 0, p9);
 };
-mp.Vehicle.prototype.isWaypointPlaybackGoingOnForVehicle = function () {
+mp.Vehicle.prototype.isWaypointPlaybackGoingOnForVehicle ??= function () {
     let $res = natives.isWaypointPlaybackGoingOnForVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getVehicleWaypointProgress = function () {
+mp.Vehicle.prototype.getVehicleWaypointProgress ??= function () {
     let $res = natives.getVehicleWaypointProgress(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getVehicleWaypointTargetPoint = function () {
+mp.Vehicle.prototype.getVehicleWaypointTargetPoint ??= function () {
     let $res = natives.getVehicleWaypointTargetPoint(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.vehicleWaypointPlaybackPause = function () {
+mp.Vehicle.prototype.vehicleWaypointPlaybackPause ??= function () {
     let $res = natives.vehicleWaypointPlaybackPause(this.handle);
 };
-mp.Vehicle.prototype.vehicleWaypointPlaybackResume = function () {
+mp.Vehicle.prototype.vehicleWaypointPlaybackResume ??= function () {
     let $res = natives.vehicleWaypointPlaybackResume(this.handle);
 };
-mp.Vehicle.prototype.vehicleWaypointPlaybackUseDefaultSpeed = function () {
+mp.Vehicle.prototype.vehicleWaypointPlaybackUseDefaultSpeed ??= function () {
     let $res = natives.vehicleWaypointPlaybackUseDefaultSpeed(this.handle);
 };
-mp.Vehicle.prototype.vehicleWaypointPlaybackOverrideSpeed = function (speed) {
+mp.Vehicle.prototype.vehicleWaypointPlaybackOverrideSpeed ??= function (speed) {
     let $res = natives.vehicleWaypointPlaybackOverrideSpeed(this.handle, speed);
 };
-mp.Player.prototype.setBlockingOfNonTemporaryEvents = function (toggle) {
+mp.Player.prototype.setBlockingOfNonTemporaryEvents ??= function (toggle) {
     let $res = natives.taskSetBlockingOfNonTemporaryEvents(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setBlockingOfNonTemporaryEvents = function (toggle) {
+mp.Ped.prototype.setBlockingOfNonTemporaryEvents ??= function (toggle) {
     let $res = natives.taskSetBlockingOfNonTemporaryEvents(this.handle, toggle | 0);
 };
-mp.Player.prototype.forceMotionState = function (state, p2) {
+mp.Player.prototype.forceMotionState ??= function (state, p2) {
     let $res = natives.taskForceMotionState(this.handle, state, p2 | 0);
 };
-mp.Ped.prototype.forceMotionState = function (state, p2) {
+mp.Ped.prototype.forceMotionState ??= function (state, p2) {
     let $res = natives.taskForceMotionState(this.handle, state, p2 | 0);
 };
-mp.Player.prototype.moveNetworkByName = function (task, multiplier, p3, animDict, flags) {
+mp.Player.prototype.moveNetworkByName ??= function (task, multiplier, p3, animDict, flags) {
     let $res = natives.taskMoveNetworkByName(this.handle, task, multiplier, p3 | 0, animDict, flags);
 };
-mp.Ped.prototype.moveNetworkByName = function (task, multiplier, p3, animDict, flags) {
+mp.Ped.prototype.moveNetworkByName ??= function (task, multiplier, p3, animDict, flags) {
     let $res = natives.taskMoveNetworkByName(this.handle, task, multiplier, p3 | 0, animDict, flags);
 };
-mp.Player.prototype.moveNetworkAdvancedByName = function (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, animDict, flags) {
+mp.Player.prototype.moveNetworkAdvancedByName ??= function (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, animDict, flags) {
     let $res = natives.taskMoveNetworkAdvancedByName(this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10 | 0, animDict, flags);
 };
-mp.Ped.prototype.moveNetworkAdvancedByName = function (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, animDict, flags) {
+mp.Ped.prototype.moveNetworkAdvancedByName ??= function (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, animDict, flags) {
     let $res = natives.taskMoveNetworkAdvancedByName(this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10 | 0, animDict, flags);
 };
-mp.Player.prototype.moveNetworkByNameWithInitParams = function (p1, p3, p4, animDict, flags) {
+mp.Player.prototype.moveNetworkByNameWithInitParams ??= function (p1, p3, p4, animDict, flags) {
     let $res = natives.taskMoveNetworkByNameWithInitParams(this.handle, p1, 0, p3, p4 | 0, animDict, flags);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.data = $res[1];
     return $resObj.data;
 };
-mp.Ped.prototype.moveNetworkByNameWithInitParams = function (p1, p3, p4, animDict, flags) {
+mp.Ped.prototype.moveNetworkByNameWithInitParams ??= function (p1, p3, p4, animDict, flags) {
     let $res = natives.taskMoveNetworkByNameWithInitParams(this.handle, p1, 0, p3, p4 | 0, animDict, flags);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.data = $res[1];
     return $resObj.data;
 };
-mp.Player.prototype.isMoveNetworkActive = function () {
+mp.Player.prototype.isMoveNetworkActive ??= function () {
     let $res = natives.isTaskMoveNetworkActive(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isMoveNetworkActive = function () {
+mp.Ped.prototype.isMoveNetworkActive ??= function () {
     let $res = natives.isTaskMoveNetworkActive(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isMoveNetworkReadyForTransition = function () {
+mp.Player.prototype.isMoveNetworkReadyForTransition ??= function () {
     let $res = natives.isTaskMoveNetworkReadyForTransition(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isMoveNetworkReadyForTransition = function () {
+mp.Ped.prototype.isMoveNetworkReadyForTransition ??= function () {
     let $res = natives.isTaskMoveNetworkReadyForTransition(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.requestMoveNetworkStateTransition = function (name) {
+mp.Player.prototype.requestMoveNetworkStateTransition ??= function (name) {
     let $res = natives.requestTaskMoveNetworkStateTransition(this.handle, name);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.requestMoveNetworkStateTransition = function (name) {
+mp.Ped.prototype.requestMoveNetworkStateTransition ??= function (name) {
     let $res = natives.requestTaskMoveNetworkStateTransition(this.handle, name);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getMoveNetworkState = function () {
+mp.Player.prototype.getMoveNetworkState ??= function () {
     let $res = natives.getTaskMoveNetworkState(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getMoveNetworkState = function () {
+mp.Ped.prototype.getMoveNetworkState ??= function () {
     let $res = natives.getTaskMoveNetworkState(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setMoveNetworkSignalFloat = function (signalName, value) {
+mp.Player.prototype.setMoveNetworkSignalFloat ??= function (signalName, value) {
     let $res = natives.setTaskMoveNetworkSignalFloat(this.handle, signalName, value);
 };
-mp.Ped.prototype.setMoveNetworkSignalFloat = function (signalName, value) {
+mp.Ped.prototype.setMoveNetworkSignalFloat ??= function (signalName, value) {
     let $res = natives.setTaskMoveNetworkSignalFloat(this.handle, signalName, value);
 };
-mp.Player.prototype.setMoveNetworkSignalFloat2 = function (signalName, value) {
+mp.Player.prototype.setMoveNetworkSignalFloat2 ??= function (signalName, value) {
     let $res = natives.setTaskMoveNetworkSignalLocalFloat(this.handle, signalName, value);
 };
-mp.Ped.prototype.setMoveNetworkSignalFloat2 = function (signalName, value) {
+mp.Ped.prototype.setMoveNetworkSignalFloat2 ??= function (signalName, value) {
     let $res = natives.setTaskMoveNetworkSignalLocalFloat(this.handle, signalName, value);
 };
-mp.Player.prototype.setMoveNetworkSignalBool = function (signalName, value) {
+mp.Player.prototype.setMoveNetworkSignalBool ??= function (signalName, value) {
     let $res = natives.setTaskMoveNetworkSignalBool(this.handle, signalName, value | 0);
 };
-mp.Ped.prototype.setMoveNetworkSignalBool = function (signalName, value) {
+mp.Ped.prototype.setMoveNetworkSignalBool ??= function (signalName, value) {
     let $res = natives.setTaskMoveNetworkSignalBool(this.handle, signalName, value | 0);
 };
-mp.Player.prototype.getMoveNetworkSignalFloat = function (signalName) {
+mp.Player.prototype.getMoveNetworkSignalFloat ??= function (signalName) {
     let $res = natives.getTaskMoveNetworkSignalFloat(this.handle, signalName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getMoveNetworkSignalFloat = function (signalName) {
+mp.Ped.prototype.getMoveNetworkSignalFloat ??= function (signalName) {
     let $res = natives.getTaskMoveNetworkSignalFloat(this.handle, signalName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getMoveNetworkSignalBool = function (signalName) {
+mp.Player.prototype.getMoveNetworkSignalBool ??= function (signalName) {
     let $res = natives.getTaskMoveNetworkSignalBool(this.handle, signalName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.getMoveNetworkSignalBool = function (signalName) {
+mp.Ped.prototype.getMoveNetworkSignalBool ??= function (signalName) {
     let $res = natives.getTaskMoveNetworkSignalBool(this.handle, signalName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getMoveNetworkEvent = function (eventName) {
+mp.Player.prototype.getMoveNetworkEvent ??= function (eventName) {
     let $res = natives.getTaskMoveNetworkEvent(this.handle, eventName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.getMoveNetworkEvent = function (eventName) {
+mp.Ped.prototype.getMoveNetworkEvent ??= function (eventName) {
     let $res = natives.getTaskMoveNetworkEvent(this.handle, eventName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isMoveBlendRatioStill = function () {
+mp.Player.prototype.isMoveBlendRatioStill ??= function () {
     let $res = natives.isMoveBlendRatioStill(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isMoveBlendRatioStill = function () {
+mp.Ped.prototype.isMoveBlendRatioStill ??= function () {
     let $res = natives.isMoveBlendRatioStill(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isMoveBlendRatioWalking = function () {
+mp.Player.prototype.isMoveBlendRatioWalking ??= function () {
     let $res = natives.isMoveBlendRatioWalking(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isMoveBlendRatioWalking = function () {
+mp.Ped.prototype.isMoveBlendRatioWalking ??= function () {
     let $res = natives.isMoveBlendRatioWalking(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isMoveBlendRatioRunning = function () {
+mp.Player.prototype.isMoveBlendRatioRunning ??= function () {
     let $res = natives.isMoveBlendRatioRunning(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isMoveBlendRatioRunning = function () {
+mp.Ped.prototype.isMoveBlendRatioRunning ??= function () {
     let $res = natives.isMoveBlendRatioRunning(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isMoveBlendRatioSprinting = function () {
+mp.Player.prototype.isMoveBlendRatioSprinting ??= function () {
     let $res = natives.isMoveBlendRatioSprinting(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isMoveBlendRatioSprinting = function () {
+mp.Ped.prototype.isMoveBlendRatioSprinting ??= function () {
     let $res = natives.isMoveBlendRatioSprinting(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isPedStill = function () {
+mp.Player.prototype.isPedStill ??= function () {
     let $res = natives.isPedStill(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isPedStill = function () {
+mp.Ped.prototype.isPedStill ??= function () {
     let $res = natives.isPedStill(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isPedWalking = function () {
+mp.Player.prototype.isPedWalking ??= function () {
     let $res = natives.isPedWalking(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isPedWalking = function () {
+mp.Ped.prototype.isPedWalking ??= function () {
     let $res = natives.isPedWalking(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isPedRunning = function () {
+mp.Player.prototype.isPedRunning ??= function () {
     let $res = natives.isPedRunning(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isPedRunning = function () {
+mp.Ped.prototype.isPedRunning ??= function () {
     let $res = natives.isPedRunning(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isPedSprinting = function () {
+mp.Player.prototype.isPedSprinting ??= function () {
     let $res = natives.isPedSprinting(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isPedSprinting = function () {
+mp.Ped.prototype.isPedSprinting ??= function () {
     let $res = natives.isPedSprinting(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isPedStrafing = function () {
+mp.Player.prototype.isPedStrafing ??= function () {
     let $res = natives.isPedStrafing(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isPedStrafing = function () {
+mp.Ped.prototype.isPedStrafing ??= function () {
     let $res = natives.isPedStrafing(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.synchronizedScene = function (scene, animDictionary, animationName, speed, speedMultiplier, duration, flag, playbackRate, p9) {
+mp.Player.prototype.synchronizedScene ??= function (scene, animDictionary, animationName, speed, speedMultiplier, duration, flag, playbackRate, p9) {
     let $res = natives.taskSynchronizedScene(this.handle, scene, animDictionary, animationName, speed, speedMultiplier, duration, flag, playbackRate, p9);
 };
-mp.Ped.prototype.synchronizedScene = function (scene, animDictionary, animationName, speed, speedMultiplier, duration, flag, playbackRate, p9) {
+mp.Ped.prototype.synchronizedScene ??= function (scene, animDictionary, animationName, speed, speedMultiplier, duration, flag, playbackRate, p9) {
     let $res = natives.taskSynchronizedScene(this.handle, scene, animDictionary, animationName, speed, speedMultiplier, duration, flag, playbackRate, p9);
 };
-mp.Player.prototype.agitatedAction = function (ped2) {
+mp.Player.prototype.agitatedAction ??= function (ped2) {
     let $res = natives.taskAgitatedActionConfrontResponse(this.handle, ped2);
 };
-mp.Ped.prototype.agitatedAction = function (ped2) {
+mp.Ped.prototype.agitatedAction ??= function (ped2) {
     let $res = natives.taskAgitatedActionConfrontResponse(this.handle, ped2);
 };
-mp.Player.prototype.sweepAimEntity = function (anim, p2, p3, p4, p5, vehicle, p7, p8) {
+mp.Player.prototype.sweepAimEntity ??= function (anim, p2, p3, p4, p5, vehicle, p7, p8) {
     let $res = natives.taskSweepAimEntity(this.handle, anim, p2, p3, p4, p5, vehicle, p7, p8);
 };
-mp.Ped.prototype.sweepAimEntity = function (anim, p2, p3, p4, p5, vehicle, p7, p8) {
+mp.Ped.prototype.sweepAimEntity ??= function (anim, p2, p3, p4, p5, vehicle, p7, p8) {
     let $res = natives.taskSweepAimEntity(this.handle, anim, p2, p3, p4, p5, vehicle, p7, p8);
 };
-mp.Player.prototype.updateSweepAimEntity = function (entity) {
+mp.Player.prototype.updateSweepAimEntity ??= function (entity) {
     let $res = natives.updateTaskSweepAimEntity(this.handle, entity);
 };
-mp.Ped.prototype.updateSweepAimEntity = function (entity) {
+mp.Ped.prototype.updateSweepAimEntity ??= function (entity) {
     let $res = natives.updateTaskSweepAimEntity(this.handle, entity);
 };
-mp.Player.prototype.arrestPed = function (target) {
+mp.Player.prototype.arrestPed ??= function (target) {
     let $res = natives.taskArrestPed(this.handle, target);
 };
-mp.Ped.prototype.arrestPed = function (target) {
+mp.Ped.prototype.arrestPed ??= function (target) {
     let $res = natives.taskArrestPed(this.handle, target);
 };
-mp.Player.prototype.isPedRunningArrest = function () {
+mp.Player.prototype.isPedRunningArrest ??= function () {
     let $res = natives.isPedRunningArrestTask(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isPedRunningArrest = function () {
+mp.Ped.prototype.isPedRunningArrest ??= function () {
     let $res = natives.isPedRunningArrestTask(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isPedBeingArrested = function () {
+mp.Player.prototype.isPedBeingArrested ??= function () {
     let $res = natives.isPedBeingArrested(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isPedBeingArrested = function () {
+mp.Ped.prototype.isPedBeingArrested ??= function () {
     let $res = natives.isPedBeingArrested(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.uncuffPed = function () {
+mp.Player.prototype.uncuffPed ??= function () {
     let $res = natives.uncuffPed(this.handle);
 };
-mp.Ped.prototype.uncuffPed = function () {
+mp.Ped.prototype.uncuffPed ??= function () {
     let $res = natives.uncuffPed(this.handle);
 };
-mp.Player.prototype.isPedCuffed = function () {
+mp.Player.prototype.isPedCuffed ??= function () {
     let $res = natives.isPedCuffed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isPedCuffed = function () {
+mp.Ped.prototype.isPedCuffed ??= function () {
     let $res = natives.isPedCuffed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
@@ -33709,143 +33709,143 @@ mp.game2.task.unk._0x0FFB3C758E8C07B9 = function (ped, p1) {
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setCanBeLockedOn = function (canBeLockedOn, unk) {
+mp.Vehicle.prototype.setCanBeLockedOn ??= function (canBeLockedOn, unk) {
     let $res = natives.setVehicleAllowHomingMissleLockonSynced(this.handle, canBeLockedOn | 0, unk | 0);
 };
-mp.Vehicle.prototype.setAllowNoPassengersLockon = function (toggle) {
+mp.Vehicle.prototype.setAllowNoPassengersLockon ??= function (toggle) {
     let $res = natives.setVehicleAllowNoPassengersLockon(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.getHomingLockonState = function () {
+mp.Vehicle.prototype.getHomingLockonState ??= function () {
     let $res = natives.getVehicleHomingLockonState(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.isModel = function (model) {
+mp.Vehicle.prototype.isModel ??= function (model) {
     let $res = natives.isVehicleModel(this.handle, model);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setOnGroundProperly = function (p1) {
+mp.Vehicle.prototype.setOnGroundProperly ??= function (p1) {
     let $res = natives.setVehicleOnGroundProperly(this.handle, p1 || 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setUseCutsceneWheelCompression = function (p1, p2, p3) {
+mp.Vehicle.prototype.setUseCutsceneWheelCompression ??= function (p1, p2, p3) {
     let $res = natives.setVehicleUseCutsceneWheelCompression(this.handle, p1 | 0, p2 | 0, p3 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.isStuckOnRoof = function () {
+mp.Vehicle.prototype.isStuckOnRoof ??= function () {
     let $res = natives.isVehicleStuckOnRoof(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.addUpsidedownCheck = function () {
+mp.Vehicle.prototype.addUpsidedownCheck ??= function () {
     let $res = natives.addVehicleUpsidedownCheck(this.handle);
 };
-mp.Vehicle.prototype.removeUpsidedownCheck = function () {
+mp.Vehicle.prototype.removeUpsidedownCheck ??= function () {
     let $res = natives.removeVehicleUpsidedownCheck(this.handle);
 };
-mp.Vehicle.prototype.isStopped = function () {
+mp.Vehicle.prototype.isStopped ??= function () {
     let $res = natives.isVehicleStopped(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getNumberOfPassengers = function () {
+mp.Vehicle.prototype.getNumberOfPassengers ??= function () {
     let $res = natives.getVehicleNumberOfPassengers(this.handle, false, false);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getMaxNumberOfPassengers = function () {
+mp.Vehicle.prototype.getMaxNumberOfPassengers ??= function () {
     let $res = natives.getVehicleMaxNumberOfPassengers(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getModelNumberOfSeats = function () {
+mp.Vehicle.prototype.getModelNumberOfSeats ??= function () {
     let $res = natives.getVehicleModelNumberOfSeats(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.isSeatWarpOnly = function (seatIndex) {
+mp.Vehicle.prototype.isSeatWarpOnly ??= function (seatIndex) {
     let $res = natives.isSeatWarpOnly(this.handle, seatIndex);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isTurretSeat = function (seatIndex) {
+mp.Vehicle.prototype.isTurretSeat ??= function (seatIndex) {
     let $res = natives.isTurretSeat(this.handle, seatIndex);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.doesAllowRappel = function () {
+mp.Vehicle.prototype.doesAllowRappel ??= function () {
     let $res = natives.doesVehicleAllowRappel(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setDensityMultiplierThisFrame = function () {
+mp.Vehicle.prototype.setDensityMultiplierThisFrame ??= function () {
     let $res = natives.setVehicleDensityMultiplierThisFrame(this.handle);
 };
-mp.Vehicle.prototype.setDoorsLocked = function (doorLockStatus) {
+mp.Vehicle.prototype.setDoorsLocked ??= function (doorLockStatus) {
     let $res = natives.setVehicleDoorsLocked(this.handle, doorLockStatus);
 };
-mp.Vehicle.prototype.setIndividualDoorsLocked = function (doorId, doorLockStatus) {
+mp.Vehicle.prototype.setIndividualDoorsLocked ??= function (doorId, doorLockStatus) {
     let $res = natives.setVehicleIndividualDoorsLocked(this.handle, doorId, doorLockStatus);
 };
-mp.Vehicle.prototype.setHasMutedSirens = function (toggle) {
+mp.Vehicle.prototype.setHasMutedSirens ??= function (toggle) {
     let $res = natives.setVehicleHasMutedSirens(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setDoorsLockedForPlayer = function (player, toggle) {
+mp.Vehicle.prototype.setDoorsLockedForPlayer ??= function (player, toggle) {
     let $res = natives.setVehicleDoorsLockedForPlayer(this.handle, player, toggle | 0);
 };
-mp.Vehicle.prototype.getDoorsLockedForPlayer = function (player) {
+mp.Vehicle.prototype.getDoorsLockedForPlayer ??= function (player) {
     let $res = natives.getVehicleDoorsLockedForPlayer(this.handle, player);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setDoorsLockedForAllPlayers = function (toggle) {
+mp.Vehicle.prototype.setDoorsLockedForAllPlayers ??= function (toggle) {
     let $res = natives.setVehicleDoorsLockedForAllPlayers(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setDoorsLockedForNonScriptPlayers = function (toggle) {
+mp.Vehicle.prototype.setDoorsLockedForNonScriptPlayers ??= function (toggle) {
     let $res = natives.setVehicleDoorsLockedForNonScriptPlayers(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setDoorsLockedForTeam = function (team, toggle) {
+mp.Vehicle.prototype.setDoorsLockedForTeam ??= function (team, toggle) {
     let $res = natives.setVehicleDoorsLockedForTeam(this.handle, team, toggle | 0);
 };
-mp.Vehicle.prototype.setDoorsLockedForUnk = function (toggle) {
+mp.Vehicle.prototype.setDoorsLockedForUnk ??= function (toggle) {
     let $res = natives.setVehicleDoorsLockedForAllTeams(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.explode = function (isAudible, isInvisible) {
+mp.Vehicle.prototype.explode ??= function (isAudible, isInvisible) {
     let $res = natives.explodeVehicle(this.handle, isAudible | 0, isInvisible | 0);
 };
-mp.Vehicle.prototype.setOutOfControl = function (killDriver, explodeOnImpact) {
+mp.Vehicle.prototype.setOutOfControl ??= function (killDriver, explodeOnImpact) {
     let $res = natives.setVehicleOutOfControl(this.handle, killDriver | 0, explodeOnImpact | 0);
 };
-mp.Vehicle.prototype.setTimedExplosion = function (ped, toggle) {
+mp.Vehicle.prototype.setTimedExplosion ??= function (ped, toggle) {
     let $res = natives.setVehicleTimedExplosion(this.handle, ped, toggle | 0);
 };
-mp.Vehicle.prototype.addPhoneExplosiveDevice = function () {
+mp.Vehicle.prototype.addPhoneExplosiveDevice ??= function () {
     let $res = natives.addVehiclePhoneExplosiveDevice(this.handle);
 };
-mp.Vehicle.prototype.setTaxiLights = function (state) {
+mp.Vehicle.prototype.setTaxiLights ??= function (state) {
     let $res = natives.setTaxiLights(this.handle, state | 0);
 };
-mp.Vehicle.prototype.isTaxiLightOn = function () {
+mp.Vehicle.prototype.isTaxiLightOn ??= function () {
     let $res = natives.isTaxiLightOn(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setColours = function (colorPrimary, colorSecondary) {
+mp.Vehicle.prototype.setColours ??= function (colorPrimary, colorSecondary) {
     let $res = natives.setVehicleColours(this.handle, colorPrimary, colorSecondary);
 };
-mp.Vehicle.prototype.setFullbeam = function (toggle) {
+mp.Vehicle.prototype.setFullbeam ??= function (toggle) {
     let $res = natives.setVehicleFullbeam(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setIsRacing = function (toggle) {
+mp.Vehicle.prototype.setIsRacing ??= function (toggle) {
     let $res = natives.setVehicleIsRacing(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setCustomPrimaryColour = function (r, g, b) {
+mp.Vehicle.prototype.setCustomPrimaryColour ??= function (r, g, b) {
     let $res = natives.setVehicleCustomPrimaryColour(this.handle, r, g, b);
 };
-mp.Vehicle.prototype.getCustomPrimaryColour = function () {
+mp.Vehicle.prototype.getCustomPrimaryColour ??= function () {
     let $res = natives.getVehicleCustomPrimaryColour(this.handle, 0, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -33854,18 +33854,18 @@ mp.Vehicle.prototype.getCustomPrimaryColour = function () {
     $resObj.b = $res[3];
     return $resObj;
 };
-mp.Vehicle.prototype.clearCustomPrimaryColour = function () {
+mp.Vehicle.prototype.clearCustomPrimaryColour ??= function () {
     let $res = natives.clearVehicleCustomPrimaryColour(this.handle);
 };
-mp.Vehicle.prototype.getIsPrimaryColourCustom = function () {
+mp.Vehicle.prototype.getIsPrimaryColourCustom ??= function () {
     let $res = natives.getIsVehiclePrimaryColourCustom(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setCustomSecondaryColour = function (r, g, b) {
+mp.Vehicle.prototype.setCustomSecondaryColour ??= function (r, g, b) {
     let $res = natives.setVehicleCustomSecondaryColour(this.handle, r, g, b);
 };
-mp.Vehicle.prototype.getCustomSecondaryColour = function () {
+mp.Vehicle.prototype.getCustomSecondaryColour ??= function () {
     let $res = natives.getVehicleCustomSecondaryColour(this.handle, 0, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -33874,91 +33874,91 @@ mp.Vehicle.prototype.getCustomSecondaryColour = function () {
     $resObj.b = $res[3];
     return $resObj;
 };
-mp.Vehicle.prototype.clearCustomSecondaryColour = function () {
+mp.Vehicle.prototype.clearCustomSecondaryColour ??= function () {
     let $res = natives.clearVehicleCustomSecondaryColour(this.handle);
 };
-mp.Vehicle.prototype.getIsSecondaryColourCustom = function () {
+mp.Vehicle.prototype.getIsSecondaryColourCustom ??= function () {
     let $res = natives.getIsVehicleSecondaryColourCustom(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setEnveffScale = function (fade) {
+mp.Vehicle.prototype.setEnveffScale ??= function (fade) {
     let $res = natives.setVehicleEnveffScale(this.handle, fade);
 };
-mp.Vehicle.prototype.getEnveffScale = function () {
+mp.Vehicle.prototype.getEnveffScale ??= function () {
     let $res = natives.getVehicleEnveffScale(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setCanRespray = function (state) {
+mp.Vehicle.prototype.setCanRespray ??= function (state) {
     let $res = natives.setCanResprayVehicle(this.handle, state | 0);
 };
-mp.Vehicle.prototype.forceSubmarineSurfaceMode = function (toggle) {
+mp.Vehicle.prototype.forceSubmarineSurfaceMode ??= function (toggle) {
     let $res = natives.forceSubmarineSurfaceMode(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setSubmarineCrushDepths = function (p1, depth1, depth2, depth3) {
+mp.Vehicle.prototype.setSubmarineCrushDepths ??= function (p1, depth1, depth2, depth3) {
     let $res = natives.setSubmarineCrushDepths(this.handle, p1 | 0, depth1, depth2, depth3);
 };
-mp.Vehicle.prototype.getSubmarineIsBelowFirstCrushDepth = function () {
+mp.Vehicle.prototype.getSubmarineIsBelowFirstCrushDepth ??= function () {
     let $res = natives.getSubmarineIsUnderDesignDepth(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getSubmarineCrushDepthWarningState = function () {
+mp.Vehicle.prototype.getSubmarineCrushDepthWarningState ??= function () {
     let $res = natives.getSubmarineNumberOfAirLeaks(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Blip.prototype.setBoatAnchor = function (toggle) {
+mp.Blip.prototype.setBoatAnchor ??= function (toggle) {
     let $res = natives.setBoatAnchor(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.canAnchorBoatHere = function () {
+mp.Vehicle.prototype.canAnchorBoatHere ??= function () {
     let $res = natives.canAnchorBoatHere(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.canAnchorBoatHere2 = function () {
+mp.Vehicle.prototype.canAnchorBoatHere2 ??= function () {
     let $res = natives.canAnchorBoatHereIgnorePlayers(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Blip.prototype.setBoatFrozenWhenAnchored = function (toggle) {
+mp.Blip.prototype.setBoatFrozenWhenAnchored ??= function (toggle) {
     let $res = natives.setBoatRemainsAnchoredWhilePlayerIsDriver(this.handle, toggle | 0);
 };
-mp.Blip.prototype.setBoatMovementResistance = function (value) {
+mp.Blip.prototype.setBoatMovementResistance ??= function (value) {
     let $res = natives.setBoatLowLodAnchorDistance(this.handle, value);
 };
-mp.Blip.prototype.isBoatAnchoredAndFrozen = function () {
+mp.Blip.prototype.isBoatAnchoredAndFrozen ??= function () {
     let $res = natives.isBoatAnchored(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Blip.prototype.setBoatSinksWhenWrecked = function (toggle) {
+mp.Blip.prototype.setBoatSinksWhenWrecked ??= function (toggle) {
     let $res = natives.setBoatSinksWhenWrecked(this.handle, toggle | 0);
 };
-mp.Blip.prototype.setBoatIsSinking = function () {
+mp.Blip.prototype.setBoatIsSinking ??= function () {
     let $res = natives.setBoatWrecked(this.handle);
 };
-mp.Vehicle.prototype.setSiren = function (toggle) {
+mp.Vehicle.prototype.setSiren ??= function (toggle) {
     let $res = natives.setVehicleSiren(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.isSirenOn = function () {
+mp.Vehicle.prototype.isSirenOn ??= function () {
     let $res = natives.isVehicleSirenOn(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isSirenAudioOn = function () {
+mp.Vehicle.prototype.isSirenAudioOn ??= function () {
     let $res = natives.isVehicleSirenAudioOn(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setStrong = function (toggle) {
+mp.Vehicle.prototype.setStrong ??= function (toggle) {
     let $res = natives.setVehicleStrong(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.removeStuckCheck = function () {
+mp.Vehicle.prototype.removeStuckCheck ??= function () {
     let $res = natives.removeVehicleStuckCheck(this.handle);
 };
-mp.Vehicle.prototype.getColours = function () {
+mp.Vehicle.prototype.getColours ??= function () {
     let $res = natives.getVehicleColours(this.handle, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -33966,27 +33966,27 @@ mp.Vehicle.prototype.getColours = function () {
     $resObj.colorSecondary = $res[2];
     return $resObj;
 };
-mp.Vehicle.prototype.isSeatFree = function (seatIndex, isTaskRunning) {
+mp.Vehicle.prototype.isSeatFree ??= function (seatIndex, isTaskRunning) {
     let $res = natives.isVehicleSeatFree(this.handle, seatIndex, isTaskRunning | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getPedInSeat = function (seatIndex, p2) {
+mp.Player.prototype.getPedInSeat ??= function (seatIndex, p2) {
     let $res = natives.getPedInVehicleSeat(this.handle, seatIndex, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getPedInSeat = function (seatIndex, p2) {
+mp.Ped.prototype.getPedInSeat ??= function (seatIndex, p2) {
     let $res = natives.getPedInVehicleSeat(this.handle, seatIndex, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getLastPedInSeat = function (seatIndex) {
+mp.Vehicle.prototype.getLastPedInSeat ??= function (seatIndex) {
     let $res = natives.getLastPedInVehicleSeat(this.handle, seatIndex);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getLightsState = function () {
+mp.Vehicle.prototype.getLightsState ??= function () {
     let $res = natives.getVehicleLightsState(this.handle, false, false);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -33995,464 +33995,464 @@ mp.Vehicle.prototype.getLightsState = function () {
     $resObj.result = $res[0] == 1;
     return $resObj;
 };
-mp.Vehicle.prototype.isTyreBurst = function (wheelID, completely) {
+mp.Vehicle.prototype.isTyreBurst ??= function (wheelID, completely) {
     let $res = natives.isVehicleTyreBurst(this.handle, wheelID, completely | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setForwardSpeed = function (speed) {
+mp.Vehicle.prototype.setForwardSpeed ??= function (speed) {
     let $res = natives.setVehicleForwardSpeed(this.handle, speed);
 };
-mp.Vehicle.prototype.bringToHalt = function (distance, duration, unknown) {
+mp.Vehicle.prototype.bringToHalt ??= function (distance, duration, unknown) {
     let $res = natives.bringVehicleToHalt(this.handle, distance, duration, unknown | 0);
 };
-mp.Vehicle.prototype.stopBringToHalt = function () {
+mp.Vehicle.prototype.stopBringToHalt ??= function () {
     let $res = natives.stopBringingVehicleToHalt(this.handle);
 };
-mp.Vehicle.prototype.isBeingHalted = function () {
+mp.Vehicle.prototype.isBeingHalted ??= function () {
     let $res = natives.isVehicleBeingBroughtToHalt(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setForkliftForkHeight = function (height) {
+mp.Vehicle.prototype.setForkliftForkHeight ??= function (height) {
     let $res = natives.setForkliftForkHeight(this.handle, height);
 };
-mp.Player.prototype.isEntityAttachedToHandlerFrame = function (entity) {
+mp.Player.prototype.isEntityAttachedToHandlerFrame ??= function (entity) {
     let $res = natives.isEntityAttachedToHandlerFrame(this.handle, entity);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isEntityAttachedToHandlerFrame = function (entity) {
+mp.Ped.prototype.isEntityAttachedToHandlerFrame ??= function (entity) {
     let $res = natives.isEntityAttachedToHandlerFrame(this.handle, entity);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.isEntityAttachedToHandlerFrame = function (entity) {
+mp.Object.prototype.isEntityAttachedToHandlerFrame ??= function (entity) {
     let $res = natives.isEntityAttachedToHandlerFrame(this.handle, entity);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isEntityAttachedToHandlerFrame = function (entity) {
+mp.Vehicle.prototype.isEntityAttachedToHandlerFrame ??= function (entity) {
     let $res = natives.isEntityAttachedToHandlerFrame(this.handle, entity);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isAnyEntityAttachedToHandlerFrame = function () {
+mp.Vehicle.prototype.isAnyEntityAttachedToHandlerFrame ??= function () {
     let $res = natives.isAnyEntityAttachedToHandlerFrame(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.findCarryingThisEntity = function () {
+mp.Player.prototype.findCarryingThisEntity ??= function () {
     let $res = natives.findHandlerVehicleContainerIsAttachedTo(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.findCarryingThisEntity = function () {
+mp.Ped.prototype.findCarryingThisEntity ??= function () {
     let $res = natives.findHandlerVehicleContainerIsAttachedTo(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.findCarryingThisEntity = function () {
+mp.Object.prototype.findCarryingThisEntity ??= function () {
     let $res = natives.findHandlerVehicleContainerIsAttachedTo(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.findCarryingThisEntity = function () {
+mp.Vehicle.prototype.findCarryingThisEntity ??= function () {
     let $res = natives.findHandlerVehicleContainerIsAttachedTo(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.isHandlerFrameAboveContainer = function (entity) {
+mp.Vehicle.prototype.isHandlerFrameAboveContainer ??= function (entity) {
     let $res = natives.isHandlerFrameLinedUpWithContainer(this.handle, entity);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.detachContainerFromHandlerFrame = function () {
+mp.Vehicle.prototype.detachContainerFromHandlerFrame ??= function () {
     let $res = natives.detachContainerFromHandlerFrame(this.handle);
 };
-mp.Blip.prototype.setBoatDisableAvoidance = function (p1) {
+mp.Blip.prototype.setBoatDisableAvoidance ??= function (p1) {
     let $res = natives.setBoatDisableAvoidance(this.handle, p1 | 0);
 };
-mp.Vehicle.prototype.isHeliLandingAreaBlocked = function () {
+mp.Vehicle.prototype.isHeliLandingAreaBlocked ??= function () {
     let $res = natives.isHeliLandingAreaBlocked(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setHeliTurbulenceScalar = function (p1) {
+mp.Vehicle.prototype.setHeliTurbulenceScalar ??= function (p1) {
     let $res = natives.setHeliTurbulenceScalar(this.handle, p1);
 };
-mp.Vehicle.prototype.setCarBootOpen = function () {
+mp.Vehicle.prototype.setCarBootOpen ??= function () {
     let $res = natives.setCarBootOpen(this.handle);
 };
-mp.Vehicle.prototype.setTyreBurst = function (index, onRim, p3) {
+mp.Vehicle.prototype.setTyreBurst ??= function (index, onRim, p3) {
     let $res = natives.setVehicleTyreBurst(this.handle, index, onRim | 0, p3);
 };
-mp.Vehicle.prototype.setDoorsShut = function (closeInstantly) {
+mp.Vehicle.prototype.setDoorsShut ??= function (closeInstantly) {
     let $res = natives.setVehicleDoorsShut(this.handle, closeInstantly | 0);
 };
-mp.Vehicle.prototype.setTyresCanBurst = function (toggle) {
+mp.Vehicle.prototype.setTyresCanBurst ??= function (toggle) {
     let $res = natives.setVehicleTyresCanBurst(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.getTyresCanBurst = function () {
+mp.Vehicle.prototype.getTyresCanBurst ??= function () {
     let $res = natives.getVehicleTyresCanBurst(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setWheelsCanBreak = function (enabled) {
+mp.Vehicle.prototype.setWheelsCanBreak ??= function (enabled) {
     let $res = natives.setVehicleWheelsCanBreak(this.handle, enabled | 0);
 };
-mp.Vehicle.prototype.setDoorOpen = function (doorId, loose, openInstantly) {
+mp.Vehicle.prototype.setDoorOpen ??= function (doorId, loose, openInstantly) {
     let $res = natives.setVehicleDoorOpen(this.handle, doorId, loose | 0, openInstantly | 0);
 };
-mp.Vehicle.prototype.removeWindow = function (windowIndex) {
+mp.Vehicle.prototype.removeWindow ??= function (windowIndex) {
     let $res = natives.removeVehicleWindow(this.handle, windowIndex);
 };
-mp.Vehicle.prototype.rollDownWindows = function () {
+mp.Vehicle.prototype.rollDownWindows ??= function () {
     let $res = natives.rollDownWindows(this.handle);
 };
-mp.Vehicle.prototype.rollDownWindow = function (windowIndex) {
+mp.Vehicle.prototype.rollDownWindow ??= function (windowIndex) {
     let $res = natives.rollDownWindow(this.handle, windowIndex);
 };
-mp.Vehicle.prototype.rollUpWindow = function (windowIndex) {
+mp.Vehicle.prototype.rollUpWindow ??= function (windowIndex) {
     let $res = natives.rollUpWindow(this.handle, windowIndex);
 };
-mp.Vehicle.prototype.smashWindow = function (index) {
+mp.Vehicle.prototype.smashWindow ??= function (index) {
     let $res = natives.smashVehicleWindow(this.handle, index);
 };
-mp.Vehicle.prototype.fixWindow = function (index) {
+mp.Vehicle.prototype.fixWindow ??= function (index) {
     let $res = natives.fixVehicleWindow(this.handle, index);
 };
-mp.Vehicle.prototype.popOutWindscreen = function () {
+mp.Vehicle.prototype.popOutWindscreen ??= function () {
     let $res = natives.popOutVehicleWindscreen(this.handle);
 };
-mp.Vehicle.prototype.ejectJb700Roof = function (x, y, z) {
+mp.Vehicle.prototype.ejectJb700Roof ??= function (x, y, z) {
     let $res = natives.popOffVehicleRoofWithImpulse(this.handle, x, y, z);
 };
-mp.Vehicle.prototype.setLights = function (state) {
+mp.Vehicle.prototype.setLights ??= function (state) {
     let $res = natives.setVehicleLights(this.handle, state);
 };
-mp.Vehicle.prototype.setUsePlayerLightSettings = function (toggle) {
+mp.Vehicle.prototype.setUsePlayerLightSettings ??= function (toggle) {
     let $res = natives.setVehicleUsePlayerLightSettings(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setLightsMode = function (p1) {
+mp.Vehicle.prototype.setLightsMode ??= function (p1) {
     let $res = natives.setVehicleHeadlightShadows(this.handle, p1);
 };
-mp.Vehicle.prototype.setAlarm = function (state) {
+mp.Vehicle.prototype.setAlarm ??= function (state) {
     let $res = natives.setVehicleAlarm(this.handle, state | 0);
 };
-mp.Vehicle.prototype.startAlarm = function () {
+mp.Vehicle.prototype.startAlarm ??= function () {
     let $res = natives.startVehicleAlarm(this.handle);
 };
-mp.Vehicle.prototype.isAlarmActivated = function () {
+mp.Vehicle.prototype.isAlarmActivated ??= function () {
     let $res = natives.isVehicleAlarmActivated(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setInteriorlight = function (toggle) {
+mp.Vehicle.prototype.setInteriorlight ??= function (toggle) {
     let $res = natives.setVehicleInteriorlight(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setLightMultiplier = function (multiplier) {
+mp.Vehicle.prototype.setLightMultiplier ??= function (multiplier) {
     let $res = natives.setVehicleLightMultiplier(this.handle, multiplier);
 };
-mp.Vehicle.prototype.attachToTrailer = function (trailer, radius) {
+mp.Vehicle.prototype.attachToTrailer ??= function (trailer, radius) {
     let $res = natives.attachVehicleToTrailer(this.handle, trailer, radius);
 };
-mp.Vehicle.prototype.attachOnToTrailer = function (trailer, offsetX, offsetY, offsetZ, coordsX, coordsY, coordsZ, rotationX, rotationY, rotationZ, disableCollisions) {
+mp.Vehicle.prototype.attachOnToTrailer ??= function (trailer, offsetX, offsetY, offsetZ, coordsX, coordsY, coordsZ, rotationX, rotationY, rotationZ, disableCollisions) {
     let $res = natives.attachVehicleOnToTrailer(this.handle, trailer, offsetX, offsetY, offsetZ, coordsX, coordsY, coordsZ, rotationX, rotationY, rotationZ, disableCollisions);
 };
-mp.Vehicle.prototype.stabiliseEntityAttachedToHeli = function (entity, p2) {
+mp.Vehicle.prototype.stabiliseEntityAttachedToHeli ??= function (entity, p2) {
     let $res = natives.stabiliseEntityAttachedToHeli(this.handle, entity, p2);
 };
-mp.Vehicle.prototype.detachFromTrailer = function () {
+mp.Vehicle.prototype.detachFromTrailer ??= function () {
     let $res = natives.detachVehicleFromTrailer(this.handle);
 };
-mp.Vehicle.prototype.isAttachedToTrailer = function () {
+mp.Vehicle.prototype.isAttachedToTrailer ??= function () {
     let $res = natives.isVehicleAttachedToTrailer(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setTrailerInverseMassScale = function (p1) {
+mp.Vehicle.prototype.setTrailerInverseMassScale ??= function (p1) {
     let $res = natives.setTrailerInverseMassScale(this.handle, p1);
 };
-mp.Vehicle.prototype.setTrailerLegsRaised = function () {
+mp.Vehicle.prototype.setTrailerLegsRaised ??= function () {
     let $res = natives.setTrailerLegsRaised(this.handle);
 };
-mp.Vehicle.prototype.setTyreFixed = function (tyreIndex) {
+mp.Vehicle.prototype.setTyreFixed ??= function (tyreIndex) {
     let $res = natives.setVehicleTyreFixed(this.handle, tyreIndex);
 };
-mp.Vehicle.prototype.setNumberPlateText = function (plateText) {
+mp.Vehicle.prototype.setNumberPlateText ??= function (plateText) {
     let $res = natives.setVehicleNumberPlateText(this.handle, plateText);
 };
-mp.Vehicle.prototype.getNumberPlateText = function () {
+mp.Vehicle.prototype.getNumberPlateText ??= function () {
     let $res = natives.getVehicleNumberPlateText(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setNumberPlateTextIndex = function (plateIndex) {
+mp.Vehicle.prototype.setNumberPlateTextIndex ??= function (plateIndex) {
     let $res = natives.setVehicleNumberPlateTextIndex(this.handle, plateIndex);
 };
-mp.Vehicle.prototype.getNumberPlateTextIndex = function () {
+mp.Vehicle.prototype.getNumberPlateTextIndex ??= function () {
     let $res = natives.getVehicleNumberPlateTextIndex(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setTrainSpeed = function (speed) {
+mp.Vehicle.prototype.setTrainSpeed ??= function (speed) {
     let $res = natives.setTrainSpeed(this.handle, speed);
 };
-mp.Vehicle.prototype.setTrainCruiseSpeed = function (speed) {
+mp.Vehicle.prototype.setTrainCruiseSpeed ??= function (speed) {
     let $res = natives.setTrainCruiseSpeed(this.handle, speed);
 };
-mp.Vehicle.prototype.doesHaveStuckVehicleCheck = function () {
+mp.Vehicle.prototype.doesHaveStuckVehicleCheck ??= function () {
     let $res = natives.doesVehicleHaveStuckVehicleCheck(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getRecordingId = function (script) {
+mp.Vehicle.prototype.getRecordingId ??= function (script) {
     let $res = natives.getVehicleRecordingId(this.handle, script);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.hasRecordingBeenLoaded = function (script) {
+mp.Vehicle.prototype.hasRecordingBeenLoaded ??= function (script) {
     let $res = natives.hasVehicleRecordingBeenLoaded(this.handle, script);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getPositionInRecording = function () {
+mp.Vehicle.prototype.getPositionInRecording ??= function () {
     let $res = natives.getPositionInRecording(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getTimePositionInRecording = function () {
+mp.Vehicle.prototype.getTimePositionInRecording ??= function () {
     let $res = natives.getTimePositionInRecording(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.startPlaybackRecorded = function (recording, script, p3) {
+mp.Vehicle.prototype.startPlaybackRecorded ??= function (recording, script, p3) {
     let $res = natives.startPlaybackRecordedVehicle(this.handle, recording, script, p3 | 0);
 };
-mp.Vehicle.prototype.startPlaybackRecordedWithFlags = function (recording, script, flags, time, drivingStyle) {
+mp.Vehicle.prototype.startPlaybackRecordedWithFlags ??= function (recording, script, flags, time, drivingStyle) {
     let $res = natives.startPlaybackRecordedVehicleWithFlags(this.handle, recording, script, flags, time, drivingStyle);
 };
-mp.Vehicle.prototype.forcePlaybackRecordedUpdate = function (p1) {
+mp.Vehicle.prototype.forcePlaybackRecordedUpdate ??= function (p1) {
     let $res = natives.forcePlaybackRecordedVehicleUpdate(this.handle, p1 | 0);
 };
-mp.Vehicle.prototype.stopPlaybackRecorded = function () {
+mp.Vehicle.prototype.stopPlaybackRecorded ??= function () {
     let $res = natives.stopPlaybackRecordedVehicle(this.handle);
 };
-mp.Vehicle.prototype.pausePlaybackRecorded = function () {
+mp.Vehicle.prototype.pausePlaybackRecorded ??= function () {
     let $res = natives.pausePlaybackRecordedVehicle(this.handle);
 };
-mp.Vehicle.prototype.unpausePlaybackRecorded = function () {
+mp.Vehicle.prototype.unpausePlaybackRecorded ??= function () {
     let $res = natives.unpausePlaybackRecordedVehicle(this.handle);
 };
-mp.Vehicle.prototype.isPlaybackGoingOnFor = function () {
+mp.Vehicle.prototype.isPlaybackGoingOnFor ??= function () {
     let $res = natives.isPlaybackGoingOnForVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isPlaybackUsingAiGoingOnFor = function () {
+mp.Vehicle.prototype.isPlaybackUsingAiGoingOnFor ??= function () {
     let $res = natives.isPlaybackUsingAiGoingOnForVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getCurrentPlaybackFor = function () {
+mp.Vehicle.prototype.getCurrentPlaybackFor ??= function () {
     let $res = natives.getCurrentPlaybackForVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.skipToEndAndStopPlaybackRecorded = function () {
+mp.Vehicle.prototype.skipToEndAndStopPlaybackRecorded ??= function () {
     let $res = natives.skipToEndAndStopPlaybackRecordedVehicle(this.handle);
 };
-mp.Vehicle.prototype.setPlaybackSpeed = function (speed) {
+mp.Vehicle.prototype.setPlaybackSpeed ??= function (speed) {
     let $res = natives.setPlaybackSpeed(this.handle, speed);
 };
-mp.Vehicle.prototype.startPlaybackRecordedUsingAi = function (recording, script, speed, drivingStyle) {
+mp.Vehicle.prototype.startPlaybackRecordedUsingAi ??= function (recording, script, speed, drivingStyle) {
     let $res = natives.startPlaybackRecordedVehicleUsingAi(this.handle, recording, script, speed, drivingStyle);
 };
-mp.Vehicle.prototype.skipTimeInPlaybackRecorded = function (time) {
+mp.Vehicle.prototype.skipTimeInPlaybackRecorded ??= function (time) {
     let $res = natives.skipTimeInPlaybackRecordedVehicle(this.handle, time);
 };
-mp.Vehicle.prototype.setPlaybackToUseAi = function (drivingStyle) {
+mp.Vehicle.prototype.setPlaybackToUseAi ??= function (drivingStyle) {
     let $res = natives.setPlaybackToUseAi(this.handle, drivingStyle);
 };
-mp.Vehicle.prototype.setPlaybackToUseAiTryToRevertBackLater = function (time, drivingStyle, p3) {
+mp.Vehicle.prototype.setPlaybackToUseAiTryToRevertBackLater ??= function (time, drivingStyle, p3) {
     let $res = natives.setPlaybackToUseAiTryToRevertBackLater(this.handle, time, drivingStyle, p3 | 0);
 };
-mp.Vehicle.prototype.explodeInCutscene = function (p1) {
+mp.Vehicle.prototype.explodeInCutscene ??= function (p1) {
     let $res = natives.explodeVehicleInCutscene(this.handle, p1 | 0);
 };
-mp.Vehicle.prototype.setModelIsSuppressed = function (suppressed) {
+mp.Vehicle.prototype.setModelIsSuppressed ??= function (suppressed) {
     let $res = natives.setVehicleModelIsSuppressed(this.handle, suppressed | 0);
 };
-mp.Vehicle.prototype.getTrainCarriage = function (trailerNumber) {
+mp.Vehicle.prototype.getTrainCarriage ??= function (trailerNumber) {
     let $res = natives.getTrainCarriage(this.handle, trailerNumber);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.isMissionTrain = function () {
+mp.Vehicle.prototype.isMissionTrain ??= function () {
     let $res = natives.isMissionTrain(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setMissionTrainCoords = function (x, y, z) {
+mp.Vehicle.prototype.setMissionTrainCoords ??= function (x, y, z) {
     let $res = natives.setMissionTrainCoords(this.handle, x, y, z);
 };
-mp.Vehicle.prototype.setHeliBladesFullSpeed = function () {
+mp.Vehicle.prototype.setHeliBladesFullSpeed ??= function () {
     let $res = natives.setHeliBladesFullSpeed(this.handle);
 };
-mp.Vehicle.prototype.setHeliBladesSpeed = function (speed) {
+mp.Vehicle.prototype.setHeliBladesSpeed ??= function (speed) {
     let $res = natives.setHeliBladesSpeed(this.handle, speed);
 };
-mp.Vehicle.prototype.setCanBeTargetted = function (state) {
+mp.Vehicle.prototype.setCanBeTargetted ??= function (state) {
     let $res = natives.setVehicleCanBeTargetted(this.handle, state | 0);
 };
-mp.Vehicle.prototype.setCanBeVisiblyDamaged = function (state) {
+mp.Vehicle.prototype.setCanBeVisiblyDamaged ??= function (state) {
     let $res = natives.setVehicleCanBeVisiblyDamaged(this.handle, state | 0);
 };
-mp.Vehicle.prototype.setHasUnbreakableLights = function (p1) {
+mp.Vehicle.prototype.setHasUnbreakableLights ??= function (p1) {
     let $res = natives.setVehicleHasUnbreakableLights(this.handle, p1 | 0);
 };
-mp.Vehicle.prototype.getDirtLevel = function () {
+mp.Vehicle.prototype.getDirtLevel ??= function () {
     let $res = natives.getVehicleDirtLevel(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setDirtLevel = function (dirtLevel) {
+mp.Vehicle.prototype.setDirtLevel ??= function (dirtLevel) {
     let $res = natives.setVehicleDirtLevel(this.handle, dirtLevel);
 };
-mp.Vehicle.prototype.isDamaged = function () {
+mp.Vehicle.prototype.isDamaged ??= function () {
     let $res = natives.getDoesVehicleHaveDamageDecals(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isDoorFullyOpen = function (doorId) {
+mp.Vehicle.prototype.isDoorFullyOpen ??= function (doorId) {
     let $res = natives.isVehicleDoorFullyOpen(this.handle, doorId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setEngineOn = function (value, instantly, disableAutoStart) {
+mp.Vehicle.prototype.setEngineOn ??= function (value, instantly, disableAutoStart) {
     let $res = natives.setVehicleEngineOn(this.handle, value | 0, instantly | 0, disableAutoStart | 0);
 };
-mp.Vehicle.prototype.setUndriveable = function (toggle) {
+mp.Vehicle.prototype.setUndriveable ??= function (toggle) {
     let $res = natives.setVehicleUndriveable(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setProvidesCover = function (toggle) {
+mp.Vehicle.prototype.setProvidesCover ??= function (toggle) {
     let $res = natives.setVehicleProvidesCover(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setDoorControl = function (doorId, speed, angle) {
+mp.Vehicle.prototype.setDoorControl ??= function (doorId, speed, angle) {
     let $res = natives.setVehicleDoorControl(this.handle, doorId, speed, angle);
 };
-mp.Vehicle.prototype.setDoorLatched = function (doorId, p2, p3, p4) {
+mp.Vehicle.prototype.setDoorLatched ??= function (doorId, p2, p3, p4) {
     let $res = natives.setVehicleDoorLatched(this.handle, doorId, p2 | 0, p3 | 0, p4 | 0);
 };
-mp.Vehicle.prototype.getDoorAngleRatio = function (doorId) {
+mp.Vehicle.prototype.getDoorAngleRatio ??= function (doorId) {
     let $res = natives.getVehicleDoorAngleRatio(this.handle, doorId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getPedUsingDoor = function (doord) {
+mp.Player.prototype.getPedUsingDoor ??= function (doord) {
     let $res = natives.getPedUsingVehicleDoor(this.handle, doord);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getPedUsingDoor = function (doord) {
+mp.Ped.prototype.getPedUsingDoor ??= function (doord) {
     let $res = natives.getPedUsingVehicleDoor(this.handle, doord);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setDoorShut = function (doorId, closeInstantly) {
+mp.Vehicle.prototype.setDoorShut ??= function (doorId, closeInstantly) {
     let $res = natives.setVehicleDoorShut(this.handle, doorId, closeInstantly | 0);
 };
-mp.Vehicle.prototype.setDoorBroken = function (doorId, deleteDoor) {
+mp.Vehicle.prototype.setDoorBroken ??= function (doorId, deleteDoor) {
     let $res = natives.setVehicleDoorBroken(this.handle, doorId, deleteDoor | 0);
 };
-mp.Vehicle.prototype.setCanBreak = function (toggle) {
+mp.Vehicle.prototype.setCanBreak ??= function (toggle) {
     let $res = natives.setVehicleCanBreak(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.doesHaveRoof = function () {
+mp.Vehicle.prototype.doesHaveRoof ??= function () {
     let $res = natives.doesVehicleHaveRoof(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Blip.prototype.isBig = function () {
+mp.Blip.prototype.isBig ??= function () {
     let $res = natives.isBigVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getNumberOfColours = function () {
+mp.Vehicle.prototype.getNumberOfColours ??= function () {
     let $res = natives.getNumberOfVehicleColours(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setColourCombination = function (colorCombination) {
+mp.Vehicle.prototype.setColourCombination ??= function (colorCombination) {
     let $res = natives.setVehicleColourCombination(this.handle, colorCombination);
 };
-mp.Vehicle.prototype.getColourCombination = function () {
+mp.Vehicle.prototype.getColourCombination ??= function () {
     let $res = natives.getVehicleColourCombination(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setXenonLightsColor = function (colorIndex) {
+mp.Vehicle.prototype.setXenonLightsColor ??= function (colorIndex) {
     let $res = natives.setVehicleXenonLightColorIndex(this.handle, colorIndex);
 };
-mp.Vehicle.prototype.getXenonLightsColor = function () {
+mp.Vehicle.prototype.getXenonLightsColor ??= function () {
     let $res = natives.getVehicleXenonLightColorIndex(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setIsConsideredByPlayer = function (toggle) {
+mp.Vehicle.prototype.setIsConsideredByPlayer ??= function (toggle) {
     let $res = natives.setVehicleIsConsideredByPlayer(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.getDoorLockStatus = function () {
+mp.Vehicle.prototype.getDoorLockStatus ??= function () {
     let $res = natives.getVehicleDoorLockStatus(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getDoorDestroyType = function (doorId) {
+mp.Vehicle.prototype.getDoorDestroyType ??= function (doorId) {
     let $res = natives.getVehicleIndividualDoorLockStatus(this.handle, doorId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.isDoorDamaged = function (doorID) {
+mp.Vehicle.prototype.isDoorDamaged ??= function (doorID) {
     let $res = natives.isVehicleDoorDamaged(this.handle, doorID);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setDoorCanBreak = function (doorId, isBreakable) {
+mp.Vehicle.prototype.setDoorCanBreak ??= function (doorId, isBreakable) {
     let $res = natives.setDoorAllowedToBeBrokenOff(this.handle, doorId, isBreakable | 0);
 };
-mp.Vehicle.prototype.isBumperBouncing = function (frontBumper) {
+mp.Vehicle.prototype.isBumperBouncing ??= function (frontBumper) {
     let $res = natives.isVehicleBumperBouncing(this.handle, frontBumper | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isBumperBrokenOff = function (front) {
+mp.Vehicle.prototype.isBumperBrokenOff ??= function (front) {
     let $res = natives.isVehicleBumperBrokenOff(this.handle, front | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isOnAllWheels = function () {
+mp.Vehicle.prototype.isOnAllWheels ??= function () {
     let $res = natives.isVehicleOnAllWheels(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getModelMonetaryValue = function () {
+mp.Vehicle.prototype.getModelMonetaryValue ??= function () {
     let $res = natives.getVehicleModelValue(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getLayoutHash = function () {
+mp.Vehicle.prototype.getLayoutHash ??= function () {
     let $res = natives.getVehicleLayoutHash(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setRenderTrainAsDerailed = function (toggle) {
+mp.Vehicle.prototype.setRenderTrainAsDerailed ??= function (toggle) {
     let $res = natives.setRenderTrainAsDerailed(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setExtraColours = function (pearlescentColor, wheelColor) {
+mp.Vehicle.prototype.setExtraColours ??= function (pearlescentColor, wheelColor) {
     let $res = natives.setVehicleExtraColours(this.handle, pearlescentColor, wheelColor);
 };
-mp.Vehicle.prototype.getExtraColours = function () {
+mp.Vehicle.prototype.getExtraColours ??= function () {
     let $res = natives.getVehicleExtraColours(this.handle, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -34460,160 +34460,160 @@ mp.Vehicle.prototype.getExtraColours = function () {
     $resObj.wheelColor = $res[2];
     return $resObj;
 };
-mp.Vehicle.prototype.setInteriorColor = function (color) {
+mp.Vehicle.prototype.setInteriorColor ??= function (color) {
     let $res = natives.setVehicleExtraColour5(this.handle, color);
 };
-mp.Vehicle.prototype.getInteriorColor = function () {
+mp.Vehicle.prototype.getInteriorColor ??= function () {
     let $res = natives.getVehicleExtraColour5(this.handle, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.color = $res[1];
     return $resObj.color;
 };
-mp.Vehicle.prototype.setDashboardColor = function (color) {
+mp.Vehicle.prototype.setDashboardColor ??= function (color) {
     let $res = natives.setVehicleExtraColour6(this.handle, color);
 };
-mp.Vehicle.prototype.getDashboardColor = function () {
+mp.Vehicle.prototype.getDashboardColor ??= function () {
     let $res = natives.getVehicleExtraColour6(this.handle, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.color = $res[1];
     return $resObj.color;
 };
-mp.Vehicle.prototype.setFixed = function () {
+mp.Vehicle.prototype.setFixed ??= function () {
     let $res = natives.setVehicleFixed(this.handle);
 };
-mp.Vehicle.prototype.setDeformationFixed = function () {
+mp.Vehicle.prototype.setDeformationFixed ??= function () {
     let $res = natives.setVehicleDeformationFixed(this.handle);
 };
-mp.Vehicle.prototype.setCanEngineOperateOnFire = function (toggle) {
+mp.Vehicle.prototype.setCanEngineOperateOnFire ??= function (toggle) {
     let $res = natives.setVehicleCanEngineMissfire(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setCanLeakOil = function (toggle) {
+mp.Vehicle.prototype.setCanLeakOil ??= function (toggle) {
     let $res = natives.setVehicleCanLeakOil(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setCanLeakPetrol = function (toggle) {
+mp.Vehicle.prototype.setCanLeakPetrol ??= function (toggle) {
     let $res = natives.setVehicleCanLeakPetrol(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setDisablePetrolTankFires = function (toggle) {
+mp.Vehicle.prototype.setDisablePetrolTankFires ??= function (toggle) {
     let $res = natives.setDisableVehiclePetrolTankFires(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setDisablePetrolTankDamage = function (toggle) {
+mp.Vehicle.prototype.setDisablePetrolTankDamage ??= function (toggle) {
     let $res = natives.setDisableVehiclePetrolTankDamage(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setDisableEngineFires = function (toggle) {
+mp.Vehicle.prototype.setDisableEngineFires ??= function (toggle) {
     let $res = natives.setDisableVehicleEngineFires(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setDisablePretendOccupants = function (toggle) {
+mp.Vehicle.prototype.setDisablePretendOccupants ??= function (toggle) {
     let $res = natives.setDisablePretendOccupants(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setSteerBias = function (value) {
+mp.Vehicle.prototype.setSteerBias ??= function (value) {
     let $res = natives.setVehicleSteerBias(this.handle, value);
 };
-mp.Vehicle.prototype.isExtraTurnedOn = function (extraId) {
+mp.Vehicle.prototype.isExtraTurnedOn ??= function (extraId) {
     let $res = natives.isVehicleExtraTurnedOn(this.handle, extraId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setExtra = function (extraId, disable) {
+mp.Vehicle.prototype.setExtra ??= function (extraId, disable) {
     let $res = natives.setVehicleExtra(this.handle, extraId, disable | 0);
 };
-mp.Vehicle.prototype.doesExtraExist = function (extraId) {
+mp.Vehicle.prototype.doesExtraExist ??= function (extraId) {
     let $res = natives.doesExtraExist(this.handle, extraId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.doesTyreExist = function (tyreIndex) {
+mp.Vehicle.prototype.doesTyreExist ??= function (tyreIndex) {
     let $res = natives.isExtraBrokenOff(this.handle, tyreIndex);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setConvertibleRoof = function (p1) {
+mp.Vehicle.prototype.setConvertibleRoof ??= function (p1) {
     let $res = natives.setConvertibleRoof(this.handle, p1 | 0);
 };
-mp.Vehicle.prototype.lowerConvertibleRoof = function (instantlyLower) {
+mp.Vehicle.prototype.lowerConvertibleRoof ??= function (instantlyLower) {
     let $res = natives.lowerConvertibleRoof(this.handle, instantlyLower | 0);
 };
-mp.Vehicle.prototype.raiseConvertibleRoof = function (instantlyRaise) {
+mp.Vehicle.prototype.raiseConvertibleRoof ??= function (instantlyRaise) {
     let $res = natives.raiseConvertibleRoof(this.handle, instantlyRaise | 0);
 };
-mp.Vehicle.prototype.getConvertibleRoofState = function () {
+mp.Vehicle.prototype.getConvertibleRoofState ??= function () {
     let $res = natives.getConvertibleRoofState(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.isAConvertible = function (p1) {
+mp.Vehicle.prototype.isAConvertible ??= function (p1) {
     let $res = natives.isVehicleAConvertible(this.handle, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.transformToSubmarine = function (noAnimation) {
+mp.Vehicle.prototype.transformToSubmarine ??= function (noAnimation) {
     let $res = natives.transformToSubmarine(this.handle, noAnimation | 0);
 };
-mp.Vehicle.prototype.transformSubmarineTo = function (noAnimation) {
+mp.Vehicle.prototype.transformSubmarineTo ??= function (noAnimation) {
     let $res = natives.transformToCar(this.handle, noAnimation | 0);
 };
-mp.Vehicle.prototype.getIsSubmarineTransformed = function () {
+mp.Vehicle.prototype.getIsSubmarineTransformed ??= function () {
     let $res = natives.isVehicleInSubmarineMode(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isStoppedAtTrafficLights = function () {
+mp.Vehicle.prototype.isStoppedAtTrafficLights ??= function () {
     let $res = natives.isVehicleStoppedAtTrafficLights(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setDamage = function (xOffset, yOffset, zOffset, damage, radius, focusOnModel) {
+mp.Vehicle.prototype.setDamage ??= function (xOffset, yOffset, zOffset, damage, radius, focusOnModel) {
     let $res = natives.setVehicleDamage(this.handle, xOffset, yOffset, zOffset, damage, radius, focusOnModel | 0);
 };
-mp.Vehicle.prototype.getEngineHealth = function () {
+mp.Vehicle.prototype.getEngineHealth ??= function () {
     let $res = natives.getVehicleEngineHealth(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setEngineHealth = function (health) {
+mp.Vehicle.prototype.setEngineHealth ??= function (health) {
     let $res = natives.setVehicleEngineHealth(this.handle, health);
 };
-mp.Vehicle.prototype.setPlaneEngineHealth = function (health) {
+mp.Vehicle.prototype.setPlaneEngineHealth ??= function (health) {
     let $res = natives.setPlaneEngineHealth(this.handle, health);
 };
-mp.Vehicle.prototype.getPetrolTankHealth = function () {
+mp.Vehicle.prototype.getPetrolTankHealth ??= function () {
     let $res = natives.getVehiclePetrolTankHealth(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setPetrolTankHealth = function (health) {
+mp.Vehicle.prototype.setPetrolTankHealth ??= function (health) {
     let $res = natives.setVehiclePetrolTankHealth(this.handle, health);
 };
-mp.Vehicle.prototype.isStuckTimerUp = function (p1, p2) {
+mp.Vehicle.prototype.isStuckTimerUp ??= function (p1, p2) {
     let $res = natives.isVehicleStuckTimerUp(this.handle, p1, p2);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.resetStuckTimer = function (nullAttributes) {
+mp.Vehicle.prototype.resetStuckTimer ??= function (nullAttributes) {
     let $res = natives.resetVehicleStuckTimer(this.handle, nullAttributes | 0);
 };
-mp.Vehicle.prototype.isDriveable = function (isOnFireCheck) {
+mp.Vehicle.prototype.isDriveable ??= function (isOnFireCheck) {
     let $res = natives.isVehicleDriveable(this.handle, isOnFireCheck | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setHasBeenOwnedByPlayer = function (owned) {
+mp.Vehicle.prototype.setHasBeenOwnedByPlayer ??= function (owned) {
     let $res = natives.setVehicleHasBeenOwnedByPlayer(this.handle, owned | 0);
 };
-mp.Vehicle.prototype.setNeedsToBeHotwired = function (toggle) {
+mp.Vehicle.prototype.setNeedsToBeHotwired ??= function (toggle) {
     let $res = natives.setVehicleNeedsToBeHotwired(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.startHorn = function (duration, mode, forever) {
+mp.Vehicle.prototype.startHorn ??= function (duration, mode, forever) {
     let $res = natives.startVehicleHorn(this.handle, duration, mode, forever | 0);
 };
-mp.Vehicle.prototype.setSilent = function (toggle) {
+mp.Vehicle.prototype.setSilent ??= function (toggle) {
     let $res = natives.setVehicleInCarModShop(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setHasStrongAxles = function (toggle) {
+mp.Vehicle.prototype.setHasStrongAxles ??= function (toggle) {
     let $res = natives.setVehicleHasStrongAxles(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.getDeformationAtPos = function (offsetX, offsetY, offsetZ) {
+mp.Vehicle.prototype.getDeformationAtPos ??= function (offsetX, offsetY, offsetZ) {
     let $res = natives.getVehicleDeformationAtPos(this.handle, offsetX, offsetY, offsetZ);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -34622,344 +34622,344 @@ mp.Vehicle.prototype.getDeformationAtPos = function (offsetX, offsetY, offsetZ) 
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Vehicle.prototype.setLivery = function (livery) {
+mp.Vehicle.prototype.setLivery ??= function (livery) {
     let $res = natives.setVehicleLivery(this.handle, livery);
 };
-mp.Vehicle.prototype.getLivery = function () {
+mp.Vehicle.prototype.getLivery ??= function () {
     let $res = natives.getVehicleLivery(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getLiveryCount = function () {
+mp.Vehicle.prototype.getLiveryCount ??= function () {
     let $res = natives.getVehicleLiveryCount(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setRoofLivery = function (livery) {
+mp.Vehicle.prototype.setRoofLivery ??= function (livery) {
     let $res = natives.setVehicleLivery2(this.handle, livery);
 };
-mp.Vehicle.prototype.getRoofLivery = function () {
+mp.Vehicle.prototype.getRoofLivery ??= function () {
     let $res = natives.getVehicleLivery2(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getRoofLiveryCount = function () {
+mp.Vehicle.prototype.getRoofLiveryCount ??= function () {
     let $res = natives.getVehicleLivery2Count(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.isWindowIntact = function (windowIndex) {
+mp.Vehicle.prototype.isWindowIntact ??= function (windowIndex) {
     let $res = natives.isVehicleWindowIntact(this.handle, windowIndex);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.areAllWindowsIntact = function () {
+mp.Vehicle.prototype.areAllWindowsIntact ??= function () {
     let $res = natives.areAllVehicleWindowsIntact(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.areAnySeatsFree = function () {
+mp.Vehicle.prototype.areAnySeatsFree ??= function () {
     let $res = natives.areAnyVehicleSeatsFree(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.resetWheels = function (toggle) {
+mp.Vehicle.prototype.resetWheels ??= function (toggle) {
     let $res = natives.resetVehicleWheels(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.isHeliPartBroken = function (p1, p2, p3) {
+mp.Vehicle.prototype.isHeliPartBroken ??= function (p1, p2, p3) {
     let $res = natives.isHeliPartBroken(this.handle, p1 | 0, p2 | 0, p3 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getHeliMainRotorHealth = function () {
+mp.Vehicle.prototype.getHeliMainRotorHealth ??= function () {
     let $res = natives.getHeliMainRotorHealth(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getHeliTailRotorHealth = function () {
+mp.Vehicle.prototype.getHeliTailRotorHealth ??= function () {
     let $res = natives.getHeliTailRotorHealth(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getHeliTailBoomHealth = function () {
+mp.Vehicle.prototype.getHeliTailBoomHealth ??= function () {
     let $res = natives.getHeliTailBoomHealth(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setHeliMainRotorHealth = function (health) {
+mp.Vehicle.prototype.setHeliMainRotorHealth ??= function (health) {
     let $res = natives.setHeliMainRotorHealth(this.handle, health);
 };
-mp.Vehicle.prototype.setHeliTailRotorHealth = function (health) {
+mp.Vehicle.prototype.setHeliTailRotorHealth ??= function (health) {
     let $res = natives.setHeliTailRotorHealth(this.handle, health);
 };
-mp.Vehicle.prototype.setHeliTailExplodeThrowDashboard = function (p1) {
+mp.Vehicle.prototype.setHeliTailExplodeThrowDashboard ??= function (p1) {
     let $res = natives.setHeliTailBoomCanBreakOff(this.handle, p1 | 0);
 };
-mp.Vehicle.prototype.setNameDebug = function (name) {
+mp.Vehicle.prototype.setNameDebug ??= function (name) {
     let $res = natives.setVehicleNameDebug(this.handle, name);
 };
-mp.Vehicle.prototype.setExplodesOnHighExplosionDamage = function (toggle) {
+mp.Vehicle.prototype.setExplodesOnHighExplosionDamage ??= function (toggle) {
     let $res = natives.setVehicleExplodesOnHighExplosionDamage(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setDisableTowing = function (toggle) {
+mp.Vehicle.prototype.setDisableTowing ??= function (toggle) {
     let $res = natives.setVehicleDisableTowing(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.doesHaveLandingGear = function () {
+mp.Vehicle.prototype.doesHaveLandingGear ??= function () {
     let $res = natives.getVehicleHasLandingGear(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.controlLandingGear = function (state) {
+mp.Vehicle.prototype.controlLandingGear ??= function (state) {
     let $res = natives.controlLandingGear(this.handle, state);
 };
-mp.Vehicle.prototype.getLandingGearState = function () {
+mp.Vehicle.prototype.getLandingGearState ??= function () {
     let $res = natives.getLandingGearState(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.requestHighDetailModel = function () {
+mp.Vehicle.prototype.requestHighDetailModel ??= function () {
     let $res = natives.requestVehicleHighDetailModel(this.handle);
 };
-mp.Vehicle.prototype.removeHighDetailModel = function () {
+mp.Vehicle.prototype.removeHighDetailModel ??= function () {
     let $res = natives.removeVehicleHighDetailModel(this.handle);
 };
-mp.Vehicle.prototype.isHighDetail = function () {
+mp.Vehicle.prototype.isHighDetail ??= function () {
     let $res = natives.isVehicleHighDetail(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.hasAssetLoaded = function () {
+mp.Vehicle.prototype.hasAssetLoaded ??= function () {
     let $res = natives.hasVehicleAssetLoaded(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setTowTruckArmPosition = function (position) {
+mp.Vehicle.prototype.setTowTruckArmPosition ??= function (position) {
     let $res = natives.setVehicleTowTruckArmPosition(this.handle, position);
 };
-mp.Vehicle.prototype.attachToTowTruck = function (vehicle, rear, hookOffsetX, hookOffsetY, hookOffsetZ) {
+mp.Vehicle.prototype.attachToTowTruck ??= function (vehicle, rear, hookOffsetX, hookOffsetY, hookOffsetZ) {
     let $res = natives.attachVehicleToTowTruck(this.handle, vehicle, rear | 0, hookOffsetX, hookOffsetY, hookOffsetZ);
 };
-mp.Vehicle.prototype.detachFromTowTruck = function (vehicle) {
+mp.Vehicle.prototype.detachFromTowTruck ??= function (vehicle) {
     let $res = natives.detachVehicleFromTowTruck(this.handle, vehicle);
 };
-mp.Vehicle.prototype.detachFromAnyTowTruck = function () {
+mp.Vehicle.prototype.detachFromAnyTowTruck ??= function () {
     let $res = natives.detachVehicleFromAnyTowTruck(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isAttachedToTowTruck = function (vehicle) {
+mp.Vehicle.prototype.isAttachedToTowTruck ??= function (vehicle) {
     let $res = natives.isVehicleAttachedToTowTruck(this.handle, vehicle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getEntityAttachedToTowTruck = function () {
+mp.Player.prototype.getEntityAttachedToTowTruck ??= function () {
     let $res = natives.getEntityAttachedToTowTruck(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getEntityAttachedToTowTruck = function () {
+mp.Ped.prototype.getEntityAttachedToTowTruck ??= function () {
     let $res = natives.getEntityAttachedToTowTruck(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getEntityAttachedToTowTruck = function () {
+mp.Object.prototype.getEntityAttachedToTowTruck ??= function () {
     let $res = natives.getEntityAttachedToTowTruck(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getEntityAttachedToTowTruck = function () {
+mp.Vehicle.prototype.getEntityAttachedToTowTruck ??= function () {
     let $res = natives.getEntityAttachedToTowTruck(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setAutomaticallyAttaches = function (p1, p2) {
+mp.Vehicle.prototype.setAutomaticallyAttaches ??= function (p1, p2) {
     let $res = natives.setVehicleAutomaticallyAttaches(this.handle, p1 | 0, p2);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setBulldozerArmPosition = function (position, p2) {
+mp.Vehicle.prototype.setBulldozerArmPosition ??= function (position, p2) {
     let $res = natives.setVehicleBulldozerArmPosition(this.handle, position, p2 | 0);
 };
-mp.Vehicle.prototype.setTankTurretPosition = function (position, p2) {
+mp.Vehicle.prototype.setTankTurretPosition ??= function (position, p2) {
     let $res = natives.setVehicleTankTurretPosition(this.handle, position, p2 | 0);
 };
-mp.Vehicle.prototype.setTurretSpeedThisFrame = function (speed) {
+mp.Vehicle.prototype.setTurretSpeedThisFrame ??= function (speed) {
     let $res = natives.setVehicleTurretSpeedThisFrame(this.handle, speed);
 };
-mp.Vehicle.prototype.disableTurretMovementThisFrame = function () {
+mp.Vehicle.prototype.disableTurretMovementThisFrame ??= function () {
     let $res = natives.disableVehicleTurretMovementThisFrame(this.handle);
 };
-mp.Vehicle.prototype.setFlightNozzlePosition = function (angleRatio) {
+mp.Vehicle.prototype.setFlightNozzlePosition ??= function (angleRatio) {
     let $res = natives.setVehicleFlightNozzlePosition(this.handle, angleRatio);
 };
-mp.Vehicle.prototype.setFlightNozzlePositionImmediate = function (angle) {
+mp.Vehicle.prototype.setFlightNozzlePositionImmediate ??= function (angle) {
     let $res = natives.setVehicleFlightNozzlePositionImmediate(this.handle, angle);
 };
-mp.Vehicle.prototype.getFlightNozzlePosition = function () {
+mp.Vehicle.prototype.getFlightNozzlePosition ??= function () {
     let $res = natives.getVehicleFlightNozzlePosition(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setDisableFlightNozzlePosition = function (toggle) {
+mp.Vehicle.prototype.setDisableFlightNozzlePosition ??= function (toggle) {
     let $res = natives.setDisableVerticalFlightModeTransition(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setBurnout = function (toggle) {
+mp.Vehicle.prototype.setBurnout ??= function (toggle) {
     let $res = natives.setVehicleBurnout(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.isInBurnout = function () {
+mp.Vehicle.prototype.isInBurnout ??= function () {
     let $res = natives.isVehicleInBurnout(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setReduceGrip = function (toggle) {
+mp.Vehicle.prototype.setReduceGrip ??= function (toggle) {
     let $res = natives.setVehicleReduceGrip(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setReduceTraction = function (val) {
+mp.Vehicle.prototype.setReduceTraction ??= function (val) {
     let $res = natives.setVehicleReduceGripLevel(this.handle, val);
 };
-mp.Vehicle.prototype.setIndicatorLights = function (turnSignal, toggle) {
+mp.Vehicle.prototype.setIndicatorLights ??= function (turnSignal, toggle) {
     let $res = natives.setVehicleIndicatorLights(this.handle, turnSignal, toggle | 0);
 };
-mp.Vehicle.prototype.setBrakeLights = function (toggle) {
+mp.Vehicle.prototype.setBrakeLights ??= function (toggle) {
     let $res = natives.setVehicleBrakeLights(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setHandbrake = function (toggle) {
+mp.Vehicle.prototype.setHandbrake ??= function (toggle) {
     let $res = natives.setVehicleHandbrake(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setBrake = function (toggle) {
+mp.Vehicle.prototype.setBrake ??= function (toggle) {
     let $res = natives.setVehicleBrake(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.getTrailerVehicle = function () {
+mp.Vehicle.prototype.getTrailerVehicle ??= function () {
     let $res = natives.getVehicleTrailerVehicle(this.handle, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.trailer = $res[1];
     return $res[0] == 1 ? $resObj.trailer : undefined;
 };
-mp.Vehicle.prototype.setUsesLargeRearRamp = function (toggle) {
+mp.Vehicle.prototype.setUsesLargeRearRamp ??= function (toggle) {
     let $res = natives.setVehicleUsesLargeRearRamp(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setRudderBroken = function (toggle) {
+mp.Vehicle.prototype.setRudderBroken ??= function (toggle) {
     let $res = natives.setVehicleRudderBroken(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setConvertibleRoofLatchState = function (state) {
+mp.Vehicle.prototype.setConvertibleRoofLatchState ??= function (state) {
     let $res = natives.setConvertibleRoofLatchState(this.handle, state | 0);
 };
-mp.Vehicle.prototype.getEstimatedMaxSpeed = function () {
+mp.Vehicle.prototype.getEstimatedMaxSpeed ??= function () {
     let $res = natives.getVehicleEstimatedMaxSpeed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getMaxBraking = function () {
+mp.Vehicle.prototype.getMaxBraking ??= function () {
     let $res = natives.getVehicleMaxBraking(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getMaxTraction = function () {
+mp.Vehicle.prototype.getMaxTraction ??= function () {
     let $res = natives.getVehicleMaxTraction(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getAcceleration = function () {
+mp.Vehicle.prototype.getAcceleration ??= function () {
     let $res = natives.getVehicleAcceleration(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getModelEstimatedMaxSpeed = function () {
+mp.Vehicle.prototype.getModelEstimatedMaxSpeed ??= function () {
     let $res = natives.getVehicleModelEstimatedMaxSpeed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getModelMaxBraking = function () {
+mp.Vehicle.prototype.getModelMaxBraking ??= function () {
     let $res = natives.getVehicleModelMaxBraking(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getModelMaxBrakingMaxMods = function () {
+mp.Vehicle.prototype.getModelMaxBrakingMaxMods ??= function () {
     let $res = natives.getVehicleModelMaxBrakingMaxMods(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getModelMaxTraction = function () {
+mp.Vehicle.prototype.getModelMaxTraction ??= function () {
     let $res = natives.getVehicleModelMaxTraction(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getModelAcceleration = function () {
+mp.Vehicle.prototype.getModelAcceleration ??= function () {
     let $res = natives.getVehicleModelAcceleration(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getModelEstimatedAgility = function () {
+mp.Vehicle.prototype.getModelEstimatedAgility ??= function () {
     let $res = natives.getVehicleModelAccelerationMaxMods(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getModelMaxKnots = function () {
+mp.Vehicle.prototype.getModelMaxKnots ??= function () {
     let $res = natives.getFlyingVehicleModelAgility(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getModelMoveResistance = function () {
+mp.Vehicle.prototype.getModelMoveResistance ??= function () {
     let $res = natives.getBoatVehicleModelAgility(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getClassEstimatedMaxSpeed = function () {
+mp.Vehicle.prototype.getClassEstimatedMaxSpeed ??= function () {
     let $res = natives.getVehicleClassEstimatedMaxSpeed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getClassMaxTraction = function () {
+mp.Vehicle.prototype.getClassMaxTraction ??= function () {
     let $res = natives.getVehicleClassMaxTraction(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getClassMaxAgility = function () {
+mp.Vehicle.prototype.getClassMaxAgility ??= function () {
     let $res = natives.getVehicleClassMaxAgility(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getClassMaxAcceleration = function () {
+mp.Vehicle.prototype.getClassMaxAcceleration ??= function () {
     let $res = natives.getVehicleClassMaxAcceleration(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getClassMaxBraking = function () {
+mp.Vehicle.prototype.getClassMaxBraking ??= function () {
     let $res = natives.getVehicleClassMaxBraking(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.openBombBayDoors = function () {
+mp.Vehicle.prototype.openBombBayDoors ??= function () {
     let $res = natives.openBombBayDoors(this.handle);
 };
-mp.Vehicle.prototype.closeBombBayDoors = function () {
+mp.Vehicle.prototype.closeBombBayDoors ??= function () {
     let $res = natives.closeBombBayDoors(this.handle);
 };
-mp.Vehicle.prototype.areBombBayDoorsOpen = function () {
+mp.Vehicle.prototype.areBombBayDoorsOpen ??= function () {
     let $res = natives.getAreBombBayDoorsOpen(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isSearchlightOn = function () {
+mp.Vehicle.prototype.isSearchlightOn ??= function () {
     let $res = natives.isVehicleSearchlightOn(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setSearchlight = function (toggle, canBeUsedByAI) {
+mp.Vehicle.prototype.setSearchlight ??= function (toggle, canBeUsedByAI) {
     let $res = natives.setVehicleSearchlight(this.handle, toggle | 0, canBeUsedByAI | 0);
 };
-mp.Vehicle.prototype.doesHaveSearchlight = function () {
+mp.Vehicle.prototype.doesHaveSearchlight ??= function () {
     let $res = natives.doesVehicleHaveSearchlight(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isSeatAccessible = function (vehicle, seatIndex, side, onEnter) {
+mp.Vehicle.prototype.isSeatAccessible ??= function (vehicle, seatIndex, side, onEnter) {
     let $res = natives.isEntryPointForSeatClear(this.handle, vehicle, seatIndex, side | 0, onEnter | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getEntryPositionOfDoor = function (doorId) {
+mp.Vehicle.prototype.getEntryPositionOfDoor ??= function (doorId) {
     let $res = natives.getEntryPointPosition(this.handle, doorId);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -34968,36 +34968,36 @@ mp.Vehicle.prototype.getEntryPositionOfDoor = function (doorId) {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Vehicle.prototype.canShuffleSeat = function (seatIndex) {
+mp.Vehicle.prototype.canShuffleSeat ??= function (seatIndex) {
     let $res = natives.canShuffleSeat(this.handle, seatIndex);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getNumModKits = function () {
+mp.Vehicle.prototype.getNumModKits ??= function () {
     let $res = natives.getNumModKits(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setModKit = function (modKit) {
+mp.Vehicle.prototype.setModKit ??= function (modKit) {
     let $res = natives.setVehicleModKit(this.handle, modKit);
 };
-mp.Vehicle.prototype.getModKit = function () {
+mp.Vehicle.prototype.getModKit ??= function () {
     let $res = natives.getVehicleModKit(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getModKitType = function () {
+mp.Vehicle.prototype.getModKitType ??= function () {
     let $res = natives.getVehicleModKitType(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setModColor1 = function (paintType, color, pearlescentColor) {
+mp.Vehicle.prototype.setModColor1 ??= function (paintType, color, pearlescentColor) {
     let $res = natives.setVehicleModColor1(this.handle, paintType, color, pearlescentColor);
 };
-mp.Vehicle.prototype.setModColor2 = function (paintType, color) {
+mp.Vehicle.prototype.setModColor2 ??= function (paintType, color) {
     let $res = natives.setVehicleModColor2(this.handle, paintType, color);
 };
-mp.Vehicle.prototype.getModColor1 = function () {
+mp.Vehicle.prototype.getModColor1 ??= function () {
     let $res = natives.getVehicleModColor1(this.handle, 0, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -35006,7 +35006,7 @@ mp.Vehicle.prototype.getModColor1 = function () {
     $resObj.pearlescentColor = $res[3];
     return $resObj;
 };
-mp.Vehicle.prototype.getModColor2 = function () {
+mp.Vehicle.prototype.getModColor2 ??= function () {
     let $res = natives.getVehicleModColor2(this.handle, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -35014,74 +35014,74 @@ mp.Vehicle.prototype.getModColor2 = function () {
     $resObj.color = $res[2];
     return $resObj;
 };
-mp.Vehicle.prototype.getModColor1Name = function (p1) {
+mp.Vehicle.prototype.getModColor1Name ??= function (p1) {
     let $res = natives.getVehicleModColor1Name(this.handle, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getModColor2Name = function () {
+mp.Vehicle.prototype.getModColor2Name ??= function () {
     let $res = natives.getVehicleModColor2Name(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.haveModsStreamedIn = function () {
+mp.Vehicle.prototype.haveModsStreamedIn ??= function () {
     let $res = natives.haveVehicleModsStreamedIn(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getModVariation = function (modType) {
+mp.Vehicle.prototype.getModVariation ??= function (modType) {
     let $res = natives.getVehicleModVariation(this.handle, modType);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getNumMods = function (modType) {
+mp.Vehicle.prototype.getNumMods ??= function (modType) {
     let $res = natives.getNumVehicleMods(this.handle, modType);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.removeMod = function (modType) {
+mp.Vehicle.prototype.removeMod ??= function (modType) {
     let $res = natives.removeVehicleMod(this.handle, modType);
 };
-mp.Vehicle.prototype.toggleMod = function (modType, toggle) {
+mp.Vehicle.prototype.toggleMod ??= function (modType, toggle) {
     let $res = natives.toggleVehicleMod(this.handle, modType, toggle | 0);
 };
-mp.Vehicle.prototype.isToggleModOn = function (modType) {
+mp.Vehicle.prototype.isToggleModOn ??= function (modType) {
     let $res = natives.isToggleModOn(this.handle, modType);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getModTextLabel = function (modType, modValue) {
+mp.Vehicle.prototype.getModTextLabel ??= function (modType, modValue) {
     let $res = natives.getModTextLabel(this.handle, modType, modValue);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getModSlotName = function (modType) {
+mp.Vehicle.prototype.getModSlotName ??= function (modType) {
     let $res = natives.getModSlotName(this.handle, modType);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getLiveryName = function (liveryIndex) {
+mp.Vehicle.prototype.getLiveryName ??= function (liveryIndex) {
     let $res = natives.getLiveryName(this.handle, liveryIndex);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getModModifierValue = function (modType, modIndex) {
+mp.Vehicle.prototype.getModModifierValue ??= function (modType, modIndex) {
     let $res = natives.getVehicleModModifierValue(this.handle, modType, modIndex);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getModIdentifierHash = function (modType, modIndex) {
+mp.Vehicle.prototype.getModIdentifierHash ??= function (modType, modIndex) {
     let $res = natives.getVehicleModIdentifierHash(this.handle, modType, modIndex);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.releasePreloadMods = function () {
+mp.Vehicle.prototype.releasePreloadMods ??= function () {
     let $res = natives.releasePreloadMods(this.handle);
 };
-mp.Vehicle.prototype.setTyreSmokeColor = function (r, g, b) {
+mp.Vehicle.prototype.setTyreSmokeColor ??= function (r, g, b) {
     let $res = natives.setVehicleTyreSmokeColor(this.handle, r, g, b);
 };
-mp.Vehicle.prototype.getTyreSmokeColor = function () {
+mp.Vehicle.prototype.getTyreSmokeColor ??= function () {
     let $res = natives.getVehicleTyreSmokeColor(this.handle, 0, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -35090,7 +35090,7 @@ mp.Vehicle.prototype.getTyreSmokeColor = function () {
     $resObj.b = $res[3];
     return $resObj;
 };
-mp.Vehicle.prototype.getColor = function () {
+mp.Vehicle.prototype.getColor ??= function () {
     let $res = natives.getVehicleColor(this.handle, 0, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -35099,246 +35099,246 @@ mp.Vehicle.prototype.getColor = function () {
     $resObj.b = $res[3];
     return $resObj;
 };
-mp.Vehicle.prototype.getCauseOfDestruction = function () {
+mp.Vehicle.prototype.getCauseOfDestruction ??= function () {
     let $res = natives.getVehicleCauseOfDestruction(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.overrideOverheatHealth = function (health) {
+mp.Vehicle.prototype.overrideOverheatHealth ??= function (health) {
     let $res = natives.overridePlaneDamageThrehsold(this.handle, health);
 };
-mp.Vehicle.prototype.getIsLeftHeadlightDamaged = function () {
+mp.Vehicle.prototype.getIsLeftHeadlightDamaged ??= function () {
     let $res = natives.getIsLeftVehicleHeadlightDamaged(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getIsRightHeadlightDamaged = function () {
+mp.Vehicle.prototype.getIsRightHeadlightDamaged ??= function () {
     let $res = natives.getIsRightVehicleHeadlightDamaged(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isEngineOnFire = function () {
+mp.Vehicle.prototype.isEngineOnFire ??= function () {
     let $res = natives.getBothVehicleHeadlightsDamaged(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.modifyTopSpeed = function (value) {
+mp.Vehicle.prototype.modifyTopSpeed ??= function (value) {
     let $res = natives.modifyVehicleTopSpeed(this.handle, value);
 };
-mp.Vehicle.prototype.setMaxSpeed = function (speed) {
+mp.Vehicle.prototype.setMaxSpeed ??= function (speed) {
     let $res = natives.setVehicleMaxSpeed(this.handle, speed);
 };
-mp.Vehicle.prototype.isAnyPedRappellingFromHeli = function () {
+mp.Vehicle.prototype.isAnyPedRappellingFromHeli ??= function () {
     let $res = natives.isAnyPedRappellingFromHeli(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setCheatPowerIncrease = function (value) {
+mp.Vehicle.prototype.setCheatPowerIncrease ??= function (value) {
     let $res = natives.setVehicleCheatPowerIncrease(this.handle, value);
 };
-mp.Vehicle.prototype.setIsWanted = function (state) {
+mp.Vehicle.prototype.setIsWanted ??= function (state) {
     let $res = natives.setVehicleIsWanted(this.handle, state | 0);
 };
-mp.Blip.prototype.setBoatBoomPositionRatio = function (ratio) {
+mp.Blip.prototype.setBoatBoomPositionRatio ??= function (ratio) {
     let $res = natives.swingBoatBoomToRatio(this.handle, ratio);
 };
-mp.Blip.prototype.getBoatBoomPositionRatio2 = function (p1) {
+mp.Blip.prototype.getBoatBoomPositionRatio2 ??= function (p1) {
     let $res = natives.swingBoatBoomFreely(this.handle, p1 | 0);
 };
-mp.Blip.prototype.getBoatBoomPositionRatio3 = function (p1) {
+mp.Blip.prototype.getBoatBoomPositionRatio3 ??= function (p1) {
     let $res = natives.allowBoatBoomToAnimate(this.handle, p1 | 0);
 };
-mp.Blip.prototype.getBoatBoomPositionRatio = function () {
+mp.Blip.prototype.getBoatBoomPositionRatio ??= function () {
     let $res = natives.getBoatBoomPositionRatio(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.disablePlaneAileron = function (p1, p2) {
+mp.Vehicle.prototype.disablePlaneAileron ??= function (p1, p2) {
     let $res = natives.disablePlaneAileron(this.handle, p1 | 0, p2 | 0);
 };
-mp.Vehicle.prototype.getIsEngineRunning = function () {
+mp.Vehicle.prototype.getIsEngineRunning ??= function () {
     let $res = natives.getIsVehicleEngineRunning(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setUseAlternateHandling = function (toggle) {
+mp.Vehicle.prototype.setUseAlternateHandling ??= function (toggle) {
     let $res = natives.setVehicleUseAlternateHandling(this.handle, toggle | 0);
 };
-mp.Blip.prototype.setBikeOnStand = function (x, y) {
+mp.Blip.prototype.setBikeOnStand ??= function (x, y) {
     let $res = natives.setBikeOnStand(this.handle, x, y);
 };
-mp.Vehicle.prototype.setLastDriven = function () {
+mp.Vehicle.prototype.setLastDriven ??= function () {
     let $res = natives.setLastDrivenVehicle(this.handle);
 };
-mp.Vehicle.prototype.setHasBeenDrivenFlag = function (toggle) {
+mp.Vehicle.prototype.setHasBeenDrivenFlag ??= function (toggle) {
     let $res = natives.setVehicleHasBeenDrivenFlag(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setTaskGotoPlaneMinHeightAboveTerrain = function (height) {
+mp.Vehicle.prototype.setTaskGotoPlaneMinHeightAboveTerrain ??= function (height) {
     let $res = natives.setTaskVehicleGotoPlaneMinHeightAboveTerrain(this.handle, height);
 };
-mp.Vehicle.prototype.setLodMultiplier = function (multiplier) {
+mp.Vehicle.prototype.setLodMultiplier ??= function (multiplier) {
     let $res = natives.setVehicleLodMultiplier(this.handle, multiplier);
 };
-mp.Vehicle.prototype.setCanSaveInGarage = function (toggle) {
+mp.Vehicle.prototype.setCanSaveInGarage ??= function (toggle) {
     let $res = natives.setVehicleCanSaveInGarage(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.getNumberOfBrokenOffBones = function () {
+mp.Vehicle.prototype.getNumberOfBrokenOffBones ??= function () {
     let $res = natives.getVehicleNumOfBrokenOffParts(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getNumberOfBrokenBones = function () {
+mp.Vehicle.prototype.getNumberOfBrokenBones ??= function () {
     let $res = natives.getVehicleNumOfBrokenLoosenParts(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setGeneratesEngineShockingEvents = function (toggle) {
+mp.Vehicle.prototype.setGeneratesEngineShockingEvents ??= function (toggle) {
     let $res = natives.setVehicleGeneratesEngineShockingEvents(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.copyDamages = function (targetVehicle) {
+mp.Vehicle.prototype.copyDamages ??= function (targetVehicle) {
     let $res = natives.copyVehicleDamages(this.handle, targetVehicle);
 };
-mp.Vehicle.prototype.setShootAtTarget = function (entity, xTarget, yTarget, zTarget) {
+mp.Vehicle.prototype.setShootAtTarget ??= function (entity, xTarget, yTarget, zTarget) {
     let $res = natives.setVehicleShootAtTarget(this.handle, entity, xTarget, yTarget, zTarget);
 };
-mp.Vehicle.prototype.getLockOnTarget = function () {
+mp.Vehicle.prototype.getLockOnTarget ??= function () {
     let $res = natives.getVehicleLockOnTarget(this.handle, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.entity = $res[1];
     return $res[0] == 1 ? $resObj.entity : undefined;
 };
-mp.Vehicle.prototype.setForceHd = function (toggle) {
+mp.Vehicle.prototype.setForceHd ??= function (toggle) {
     let $res = natives.setForceHdVehicle(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.getPlateType = function () {
+mp.Vehicle.prototype.getPlateType ??= function () {
     let $res = natives.getVehiclePlateType(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.trackVisibility = function () {
+mp.Vehicle.prototype.trackVisibility ??= function () {
     let $res = natives.trackVehicleVisibility(this.handle);
 };
-mp.Vehicle.prototype.isVisible = function () {
+mp.Vehicle.prototype.isVisible ??= function () {
     let $res = natives.isVehicleVisible(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setGravity = function (toggle) {
+mp.Vehicle.prototype.setGravity ??= function (toggle) {
     let $res = natives.setVehicleGravity(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.getCurrentSlipstreamDraft = function () {
+mp.Vehicle.prototype.getCurrentSlipstreamDraft ??= function () {
     let $res = natives.getVehicleCurrentTimeInSlipStream(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.isSlipstreamLeader = function () {
+mp.Vehicle.prototype.isSlipstreamLeader ??= function () {
     let $res = natives.isVehicleProducingSlipStream(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setInactiveDuringPlayback = function (toggle) {
+mp.Vehicle.prototype.setInactiveDuringPlayback ??= function (toggle) {
     let $res = natives.setVehicleInactiveDuringPlayback(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setActiveDuringPlayback = function (p1) {
+mp.Vehicle.prototype.setActiveDuringPlayback ??= function (p1) {
     let $res = natives.setVehicleActiveDuringPlayback(this.handle, p1 | 0);
 };
-mp.Vehicle.prototype.isSprayable = function () {
+mp.Vehicle.prototype.isSprayable ??= function () {
     let $res = natives.isVehicleSprayable(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setEngineCanDegrade = function (toggle) {
+mp.Vehicle.prototype.setEngineCanDegrade ??= function (toggle) {
     let $res = natives.setVehicleEngineCanDegrade(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setShadowEffect = function (p1, p2) {
+mp.Vehicle.prototype.setShadowEffect ??= function (p1, p2) {
     let $res = natives.disableVehcileDynamicAmbientScales(this.handle, p1, p2);
 };
-mp.Vehicle.prototype.removeShadowEffect = function () {
+mp.Vehicle.prototype.removeShadowEffect ??= function () {
     let $res = natives.enableVehicleDynamicAmbientScales(this.handle);
 };
-mp.Vehicle.prototype.isPlaneLandingGearIntact = function () {
+mp.Vehicle.prototype.isPlaneLandingGearIntact ??= function () {
     let $res = natives.isPlaneLandingGearIntact(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.arePlanePropellersIntact = function () {
+mp.Vehicle.prototype.arePlanePropellersIntact ??= function () {
     let $res = natives.arePlanePropellersIntact(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setPlanePropellersHealth = function (health) {
+mp.Vehicle.prototype.setPlanePropellersHealth ??= function (health) {
     let $res = natives.setPlanePropellerHealth(this.handle, health);
 };
-mp.Vehicle.prototype.setCanDeformWheels = function (toggle) {
+mp.Vehicle.prototype.setCanDeformWheels ??= function (toggle) {
     let $res = natives.setVehicleCanDeformWheels(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.isStolen = function () {
+mp.Vehicle.prototype.isStolen ??= function () {
     let $res = natives.isVehicleStolen(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setIsStolen = function (isStolen) {
+mp.Vehicle.prototype.setIsStolen ??= function (isStolen) {
     let $res = natives.setVehicleIsStolen(this.handle, isStolen | 0);
 };
-mp.Vehicle.prototype.setPlaneTurbulenceMultiplier = function (multiplier) {
+mp.Vehicle.prototype.setPlaneTurbulenceMultiplier ??= function (multiplier) {
     let $res = natives.setPlaneTurbulenceMultiplier(this.handle, multiplier);
 };
-mp.Vehicle.prototype.arePlaneWingsIntact = function () {
+mp.Vehicle.prototype.arePlaneWingsIntact ??= function () {
     let $res = natives.areWingsOfPlaneIntact(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.detachFromCargobob = function (cargobob) {
+mp.Vehicle.prototype.detachFromCargobob ??= function (cargobob) {
     let $res = natives.detachVehicleFromCargobob(this.handle, cargobob);
 };
-mp.Vehicle.prototype.detachFromAnyCargobob = function () {
+mp.Vehicle.prototype.detachFromAnyCargobob ??= function () {
     let $res = natives.detachVehicleFromAnyCargobob(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.detachEntityFromCargobob = function (entity) {
+mp.Vehicle.prototype.detachEntityFromCargobob ??= function (entity) {
     let $res = natives.detachEntityFromCargobob(this.handle, entity);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.isAttachedToCargobob = function (vehicleAttached) {
+mp.Vehicle.prototype.isAttachedToCargobob ??= function (vehicleAttached) {
     let $res = natives.isVehicleAttachedToCargobob(this.handle, vehicleAttached);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getAttachedToCargobob = function () {
+mp.Vehicle.prototype.getAttachedToCargobob ??= function () {
     let $res = natives.getVehicleAttachedToCargobob(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getEntityAttachedToCargobob = function () {
+mp.Player.prototype.getEntityAttachedToCargobob ??= function () {
     let $res = natives.getEntityAttachedToCargobob(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getEntityAttachedToCargobob = function () {
+mp.Ped.prototype.getEntityAttachedToCargobob ??= function () {
     let $res = natives.getEntityAttachedToCargobob(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.getEntityAttachedToCargobob = function () {
+mp.Object.prototype.getEntityAttachedToCargobob ??= function () {
     let $res = natives.getEntityAttachedToCargobob(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getEntityAttachedToCargobob = function () {
+mp.Vehicle.prototype.getEntityAttachedToCargobob ??= function () {
     let $res = natives.getEntityAttachedToCargobob(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.attachToCargobob = function (cargobob, p2, x, y, z) {
+mp.Vehicle.prototype.attachToCargobob ??= function (cargobob, p2, x, y, z) {
     let $res = natives.attachVehicleToCargobob(this.handle, cargobob, p2, x, y, z);
 };
-mp.Vehicle.prototype.setCargobobHookCanDetach = function (toggle) {
+mp.Vehicle.prototype.setCargobobHookCanDetach ??= function (toggle) {
     let $res = natives.setCargobobForceDontDetachVehicle(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.getCargobobHookPosition = function () {
+mp.Vehicle.prototype.getCargobobHookPosition ??= function () {
     let $res = natives.getAttachedPickUpHookPosition(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -35347,138 +35347,138 @@ mp.Vehicle.prototype.getCargobobHookPosition = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Vehicle.prototype.doesCargobobHavePickUpRope = function () {
+mp.Vehicle.prototype.doesCargobobHavePickUpRope ??= function () {
     let $res = natives.doesCargobobHavePickUpRope(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.createPickUpRopeForCargobob = function (state) {
+mp.Vehicle.prototype.createPickUpRopeForCargobob ??= function (state) {
     let $res = natives.createPickUpRopeForCargobob(this.handle, state);
 };
-mp.Vehicle.prototype.removePickUpRopeForCargobob = function () {
+mp.Vehicle.prototype.removePickUpRopeForCargobob ??= function () {
     let $res = natives.removePickUpRopeForCargobob(this.handle);
 };
-mp.Vehicle.prototype.setPickupRopeLengthForCargobob = function (length1, length2, p3) {
+mp.Vehicle.prototype.setPickupRopeLengthForCargobob ??= function (length1, length2, p3) {
     let $res = natives.setPickupRopeLengthForCargobob(this.handle, length1, length2, p3 | 0);
 };
-mp.Vehicle.prototype.doesCargobobHavePickupMagnet = function () {
+mp.Vehicle.prototype.doesCargobobHavePickupMagnet ??= function () {
     let $res = natives.doesCargobobHavePickupMagnet(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setCargobobPickupMagnetActive = function (isActive) {
+mp.Vehicle.prototype.setCargobobPickupMagnetActive ??= function (isActive) {
     let $res = natives.setCargobobPickupMagnetActive(this.handle, isActive | 0);
 };
-mp.Vehicle.prototype.setCargobobPickupMagnetStrength = function (strength) {
+mp.Vehicle.prototype.setCargobobPickupMagnetStrength ??= function (strength) {
     let $res = natives.setCargobobPickupMagnetStrength(this.handle, strength);
 };
-mp.Vehicle.prototype.setCargobobPickupMagnetEffectRadius = function (p1) {
+mp.Vehicle.prototype.setCargobobPickupMagnetEffectRadius ??= function (p1) {
     let $res = natives.setCargobobPickupMagnetFalloff(this.handle, p1);
 };
-mp.Vehicle.prototype.setCargobobPickupMagnetReducedFalloff = function (p1) {
+mp.Vehicle.prototype.setCargobobPickupMagnetReducedFalloff ??= function (p1) {
     let $res = natives.setCargobobPickupMagnetReducedStrength(this.handle, p1);
 };
-mp.Vehicle.prototype.setCargobobPickupMagnetPullRopeLength = function (p1) {
+mp.Vehicle.prototype.setCargobobPickupMagnetPullRopeLength ??= function (p1) {
     let $res = natives.setCargobobPickupMagnetReducedFalloff(this.handle, p1);
 };
-mp.Vehicle.prototype.setCargobobPickupMagnetPullStrength = function (p1) {
+mp.Vehicle.prototype.setCargobobPickupMagnetPullStrength ??= function (p1) {
     let $res = natives.setCargobobPickupMagnetPullStrength(this.handle, p1);
 };
-mp.Vehicle.prototype.setCargobobPickupMagnetFalloff = function (p1) {
+mp.Vehicle.prototype.setCargobobPickupMagnetFalloff ??= function (p1) {
     let $res = natives.setCargobobPickupMagnetPullRopeLength(this.handle, p1);
 };
-mp.Vehicle.prototype.setCargobobPickupMagnetReducedStrength = function (cargobob) {
+mp.Vehicle.prototype.setCargobobPickupMagnetReducedStrength ??= function (cargobob) {
     let $res = natives.setCargobobPickupMagnetSetTargetedMode(this.handle, cargobob);
 };
-mp.Vehicle.prototype.doesHaveWeapons = function () {
+mp.Vehicle.prototype.doesHaveWeapons ??= function () {
     let $res = natives.doesVehicleHaveWeapons(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isWeaponDisabled = function (vehicle, owner) {
+mp.Vehicle.prototype.isWeaponDisabled ??= function (vehicle, owner) {
     let $res = natives.isVehicleWeaponDisabled(this.handle, vehicle, owner);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setActiveForPedNavigation = function (toggle) {
+mp.Vehicle.prototype.setActiveForPedNavigation ??= function (toggle) {
     let $res = natives.setVehicleActiveForPedNavigation(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.getClass = function () {
+mp.Vehicle.prototype.getClass ??= function () {
     let $res = natives.getVehicleClass(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getClassFromName = function () {
+mp.Vehicle.prototype.getClassFromName ??= function () {
     let $res = natives.getVehicleClassFromName(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setPlayersLast = function () {
+mp.Vehicle.prototype.setPlayersLast ??= function () {
     let $res = natives.setPlayersLastVehicle(this.handle);
 };
-mp.Vehicle.prototype.setCanBeUsedByFleeingPeds = function (toggle) {
+mp.Vehicle.prototype.setCanBeUsedByFleeingPeds ??= function (toggle) {
     let $res = natives.setVehicleCanBeUsedByFleeingPeds(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setDropsMoneyWhenBlownUp = function (toggle) {
+mp.Vehicle.prototype.setDropsMoneyWhenBlownUp ??= function (toggle) {
     let $res = natives.setVehicleDropsMoneyWhenBlownUp(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setJetEngineOn = function (toggle) {
+mp.Vehicle.prototype.setJetEngineOn ??= function (toggle) {
     let $res = natives.setVehicleKeepEngineOnWhenAbandoned(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setHandlingHashForAi = function (hash) {
+mp.Vehicle.prototype.setHandlingHashForAi ??= function (hash) {
     let $res = natives.setVehicleHandlingOverride(this.handle, hash);
 };
-mp.Vehicle.prototype.setExtendedRemovalRange = function (range) {
+mp.Vehicle.prototype.setExtendedRemovalRange ??= function (range) {
     let $res = natives.setVehicleExtendedRemovalRange(this.handle, range);
 };
-mp.Vehicle.prototype.setSteeringBiasScalar = function (p1) {
+mp.Vehicle.prototype.setSteeringBiasScalar ??= function (p1) {
     let $res = natives.setVehicleSteeringBiasScalar(this.handle, p1);
 };
-mp.Vehicle.prototype.setHelicopterRollPitchYawMult = function (multiplier) {
+mp.Vehicle.prototype.setHelicopterRollPitchYawMult ??= function (multiplier) {
     let $res = natives.setHeliControlLaggingRateScalar(this.handle, multiplier);
 };
-mp.Vehicle.prototype.setFrictionOverride = function (friction) {
+mp.Vehicle.prototype.setFrictionOverride ??= function (friction) {
     let $res = natives.setVehicleFrictionOverride(this.handle, friction);
 };
-mp.Vehicle.prototype.setWheelsCanBreakOffWhenBlowUp = function (toggle) {
+mp.Vehicle.prototype.setWheelsCanBreakOffWhenBlowUp ??= function (toggle) {
     let $res = natives.setVehicleWheelsCanBreakOffWhenBlowUp(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setCeilingHeight = function (height) {
+mp.Vehicle.prototype.setCeilingHeight ??= function (height) {
     let $res = natives.setVehicleCeilingHeight(this.handle, height);
 };
-mp.Vehicle.prototype.clearRouteHistory = function () {
+mp.Vehicle.prototype.clearRouteHistory ??= function () {
     let $res = natives.clearVehicleRouteHistory(this.handle);
 };
-mp.Vehicle.prototype.setExclusiveDriver = function (ped, index) {
+mp.Vehicle.prototype.setExclusiveDriver ??= function (ped, index) {
     let $res = natives.setVehicleAiCanUseExclusiveSeats(this.handle, ped, index);
 };
-mp.Player.prototype.isPedExclusiveDriverOf = function (vehicle) {
+mp.Player.prototype.isPedExclusiveDriverOf ??= function (vehicle) {
     let $res = natives.isPedExclusiveDriverOfVehicle(this.handle, vehicle, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.outIndex = $res[1];
     return $res[0] == 1 ? $resObj.outIndex : undefined;
 };
-mp.Ped.prototype.isPedExclusiveDriverOf = function (vehicle) {
+mp.Ped.prototype.isPedExclusiveDriverOf ??= function (vehicle) {
     let $res = natives.isPedExclusiveDriverOfVehicle(this.handle, vehicle, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.outIndex = $res[1];
     return $res[0] == 1 ? $resObj.outIndex : undefined;
 };
-mp.Vehicle.prototype.disableIndividualPlanePropeller = function (propeller) {
+mp.Vehicle.prototype.disableIndividualPlanePropeller ??= function (propeller) {
     let $res = natives.disableIndividualPlanePropeller(this.handle, propeller);
 };
-mp.Vehicle.prototype.setForceAfterburner = function (toggle) {
+mp.Vehicle.prototype.setForceAfterburner ??= function (toggle) {
     let $res = natives.setVehicleForceAfterburner(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setDisableWindowCollisions = function (toggle) {
+mp.Vehicle.prototype.setDisableWindowCollisions ??= function (toggle) {
     let $res = natives.setDontProcessVehicleGlass(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setNeonLightsColour = function (r, g, b) {
+mp.Vehicle.prototype.setNeonLightsColour ??= function (r, g, b) {
     let $res = natives.setVehicleNeonColour(this.handle, r, g, b);
 };
-mp.Vehicle.prototype.getNeonLightsColour = function () {
+mp.Vehicle.prototype.getNeonLightsColour ??= function () {
     let $res = natives.getVehicleNeonColour(this.handle, 0, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -35487,32 +35487,32 @@ mp.Vehicle.prototype.getNeonLightsColour = function () {
     $resObj.b = $res[3];
     return $resObj;
 };
-mp.Vehicle.prototype.setNeonLightEnabled = function (index, toggle) {
+mp.Vehicle.prototype.setNeonLightEnabled ??= function (index, toggle) {
     let $res = natives.setVehicleNeonEnabled(this.handle, index, toggle | 0);
 };
-mp.Vehicle.prototype.isNeonLightEnabled = function (index) {
+mp.Vehicle.prototype.isNeonLightEnabled ??= function (index) {
     let $res = natives.getVehicleNeonEnabled(this.handle, index);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.disableNeonLights = function (toggle) {
+mp.Vehicle.prototype.disableNeonLights ??= function (toggle) {
     let $res = natives.suppressNeonsOnVehicle(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setDisableSuperdummyMode = function (p1) {
+mp.Vehicle.prototype.setDisableSuperdummyMode ??= function (p1) {
     let $res = natives.setDisableSuperdummy(this.handle, p1 | 0);
 };
-mp.Vehicle.prototype.requestDashboardScaleformMovie = function () {
+mp.Vehicle.prototype.requestDashboardScaleformMovie ??= function () {
     let $res = natives.requestVehicleDial(this.handle);
 };
-mp.Vehicle.prototype.getBodyHealth = function () {
+mp.Vehicle.prototype.getBodyHealth ??= function () {
     let $res = natives.getVehicleBodyHealth(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setBodyHealth = function (value) {
+mp.Vehicle.prototype.setBodyHealth ??= function (value) {
     let $res = natives.setVehicleBodyHealth(this.handle, value);
 };
-mp.Vehicle.prototype.getSuspensionBounds = function () {
+mp.Vehicle.prototype.getSuspensionBounds ??= function () {
     let $res = natives.getVehicleSize(this.handle, undefined, undefined);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -35520,182 +35520,182 @@ mp.Vehicle.prototype.getSuspensionBounds = function () {
     $resObj.out2 = new mp.Vector3($res[2]);
     return $resObj;
 };
-mp.Vehicle.prototype.getSuspensionHeight = function () {
+mp.Vehicle.prototype.getSuspensionHeight ??= function () {
     let $res = natives.getFakeSuspensionLoweringAmount(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getNumberOfDoors = function () {
+mp.Vehicle.prototype.getNumberOfDoors ??= function () {
     let $res = natives.getNumberOfVehicleDoors(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getBodyHealth2 = function (maxEngineHealth, maxPetrolTankHealth, maxBodyHealth, maxMainRotorHealth, maxTailRotorHealth, maxUnkHealth) {
+mp.Vehicle.prototype.getBodyHealth2 ??= function (maxEngineHealth, maxPetrolTankHealth, maxBodyHealth, maxMainRotorHealth, maxTailRotorHealth, maxUnkHealth) {
     let $res = natives.getVehicleHealthPercentage(this.handle, maxEngineHealth || 0, maxPetrolTankHealth || 0, maxBodyHealth || 0, maxMainRotorHealth || 0, maxTailRotorHealth || 0, maxUnkHealth || 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setKersAllowed = function (toggle) {
+mp.Vehicle.prototype.setKersAllowed ??= function (toggle) {
     let $res = natives.setVehicleKersAllowed(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.getHasKers = function () {
+mp.Vehicle.prototype.getHasKers ??= function () {
     let $res = natives.getVehicleHasKers(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setHydraulicWheelValue = function (wheelId, value) {
+mp.Vehicle.prototype.setHydraulicWheelValue ??= function (wheelId, value) {
     let $res = natives.setHydraulicSuspensionRaiseFactor(this.handle, wheelId, value);
 };
-mp.Vehicle.prototype.getHydraulicWheelValue = function (wheelId) {
+mp.Vehicle.prototype.getHydraulicWheelValue ??= function (wheelId) {
     let $res = natives.getHydraulicSuspensionRaiseFactor(this.handle, wheelId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Camera.prototype.setCamberedWheelsDisabled = function (p1) {
+mp.Camera.prototype.setCamberedWheelsDisabled ??= function (p1) {
     let $res = natives.setCanUseHydraulics(this.handle, p1);
 };
-mp.Vehicle.prototype.setHydraulicWheelStateTransition = function (wheelId, state, value, p4) {
+mp.Vehicle.prototype.setHydraulicWheelStateTransition ??= function (wheelId, state, value, p4) {
     let $res = natives.setHydraulicWheelState(this.handle, wheelId, state, value, p4);
 };
-mp.Vehicle.prototype.setDamageModifier = function (p1) {
+mp.Vehicle.prototype.setDamageModifier ??= function (p1) {
     let $res = natives.setVehicleDamageScale(this.handle, p1);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setUnkDamageMultiplier = function (multiplier) {
+mp.Vehicle.prototype.setUnkDamageMultiplier ??= function (multiplier) {
     let $res = natives.setVehicleWeaponDamageScale(this.handle, multiplier);
 };
-mp.Vehicle.prototype.setControlsInverted = function (state) {
+mp.Vehicle.prototype.setControlsInverted ??= function (state) {
     let $res = natives.setInvertVehicleControls(this.handle, state | 0);
 };
-mp.Vehicle.prototype.setRampLaunchModifier = function (p1) {
+mp.Vehicle.prototype.setRampLaunchModifier ??= function (p1) {
     let $res = natives.setScriptRampImpulseScale(this.handle, p1);
 };
-mp.Vehicle.prototype.getIsDoorValid = function (doorId) {
+mp.Vehicle.prototype.getIsDoorValid ??= function (doorId) {
     let $res = natives.getIsDoorValid(this.handle, doorId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setRocketBoostRefillTime = function (seconds) {
+mp.Vehicle.prototype.setRocketBoostRefillTime ??= function (seconds) {
     let $res = natives.setScriptRocketBoostRechargeTime(this.handle, seconds);
 };
-mp.Vehicle.prototype.getHasRocketBoost = function () {
+mp.Vehicle.prototype.getHasRocketBoost ??= function () {
     let $res = natives.getHasRocketBoost(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.isRocketBoostActive = function () {
+mp.Vehicle.prototype.isRocketBoostActive ??= function () {
     let $res = natives.isRocketBoostActive(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setRocketBoostActive = function (active) {
+mp.Vehicle.prototype.setRocketBoostActive ??= function (active) {
     let $res = natives.setRocketBoostActive(this.handle, active | 0);
 };
-mp.Vehicle.prototype.getHasRetractableWheels = function () {
+mp.Vehicle.prototype.getHasRetractableWheels ??= function () {
     let $res = natives.getHasRetractableWheels(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getIsWheelsLoweredStateActive = function () {
+mp.Vehicle.prototype.getIsWheelsLoweredStateActive ??= function () {
     let $res = natives.getIsWheelsRetracted(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.raiseRetractableWheels = function () {
+mp.Vehicle.prototype.raiseRetractableWheels ??= function () {
     let $res = natives.setWheelsExtendedInstantly(this.handle);
 };
-mp.Vehicle.prototype.lowerRetractableWheels = function () {
+mp.Vehicle.prototype.lowerRetractableWheels ??= function () {
     let $res = natives.setWheelsRetractedInstantly(this.handle);
 };
-mp.Vehicle.prototype.getCanJump = function () {
+mp.Vehicle.prototype.getCanJump ??= function () {
     let $res = natives.getCarHasJump(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setUseHigherJumpForce = function (toggle) {
+mp.Vehicle.prototype.setUseHigherJumpForce ??= function (toggle) {
     let $res = natives.setUseHigherCarJump(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setWeaponCapacity = function (weaponIndex, capacity) {
+mp.Vehicle.prototype.setWeaponCapacity ??= function (weaponIndex, capacity) {
     let $res = natives.setVehicleWeaponRestrictedAmmo(this.handle, weaponIndex, capacity);
 };
-mp.Vehicle.prototype.getWeaponCapacity = function (weaponIndex) {
+mp.Vehicle.prototype.getWeaponCapacity ??= function (weaponIndex) {
     let $res = natives.getVehicleWeaponRestrictedAmmo(this.handle, weaponIndex);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.getHasParachute = function () {
+mp.Vehicle.prototype.getHasParachute ??= function () {
     let $res = natives.getVehicleHasParachute(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getCanActivateParachute = function () {
+mp.Vehicle.prototype.getCanActivateParachute ??= function () {
     let $res = natives.getVehicleCanDeployParachute(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setParachuteActive = function (active) {
+mp.Vehicle.prototype.setParachuteActive ??= function (active) {
     let $res = natives.vehicleStartParachuting(this.handle, active | 0);
 };
-mp.Vehicle.prototype.setReceivesRampDamage = function (toggle) {
+mp.Vehicle.prototype.setReceivesRampDamage ??= function (toggle) {
     let $res = natives.vehicleSetRampAndRammingCarsTakeDamage(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setRampSidewaysLaunchMotion = function (p1) {
+mp.Vehicle.prototype.setRampSidewaysLaunchMotion ??= function (p1) {
     let $res = natives.vehicleSetEnableRampCarSideImpulse(this.handle, p1);
 };
-mp.Vehicle.prototype.setRampUpwardsLaunchMotion = function (p1) {
+mp.Vehicle.prototype.setRampUpwardsLaunchMotion ??= function (p1) {
     let $res = natives.vehicleSetEnableNormaliseRampCarVerticalVeloctiy(this.handle, p1);
 };
-mp.Vehicle.prototype.setWeaponsDisabled = function (p1) {
+mp.Vehicle.prototype.setWeaponsDisabled ??= function (p1) {
     let $res = natives.setVehicleWeaponCanTargetObjects(this.handle, p1);
 };
-mp.Vehicle.prototype.setParachuteModel = function (modelHash) {
+mp.Vehicle.prototype.setParachuteModel ??= function (modelHash) {
     let $res = natives.vehicleSetParachuteModelOverride(this.handle, modelHash);
 };
-mp.Vehicle.prototype.setParachuteTextureVariation = function (textureVariation) {
+mp.Vehicle.prototype.setParachuteTextureVariation ??= function (textureVariation) {
     let $res = natives.vehicleSetParachuteModelTintIndex(this.handle, textureVariation);
 };
-mp.Vehicle.prototype.setRocketBoostPercentage = function (percentage) {
+mp.Vehicle.prototype.setRocketBoostPercentage ??= function (percentage) {
     let $res = natives.setRocketBoostFill(this.handle, percentage);
 };
-mp.Vehicle.prototype.setOppressorTransformState = function (state) {
+mp.Vehicle.prototype.setOppressorTransformState ??= function (state) {
     let $res = natives.setGliderActive(this.handle, state | 0);
 };
-mp.Vehicle.prototype.disableWorldCollision = function () {
+mp.Vehicle.prototype.disableWorldCollision ??= function () {
     let $res = natives.setDisableMapCollision(this.handle);
 };
-mp.Vehicle.prototype.setCargobobHookCanAttach = function (toggle) {
+mp.Vehicle.prototype.setCargobobHookCanAttach ??= function (toggle) {
     let $res = natives.setHeliCanPickupEntityThatHasPickUpDisabled(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setBombCount = function (bombCount) {
+mp.Vehicle.prototype.setBombCount ??= function (bombCount) {
     let $res = natives.setVehicleBombAmmo(this.handle, bombCount);
 };
-mp.Vehicle.prototype.getBombCount = function () {
+mp.Vehicle.prototype.getBombCount ??= function () {
     let $res = natives.getVehicleBombAmmo(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setCountermeasureCount = function (counterMeasureCount) {
+mp.Vehicle.prototype.setCountermeasureCount ??= function (counterMeasureCount) {
     let $res = natives.setVehicleCountermeasureAmmo(this.handle, counterMeasureCount);
 };
-mp.Vehicle.prototype.getCountermeasureCount = function () {
+mp.Vehicle.prototype.getCountermeasureCount ??= function () {
     let $res = natives.getVehicleCountermeasureAmmo(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setHoverTransformRatio = function (ratio) {
+mp.Vehicle.prototype.setHoverTransformRatio ??= function (ratio) {
     let $res = natives.setSpecialFlightModeRatio(this.handle, ratio);
 };
-mp.Vehicle.prototype.setHoverTransformPercentage = function (percentage) {
+mp.Vehicle.prototype.setHoverTransformPercentage ??= function (percentage) {
     let $res = natives.setSpecialFlightModeTargetRatio(this.handle, percentage);
 };
-mp.Vehicle.prototype.setHoverTransformEnabled = function (toggle) {
+mp.Vehicle.prototype.setHoverTransformEnabled ??= function (toggle) {
     let $res = natives.setSpecialFlightModeAllowed(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.setHoverTransformActive = function (toggle) {
+mp.Vehicle.prototype.setHoverTransformActive ??= function (toggle) {
     let $res = natives.setDisableHoverModeFlight(this.handle, toggle | 0);
 };
-mp.Player.prototype.findRandomPointInSpace = function () {
+mp.Player.prototype.findRandomPointInSpace ??= function () {
     let $res = natives.findSpawnCoordinatesForHeli(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -35704,7 +35704,7 @@ mp.Player.prototype.findRandomPointInSpace = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Ped.prototype.findRandomPointInSpace = function () {
+mp.Ped.prototype.findRandomPointInSpace ??= function () {
     let $res = natives.findSpawnCoordinatesForHeli(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -35713,92 +35713,92 @@ mp.Ped.prototype.findRandomPointInSpace = function () {
     $resObj.z = $res[0].z;
     return $resObj;
 };
-mp.Vehicle.prototype.setDeployHeliStubWings = function (deploy, p2) {
+mp.Vehicle.prototype.setDeployHeliStubWings ??= function (deploy, p2) {
     let $res = natives.setDeployFoldingWings(this.handle, deploy | 0, p2 | 0);
 };
-mp.Vehicle.prototype.areHeliStubWingsDeployed = function () {
+mp.Vehicle.prototype.areHeliStubWingsDeployed ??= function () {
     let $res = natives.areFoldingWingsDeployed(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.setTurretUnk = function (index, toggle) {
+mp.Vehicle.prototype.setTurretUnk ??= function (index, toggle) {
     let $res = natives.setTurretHidden(this.handle, index, toggle | 0);
 };
-mp.Vehicle.prototype.setSpecialflightWingRatio = function (ratio) {
+mp.Vehicle.prototype.setSpecialflightWingRatio ??= function (ratio) {
     let $res = natives.setHoverModeWingRatio(this.handle, ratio);
 };
-mp.Vehicle.prototype.setDisableTurretMovementThisFrame = function (turretId) {
+mp.Vehicle.prototype.setDisableTurretMovementThisFrame ??= function (turretId) {
     let $res = natives.setDisableTurretMovement(this.handle, turretId);
 };
-mp.Vehicle.prototype.setUnkFloat0X104ForSubmarineTask = function (value) {
+mp.Vehicle.prototype.setUnkFloat0X104ForSubmarineTask ??= function (value) {
     let $res = natives.setTransformRateForAnimation(this.handle, value);
 };
-mp.Vehicle.prototype.setUnkBool0X102ForSubmarineTask = function (value) {
+mp.Vehicle.prototype.setUnkBool0X102ForSubmarineTask ??= function (value) {
     let $res = natives.setTransformToSubmarineUsesAlternateInput(this.handle, value | 0);
 };
-mp.Vehicle.prototype.getIsShuntBoostActive = function () {
+mp.Vehicle.prototype.getIsShuntBoostActive ??= function () {
     let $res = natives.getIsVehicleShunting(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getLastRammed = function () {
+mp.Vehicle.prototype.getLastRammed ??= function () {
     let $res = natives.getLastShuntVehicle(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setNitroEnabled = function (toggle, level, power, rechargeTime, disableSound) {
+mp.Vehicle.prototype.setNitroEnabled ??= function (toggle, level, power, rechargeTime, disableSound) {
     let $res = natives.setOverrideNitrousLevel(this.handle, toggle | 0, level, power, rechargeTime, disableSound | 0);
 };
-mp.Vehicle.prototype.setWheelsDealDamage = function (toggle) {
+mp.Vehicle.prototype.setWheelsDealDamage ??= function (toggle) {
     let $res = natives.setIncreaseWheelCrushDamage(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.getDoesHaveTombstone = function () {
+mp.Vehicle.prototype.getDoesHaveTombstone ??= function () {
     let $res = natives.getDoesVehicleHaveTombstone(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.hideTombstone = function (toggle) {
+mp.Vehicle.prototype.hideTombstone ??= function (toggle) {
     let $res = natives.hideTombstone(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.getIsEmpDisabled = function () {
+mp.Vehicle.prototype.getIsEmpDisabled ??= function () {
     let $res = natives.getIsVehicleDisabledByEmp(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.getTyreHealth = function (wheelIndex) {
+mp.Vehicle.prototype.getTyreHealth ??= function (wheelIndex) {
     let $res = natives.getTyreHealth(this.handle, wheelIndex);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setTyreHealth = function (wheelIndex, health) {
+mp.Vehicle.prototype.setTyreHealth ??= function (wheelIndex, health) {
     let $res = natives.setTyreHealth(this.handle, wheelIndex, health);
 };
-mp.Vehicle.prototype.getTyreWearMultiplier = function (wheelIndex) {
+mp.Vehicle.prototype.getTyreWearMultiplier ??= function (wheelIndex) {
     let $res = natives.getTyreWearRate(this.handle, wheelIndex);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.setTyreWearMultiplier = function (wheelIndex, multiplier) {
+mp.Vehicle.prototype.setTyreWearMultiplier ??= function (wheelIndex, multiplier) {
     let $res = natives.setTyreWearRate(this.handle, wheelIndex, multiplier);
 };
-mp.Vehicle.prototype.setTyreSoftnessMultiplier = function (wheelIndex, multiplier) {
+mp.Vehicle.prototype.setTyreSoftnessMultiplier ??= function (wheelIndex, multiplier) {
     let $res = natives.setTyreWearRateScale(this.handle, wheelIndex, multiplier);
 };
-mp.Vehicle.prototype.setTyreTractionLossMultiplier = function (wheelIndex, multiplier) {
+mp.Vehicle.prototype.setTyreTractionLossMultiplier ??= function (wheelIndex, multiplier) {
     let $res = natives.setTyreMaximumGripDifferenceDueToWearRate(this.handle, wheelIndex, multiplier);
 };
-mp.Vehicle.prototype.setReduceDriftSuspension = function (enable) {
+mp.Vehicle.prototype.setReduceDriftSuspension ??= function (enable) {
     let $res = natives.setReducedSuspensionForce(this.handle, enable | 0);
 };
-mp.Vehicle.prototype.setDriftTyresEnabled = function (toggle) {
+mp.Vehicle.prototype.setDriftTyresEnabled ??= function (toggle) {
     let $res = natives.setDriftTyres(this.handle, toggle | 0);
 };
-mp.Vehicle.prototype.getDriftTyresEnabled = function () {
+mp.Vehicle.prototype.getDriftTyresEnabled ??= function () {
     let $res = natives.getDriftTyresSet(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.networkUseHighPrecisionBlending = function (toggle) {
+mp.Vehicle.prototype.networkUseHighPrecisionBlending ??= function (toggle) {
     let $res = natives.networkUseHighPrecisionTrainBlending(this.handle, toggle | 0);
 };
 if (!mp.game2.vehicle) mp.game2.vehicle = {};
@@ -39019,619 +39019,619 @@ if (!mp.game2.water.unk) mp.game2.water.unk = {};
 mp.game2.water.unk._0x547237AA71AB44DE = function (p0) {
     let $res = natives.setCalmedWaveHeightScaler(p0);
 };
-mp.Player.prototype.setCurrentPed = function (weaponHash, bForceInHand) {
+mp.Player.prototype.setCurrentPed ??= function (weaponHash, bForceInHand) {
     let $res = natives.setCurrentPedWeapon(this.handle, weaponHash, bForceInHand | 0);
 };
-mp.Ped.prototype.setCurrentPed = function (weaponHash, bForceInHand) {
+mp.Ped.prototype.setCurrentPed ??= function (weaponHash, bForceInHand) {
     let $res = natives.setCurrentPedWeapon(this.handle, weaponHash, bForceInHand | 0);
 };
-mp.Player.prototype.getCurrentPed = function (p2) {
+mp.Player.prototype.getCurrentPed ??= function (p2) {
     let $res = natives.getCurrentPedWeapon(this.handle, 0, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.weaponHash = $res[1];
     return $res[0] == 1 ? $resObj.weaponHash : undefined;
 };
-mp.Ped.prototype.getCurrentPed = function (p2) {
+mp.Ped.prototype.getCurrentPed ??= function (p2) {
     let $res = natives.getCurrentPedWeapon(this.handle, 0, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.weaponHash = $res[1];
     return $res[0] == 1 ? $resObj.weaponHash : undefined;
 };
-mp.Player.prototype.getCurrentPedEntityIndex = function (p1) {
+mp.Player.prototype.getCurrentPedEntityIndex ??= function (p1) {
     let $res = natives.getCurrentPedWeaponEntityIndex(this.handle, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getCurrentPedEntityIndex = function (p1) {
+mp.Ped.prototype.getCurrentPedEntityIndex ??= function (p1) {
     let $res = natives.getCurrentPedWeaponEntityIndex(this.handle, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Blip.prototype.getBestPed = function (p1) {
+mp.Blip.prototype.getBestPed ??= function (p1) {
     let $res = natives.getBestPedWeapon(this.handle, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setCurrentPedVehicle = function (weaponHash) {
+mp.Player.prototype.setCurrentPedVehicle ??= function (weaponHash) {
     let $res = natives.setCurrentPedVehicleWeapon(this.handle, weaponHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.setCurrentPedVehicle = function (weaponHash) {
+mp.Ped.prototype.setCurrentPedVehicle ??= function (weaponHash) {
     let $res = natives.setCurrentPedVehicleWeapon(this.handle, weaponHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getCurrentPedVehicle = function () {
+mp.Player.prototype.getCurrentPedVehicle ??= function () {
     let $res = natives.getCurrentPedVehicleWeapon(this.handle, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.weaponHash = $res[1];
     return $res[0] == 1 ? $resObj.weaponHash : undefined;
 };
-mp.Ped.prototype.getCurrentPedVehicle = function () {
+mp.Ped.prototype.getCurrentPedVehicle ??= function () {
     let $res = natives.getCurrentPedVehicleWeapon(this.handle, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.weaponHash = $res[1];
     return $res[0] == 1 ? $resObj.weaponHash : undefined;
 };
-mp.Player.prototype.isPedArmed = function (typeFlags) {
+mp.Player.prototype.isPedArmed ??= function (typeFlags) {
     let $res = natives.isPedArmed(this.handle, typeFlags);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isPedArmed = function (typeFlags) {
+mp.Ped.prototype.isPedArmed ??= function (typeFlags) {
     let $res = natives.isPedArmed(this.handle, typeFlags);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.hasPedGot = function (weaponHash, p2) {
+mp.Player.prototype.hasPedGot ??= function (weaponHash, p2) {
     let $res = natives.hasPedGotWeapon(this.handle, weaponHash, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.hasPedGot = function (weaponHash, p2) {
+mp.Ped.prototype.hasPedGot ??= function (weaponHash, p2) {
     let $res = natives.hasPedGotWeapon(this.handle, weaponHash, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isPedReadyToShoot = function () {
+mp.Player.prototype.isPedReadyToShoot ??= function () {
     let $res = natives.isPedWeaponReadyToShoot(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isPedReadyToShoot = function () {
+mp.Ped.prototype.isPedReadyToShoot ??= function () {
     let $res = natives.isPedWeaponReadyToShoot(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getPedTypeInSlot = function (weaponSlot) {
+mp.Player.prototype.getPedTypeInSlot ??= function (weaponSlot) {
     let $res = natives.getPedWeapontypeInSlot(this.handle, weaponSlot);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getPedTypeInSlot = function (weaponSlot) {
+mp.Ped.prototype.getPedTypeInSlot ??= function (weaponSlot) {
     let $res = natives.getPedWeapontypeInSlot(this.handle, weaponSlot);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getAmmoInPed = function (weaponhash) {
+mp.Player.prototype.getAmmoInPed ??= function (weaponhash) {
     let $res = natives.getAmmoInPedWeapon(this.handle, weaponhash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getAmmoInPed = function (weaponhash) {
+mp.Ped.prototype.getAmmoInPed ??= function (weaponhash) {
     let $res = natives.getAmmoInPedWeapon(this.handle, weaponhash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.addAmmoToPed = function (weaponHash, ammo) {
+mp.Player.prototype.addAmmoToPed ??= function (weaponHash, ammo) {
     let $res = natives.addAmmoToPed(this.handle, weaponHash, ammo);
 };
-mp.Ped.prototype.addAmmoToPed = function (weaponHash, ammo) {
+mp.Ped.prototype.addAmmoToPed ??= function (weaponHash, ammo) {
     let $res = natives.addAmmoToPed(this.handle, weaponHash, ammo);
 };
-mp.Player.prototype.setPedAmmo = function (weaponHash, ammo, p3) {
+mp.Player.prototype.setPedAmmo ??= function (weaponHash, ammo, p3) {
     let $res = natives.setPedAmmo(this.handle, weaponHash, ammo, p3 | 0);
 };
-mp.Ped.prototype.setPedAmmo = function (weaponHash, ammo, p3) {
+mp.Ped.prototype.setPedAmmo ??= function (weaponHash, ammo, p3) {
     let $res = natives.setPedAmmo(this.handle, weaponHash, ammo, p3 | 0);
 };
-mp.Player.prototype.setPedInfiniteAmmo = function (toggle, weaponHash) {
+mp.Player.prototype.setPedInfiniteAmmo ??= function (toggle, weaponHash) {
     let $res = natives.setPedInfiniteAmmo(this.handle, toggle | 0, weaponHash);
 };
-mp.Ped.prototype.setPedInfiniteAmmo = function (toggle, weaponHash) {
+mp.Ped.prototype.setPedInfiniteAmmo ??= function (toggle, weaponHash) {
     let $res = natives.setPedInfiniteAmmo(this.handle, toggle | 0, weaponHash);
 };
-mp.Player.prototype.setPedInfiniteAmmoClip = function (toggle) {
+mp.Player.prototype.setPedInfiniteAmmoClip ??= function (toggle) {
     let $res = natives.setPedInfiniteAmmoClip(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setPedInfiniteAmmoClip = function (toggle) {
+mp.Ped.prototype.setPedInfiniteAmmoClip ??= function (toggle) {
     let $res = natives.setPedInfiniteAmmoClip(this.handle, toggle | 0);
 };
-mp.Player.prototype.giveToPed = function (weaponHash, ammoCount, isHidden, bForceInHand) {
+mp.Player.prototype.giveToPed ??= function (weaponHash, ammoCount, isHidden, bForceInHand) {
     let $res = natives.giveWeaponToPed(this.handle, weaponHash, ammoCount, isHidden | 0, bForceInHand | 0);
 };
-mp.Ped.prototype.giveToPed = function (weaponHash, ammoCount, isHidden, bForceInHand) {
+mp.Ped.prototype.giveToPed ??= function (weaponHash, ammoCount, isHidden, bForceInHand) {
     let $res = natives.giveWeaponToPed(this.handle, weaponHash, ammoCount, isHidden | 0, bForceInHand | 0);
 };
-mp.Player.prototype.giveDelayedToPed = function (weaponHash, ammoCount, bForceInHand) {
+mp.Player.prototype.giveDelayedToPed ??= function (weaponHash, ammoCount, bForceInHand) {
     let $res = natives.giveDelayedWeaponToPed(this.handle, weaponHash, ammoCount, bForceInHand | 0);
 };
-mp.Ped.prototype.giveDelayedToPed = function (weaponHash, ammoCount, bForceInHand) {
+mp.Ped.prototype.giveDelayedToPed ??= function (weaponHash, ammoCount, bForceInHand) {
     let $res = natives.giveDelayedWeaponToPed(this.handle, weaponHash, ammoCount, bForceInHand | 0);
 };
-mp.Player.prototype.removeAllPedS = function (p1) {
+mp.Player.prototype.removeAllPedS ??= function (p1) {
     let $res = natives.removeAllPedWeapons(this.handle, p1 | 0);
 };
-mp.Ped.prototype.removeAllPedS = function (p1) {
+mp.Ped.prototype.removeAllPedS ??= function (p1) {
     let $res = natives.removeAllPedWeapons(this.handle, p1 | 0);
 };
-mp.Player.prototype.removeFromPed = function (weaponHash) {
+mp.Player.prototype.removeFromPed ??= function (weaponHash) {
     let $res = natives.removeWeaponFromPed(this.handle, weaponHash);
 };
-mp.Ped.prototype.removeFromPed = function (weaponHash) {
+mp.Ped.prototype.removeFromPed ??= function (weaponHash) {
     let $res = natives.removeWeaponFromPed(this.handle, weaponHash);
 };
-mp.Player.prototype.hidePedForScriptedCutscene = function (toggle) {
+mp.Player.prototype.hidePedForScriptedCutscene ??= function (toggle) {
     let $res = natives.hidePedWeaponForScriptedCutscene(this.handle, toggle | 0);
 };
-mp.Ped.prototype.hidePedForScriptedCutscene = function (toggle) {
+mp.Ped.prototype.hidePedForScriptedCutscene ??= function (toggle) {
     let $res = natives.hidePedWeaponForScriptedCutscene(this.handle, toggle | 0);
 };
-mp.Player.prototype.setPedCurrentVisible = function (visible, deselectWeapon, p3, p4) {
+mp.Player.prototype.setPedCurrentVisible ??= function (visible, deselectWeapon, p3, p4) {
     let $res = natives.setPedCurrentWeaponVisible(this.handle, visible | 0, deselectWeapon | 0, p3 | 0, p4 | 0);
 };
-mp.Ped.prototype.setPedCurrentVisible = function (visible, deselectWeapon, p3, p4) {
+mp.Ped.prototype.setPedCurrentVisible ??= function (visible, deselectWeapon, p3, p4) {
     let $res = natives.setPedCurrentWeaponVisible(this.handle, visible | 0, deselectWeapon | 0, p3 | 0, p4 | 0);
 };
-mp.Player.prototype.setPedDropsWeaponsWhenDead = function (toggle) {
+mp.Player.prototype.setPedDropsWeaponsWhenDead ??= function (toggle) {
     let $res = natives.setPedDropsWeaponsWhenDead(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setPedDropsWeaponsWhenDead = function (toggle) {
+mp.Ped.prototype.setPedDropsWeaponsWhenDead ??= function (toggle) {
     let $res = natives.setPedDropsWeaponsWhenDead(this.handle, toggle | 0);
 };
-mp.Player.prototype.hasPedBeenDamagedBy = function (weaponHash, weaponType) {
+mp.Player.prototype.hasPedBeenDamagedBy ??= function (weaponHash, weaponType) {
     let $res = natives.hasPedBeenDamagedByWeapon(this.handle, weaponHash, weaponType);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.hasPedBeenDamagedBy = function (weaponHash, weaponType) {
+mp.Ped.prototype.hasPedBeenDamagedBy ??= function (weaponHash, weaponType) {
     let $res = natives.hasPedBeenDamagedByWeapon(this.handle, weaponHash, weaponType);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.clearPedLastDamage = function () {
+mp.Player.prototype.clearPedLastDamage ??= function () {
     let $res = natives.clearPedLastWeaponDamage(this.handle);
 };
-mp.Ped.prototype.clearPedLastDamage = function () {
+mp.Ped.prototype.clearPedLastDamage ??= function () {
     let $res = natives.clearPedLastWeaponDamage(this.handle);
 };
-mp.Player.prototype.hasEntityBeenDamagedBy = function (weaponHash, weaponType) {
+mp.Player.prototype.hasEntityBeenDamagedBy ??= function (weaponHash, weaponType) {
     let $res = natives.hasEntityBeenDamagedByWeapon(this.handle, weaponHash, weaponType);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.hasEntityBeenDamagedBy = function (weaponHash, weaponType) {
+mp.Ped.prototype.hasEntityBeenDamagedBy ??= function (weaponHash, weaponType) {
     let $res = natives.hasEntityBeenDamagedByWeapon(this.handle, weaponHash, weaponType);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.hasEntityBeenDamagedBy = function (weaponHash, weaponType) {
+mp.Object.prototype.hasEntityBeenDamagedBy ??= function (weaponHash, weaponType) {
     let $res = natives.hasEntityBeenDamagedByWeapon(this.handle, weaponHash, weaponType);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.hasEntityBeenDamagedBy = function (weaponHash, weaponType) {
+mp.Vehicle.prototype.hasEntityBeenDamagedBy ??= function (weaponHash, weaponType) {
     let $res = natives.hasEntityBeenDamagedByWeapon(this.handle, weaponHash, weaponType);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.clearEntityLastDamage = function () {
+mp.Player.prototype.clearEntityLastDamage ??= function () {
     let $res = natives.clearEntityLastWeaponDamage(this.handle);
 };
-mp.Ped.prototype.clearEntityLastDamage = function () {
+mp.Ped.prototype.clearEntityLastDamage ??= function () {
     let $res = natives.clearEntityLastWeaponDamage(this.handle);
 };
-mp.Object.prototype.clearEntityLastDamage = function () {
+mp.Object.prototype.clearEntityLastDamage ??= function () {
     let $res = natives.clearEntityLastWeaponDamage(this.handle);
 };
-mp.Vehicle.prototype.clearEntityLastDamage = function () {
+mp.Vehicle.prototype.clearEntityLastDamage ??= function () {
     let $res = natives.clearEntityLastWeaponDamage(this.handle);
 };
-mp.Player.prototype.setPedDrops = function () {
+mp.Player.prototype.setPedDrops ??= function () {
     let $res = natives.setPedDropsWeapon(this.handle);
 };
-mp.Ped.prototype.setPedDrops = function () {
+mp.Ped.prototype.setPedDrops ??= function () {
     let $res = natives.setPedDropsWeapon(this.handle);
 };
-mp.Player.prototype.setPedDropsInventory = function (weaponHash, xOffset, yOffset, zOffset, ammoCount) {
+mp.Player.prototype.setPedDropsInventory ??= function (weaponHash, xOffset, yOffset, zOffset, ammoCount) {
     let $res = natives.setPedDropsInventoryWeapon(this.handle, weaponHash, xOffset, yOffset, zOffset, ammoCount);
 };
-mp.Ped.prototype.setPedDropsInventory = function (weaponHash, xOffset, yOffset, zOffset, ammoCount) {
+mp.Ped.prototype.setPedDropsInventory ??= function (weaponHash, xOffset, yOffset, zOffset, ammoCount) {
     let $res = natives.setPedDropsInventoryWeapon(this.handle, weaponHash, xOffset, yOffset, zOffset, ammoCount);
 };
-mp.Player.prototype.getMaxAmmoInClip = function (weaponHash, p2) {
+mp.Player.prototype.getMaxAmmoInClip ??= function (weaponHash, p2) {
     let $res = natives.getMaxAmmoInClip(this.handle, weaponHash, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getMaxAmmoInClip = function (weaponHash, p2) {
+mp.Ped.prototype.getMaxAmmoInClip ??= function (weaponHash, p2) {
     let $res = natives.getMaxAmmoInClip(this.handle, weaponHash, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getAmmoInClip = function (weaponHash) {
+mp.Player.prototype.getAmmoInClip ??= function (weaponHash) {
     let $res = natives.getAmmoInClip(this.handle, weaponHash, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.ammo = $res[1];
     return $res[0] == 1 ? $resObj.ammo : undefined;
 };
-mp.Ped.prototype.getAmmoInClip = function (weaponHash) {
+mp.Ped.prototype.getAmmoInClip ??= function (weaponHash) {
     let $res = natives.getAmmoInClip(this.handle, weaponHash, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.ammo = $res[1];
     return $res[0] == 1 ? $resObj.ammo : undefined;
 };
-mp.Player.prototype.setAmmoInClip = function (weaponHash, ammo) {
+mp.Player.prototype.setAmmoInClip ??= function (weaponHash, ammo) {
     let $res = natives.setAmmoInClip(this.handle, weaponHash, ammo);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.setAmmoInClip = function (weaponHash, ammo) {
+mp.Ped.prototype.setAmmoInClip ??= function (weaponHash, ammo) {
     let $res = natives.setAmmoInClip(this.handle, weaponHash, ammo);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getMaxAmmo = function (weaponHash) {
+mp.Player.prototype.getMaxAmmo ??= function (weaponHash) {
     let $res = natives.getMaxAmmo(this.handle, weaponHash, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.ammo = $res[1];
     return $res[0] == 1 ? $resObj.ammo : undefined;
 };
-mp.Ped.prototype.getMaxAmmo = function (weaponHash) {
+mp.Ped.prototype.getMaxAmmo ??= function (weaponHash) {
     let $res = natives.getMaxAmmo(this.handle, weaponHash, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.ammo = $res[1];
     return $res[0] == 1 ? $resObj.ammo : undefined;
 };
-mp.Player.prototype.getMaxAmmoByType = function (ammoTypeHash) {
+mp.Player.prototype.getMaxAmmoByType ??= function (ammoTypeHash) {
     let $res = natives.getMaxAmmoByType(this.handle, ammoTypeHash, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.ammo = $res[1];
     return $res[0] == 1 ? $resObj.ammo : undefined;
 };
-mp.Ped.prototype.getMaxAmmoByType = function (ammoTypeHash) {
+mp.Ped.prototype.getMaxAmmoByType ??= function (ammoTypeHash) {
     let $res = natives.getMaxAmmoByType(this.handle, ammoTypeHash, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.ammo = $res[1];
     return $res[0] == 1 ? $resObj.ammo : undefined;
 };
-mp.Player.prototype.addAmmoToPedByType = function (ammoTypeHash, ammo) {
+mp.Player.prototype.addAmmoToPedByType ??= function (ammoTypeHash, ammo) {
     let $res = natives.addPedAmmoByType(this.handle, ammoTypeHash, ammo);
 };
-mp.Ped.prototype.addAmmoToPedByType = function (ammoTypeHash, ammo) {
+mp.Ped.prototype.addAmmoToPedByType ??= function (ammoTypeHash, ammo) {
     let $res = natives.addPedAmmoByType(this.handle, ammoTypeHash, ammo);
 };
-mp.Player.prototype.setPedAmmoByType = function (ammoTypeHash, ammo) {
+mp.Player.prototype.setPedAmmoByType ??= function (ammoTypeHash, ammo) {
     let $res = natives.setPedAmmoByType(this.handle, ammoTypeHash, ammo);
 };
-mp.Ped.prototype.setPedAmmoByType = function (ammoTypeHash, ammo) {
+mp.Ped.prototype.setPedAmmoByType ??= function (ammoTypeHash, ammo) {
     let $res = natives.setPedAmmoByType(this.handle, ammoTypeHash, ammo);
 };
-mp.Player.prototype.getPedAmmoByType = function (ammoTypeHash) {
+mp.Player.prototype.getPedAmmoByType ??= function (ammoTypeHash) {
     let $res = natives.getPedAmmoByType(this.handle, ammoTypeHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getPedAmmoByType = function (ammoTypeHash) {
+mp.Ped.prototype.getPedAmmoByType ??= function (ammoTypeHash) {
     let $res = natives.getPedAmmoByType(this.handle, ammoTypeHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setPedAmmoToDrop = function (p1) {
+mp.Player.prototype.setPedAmmoToDrop ??= function (p1) {
     let $res = natives.setPedAmmoToDrop(this.handle, p1);
 };
-mp.Ped.prototype.setPedAmmoToDrop = function (p1) {
+mp.Ped.prototype.setPedAmmoToDrop ??= function (p1) {
     let $res = natives.setPedAmmoToDrop(this.handle, p1);
 };
-mp.Player.prototype.getPedAmmoTypeFrom = function (weaponHash) {
+mp.Player.prototype.getPedAmmoTypeFrom ??= function (weaponHash) {
     let $res = natives.getPedAmmoTypeFromWeapon(this.handle, weaponHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getPedAmmoTypeFrom = function (weaponHash) {
+mp.Ped.prototype.getPedAmmoTypeFrom ??= function (weaponHash) {
     let $res = natives.getPedAmmoTypeFromWeapon(this.handle, weaponHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getPedAmmoTypeFrom2 = function (weaponHash) {
+mp.Player.prototype.getPedAmmoTypeFrom2 ??= function (weaponHash) {
     let $res = natives.getPedOriginalAmmoTypeFromWeapon(this.handle, weaponHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getPedAmmoTypeFrom2 = function (weaponHash) {
+mp.Ped.prototype.getPedAmmoTypeFrom2 ??= function (weaponHash) {
     let $res = natives.getPedOriginalAmmoTypeFromWeapon(this.handle, weaponHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getPedLastImpactCoord = function () {
+mp.Player.prototype.getPedLastImpactCoord ??= function () {
     let $res = natives.getPedLastWeaponImpactCoord(this.handle, undefined);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.coords = new mp.Vector3($res[1]);
     return $res[0] == 1 ? $resObj.coords : undefined;
 };
-mp.Ped.prototype.getPedLastImpactCoord = function () {
+mp.Ped.prototype.getPedLastImpactCoord ??= function () {
     let $res = natives.getPedLastWeaponImpactCoord(this.handle, undefined);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.coords = new mp.Vector3($res[1]);
     return $res[0] == 1 ? $resObj.coords : undefined;
 };
-mp.Player.prototype.setPedGadget = function (gadgetHash, p2) {
+mp.Player.prototype.setPedGadget ??= function (gadgetHash, p2) {
     let $res = natives.setPedGadget(this.handle, gadgetHash, p2 | 0);
 };
-mp.Ped.prototype.setPedGadget = function (gadgetHash, p2) {
+mp.Ped.prototype.setPedGadget ??= function (gadgetHash, p2) {
     let $res = natives.setPedGadget(this.handle, gadgetHash, p2 | 0);
 };
-mp.Player.prototype.getIsPedGadgetEquipped = function (gadgetHash) {
+mp.Player.prototype.getIsPedGadgetEquipped ??= function (gadgetHash) {
     let $res = natives.getIsPedGadgetEquipped(this.handle, gadgetHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.getIsPedGadgetEquipped = function (gadgetHash) {
+mp.Ped.prototype.getIsPedGadgetEquipped ??= function (gadgetHash) {
     let $res = natives.getIsPedGadgetEquipped(this.handle, gadgetHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.getSelectedPed = function () {
+mp.Player.prototype.getSelectedPed ??= function () {
     let $res = natives.getSelectedPedWeapon(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getSelectedPed = function () {
+mp.Ped.prototype.getSelectedPed ??= function () {
     let $res = natives.getSelectedPedWeapon(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.explodeProjectiles = function (weaponHash, p2) {
+mp.Player.prototype.explodeProjectiles ??= function (weaponHash, p2) {
     let $res = natives.explodeProjectiles(this.handle, weaponHash, p2 | 0);
 };
-mp.Ped.prototype.explodeProjectiles = function (weaponHash, p2) {
+mp.Ped.prototype.explodeProjectiles ??= function (weaponHash, p2) {
     let $res = natives.explodeProjectiles(this.handle, weaponHash, p2 | 0);
 };
-mp.Player.prototype.getLockonDistanceOfCurrentPed = function () {
+mp.Player.prototype.getLockonDistanceOfCurrentPed ??= function () {
     let $res = natives.getLockonDistanceOfCurrentPedWeapon(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getLockonDistanceOfCurrentPed = function () {
+mp.Ped.prototype.getLockonDistanceOfCurrentPed ??= function () {
     let $res = natives.getLockonDistanceOfCurrentPedWeapon(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.getMaxRangeOfCurrentPed = function () {
+mp.Player.prototype.getMaxRangeOfCurrentPed ??= function () {
     let $res = natives.getMaxRangeOfCurrentPedWeapon(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getMaxRangeOfCurrentPed = function () {
+mp.Ped.prototype.getMaxRangeOfCurrentPed ??= function () {
     let $res = natives.getMaxRangeOfCurrentPedWeapon(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Vehicle.prototype.hasVehicleGotProjectileAttached = function (vehicle, weaponHash, p3) {
+mp.Vehicle.prototype.hasVehicleGotProjectileAttached ??= function (vehicle, weaponHash, p3) {
     let $res = natives.hasVehicleGotProjectileAttached(this.handle, vehicle, weaponHash, p3);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.giveComponentToPed = function (weaponHash, componentHash) {
+mp.Player.prototype.giveComponentToPed ??= function (weaponHash, componentHash) {
     let $res = natives.giveWeaponComponentToPed(this.handle, weaponHash, componentHash);
 };
-mp.Ped.prototype.giveComponentToPed = function (weaponHash, componentHash) {
+mp.Ped.prototype.giveComponentToPed ??= function (weaponHash, componentHash) {
     let $res = natives.giveWeaponComponentToPed(this.handle, weaponHash, componentHash);
 };
-mp.Player.prototype.removeComponentFromPed = function (weaponHash, componentHash) {
+mp.Player.prototype.removeComponentFromPed ??= function (weaponHash, componentHash) {
     let $res = natives.removeWeaponComponentFromPed(this.handle, weaponHash, componentHash);
 };
-mp.Ped.prototype.removeComponentFromPed = function (weaponHash, componentHash) {
+mp.Ped.prototype.removeComponentFromPed ??= function (weaponHash, componentHash) {
     let $res = natives.removeWeaponComponentFromPed(this.handle, weaponHash, componentHash);
 };
-mp.Player.prototype.hasPedGotComponent = function (weaponHash, componentHash) {
+mp.Player.prototype.hasPedGotComponent ??= function (weaponHash, componentHash) {
     let $res = natives.hasPedGotWeaponComponent(this.handle, weaponHash, componentHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.hasPedGotComponent = function (weaponHash, componentHash) {
+mp.Ped.prototype.hasPedGotComponent ??= function (weaponHash, componentHash) {
     let $res = natives.hasPedGotWeaponComponent(this.handle, weaponHash, componentHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isPedComponentActive = function (weaponHash, componentHash) {
+mp.Player.prototype.isPedComponentActive ??= function (weaponHash, componentHash) {
     let $res = natives.isPedWeaponComponentActive(this.handle, weaponHash, componentHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isPedComponentActive = function (weaponHash, componentHash) {
+mp.Ped.prototype.isPedComponentActive ??= function (weaponHash, componentHash) {
     let $res = natives.isPedWeaponComponentActive(this.handle, weaponHash, componentHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.refillAmmoInstantly = function () {
+mp.Player.prototype.refillAmmoInstantly ??= function () {
     let $res = natives.refillAmmoInstantly(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.refillAmmoInstantly = function () {
+mp.Ped.prototype.refillAmmoInstantly ??= function () {
     let $res = natives.refillAmmoInstantly(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.makePedReload = function () {
+mp.Player.prototype.makePedReload ??= function () {
     let $res = natives.makePedReload(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.makePedReload = function () {
+mp.Ped.prototype.makePedReload ??= function () {
     let $res = natives.makePedReload(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.giveComponentToWeaponObject = function (addonHash) {
+mp.Object.prototype.giveComponentToWeaponObject ??= function (addonHash) {
     let $res = natives.giveWeaponComponentToWeaponObject(this.handle, addonHash);
 };
-mp.Object.prototype.hasGotWeaponComponent = function (addonHash) {
+mp.Object.prototype.hasGotWeaponComponent ??= function (addonHash) {
     let $res = natives.hasWeaponGotWeaponComponent(this.handle, addonHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Object.prototype.giveObjectToPed = function (ped) {
+mp.Object.prototype.giveObjectToPed ??= function (ped) {
     let $res = natives.giveWeaponObjectToPed(this.handle, ped);
 };
-mp.Player.prototype.getObjectFromPed = function (p1) {
+mp.Player.prototype.getObjectFromPed ??= function (p1) {
     let $res = natives.getWeaponObjectFromPed(this.handle, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getObjectFromPed = function (p1) {
+mp.Ped.prototype.getObjectFromPed ??= function (p1) {
     let $res = natives.getWeaponObjectFromPed(this.handle, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.giveLoadoutToPed = function (loadoutHash) {
+mp.Player.prototype.giveLoadoutToPed ??= function (loadoutHash) {
     let $res = natives.giveLoadoutToPed(this.handle, loadoutHash);
 };
-mp.Ped.prototype.giveLoadoutToPed = function (loadoutHash) {
+mp.Ped.prototype.giveLoadoutToPed ??= function (loadoutHash) {
     let $res = natives.giveLoadoutToPed(this.handle, loadoutHash);
 };
-mp.Player.prototype.setPedTintIndex = function (weaponHash, tintIndex) {
+mp.Player.prototype.setPedTintIndex ??= function (weaponHash, tintIndex) {
     let $res = natives.setPedWeaponTintIndex(this.handle, weaponHash, tintIndex);
 };
-mp.Ped.prototype.setPedTintIndex = function (weaponHash, tintIndex) {
+mp.Ped.prototype.setPedTintIndex ??= function (weaponHash, tintIndex) {
     let $res = natives.setPedWeaponTintIndex(this.handle, weaponHash, tintIndex);
 };
-mp.Player.prototype.getPedTintIndex = function (weaponHash) {
+mp.Player.prototype.getPedTintIndex ??= function (weaponHash) {
     let $res = natives.getPedWeaponTintIndex(this.handle, weaponHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getPedTintIndex = function (weaponHash) {
+mp.Ped.prototype.getPedTintIndex ??= function (weaponHash) {
     let $res = natives.getPedWeaponTintIndex(this.handle, weaponHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.setObjectTintIndex = function (tintIndex) {
+mp.Object.prototype.setObjectTintIndex ??= function (tintIndex) {
     let $res = natives.setWeaponObjectTintIndex(this.handle, tintIndex);
 };
-mp.Object.prototype.getObjectTintIndex = function () {
+mp.Object.prototype.getObjectTintIndex ??= function () {
     let $res = natives.getWeaponObjectTintIndex(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setPedLiveryColor = function (weaponHash, camoComponentHash, colorIndex) {
+mp.Player.prototype.setPedLiveryColor ??= function (weaponHash, camoComponentHash, colorIndex) {
     let $res = natives.setPedWeaponComponentTintIndex(this.handle, weaponHash, camoComponentHash, colorIndex);
 };
-mp.Ped.prototype.setPedLiveryColor = function (weaponHash, camoComponentHash, colorIndex) {
+mp.Ped.prototype.setPedLiveryColor ??= function (weaponHash, camoComponentHash, colorIndex) {
     let $res = natives.setPedWeaponComponentTintIndex(this.handle, weaponHash, camoComponentHash, colorIndex);
 };
-mp.Player.prototype.getPedLiveryColor = function (weaponHash, camoComponentHash) {
+mp.Player.prototype.getPedLiveryColor ??= function (weaponHash, camoComponentHash) {
     let $res = natives.getPedWeaponComponentTintIndex(this.handle, weaponHash, camoComponentHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.getPedLiveryColor = function (weaponHash, camoComponentHash) {
+mp.Ped.prototype.getPedLiveryColor ??= function (weaponHash, camoComponentHash) {
     let $res = natives.getPedWeaponComponentTintIndex(this.handle, weaponHash, camoComponentHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Object.prototype.setObjectLiveryColor = function (camoComponentHash, colorIndex) {
+mp.Object.prototype.setObjectLiveryColor ??= function (camoComponentHash, colorIndex) {
     let $res = natives.setWeaponObjectComponentTintIndex(this.handle, camoComponentHash, colorIndex);
 };
-mp.Object.prototype.getObjectLiveryColor = function (camoComponentHash) {
+mp.Object.prototype.getObjectLiveryColor ??= function (camoComponentHash) {
     let $res = natives.getWeaponObjectComponentTintIndex(this.handle, camoComponentHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.setPedChanceOfFiringBlanks = function (xBias, yBias) {
+mp.Player.prototype.setPedChanceOfFiringBlanks ??= function (xBias, yBias) {
     let $res = natives.setPedChanceOfFiringBlanks(this.handle, xBias, yBias);
 };
-mp.Ped.prototype.setPedChanceOfFiringBlanks = function (xBias, yBias) {
+mp.Ped.prototype.setPedChanceOfFiringBlanks ??= function (xBias, yBias) {
     let $res = natives.setPedChanceOfFiringBlanks(this.handle, xBias, yBias);
 };
-mp.Player.prototype.setPedShootOrdnance = function (p1) {
+mp.Player.prototype.setPedShootOrdnance ??= function (p1) {
     let $res = natives.setPedShootOrdnanceWeapon(this.handle, p1);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Ped.prototype.setPedShootOrdnance = function (p1) {
+mp.Ped.prototype.setPedShootOrdnance ??= function (p1) {
     let $res = natives.setPedShootOrdnanceWeapon(this.handle, p1);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.Player.prototype.requestHighDetailModel = function () {
+mp.Player.prototype.requestHighDetailModel ??= function () {
     let $res = natives.requestWeaponHighDetailModel(this.handle);
 };
-mp.Ped.prototype.requestHighDetailModel = function () {
+mp.Ped.prototype.requestHighDetailModel ??= function () {
     let $res = natives.requestWeaponHighDetailModel(this.handle);
 };
-mp.Object.prototype.requestHighDetailModel = function () {
+mp.Object.prototype.requestHighDetailModel ??= function () {
     let $res = natives.requestWeaponHighDetailModel(this.handle);
 };
-mp.Vehicle.prototype.requestHighDetailModel = function () {
+mp.Vehicle.prototype.requestHighDetailModel ??= function () {
     let $res = natives.requestWeaponHighDetailModel(this.handle);
 };
-mp.Player.prototype.isPedCurrentSilenced = function () {
+mp.Player.prototype.isPedCurrentSilenced ??= function () {
     let $res = natives.isPedCurrentWeaponSilenced(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isPedCurrentSilenced = function () {
+mp.Ped.prototype.isPedCurrentSilenced ??= function () {
     let $res = natives.isPedCurrentWeaponSilenced(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.isFlashLightOn = function () {
+mp.Player.prototype.isFlashLightOn ??= function () {
     let $res = natives.isFlashLightOn(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Ped.prototype.isFlashLightOn = function () {
+mp.Ped.prototype.isFlashLightOn ??= function () {
     let $res = natives.isFlashLightOn(this.handle);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Player.prototype.setFlashLightEnabled = function (toggle) {
+mp.Player.prototype.setFlashLightEnabled ??= function (toggle) {
     let $res = natives.setFlashLightActiveHistory(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setFlashLightEnabled = function (toggle) {
+mp.Ped.prototype.setFlashLightEnabled ??= function (toggle) {
     let $res = natives.setFlashLightActiveHistory(this.handle, toggle | 0);
 };
-mp.Player.prototype.setAnimationOverride = function (animStyle) {
+mp.Player.prototype.setAnimationOverride ??= function (animStyle) {
     let $res = natives.setWeaponAnimationOverride(this.handle, animStyle);
 };
-mp.Ped.prototype.setAnimationOverride = function (animStyle) {
+mp.Ped.prototype.setAnimationOverride ??= function (animStyle) {
     let $res = natives.setWeaponAnimationOverride(this.handle, animStyle);
 };
-mp.Player.prototype.setCanPedEquip = function (weaponHash, toggle) {
+mp.Player.prototype.setCanPedEquip ??= function (weaponHash, toggle) {
     let $res = natives.setCanPedSelectInventoryWeapon(this.handle, weaponHash, toggle | 0);
 };
-mp.Ped.prototype.setCanPedEquip = function (weaponHash, toggle) {
+mp.Ped.prototype.setCanPedEquip ??= function (weaponHash, toggle) {
     let $res = natives.setCanPedSelectInventoryWeapon(this.handle, weaponHash, toggle | 0);
 };
-mp.Player.prototype.setCanPedEquipAllS = function (toggle) {
+mp.Player.prototype.setCanPedEquipAllS ??= function (toggle) {
     let $res = natives.setCanPedSelectAllWeapons(this.handle, toggle | 0);
 };
-mp.Ped.prototype.setCanPedEquipAllS = function (toggle) {
+mp.Ped.prototype.setCanPedEquipAllS ??= function (toggle) {
     let $res = natives.setCanPedSelectAllWeapons(this.handle, toggle | 0);
 };
 if (!mp.game2.weapon) mp.game2.weapon = {};

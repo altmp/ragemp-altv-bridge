@@ -388,7 +388,7 @@ esprima.parseScript(source, {}, (node) => {
         const expr = node.expression;
         if (expr.left.type === 'MemberExpression' && expr.left.object.type === 'Identifier' && expr.left.object.name in prototypes && expr.left.property.type === 'Identifier') {
             const prototype = prototypes[expr.left.object.name];
-            outputCode += `${prototype}.prototype.${expr.left.property.name} = ${generateNativeCaller(nativeWrappers[name], true)};\n`;
+            outputCode += `${prototype}.prototype.${expr.left.property.name} ??= ${generateNativeCaller(nativeWrappers[name], true)};\n`;
         } else if (expr.left.type === 'MemberExpression' && expr.left.object.type === 'Identifier' && expr.left.property.type === 'Identifier') {
             if (!tempVars[expr.left.object.name]) tempVars[expr.left.object.name] = [];
             tempVars[expr.left.object.name].push(`.${expr.left.property.name} = ${generateNativeCaller(nativeWrappers[name])};\n`);
