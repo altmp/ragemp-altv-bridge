@@ -15,6 +15,10 @@ mp.game2.ui = mp.game2.hud;
 // #region JOAAT
 
 function joaat(key) {
+    if (Array.isArray(key)) {
+        return key.map(joaat);
+    }
+
     const keyLowered = key.toLowerCase();
     const length = keyLowered.length;
     let hash, i;
