@@ -1017,7 +1017,7 @@ mp.game2.audio.isVehicleRadioEnabled = function (vehicle) {
     return $res[0] == 1;
 };
 mp.game2.audio.setEmitterRadioStation = function (emitterName, radioStation) {
-    let $res = natives.setEmitterRadioStation(emitterName, radioStation);
+    let $res = natives.setEmitterRadioStation(emitterName, radioStation, 0);
 };
 mp.game2.audio.setStaticEmitterEnabled = function (emitterName, toggle) {
     let $res = natives.setStaticEmitterEnabled(emitterName, toggle | 0);
@@ -23054,20 +23054,20 @@ mp.Ped.prototype.releasePreloadPropData = function () {
     let $res = natives.releasePedPreloadPropData(this.handle);
 };
 mp.Player.prototype.getPropIndex = function (componentId) {
-    let $res = natives.getPedPropIndex(this.handle, componentId);
+    let $res = natives.getPedPropIndex(this.handle, componentId, 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
 mp.Ped.prototype.getPropIndex = function (componentId) {
-    let $res = natives.getPedPropIndex(this.handle, componentId);
+    let $res = natives.getPedPropIndex(this.handle, componentId, 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
 mp.Player.prototype.setPropIndex = function (componentId, drawableId, TextureId, attach) {
-    let $res = natives.setPedPropIndex(this.handle, componentId, drawableId, TextureId, attach | 0);
+    let $res = natives.setPedPropIndex(this.handle, componentId, drawableId, TextureId, attach | 0, 0);
 };
 mp.Ped.prototype.setPropIndex = function (componentId, drawableId, TextureId, attach) {
-    let $res = natives.setPedPropIndex(this.handle, componentId, drawableId, TextureId, attach | 0);
+    let $res = natives.setPedPropIndex(this.handle, componentId, drawableId, TextureId, attach | 0, 0);
 };
 mp.Player.prototype.knockOffProp = function (p1, p2, p3, p4) {
     let $res = natives.knockOffPedProp(this.handle, p1 | 0, p2 | 0, p3 | 0, p4 | 0);
@@ -23076,16 +23076,16 @@ mp.Ped.prototype.knockOffProp = function (p1, p2, p3, p4) {
     let $res = natives.knockOffPedProp(this.handle, p1 | 0, p2 | 0, p3 | 0, p4 | 0);
 };
 mp.Player.prototype.clearProp = function (propId) {
-    let $res = natives.clearPedProp(this.handle, propId);
+    let $res = natives.clearPedProp(this.handle, propId, 0);
 };
 mp.Ped.prototype.clearProp = function (propId) {
-    let $res = natives.clearPedProp(this.handle, propId);
+    let $res = natives.clearPedProp(this.handle, propId, 0);
 };
 mp.Player.prototype.clearAllProps = function () {
-    let $res = natives.clearAllPedProps(this.handle);
+    let $res = natives.clearAllPedProps(this.handle, 0);
 };
 mp.Ped.prototype.clearAllProps = function () {
-    let $res = natives.clearAllPedProps(this.handle);
+    let $res = natives.clearAllPedProps(this.handle, 0);
 };
 mp.Player.prototype.dropAmbientProp = function () {
     let $res = natives.dropAmbientProp(this.handle);
@@ -25919,21 +25919,21 @@ mp.game2.ped.releasePreloadPropData = function (ped) {
     let $res = natives.releasePedPreloadPropData(ped);
 };
 mp.game2.ped.getPropIndex = function (ped, componentId) {
-    let $res = natives.getPedPropIndex(ped, componentId);
+    let $res = natives.getPedPropIndex(ped, componentId, 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
 mp.game2.ped.setPropIndex = function (ped, componentId, drawableId, TextureId, attach) {
-    let $res = natives.setPedPropIndex(ped, componentId, drawableId, TextureId, attach | 0);
+    let $res = natives.setPedPropIndex(ped, componentId, drawableId, TextureId, attach | 0, 0);
 };
 mp.game2.ped.knockOffProp = function (ped, p1, p2, p3, p4) {
     let $res = natives.knockOffPedProp(ped, p1 | 0, p2 | 0, p3 | 0, p4 | 0);
 };
 mp.game2.ped.clearProp = function (ped, propId) {
-    let $res = natives.clearPedProp(ped, propId);
+    let $res = natives.clearPedProp(ped, propId, 0);
 };
 mp.game2.ped.clearAllProps = function (ped) {
-    let $res = natives.clearAllPedProps(ped);
+    let $res = natives.clearAllPedProps(ped, 0);
 };
 mp.game2.ped.dropAmbientProp = function (ped) {
     let $res = natives.dropAmbientProp(ped);
@@ -29870,7 +29870,7 @@ mp.game2.stats.playMcFormationEnds = function (p0, p1, p2, p3, p4, p5, p6) {
     let $res = natives.playstatsMcFormationEnds(p0, p1, p2, p3, p4, p5, p6);
 };
 mp.game2.stats.playMcClubhouseActivity = function (p0, p1, p2, p3, p4, p5, p6) {
-    let $res = natives.playstatsMcClubhouseActivity(p0, p1, p2, p3, p4, p5, p6);
+    let $res = natives.playstatsMcClubhouseActivity(p0, p1, p2, p3, p4, p5, p6, 0);
 };
 mp.game2.stats.playRivalBehaviour = function (p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) {
     let $res = natives.playstatsRivalBehavior(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9);
@@ -30036,7 +30036,7 @@ mp.game2.stats.playHeist3Hack = function (p0, p1, p2, p3, p4, p5) {
     let $res = natives.playstatsHeist3Hack(p0, p1, p2, p3, p4, p5);
 };
 mp.game2.stats.playNpcPhone = function (p0, p1, p2, p3) {
-    let $res = natives.playstatsNpcPhone(p0, p1, p2, p3, 0, 0);
+    let $res = natives.playstatsNpcPhone(p0, p1, p2, p3, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 };
 mp.game2.stats.playArcadeCabinet = function (p0) {
     let $res = natives.playstatsArcadeCabinet(p0);
@@ -30072,7 +30072,7 @@ mp.game2.stats.playSubWeap = function (p0, p1, p2, p3) {
     let $res = natives.playstatsSubWeap(p0, p1, p2, p3);
 };
 mp.game2.stats.playFastTrvl = function (p0, p1, p2, p3, p4) {
-    let $res = natives.playstatsFastTrvl(p0, p1, p2, p3, p4, 0, 0, 0, 0);
+    let $res = natives.playstatsFastTrvl(p0, p1, p2, p3, p4, 0, 0, 0, 0, 0, 0);
 };
 mp.game2.stats.playHubEntry = function (p0) {
     let $res = natives.playstatsHubEntry(p0);
@@ -40908,8 +40908,8 @@ hashes['0xC1805D05E6D4FE10'] = function(p0) {
     const $res = natives.setVehForcedRadioThisFrame(p0);
     return $res;
 }
-hashes['0xACF57305B12AF907'] = function(p0, p1) {
-    const $res = natives.setEmitterRadioStation(p0, p1);
+hashes['0xACF57305B12AF907'] = function(p0, p1, p2) {
+    const $res = natives.setEmitterRadioStation(p0, p1, p2);
     return $res;
 }
 hashes['0x399D2D3B33F1B8EB'] = function(p0, p1) {
@@ -42790,6 +42790,10 @@ hashes['0x971D7B15BCDBEF99'] = function() {
     const $res = natives.getCutsceneEndTime();
     return $res;
 }
+hashes['0x5D583F71C901F2A3'] = function() {
+    const $res = natives.getCutscenePlayDuration();
+    return $res;
+}
 hashes['0x40C8656EDAEDD569'] = function() {
     const $res = natives.wasCutsceneSkipped();
     return $res;
@@ -43298,6 +43302,10 @@ hashes['0x0267D00AF114F17A'] = function(p0, p1) {
 }
 hashes['0x8BAD02F0368D9E14'] = function(p0) {
     const $res = natives.hasEntityCollidedWithAnything(p0);
+    return $res;
+}
+hashes['0xA75EE4F689B85391'] = function(p0) {
+    const $res = natives.getLastEntityHitByEntity(p0);
     return $res;
 }
 hashes['0x5C3D0A935F535C4C'] = function(p0) {
@@ -44003,6 +44011,10 @@ hashes['0x46F8696933A63C9B'] = function(p0, p1) {
 }
 hashes['0xBD8D32550E5CEBFE'] = function(p0, p1) {
     const $res = natives.getEntityBoneObjectRotation(p0, p1);
+    return new mp.Vector3($res);
+}
+hashes['0xCF1247CC86961FD6'] = function(p0, p1) {
+    const $res = natives.getEntityBoneObjectPostion(p0, p1);
     return new mp.Vector3($res);
 }
 hashes['0xB328DCC3A3AA401B'] = function(p0) {
@@ -45249,6 +45261,10 @@ hashes['0x77168D722C58B2FC'] = function(p0) {
     const $res = natives.setParticleFxNonLoopedAlpha(p0);
     return $res;
 }
+hashes['0xB7EF5850C39FABCA'] = function(p0) {
+    const $res = natives.setParticleFxNonLoopedScale(p0);
+    return $res;
+}
 hashes['0x1E2E01C00837D26E'] = function(p0, p1, p2) {
     const $res = natives.setParticleFxNonLoopedEmitterSize(p0, p1, p2);
     return $res;
@@ -45399,6 +45415,10 @@ hashes['0x5DBF05DB5926D089'] = function(p0) {
 }
 hashes['0xC6730E0D14E50703'] = function(p0) {
     const $res = natives.setPtfxForceVehicleInteriorFlag(p0);
+    return $res;
+}
+hashes['0x170911F37F646F29'] = function(p0, p1, p2, p3) {
+    const $res = natives.registerPostfxBulletImpact(p0, p1, p2, p3);
     return $res;
 }
 hashes['0x9B079E5221D984D3'] = function(p0) {
@@ -47013,6 +47033,10 @@ hashes['0xCAC2031EBF79B1A8'] = function(p0, p1) {
     const $res = natives.showGoldTickOnBlip(p0, p1);
     return $res;
 }
+hashes['0x19BD6E3C0E16A8FA'] = function(p0, p1) {
+    const $res = natives.showForSaleIconOnBlip(p0, p1);
+    return $res;
+}
 hashes['0x5FBCA48327B914DF'] = function(p0, p1) {
     const $res = natives.showHeadingIndicatorOnBlip(p0, p1);
     return $res;
@@ -47163,6 +47187,10 @@ hashes['0x5E1460624D194A38'] = function(p0) {
 }
 hashes['0x6D14BFDC33B34F55'] = function() {
     const $res = natives.dontTiltMinimapThisFrame();
+    return $res;
+}
+hashes['0x89DA85D949CE57A0'] = function() {
+    const $res = natives.dontZoomMinimapWhenRunningThisFrame();
     return $res;
 }
 hashes['0x55F5A5F07134DE60'] = function() {
@@ -48824,6 +48852,10 @@ hashes['0x075F1D57402C93BA'] = function() {
     const $res = natives.haveCreditsReachedEnd();
     return $res;
 }
+hashes['0xD19C0826DC20CF1C'] = function() {
+    const $res = natives.areCreditsRunning();
+    return $res;
+}
 hashes['0x9DC711BC69C548DF'] = function(p0) {
     const $res = natives.terminateAllScriptsWithThisName(p0);
     return $res;
@@ -49087,6 +49119,14 @@ hashes['0x8D7A43EC6A5FEA45'] = function(p0, p1, p2, p3, p4, p5, p6, p7, p8) {
     if (!Array.isArray($res)) return $res instanceof alt.Vector3 ? new mp.Vector3($res) : $res;
     if (Array.isArray(p7[0])) { p7[0][0] = $res[1].x; p7[0][1] = $res[1].y; p7[0][2] = $res[1].z }
     else { p7[0].x = $res[1].x; p7[0].y = $res[1].y; p7[0].z = $res[1].z; }
+    return $res[0];
+}
+hashes['0x3DA8C28346B62CED'] = function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) {
+    if (typeof p8 != 'object') throw new Error('Argument positionOut should be a Vector3 or an array');
+    const $res = natives.getCoordsOfProjectileTypeInAngledArea(p0, p1, p2, p3, p4, p5, p6, p7, Array.isArray(p8[0]) ? new alt.Vector3(p8[0][0], p8[0][1], p8[0][2]) : new alt.Vector3(p8[0].x, p8[0].y, p8[0].z), p9);
+    if (!Array.isArray($res)) return $res instanceof alt.Vector3 ? new mp.Vector3($res) : $res;
+    if (Array.isArray(p8[0])) { p8[0][0] = $res[1].x; p8[0][1] = $res[1].y; p8[0][2] = $res[1].z }
+    else { p8[0].x = $res[1].x; p8[0].y = $res[1].y; p8[0].z = $res[1].z; }
     return $res[0];
 }
 hashes['0xDFB4138EEFED7B81'] = function(p0, p1, p2, p3, p4) {
@@ -50126,8 +50166,8 @@ hashes['0xF0077C797F66A355'] = function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) 
     const $res = natives.networkBuyItem(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9);
     return $res;
 }
-hashes['0x17C3A7D31EAE39F9'] = function(p0, p1, p2, p3) {
-    const $res = natives.networkSpentTaxi(p0, p1, p2, p3);
+hashes['0x17C3A7D31EAE39F9'] = function(p0, p1, p2, p3, p4) {
+    const $res = natives.networkSpentTaxi(p0, p1, p2, p3, p4);
     return $res;
 }
 hashes['0x5FD5ED82CBBE9989'] = function(p0, p1, p2) {
@@ -50635,8 +50675,8 @@ hashes['0xC6E74CF8C884C880'] = function(p0, p1, p2, p3, p4, p5, p6) {
     const $res = natives.networkEarnNightclubAndWarehouse(p0, p1, p2, p3, p4, p5, p6);
     return $res;
 }
-hashes['0x65482BFD0923C8A1'] = function(p0, p1, p2, p3, p4, p5) {
-    const $res = natives.networkSpendNightclubAndWarehouse(p0, p1, p2, p3, p4, p5);
+hashes['0x65482BFD0923C8A1'] = function(p0, p1, p2, p3) {
+    const $res = natives.networkSpendNightclubAndWarehouse(p0, p1, p2, p3);
     return $res;
 }
 hashes['0xE284D46FFDB82E36'] = function(p0, p1, p2) {
@@ -50891,8 +50931,8 @@ hashes['0xDD829AA198FDC46C'] = function(p0, p1, p2, p3) {
     const $res = natives.networkSpendUpgradeAutoshop(p0, p1, p2, p3);
     return $res;
 }
-hashes['0x36A7FD5A7194B03E'] = function(p0, p1) {
-    const $res = natives.networkEarnAutoshopBusiness(p0, p1);
+hashes['0x36A7FD5A7194B03E'] = function(p0, p1, p2) {
+    const $res = natives.networkEarnAutoshopBusiness(p0, p1, p2);
     return $res;
 }
 hashes['0xC66D1CF99ED7FE25'] = function(p0, p1) {
@@ -51049,6 +51089,118 @@ hashes['0x71BEC32FA466E105'] = function(p0) {
 }
 hashes['0x59498BC8B1C8B15C'] = function(p0, p1, p2, p3) {
     const $res = natives.networkYohanSourceGoods(p0, p1, p2, p3);
+    return $res;
+}
+hashes['0xA2ED36DCF0FCA413'] = function(p0, p1, p2, p3) {
+    const $res = natives.networkSpendBuyMfgarage(p0, p1, p2, p3);
+    return $res;
+}
+hashes['0xCF8F346DDDC66643'] = function(p0, p1, p2, p3) {
+    const $res = natives.networkSpendUpgradeMfgarage(p0, p1, p2, p3);
+    return $res;
+}
+hashes['0xB48185C0CA67B16B'] = function(p0, p1, p2, p3) {
+    const $res = natives.networkSpendBuySupplies(p0, p1, p2, p3);
+    return $res;
+}
+hashes['0xF1E26A7924327152'] = function(p0, p1, p2, p3) {
+    const $res = natives.networkSpendBuyAcidLab(p0, p1, p2, p3);
+    return $res;
+}
+hashes['0x110EE9D486C23126'] = function(p0, p1, p2, p3) {
+    const $res = natives.networkSpendUpgradeAcidLabEquipment(p0, p1, p2, p3);
+    return $res;
+}
+hashes['0xA7D541C9ACD63133'] = function(p0, p1, p2, p3) {
+    const $res = natives.networkSpendUpgradeAcidLabArmor(p0, p1, p2, p3);
+    return $res;
+}
+hashes['0x2940558E05BCC2EC'] = function(p0, p1, p2, p3) {
+    const $res = natives.networkSpendUpgradeAcidLabScoop(p0, p1, p2, p3);
+    return $res;
+}
+hashes['0x4B99AB08C92C54E4'] = function(p0, p1, p2, p3) {
+    const $res = natives.networkSpendUpgradeAcidLabMines(p0, p1, p2, p3);
+    return $res;
+}
+hashes['0x842B1C5AF61ACDE9'] = function(p0, p1, p2, p3) {
+    const $res = natives.networkSpendRenameAcidLab(p0, p1, p2, p3);
+    return $res;
+}
+hashes['0x446798F7495DD7D8'] = function(p0, p1, p2, p3) {
+    const $res = natives.networkSpendRenameAcidProduct(p0, p1, p2, p3);
+    return $res;
+}
+hashes['0xDDF047577F1A02A7'] = function(p0, p1) {
+    const $res = natives.networkEarnAwardJuggaloMission(p0, p1);
+    return $res;
+}
+hashes['0xD1A8165767AD2D23'] = function(p0, p1) {
+    const $res = natives.networkEarnAwardAcidLab(p0, p1);
+    return $res;
+}
+hashes['0xC30650FA74A19D02'] = function(p0, p1) {
+    const $res = natives.networkEarnAwardDailyStash(p0, p1);
+    return $res;
+}
+hashes['0xD01EBAEA1F905EF6'] = function(p0, p1) {
+    const $res = natives.networkEarnAwardDeadDrop(p0, p1);
+    return $res;
+}
+hashes['0xBEAFBB1B98B7EF55'] = function(p0, p1) {
+    const $res = natives.networkEarnAwardRandomEvent(p0, p1);
+    return $res;
+}
+hashes['0xA914768AD35CD3A5'] = function(p0, p1) {
+    const $res = natives.networkEarnAwardTaxi(p0, p1);
+    return $res;
+}
+hashes['0xA81017EE1324FDFE'] = function(p0, p1) {
+    const $res = natives.networkEarnStreetDealer(p0, p1);
+    return $res;
+}
+hashes['0x79B656937DF6DF5D'] = function(p0, p1) {
+    const $res = natives.networkEarnSellAcid(p0, p1);
+    return $res;
+}
+hashes['0xE3942D59E8A7F70D'] = function(p0, p1) {
+    const $res = natives.networkEarnSetupParticipationAcidLab(p0, p1);
+    return $res;
+}
+hashes['0x136F11B5DF1B304D'] = function(p0, p1) {
+    const $res = natives.networkEarnSourceParticipationAcidLab(p0, p1);
+    return $res;
+}
+hashes['0xCA3EF9B09A8D76B4'] = function(p0, p1) {
+    const $res = natives.networkEarnSellParticipationAcidLab(p0, p1);
+    return $res;
+}
+hashes['0xE01D10BA8CD53621'] = function(p0, p1) {
+    const $res = natives.networkEarnJuggaloStoryMission(p0, p1);
+    return $res;
+}
+hashes['0x40FF6CCCC476185C'] = function(p0, p1) {
+    const $res = natives.networkEarnJuggaloStoryMissionParticipation(p0, p1);
+    return $res;
+}
+hashes['0xCE4452AE85F5E252'] = function(p0, p1) {
+    const $res = natives.networkEarnFooliganJob(p0, p1);
+    return $res;
+}
+hashes['0xC376B92D0E060970'] = function(p0, p1) {
+    const $res = natives.networkEarnFooliganJobParticipation(p0, p1);
+    return $res;
+}
+hashes['0x991E1588FAD9019D'] = function(p0, p1) {
+    const $res = natives.networkEarnTaxiJob(p0, p1);
+    return $res;
+}
+hashes['0xCABC9874AFA70D6D'] = function(p0, p1) {
+    const $res = natives.networkEarnDailyStashHouseCompleted(p0, p1);
+    return $res;
+}
+hashes['0x9C0C6BD0F94CE391'] = function(p0, p1) {
+    const $res = natives.networkEarnDailyStashHouseParticipation(p0, p1);
     return $res;
 }
 hashes['0x76EF28DA05EA395A'] = function() {
@@ -51497,16 +51649,16 @@ hashes['0x7E782A910C362C25'] = function() {
     const $res = natives.networkCanEnterMultiplayer();
     return $res;
 }
-hashes['0x330ED4D05491934F'] = function(p0, p1, p2, p3, p4, p5) {
-    const $res = natives.networkSessionDoFreeroamQuickmatch(p0, p1, p2, p3, p4, p5);
+hashes['0x330ED4D05491934F'] = function(p0, p1, p2, p3) {
+    const $res = natives.networkSessionDoFreeroamQuickmatch(p0, p1, p2, p3);
     return $res;
 }
-hashes['0x2CFC76E0D087C994'] = function(p0, p1, p2, p3) {
-    const $res = natives.networkSessionDoFriendMatchmaking(p0, p1, p2, p3);
+hashes['0x2CFC76E0D087C994'] = function(p0, p1, p2) {
+    const $res = natives.networkSessionDoFriendMatchmaking(p0, p1, p2);
     return $res;
 }
-hashes['0x94BC51E9449D917F'] = function(p0, p1, p2, p3, p4) {
-    const $res = natives.networkSessionDoCrewMatchmaking(p0, p1, p2, p3, p4);
+hashes['0x94BC51E9449D917F'] = function(p0, p1, p2, p3) {
+    const $res = natives.networkSessionDoCrewMatchmaking(p0, p1, p2, p3);
     return $res;
 }
 hashes['0xBE3E347A87ACEB82'] = function(p0, p1, p2, p3, p4) {
@@ -52339,6 +52491,10 @@ hashes['0xE30CF56F1EFA5F43'] = function(p0, p1) {
     const $res = natives.networkGetRandomIntRanged(p0, p1);
     return $res;
 }
+hashes['0x04BD27B5ACB67067'] = function(p0, p1) {
+    const $res = natives.networkGetRandomFloatRanged(p0, p1);
+    return $res;
+}
 hashes['0x655B91F1495A9090'] = function() {
     const $res = natives.networkPlayerIsCheater();
     return $res;
@@ -52581,6 +52737,10 @@ hashes['0x42B2DAA6B596F5F8'] = function(p0, p1) {
 }
 hashes['0x2C863ACDCD12B3DB'] = function(p0) {
     const $res = natives.networkSetCurrentPublicContentId(p0);
+    return $res;
+}
+hashes['0x3DAD00265FBF356B'] = function(p0) {
+    const $res = natives.networkSetCurrentChatOption(p0);
     return $res;
 }
 hashes['0xAA6D5451DC3448B6'] = function(p0) {
@@ -52888,6 +53048,10 @@ hashes['0xC927EC229934AF60'] = function() {
 }
 hashes['0x4C2A9FDC22377075'] = function() {
     const $res = natives.networkIgnoreRemoteWaypoints();
+    return $res;
+}
+hashes['0xAD4326FCA30D62F8'] = function(p0) {
+    const $res = natives.networkIsPlayerOnBlocklist(p0);
     return $res;
 }
 hashes['0xB309EBEA797E001F'] = function(p0) {
@@ -53345,6 +53509,10 @@ hashes['0xA1607996431332DF'] = function(p0) {
     const $res = natives.isNetworkIdOwnedByParticipant(p0);
     return $res;
 }
+hashes['0x96320E6549DAE7B4'] = function(p0, p1) {
+    const $res = natives.setRemotePlayerVisibleInCutscene(p0, p1);
+    return $res;
+}
 hashes['0xD1065D68947E7B6E'] = function(p0, p1) {
     const $res = natives.setLocalPlayerVisibleInCutscene(p0, p1);
     return $res;
@@ -53615,6 +53783,10 @@ hashes['0xFAC18E7356BD3210'] = function() {
 }
 hashes['0xEC51713AB6EC36E8'] = function(p0, p1, p2, p3) {
     const $res = natives.setNetworkVehicleRespotTimer(p0, p1, p2, p3);
+    return $res;
+}
+hashes['0xDD7CEF5B3A4DA8A6'] = function(p0) {
+    const $res = natives.isNetworkVehicleRunningRespotTimer(p0);
     return $res;
 }
 hashes['0x6274C4712850841E'] = function(p0, p1) {
@@ -55717,6 +55889,10 @@ hashes['0x132F52BBA570FE92'] = function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, 
     p9[0] = $res[3];
     return $res[0];
 }
+hashes['0xC2AB6BFE34E92F8B'] = function(p0) {
+    const $res = natives.loadAllPathNodes(p0);
+    return $res;
+}
 hashes['0x228E5C6AD4D74BFD'] = function(p0) {
     const $res = natives.setAllowStreamPrologueNodes(p0);
     return $res;
@@ -57199,24 +57375,24 @@ hashes['0xF79F9DEF0AADE61A'] = function(p0) {
     const $res = natives.releasePedPreloadPropData(p0);
     return $res;
 }
-hashes['0x898CC20EA75BACD8'] = function(p0, p1) {
-    const $res = natives.getPedPropIndex(p0, p1);
+hashes['0x898CC20EA75BACD8'] = function(p0, p1, p2) {
+    const $res = natives.getPedPropIndex(p0, p1, p2);
     return $res;
 }
-hashes['0x93376B65A266EB5F'] = function(p0, p1, p2, p3, p4) {
-    const $res = natives.setPedPropIndex(p0, p1, p2, p3, p4);
+hashes['0x93376B65A266EB5F'] = function(p0, p1, p2, p3, p4, p5) {
+    const $res = natives.setPedPropIndex(p0, p1, p2, p3, p4, p5);
     return $res;
 }
 hashes['0x6FD7816A36615F48'] = function(p0, p1, p2, p3, p4) {
     const $res = natives.knockOffPedProp(p0, p1, p2, p3, p4);
     return $res;
 }
-hashes['0x0943E5B8E078E76E'] = function(p0, p1) {
-    const $res = natives.clearPedProp(p0, p1);
+hashes['0x0943E5B8E078E76E'] = function(p0, p1, p2) {
+    const $res = natives.clearPedProp(p0, p1, p2);
     return $res;
 }
-hashes['0xCD8A7537A9B52F06'] = function(p0) {
-    const $res = natives.clearAllPedProps(p0);
+hashes['0xCD8A7537A9B52F06'] = function(p0, p1) {
+    const $res = natives.clearAllPedProps(p0, p1);
     return $res;
 }
 hashes['0xAFF4710E2A0A6C12'] = function(p0) {
@@ -57482,6 +57658,10 @@ hashes['0xB5485E4907B53019'] = function(p0) {
     const $res = natives.setPedWetnessEnabledThisFrame(p0);
     return $res;
 }
+hashes['0xAC0BB4D87777CAE2'] = function(p0, p1) {
+    const $res = natives.setPedWetness(p0, p1);
+    return $res;
+}
 hashes['0x6585D955A68452A5'] = function(p0) {
     const $res = natives.clearPedEnvDirt(p0);
     return $res;
@@ -57596,6 +57776,10 @@ hashes['0xCEDA60A74219D064'] = function(p0, p1) {
 }
 hashes['0xC30BDAEE47256C13'] = function(p0) {
     const $res = natives.isPedGesturing(p0);
+    return $res;
+}
+hashes['0x007FDE5A7897E426'] = function(p0) {
+    const $res = natives.resetFacialIdleAnim(p0);
     return $res;
 }
 hashes['0xE1E65CA8AC9C00ED'] = function(p0, p1, p2) {
@@ -59326,6 +59510,10 @@ hashes['0xC388A0F065F5BC34'] = function(p0, p1) {
     const $res = natives.setPlayerHealthRechargeMaxPercent(p0, p1);
     return $res;
 }
+hashes['0xBCB06442F7E52666'] = function(p0) {
+    const $res = natives.disablePlayerHealthRecharge(p0);
+    return $res;
+}
 hashes['0xEFD79FA81DFBA9CB'] = function(p0, p1) {
     const $res = natives.setPlayerFallDistanceToTriggerRagdollOverride(p0, p1);
     return $res;
@@ -60815,6 +61003,10 @@ hashes['0x9572BD4DD6B72122'] = function(p0) {
     const $res = natives.playstatsPegasusAsPersonalAircraft(p0);
     return $res;
 }
+hashes['0xF96E9EA876D9DC92'] = function(p0, p1, p2) {
+    const $res = natives.playstatsShopmenuNav(p0, p1, p2);
+    return $res;
+}
 hashes['0x6A60E43998228229'] = function(p0) {
     const $res = natives.playstatsFmEventChallenges(p0);
     return $res;
@@ -61400,8 +61592,8 @@ hashes['0x03C2EEBB04B3FB72'] = function(p0, p1, p2, p3, p4, p5, p6) {
     const $res = natives.playstatsMcFormationEnds(p0, p1, p2, p3, p4, p5, p6);
     return $res;
 }
-hashes['0x8989CBD7B4E82534'] = function(p0, p1, p2, p3, p4, p5, p6) {
-    const $res = natives.playstatsMcClubhouseActivity(p0, p1, p2, p3, p4, p5, p6);
+hashes['0x8989CBD7B4E82534'] = function(p0, p1, p2, p3, p4, p5, p6, p7) {
+    const $res = natives.playstatsMcClubhouseActivity(p0, p1, p2, p3, p4, p5, p6, p7);
     return $res;
 }
 hashes['0x27AA1C973CACFE63'] = function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) {
@@ -61568,8 +61760,8 @@ hashes['0x92FC0EEDFAC04A14'] = function(p0, p1, p2, p3, p4, p5) {
     const $res = natives.playstatsHeist3Hack(p0, p1, p2, p3, p4, p5);
     return $res;
 }
-hashes['0x0077F15613D36993'] = function(p0, p1, p2, p3, p4, p5) {
-    const $res = natives.playstatsNpcPhone(p0, p1, p2, p3, p4, p5);
+hashes['0x0077F15613D36993'] = function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) {
+    const $res = natives.playstatsNpcPhone(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12);
     return $res;
 }
 hashes['0xF9096193DF1F99D4'] = function(p0) {
@@ -61624,8 +61816,8 @@ hashes['0xD4367D310F079DB0'] = function(p0, p1, p2, p3) {
     const $res = natives.playstatsSubWeap(p0, p1, p2, p3);
     return $res;
 }
-hashes['0x4DC416F246A41FC8'] = function(p0, p1, p2, p3, p4, p5, p6, p7, p8) {
-    const $res = natives.playstatsFastTrvl(p0, p1, p2, p3, p4, p5, p6, p7, p8);
+hashes['0x4DC416F246A41FC8'] = function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) {
+    const $res = natives.playstatsFastTrvl(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10);
     return $res;
 }
 hashes['0x2818FF6638CB09DE'] = function(p0) {
@@ -61660,8 +61852,8 @@ hashes['0x69C922B677621428'] = function(p0, p1) {
     const $res = natives.playstatsCarclubPrize(p0, p1);
     return $res;
 }
-hashes['0x70F52471E758EBAE'] = function(p0, p1) {
-    const $res = natives.playstatsAwardNav(p0, p1);
+hashes['0x70F52471E758EBAE'] = function(p0, p1, p2, p3) {
+    const $res = natives.playstatsAwardNav(p0, p1, p2, p3);
     return $res;
 }
 hashes['0xFEA3F7E83C0610FA'] = function(p0) {
@@ -61674,6 +61866,22 @@ hashes['0x5A46ACE5C4661132'] = function(p0) {
 }
 hashes['0x887DAD63CF5B7908'] = function(p0) {
     const $res = natives.playstatsInventory(p0);
+    return $res;
+}
+hashes['0x8A23D1324F6B2BAC'] = function(p0) {
+    const $res = natives.playstatsAcidMissionEnd(p0);
+    return $res;
+}
+hashes['0xCEACCF0550FDC5BA'] = function(p0) {
+    const $res = natives.playstatsAcidRnd(p0);
+    return $res;
+}
+hashes['0xEC9553A178E8F1D1'] = function(p0, p1, p2) {
+    const $res = natives.playstatsIdle(p0, p1, p2);
+    return $res;
+}
+hashes['0x48FAC5DC7AC6EA99'] = function(p0) {
+    const $res = natives.playstatsPlayerStyle(p0);
     return $res;
 }
 hashes['0xBD6E84632DD4CB3F'] = function() {
@@ -63759,6 +63967,10 @@ hashes['0xED5EDE9E676643C9'] = function(p0, p1) {
     const $res = natives.setBoatIgnoreLandProbes(p0, p1);
     return $res;
 }
+hashes['0x85FC953F6C6CBDE1'] = function(p0, p1) {
+    const $res = natives.setBoundsAffectWaterProbes(p0, p1);
+    return $res;
+}
 hashes['0x75DBEC174AEEAD10'] = function(p0, p1) {
     const $res = natives.setBoatAnchor(p0, p1);
     return $res;
@@ -63879,6 +64091,10 @@ hashes['0x7C06330BFDDA182E'] = function(p0) {
 }
 hashes['0xC69BB1D832A710EF'] = function(p0) {
     const $res = natives.isVehicleBeingBroughtToHalt(p0);
+    return $res;
+}
+hashes['0x923A293361DF44E5'] = function(p0) {
+    const $res = natives.lowerForkliftForks(p0);
     return $res;
 }
 hashes['0x37EBBF3117BD6A25'] = function(p0, p1) {
@@ -65022,6 +65238,10 @@ hashes['0x92B35082E0B42F66'] = function(p0, p1) {
     const $res = natives.setVehicleBrakeLights(p0, p1);
     return $res;
 }
+hashes['0x5815BD2763178DF4'] = function(p0, p1) {
+    const $res = natives.setVehicleTailLights(p0, p1);
+    return $res;
+}
 hashes['0x684785568EF26A22'] = function(p0, p1) {
     const $res = natives.setVehicleHandbrake(p0, p1);
     return $res;
@@ -65052,6 +65272,10 @@ hashes['0x1CDD6BADC297830D'] = function(p0, p1) {
     if (!Array.isArray($res)) return $res instanceof alt.Vector3 ? new mp.Vector3($res) : $res;
     p1[0] = $res[1];
     return $res[0];
+}
+hashes['0x80D9D32636369C92'] = function(p0) {
+    const $res = natives.getVehicleTrailerParentVehicle(p0);
+    return $res;
 }
 hashes['0xCAC66558B944DA67'] = function(p0, p1) {
     const $res = natives.setVehicleUsesLargeRearRamp(p0, p1);
