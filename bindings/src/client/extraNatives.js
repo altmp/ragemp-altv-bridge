@@ -9,6 +9,7 @@ mp.game2.time = mp.game2.clock;
 mp.game2.rope = mp.game2.physics;
 mp.game2.controls = mp.game2.pad;
 mp.game2.ui = mp.game2.hud;
+mp.gui = {};
 
 // #endregion
 

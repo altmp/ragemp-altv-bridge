@@ -3,3 +3,4 @@ import './Vehicle.js';
 import './Checkpoint.js';
 import './Blip.js';
 import './Browser.js';
+import './Camera.js';
