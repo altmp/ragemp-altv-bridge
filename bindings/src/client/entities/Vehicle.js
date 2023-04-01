@@ -208,10 +208,6 @@ export class _Vehicle extends _Entity {
         return this.doesCargobobHavePickupMagnet;
     }
 
-    setBoatAnchor(state) {
-        return natives.setBoatAnchor(this.alt, state);
-    }
-
     getMod(modType) {
         return natives.getVehicleMod(this.alt, modType);
     }
@@ -375,7 +371,7 @@ export class _Vehicle extends _Entity {
     get hasClearLosTo() {
         return this.hasClearLosToEntity;
     }
-    // endregion
+    // #endregion
 }
 
 Object.defineProperty(alt.Vehicle.prototype, 'mp', { 
