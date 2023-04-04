@@ -11,6 +11,7 @@ class _Raycasting {
         const cast = natives.getShapeTestResult(res);
         if (cast[0] != 2) return;
         if (!cast[1]) return;
+        natives.releaseScriptGuidFromEntity(cast[4]);
         return { position: cast[2], surfaceNormal: cast[3], entity: cast[4] };
     }
 
@@ -24,6 +25,7 @@ class _Raycasting {
         });
         if (cast[0] != 2) return;
         if (!cast[1]) return;
+        natives.releaseScriptGuidFromEntity(cast[4]);
         return { position: cast[2], surfaceNormal: cast[3], entity: cast[4] };
     }
 
