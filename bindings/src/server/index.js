@@ -1,5 +1,9 @@
+import mp from '../shared/mp.js';
 import '../shared/index.js';
 import './entities/index.js';
+
+globalThis.mp = mp;
+export default mp;
 // import { Blip, BlipSprite, Colshape, ColshapeSphere, onClient, Player, PointBlip, RadiusBlip, Vector3, Vehicle } from 'alt-server';
 // import alt, { emit, on, VehicleLockState } from 'alt-shared';
 

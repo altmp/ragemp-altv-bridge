@@ -1,6 +1,7 @@
 import * as alt from 'alt-client';
 import * as natives from 'natives';
 import mp from '../../shared/mp.js';
+import { getRenderCorrection } from '../clientUtils';
 
 class _Nametags {
     enabled = false;
@@ -16,10 +17,7 @@ class _Nametags {
     #tick() {
         if (!this.enabled) return;
         
-        const localPlayer = alt.Player.local;
-        const entity = localPlayer.vehicle ?? localPlayer;
-        const frameTime = natives.getFrameTime();
-        const correction = natives.getEntityVelocity(entity).mul(frameTime);
+        const correction = getRenderCorrection();
         const style = this.#style;
         const healthStyle = this.#healthStyle;
 

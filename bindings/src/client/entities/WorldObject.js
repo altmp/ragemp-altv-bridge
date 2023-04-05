@@ -12,7 +12,7 @@ export class _WorldObject extends _BaseObject {
     }
 
     getVariable(key) {
-        return this.#alt.getSyncedMeta(key);
+        return this.#alt.getSyncedMeta(key); // TODO: convert result
     }
 
     dist(pos) {
