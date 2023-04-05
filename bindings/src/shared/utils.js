@@ -13,7 +13,7 @@ export const vdist2 = (v1, v2, useZ = true) => {
 }
 
 export const vdist = (v1, v2, useZ = true) => {
-    return vdist2(v1, v2, useZ);
+    return Math.sqrt(vdist2(v1, v2, useZ));
 }
 
 export const argsToMp = (args) => {
