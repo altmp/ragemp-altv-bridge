@@ -18,7 +18,7 @@ export class _Browser extends _BaseObject {
         this.#_url = alt.url;
 
         // TODO: emit in webview bridge
-        this.alt.on('$bridge$loaded', () => {
+        this.alt.on(mp.prefix + 'loaded', () => {
             mp.events.dispatch('browserDomReady', this);
         });
 

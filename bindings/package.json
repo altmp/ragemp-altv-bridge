@@ -6,8 +6,8 @@
   "devDependencies": {
     "@altv/types-client": "^2.4.8",
     "@altv/types-natives": "^1.4.8",
-    "@altv/types-server": "^2.5.8",
-    "@altv/types-shared": "^1.3.7",
+    "@altv/types-server": "^2.6.2",
+    "@altv/types-shared": "^1.4.0",
     "esbuild": "^0.17.14"
   },
   "scripts": {

@@ -22,15 +22,20 @@ class _Label extends _VirtualEntityBase {
         super(alt);
         this.alt = alt;
         this.renderer = new LabelRenderer(() => alt.pos);
-        for (const key of (alt.isRemote ? alt.getStreamSyncedMetaKeys() : alt.getMetaDataKeys())) {
-            this.update(key, alt.isRemote ? alt.getStreamSyncedMeta(key) : alt.getMeta(key));
-        }
         labels.add(this);
         updateCache();
+        this.updateData();
+    }
+    
+    updateData() {
+        for (const key of (this.alt.isRemote ? this.alt.getStreamSyncedMetaKeys() : this.alt.getMetaDataKeys())) {
+            this.update(key, this.alt.isRemote ? this.alt.getStreamSyncedMeta(key) : this.alt.getMeta(key));
+        }
     }
 
     streamIn = () => {
         this.renderer.setActive(true);
+        this.updateData();
         updateCache();
     }
 
@@ -115,7 +120,7 @@ class _Label extends _VirtualEntityBase {
 // TODO: define on prototype globally for all virtual entities
 alt.on('baseObjectCreate', (ent) => {
     if (!(ent instanceof alt.VirtualEntity)) return;
-    const type = ent.isRemote ? ent.getStreamSyncedMeta('type') : ent.getMeta('type');
+    const type = ent.isRemote ? ent.getStreamSyncedMeta(mp.prefix + 'type') : ent.getMeta(mp.prefix + 'type');
     if (type !== VirtualEntityID.Label) return;
     ent.mp = new _Label(ent);
 });
