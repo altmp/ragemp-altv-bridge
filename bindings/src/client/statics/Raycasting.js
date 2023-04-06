@@ -3,16 +3,18 @@ import * as alt from 'alt-client';
 import mp from '../../shared/mp.js';
 
 class _Raycasting {
-    // todo check if raycasts return RAGEMP objects or script ids
+    #handleResult([state, hit, position, surfaceNormal, scriptID]) {
+        if (state != 2 || !hit) return;
+        natives.releaseScriptGuidFromEntity(scriptID);
+        
+        let entity = alt.Player.getByScriptID(scriptID)?.mp ?? alt.Vehicle.getByScriptID(scriptID)?.mp ?? alt.Object.getByScriptID(scriptID)?.mp ?? scriptID;
+        return { position: new mp.Vector3(position), surfaceNormal: new mp.Vector3(surfaceNormal), entity };
+    }
 
     testPointToPoint(pos1, pos2, ignoredEntity = 0, flags = -1) {
         const res = natives.startExpensiveSynchronousShapeTestLosProbe(pos1.x, pos1.y, pos1.z, pos2.x, pos2.y, pos2.z, flags, ignoredEntity, 0);
         if (!res) return;
-        const cast = natives.getShapeTestResult(res);
-        if (cast[0] != 2) return;
-        if (!cast[1]) return;
-        natives.releaseScriptGuidFromEntity(cast[4]);
-        return { position: cast[2], surfaceNormal: cast[3], entity: cast[4] };
+        return this.#handleResult(natives.getShapeTestResult(res));
     }
 
     async testPointToPointAsync(pos1, pos2, ignoredEntity = 0, flags = -1) {
@@ -23,10 +25,7 @@ class _Raycasting {
             cast = natives.getShapeTestResult(res);
             return cast[0] != 1;
         });
-        if (cast[0] != 2) return;
-        if (!cast[1]) return;
-        natives.releaseScriptGuidFromEntity(cast[4]);
-        return { position: cast[2], surfaceNormal: cast[3], entity: cast[4] };
+        return this.#handleResult(cast);
     }
 
     testCapsule(pos1, pos2, radius, ignoredEntity = 0, flags = -1) {
