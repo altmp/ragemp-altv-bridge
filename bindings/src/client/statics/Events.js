@@ -17,15 +17,15 @@ class _Events {
             if (event == 'consoleCommand') return; // dispatched in Console.js
             this.dispatch(event, ...argsToMp(args));
         });
-        alt.onServer('$bridge$repl', (id, res) => {
+        alt.onServer(mp.prefix + 'repl', (id, res) => {
             this.__pendingRpc[id].resolve(argsToMp([res])[0]);
             delete this.__pendingRpc[id];
         });
-        alt.onServer('$bridge$replError', (id, res) => {
+        alt.onServer(mp.prefix + 'replError', (id, res) => {
             this.__pendingRpc[id].reject(argsToMp([res])[0]);
             delete this.__pendingRpc[id];
         });
-        alt.onServer('$bridge$call', (event, id, ...args) => {
+        alt.onServer(mp.prefix + 'call', (event, id, ...args) => {
             this.dispatchRemoteProc(event, id, ...args);
         });
         alt.everyTick(() => {
@@ -118,7 +118,7 @@ class _Events {
         const id = this.#rpcId++;
         const promise = new Deferred();
         this.__pendingRpc[id] = promise;
-        alt.emitServer('$bridge$call', id, event, ...args);
+        alt.emitServer(mp.prefix + 'call', id, event, ...args);
         setTimeout(() => {
             promise.reject(new Error('Timed-out'));
             delete this.__pendingRpc[id];
@@ -131,9 +131,9 @@ class _Events {
         if (!handler) return;
         try {
             const result = handler(...args);
-            alt.emitServer('$bridge$repl', id, result);
+            alt.emitServer(mp.prefix + 'repl', id, result);
         } catch(e) {
-            alt.emitServer('$bridge$replError', id, e);
+            alt.emitServer(mp.prefix + 'replError', id, e);
         }
     }
 

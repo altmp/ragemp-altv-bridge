@@ -356,5 +356,5 @@ mp.Player = _Player;
 mp.players = new Pool(() => alt.Player.all, alt.Player.getByID);
 
 alt.on('playerDeath', (player, killer, weapon) => {
-    player.emit('$bridge$dead', killer, weapon);
+    player.emit(mp.prefix + 'dead', killer, weapon);
 })

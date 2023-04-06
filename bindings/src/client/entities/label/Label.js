@@ -46,15 +46,8 @@ class _Label extends _VirtualEntityBase {
     }
 
     update = (key, value) => {
-        const keys = {
-            '$bridge$text': 'text',
-            '$bridge$font': 'font',
-            '$bridge$los': 'los',
-            '$bridge$color': 'color'
-        }
-        if (!(key in keys)) return;
-
-        this.renderer[keys[key]] = value;
+        if (!key.startsWith(mp.prefix)) return;
+        this.renderer[key.substr(mp.prefix.length)] = value;
     }
 
     remoteId() {
@@ -80,12 +73,12 @@ class _Label extends _VirtualEntityBase {
     }
 
     get drawDistance() {
-        return this.getVariable('$bridge$drawDistance');
+        return this.getVariable(mp.prefix + 'drawDistance');
     }
 
     set drawDistance(value) {
         if (this.alt.isRemote) return;
-        this.setVariable('$bridge$drawDistance', value);
+        this.setVariable(mp.prefix + 'drawDistance', value);
     }
 
     get font() {

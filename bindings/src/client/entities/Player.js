@@ -852,7 +852,7 @@ mp.players.atHandle = function(handle) {
     return alt.Player.getByScriptID(handle)?.mp ?? null;
 }
 
-alt.onServer('$bridge$dead', (weapon, killer) => {
+alt.onServer(mp.prefix + 'dead', (weapon, killer) => {
     mp.events.dispatch('playerDeath', alt.Player.local.mp, weapon, killer?.mp);
 });
 
