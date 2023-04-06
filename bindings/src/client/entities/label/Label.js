@@ -16,7 +16,7 @@ function updateCache() {
     streamedLabelsArray = labelsArray.filter(e => e.renderer.active); // TODO: use some streamedIn property instead
 }
 
-class _Label extends _VirtualEntityBase {
+export class _Label extends _VirtualEntityBase {
     /** @param {alt.VirtualEntity} alt */
     constructor(alt) {
         super(alt);

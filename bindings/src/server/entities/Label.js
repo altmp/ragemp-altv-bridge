@@ -74,11 +74,6 @@ export class _Label extends _Entity {
 
 mp.Label = _Label;
 
-alt.on('baseObjectCreate', (ent) => {
-    if (!(ent instanceof alt.VirtualEntity)) return;
-    ent.mp = new _Label(ent);
-});
-
 alt.on('baseObjectRemove', (ent) => {
     if (ent.mp instanceof _Label) labels.delete(ent.mp);
 });
@@ -91,7 +86,12 @@ mp.labels = new Pool(() => [...labels.values()], (id) => {
 
 const group = new alt.VirtualEntityGroup(40);
 mp.labels.new = function(text, position, params) {
-    const ent = new _Label(new alt.VirtualEntity(group, position, params.drawDistance ?? 30));
+    const virtualEnt = new alt.VirtualEntity(group, position, params.drawDistance ?? 30);
+    console.log('created ent');
+    virtualEnt.setStreamSyncedMeta(mp.prefix + 'type', VirtualEntityID.Label);
+    console.log('set meta');
+    const ent = virtualEnt.mp;
+    console.log('after mp conversion');
     ent.text = text;
     ent.los = params.los ?? false;
     ent.font = params.font ?? 4;
