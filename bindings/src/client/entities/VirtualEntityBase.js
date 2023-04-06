@@ -4,6 +4,7 @@ import { _Entity } from './Entity';
 export class _VirtualEntityBase extends _Entity {
     streamIn() {}
     streamOut() {}
+    posChange() {}
     onDestroy() {}
     update() {}
 }
@@ -16,6 +17,10 @@ alt.on('worldObjectStreamIn', (ent) => {
 alt.on('worldObjectStreamOut', (ent) => {
     if (ent instanceof alt.VirtualEntity && ent.mp) ent.mp.streamOut(); 
 });
+
+alt.on('worldObjectPositionChange', (ent, oldPos) => {
+    if (ent instanceof alt.VirtualEntity && ent.mp) ent.mp.posChange(oldPos);
+})
 
 alt.on('baseObjectRemove', (ent) => {
     if (ent instanceof alt.VirtualEntity && ent.mp) ent.mp.onDestroy(); 
