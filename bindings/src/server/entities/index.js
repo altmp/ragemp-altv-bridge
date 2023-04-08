@@ -1,6 +1,7 @@
 import * as alt from 'alt-server';
 import './Player.js';
 import './Vehicle.js';
+import './Ped.js';
 import { _Label } from  './Label.js';
 import { VirtualEntityID } from '../../shared/VirtualEntityID';
 
