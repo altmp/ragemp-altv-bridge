@@ -65,7 +65,7 @@ export class _Player extends _Entity {
     }
 
     set heading(value) {
-        this.alt.rot = new alt.Vector3(this.alt.rot.x, this.alt.rot.y, value * deg2rad);   
+        this.alt.rot = new alt.Vector3(this.alt.rot.x, this.alt.rot.y, value * deg2rad);
     }
 
     get health() {
@@ -96,7 +96,7 @@ export class _Player extends _Entity {
     get packetLoss() {
         return 0;
     }
-    
+
     get ping() {
         return this.alt.ping;
     }
@@ -128,7 +128,9 @@ export class _Player extends _Entity {
     }
 
     set model(value) {
+        const oldModel = this.alt.model;
         this.alt.model = value;
+        mp.events.dispatch('entityModelChange', this, oldModel);
     }
 
     get position() {
@@ -138,7 +140,7 @@ export class _Player extends _Entity {
     set position(value) {
         this.alt.position = value;
     }
-    
+
     get type() {
         return 'player';
     }
@@ -147,15 +149,25 @@ export class _Player extends _Entity {
         this.bannedHwids[this.alt.hwidHash + this.alt.hwidExHash] = reason;
     }
 
-    call(evt, args) {
+    call(evt, args = []) {
         this.alt.emit(evt, ...argsToAlt(args));
     }
 
-    callUnreliable(evt, args) {
+    callUnreliable(evt, args = []) {
         alt.emitClientUnreliable(this.alt, evt, ...argsToAlt(args));
     }
-    
-    // TODO: rpc
+
+    callProc(evt, args = []) {
+        return mp.events.callRemoteProc(this.alt, evt, ...args);
+    }
+
+    hasPendingRpc() {
+        return mp.events.hasPendingRpc(this.alt);
+    }
+
+    cancelPendingRpc(id) {
+        return mp.events.cancelPendingRpc(this.alt, id);
+    }
 
     callToStreamed(includeSelf, evt, args) {
         const altArgs = argsToAlt(args);
@@ -178,7 +190,7 @@ export class _Player extends _Entity {
     getFaceFeature(idx) {
         return this.alt.getFaceFeatureScale(idx);
     }
-    
+
     getHeadBlend() {
         const data = this.alt.getHeadBlendData();
         return {
@@ -269,8 +281,8 @@ export class _Player extends _Entity {
     setCustomization(gender, shapeFirst, shapeSecond, shapeThird, skinFirst, skinSecond, skinThird, shapeMix, skinMix, thirdMix, eyeColor, hairColor, highlightColor, faceFeatures) {
         this.alt.removeAllWeapons(); // TODO: is needed?
         // TODO: is model set needed?
-        if (gender === true) this.alt.model = alt.hash('mp_m_freemode_01');
-        else this.alt.model = alt.hash('mp_f_freemode_01');
+        if (gender === true) this.model = alt.hash('mp_m_freemode_01');
+        else this.model = alt.hash('mp_f_freemode_01');
         this.alt.setHeadBlendData(shapeFirst, shapeSecond, shapeThird, skinFirst, skinSecond, skinThird, shapeMix, skinMix, thirdMix);
         this.alt.setEyeColor(eyeColor);
         this.alt.setHairColor(hairColor);
@@ -291,7 +303,7 @@ export class _Player extends _Entity {
     setHeadBlend(shapeFirst, shapeSecond, shapeThird, skinFirst, skinSecond, skinThird, shapeMix, skinMix, thirdMix) {
         this.alt.setHeadBlendData(shapeFirst, shapeSecond, shapeThird, skinFirst, skinSecond, skinThird, shapeMix, skinMix, thirdMix);
     }
-    
+
     setHeadOverlay(overlay, params) {
         const [index, opacity, firstColor, secondColor] = params;
         this.alt.setHeadOverlay(overlay, index, opacity);
@@ -320,7 +332,7 @@ export class _Player extends _Entity {
     // TODO: enableVoiceTo
     // TODO: disableVoiceTo
     // TODO: Weapons::clear
-    
+
     destroy() {
         this.alt.destroy();
     }
@@ -338,10 +350,10 @@ export class _Player extends _Entity {
     }
 }
 
-Object.defineProperty(alt.Player.prototype, 'mp', { 
+Object.defineProperty(alt.Player.prototype, 'mp', {
     get() {
         return this._mp ??= new _Player(this);
-    } 
+    }
 });
 
 alt.on('beforePlayerConnect', (info) => {
@@ -353,8 +365,8 @@ alt.on('beforePlayerConnect', (info) => {
 
 mp.Player = _Player;
 
-mp.players = new Pool(() => alt.Player.all, alt.Player.getByID);
+mp.players = new Pool(() => alt.Player.all, alt.Player.getByID, () => alt.Player.all.length);
 
 alt.on('playerDeath', (player, killer, weapon) => {
     player.emit(mp.prefix + 'dead', killer, weapon);
-})
+});

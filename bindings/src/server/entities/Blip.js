@@ -89,10 +89,10 @@ export class _Blip extends _WorldObject {
     // TODO: unrouteFor
 }
 
-Object.defineProperty(alt.Blip.prototype, 'mp', { 
+Object.defineProperty(alt.Blip.prototype, 'mp', {
     get() {
         return this._mp ??= new _Blip(this);
-    } 
+    }
 });
 
 mp.Blip = _Blip;

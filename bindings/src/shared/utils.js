@@ -16,22 +16,32 @@ export const vdist = (v1, v2, useZ = true) => {
     return Math.sqrt(vdist2(v1, v2, useZ));
 }
 
+export const toMp = (value) => {
+    if (typeof value === 'object' && value instanceof alt.BaseObject && value.mp) {
+        return value.mp;
+    }
+
+    return value;
+}
+
+export const toAlt = (value) => {
+    if (typeof value === 'object' && value?.isMpWrapper && value.alt) {
+        return value.alt;
+    }
+
+    return value;
+}
+
 export const argsToMp = (args) => {
     for (let i = 0; i < args.length; i++) {
-        const el = args[i];
-        if (typeof el === 'object' && el instanceof alt.BaseObject && el.mp) {
-            args[i] = el.mp;
-        }
+        args[i] = toMp(args[i]);
     }
     return args;
 }
 
 export const argsToAlt = (args) => {
     for (let i = 0; i < args.length; i++) {
-        const el = args[i];
-        if (typeof el === 'object' && el.isMpWrapper) {
-            args[i] = el.alt;
-        }
+        args[i] = toAlt(args[i]);
     }
     return args;
 }

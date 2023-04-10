@@ -1,18 +1,25 @@
-export class Deferred extends Promise {
+export class Deferred {
     done = false;
 
+    #resolve;
+    #reject;
+
     constructor() {
-        super((resolve, reject) => {
-            this.resolve = (value) => {
-                if (this.done) return;
-                this.done = true;
-                resolve(value);
-            };
-            this.reject = (value) => {
-                if (this.done) return;
-                this.done = true;
-                reject(value);
-            };
+        this.promise = new Promise((resolve, reject) => {
+            this.#resolve = resolve;
+            this.#reject = reject;
         });
+    }
+
+    resolve(value) {
+        if (this.done) return;
+        this.done = true;
+        this.#resolve(value);
+    }
+
+    reject(value) {
+        if (this.done) return;
+        this.done = true;
+        this.#reject(value);
     }
 }

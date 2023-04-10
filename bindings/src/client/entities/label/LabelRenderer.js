@@ -1,5 +1,6 @@
 import * as alt from 'alt-client';
 import * as natives from 'natives';
+import mp from '../../../shared/mp.js'
 import { getRenderCorrection } from '../../clientUtils';
 
 const labels = new Set();
@@ -44,6 +45,6 @@ export class LabelRenderer {
             label.render(camPos, correction);
         }
     }
-} 
+}
 
 alt.everyTick(() => LabelRenderer.renderAll());

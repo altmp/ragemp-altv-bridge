@@ -1,6 +1,6 @@
 declare module "alt-client" {
-    import type { _Player } from "../client/entities/Player";
-    import type { _Vehicle } from "../client/entities/Vehicle";
+    import type { _Player } from "client/entities/Player.js";
+    import type { _Vehicle } from "client/entities/Vehicle.js";
     interface Player {
         mp: _Player
     }

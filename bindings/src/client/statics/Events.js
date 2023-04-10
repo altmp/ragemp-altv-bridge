@@ -1,57 +1,50 @@
 import * as alt from 'alt-client';
 import mp from '../../shared/mp.js';
-import { argsToAlt, argsToMp } from '../../shared/utils.js';
+import {argsToAlt, argsToMp, toAlt, toMp} from '../../shared/utils.js';
 import { Deferred } from '../../shared/Deferred';
+import {BaseEvents} from '../../shared/BaseEvents';
 
-class _Events {
-    #handlers = {}
+class _Events extends BaseEvents {
     #procHandlers = {}
     #rpcId = 0;
     __pendingRpc = {}
 
     constructor() {
+        super();
+
         alt.onServer((event, ...args) => {
             this.dispatch(event, ...argsToMp(args));
         });
         alt.on((event, ...args) => {
-            if (event == 'consoleCommand') return; // dispatched in Console.js
+            if (event === 'consoleCommand') return; // dispatched in Console.js
             this.dispatch(event, ...argsToMp(args));
         });
         alt.onServer(mp.prefix + 'repl', (id, res) => {
-            this.__pendingRpc[id].resolve(argsToMp([res])[0]);
+            this.__pendingRpc[id].resolve(toMp(res));
             delete this.__pendingRpc[id];
         });
         alt.onServer(mp.prefix + 'replError', (id, res) => {
-            this.__pendingRpc[id].reject(argsToMp([res])[0]);
+            this.__pendingRpc[id].reject(toMp(res));
             delete this.__pendingRpc[id];
         });
         alt.onServer(mp.prefix + 'call', (event, id, ...args) => {
             this.dispatchRemoteProc(event, id, ...args);
         });
+
         alt.everyTick(() => {
             this.dispatch('render');
         });
         alt.on('gameEntityCreate', (entity) => {
-            this.dispatch('entityStreamIn', entity?.mp);
+            this.dispatch('entityStreamIn', toMp(entity));
         });
         alt.on('gameEntityDestroy', (entity) => {
-            this.dispatch('entityStreamOut', entity?.mp);
+            this.dispatch('entityStreamOut', toMp(entity));
         });
-    }
-
-    add(key, fn) {
-        if (typeof key === 'object') {
-            for (const [innerKey, innerValue] of Object.entries(key))
-                this.add(innerKey, innerValue);
-            return;
-        }
-        if (!(key in this.#handlers)) this.#handlers[key] = new Set;
-        this.#handlers[key].add(fn);
     }
 
     addDataHandler(expectedKey, fn) {
         function handler(entity, key, newData, oldData) {
-            if (key != expectedKey) return;
+            if (key !== expectedKey) return;
             fn(entity, newData, oldData);
         }
 
@@ -59,53 +52,14 @@ class _Events {
         alt.on('streamSyncedMetaChange', handler);
     }
 
-    remove(key, fn) {
-        if (typeof key === 'object' && Array.isArray(key)) {
-            for (const el of key)
-                this.remove(el);
-            return;
-        }
-
-        if (key in this.#handlers) {
-            if (!fn) this.#handlers[key].clear();
-            else this.#handlers[key].delete(fn);
-        }
-
-        if (key in this.#procHandlers) {
-            if (!fn) delete this.#procHandlers[key];
-            else if (this.#procHandlers[key] === fn) delete this.#procHandlers[key];
-        }
-    }
-
-    getAllOf(key) {
-        return key in this.#handlers ? [...this.#handlers[key].values()] : [];
-    }
-
-    reset() {
-        this.#handlers = {};
-    }
-
-    hasHandlers(event) {
-        return !!this.#handlers[event] && !!this.#handlers[event].size;
-    }
-
-    dispatch(event, ...args) {
-        if (!(event in this.#handlers)) return;
-        for (const handler of this.#handlers[event]) handler(...args);
-    }
-
     call(event, ...args) {
         alt.emit(event, ...argsToAlt(args));
     }
 
-    callLocal(event, ...args) {
-        this.call(event, ...args);
-    }
+    callLocal = this.call;
+    fire = this.call;
 
-    fire(event, ...args) {
-        this.call(event, ...args);
-    }
-
+    //#region RPC
     callRemote(event, ...args) {
         alt.emitServer(event, ...argsToAlt(args));
     }
@@ -116,24 +70,24 @@ class _Events {
 
     callRemoteProc(event, ...args) {
         const id = this.#rpcId++;
-        const promise = new Deferred();
-        this.__pendingRpc[id] = promise;
-        alt.emitServer(mp.prefix + 'call', id, event, ...args);
+        const deferred = new Deferred();
+        this.__pendingRpc[id] = deferred;
+        alt.emitServer(mp.prefix + 'call', event, id, ...argsToAlt(args));
         setTimeout(() => {
-            promise.reject(new Error('Timed-out'));
+            deferred.reject(new Error('Timed-out'));
             delete this.__pendingRpc[id];
         }, 30000);
-        return promise;
+        return deferred.promise;
     }
 
-    dispatchRemoteProc(event, id, ...args) {
+    async dispatchRemoteProc(event, id, ...args) {
         const handler = this.#procHandlers[event];
-        if (!handler) return;
+        if (!handler) return alt.emitServer(mp.prefix + 'replError', id, 'RPC not found');
         try {
-            const result = handler(...args);
-            alt.emitServer(mp.prefix + 'repl', id, result);
+            const result = await handler(...argsToMp(args));
+            alt.emitServer(mp.prefix + 'repl', id, toAlt(result));
         } catch(e) {
-            alt.emitServer(mp.prefix + 'replError', id, e);
+            alt.emitServer(mp.prefix + 'replError', id, toAlt(e));
         }
     }
 
@@ -151,12 +105,13 @@ class _Events {
             delete this.__pendingRpc[id];
             return;
         }
-        
+
         for (const [key, value] of Object.entries(this.__pendingRpc)) {
             value.reject(new Error('RPC was cancelled'));
         }
         this.__pendingRpc = {};
     }
+    //#endregion
 }
 
 mp.events = new _Events;

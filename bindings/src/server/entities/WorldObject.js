@@ -1,5 +1,5 @@
 import * as alt from 'alt-server';
-import { vdist, vdist2 } from '../../shared/utils';
+import {toAlt, toMp, vdist, vdist2} from '../../shared/utils';
 import { _BaseObject } from './BaseObject';
 
 export class _WorldObject extends _BaseObject {
@@ -7,25 +7,25 @@ export class _WorldObject extends _BaseObject {
 
     /** @param {alt.Entity} alt */
     constructor(alt) {
-        super(alt);
+        super();
         this.#alt = alt;
     }
 
     setVariable(key, value) {
-        if (typeof key === 'object') {
+        if (typeof key === 'object' && key) {
             for (const [innerKey, innerValue] of Object.entries(key)) this.setVariable(innerKey, innerValue);
             return;
         }
 
-        this.#alt.setSyncedMeta(key, value);
+        this.#alt.setSyncedMeta(key, toAlt(value));
     }
-    
+
     setVariables(obj) {
         this.setVariable(obj);
     }
 
     getVariable(key) {
-        return this.#alt.getSyncedMeta(key);
+        return toMp(this.#alt.getSyncedMeta(key));
     }
 
     dist(pos) {

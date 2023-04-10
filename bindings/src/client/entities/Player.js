@@ -3,6 +3,7 @@ import * as natives from 'natives';
 import mp from '../../shared/mp.js';
 import { Pool } from '../Pool.js';
 import { _Entity } from './Entity.js';
+import {toMp} from '../../shared/utils';
 
 export class _Player extends _Entity {
     alt;
@@ -58,11 +59,11 @@ export class _Player extends _Entity {
     // TODO: removeVoiceFx
     // TODO: resetVoiceFx
     // TODO: setVoiceFx*
-    
+
     get type() {
         return 'player';
     }
-    
+
     // #region Natives
     p2pCall() {
         throw new Error('P2P is not supported');
@@ -709,7 +710,7 @@ export class _Player extends _Entity {
     get taskAimGunAt() {
         return this.aimGunAtEntity;
     }
-    
+
     get taskGotoAiming() {
         return this.gotoEntityAiming;
     }
@@ -788,7 +789,7 @@ export class _Player extends _Entity {
 
     getVehicleIndexFromIndex(entity) {
         return natives.getVehicleIndexFromEntityIndex(entity);
-    } 
+    }
 
     get setCoords2() {
         return this.setCoordsWithoutPlantsReset;
@@ -836,10 +837,10 @@ export class _Player extends _Entity {
     // #endregion
 }
 
-Object.defineProperty(alt.Player.prototype, 'mp', { 
+Object.defineProperty(alt.Player.prototype, 'mp', {
     get() {
         return this._mp ??= new _Player(this);
-    } 
+    }
 });
 
 mp.Player = _Player;
@@ -853,7 +854,7 @@ mp.players.atHandle = function(handle) {
 }
 
 alt.onServer(mp.prefix + 'dead', (weapon, killer) => {
-    mp.events.dispatch('playerDeath', alt.Player.local.mp, weapon, killer?.mp);
+    mp.events.dispatch('playerDeath', alt.Player.local.mp, weapon, toMp(killer));
 });
 
 alt.on('resourceStart', () => {
@@ -874,10 +875,14 @@ alt.on('spawned', () => {
 });
 
 alt.on('enteredVehicle', (vehicle, seat) => {
-    mp.events.dispatch('playerEnterVehicle', vehicle?.mp, seat);
-    mp.events.dispatch('playerStartEnterVehicle', vehicle?.mp, seat);
+    mp.events.dispatch('playerEnterVehicle', toMp(vehicle), seat);
+    mp.events.dispatch('playerStartEnterVehicle', toMp(vehicle), seat);
 });
 
 alt.on('leftVehicle', (vehicle, seat) => {
-    mp.events.dispatch('playerLeaveVehicle', vehicle?.mp, seat);
+    mp.events.dispatch('playerLeaveVehicle', toMp(vehicle), seat);
 });
+
+alt.on('netOwnerChange', (ent, oldOwner, newOwner) => {
+    mp.events.dispatch('entityControllerChange', ent, toMp(newOwner));
+})

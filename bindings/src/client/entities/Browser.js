@@ -13,11 +13,14 @@ export class _Browser extends _BaseObject {
 
     /** @param {alt.WebView} alt */
     constructor(alt) {
-        super(alt);
+        super();
         this.alt = alt;
         this.#_url = alt.url;
 
-        // TODO: emit in webview bridge
+        this.alt.on(mp.prefix + 'event', (evt, ...args) => {
+            mp.events.dispatch(evt, ...args);
+        });
+
         this.alt.on(mp.prefix + 'loaded', () => {
             mp.events.dispatch('browserDomReady', this);
         });
@@ -36,7 +39,7 @@ export class _Browser extends _BaseObject {
     // TODO: RPC (call, cancelPendingProc, hasPendingProc)
 
     execute(code) {
-        this.alt.emit('$eval', code); // TODO: Implement in webview bridge
+        this.alt.emit(mp.prefix + 'eval', code); // TODO: Implement in webview bridge
     }
 
     executeCached(code) {
@@ -51,7 +54,7 @@ export class _Browser extends _BaseObject {
 
     #_url;
     #_urlWasChanged = false;
-    
+
     get url() {
         return this.alt.url;
     }
@@ -79,10 +82,10 @@ export class _Browser extends _BaseObject {
     }
 }
 
-Object.defineProperty(alt.WebView.prototype, 'mp', { 
+Object.defineProperty(alt.WebView.prototype, 'mp', {
     get() {
         return this._mp ??= new _Browser(this);
-    } 
+    }
 });
 
 mp.Browser = _Browser;

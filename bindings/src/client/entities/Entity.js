@@ -1,6 +1,7 @@
 import * as alt from 'alt-client';
 import { _WorldObject } from './WorldObject';
 import mp from '../../shared/mp.js';
+import {toMp} from '../../shared/utils';
 
 export class _Entity extends _WorldObject {
     #alt;
@@ -12,7 +13,7 @@ export class _Entity extends _WorldObject {
     }
 
     getStreamVariable(key) {
-        return this.#alt.getStreamSyncedMeta(key); // TODO: convert result
+        return toMp(this.#alt.getStreamSyncedMeta(key));
     }
 }
 

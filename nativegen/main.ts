@@ -103,6 +103,7 @@ let stringEncoder = '';
 const prototypes = {};
 let nativeWrappers: Record<string, ParsedNative> = {};
 let wrappersFound = 0;
+let foundNativeNames = [];
 
 function isNodeInvoker(node: Node): boolean {
     if (node.type != 'CallExpression') return false;
@@ -389,6 +390,7 @@ esprima.parseScript(source, {}, (node) => {
         if (expr.left.type === 'MemberExpression' && expr.left.object.type === 'Identifier' && expr.left.object.name in prototypes && expr.left.property.type === 'Identifier') {
             const prototype = prototypes[expr.left.object.name];
             outputCode += `${prototype}.prototype.${expr.left.property.name} ??= ${generateNativeCaller(nativeWrappers[name], true)};\n`;
+            if (prototype == "mp.Player") foundNativeNames.push(expr.left.property.name);
         } else if (expr.left.type === 'MemberExpression' && expr.left.object.type === 'Identifier' && expr.left.property.type === 'Identifier') {
             if (!tempVars[expr.left.object.name]) tempVars[expr.left.object.name] = [];
             tempVars[expr.left.object.name].push(`.${expr.left.property.name} ??= ${generateNativeCaller(nativeWrappers[name])};\n`);
@@ -475,3 +477,5 @@ mp.game = mp.game2;
 `
 
 fs.writeFileSync('../bindings/src/client/natives.js', outputCode);
+
+console.log(JSON.stringify(foundNativeNames));

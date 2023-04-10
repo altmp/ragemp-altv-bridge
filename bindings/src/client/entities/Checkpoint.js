@@ -8,13 +8,12 @@ let list = [];
 let lastId = 0;
 
 export class _Checkpoint extends _BaseObject {
-    #alt;
     id;
 
     /** @param {alt.Checkpoint} alt */
     constructor(alt) {
         super(alt);
-        this.#alt = alt;
+        this.alt = alt;
         this.id = lastId++;
         created[this.id] = this;
         list = Object.values(created);
@@ -25,13 +24,13 @@ export class _Checkpoint extends _BaseObject {
     }
 
     destroy() {
-        this.#alt.destroy();
+        this.alt.destroy();
         delete created[this.id];
         list = Object.values(created);
     }
 }
 
-Object.defineProperty(alt.Checkpoint.prototype, 'mp', { 
+Object.defineProperty(alt.Checkpoint.prototype, 'mp', {
     get() {
         return this._mp ??= new _Checkpoint(this);
     }

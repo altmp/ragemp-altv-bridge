@@ -4,16 +4,14 @@ import { Pool } from '../Pool.js';
 import { _WorldObject } from './WorldObject.js';
 
 export class _Blip extends _WorldObject {
-    #alt;
-
     /** @param {alt.Blip} alt */
     constructor(alt) {
         super(alt);
-        this.#alt = alt;
+        this.alt = alt;
     }
 
     get handle() {
-        return this.#alt.scriptID;
+        return this.alt.scriptID;
     }
 
     get type() {
@@ -21,10 +19,10 @@ export class _Blip extends _WorldObject {
     }
 }
 
-Object.defineProperty(alt.Blip.prototype, 'mp', { 
+Object.defineProperty(alt.Blip.prototype, 'mp', {
     get() {
         return this._mp ??= new _Blip(this);
-    } 
+    }
 });
 
 mp.Blip = _Blip;

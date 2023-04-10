@@ -1,0 +1,2 @@
+declare module "alt-server" {
+}

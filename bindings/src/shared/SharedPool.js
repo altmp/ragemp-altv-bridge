@@ -16,7 +16,7 @@ export class SharedPool {
     }
 
     exists(id) {
-        if (typeof id === 'object') return id.exists ?? id?.alt.exists;
+        if (typeof id === 'object' && id) return id.exists ?? id?.alt.exists;
         return this.#idGetter(id) != null;
     }
 
@@ -27,7 +27,7 @@ export class SharedPool {
     toArrayFast() {
         return this.#getter().map(e => e.mp);
     }
-    
+
     forEach(fn) {
         this.#getter().forEach(e => fn(e.mp, e.id));
     }

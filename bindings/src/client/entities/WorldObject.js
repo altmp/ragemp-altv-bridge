@@ -1,5 +1,5 @@
 import * as alt from 'alt-client';
-import { vdist, vdist2 } from '../../shared/utils';
+import {toMp, vdist, vdist2} from '../../shared/utils';
 import { _BaseObject } from './BaseObject';
 
 export class _WorldObject extends _BaseObject {
@@ -7,12 +7,12 @@ export class _WorldObject extends _BaseObject {
 
     /** @param {alt.Entity} alt */
     constructor(alt) {
-        super(alt);
+        super();
         this.#alt = alt;
     }
 
     getVariable(key) {
-        return this.#alt.getSyncedMeta(key); // TODO: convert result
+        return toMp(this.#alt.getSyncedMeta(key));
     }
 
     dist(pos) {
