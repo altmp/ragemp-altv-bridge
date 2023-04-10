@@ -47,4 +47,8 @@ export class _WorldObject extends _BaseObject {
     get id() {
         return this.alt.id;
     }
+
+    destroy() {
+        this.#alt.destroy();
+    }
 }
