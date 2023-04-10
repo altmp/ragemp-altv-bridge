@@ -134,11 +134,11 @@ export class _Player extends _Entity {
     }
 
     get position() {
-        return new mp.Vector3(this.alt.position);
+        return new mp.Vector3(this.alt.pos);
     }
 
     set position(value) {
-        this.alt.position = value;
+        this.alt.pos = value;
     }
 
     get type() {
