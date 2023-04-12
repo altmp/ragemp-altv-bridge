@@ -1,27 +1,15 @@
-import * as alt from 'alt-server';
-import { SyncedMetaProxy } from '../../shared/meta.js';
+import * as alt from 'alt-client';
 import mp from '../../shared/mp.js';
-import { deg2rad } from '../../shared/utils.js';
 import { Pool } from '../Pool.js';
-import { _Entity } from './Entity.js';
 import { _WorldObject } from './WorldObject.js';
+import { _Entity } from './Entity';
+import { deg2rad } from 'shared/utils';
 
 export class _Marker extends _Entity {
-    alt;
-
     /** @param {alt.Marker} alt */
     constructor(alt) {
         super(alt);
         this.alt = alt;
-        this.data = new SyncedMetaProxy(alt);
-    }
-
-    showFor(player) {
-        alt.emitClientRaw(player.alt, mp.prefix + "toggleMarker", this.alt.id, true);
-    }
-
-    hideFor(player) {
-        alt.emitClientRaw(player.alt, mp.prefix + "toggleMarker", this.alt.id, false);
     }
 
     getColor() {
@@ -81,3 +69,7 @@ mp.markers.new = function(type, position, scale, options) {
     if ('dimension' in options) marker.dimension = options.dimension;
     marker.scale = new alt.Vector3(scale, scale, scale);
 }
+
+alt.onServer(mp.prefix + 'toggleMarker', (id, toggle) => {
+    alt.Marker.getByID(id).visible = toggle;
+});

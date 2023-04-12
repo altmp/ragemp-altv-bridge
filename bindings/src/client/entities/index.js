@@ -3,6 +3,7 @@ import './Player.js';
 import './Vehicle.js';
 import './Checkpoint.js';
 import './Blip.js';
+import './Marker.js';
 import './Browser.js';
 import './Camera.js';
 import { _Label } from './label/Label.js';
