@@ -8,4 +8,3 @@ import './statics/index.js'
 import './polyfill.js';
 
 globalThis.mp = mp;
-export default mp;
