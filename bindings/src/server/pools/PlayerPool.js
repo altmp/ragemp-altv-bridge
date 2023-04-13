@@ -1,5 +1,5 @@
-import { Pool } from "./Pool.js";
+import { Pool } from './Pool.js';
 
 export class PlayerPool extends Pool {
-    
+
 }

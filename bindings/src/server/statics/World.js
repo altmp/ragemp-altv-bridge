@@ -70,11 +70,11 @@ class _TrafficLights {
 export class _World {
     #weather;
     #easeTime;
-    
+
     constructor() {
         this.time = new _Time;
         this.trafficLights = new _TrafficLights;
-        this.#weather = "CLEAR";
+        this.#weather = 'CLEAR';
         this.#easeTime = -1;
     }
 

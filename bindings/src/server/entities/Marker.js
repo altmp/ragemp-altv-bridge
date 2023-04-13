@@ -16,11 +16,11 @@ export class _Marker extends _Entity {
     }
 
     showFor(player) {
-        alt.emitClientRaw(player.alt, mp.prefix + "toggleMarker", this.alt.id, true);
+        alt.emitClientRaw(player.alt, mp.prefix + 'toggleMarker', this.alt.id, true);
     }
 
     hideFor(player) {
-        alt.emitClientRaw(player.alt, mp.prefix + "toggleMarker", this.alt.id, false);
+        alt.emitClientRaw(player.alt, mp.prefix + 'toggleMarker', this.alt.id, false);
     }
 
     getColor() {
