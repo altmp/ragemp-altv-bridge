@@ -130,13 +130,9 @@ export class _Vehicle extends _Entity {
     // TODO: trailer
     // TODO: traileredBy
     // TODO: trimColor
-    
+
     get velocity() {
         return this.alt.velocity;
-    }
-
-    set velocity(value) {
-        this.alt.velocity = value;
     }
 
     get windowTint() {
@@ -170,7 +166,17 @@ export class _Vehicle extends _Entity {
     }
 
     set model(value) {
-        this.alt.model = value;
+        const newVehicle = new alt.Vehicle(value, this.alt.pos, this.alt.rot);
+        newVehicle.dimension = this.alt.dimension;
+        newVehicle.numberPlateText = this.alt.numberPlateText;
+        newVehicle.numberPlateIndex = this.alt.numberPlateIndex;
+        const players = alt.Player.all.filter(e => e.vehicle === this.alt);
+        for (const player of players) {
+            player.setIntoVehicle(newVehicle, player.seat);
+        }
+
+        this.alt.destroy();
+        this.alt = newVehicle;
     }
 
     get position() {
@@ -258,17 +264,17 @@ export class _Vehicle extends _Entity {
 
     // TODO: setOccupant
     // TODO: setPaint
-    
+
     spawn(pos, heading) {
         this.alt.pos = pos;
         this.alt.rot = new alt.Vector3(0, 0, heading * deg2rad);
     }
 }
 
-Object.defineProperty(alt.Vehicle.prototype, 'mp', { 
+Object.defineProperty(alt.Vehicle.prototype, 'mp', {
     get() {
         return this._mp ??= new _Vehicle(this);
-    } 
+    }
 });
 
 mp.Vehicle = _Vehicle;
