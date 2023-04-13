@@ -284,6 +284,7 @@ mp.vehicles = new Pool(() => alt.Vehicle.all, alt.Vehicle.getByID);
 mp.vehicles.new = function(model, position, options = {}) {
     const heading = options?.heading ?? 0;
     const veh = new alt.Vehicle(model, position, new alt.Vector3(0, 0, heading * deg2rad));
+    if (veh.modKitsCount > 0) veh.modKit = 1;
     if ('numberPlate' in options) veh.numberPlateText = options.numberPlate;
     // TODO: alpha
     if ('locked' in options) veh.mp.locked = options.locked;
