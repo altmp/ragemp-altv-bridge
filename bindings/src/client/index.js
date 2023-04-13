@@ -8,6 +8,21 @@ import './extraNatives.js';
 import './statics/index.js'
 import './polyfill.js';
 
+function populateModule(moduleObject) {
+    globalThis.module = moduleObject;
+    Object.defineProperty(globalThis, 'exports', {
+        get: () => {
+            return moduleObject.exports;
+        },
+        set: (value) => {
+            moduleObject.exports = value
+        },
+        configurable: true
+    });
+    globalThis.__filepath = moduleObject.__path;
+    globalThis.__dirname = moduleObject.__path.replace(/\/[^/]+$/, '');
+}
+
 globalThis.require = function (path) {
     if (!path.startsWith('/')) path = '/' + path;
     if (path.endsWith('/')) path = path.substring(0, path.length - 1);
@@ -17,21 +32,12 @@ globalThis.require = function (path) {
         else throw new Error('Cannot find file ' + path);
     }
 
-    const moduleObject = { exports: {} };
-    globalThis.module = moduleObject;
-    Object.defineProperty(globalThis, 'exports', {
-        get: () => {
-        return moduleObject.exports;
-        },
-        set: (value) => {
-            moduleObject.exports = value
-        },
-        configurable: true
-    });
-    globalThis.__filepath = path;
-    globalThis.__dirname = path.replace(/\/[^/]+$/, '');
+    const oldModuleObject = globalThis.module;
+    const moduleObject = { exports: {}, __path: path };
+    populateModule(moduleObject);
     const content = alt.File.read(path);
     [eval][0](content);
+    if (oldModuleObject) populateModule(oldModuleObject);
     return moduleObject.exports;
 }
 
