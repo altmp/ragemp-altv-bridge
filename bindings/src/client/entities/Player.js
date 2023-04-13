@@ -85,6 +85,34 @@ export class _Player extends _Entity {
 
     // TODO: polyfill client appearance setters
 
+    setFaceFeature(index, feature) {
+        natives.setPedMicroMorph(this.alt, index, feature);
+    }
+    
+    setHeadOverlay(...arr) {
+        natives.setPedHeadOverlay(this.alt, ...arr);
+    }
+
+    setHeadOverlayColor(...arr) {
+        natives.setPedHeadOverlayTint(this.alt, ...arr);
+    }
+
+    setComponentVariation(...arr) {
+        natives.setPedComponentVariation(this.alt, ...arr);
+    }
+
+    setHairColor(...arr) {
+        natives.setPedHairTint(this.alt, ...arr);
+    }
+
+    setEyeColor(...arr) {
+        natives.setHeadBlendEyeColor(this.alt, ...arr);
+    }
+
+    setDefaultComponentVariation() {
+        natives.setPedDefaultComponentVariation(this.alt);
+    }
+
     getAlpha() {
         return natives.getEntityAlpha(this.alt);
     }

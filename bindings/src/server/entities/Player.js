@@ -15,6 +15,15 @@ export class _Player extends _Entity {
         super(alt);
         this.alt = alt;
         this.data = new SyncedMetaProxy(alt);
+        console.log('Construct player');
+    }
+
+    get serial() {
+        return 'asd';
+    }
+
+    get socialClub() {
+        return 'asd2';
     }
 
     get action() { // TODO: check all the other existing values
@@ -150,6 +159,7 @@ export class _Player extends _Entity {
     }
 
     call(evt, args = []) {
+        alt.log(evt);
         this.alt.emit(evt, ...argsToAlt(args));
     }
 
@@ -248,9 +258,12 @@ export class _Player extends _Entity {
     }
 
     // TODO: kickSilent
-    // TODO: outputChatBox
     // TODO: playAnimation
     // TODO: playScenario
+
+    outputChatBox(message) {
+        console.log('[CHAT]', this.alt.name, message);
+    }
 
     notify(message) {
         console.log('[NOTIFY]', this.alt.name, message);

@@ -10,7 +10,7 @@ class _Events extends BaseEvents {
     constructor() {
         super();
 
-        alt.onClient((player, event, ...args) => {
+        alt.onClient((event, player, ...args) => {
             this.dispatch(event, player, ...argsToMp(args));
         });
         alt.on((event, ...args) => {
@@ -74,6 +74,10 @@ class _Events extends BaseEvents {
 
     addProc(event, handler) {
         this.#procHandlers[event] = handler;
+    }
+
+    addCommand(event, handler) {
+        alt.log('[ADDCOMMAND]', event);
     }
 
     hasPendingRpc(player) {
