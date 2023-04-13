@@ -8,6 +8,7 @@
     "@altv/types-natives": "^1.4.8",
     "@altv/types-server": "^2.6.2",
     "@altv/types-shared": "^1.4.0",
+    "@fal-works/esbuild-plugin-global-externals": "^2.1.2",
     "esbuild": "^0.17.14"
   },
   "scripts": {
