@@ -275,7 +275,7 @@ export class _Player extends _Entity {
     // TODO: resetWeapon
 
     setClothes(component, drawable, texture, palette) {
-        this.setClothes(component, drawable, texture, palette);
+        this.alt.setClothes(component, drawable, texture, palette);
     }
 
     setCustomization(gender, shapeFirst, shapeSecond, shapeThird, skinFirst, skinSecond, skinThird, shapeMix, skinMix, thirdMix, eyeColor, hairColor, highlightColor, faceFeatures) {
@@ -318,6 +318,7 @@ export class _Player extends _Entity {
 
     spawn(pos) {
         this.alt.spawn(pos);
+        mp.events.dispatch('playerSpawn', this);
     }
 
     // TODO: stopAnimation
@@ -368,5 +369,15 @@ mp.Player = _Player;
 mp.players = new PlayerPool(() => alt.Player.all, alt.Player.getByID, () => alt.Player.all.length);
 
 alt.on('playerDeath', (player, killer, weapon) => {
+    mp.events.dispatch('playerDeath', player.mp, weapon, killer ? killer.mp : killer);
     player.emit(mp.prefix + 'dead', killer, weapon);
+});
+
+alt.on('playerConnect', (player) => {
+    mp.events.dispatch('playerJoin', player.mp);
+    mp.events.dispatch('playerReady', player.mp);
+});
+
+alt.on('playerDisconnect', (player, reason) => {
+    mp.events.dispatch('playerQuit', player.mp, 'unimplemented', 'unimplemented'); //player, exitType: string, reason: string
 });
