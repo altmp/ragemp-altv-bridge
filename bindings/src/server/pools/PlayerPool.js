@@ -5,11 +5,13 @@ export class PlayerPool extends Pool {
         console.log('[BROADCAST]', text);
     }
     
-    call(arg1, args = []) {
-        if(arg1 instanceof String) {
-            this.forEach(p => p.call(arg1, args));
-        } else if(arg1 instanceof Array) {
-            arg1.forEach(p => p.call(arg1, args));
+    //mp.players.call(String eventName[, Array Arguments]);
+    //mp.players.call(Array players, String eventName[, Array Arguments]);
+    call(arg1, args1 = [], args2 = []) {
+        if(typeof arg1 === 'string') {
+            this.forEach(p => p.call(arg1, args1));
+        } else if(typeof arg1 === 'object' && Array.isArray(arg1)) {
+            arg1.forEach(p => p.call(args1, args2));
         }
     }
 
