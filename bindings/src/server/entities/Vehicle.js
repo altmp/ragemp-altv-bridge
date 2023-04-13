@@ -3,6 +3,7 @@ import { SyncedMetaProxy } from '../../shared/meta.js';
 import mp from '../../shared/mp.js';
 import { deg2rad, rad2deg, vdist, vdist2 } from '../../shared/utils.js';
 import { _Entity } from './Entity.js';
+import { Pool } from '../pools/Pool';
 
 export class _Vehicle extends _Entity {
     alt;

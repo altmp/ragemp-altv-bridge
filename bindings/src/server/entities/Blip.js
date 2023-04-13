@@ -4,6 +4,7 @@ import mp from '../../shared/mp.js';
 import { deg2rad, rad2deg, vdist, vdist2 } from '../../shared/utils.js';
 import { _Entity } from './Entity.js';
 import { _WorldObject } from './WorldObject.js';
+import { Pool } from '../pools/Pool';
 
 export class _Blip extends _WorldObject {
     alt;

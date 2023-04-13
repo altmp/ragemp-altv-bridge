@@ -2,6 +2,7 @@ import * as alt from 'alt-server';
 import mp from '../../shared/mp';
 import { _Entity } from './Entity';
 import { VirtualEntityID } from '../../shared/VirtualEntityID';
+import { Pool } from '../pools/Pool';
 
 const labels = new Set;
 

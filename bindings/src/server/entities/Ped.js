@@ -2,6 +2,7 @@ import * as alt from 'alt-server';
 import mp from '../../shared/mp.js';
 import { deg2rad } from '../../shared/utils.js';
 import { _Entity } from './Entity.js';
+import { Pool } from '../pools/Pool';
 
 export class _Ped extends _Entity {
     alt;
