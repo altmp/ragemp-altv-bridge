@@ -312,7 +312,7 @@ export class _Vehicle extends _Entity {
         return natives.setEntityAlpha(this.alt, alpha, skin);
     }
 
-    get getVelocity() {
+    getVelocity() {
         return new mp.Vector3(natives.getEntityVelocity(this.alt));
     }
     
