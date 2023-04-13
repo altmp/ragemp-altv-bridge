@@ -85,6 +85,13 @@ mp.game.controls.applyDisableControlActionBatch = function() {
 
 mp.gui.execute = () => {}; // seems to be doing nothing
 
+mp.game.waitAsync = (ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms || 0));
+}
+
+mp.game.wait = (ms) => {
+    natives.wait(ms);
+}
 // TODO: screenshot API
 
 mp.gui.isGpuRenderingEnabled = () => false;
