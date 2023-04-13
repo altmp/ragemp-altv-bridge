@@ -19,12 +19,22 @@ globalThis.require = function (path) {
 
     const moduleObject = { exports: {} };
     globalThis.module = moduleObject;
-    globalThis.exports = moduleObject.exports;
+    Object.defineProperty(globalThis, 'exports', {
+        get: () => {
+        return moduleObject.exports;
+        },
+        set: (value) => {
+            moduleObject.exports = value
+        },
+        configurable: true
+    });
     globalThis.__filepath = path;
     globalThis.__dirname = path.replace(/\/[^/]+$/, '');
     const content = alt.File.read(path);
     [eval][0](content);
     return moduleObject.exports;
 }
+
+globalThis.global = globalThis;
 
 globalThis.mp = mp;
