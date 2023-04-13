@@ -2,7 +2,6 @@ import * as alt from 'alt-server';
 import { SyncedMetaProxy } from '../../shared/meta.js';
 import mp from '../../shared/mp.js';
 import { argsToAlt, deg2rad, rad2deg, vdist, vdist2 } from '../../shared/utils.js';
-import { Pool } from '../Pool.js';
 import { _Entity } from './Entity.js';
 
 let bannedHwids = {};
@@ -365,7 +364,7 @@ alt.on('beforePlayerConnect', (info) => {
 
 mp.Player = _Player;
 
-mp.players = new Pool(() => alt.Player.all, alt.Player.getByID, () => alt.Player.all.length);
+mp.players = new PlayerPool(() => alt.Player.all, alt.Player.getByID, () => alt.Player.all.length);
 
 alt.on('playerDeath', (player, killer, weapon) => {
     player.emit(mp.prefix + 'dead', killer, weapon);

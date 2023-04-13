@@ -2,7 +2,6 @@ import mp from '../../shared/mp';
 import * as alt from 'alt-server';
 import {_WorldObject} from './WorldObject';
 import {_Colshape} from './Colshape';
-import {Pool} from '../Pool';
 
 export class _Checkpoint extends _Colshape {
     /** @param {alt.Colshape} alt */

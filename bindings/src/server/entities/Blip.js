@@ -2,7 +2,6 @@ import * as alt from 'alt-server';
 import { SyncedMetaProxy } from '../../shared/meta.js';
 import mp from '../../shared/mp.js';
 import { deg2rad, rad2deg, vdist, vdist2 } from '../../shared/utils.js';
-import { Pool } from '../Pool.js';
 import { _Entity } from './Entity.js';
 import { _WorldObject } from './WorldObject.js';
 

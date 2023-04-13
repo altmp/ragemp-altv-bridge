@@ -1,7 +1,6 @@
 import mp from '../../shared/mp';
 import * as alt from 'alt-server';
 import {_WorldObject} from './WorldObject';
-import {Pool} from '../Pool';
 
 const colshapeTypes = {
     0: 'sphere',
