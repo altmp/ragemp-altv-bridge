@@ -11,13 +11,14 @@ export class SyncedMetaProxy extends ExtendableProxy {
         const obj = {};
         super(obj, {
             get: (_, prop) => {
-                if (Object.hasOwn(obj, prop)) return obj[prop];
-                if (prop === Symbol.toStringTag) return '[object Meta]';
-                return toMp(target.getSyncedMeta(prop))
+                if (typeof prop != 'string') return obj[prop];
+                if (target.hasSyncedMeta(prop)) return toMp(target.getSyncedMeta(prop));
+                return obj[prop];
             },
             set: readOnly
                 ? (() => {})
                 : ((_, prop, value) => {
+                    if (typeof prop != 'string') return;
                     target.setSyncedMeta(prop, toAlt(value))
                 })
         })
