@@ -95,3 +95,10 @@ mp.game.wait = (ms) => {
 // TODO: screenshot API
 
 mp.gui.isGpuRenderingEnabled = () => false;
+
+mp.game.graphics.notify = (message) => {
+    natives.beginTextCommandThefeedPost('STRING')
+    natives.addTextComponentSubstringPlayerName(message)
+    natives.endTextCommandThefeedPostMessagetextTu('', '', false, 0, '', '', 1)
+    return natives.endTextCommandThefeedPostTicker(false, true)
+}
