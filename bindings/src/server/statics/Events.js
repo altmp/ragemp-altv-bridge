@@ -76,8 +76,11 @@ class _Events extends BaseEvents {
         this.#procHandlers[event] = handler;
     }
 
-    addCommand(event, handler) {
-        alt.log('[ADDCOMMAND]', event);
+    addCommand(command, handler) {
+        alt.onClient(mp.prefix + 'cmd', (player, cmd, args) => {
+            if (cmd !== command) return;
+            handler(player, args.join(' '), ...args);
+        })
     }
 
     hasPendingRpc(player) {

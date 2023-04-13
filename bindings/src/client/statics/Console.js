@@ -11,7 +11,7 @@ const verbosityLevels = {
 class _Console {
     clear() {}
     reset() {}
-    
+
     logInfo(msg) {
         if (this.#verbosityLevel > 0) return;
         alt.log(msg);
@@ -48,6 +48,7 @@ class _Console {
 
 mp.console = new _Console;
 
-alt.on('consoleCommand', (...args) => {
-    mp.events.dispatch('consoleCommand', args.join(' '), ...args)
+alt.on('consoleCommand', (cmd, ...args) => {
+    mp.events.dispatch('consoleCommand', cmd, args.join(' '), ...args);
+    alt.emitServerRaw(mp.prefix + 'cmd', cmd, args);
 });
