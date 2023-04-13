@@ -13838,6 +13838,11 @@ mp.game2.misc.getAngleBetween2DVectors ??= function (x1, y1, x2, y2) {
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
+mp.game2.misc.getAngleBetween2dVectors ??= function (x1, y1, x2, y2) {
+    let $res = natives.getAngleBetween2dVectors(x1, y1, x2, y2);
+    if (!Array.isArray($res)) $res = [$res];
+    return $res[0];
+};
 mp.game2.misc.getHeadingFromVector2D ??= function (dx, dy) {
     let $res = natives.getHeadingFromVector2d(dx, dy);
     if (!Array.isArray($res)) $res = [$res];
