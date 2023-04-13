@@ -90,7 +90,7 @@ mp.game.waitAsync = (ms) => {
 }
 
 mp.game.wait = (ms) => {
-    natives.wait(ms);
+    throw new Error('mp.game.wait is not supported');
 }
 // TODO: screenshot API
 
