@@ -225,7 +225,7 @@ function registerNativeFunction(id: Identifier, fn: FunctionExpression, invoker:
             if (key.endsWith('.x')) {
                 parsed.resObject[key.substring(0, key.length - 2)] = `new mp.Vector3($res[${refId}])`
             } else if (key.endsWith('.y') || key.endsWith('.z')) {
-            } else if (key === 'x' || key === 'y' || key === 'z' && invoker.vector) {
+            } else if ((key === 'x' || key === 'y' || key === 'z') && invoker.vector) {
                 parsed.resObject[key] = `$res[0].${key}`;
             } else {
                 parsed.resObject[key] = escodegen.generate(expr);
@@ -278,6 +278,7 @@ function generateNativeCaller(native: ParsedNative, entity = false) {
 
     // TODO: Do not create $res when it is not used
     let res = `function (${inArgs.join(', ')}) {
+    console.log('Native', '${native.altNative.altName}');\n
     let $res = natives.${native.altNative.altName}(${outArgs.join(', ')});\n`;
     // TODO: Avoid creating an array
     if (native.return) res += `    if (!Array.isArray($res)) $res = [$res];\n`;
