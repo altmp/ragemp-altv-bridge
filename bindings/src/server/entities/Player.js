@@ -248,10 +248,13 @@ export class _Player extends _Entity {
     }
 
     // TODO: kickSilent
-    // TODO: notify
     // TODO: outputChatBox
     // TODO: playAnimation
     // TODO: playScenario
+
+    notify(message) {
+        console.log('[NOTIFY]', this.alt.name, message);
+    }
 
     putIntoVehicle(vehicle, seat) {
         this.alt.setIntoVehicle(vehicle.alt, seat + 1); // Seats in RAGEMP start with 0
