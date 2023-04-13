@@ -278,7 +278,6 @@ function generateNativeCaller(native: ParsedNative, entity = false) {
 
     // TODO: Do not create $res when it is not used
     let res = `function (${inArgs.join(', ')}) {
-    console.log('Native', '${native.altNative.altName}');\n
     let $res = natives.${native.altNative.altName}(${outArgs.join(', ')});\n`;
     // TODO: Avoid creating an array
     if (native.return) res += `    if (!Array.isArray($res)) $res = [$res];\n`;
