@@ -4,7 +4,7 @@ import mp from '../../shared/mp.js';
 import { argsToAlt, deg2rad, rad2deg, vdist, vdist2 } from '../../shared/utils.js';
 import { _Entity } from './Entity.js';
 import { PlayerPool } from '../pools/PlayerPool';
-import { InternalChat } from '../../shared/chat.js';
+import { InternalChat } from '../../shared/DefaultChat.js';
 
 let bannedHwids = {};
 

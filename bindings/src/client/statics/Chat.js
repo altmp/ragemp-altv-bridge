@@ -1,6 +1,6 @@
 import * as alt from 'alt-client';
 import mp from '../../shared/mp.js';
-import { InternalChat } from '../../shared/chat.js';
+import { InternalChat } from '../../shared/DefaultChat.js';
 
 // TODO default chat bindings
 

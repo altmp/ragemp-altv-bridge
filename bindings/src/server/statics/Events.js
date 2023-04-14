@@ -3,7 +3,7 @@ import mp from '../../shared/mp.js';
 import {argsToAlt, argsToMp, toAlt, toMp} from '../../shared/utils.js';
 import { Deferred } from '../../shared/Deferred';
 import {BaseEvents} from '../../shared/BaseEvents';
-import { InternalChat } from 'shared/chat';
+import { InternalChat } from 'shared/DefaultChat.js';
 
 class _Events extends BaseEvents {
     #procHandlers = {}

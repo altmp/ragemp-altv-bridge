@@ -1,5 +1,5 @@
 import { Pool } from './Pool.js';
-import { InternalChat } from 'shared/chat.js';
+import { InternalChat } from 'shared/DefaultChat.js';
 
 export class PlayerPool extends Pool {
     broadcast(text) {
