@@ -24,7 +24,7 @@ function populateModule(moduleObject) {
 }
 
 globalThis.require = function (path) {
-    if (path.startsWith('./')) path = '/';
+    path = path.replaceAll('./', '');
     if (!path.startsWith('/')) path = '/' + path;
     if (path.endsWith('/')) path = path.substring(0, path.length - 1);
     if (!alt.File.exists(path)) {
