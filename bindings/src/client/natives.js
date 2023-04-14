@@ -9876,6 +9876,9 @@ mp.game2.graphics.drawScaleformMovie3D ??= function (scaleform, posX, posY, posZ
 mp.game2.graphics.drawScaleformMovie3DSolid ??= function (scaleform, posX, posY, posZ, rotX, rotY, rotZ, p7, p8, p9, scaleX, scaleY, scaleZ, p13) {
     let $res = natives.drawScaleformMovie3dSolid(scaleform, posX, posY, posZ, rotX, rotY, rotZ, p7, p8, p9, scaleX, scaleY, scaleZ, p13);
 };
+mp.game2.graphics.callScaleformMovieMethod ??= function (scaleform, method) {
+    let $res = natives.callScaleformMovieMethod(scaleform, method);
+};
 mp.game2.graphics.callScaleformMovieMethodWithNumber ??= function (scaleform, methodName, param1, param2, param3, param4, param5) {
     let $res = natives.callScaleformMovieMethodWithNumber(scaleform, methodName, param1, param2, param3, param4, param5);
 };
@@ -9894,6 +9897,26 @@ mp.game2.graphics.callScaleformMovieMethodWithNumberAndString ??= function (scal
 mp.game2.graphics.callScaleformMovieFunctionMixedParams ??= function (scaleform, methodName, floatParam1, floatParam2, floatParam3, floatParam4, floatParam5, stringParam1, stringParam2, stringParam3, stringParam4, stringParam5) {
     let $res = natives.callScaleformMovieMethodWithNumberAndString(scaleform, methodName, floatParam1, floatParam2, floatParam3, floatParam4, floatParam5, stringParam1, stringParam2, stringParam3, stringParam4, stringParam5);
 };
+mp.game2.graphics.beginScaleformScriptHudMovieMethod ??= function (hudComponent, methodName) {
+    let $res = natives.beginScaleformScriptHudMovieMethod(hudComponent, methodName);
+    if (!Array.isArray($res)) $res = [$res];
+    return $res[0] == 1;
+};
+mp.game2.graphics.pushScaleformMovieFunctionFromHudComponent ??= function (hudComponent, methodName) {
+    let $res = natives.beginScaleformScriptHudMovieMethod(hudComponent, methodName);
+    if (!Array.isArray($res)) $res = [$res];
+    return $res[0] == 1;
+};
+mp.game2.graphics.beginScaleformMovieMethod ??= function (scaleform, methodName) {
+    let $res = natives.beginScaleformMovieMethod(scaleform, methodName);
+    if (!Array.isArray($res)) $res = [$res];
+    return $res[0] == 1;
+};
+mp.game2.graphics.pushScaleformMovieFunction ??= function (scaleform, methodName) {
+    let $res = natives.beginScaleformMovieMethod(scaleform, methodName);
+    if (!Array.isArray($res)) $res = [$res];
+    return $res[0] == 1;
+};
 mp.game2.graphics.beginScaleformMovieMethodOnFrontend ??= function (methodName) {
     let $res = natives.beginScaleformMovieMethodOnFrontend(methodName);
     if (!Array.isArray($res)) $res = [$res];
@@ -9908,6 +9931,12 @@ mp.game2.graphics.beginScaleformMovieMethodOnFrontendHeader ??= function (method
     let $res = natives.beginScaleformMovieMethodOnFrontendHeader(methodName);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
+};
+mp.game2.graphics.endScaleformMovieMethod ??= function () {
+    let $res = natives.endScaleformMovieMethod();
+};
+mp.game2.graphics.popScaleformMovieFunctionVoid ??= function () {
+    let $res = natives.endScaleformMovieMethod();
 };
 mp.game2.graphics.endScaleformMovieMethodReturnValue ??= function () {
     let $res = natives.endScaleformMovieMethodReturnValue();
@@ -13838,11 +13867,6 @@ mp.game2.misc.getAngleBetween2DVectors ??= function (x1, y1, x2, y2) {
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
-mp.game2.misc.getAngleBetween2dVectors ??= function (x1, y1, x2, y2) {
-    let $res = natives.getAngleBetween2dVectors(x1, y1, x2, y2);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
-};
 mp.game2.misc.getHeadingFromVector2D ??= function (dx, dy) {
     let $res = natives.getHeadingFromVector2d(dx, dy);
     if (!Array.isArray($res)) $res = [$res];
@@ -14942,26 +14966,6 @@ mp.game2.misc.unk._0xD10282B6E3751BA0 ??= function () {
 mp.game2.misc.unk._0x693478ACBD7F18E7 ??= function () {
     let $res = natives.useActiveCameraForTimeslicingCentre();
 };
-mp.Player.prototype.cellCamIsCharVisibleNoFaceCheck ??= function () {
-    let $res = natives.cellCamIsCharVisibleNoFaceCheck(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
-};
-mp.Ped.prototype.cellCamIsCharVisibleNoFaceCheck ??= function () {
-    let $res = natives.cellCamIsCharVisibleNoFaceCheck(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
-};
-mp.Object.prototype.cellCamIsCharVisibleNoFaceCheck ??= function () {
-    let $res = natives.cellCamIsCharVisibleNoFaceCheck(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
-};
-mp.Vehicle.prototype.cellCamIsCharVisibleNoFaceCheck ??= function () {
-    let $res = natives.cellCamIsCharVisibleNoFaceCheck(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
-};
 mp.game2.mobile ??= {};
 mp.game2.mobile.createPhone ??= function (phoneType) {
     let $res = natives.createMobilePhone(phoneType);
@@ -15049,6 +15053,11 @@ mp.game2.mobile.cellCamActivate ??= function (p0, p1) {
 };
 mp.game2.mobile.cellCamDisableThisFrame ??= function (toggle) {
     let $res = natives.cellCamActivateSelfieMode(toggle | 0);
+};
+mp.game2.mobile.cellCamIsCharVisibleNoFaceCheck ??= function (entity) {
+    let $res = natives.cellCamIsCharVisibleNoFaceCheck(entity);
+    if (!Array.isArray($res)) $res = [$res];
+    return $res[0] == 1;
 };
 mp.game2.mobile.getPhoneRenderId ??= function () {
     let $res = natives.getMobilePhoneRenderId(0);
@@ -18656,6 +18665,11 @@ mp.game2.network.facebookIsSendingData ??= function () {
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
+mp.game2.network.facebookDoUnkCheck ??= function () {
+    let $res = natives.facebookDidPostSucceed();
+    if (!Array.isArray($res)) $res = [$res];
+    return $res[0] == 1;
+};
 mp.game2.network.facebookIsAvailable ??= function () {
     let $res = natives.facebookCanPostToFacebook();
     if (!Array.isArray($res)) $res = [$res];
@@ -18760,6 +18774,14 @@ mp.game2.network.getRosPrivilege25 ??= function () {
     let $res = natives.networkHasRosPrivilegeSpecialEditionContent();
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
+};
+mp.game2.network.startUserContentPermissionsCheck ??= function () {
+    let $res = natives.networkStartUserContentPermissionsCheck(0);
+    if (!Array.isArray($res)) $res = [$res];
+    let $resObj = {};
+    $resObj.netHandle = $res[0];
+    $resObj.result = $res[0];
+    return $resObj;
 };
 mp.game2.network.hasGameBeenAltered ??= function () {
     let $res = natives.networkSkipRadioWarning();
@@ -33745,12 +33767,6 @@ mp.Vehicle.prototype.isStuckOnRoof ??= function () {
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
-mp.Vehicle.prototype.addUpsidedownCheck ??= function () {
-    let $res = natives.addVehicleUpsidedownCheck(this.handle);
-};
-mp.Vehicle.prototype.removeUpsidedownCheck ??= function () {
-    let $res = natives.removeVehicleUpsidedownCheck(this.handle);
-};
 mp.Vehicle.prototype.isStopped ??= function () {
     let $res = natives.isVehicleStopped(this.handle);
     if (!Array.isArray($res)) $res = [$res];
@@ -33959,9 +33975,6 @@ mp.Vehicle.prototype.isSirenAudioOn ??= function () {
 };
 mp.Vehicle.prototype.setStrong ??= function (toggle) {
     let $res = natives.setVehicleStrong(this.handle, toggle | 0);
-};
-mp.Vehicle.prototype.removeStuckCheck ??= function () {
-    let $res = natives.removeVehicleStuckCheck(this.handle);
 };
 mp.Vehicle.prototype.getColours ??= function () {
     let $res = natives.getVehicleColours(this.handle, 0, 0);
@@ -34206,11 +34219,6 @@ mp.Vehicle.prototype.setTrainSpeed ??= function (speed) {
 };
 mp.Vehicle.prototype.setTrainCruiseSpeed ??= function (speed) {
     let $res = natives.setTrainCruiseSpeed(this.handle, speed);
-};
-mp.Vehicle.prototype.doesHaveStuckVehicleCheck ??= function () {
-    let $res = natives.doesVehicleHaveStuckVehicleCheck(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
 };
 mp.Vehicle.prototype.getRecordingId ??= function (script) {
     let $res = natives.getVehicleRecordingId(this.handle, script);
@@ -35905,6 +35913,12 @@ mp.game2.vehicle.isStuckOnRoof ??= function (vehicle) {
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
+mp.game2.vehicle.addUpsidedownCheck ??= function (vehicle) {
+    let $res = natives.addVehicleUpsidedownCheck(vehicle);
+};
+mp.game2.vehicle.removeUpsidedownCheck ??= function (vehicle) {
+    let $res = natives.removeVehicleUpsidedownCheck(vehicle);
+};
 mp.game2.vehicle.isStopped ??= function (vehicle) {
     let $res = natives.isVehicleStopped(vehicle);
     if (!Array.isArray($res)) $res = [$res];
@@ -36173,6 +36187,12 @@ mp.game2.vehicle.isSirenAudioOn ??= function (vehicle) {
 mp.game2.vehicle.setStrong ??= function (vehicle, toggle) {
     let $res = natives.setVehicleStrong(vehicle, toggle | 0);
 };
+mp.game2.vehicle.removeStuckCheck ??= function (vehicle) {
+    let $res = natives.removeVehicleStuckCheck(vehicle);
+};
+mp.game2.vehicle.removeVehicleStuckCheck ??= function (vehicle) {
+    let $res = natives.removeVehicleStuckCheck(vehicle);
+};
 mp.game2.vehicle.getColours ??= function (vehicle) {
     let $res = natives.getVehicleColours(vehicle, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
@@ -36415,6 +36435,11 @@ mp.game2.vehicle.setRandomBoatsInMp ??= function (toggle) {
 };
 mp.game2.vehicle.setGarbageTrucks ??= function (toggle) {
     let $res = natives.setGarbageTrucks(toggle | 0);
+};
+mp.game2.vehicle.doesHaveStuckVehicleCheck ??= function (vehicle) {
+    let $res = natives.doesVehicleHaveStuckVehicleCheck(vehicle);
+    if (!Array.isArray($res)) $res = [$res];
+    return $res[0] == 1;
 };
 mp.game2.vehicle.getRecordingId ??= function (recording, script) {
     let $res = natives.getVehicleRecordingId(recording, script);

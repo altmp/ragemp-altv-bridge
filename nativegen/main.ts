@@ -263,7 +263,7 @@ function registerNativeFunction(id: Identifier, fn: FunctionExpression, invoker:
         else parsed.callArguments[i] = '0';
     }
 
-    nativeWrappers[id.name] = parsed;
+    nativeWrappers[cleanWrapperName(id.name)] = parsed;
 }
 
 function cleanWrapperName(wrapperName) {
