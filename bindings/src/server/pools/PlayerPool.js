@@ -5,7 +5,6 @@ import { argsToAlt } from 'shared/utils';
 
 export class PlayerPool extends Pool {
     broadcast(text) {
-        console.log('[BROADCAST]', text);
         InternalChat.broadcast(text);
     }
     
