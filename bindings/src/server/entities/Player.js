@@ -265,7 +265,7 @@ export class _Player extends _Entity {
     }
 
     notify(message) {
-        InternalChat.send(this.alt, '[NOTIFY]' + message);
+        alt.emitClientRaw(this.alt, mp.prefix + 'notify', message);
     }
 
     putIntoVehicle(vehicle, seat) {

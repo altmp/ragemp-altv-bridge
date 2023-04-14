@@ -914,3 +914,7 @@ alt.on('leftVehicle', (vehicle, seat) => {
 alt.on('netOwnerChange', (ent, oldOwner, newOwner) => {
     mp.events.dispatch('entityControllerChange', ent, toMp(newOwner));
 })
+
+alt.onServer(mp.prefix + 'notify', message => {
+    mp.game.graphics.notify(message);
+});
