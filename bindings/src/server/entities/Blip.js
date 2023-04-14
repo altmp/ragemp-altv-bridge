@@ -100,7 +100,8 @@ mp.Blip = _Blip;
 mp.blips = new Pool(() => alt.Blip.all, alt.Blip.getByID);
 
 mp.blips.new = function(sprite, position, options) {
-    const blip = new alt.PointBlip(position);
+    const blip = new alt.PointBlip(new alt.Vector3(position.x, position.y, position.z));
+
     blip.sprite = sprite;
     if ('name' in options) blip.name = options.name;
     if ('scale' in options) blip.scale = options.scale;
@@ -111,4 +112,5 @@ mp.blips.new = function(sprite, position, options) {
     if ('rotation' in options) blip.heading = options.rotation; // TODO: convert units?
     if ('dimension' in options) blip.dimension = options.dimension;
     // TODO: radius
+    return blip.mp;
 }
