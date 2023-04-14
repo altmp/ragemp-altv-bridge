@@ -4,6 +4,7 @@ import mp from '../../shared/mp.js';
 import { argsToAlt, deg2rad, rad2deg, vdist, vdist2 } from '../../shared/utils.js';
 import { _Entity } from './Entity.js';
 import { PlayerPool } from '../pools/PlayerPool';
+import { InternalChat } from '../../shared/chat.js';
 
 let bannedHwids = {};
 
@@ -15,7 +16,6 @@ export class _Player extends _Entity {
         super(alt);
         this.alt = alt;
         this.data = new SyncedMetaProxy(alt);
-        console.log('Construct player');
     }
 
     get serial() {
@@ -159,7 +159,6 @@ export class _Player extends _Entity {
     }
 
     call(evt, args = []) {
-        alt.log(evt);
         this.alt.emit(evt, ...argsToAlt(args));
     }
 
@@ -262,11 +261,11 @@ export class _Player extends _Entity {
     // TODO: playScenario
 
     outputChatBox(message) {
-        console.log('[CHAT]', this.alt.name, message);
+        InternalChat.send(this.alt, message);
     }
 
     notify(message) {
-        console.log('[NOTIFY]', this.alt.name, message);
+        InternalChat.send(this.alt, '[NOTIFY]' + message);
     }
 
     putIntoVehicle(vehicle, seat) {
@@ -291,6 +290,7 @@ export class _Player extends _Entity {
     // TODO: resetWeapon
 
     setClothes(component, drawable, texture, palette) {
+
         this.alt.setClothes(component, drawable, texture, palette);
     }
 

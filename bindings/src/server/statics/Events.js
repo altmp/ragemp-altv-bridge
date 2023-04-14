@@ -3,6 +3,7 @@ import mp from '../../shared/mp.js';
 import {argsToAlt, argsToMp, toAlt, toMp} from '../../shared/utils.js';
 import { Deferred } from '../../shared/Deferred';
 import {BaseEvents} from '../../shared/BaseEvents';
+import { InternalChat } from 'shared/chat';
 
 class _Events extends BaseEvents {
     #procHandlers = {}
@@ -77,10 +78,7 @@ class _Events extends BaseEvents {
     }
 
     addCommand(command, handler) {
-        alt.onClient(mp.prefix + 'cmd', (player, cmd, args) => {
-            if (cmd !== command) return;
-            handler(player, args.join(' '), ...args);
-        })
+        InternalChat.add(command, handler);
     }
 
     hasPendingRpc(player) {

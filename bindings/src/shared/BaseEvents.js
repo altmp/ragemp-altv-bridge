@@ -6,16 +6,13 @@ export class BaseEvents {
     #handlers = {}
 
     add(key, fn) {
-        alt.log('1 Handler added for', key);
         if (typeof key === 'object' && key) {
-            if(key != 'render')console.log('2 Handler added for', key);
             for (const [innerKey, innerValue] of Object.entries(key))
                 this.add(innerKey, innerValue);
             return;
         }
         if (!(key in this.#handlers)) this.#handlers[key] = new Set;
         this.#handlers[key].add(fn);
-        if(key != 'render')alt.log('3 Handler added for', key);
     }
 
     remove(key, fn) {
@@ -45,19 +42,19 @@ export class BaseEvents {
 
     /** @internal */
     dispatch(event, ...args) {
-        if(event != 'render')alt.log('Dispatching1', event);
+        if(event != 'render' && mp.debug)alt.log('Dispatching1', event);
         if (!(event in this.#handlers)) return;
         argsToMp(args);
-        if(event != 'render')alt.log('Dispatching2', event);
+        if(event != 'render' && mp.debug)alt.log('Dispatching2', event);
         for (const handler of this.#handlers[event]) handler(...args);
     }
 
     /** @internal */
     dispatchWithResults(event, ...args) {
-        if(event != 'render')alt.log('dispatchWithResults1', event);
+        if(event != 'render' && mp.debug)alt.log('dispatchWithResults1', event);
         if (!(event in this.#handlers)) return;
         argsToMp(args);
-        if(event != 'render')alt.log('dispatchWithResults2', event);
+        if(event != 'render' && mp.debug)alt.log('dispatchWithResults2', event);
         return this.#handlers[event].map(e => e(...args));
     }
 }

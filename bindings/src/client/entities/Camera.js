@@ -87,6 +87,5 @@ mp.cameras.new = function(name, pos, rot, fov) {
     }
 
     const handle = natives.createCamWithParams('DEFAULT_SCRIPTED_CAMERA', pos.x, pos.y, pos.z, rot.x, rot.y, rot.z, fov, false, 2);
-    console.log('newhandle', handle);
     return new _Camera(handle);
 }

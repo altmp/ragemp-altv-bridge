@@ -47,8 +47,3 @@ class _Console {
 }
 
 mp.console = new _Console;
-
-alt.on('consoleCommand', (cmd, ...args) => {
-    mp.events.dispatch('consoleCommand', cmd, args.join(' '), ...args);
-    alt.emitServerRaw(mp.prefix + 'cmd', cmd, args);
-});

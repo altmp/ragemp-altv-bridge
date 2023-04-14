@@ -53,7 +53,7 @@ class _Events extends BaseEvents {
     }
 
     call(event, ...args) {
-        console.log(event);
+        if(mp.debug)console.log(event);
         alt.emit(event, ...argsToAlt(args));
     }
 
@@ -62,12 +62,12 @@ class _Events extends BaseEvents {
 
     //#region RPC
     callRemote(event, ...args) {
-        console.log(event);
+        if(mp.debug)console.log(event);
         alt.emitServer(event, ...argsToAlt(args));
     }
 
     callRemoteUnreliable(event, ...args) {
-        console.log(event);
+        if(mp.debug)console.log(event);
         alt.emitServerUnreliable(event, ...argsToAlt(args));
     }
 

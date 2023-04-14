@@ -1,8 +1,10 @@
 import { Pool } from './Pool.js';
+import { InternalChat } from 'shared/chat.js';
 
 export class PlayerPool extends Pool {
     broadcast(text) {
         console.log('[BROADCAST]', text);
+        InternalChat.broadcast(text);
     }
     
     //mp.players.call(String eventName[, Array Arguments]);

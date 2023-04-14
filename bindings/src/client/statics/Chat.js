@@ -1,19 +1,26 @@
 import * as alt from 'alt-client';
 import mp from '../../shared/mp.js';
+import { InternalChat } from '../../shared/chat.js';
 
 // TODO default chat bindings
 
 class _Chat {
-    activate() {
+    #chat;
+
+    activate(toggle) {
+        InternalChat.activate(toggle);
     }
 
-    push() {
+    push(msg) {
+        InternalChat.push(msg);
     }
 
     safeMode() {
+        return true;
     }
     
     show() {
+        
     }
 
     colors = true;
