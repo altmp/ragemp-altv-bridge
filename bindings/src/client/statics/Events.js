@@ -118,3 +118,4 @@ class _Events extends BaseEvents {
 }
 
 mp.events = new _Events;
+mp._events = new _Events;
