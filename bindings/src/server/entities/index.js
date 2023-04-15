@@ -6,6 +6,7 @@ import './Colshape.js';
 import './Checkpoint.js';
 import './Blip.js';
 import './Marker.js';
+import './Object.js';
 import { _Label } from  './Label.js';
 import { VirtualEntityID } from '../../shared/VirtualEntityID';
 

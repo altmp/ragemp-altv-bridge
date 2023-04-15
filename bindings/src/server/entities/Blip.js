@@ -1,7 +1,7 @@
 import * as alt from 'alt-server';
 import { SyncedMetaProxy } from '../../shared/meta.js';
 import mp from '../../shared/mp.js';
-import { deg2rad, rad2deg, vdist, vdist2 } from '../../shared/utils.js';
+import {mpDimensionToAlt, deg2rad, rad2deg, vdist, vdist2} from '../../shared/utils.js';
 import { _Entity } from './Entity.js';
 import { _WorldObject } from './WorldObject.js';
 import { Pool } from '../pools/Pool';
@@ -110,7 +110,7 @@ mp.blips.new = function(sprite, position, options) {
     // TODO: drawDistance?
     if ('shortRange' in options) blip.shortRange = options.shortRange;
     if ('rotation' in options) blip.heading = options.rotation; // TODO: convert units?
-    if ('dimension' in options) blip.dimension = options.dimension;
+    if ('dimension' in options) blip.dimension = mpDimensionToAlt(options.dimension);
     // TODO: radius
     return blip.mp;
 }

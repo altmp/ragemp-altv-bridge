@@ -1,4 +1,4 @@
-import { vdist2 } from '../shared/utils';
+import {mpDimensionToAlt, vdist2} from '../shared/utils';
 
 export class SharedPool {
     #getter;
@@ -41,6 +41,7 @@ export class SharedPool {
     }
 
     toArrayInRange(pos, range, dimension) {
+        dimension = mpDimensionToAlt(dimension);
         const hasDimension = dimension != null;
         range = range ** 2;
         let arr = this.#getter();
@@ -49,10 +50,12 @@ export class SharedPool {
     }
 
     forEachInDimension(dimension, fn) {
+        dimension = mpDimensionToAlt(dimension);
         this.#getter().filter(e => e.dimension == dimension).forEach(e => fn(e.mp, e.id));
     }
 
     forEachInRange(pos, range, dimension, fn) {
+        dimension = mpDimensionToAlt(dimension);
         const hasDimension = !!fn;
         if (!fn) fn = dimension;
         range = range ** 2;
@@ -75,6 +78,7 @@ export class SharedPool {
     }
 
     getClosestInDimension(pos, dimension, limit) {
+        dimension = mpDimensionToAlt(dimension);
         const arr = this.#getter().filter(e => e.dimension == dimension);
         for (let i = 0; i < arr.length; i++) {
             const e = arr[i];

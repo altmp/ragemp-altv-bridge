@@ -16,23 +16,49 @@ export const vdist = (v1, v2, useZ = true) => {
     return Math.sqrt(vdist2(v1, v2, useZ));
 }
 
-export const toMp = (value) => {
-    if (typeof value === 'object' && value instanceof alt.BaseObject && value.mp) {
-        return value.mp;
+export const toMp = (obj) => {
+    if (typeof obj === 'object') {
+        if (obj instanceof alt.BaseObject && obj.mp) {
+            return obj.mp;
+        }
+
+        if (Array.isArray(obj)) {
+            return obj.map(toMp);
+        }
+
+        const newObj = {};
+        for (const key of Object.keys(obj)) {
+            newObj[key] = toMp(obj[key]);
+        }
+        return newObj;
     }
 
-    return value;
+    return obj;
 }
 
-export const toAlt = (value) => {
-    if (typeof value === 'object' && value?.isMpWrapper && value.alt) {
-        return value.alt;
+export const toAlt = (obj) => {
+    if (typeof obj === 'object') {
+        if (obj?.isMpWrapper && obj.alt) {
+            if (obj.alt instanceof alt.Blip) return {};
+            return obj.alt;
+        }
+
+        if (Array.isArray(obj)) {
+            return obj.map(toAlt);
+        }
+
+        const newObj = {};
+        for (const key of Object.keys(obj)) {
+            newObj[key] = toAlt(obj[key]);
+        }
+        return newObj;
     }
 
-    return value;
+    return obj;
 }
 
 export const argsToMp = (args) => {
+    if (!args || !Array.isArray(args)) return [];
     for (let i = 0; i < args.length; i++) {
         args[i] = toMp(args[i]);
     }
@@ -40,6 +66,7 @@ export const argsToMp = (args) => {
 }
 
 export const argsToAlt = (args) => {
+    if (!args || !Array.isArray(args)) return [];
     for (let i = 0; i < args.length; i++) {
         args[i] = toAlt(args[i]);
     }
@@ -57,3 +84,14 @@ export const rotToDir = (rot) => {
 
 export const rad2deg = 180 / Math.PI;
 export const deg2rad = Math.PI / 180;
+
+export const mpDimensionToAlt = (mpDimension) => {
+    if (mpDimension === -1) return -2147483648;
+    if (mpDimension < 0) throw new Error('Invalid dimension');
+    return mpDimension;
+}
+
+export const altDimensionToMp = (altDimension) => {
+    if (altDimension < 0) return -1;
+    return altDimension;
+}

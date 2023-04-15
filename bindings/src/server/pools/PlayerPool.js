@@ -1,7 +1,7 @@
 import alt from 'alt-server';
 import { Pool } from './Pool.js';
 import { InternalChat } from 'shared/DefaultChat.js';
-import { argsToAlt } from 'shared/utils';
+import {argsToAlt, mpDimensionToAlt} from 'shared/utils';
 
 export class PlayerPool extends Pool {
     broadcast(text) {
@@ -19,9 +19,14 @@ export class PlayerPool extends Pool {
     }
 
     // todo: callInRange(pos, range, dimension, event, ...args)
-    callInRange(pos, range, event, ...args) {
+    callInRange(pos, range, event, args) {
         const rangeSquared = range ** 2;
         alt.emitClient(alt.Player.all.filter(e => e.pos.distanceToSquared(pos) <= rangeSquared), event, ...argsToAlt(args));
+    }
+
+    callInDimension(dimension, event, args) {
+        dimension = mpDimensionToAlt(dimension);
+        alt.emitClient(alt.Player.all.filter(e => e.dimension === dimension), event, ...argsToAlt(args));
     }
     /*
     broadcastInDimension(dimension, text){}

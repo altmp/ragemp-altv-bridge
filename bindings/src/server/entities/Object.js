@@ -1,8 +1,7 @@
 import mp from '../../shared/mp';
 import * as alt from 'alt-server';
 import {_Entity} from './Entity';
-import {Pool} from '../Pool';
-import * as natives from '@altv/types-natives';
+import {Pool} from '../pools/Pool';
 
 export class _Object extends _Entity {
 
@@ -47,14 +46,17 @@ export class _Object extends _Entity {
     // TODO: streaming range
 }
 
+mp.Object = _Object;
 
-mp.objects = new Pool(() => alt.Object.all, alt.Object.getByID, () => alt.Object.all.length);
+Object.defineProperty(alt.NetworkObject.prototype, 'mp', {
+    get() {
+        return this._mp ??= new _Object(this);
+    }
+});
+
+mp.objects = new Pool(() => alt.NetworkObject.all, alt.NetworkObject.getByID, () => alt.NetworkObject.all.length);
 
 mp.objects.new = (model, position, params) => {
-    const obj = new alt.Object(model, position, params.rotation ?? alt.Vector3.zero, true, true);
-    natives.freezeEntityPosition(obj, true);
-    if ('alpha' in params) obj.alpha = params.alpha;
-    // TODO: dimension
-
+    const obj = new alt.NetworkObject(model, position, params.rotation ?? alt.Vector3.zero, params.alpha ?? 0, 100);
     return obj.mp;
 }

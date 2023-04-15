@@ -1,5 +1,5 @@
 import * as alt from 'alt-server';
-import {toAlt, toMp, vdist, vdist2} from '../../shared/utils';
+import {altDimensionToMp, mpDimensionToAlt, toAlt, toMp, vdist, vdist2} from '../../shared/utils';
 import { _BaseObject } from './BaseObject';
 
 export class _WorldObject extends _BaseObject {
@@ -37,11 +37,11 @@ export class _WorldObject extends _BaseObject {
     }
 
     get dimension() {
-        return this.alt.dimension;
+        return altDimensionToMp(this.alt.dimension);
     }
 
     set dimension(value) {
-        this.alt.dimension = value;
+        this.alt.dimension = mpDimensionToAlt(value);
     }
 
     get id() {

@@ -1,7 +1,7 @@
 import * as alt from 'alt-server';
 import { SyncedMetaProxy } from '../../shared/meta.js';
 import mp from '../../shared/mp.js';
-import { deg2rad, rad2deg, vdist, vdist2 } from '../../shared/utils.js';
+import {deg2rad, mpDimensionToAlt, rad2deg, vdist, vdist2} from '../../shared/utils.js';
 import { _Entity } from './Entity.js';
 import { Pool } from '../pools/Pool';
 
@@ -282,6 +282,8 @@ mp.Vehicle = _Vehicle;
 mp.vehicles = new Pool(() => alt.Vehicle.all, alt.Vehicle.getByID);
 
 mp.vehicles.new = function(model, position, options = {}) {
+    const info = alt.getVehicleModelInfoByHash(model);
+    if (!info || !info.type) model = alt.hash('kuruma');
     const heading = options?.heading ?? 0;
     const veh = new alt.Vehicle(model, position, new alt.Vector3(0, 0, heading * deg2rad));
     if (veh.modKitsCount > 0) veh.modKit = 1;
@@ -289,7 +291,7 @@ mp.vehicles.new = function(model, position, options = {}) {
     // TODO: alpha
     if ('locked' in options) veh.mp.locked = options.locked;
     if ('engine' in options) veh.engineOn = options.engine;
-    if ('dimension' in options) veh.dimension = options.dimension;
+    if ('dimension' in options) veh.dimension = mpDimensionToAlt(options.dimension);
     if ('color' in options) {
         veh.customPrimaryColor = new alt.RGBA(options.color[0]);
         veh.customSecondaryColor = new alt.RGBA(options.color[1]);

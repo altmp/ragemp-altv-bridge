@@ -3,7 +3,7 @@ import mp from '../../shared/mp.js';
 import { Pool } from '../Pool.js';
 import { _WorldObject } from './WorldObject.js';
 import { _Entity } from './Entity';
-import { deg2rad } from 'shared/utils';
+import {mpDimensionToAlt, deg2rad} from 'shared/utils';
 
 export class _Marker extends _Entity {
     /** @param {alt.Marker} alt */
@@ -66,7 +66,7 @@ mp.markers.new = function(type, position, scale, options) {
     if ('direction' in options) marker.dir = new alt.Vector3(options.direction.x, options.direction.y, options.direction.z);
     if ('rotation' in options) marker.rot = new alt.Vector3(options.rotation.x * deg2rad, options.rotation.y * deg2rad, options.rotation.z * deg2rad);
     if ('visible' in options) marker.visible = options.visible;
-    if ('dimension' in options) marker.dimension = options.dimension;
+    if ('dimension' in options) marker.dimension = mpDimensionToAlt(options.dimension);
     marker.scale = new alt.Vector3(scale, scale, scale);
 }
 

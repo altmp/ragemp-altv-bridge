@@ -5,6 +5,7 @@ import { _BaseObject } from './BaseObject.js';
 
 function transformUrl(url) {
     if (url.startsWith('package://')) return 'http://resource/' + url.substring(10);
+    if (url.startsWith('http://package/')) return 'http://resource/' + url.substring(15);
     return url;
 }
 

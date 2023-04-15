@@ -43,7 +43,7 @@ export class _Label extends _Entity {
         this.#color = value;
         this.alt.setStreamSyncedMeta(mp.prefix + 'color', value);
     }
-    
+
     #font;
     get font() {
         return this.#font;
@@ -94,4 +94,6 @@ mp.labels.new = function(text, position, params) {
     ent.font = params.font ?? 4;
     ent.color = params.color ? new alt.RGBA(params.color) : alt.RGBA.white;
     ent.dimension = params.dimension ?? 0;
+
+    return ent;
 }

@@ -1,6 +1,10 @@
 /* global alt */
 const mp = {
-    prefix: globalThis.overrideBridgePrefix ?? '$bridge$',
+    prefix: globalThis.overrideBridgePrefix ?? '$bridge$'
+};
+
+mp.trigger = (event, ...args) => {
+    alt.emit(mp.prefix + 'event', event, ...args);
 };
 
 globalThis.mp = mp;

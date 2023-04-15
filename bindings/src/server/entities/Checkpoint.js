@@ -3,6 +3,7 @@ import * as alt from 'alt-server';
 import {_WorldObject} from './WorldObject';
 import {_Colshape} from './Colshape';
 import { Pool } from '../pools/Pool';
+import {mpDimensionToAlt} from '../../shared/utils';
 
 export class _Checkpoint extends _Colshape {
     /** @param {alt.Colshape} alt */
@@ -71,7 +72,7 @@ mp.checkpoints = new Pool(() => alt.Checkpoint.all, alt.Checkpoint.getByID, () =
 mp.checkpoints.new = function(type, position, radius, params = {}) {
     const checkpoint = new alt.Checkpoint(type, position, radius, 100, params.color ? new alt.RGBA(params.color) : alt.RGBA.white)
     if ('visible' in params) checkpoint.mp.visible = params.visible;
-    if ('dimension' in params) checkpoint.dimension = params.dimension;
+    if ('dimension' in params) checkpoint.dimension = mpDimensionToAlt(params.dimension);
     if ('direction' in params) checkpoint.nextPos = params.direction;
     return checkpoint.mp;
 }
