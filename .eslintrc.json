@@ -23,6 +23,7 @@
     "ignorePatterns": [
         "*.ts",
         "**/dist/*",
+        "dump/*",
         "bindings/src/client/natives.js"
     ]
 }
