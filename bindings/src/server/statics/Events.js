@@ -39,6 +39,12 @@ class _Events extends BaseEvents {
         })
     }
 
+    addLocal(event, fn) {
+        alt.on(event, (...args) => {
+            fn(...argsToMp(args));
+        });
+    }
+
     /** @internal */
     async dispatchRemoteProc(altPlayer, event, id, ...args) {
         const handler = this.#procHandlers[event];

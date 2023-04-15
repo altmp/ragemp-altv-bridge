@@ -7,7 +7,7 @@ export class PlayerPool extends Pool {
     broadcast(text) {
         InternalChat.broadcast(text);
     }
-    
+
     //mp.players.call(String eventName[, Array Arguments]);
     //mp.players.call(Array players, String eventName[, Array Arguments]);
     call(arg1, args1 = [], args2 = []) {
@@ -18,6 +18,11 @@ export class PlayerPool extends Pool {
         }
     }
 
+    // todo: callInRange(pos, range, dimension, event, ...args)
+    callInRange(pos, range, event, ...args) {
+        const rangeSquared = range ** 2;
+        alt.emitClient(alt.Player.all.filter(e => e.pos.distanceToSquared(pos) <= rangeSquared), event, ...argsToAlt(args));
+    }
     /*
     broadcastInDimension(dimension, text){}
     broadcastInRange(position, range, [dimension], text){}

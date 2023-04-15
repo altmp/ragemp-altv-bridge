@@ -5,8 +5,8 @@ import { Deferred } from '../../shared/Deferred';
 import {BaseEvents} from '../../shared/BaseEvents';
 
 class _Events extends BaseEvents {
-    #procHandlers = {}
-    #rpcId = 0;
+    procHandlers = {}
+    rpcId = 0;
     __pendingRpc = {}
 
     constructor() {
@@ -60,7 +60,7 @@ class _Events extends BaseEvents {
     callLocal = this.call;
     fire = this.call;
 
-    //#region RPC
+    //region RPC
     callRemote(event, ...args) {
         if(mp.debug)console.log(event);
         alt.emitServer(event, ...argsToAlt(args));
@@ -72,7 +72,7 @@ class _Events extends BaseEvents {
     }
 
     callRemoteProc(event, ...args) {
-        const id = this.#rpcId++;
+        const id = this.rpcId++;
         const deferred = new Deferred();
         this.__pendingRpc[id] = deferred;
         alt.emitServer(mp.prefix + 'call', event, id, ...argsToAlt(args));
@@ -84,7 +84,7 @@ class _Events extends BaseEvents {
     }
 
     async dispatchRemoteProc(event, id, ...args) {
-        const handler = this.#procHandlers[event];
+        const handler = this.procHandlers[event];
         if (!handler) return alt.emitServer(mp.prefix + 'replError', id, 'RPC not found');
         try {
             const result = await handler(...argsToMp(args));
@@ -95,7 +95,7 @@ class _Events extends BaseEvents {
     }
 
     addProc(event, handler) {
-        this.#procHandlers[event] = handler;
+        this.procHandlers[event] = handler;
     }
 
     hasPendingProc() {
@@ -114,7 +114,7 @@ class _Events extends BaseEvents {
         }
         this.__pendingRpc = {};
     }
-    //#endregion
+    //endregion
 }
 
 mp.events = new _Events;
