@@ -56,6 +56,10 @@ export class _Object extends _Entity {
     set hidden(value) {
         natives.setEntityVisible(this.alt, !value, false);
     }
+
+    get setNoCollision() {
+        return this.setNoCollisionEntity;
+    }
 }
 
 mp.Object = _Object;
@@ -67,7 +71,14 @@ Object.defineProperty(alt.Object.prototype, 'mp', {
     }
 });
 
-mp.objects = new Pool(() => alt.Object.all, () => alt.Object.streamedIn, alt.Object.getByID, () => alt.Object.all.length);
+Object.defineProperty(alt.NetworkObject.prototype, 'mp', {
+    get() {
+        return this._mp ??= new _Object(this);
+    }
+});
+
+// TODO: streamedIn
+mp.objects = new Pool(() => alt.Object.all, () => [], () => null, () => alt.Object.all.length);
 
 mp.objects.atRemoteId = function(id) {
     return alt.Object.getByRemoteID(id)?.mp ?? null;
@@ -78,6 +89,8 @@ mp.objects.atHandle = function(handle) {
 }
 
 mp.objects.new = (model, position, params) => {
+    console.log('Spawning model ' + model);
+    if (!natives.isModelValid(model)) model = alt.hash('prop_ecola_can');
     const obj = new alt.Object(model, position, params.rotation ?? alt.Vector3.zero, true, true);
     natives.freezeEntityPosition(obj, true);
     if ('alpha' in params) obj.alpha = params.alpha;

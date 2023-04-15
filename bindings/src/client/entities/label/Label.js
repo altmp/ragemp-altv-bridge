@@ -17,6 +17,8 @@ function updateCache() {
 }
 
 export class _Label extends _VirtualEntityBase {
+    #los;
+
     /** @param {alt.VirtualEntity} alt */
     constructor(alt) {
         super(alt);
@@ -26,7 +28,7 @@ export class _Label extends _VirtualEntityBase {
         updateCache();
         this.updateData();
     }
-    
+
     updateData() {
         for (const key of (this.alt.isRemote ? this.alt.getStreamSyncedMetaKeys() : this.alt.getMetaDataKeys())) {
             this.update(key, this.alt.isRemote ? this.alt.getStreamSyncedMeta(key) : this.alt.getMeta(key));
@@ -69,6 +71,11 @@ export class _Label extends _VirtualEntityBase {
         else this.alt.setMeta(key, value);
     }
 
+    hasVariable(key) {
+        if (this.isRemote) return this.alt.hasStreamSyncedMeta(key);
+        return this.alt.hasMeta(key);
+    }
+
     get color() {
         return this.renderer.color.toArray();
     }
@@ -95,11 +102,11 @@ export class _Label extends _VirtualEntityBase {
     }
 
     get los() {
-        return this.los;
+        return this.#los;
     }
 
     set los(value) {
-        this.los = value;
+        this.#los = value;
     }
 
     get text() {
@@ -139,6 +146,17 @@ mp.labels.atRemoteId = function (id) {
     return ent.mp;
 }
 
-mp.labels.new = (text, pos, params) => {
-    // TODO
+const group = new alt.VirtualEntityGroup(40);
+
+mp.labels.new = (text, position, params) => {
+    const virtualEnt = new alt.VirtualEntity(group, position, params.drawDistance ?? 30);
+    virtualEnt.setMeta(mp.prefix + 'type', VirtualEntityID.Label);
+    const ent = virtualEnt.mp;
+    ent.text = text;
+    ent.los = params.los ?? false;
+    ent.font = params.font ?? 4;
+    ent.color = params.color ? new alt.RGBA(params.color) : alt.RGBA.white;
+    ent.dimension = params.dimension ?? 0;
+
+    return ent;
 }

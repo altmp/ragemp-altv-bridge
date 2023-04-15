@@ -3,6 +3,7 @@ import * as natives from 'natives';
 import mp from '../../shared/mp.js';
 import { Pool } from '../Pool.js';
 import { _Entity } from './Entity.js';
+import { _Colshape } from './Colshape';
 
 export class _Vehicle extends _Entity {
     alt;
@@ -145,7 +146,7 @@ export class _Vehicle extends _Entity {
     // TODO: getTrailer
 
     getPedUsingDoor(doord) {
-        return natives.getPedUsingVehicleDoor(this.alt, doord); 
+        return natives.getPedUsingVehicleDoor(this.alt, doord);
     }
 
     get setHalt() {
@@ -167,7 +168,7 @@ export class _Vehicle extends _Entity {
     get setDoorBreakable() {
         return this.setDoorCanBreak;
     }
-    
+
     get setPaintFade() {
         return this.setEnveffScale;
     }
@@ -199,7 +200,7 @@ export class _Vehicle extends _Entity {
     setMod(modType, modIndex, customTires) {
         return natives.setVehicleMod(this.alt, modType, modIndex, customTires);
     }
-    
+
     detachWindscreen() {
         return natives.popOutVehicleWindscreen(this.alt);
     }
@@ -283,7 +284,7 @@ export class _Vehicle extends _Entity {
     get setSirenSound() {
         return this.setHasMutedSirens;
     }
-    
+
     get setAllsSpawn() {
         return this.setUseCutsceneWheelCompression;
     }
@@ -315,7 +316,7 @@ export class _Vehicle extends _Entity {
     getVelocity() {
         return new mp.Vector3(natives.getEntityVelocity(this.alt));
     }
-    
+
     getAlpha() {
         return natives.getEntityAlpha(this.alt);
     }
@@ -374,10 +375,10 @@ export class _Vehicle extends _Entity {
     // #endregion
 }
 
-Object.defineProperty(alt.Vehicle.prototype, 'mp', { 
+Object.defineProperty(alt.Vehicle.prototype, 'mp', {
     get() {
         return this._mp ??= new _Vehicle(this);
-    } 
+    }
 });
 
 mp.Vehicle = _Vehicle;
@@ -390,4 +391,8 @@ mp.vehicles.atRemoteId = function(id) {
 
 mp.vehicles.atHandle = function(handle) {
     return alt.Vehicle.getByScriptID(handle)?.mp ?? null;
+}
+
+mp.vehicles.new = function() {
+    return new _Colshape({});
 }

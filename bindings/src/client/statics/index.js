@@ -9,3 +9,4 @@ import './Raycasting.js';
 import './Storage.js';
 import './System.js';
 import './Version.js';
+import './VoiceChat.js';

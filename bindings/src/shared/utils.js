@@ -17,7 +17,7 @@ export const vdist = (v1, v2, useZ = true) => {
 }
 
 export const toMp = (obj) => {
-    if (typeof obj === 'object') {
+    if (typeof obj === 'object' && obj) {
         if (obj instanceof alt.BaseObject && obj.mp) {
             return obj.mp;
         }
@@ -26,18 +26,20 @@ export const toMp = (obj) => {
             return obj.map(toMp);
         }
 
-        const newObj = {};
-        for (const key of Object.keys(obj)) {
-            newObj[key] = toMp(obj[key]);
+        if (obj.constructor && obj.constructor.name === 'Object') {
+            const newObj = {};
+            for (const key of Object.keys(obj)) {
+                newObj[key] = toMp(obj[key]);
+            }
+            return newObj;
         }
-        return newObj;
     }
 
     return obj;
 }
 
 export const toAlt = (obj) => {
-    if (typeof obj === 'object') {
+    if (typeof obj === 'object' && obj) {
         if (obj?.isMpWrapper && obj.alt) {
             if (obj.alt instanceof alt.Blip) return {};
             return obj.alt;
@@ -47,11 +49,13 @@ export const toAlt = (obj) => {
             return obj.map(toAlt);
         }
 
-        const newObj = {};
-        for (const key of Object.keys(obj)) {
-            newObj[key] = toAlt(obj[key]);
+        if (obj.constructor && obj.constructor.name === 'Object') {
+            const newObj = {};
+            for (const key of Object.keys(obj)) {
+                newObj[key] = toAlt(obj[key]);
+            }
+            return newObj;
         }
-        return newObj;
     }
 
     return obj;

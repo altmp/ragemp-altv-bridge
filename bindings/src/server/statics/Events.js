@@ -5,9 +5,8 @@ import { Deferred } from '../../shared/Deferred';
 import {BaseEvents} from '../../shared/BaseEvents';
 import { InternalChat } from 'shared/DefaultChat.js';
 
+let procHandlers = {}
 class _Events extends BaseEvents {
-    #procHandlers = {}
-    #cmdHandlers = {}
 
     constructor() {
         super();
@@ -48,7 +47,7 @@ class _Events extends BaseEvents {
 
     /** @internal */
     async dispatchRemoteProc(altPlayer, event, id, ...args) {
-        const handler = this.#procHandlers[event];
+        const handler = procHandlers[event];
         if (!handler) return altPlayer.emit(mp.prefix + 'replError', id, 'RPC not found');
         try {
             const result = await handler(toMp(altPlayer), ...argsToMp(args));
@@ -81,7 +80,7 @@ class _Events extends BaseEvents {
     fire = this.call
 
     addProc(event, handler) {
-        this.#procHandlers[event] = handler;
+        procHandlers[event] = handler;
     }
 
     addCommand(command, handler) {
@@ -111,4 +110,4 @@ class _Events extends BaseEvents {
 }
 
 mp.events = new _Events;
-mp._events = new _Events;
+mp._events = mp.events;

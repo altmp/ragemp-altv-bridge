@@ -37,6 +37,9 @@ export class _Browser extends _BaseObject {
         return this.alt.id;
     }
 
+    call(event, ...args) {
+        this.alt.emit(mp.prefix + 'event', event, ...args);
+    }
     // TODO: RPC (call, cancelPendingProc, hasPendingProc)
 
     execute(code) {

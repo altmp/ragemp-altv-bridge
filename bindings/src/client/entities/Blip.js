@@ -17,6 +17,10 @@ export class _Blip extends _WorldObject {
     get type() {
         return 'blip';
     }
+
+    setRotation(heading) {
+        this.alt.heading = heading;
+    }
 }
 
 Object.defineProperty(alt.Blip.prototype, 'mp', {
@@ -27,7 +31,11 @@ Object.defineProperty(alt.Blip.prototype, 'mp', {
 
 mp.Blip = _Blip;
 
-mp.blips = new Pool(() => alt.Blip.all, () => alt.Blip.all, alt.Blip.getByID);
+mp.blips = new Pool(() => alt.Blip.all, () => alt.Blip.all, () => null);
+
+mp.blips.atRemoteId = function(id) {
+    return null;
+}
 
 mp.blips.new = function(sprite, position, params) {
     const blip = new alt.PointBlip(position.x, position.y, position.z);
@@ -41,4 +49,5 @@ mp.blips.new = function(sprite, position, params) {
     if ('rotation' in params) blip.heading = params.rotation; // TODO: deg or rad
     // TODO: dimension
     // TODO: radius
+    return blip.mp;
 }

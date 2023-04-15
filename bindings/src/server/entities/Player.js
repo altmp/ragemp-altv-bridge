@@ -7,6 +7,7 @@ import { PlayerPool } from '../pools/PlayerPool';
 import { InternalChat } from '../../shared/DefaultChat.js';
 
 let bannedHwids = {};
+const ipRegex = /^::ffff:([0-9.]+)$/;
 
 export class _Player extends _Entity {
     alt;
@@ -41,6 +42,10 @@ export class _Player extends _Entity {
 
     get armour() {
         return this.alt.armour;
+    }
+
+    set armour(value) {
+        this.alt.armour = value;
     }
 
     get eyeColor() {
@@ -85,9 +90,15 @@ export class _Player extends _Entity {
         this.alt.health = value;
     }
 
-    // TODO: rgscId
+    get rgscId() {
+        return 0; // TODO
+    }
 
     get ip() {
+        const match = ipRegex.exec(this.alt.ip);
+        if(match) {
+            return match[1];
+        }
         return this.alt.ip;
     }
 
@@ -99,6 +110,10 @@ export class _Player extends _Entity {
 
     get name() {
         return this.alt.name;
+    }
+
+    set name(value) {
+        // TODO
     }
 
     // TODO: implement it in core
@@ -123,6 +138,11 @@ export class _Player extends _Entity {
     }
 
     // TODO: voiceListeners
+    get voiceListeners() {
+        return [];
+    }
+
+
 
     get weapon() {
         return this.alt.currentWeapon;
@@ -346,8 +366,13 @@ export class _Player extends _Entity {
             shape, skin, third);
     }
 
-    // TODO: enableVoiceTo
-    // TODO: disableVoiceTo
+    enableVoiceTo() {
+        console.warn('Voice methods are not supported');
+    }
+
+    disableVoiceTo() {
+        console.warn('Voice methods are not supported');
+    }
     // TODO: Weapons::clear
 
     destroy() {

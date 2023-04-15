@@ -2,8 +2,8 @@ import mp from './mp';
 import {argsToMp} from './utils';
 import * as alt from 'alt-shared';
 
+let handlers = {};
 export class BaseEvents {
-    handlers = {}
 
     add = (key, fn) => {
         if (typeof key === 'object' && key) {
@@ -11,8 +11,12 @@ export class BaseEvents {
                 this.add(innerKey, innerValue);
             return;
         }
-        if (!(key in this.handlers)) this.handlers[key] = new Set;
-        this.handlers[key].add(fn);
+        if (mp.debug) alt.log('Registering', key);
+        if (!(key in handlers)) {
+            if (mp.debug) alt.log('Registering2', key);
+            handlers[key] = new Set;
+        }
+        handlers[key].add(fn);
     }
 
     remove = (key, fn) => {
@@ -22,39 +26,39 @@ export class BaseEvents {
             return;
         }
 
-        if (key in this.handlers) {
-            if (!fn) this.handlers[key].clear();
-            else this.handlers[key].delete(fn);
+        if (key in handlers) {
+            if (!fn) handlers[key].clear();
+            else handlers[key].delete(fn);
         }
     }
 
     getAllOf = (key) => {
-        return key in this.handlers ? [...this.handlers[key].values()] : [];
+        return key in handlers ? [...handlers[key].values()] : [];
     }
 
     reset = () => {
-        this.handlers = {};
+        handlers = {};
     }
 
     hasHandlers = (event) => {
-        return !!this.handlers[event] && !!this.handlers[event].size;
+        return !!handlers[event] && !!handlers[event].size;
     }
 
     /** @internal */
     dispatch = (event, ...args) => {
-        if(event != 'render' && mp.debug)alt.log('Dispatching1', event);
-        if (!(event in this.handlers)) return;
+        if(event != 'render' && mp.debug)alt.log('Dispatching1', event, handlers[event] != null);
+        if (!(event in handlers)) return;
         argsToMp(args);
         if(event != 'render' && mp.debug)alt.log('Dispatching2', event);
-        for (const handler of this.handlers[event]) handler(...args);
+        for (const handler of handlers[event]) handler(...args);
     }
 
     /** @internal */
     dispatchWithResults = (event, ...args) => {
         if(event != 'render' && mp.debug)alt.log('dispatchWithResults1', event);
-        if (!(event in this.handlers)) return;
+        if (!(event in handlers)) return;
         argsToMp(args);
         if(event != 'render' && mp.debug)alt.log('dispatchWithResults2', event);
-        return this.handlers[event].map(e => e(...args));
+        return handlers[event].map(e => e(...args));
     }
 }

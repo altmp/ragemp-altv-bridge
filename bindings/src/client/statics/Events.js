@@ -4,10 +4,11 @@ import {argsToAlt, argsToMp, toAlt, toMp} from '../../shared/utils.js';
 import { Deferred } from '../../shared/Deferred';
 import {BaseEvents} from '../../shared/BaseEvents';
 
+let procHandlers = {}
+let rpcId = 0;
+let __pendingRpc = {}
+
 class _Events extends BaseEvents {
-    procHandlers = {}
-    rpcId = 0;
-    __pendingRpc = {}
 
     constructor() {
         super();
@@ -20,12 +21,12 @@ class _Events extends BaseEvents {
             this.dispatch(event, ...argsToMp(args));
         });
         alt.onServer(mp.prefix + 'repl', (id, res) => {
-            this.__pendingRpc[id].resolve(toMp(res));
-            delete this.__pendingRpc[id];
+            __pendingRpc[id].resolve(toMp(res));
+            delete __pendingRpc[id];
         });
         alt.onServer(mp.prefix + 'replError', (id, res) => {
-            this.__pendingRpc[id].reject(toMp(res));
-            delete this.__pendingRpc[id];
+            __pendingRpc[id].reject(toMp(res));
+            delete __pendingRpc[id];
         });
         alt.onServer(mp.prefix + 'call', (event, id, ...args) => {
             this.dispatchRemoteProc(event, id, ...args);
@@ -45,7 +46,7 @@ class _Events extends BaseEvents {
     addDataHandler(expectedKey, fn) {
         function handler(entity, key, newData, oldData) {
             if (key !== expectedKey) return;
-            fn(entity, newData, oldData);
+            fn(toMp(entity), newData, oldData);
         }
 
         alt.on('syncedMetaChange', handler);
@@ -53,7 +54,7 @@ class _Events extends BaseEvents {
     }
 
     call(event, ...args) {
-        if(mp.debug)console.log(event);
+        if (mp.debug) console.log('Emitting ' + event);
         alt.emit(event, ...argsToAlt(args));
     }
 
@@ -62,29 +63,30 @@ class _Events extends BaseEvents {
 
     //region RPC
     callRemote(event, ...args) {
-        if(mp.debug)console.log(event);
+        if (event == 'setChatPurge') console.log('БЛЯТЬ');
+        if(mp.debug)console.log('Emitting remote ' + event);
         alt.emitServer(event, ...argsToAlt(args));
     }
 
     callRemoteUnreliable(event, ...args) {
-        if(mp.debug)console.log(event);
+        if(mp.debug)console.log('Emitting remote unreliable ' + event);
         alt.emitServerUnreliable(event, ...argsToAlt(args));
     }
 
     callRemoteProc(event, ...args) {
-        const id = this.rpcId++;
+        const id = rpcId++;
         const deferred = new Deferred();
-        this.__pendingRpc[id] = deferred;
+        __pendingRpc[id] = deferred;
         alt.emitServer(mp.prefix + 'call', event, id, ...argsToAlt(args));
         setTimeout(() => {
             deferred.reject(new Error('Timed-out'));
-            delete this.__pendingRpc[id];
+            delete __pendingRpc[id];
         }, 30000);
         return deferred.promise;
     }
 
     async dispatchRemoteProc(event, id, ...args) {
-        const handler = this.procHandlers[event];
+        const handler = procHandlers[event];
         if (!handler) return alt.emitServer(mp.prefix + 'replError', id, 'RPC not found');
         try {
             const result = await handler(...argsToMp(args));
@@ -95,27 +97,27 @@ class _Events extends BaseEvents {
     }
 
     addProc(event, handler) {
-        this.procHandlers[event] = handler;
+        procHandlers[event] = handler;
     }
 
     hasPendingProc() {
-        return Object.keys(this.__pendingRpc).length > 0;
+        return Object.keys(__pendingRpc).length > 0;
     }
 
     cancelPendingProc(id) {
         if (id != null) {
-            this.__pendingRpc[id]?.reject(new Error('RPC was cancelled'));
-            delete this.__pendingRpc[id];
+            __pendingRpc[id]?.reject(new Error('RPC was cancelled'));
+            delete __pendingRpc[id];
             return;
         }
 
-        for (const [key, value] of Object.entries(this.__pendingRpc)) {
+        for (const [key, value] of Object.entries(__pendingRpc)) {
             value.reject(new Error('RPC was cancelled'));
         }
-        this.__pendingRpc = {};
+        __pendingRpc = {};
     }
     //endregion
 }
 
 mp.events = new _Events;
-mp._events = new _Events;
+mp._events = mp.events;

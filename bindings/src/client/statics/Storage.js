@@ -20,12 +20,16 @@ class _Storage {
 
     #data;
     get data() {
+        const obj = {};
         return this.#data ??= new Proxy({}, {
             get(_, key) {
+                if (typeof key != 'string') return obj[key];
                 return alt.LocalStorage.get(key);
             },
             set(_, key, value) {
+                if (typeof key != 'string') return;
                 alt.LocalStorage.set(key, value);
+                return true;
             }
         })
     }

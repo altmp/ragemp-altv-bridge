@@ -7,6 +7,8 @@ import './Marker.js';
 import './Browser.js';
 import './Camera.js';
 import './Object.js';
+import './Colshape.js';
+import './Ped.js';
 import { _Label } from './label/Label.js';
 import { VirtualEntityID } from '../../shared/VirtualEntityID';
 

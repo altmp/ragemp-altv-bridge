@@ -7,7 +7,6 @@ import { Pool } from '../Pool';
 const created = {};
 let list = [];
 let lastId = 0;
-let gameplayCam;
 
 class _Camera {
     #gameplay;
@@ -42,6 +41,11 @@ class _Camera {
     destroy() {
         natives.destroyCam(this.handle, false);
     }
+
+    setActive(value) {
+        natives.setCamActive(this.handle, value);
+        natives.renderScriptCams(true, false, 0, true, false, 0);
+    }
 }
 
 class _GameplayCamera extends _Camera {
@@ -59,9 +63,9 @@ class _GameplayCamera extends _Camera {
     }
 
     getRot() {
-        return natives.getGameplayCamRot();
+        return natives.getGameplayCamRot(2);
     }
-    
+
     getFov() {
         return natives.getGameplayCamFov();
     }
@@ -81,9 +85,11 @@ mp.Camera = _Camera;
 
 mp.cameras = new Pool(() => list, () => list, (id) => created[id]);
 
+mp.cameras.gameplay = new _GameplayCamera(natives.getRenderingCam())
+
 mp.cameras.new = function(name, pos, rot, fov) {
     if (name == 'gameplay') {
-        return gameplayCam ??= new _GameplayCamera(natives.getRenderingCam());
+        return mp.cameras.gameplay;
     }
 
     const handle = natives.createCamWithParams('DEFAULT_SCRIPTED_CAMERA', pos.x, pos.y, pos.z, rot.x, rot.y, rot.z, fov, false, 2);

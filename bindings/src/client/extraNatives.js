@@ -4,6 +4,7 @@ import mp from '../shared/mp.js';
 
 // #region Namespaces
 
+mp.game1 = mp.game;
 mp.game.gameplay = mp.game.misc;
 mp.game.ai = mp.game.task;
 mp.game.time = mp.game.clock;
@@ -129,5 +130,64 @@ mp.game.graphics.set2dLayer = mp.game.graphics.setScriptGfxDrawOrder;
 mp.game.graphics.drawScaleformMovie3d = mp.game.graphics.drawScaleformMovie3D;
 mp.game.graphics.drawDebugText2d = mp.game.graphics.drawDebugText2D;
 
+mp.game.graphics.setLightsState = function() {
+    // TODO
+}
+
+mp.game.weapon.setEnableLocalOutgoingDamage = function () {
+    // TODO
+}
+
+mp.game.gxt = {}
+
+mp.game.gxt.get = function (key) {
+    if (typeof key != 'string') key = String(key);
+    return alt.getGxtText(key) || natives.getFilenameForAudioConversation(key);
+}
+
+mp.game.gxt.getDefault = function (key) {
+    if (typeof key != 'string') key = String(key);
+    // TODO: implement in core
+    const oldValue = alt.getGxtText(key);
+    if (oldValue) alt.removeGxtText(key);
+    const newValue = natives.getFilenameForAudioConversation(key);
+    if (oldValue) alt.addGxtText(key, oldValue);
+    return newValue;
+}
+
+const keys = new Set;
+mp.game.gxt.set = function (key, value) {
+    if (typeof key != 'string') key = String(key);
+    alt.addGxtText(key, value);
+    keys.add(key);
+}
+
+mp.game.gxt.reset = function() {
+    for (const key of keys) {
+        alt.removeGxtText(key);
+    }
+    keys.clear();
+}
+
+Object.defineProperty(mp.game.gameplay, 'enableSnow', {
+    get() {
+        return false;
+    },
+    set(value) {
+        // TODO: enableSnow
+    }
+});
+
+mp.game.hud.getCurrentStreetNameString = () => {
+    const pos = alt.Player.local.pos;
+    const key = natives.getStreetNameAtCoord(pos.x, pos.y, pos.z, 0, 0);
+    return natives.getFilenameForAudioConversation(key);
+}
+
+mp.game.hud.getCurrentAreaNameString = () => {
+    const pos = alt.Player.local.pos;
+    const key = natives.getHashOfMapAreaAtCoords(pos.x, pos.y, pos.z);
+    return natives.getFilenameForAudioConversation(key);
+}
 
 //#endregion

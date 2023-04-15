@@ -28,6 +28,10 @@ export class _WorldObject extends _BaseObject {
         return toMp(this.#alt.getSyncedMeta(key));
     }
 
+    hasVariable(key) {
+        return this.#alt.hasSyncedMeta(key);
+    }
+
     dist(pos) {
         return vdist(this.alt.pos, pos);
     }

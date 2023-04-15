@@ -12,7 +12,7 @@ export class _Label extends _Entity {
     constructor(alt) {
         super(alt);
         this.alt = alt;
-        labels.add(this.alt);
+        labels.add(this);
         this.alt.setStreamSyncedMeta(mp.prefix + 'drawDistance', this.alt.streamingDistance);
         this.alt.setStreamSyncedMeta(mp.prefix + 'type', VirtualEntityID.Label);
     }
@@ -23,6 +23,10 @@ export class _Label extends _Entity {
 
     get getVariable() {
         return this.getStreamVariable;
+    }
+
+    get hasVariable() {
+        return this.hasStreamVariable;
     }
 
     get drawDistance() {

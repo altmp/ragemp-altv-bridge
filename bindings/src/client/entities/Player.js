@@ -26,6 +26,10 @@ export class _Player extends _Entity {
         return new mp.Vector3(this.alt.pos);
     }
 
+    set position(value) {
+        natives.setEntityCoordsNoOffset(this.alt, value.x, value.y, value.z, false, false, false);
+    }
+
     get vehicle() {
         return this.alt.vehicle?.mp ?? null;
     }
@@ -53,12 +57,70 @@ export class _Player extends _Entity {
 
     // TODO: isTypingInTextChat
     // TODO: isPositionFrozen
-    // TODO: voiceAutoVolume
-    // TODO: voice3d
+    voiceAutoVolume = false;
+    voice3d = false;
 
-    // TODO: removeVoiceFx
-    // TODO: resetVoiceFx
-    // TODO: setVoiceFx*
+    removeVoiceFx() {
+        console.warn('Voice methods are not supported');
+    }
+
+    resetVoiceFx() {
+        console.warn('Voice methods are not supported');
+    }
+
+    setVoiceFx() {
+		console.warn('Voice methods are not supported');
+	}
+
+    setVoiceFxBQF() {
+		console.warn('Voice methods are not supported');
+	}
+
+    setVoiceFxChorus() {
+		console.warn('Voice methods are not supported');
+	}
+
+    setVoiceFxCompressor() {
+		console.warn('Voice methods are not supported');
+	}
+
+    setVoiceFxDistortion() {
+		console.warn('Voice methods are not supported');
+	}
+
+    setVoiceFxEcho() {
+		console.warn('Voice methods are not supported');
+	}
+
+    setVoiceFxFlanger() {
+		console.warn('Voice methods are not supported');
+	}
+
+    setVoiceFxGargle() {
+		console.warn('Voice methods are not supported');
+	}
+
+    setVoiceFxI3DL2Reverb() {
+		console.warn('Voice methods are not supported');
+	}
+
+    setVoiceFxParamEq() {
+		console.warn('Voice methods are not supported');
+	}
+
+    setVoiceFxPeakEq() {
+		console.warn('Voice methods are not supported');
+	}
+
+    setVoiceFxReverb() {
+		console.warn('Voice methods are not supported');
+	}
+
+    setVoiceFxVolume() {
+		console.warn('Voice methods are not supported');
+	}
+
+
 
     get type() {
         return 'player';
@@ -88,7 +150,7 @@ export class _Player extends _Entity {
     setFaceFeature(index, feature) {
         natives.setPedMicroMorph(this.alt, index, feature);
     }
-    
+
     setHeadOverlay(...arr) {
         natives.setPedHeadOverlay(this.alt, ...arr);
     }
@@ -881,6 +943,9 @@ mp.players.atHandle = function(handle) {
     return alt.Player.getByScriptID(handle)?.mp ?? null;
 }
 
+mp.players.atRemoteId = function(remoteId) {
+    return alt.Player.getByID(remoteId)?.mp ?? null;
+}
 alt.onServer(mp.prefix + 'dead', (weapon, killer) => {
     mp.events.dispatch('playerDeath', alt.Player.local.mp, weapon, toMp(killer));
 });

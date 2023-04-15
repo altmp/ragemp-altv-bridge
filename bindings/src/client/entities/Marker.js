@@ -57,7 +57,7 @@ Object.defineProperty(alt.Marker.prototype, 'mp', {
 
 mp.Marker = _Marker;
 
-mp.markers = new Pool(() => alt.Marker.all, alt.Marker.getByID);
+mp.markers = new Pool(() => alt.Marker.all, () => null);
 
 mp.markers.new = function(type, position, scale, options) {
     let color = new alt.RGBA(0, 0, 0, 255);

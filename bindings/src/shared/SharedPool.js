@@ -16,7 +16,7 @@ export class SharedPool {
     }
 
     exists(id) {
-        if (typeof id === 'object' && id) return id.exists ?? id?.alt.exists;
+        if (typeof id === 'object' && id) return id.valid ?? id?.alt?.valid ?? false;
         return this.#idGetter(id) != null;
     }
 

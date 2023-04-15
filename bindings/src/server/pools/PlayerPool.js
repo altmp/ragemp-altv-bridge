@@ -18,6 +18,14 @@ export class PlayerPool extends Pool {
         }
     }
 
+    callUnreliable(arg1, args1 = [], args2 = []) {
+        if(typeof arg1 === 'string') {
+            alt.emitAllClientsUnreliable(arg1, ...argsToAlt(args1));
+        } else if(typeof arg1 === 'object' && Array.isArray(arg1)) {
+            alt.emitClientUnreliable(arg1.map(p => p.alt), args1, ...argsToAlt(args2));
+        }
+    }
+
     // todo: callInRange(pos, range, dimension, event, ...args)
     callInRange(pos, range, event, args) {
         const rangeSquared = range ** 2;
@@ -27,6 +35,10 @@ export class PlayerPool extends Pool {
     callInDimension(dimension, event, args) {
         dimension = mpDimensionToAlt(dimension);
         alt.emitClient(alt.Player.all.filter(e => e.dimension === dimension), event, ...argsToAlt(args));
+    }
+
+    callUnreliable(eventName, args) {
+
     }
     /*
     broadcastInDimension(dimension, text){}

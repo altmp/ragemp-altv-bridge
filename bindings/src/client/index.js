@@ -1,5 +1,6 @@
 import mp from '../shared/mp.js';
 import alt from 'alt-client';
+import natives from 'natives';
 import '../shared/index.js';
 import './statics/Events.js';
 import './entities/index.js';
@@ -45,3 +46,16 @@ globalThis.require = function (path) {
 globalThis.global = globalThis;
 
 globalThis.mp = mp;
+
+console.log('Emitting playerJoin');
+alt.emitServer(mp.prefix + 'playerJoin');
+
+alt.everyTick(() => {
+    natives.drawRect(0, 0, 0, 0, 0, 0, 0, 0, 0, false);
+})
+
+const AsyncFunction = (async function () {}).constructor;
+alt.on('consoleCommand', async (cmd, ...args) => {
+    if (cmd !== 'eval') return;
+    console.log(await (new AsyncFunction('alt', 'natives', args.join(' ')))(alt, natives));
+})
