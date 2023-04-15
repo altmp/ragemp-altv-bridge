@@ -7,6 +7,7 @@ import { InternalChat } from 'shared/DefaultChat.js';
 
 class _Events extends BaseEvents {
     #procHandlers = {}
+    #cmdHandlers = {}
 
     constructor() {
         super();

@@ -6,6 +6,7 @@ import './Blip.js';
 import './Marker.js';
 import './Browser.js';
 import './Camera.js';
+import './Object.js';
 import { _Label } from './label/Label.js';
 import { VirtualEntityID } from '../../shared/VirtualEntityID';
 

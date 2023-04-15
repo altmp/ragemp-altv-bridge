@@ -1,14 +1,15 @@
 import * as natives from 'natives';
+import * as alt from 'alt-client';
 import mp from '../shared/mp.js';
 
 // #region Namespaces
 
-mp.game2.gameplay = mp.game2.misc;
-mp.game2.ai = mp.game2.task;
-mp.game2.time = mp.game2.clock;
-mp.game2.rope = mp.game2.physics;
-mp.game2.controls = mp.game2.pad;
-mp.game2.ui = mp.game2.hud;
+mp.game.gameplay = mp.game.misc;
+mp.game.ai = mp.game.task;
+mp.game.time = mp.game.clock;
+mp.game.rope = mp.game.physics;
+mp.game.controls = mp.game.pad;
+mp.game.ui = mp.game.hud;
 mp.gui = {};
 
 // #endregion
@@ -37,7 +38,7 @@ function joaat(key) {
     return hash >>> 0;
 }
 
-mp.game2.misc.getHashKey = joaat;
+mp.game.misc.getHashKey = joaat;
 mp.game.joaat = joaat;
 
 // #endregion
@@ -55,9 +56,9 @@ function vdist2(x1, y1, z1, x2, y2, z2) {
     const dz = z1 - z2;
     return (dx * dx + dy * dy + dz * dz);
 }
-mp.game2.system.vdist = vdist;
-mp.game2.system.vdist2 = vdist2;
-mp.game2.misc.getDistanceBetweenCoords = (x1, y1, z1, x2, y2, z2, useZ) => {
+mp.game.system.vdist = vdist;
+mp.game.system.vdist2 = vdist2;
+mp.game.misc.getDistanceBetweenCoords = (x1, y1, z1, x2, y2, z2, useZ) => {
     if (useZ) return vdist(x1, y1, z1, x2, y2, z2);
     else return vdist(x1, y1, 0, x2, y2, 0);
 };
@@ -102,3 +103,31 @@ mp.game.graphics.notify = (message) => {
     natives.endTextCommandThefeedPostMessagetextTu('', '', false, 0, '', '', 1)
     return natives.endTextCommandThefeedPostTicker(false, true)
 }
+
+//#region Renamed natives
+
+mp.game.audio.playSoundHash = mp.game.audio.playSound;
+mp.game.cam.setTimeIdleDrop = mp.game.cam.unk._0x9DFE13ECDC1EC196;
+mp.game.cam.resetClockTime = () => natives.setClockTime(12, 0, 0);
+// TODO: setLightsState, resetLightsState, getLightsState
+
+mp.game.graphics.screen2dToWorld3d = (pos) => {
+    return alt.screenToWorld(pos);
+}
+
+mp.game.graphics.world3dToScreen2d = (pos) => {
+    return alt.worldToScreen(pos);
+}
+mp.game.graphics.drawScaleformMovie3dNonAdditive = mp.game.graphics.drawScaleformMovie3DSolid;
+
+mp.game.graphics.drawText3d = mp.game.graphics.drawText = (text, pos, data = {}) => {
+    alt.Utils.drawText3dThisFrame(text, pos, data.font, data.scale, data.color ? new alt.RGBA(data.color) : undefined, data.outline, false);
+}
+
+mp.game.graphics.setParticleFxBloodScale = mp.game.graphics.unk._0x908311265D42A820;
+mp.game.graphics.set2dLayer = mp.game.graphics.setScriptGfxDrawOrder;
+mp.game.graphics.drawScaleformMovie3d = mp.game.graphics.drawScaleformMovie3D;
+mp.game.graphics.drawDebugText2d = mp.game.graphics.drawDebugText2D;
+
+
+//#endregion
