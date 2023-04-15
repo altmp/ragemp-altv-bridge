@@ -44,3 +44,13 @@ esbuild.build({
         }
     })]
 });
+
+esbuild.build({
+    entryPoints: ['src/browser/index.js'],
+    bundle: true,
+    outdir: 'dist',
+    entryNames: 'browser',
+    format: 'cjs',
+    target: 'es2017',
+    sourcemap: 'inline'
+});
