@@ -5,7 +5,7 @@ import { Deferred } from '../../shared/Deferred';
 import {BaseEvents} from '../../shared/BaseEvents';
 import { InternalChat } from 'shared/DefaultChat.js';
 
-let procHandlers = {}
+let procHandlers = {};
 class _Events extends BaseEvents {
 
     constructor() {
@@ -36,7 +36,7 @@ class _Events extends BaseEvents {
         });
         alt.on('baseObjectRemove', (obj) => {
             if (obj.mp) this.dispatch('entityDestroyed', obj.mp);
-        })
+        });
     }
 
     addLocal(event, fn) {
@@ -76,8 +76,8 @@ class _Events extends BaseEvents {
         alt.emit(event, ...argsToAlt(args));
     }
 
-    callLocal = this.call
-    fire = this.call
+    callLocal = this.call;
+    fire = this.call;
 
     addProc(event, handler) {
         procHandlers[event] = handler;

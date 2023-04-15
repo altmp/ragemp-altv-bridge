@@ -6,7 +6,7 @@
         "es2021": true
     },
     "globals": {
-        "mp": true
+        "overrideBridgePrefix": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
@@ -17,6 +17,12 @@
         "no-async-promise-executor": "off",
         "no-unused-vars": "off",
         "no-restricted-imports": "off",
+        "semi": ["error", "always"],
         "quotes": ["error", "single", { "avoidEscape": true, "allowTemplateLiterals": true }]
-    }
+    },
+    "ignorePatterns": [
+        "*.ts",
+        "**/dist/*",
+        "bindings/src/client/natives.js"
+    ]
 }

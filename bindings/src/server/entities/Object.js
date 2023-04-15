@@ -59,4 +59,4 @@ mp.objects = new Pool(() => alt.NetworkObject.all, alt.NetworkObject.getByID, ()
 mp.objects.new = (model, position, params) => {
     const obj = new alt.NetworkObject(model, position, params.rotation ?? alt.Vector3.zero, params.alpha ?? 0, 100);
     return obj.mp;
-}
+};

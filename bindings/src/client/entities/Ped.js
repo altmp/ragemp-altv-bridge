@@ -33,4 +33,4 @@ mp.peds = new Pool(() => [], () => [], (id) => null);
 
 mp.peds.new = function(type, pos, radius, options) {
     return new _Ped({});
-}
+};

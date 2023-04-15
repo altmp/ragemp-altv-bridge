@@ -1,4 +1,4 @@
-import mp from '../../shared/mp.js'
+import mp from '../../shared/mp.js';
 
 export class _VoiceChat {
     isAllowed = true;

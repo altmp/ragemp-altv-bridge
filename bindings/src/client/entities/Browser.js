@@ -1,7 +1,7 @@
 import * as alt from 'alt-client';
 import mp from '../../shared/mp.js';
-import { Pool } from '../Pool.js';
-import { _BaseObject } from './BaseObject.js';
+import {Pool} from '../Pool.js';
+import {_BaseObject} from './BaseObject.js';
 
 function transformUrl(url) {
     if (url.startsWith('package://')) return 'http://resource/' + url.substring(10);
@@ -40,6 +40,7 @@ export class _Browser extends _BaseObject {
     call(event, ...args) {
         this.alt.emit(mp.prefix + 'event', event, ...args);
     }
+
     // TODO: RPC (call, cancelPendingProc, hasPendingProc)
 
     execute(code) {
@@ -96,10 +97,10 @@ mp.Browser = _Browser;
 
 mp.browsers = new Pool(() => alt.WebView.all, () => alt.WebView.all, (id) => alt.WebView.all.find(e => e.id == id)); // TODO: getByID
 
-mp.browsers.new = function(url) {
+mp.browsers.new = function (url) {
     const webview = new alt.WebView(transformUrl(url));
     return webview.mp;
-}
+};
 
 alt.on('baseObjectCreate', (baseObject) => {
     if (baseObject instanceof alt.WebView) mp.events.dispatch('browserCreated', baseObject.mp);

@@ -21,8 +21,8 @@ export class SyncedMetaProxy extends ExtendableProxy {
                 : ((_, prop, value) => {
                     if (typeof prop != 'string') return;
                     if (!target.setSyncedMeta) return;
-                    target.setSyncedMeta(prop, toAlt(value))
+                    target.setSyncedMeta(prop, toAlt(value));
                 })
-        })
+        });
     }
 }

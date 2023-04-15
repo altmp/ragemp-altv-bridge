@@ -2,7 +2,6 @@ import * as alt from 'alt-client';
 import mp from '../../shared/mp.js';
 import { Pool } from '../Pool.js';
 import { _WorldObject } from './WorldObject.js';
-
 export class _Blip extends _WorldObject {
     /** @param {alt.Blip} alt */
     constructor(alt) {
@@ -35,7 +34,7 @@ mp.blips = new Pool(() => alt.Blip.all, () => alt.Blip.all, () => null);
 
 mp.blips.atRemoteId = function(id) {
     return null;
-}
+};
 
 mp.blips.new = function(sprite, position, params) {
     const blip = new alt.PointBlip(position.x, position.y, position.z);
@@ -50,4 +49,4 @@ mp.blips.new = function(sprite, position, params) {
     // TODO: dimension
     // TODO: radius
     return blip.mp;
-}
+};

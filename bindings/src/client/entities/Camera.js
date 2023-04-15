@@ -27,7 +27,7 @@ class _Camera {
     }
 
     getDirection() {
-        return new mp.Vector3(rotToDir(natives.getCamRot(this.handle, 2).toRadians()))
+        return new mp.Vector3(rotToDir(natives.getCamRot(this.handle, 2).toRadians()));
     }
 
     get pointAt() {
@@ -75,7 +75,7 @@ class _GameplayCamera extends _Camera {
     }
 
     getDirection() {
-        return new mp.Vector3(rotToDir(natives.getGameplayCamRot(2).toRadians()))
+        return new mp.Vector3(rotToDir(natives.getGameplayCamRot(2).toRadians()));
     }
 
     destroy() {}
@@ -85,7 +85,7 @@ mp.Camera = _Camera;
 
 mp.cameras = new Pool(() => list, () => list, (id) => created[id]);
 
-mp.cameras.gameplay = new _GameplayCamera(natives.getRenderingCam())
+mp.cameras.gameplay = new _GameplayCamera(natives.getRenderingCam());
 
 mp.cameras.new = function(name, pos, rot, fov) {
     if (name == 'gameplay') {
@@ -94,4 +94,4 @@ mp.cameras.new = function(name, pos, rot, fov) {
 
     const handle = natives.createCamWithParams('DEFAULT_SCRIPTED_CAMERA', pos.x, pos.y, pos.z, rot.x, rot.y, rot.z, fov, false, 2);
     return new _Camera(handle);
-}
+};

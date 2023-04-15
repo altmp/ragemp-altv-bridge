@@ -33,24 +33,24 @@ mp.colshapes = new Pool(() => [], () => [], (id) => null);
 
 mp.colshapes.new = function(type, pos, radius, options) {
     return new _Colshape({});
-}
+};
 
 mp.colshapes.newCircle = function(type, pos, radius, options) {
     return new _Colshape({});
-}
+};
 
 mp.colshapes.newSphere = function(type, pos, radius, options) {
     return new _Colshape({});
-}
+};
 
 mp.colshapes.newCuboid = function(type, pos, radius, options) {
     return new _Colshape({});
-}
+};
 
 mp.colshapes.newRectangle = function(type, pos, radius, options) {
     return new _Colshape({});
-}
+};
 
 mp.colshapes.newTube = function(type, pos, radius, options) {
     return new _Colshape({});
-}
+};

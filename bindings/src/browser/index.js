@@ -1,4 +1,5 @@
 /* global alt */
+
 const mp = {
     prefix: globalThis.overrideBridgePrefix ?? '$bridge$'
 };
@@ -14,12 +15,12 @@ mp.events = {};
 mp.events.add = function (event, fn) {
     if (!(event in handlers)) handlers[event] = new Set;
     handlers[event].add(fn);
-}
+};
 
 mp.events.remove = function(event, fn) {
     if (!(event in handlers)) return;
     handlers[event].delete(fn);
-}
+};
 
 alt.on(mp.prefix + 'event', (event, ...args) => {
     if (!(event in handlers)) return;

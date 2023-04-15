@@ -31,7 +31,7 @@ class _Storage {
                 alt.LocalStorage.set(key, value);
                 return true;
             }
-        })
+        });
     }
 }
 

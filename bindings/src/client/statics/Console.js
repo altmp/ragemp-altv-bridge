@@ -6,7 +6,7 @@ const verbosityLevels = {
     warning: 1,
     error: 2,
     fatal: 3
-}
+};
 
 class _Console {
     clear() {}

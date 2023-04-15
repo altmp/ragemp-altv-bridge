@@ -4,9 +4,9 @@ import {argsToAlt, argsToMp, toAlt, toMp} from '../../shared/utils.js';
 import { Deferred } from '../../shared/Deferred';
 import {BaseEvents} from '../../shared/BaseEvents';
 
-let procHandlers = {}
+let procHandlers = {};
 let rpcId = 0;
-let __pendingRpc = {}
+let __pendingRpc = {};
 
 class _Events extends BaseEvents {
 

@@ -20,7 +20,7 @@ alt.on('worldObjectStreamOut', (ent) => {
 
 alt.on('worldObjectPositionChange', (ent, oldPos) => {
     if (ent instanceof alt.VirtualEntity && ent.mp) ent.mp.posChange(oldPos);
-})
+});
 
 alt.on('baseObjectRemove', (ent) => {
     if (ent instanceof alt.VirtualEntity && ent.mp) ent.mp.onDestroy();
@@ -28,4 +28,4 @@ alt.on('baseObjectRemove', (ent) => {
 
 alt.on('streamSyncedMetaChange', (ent, key, value) => {
     if (ent instanceof alt.VirtualEntity && ent.mp) ent.mp.update(key, value);
-})
+});

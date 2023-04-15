@@ -32,4 +32,4 @@ mp.peds.new = function(model, position, heading, dimension) {
     const ped = new alt.Ped(model, position, new alt.Vector3(0, 0, heading * deg2rad));
     ped.dimension = mpDimensionToAlt(dimension);
     return ped.mp;
-}
+};

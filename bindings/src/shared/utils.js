@@ -10,11 +10,11 @@ export const vdist2 = (v1, v2, useZ = true) => {
     let dz = useZ ? v1.z - v2.z : 0;
 
     return (dx * dx + dy * dy + dz * dz);
-}
+};
 
 export const vdist = (v1, v2, useZ = true) => {
     return Math.sqrt(vdist2(v1, v2, useZ));
-}
+};
 
 export const toMp = (obj) => {
     if (typeof obj === 'object' && obj) {
@@ -36,7 +36,7 @@ export const toMp = (obj) => {
     }
 
     return obj;
-}
+};
 
 export const toAlt = (obj) => {
     if (typeof obj === 'object' && obj) {
@@ -59,7 +59,7 @@ export const toAlt = (obj) => {
     }
 
     return obj;
-}
+};
 
 export const argsToMp = (args) => {
     if (!args || !Array.isArray(args)) return [];
@@ -67,7 +67,7 @@ export const argsToMp = (args) => {
         args[i] = toMp(args[i]);
     }
     return args;
-}
+};
 
 export const argsToAlt = (args) => {
     if (!args || !Array.isArray(args)) return [];
@@ -75,7 +75,7 @@ export const argsToAlt = (args) => {
         args[i] = toAlt(args[i]);
     }
     return args;
-}
+};
 
 // alt.Vector3, rotation in radians
 export const rotToDir = (rot) => {
@@ -84,7 +84,7 @@ export const rotToDir = (rot) => {
         Math.cos(rot.z) * Math.abs(Math.cos(rot.x)),
         Math.sin(rot.x)
     );
-}
+};
 
 export const rad2deg = 180 / Math.PI;
 export const deg2rad = Math.PI / 180;
@@ -93,9 +93,9 @@ export const mpDimensionToAlt = (mpDimension) => {
     if (mpDimension === -1) return -2147483648;
     if (mpDimension < 0) throw new Error('Invalid dimension');
     return mpDimension;
-}
+};
 
 export const altDimensionToMp = (altDimension) => {
     if (altDimension < 0) return -1;
     return altDimension;
-}
+};

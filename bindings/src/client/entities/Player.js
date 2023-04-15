@@ -941,11 +941,11 @@ mp.players.local = alt.Player.local.mp;
 
 mp.players.atHandle = function(handle) {
     return alt.Player.getByScriptID(handle)?.mp ?? null;
-}
+};
 
 mp.players.atRemoteId = function(remoteId) {
     return alt.Player.getByID(remoteId)?.mp ?? null;
-}
+};
 alt.onServer(mp.prefix + 'dead', (weapon, killer) => {
     mp.events.dispatch('playerDeath', alt.Player.local.mp, weapon, toMp(killer));
 });
@@ -978,7 +978,7 @@ alt.on('leftVehicle', (vehicle, seat) => {
 
 alt.on('netOwnerChange', (ent, oldOwner, newOwner) => {
     mp.events.dispatch('entityControllerChange', ent, toMp(newOwner));
-})
+});
 
 alt.onServer(mp.prefix + 'notify', message => {
     mp.game.graphics.notify(message);

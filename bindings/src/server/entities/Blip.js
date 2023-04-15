@@ -113,4 +113,4 @@ mp.blips.new = function(sprite, position, options) {
     if ('dimension' in options) blip.dimension = mpDimensionToAlt(options.dimension);
     // TODO: radius
     return blip.mp;
-}
+};

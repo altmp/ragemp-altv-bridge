@@ -82,11 +82,11 @@ mp.objects = new Pool(() => alt.Object.all, () => [], () => null, () => alt.Obje
 
 mp.objects.atRemoteId = function(id) {
     return alt.Object.getByRemoteID(id)?.mp ?? null;
-}
+};
 
 mp.objects.atHandle = function(handle) {
     return alt.Object.getByScriptID(handle)?.mp ?? null;
-}
+};
 
 mp.objects.new = (model, position, params) => {
     console.log('Spawning model ' + model);
@@ -97,14 +97,14 @@ mp.objects.new = (model, position, params) => {
     // TODO: dimension
 
     return obj.mp;
-}
+};
 
 mp.objects.newWeak = (handle) => {
     const obj = alt.Object.allWorld.find(e => e.scriptID === handle);
 
     if (!obj) return null;
     return obj.mp;
-}
+};
 
 mp.objects.newWeaponObject = (model, position, params) => {
     const handle = natives.createWeaponObject(model, params.ammo ?? 0, position.x, position.y, position.z, params.showWorldObject ?? false, params.scale ?? 1, 0, 0, 0);
@@ -115,4 +115,4 @@ mp.objects.newWeaponObject = (model, position, params) => {
     // TODO: dimension
 
     return obj;
-}
+};

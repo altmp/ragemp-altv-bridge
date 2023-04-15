@@ -100,4 +100,4 @@ mp.labels.new = function(text, position, params) {
     ent.dimension = params.dimension ?? 0;
 
     return ent;
-}
+};

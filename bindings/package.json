@@ -9,10 +9,11 @@
     "@altv/types-server": "^2.6.2",
     "@altv/types-shared": "^1.4.0",
     "@fal-works/esbuild-plugin-global-externals": "^2.1.2",
-    "esbuild": "^0.17.14"
+    "esbuild": "^0.17.14",
+    "shx": "^0.3.4"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "shx cp -r node_modules/@altv src/types/",
     "build": "node build.js"
   },
   "keywords": [],

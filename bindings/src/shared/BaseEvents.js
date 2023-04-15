@@ -17,7 +17,7 @@ export class BaseEvents {
             handlers[key] = new Set;
         }
         handlers[key].add(fn);
-    }
+    };
 
     remove = (key, fn) => {
         if (typeof key === 'object' && Array.isArray(key)) {
@@ -30,19 +30,19 @@ export class BaseEvents {
             if (!fn) handlers[key].clear();
             else handlers[key].delete(fn);
         }
-    }
+    };
 
     getAllOf = (key) => {
         return key in handlers ? [...handlers[key].values()] : [];
-    }
+    };
 
     reset = () => {
         handlers = {};
-    }
+    };
 
     hasHandlers = (event) => {
         return !!handlers[event] && !!handlers[event].size;
-    }
+    };
 
     /** @internal */
     dispatch = (event, ...args) => {
@@ -51,7 +51,7 @@ export class BaseEvents {
         argsToMp(args);
         if(event != 'render' && mp.debug)alt.log('Dispatching2', event);
         for (const handler of handlers[event]) handler(...args);
-    }
+    };
 
     /** @internal */
     dispatchWithResults = (event, ...args) => {
@@ -60,5 +60,5 @@ export class BaseEvents {
         argsToMp(args);
         if(event != 'render' && mp.debug)alt.log('dispatchWithResults2', event);
         return handlers[event].map(e => e(...args));
-    }
+    };
 }

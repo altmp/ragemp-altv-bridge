@@ -45,4 +45,4 @@ mp.checkpoints.new = function(type, pos, radius, options) {
     // TODO: visible
     const checkpoint = new alt.Checkpoint(type, pos, options.nextPos ?? new alt.Vector3(0, 0, 0), radius, 100, options.color ? new alt.RGBA(...options.color) : alt.RGBA.red);
     return checkpoint.mp;
-}
+};

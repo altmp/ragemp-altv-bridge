@@ -6,7 +6,7 @@ import './statics/Events.js';
 import './entities/index.js';
 import './natives.js';
 import './extraNatives.js';
-import './statics/index.js'
+import './statics/index.js';
 import './polyfill.js';
 
 function populateModule(moduleObject) {
@@ -16,7 +16,7 @@ function populateModule(moduleObject) {
             return moduleObject.exports;
         },
         set: (value) => {
-            moduleObject.exports = value
+            moduleObject.exports = value;
         },
         configurable: true
     });
@@ -41,7 +41,7 @@ globalThis.require = function (path) {
     [eval][0](content);
     if (oldModuleObject) populateModule(oldModuleObject);
     return moduleObject.exports;
-}
+};
 
 globalThis.global = globalThis;
 
@@ -52,10 +52,10 @@ alt.emitServer(mp.prefix + 'playerJoin');
 
 alt.everyTick(() => {
     natives.drawRect(0, 0, 0, 0, 0, 0, 0, 0, 0, false);
-})
+});
 
 const AsyncFunction = (async function () {}).constructor;
 alt.on('consoleCommand', async (cmd, ...args) => {
     if (cmd !== 'eval') return;
     console.log(await (new AsyncFunction('alt', 'natives', args.join(' ')))(alt, natives));
-})
+});

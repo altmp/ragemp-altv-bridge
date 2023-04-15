@@ -266,7 +266,7 @@ export class _Vehicle extends _Entity {
     }
 
     getPedInSeat(seatIndex, p2) {
-        return natives.getPedInVehicleSeat(this.alt, seatIndex, p2)
+        return natives.getPedInVehicleSeat(this.alt, seatIndex, p2);
     }
 
     get setPedTargettableDestroy() {
@@ -387,12 +387,12 @@ mp.vehicles = new Pool(() => alt.Player.all, () => alt.Player.streamedIn);
 
 mp.vehicles.atRemoteId = function(id) {
     return alt.Vehicle.getByRemoteID(id)?.mp ?? null;
-}
+};
 
 mp.vehicles.atHandle = function(handle) {
     return alt.Vehicle.getByScriptID(handle)?.mp ?? null;
-}
+};
 
 mp.vehicles.new = function() {
     return new _Colshape({});
-}
+};

@@ -297,4 +297,4 @@ mp.vehicles.new = function(model, position, options = {}) {
         veh.customSecondaryColor = new alt.RGBA(options.color[1]);
     }
     return veh.mp;
-}
+};

@@ -16,7 +16,7 @@ class _Nametags {
 
     #tick() {
         if (!this.enabled) return;
-        
+
         const correction = getRenderCorrection();
         const style = this.#style;
         const healthStyle = this.#healthStyle;
@@ -24,7 +24,7 @@ class _Nametags {
         alt.Player.streamedIn.forEach(p => {
             const offset = p.vehicle ? style.vehOffset : style.offset;
             const pos = p.pos.add(correction);
-            
+
             alt.Utils.drawText3dThisFrame(p.name, pos.add(0, 0, offset), style.font, style.size, style.color, style.outline, true);
 
             if (this.#healthStyle) {
@@ -35,10 +35,10 @@ class _Nametags {
                     healthStyle.color.r, healthStyle.color.g, healthStyle.color.b, healthStyle.color.a, false);
                 natives.clearDrawOrigin();
             }
-        })
+        });
     }
 
-    update(font = 6, outline = true, size = 0.5, offset = 0.7, vehOffset = 1, color = [255, 255, 255, 255], 
+    update(font = 6, outline = true, size = 0.5, offset = 0.7, vehOffset = 1, color = [255, 255, 255, 255],
         healthSize = [0.06, 0.008], healthColor = [255, 255, 255, 255], healthBgColor = [255, 255, 255, 64], healthOffset = 0.5, healthBorder = false) {
 
         this.#style = {
@@ -53,7 +53,7 @@ class _Nametags {
                 border: healthBorder,
                 color: new alt.RGBA(healthColor),
                 bgColor: new alt.RGBA(healthBgColor)
-            }
+            };
         }
     }
 

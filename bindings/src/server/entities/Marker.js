@@ -80,4 +80,4 @@ mp.markers.new = function(type, position, scale, options) {
     if ('visible' in options) marker.visible = options.visible;
     if ('dimension' in options) marker.dimension = mpDimensionToAlt(options.dimension);
     marker.scale = new alt.Vector3(scale, scale, scale);
-}
+};

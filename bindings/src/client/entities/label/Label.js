@@ -39,23 +39,23 @@ export class _Label extends _VirtualEntityBase {
         this.renderer.setActive(true);
         this.updateData();
         updateCache();
-    }
+    };
 
     streamOut = () => {
         this.renderer.setActive(false);
         updateCache();
-    }
+    };
 
     onDestroy = () => {
         this.renderer.setActive(false);
         labels.delete(this);
         updateCache();
-    }
+    };
 
     update = (key, value) => {
         if (!key.startsWith(mp.prefix)) return;
         this.renderer[key.substr(mp.prefix.length)] = value;
-    }
+    };
 
     remoteId() {
         return this.alt.remoteId;
@@ -63,12 +63,12 @@ export class _Label extends _VirtualEntityBase {
 
     getVariable(key) {
         if (this.isRemote) return this.alt.getStreamSyncedMeta(key); // TODO: convert result
-        else return this.alt.getMeta(key);
+        return this.alt.getMeta(key);
     }
 
     setVariable(key, value) {
         if (this.isRemote) return;
-        else this.alt.setMeta(key, value);
+        this.alt.setMeta(key, value);
     }
 
     hasVariable(key) {
@@ -144,7 +144,7 @@ mp.labels.atRemoteId = function (id) {
     const ent = alt.VirtualEntity.all.find(e => e.remoteId == id); // TODO: getByID
     if (!ent || !(ent.mp instanceof _Label)) return null;
     return ent.mp;
-}
+};
 
 const group = new alt.VirtualEntityGroup(40);
 
@@ -159,4 +159,4 @@ mp.labels.new = (text, position, params) => {
     ent.dimension = params.dimension ?? 0;
 
     return ent;
-}
+};

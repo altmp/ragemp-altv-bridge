@@ -96,4 +96,4 @@ Object.defineProperty(mp.Vector3, 'zero', {
     get() {
         return new _Vector3(0, 0, 0); // important to create the new vector on each access as the vector is mutable
     }
-})
+});

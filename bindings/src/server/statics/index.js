@@ -1,2 +1,2 @@
 import './Network.js';
-import './World.js'
+import './World.js';
