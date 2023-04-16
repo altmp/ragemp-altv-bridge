@@ -50,4 +50,8 @@ export class PlayerPool extends Pool {
     callInRangeUnreliable(){}
     reloadResources(){}
     */
+
+    get size() {
+        return alt.getServerConfig().players;
+    }
 }

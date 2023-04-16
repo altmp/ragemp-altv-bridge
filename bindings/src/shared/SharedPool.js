@@ -94,8 +94,4 @@ export class SharedPool {
     get length() {
         return this.#lengthGetter();
     }
-
-    get size() {
-        return 200; // TODO: wat?
-    }
 }
