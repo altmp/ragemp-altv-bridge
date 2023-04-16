@@ -2,9 +2,10 @@ import * as alt from 'alt-server';
 import mp from '../../shared/mp';
 import { _Entity } from './Entity';
 import { VirtualEntityID } from '../../shared/VirtualEntityID';
-import { Pool } from '../pools/Pool';
+import { ServerPool } from '../pools/ServerPool';
+import {EntityStoreView} from '../../shared/pools/EntityStoreView';
 
-const labels = new Set;
+const view = new EntityStoreView();
 
 export class _Label extends _Entity {
 
@@ -12,9 +13,13 @@ export class _Label extends _Entity {
     constructor(alt) {
         super(alt);
         this.alt = alt;
-        labels.add(this);
+        view.add(this, this.id);
         this.alt.setStreamSyncedMeta(mp.prefix + 'drawDistance', this.alt.streamingDistance);
-        this.alt.setStreamSyncedMeta(mp.prefix + 'type', VirtualEntityID.Label);
+    }
+
+    destroy() {
+        this.alt.destroy();
+        view.remove(this.id);
     }
 
     get setVariable() {
@@ -79,14 +84,10 @@ export class _Label extends _Entity {
 mp.Label = _Label;
 
 alt.on('baseObjectRemove', (ent) => {
-    if (ent.mp instanceof _Label) labels.delete(ent.mp);
+    if (ent.mp instanceof _Label) view.remove(ent.mp.id);
 });
 
-mp.labels = new Pool(() => [...labels.values()], (id) => {
-    const ent = alt.VirtualEntity.all.find(e => e.id == id); // TODO: getByID
-    if (!ent || !(ent.mp instanceof _Label)) return null;
-    return ent.mp;
-}, () => labels.size());
+mp.labels = new ServerPool(view);
 
 const group = new alt.VirtualEntityGroup(40);
 mp.labels.new = function(text, position, params) {

@@ -35,6 +35,10 @@ export class _WorldObject extends _BaseObject {
         return this.alt.id;
     }
 
+    get remoteId() {
+        return this.alt.remoteId;
+    }
+
     get handle() {
         return this.alt.scriptID;
     }

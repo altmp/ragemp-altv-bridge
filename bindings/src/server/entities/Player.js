@@ -5,6 +5,7 @@ import { argsToAlt, deg2rad, rad2deg, vdist, vdist2 } from '../../shared/utils.j
 import { _Entity } from './Entity.js';
 import { PlayerPool } from '../pools/PlayerPool';
 import { InternalChat } from '../../shared/DefaultChat.js';
+import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 
 let bannedHwids = {};
 const ipRegex = /^::ffff:([0-9.]+)$/;
@@ -407,7 +408,7 @@ alt.on('beforePlayerConnect', (info) => {
 
 mp.Player = _Player;
 
-mp.players = new PlayerPool(() => alt.Player.all, alt.Player.getByID, () => alt.Player.all.length);
+mp.players = new PlayerPool(EntityGetterView.fromClass(alt.Player));
 
 alt.on('playerDeath', (player, killer, weapon) => {
     mp.events.dispatch('playerDeath', player.mp, weapon, killer ? killer.mp : killer);

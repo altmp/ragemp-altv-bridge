@@ -4,7 +4,8 @@ import mp from '../../shared/mp.js';
 import {deg2rad, mpDimensionToAlt} from '../../shared/utils.js';
 import { _Entity } from './Entity.js';
 import { _WorldObject } from './WorldObject.js';
-import { Pool } from '../pools/Pool';
+import { ServerPool } from '../pools/ServerPool';
+import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 
 export class _Marker extends _Entity {
     alt;
@@ -69,7 +70,7 @@ Object.defineProperty(alt.Marker.prototype, 'mp', {
 
 mp.Marker = _Marker;
 
-mp.markers = new Pool(() => alt.Marker.all, alt.Marker.getByID);
+mp.markers = new ServerPool(EntityGetterView.fromClass(alt.Marker));
 
 mp.markers.new = function(type, position, scale, options) {
     let color = new alt.RGBA(0, 0, 0, 255);

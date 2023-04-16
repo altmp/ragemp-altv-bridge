@@ -2,8 +2,9 @@ import mp from '../../shared/mp';
 import * as alt from 'alt-server';
 import {_WorldObject} from './WorldObject';
 import {_Colshape} from './Colshape';
-import { Pool } from '../pools/Pool';
+import { ServerPool } from '../pools/ServerPool';
 import {mpDimensionToAlt} from '../../shared/utils';
+import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 
 export class _Checkpoint extends _Colshape {
     /** @param {alt.Colshape} alt */
@@ -67,7 +68,7 @@ Object.defineProperty(alt.Checkpoint.prototype, 'mp', {
 
 mp.Checkpoint = _Checkpoint;
 
-mp.checkpoints = new Pool(() => alt.Checkpoint.all, alt.Checkpoint.getByID, () => alt.Checkpoint.all.length);
+mp.checkpoints = new ServerPool(EntityGetterView.fromClass(alt.Checkpoint));
 
 mp.checkpoints.new = function(type, position, radius, params = {}) {
     const checkpoint = new alt.Checkpoint(type, position, radius, 100, params.color ? new alt.RGBA(params.color) : alt.RGBA.white);

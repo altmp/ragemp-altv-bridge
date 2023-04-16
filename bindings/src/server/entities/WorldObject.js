@@ -1,4 +1,5 @@
 import * as alt from 'alt-server';
+import mp from '../../shared/mp';
 import {altDimensionToMp, mpDimensionToAlt, toAlt, toMp, vdist, vdist2} from '../../shared/utils';
 import { _BaseObject } from './BaseObject';
 
@@ -54,5 +55,13 @@ export class _WorldObject extends _BaseObject {
 
     destroy() {
         this.#alt.destroy();
+    }
+
+    get position() {
+        return new mp.Vector3(this.alt.pos);
+    }
+
+    set position(value) {
+        this.alt.pos = value;
     }
 }

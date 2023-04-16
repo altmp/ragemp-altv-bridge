@@ -1,7 +1,8 @@
 import * as alt from 'alt-client';
 import mp from '../../shared/mp.js';
-import { Pool } from '../Pool.js';
+import { ClientPool } from '../ClientPool.js';
 import { _WorldObject } from './WorldObject.js';
+import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 export class _Blip extends _WorldObject {
     /** @param {alt.Blip} alt */
     constructor(alt) {
@@ -30,11 +31,7 @@ Object.defineProperty(alt.Blip.prototype, 'mp', {
 
 mp.Blip = _Blip;
 
-mp.blips = new Pool(() => alt.Blip.all, () => alt.Blip.all, () => null);
-
-mp.blips.atRemoteId = function(id) {
-    return null;
-};
+mp.blips = new ClientPool(EntityGetterView.fromClass(alt.Blip));
 
 mp.blips.new = function(sprite, position, params) {
     const blip = new alt.PointBlip(position.x, position.y, position.z);

@@ -1,9 +1,10 @@
 import * as alt from 'alt-client';
 import * as natives from 'natives';
 import mp from '../../shared/mp.js';
-import { Pool } from '../Pool.js';
+import { ClientPool } from '../ClientPool.js';
 import { _Entity } from './Entity.js';
 import {toMp} from '../../shared/utils';
+import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 
 export class _Player extends _Entity {
     alt;
@@ -31,7 +32,7 @@ export class _Player extends _Entity {
     }
 
     get vehicle() {
-        return this.alt.vehicle?.mp ?? null;
+        return this.alt.vehicle?.mp ?? mp.vehicles.atHandle(natives.getVehiclePedIsIn(this.alt, false)) ?? null;
     }
 
     get name() {
@@ -935,7 +936,7 @@ Object.defineProperty(alt.Player.prototype, 'mp', {
 
 mp.Player = _Player;
 
-mp.players = new Pool(() => alt.Player.all, () => alt.Player.streamedIn, alt.Player.getByID);
+mp.players = new ClientPool(EntityGetterView.fromClass(alt.Player));
 
 mp.players.local = alt.Player.local.mp;
 

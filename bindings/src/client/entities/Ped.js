@@ -1,6 +1,6 @@
 import * as alt from 'alt-client';
 import mp from '../../shared/mp.js';
-import { Pool } from '../Pool.js';
+import { ClientPool } from '../ClientPool.js';
 import { _BaseObject } from './BaseObject.js';
 
 export class _Ped extends _BaseObject {
@@ -29,7 +29,7 @@ export class _Ped extends _BaseObject {
 
 mp.Ped = _Ped;
 
-mp.peds = new Pool(() => [], () => [], (id) => null);
+mp.peds = new ClientPool(() => [], () => [], (id) => null);
 
 mp.peds.new = function(type, pos, radius, options) {
     return new _Ped({});

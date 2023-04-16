@@ -1,9 +1,9 @@
 import alt from 'alt-server';
-import { Pool } from './Pool.js';
+import { ServerPool } from './ServerPool.js';
 import { InternalChat } from 'shared/DefaultChat.js';
 import {argsToAlt, mpDimensionToAlt} from 'shared/utils';
 
-export class PlayerPool extends Pool {
+export class PlayerPool extends ServerPool {
     broadcast(text) {
         InternalChat.broadcast(text);
     }
@@ -35,10 +35,6 @@ export class PlayerPool extends Pool {
     callInDimension(dimension, event, args) {
         dimension = mpDimensionToAlt(dimension);
         alt.emitClient(alt.Player.all.filter(e => e.dimension === dimension), event, ...argsToAlt(args));
-    }
-
-    callUnreliable(eventName, args) {
-
     }
     /*
     broadcastInDimension(dimension, text){}

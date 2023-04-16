@@ -1,20 +1,14 @@
 import * as alt from 'alt-client';
 import * as natives from 'natives';
 import mp from '../../../shared/mp.js';
-import { Pool } from '../../Pool';
+import { ClientPool } from '../../ClientPool';
 import { _Entity } from '../Entity';
 import { LabelRenderer } from './LabelRenderer';
 import { VirtualEntityID } from '../../../shared/VirtualEntityID';
 import { _VirtualEntityBase } from '../VirtualEntityBase';
+import {EntityStoreView} from '../../../shared/pools/EntityStoreView';
 
-const labels = new Set;
-let labelsArray = [];
-let streamedLabelsArray = [];
-
-function updateCache() {
-    labelsArray = [...labels.values()];
-    streamedLabelsArray = labelsArray.filter(e => e.renderer.active); // TODO: use some streamedIn property instead
-}
+const view = new EntityStoreView(1, (e) => e.isStreamedIn);
 
 export class _Label extends _VirtualEntityBase {
     #los;
@@ -24,8 +18,7 @@ export class _Label extends _VirtualEntityBase {
         super(alt);
         this.alt = alt;
         this.renderer = new LabelRenderer(() => alt.pos);
-        labels.add(this);
-        updateCache();
+        view.add(this, this.id, undefined, this.alt.remoteId);
         this.updateData();
     }
 
@@ -38,18 +31,15 @@ export class _Label extends _VirtualEntityBase {
     streamIn = () => {
         this.renderer.setActive(true);
         this.updateData();
-        updateCache();
     };
 
     streamOut = () => {
         this.renderer.setActive(false);
-        updateCache();
     };
 
     onDestroy = () => {
         this.renderer.setActive(false);
-        labels.delete(this);
-        updateCache();
+        view.remove(this.id);
     };
 
     update = (key, value) => {
@@ -124,27 +114,9 @@ export class _Label extends _VirtualEntityBase {
     }
 }
 
-// TODO: define on prototype globally for all virtual entities
-alt.on('baseObjectCreate', (ent) => {
-    if (!(ent instanceof alt.VirtualEntity)) return;
-    const type = ent.isRemote ? ent.getStreamSyncedMeta(mp.prefix + 'type') : ent.getMeta(mp.prefix + 'type');
-    if (type !== VirtualEntityID.Label) return;
-    ent.mp = new _Label(ent);
-});
-
 mp.Label = _Label;
 
-mp.labels = new Pool(() => labelsArray, () => streamedLabelsArray, (id) => {
-    const ent = alt.VirtualEntity.all.find(e => e.id == id); // TODO: getByID
-    if (!ent || !(ent.mp instanceof _Label)) return null;
-    return ent.mp;
-}, () => labels.size());
-
-mp.labels.atRemoteId = function (id) {
-    const ent = alt.VirtualEntity.all.find(e => e.remoteId == id); // TODO: getByID
-    if (!ent || !(ent.mp instanceof _Label)) return null;
-    return ent.mp;
-};
+mp.labels = new ClientPool(view);
 
 const group = new alt.VirtualEntityGroup(40);
 

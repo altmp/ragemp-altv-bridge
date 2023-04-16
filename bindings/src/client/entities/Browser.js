@@ -1,7 +1,8 @@
 import * as alt from 'alt-client';
 import mp from '../../shared/mp.js';
-import {Pool} from '../Pool.js';
+import {ClientPool} from '../ClientPool.js';
 import {_BaseObject} from './BaseObject.js';
+import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 
 function transformUrl(url) {
     if (url.startsWith('package://')) return 'http://resource/' + url.substring(10);
@@ -95,7 +96,7 @@ Object.defineProperty(alt.WebView.prototype, 'mp', {
 
 mp.Browser = _Browser;
 
-mp.browsers = new Pool(() => alt.WebView.all, () => alt.WebView.all, (id) => alt.WebView.all.find(e => e.id == id)); // TODO: getByID
+mp.browsers = new ClientPool(EntityGetterView.fromClass(alt.Blip));
 
 mp.browsers.new = function (url) {
     const webview = new alt.WebView(transformUrl(url));

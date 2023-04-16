@@ -1,9 +1,16 @@
 import * as alt from 'alt-client';
 import * as natives from 'natives';
 import mp from '../../shared/mp.js';
-import { Pool } from '../Pool.js';
+import { ClientPool } from '../ClientPool.js';
 import { _Entity } from './Entity.js';
 import { _Colshape } from './Colshape';
+import {VirtualEntityID} from '../../shared/VirtualEntityID';
+import {EntityGetterView} from '../../shared/pools/EntityGetterView';
+import {EntityStoreView} from '../../shared/pools/EntityStoreView';
+import {EntityMixedView} from '../../shared/pools/EntityMixedView';
+
+const store = new EntityStoreView();
+const view = new EntityMixedView(store, EntityGetterView.fromClass(alt.Vehicle));
 
 export class _Vehicle extends _Entity {
     alt;
@@ -32,6 +39,14 @@ export class _Vehicle extends _Entity {
 
     get rpm() {
         return this.alt.rpm;
+    }
+
+    get steeringAngle() {
+        return 0;
+    }
+
+    set steeringAngle(value) {
+        // TODO
     }
 
     // TODO: reverse and implement steeringAngle in core
@@ -112,7 +127,7 @@ export class _Vehicle extends _Entity {
         this.alt.setWheelRimRadius(wheel, radius);
     }
 
-    // #region Natives
+    //#region Natives
     getPosition() {
         return new mp.Vector3(this.alt.pos);
     }
@@ -136,7 +151,7 @@ export class _Vehicle extends _Entity {
     }
 
     getWindowTint() {
-        return natives.getVehicleWindowTint(this.alt);
+        return natives.getVehicleWindowTint(this.handle);
     }
 
     get isCargobobHookActive() {
@@ -146,7 +161,7 @@ export class _Vehicle extends _Entity {
     // TODO: getTrailer
 
     getPedUsingDoor(doord) {
-        return natives.getPedUsingVehicleDoor(this.alt, doord);
+        return natives.getPedUsingVehicleDoor(this.handle, doord);
     }
 
     get setHalt() {
@@ -154,11 +169,11 @@ export class _Vehicle extends _Entity {
     }
 
     getBoatAnchor() {
-        return natives.isBoatAnchored(this.alt);
+        return natives.isBoatAnchored(this.handle);
     }
 
     setBoatAnchor(state) {
-        return natives.setBoatAnchor(this.alt, state);
+        return natives.setBoatAnchor(this.handle, state);
     }
 
     get isAnySeatEmpty() {
@@ -178,7 +193,7 @@ export class _Vehicle extends _Entity {
     }
 
     setWheelType(type) {
-        return natives.setVehicleWheelType(this.alt, type);
+        return natives.setVehicleWheelType(this.handle, type);
     }
 
     get getModColor2TextLabel() {
@@ -190,19 +205,19 @@ export class _Vehicle extends _Entity {
     }
 
     setWindowTint(tint) {
-        return natives.setVehicleWindowTint(this.alt, tint);
+        return natives.setVehicleWindowTint(this.handle, tint);
     }
 
     doesHaveStuckCheck() {
-        return natives.doesVehicleHaveStuckVehicleCheck(this.alt);
+        return natives.doesVehicleHaveStuckVehicleCheck(this.handle);
     }
 
     setMod(modType, modIndex, customTires) {
-        return natives.setVehicleMod(this.alt, modType, modIndex, customTires);
+        return natives.setVehicleMod(this.handle, modType, modIndex, customTires);
     }
 
     detachWindscreen() {
-        return natives.popOutVehicleWindscreen(this.alt);
+        return natives.popOutVehicleWindscreen(this.handle);
     }
 
     get isCargobobMagnetActive() {
@@ -210,7 +225,7 @@ export class _Vehicle extends _Entity {
     }
 
     getMod(modType) {
-        return natives.getVehicleMod(this.alt, modType);
+        return natives.getVehicleMod(this.handle, modType);
     }
 
     get enableCargobobHook() {
@@ -230,11 +245,11 @@ export class _Vehicle extends _Entity {
     }
 
     setBikeLeanAngle(x, y) {
-        return natives.setBikeOnStand(this.alt, x, y);
+        return natives.setBikeOnStand(this.handle, x, y);
     }
 
     isBig() {
-        return natives.isBigVehicle(this.alt);
+        return natives.isBigVehicle(this.handle);
     }
 
     get getPaintFade() {
@@ -246,7 +261,7 @@ export class _Vehicle extends _Entity {
     }
 
     getWheelType() {
-        return natives.getVehicleWheelType(this.alt);
+        return natives.getVehicleWheelType(this.handle);
     }
 
     get getModColor1TextLabel() {
@@ -266,7 +281,7 @@ export class _Vehicle extends _Entity {
     }
 
     getPedInSeat(seatIndex, p2) {
-        return natives.getPedInVehicleSeat(this.alt, seatIndex, p2);
+        return natives.getPedInVehicleSeat(this.handle, seatIndex, p2);
     }
 
     get setPedTargettableDestroy() {
@@ -310,15 +325,15 @@ export class _Vehicle extends _Entity {
     }
 
     setAlpha(alpha, skin) {
-        return natives.setEntityAlpha(this.alt, alpha, skin);
+        return natives.setEntityAlpha(this.handle, alpha, skin);
     }
 
     getVelocity() {
-        return new mp.Vector3(natives.getEntityVelocity(this.alt));
+        return new mp.Vector3(natives.getEntityVelocity(this.handle));
     }
 
     getAlpha() {
-        return natives.getEntityAlpha(this.alt);
+        return natives.getEntityAlpha(this.handle);
     }
 
     get setCoords2() {
@@ -362,7 +377,7 @@ export class _Vehicle extends _Entity {
     }
 
     getObjectIndexFromIndex() {
-        return natives.getObjectIndexFromEntityIndex(this.alt);
+        return natives.getObjectIndexFromEntityIndex(this.handle);
     }
 
     get isAttachedTo() {
@@ -372,7 +387,81 @@ export class _Vehicle extends _Entity {
     get hasClearLosTo() {
         return this.hasClearLosToEntity;
     }
-    // #endregion
+    //#endregion
+}
+
+export class _LocalVehicle extends _Vehicle {
+    #handle = 0;
+    #model = 0;
+    #lastHeading = 0;
+
+    /** @param {alt.VirtualEntity} alt */
+    constructor(alt) {
+        super(alt);
+        this.#model = alt.getMeta(mp.prefix + 'model');
+        store.add(this, this.id, this.#handle, 65535);
+    }
+    destroy() {
+        store.remove(this.id, this.#handle, 65535);
+    }
+
+    get id() {
+        return this.alt.id + 65536;
+    }
+
+    get model() {
+        return this.#model;
+    }
+
+    set model(value) {
+        if (this.alt.isStreamedIn) this.streamOut();
+        this.#model = value;
+        if (this.alt.isStreamedIn) this.streamIn();
+    }
+
+    get remoteId() {
+        return 65535;
+    }
+
+    get rpm() {
+        return 0; // TODO
+    }
+
+    get handle() {
+        return this.#handle;
+    }
+
+    get position() {
+        return new mp.Vector3(natives.getEntityCoords(this.handle, false));
+    }
+
+    get gear() {
+        return 0; // TODO
+    }
+
+    get wheelCount() {
+        return 4; // TODO
+    }
+
+    streamIn() {
+        alt.loadModel(this.#model);
+        this.#handle = natives.createVehicle(this.#model, this.alt.pos.x, this.alt.pos.y, this.alt.pos.z, this.#lastHeading, false, false, false);
+        natives.setVehicleColourCombination(this.#handle, 0);
+        store.add(this, undefined, this.#handle, undefined);
+    }
+
+    streamOut() {
+        store.remove(undefined, this.#handle, undefined);
+        this.#lastHeading = natives.getEntityHeading(this.#handle);
+        natives.deleteVehicle(this.#handle);
+        this.#handle = 0;
+        natives.setModelAsNoLongerNeeded(this.#model);
+    }
+
+    posChange() {}
+    onDestroy() {}
+    onCreate() {}
+    update() {}
 }
 
 Object.defineProperty(alt.Vehicle.prototype, 'mp', {
@@ -383,16 +472,25 @@ Object.defineProperty(alt.Vehicle.prototype, 'mp', {
 
 mp.Vehicle = _Vehicle;
 
-mp.vehicles = new Pool(() => alt.Player.all, () => alt.Player.streamedIn);
+mp.vehicles = new ClientPool(view);
 
-mp.vehicles.atRemoteId = function(id) {
-    return alt.Vehicle.getByRemoteID(id)?.mp ?? null;
-};
+const group = new alt.VirtualEntityGroup(100);
+mp.vehicles.new = function(model, position, params = {}) {
+    const virtualEnt = new alt.VirtualEntity(group, position, 300);
+    virtualEnt.setMeta(mp.prefix + 'type', VirtualEntityID.LocalVehicle);
+    virtualEnt.setMeta(mp.prefix + 'model', model);
 
-mp.vehicles.atHandle = function(handle) {
-    return alt.Vehicle.getByScriptID(handle)?.mp ?? null;
-};
-
-mp.vehicles.new = function() {
-    return new _Colshape({});
+    /** @type {_LocalVehicle} */
+    const ent = virtualEnt.mp;
+    if ('heading' in params) ent.setRotation(0, 0, params.heading, 2, false);
+    if ('numberPlate' in params) ent.setNumberPlateText(params.numberPlate);
+    if ('alpha' in params) ent.setAlpha(params.alpha, false);
+    if ('color' in params) {
+        ent.setCustomPrimaryColour(params.color[0][0], params.color[0][1], params.color[0][2]);
+        ent.setCustomSecondaryColour(params.color[1][0], params.color[1][1], params.color[1][2]);
+    }
+    if ('locked' in params) ent.setDoorsLocked(params.locked ? 2 : 1);
+    if ('engine' in params) ent.setEngineOn(params.engine, true, false);
+    // TODO: dimension
+    return ent;
 };

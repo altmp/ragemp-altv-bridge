@@ -1,8 +1,9 @@
 import mp from '../../shared/mp';
 import * as alt from 'alt-server';
 import {_WorldObject} from './WorldObject';
-import { Pool } from '../pools/Pool';
+import { ServerPool } from '../pools/ServerPool';
 import {mpDimensionToAlt, toAlt, toMp} from '../../shared/utils';
+import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 
 const colshapeTypes = {
     0: 'sphere',
@@ -23,23 +24,6 @@ export class _Colshape extends _WorldObject {
         this.alt = alt;
     }
 
-    setVariable(key, value) {
-        if (typeof key === 'object' && key) {
-            for (const [innerKey, innerValue] of Object.entries(key)) this.setVariable(innerKey, innerValue);
-            return;
-        }
-
-        this.alt.setMeta(key, toAlt(value));
-    }
-
-    setVariables(obj) {
-        this.setVariable(obj);
-    }
-
-    getVariable(key) {
-        return toMp(this.alt.getMeta(key));
-    }
-
     isPointWithin(pos) {
         return this.alt.isPointIn(pos);
     }
@@ -57,7 +41,7 @@ Object.defineProperty(alt.Colshape.prototype, 'mp', {
 
 mp.Colshape = _Colshape;
 
-mp.colshapes = new Pool(() => alt.Colshape.all, alt.Colshape.getByID, () => alt.Colshape.all.length);
+mp.colshapes = new ServerPool(EntityGetterView.fromClass(alt.Colshape));
 
 mp.colshapes.newCircle = function(x, y, radius, dimension = 0) {
     const shape = new alt.ColshapeCircle(x, y, radius);

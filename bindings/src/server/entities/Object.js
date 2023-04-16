@@ -1,18 +1,38 @@
 import mp from '../../shared/mp';
 import * as alt from 'alt-server';
 import {_Entity} from './Entity';
-import {Pool} from '../pools/Pool';
+import {ServerPool} from '../pools/ServerPool';
+import {_Label} from './Label';
+import {VirtualEntityID} from '../../shared/VirtualEntityID';
+import {EntityStoreView} from '../../shared/pools/EntityStoreView';
+
+
+const view = new EntityStoreView();
 
 export class _Object extends _Entity {
 
-    /** @param {alt.Object} alt */
+    /** @param {alt.VirtualEntity} alt */
     constructor(alt) {
         super(alt);
         this.alt = alt;
+        view.add(this, this.id);
     }
 
     destroy() {
         this.alt.destroy();
+        view.remove(this.id);
+    }
+
+    get setVariable() {
+        return this.setStreamVariable;
+    }
+
+    get getVariable() {
+        return this.getStreamVariable;
+    }
+
+    get hasVariable() {
+        return this.hasStreamVariable;
     }
 
     get position() {
@@ -23,16 +43,31 @@ export class _Object extends _Entity {
         this.alt.pos = value;
     }
 
+    #model;
     get model() {
-        return this.alt.model;
+        return this.#model;
+    }
+    set model(value) {
+        this.#model = value;
+        this.alt.setStreamSyncedMeta(mp.prefix + 'model', value);
     }
 
+    #alpha;
     get alpha() {
-        return this.alt.alpha;
+        return this.#alpha;
+    }
+    set alpha(value) {
+        this.#alpha = value;
+        this.alt.setStreamSyncedMeta(mp.prefix + 'alpha', value);
     }
 
-    set alpha(value) {
-        this.alt.alpha = value;
+    #rotation;
+    get rotation() {
+        return this.#rotation;
+    }
+    set rotation(value) {
+        this.#rotation = value;
+        this.alt.setStreamSyncedMeta(mp.prefix + 'rotation', value);
     }
 
     get notifyStreaming() {
@@ -42,21 +77,32 @@ export class _Object extends _Entity {
     set notifyStreaming(value) {
         // unused
     }
-
-    // TODO: streaming range
 }
+
+alt.on('baseObjectRemove', (ent) => {
+    if (ent.mp instanceof _Object) view.remove(ent.mp.id);
+});
 
 mp.Object = _Object;
 
-Object.defineProperty(alt.NetworkObject.prototype, 'mp', {
-    get() {
-        return this._mp ??= new _Object(this);
-    }
-});
+// Object.defineProperty(alt.Object.prototype, 'mp', {
+//     get() {
+//         return this._mp ??= new _Object(this);
+//     }
+// });
 
-mp.objects = new Pool(() => alt.NetworkObject.all, alt.NetworkObject.getByID, () => alt.NetworkObject.all.length);
+mp.objects = new ServerPool(view);
 
+const group = new alt.VirtualEntityGroup(255);
 mp.objects.new = (model, position, params) => {
-    const obj = new alt.NetworkObject(model, position, params.rotation ?? alt.Vector3.zero, params.alpha ?? 0, 100);
-    return obj.mp;
+    const virtualEnt = new alt.VirtualEntity(group, position, params.drawDistance ?? 300);
+    virtualEnt.setStreamSyncedMeta(mp.prefix + 'type', VirtualEntityID.Object);
+    const ent = virtualEnt.mp;
+    ent.model = model;
+    ent.position = position;
+    if ('rotation' in params) ent.rotation = params.rotation;
+    if ('alpha' in params) ent.alpha = params.alpha;
+    if ('dimension' in params) ent.dimension = params.dimension;
+
+    return ent;
 };

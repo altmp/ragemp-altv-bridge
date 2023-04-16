@@ -1,3 +1,5 @@
 export const VirtualEntityID = {
-    Label: 0
+    Label: 0,
+    LocalVehicle: 1,
+    Object: 2
 };

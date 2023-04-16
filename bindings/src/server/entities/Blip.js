@@ -4,7 +4,8 @@ import mp from '../../shared/mp.js';
 import {mpDimensionToAlt, deg2rad, rad2deg, vdist, vdist2} from '../../shared/utils.js';
 import { _Entity } from './Entity.js';
 import { _WorldObject } from './WorldObject.js';
-import { Pool } from '../pools/Pool';
+import { ServerPool } from '../pools/ServerPool';
+import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 
 export class _Blip extends _WorldObject {
     alt;
@@ -97,7 +98,7 @@ Object.defineProperty(alt.Blip.prototype, 'mp', {
 
 mp.Blip = _Blip;
 
-mp.blips = new Pool(() => alt.Blip.all, alt.Blip.getByID);
+mp.blips = new ServerPool(EntityGetterView.fromClass(alt.Blip));
 
 mp.blips.new = function(sprite, position, options) {
     const blip = new alt.PointBlip(new alt.Vector3(position.x, position.y, position.z));

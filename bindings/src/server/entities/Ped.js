@@ -2,7 +2,8 @@ import * as alt from 'alt-server';
 import mp from '../../shared/mp.js';
 import {mpDimensionToAlt, deg2rad} from '../../shared/utils.js';
 import { _Entity } from './Entity.js';
-import { Pool } from '../pools/Pool';
+import { ServerPool } from '../pools/ServerPool';
+import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 
 export class _Ped extends _Entity {
     alt;
@@ -26,7 +27,7 @@ Object.defineProperty(alt.Ped.prototype, 'mp', {
 
 mp.Ped = _Ped;
 
-mp.peds = new Pool(() => alt.Ped.all, alt.Ped.getByID);
+mp.peds = new ServerPool(EntityGetterView.fromClass(alt.Ped));
 
 mp.peds.new = function(model, position, heading, dimension) {
     const ped = new alt.Ped(model, position, new alt.Vector3(0, 0, heading * deg2rad));

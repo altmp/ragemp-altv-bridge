@@ -17,7 +17,7 @@ export const vdist = (v1, v2, useZ = true) => {
 };
 
 export const toMp = (obj) => {
-    if (typeof obj === 'object' && obj) {
+    if (obj && typeof obj === 'object') {
         if (obj instanceof alt.BaseObject && obj.mp) {
             return obj.mp;
         }

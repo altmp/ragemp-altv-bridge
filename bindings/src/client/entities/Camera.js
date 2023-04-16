@@ -2,20 +2,21 @@ import * as alt from 'alt-client';
 import * as natives from 'natives';
 import mp from '../../shared/mp.js';
 import { rotToDir } from '../../shared/utils';
-import { Pool } from '../Pool';
+import { ClientPool } from '../ClientPool';
+import {EntityStoreView} from '../../shared/pools/EntityStoreView';
 
-const created = {};
-let list = [];
-let lastId = 0;
+const view = new EntityStoreView();
 
 class _Camera {
-    #gameplay;
-
     constructor(handle) {
         this.handle = handle;
-        this.id = lastId++;
-        created[this.id] = this;
-        list = Object.values(created);
+        this.id = view.getId();
+        view.add(this, this.id, handle);
+    }
+
+    destroy() {
+        view.remove(this.id, this.handle);
+        natives.destroyCam(this.handle, false);
     }
 
     getPosition() {
@@ -36,10 +37,6 @@ class _Camera {
 
     get attachTo() {
         return this.attachToEntity;
-    }
-
-    destroy() {
-        natives.destroyCam(this.handle, false);
     }
 
     setActive(value) {
@@ -83,12 +80,19 @@ class _GameplayCamera extends _Camera {
 
 mp.Camera = _Camera;
 
-mp.cameras = new Pool(() => list, () => list, (id) => created[id]);
+mp.cameras = new ClientPool(view);
 
-mp.cameras.gameplay = new _GameplayCamera(natives.getRenderingCam());
+// smart getter
+Object.defineProperty(mp.cameras, 'gameplay', {
+    get() {
+        delete mp.cameras.gameplay;
+        return mp.cameras.gameplay = new _GameplayCamera(natives.getRenderingCam());
+    },
+    configurable: true
+});
 
 mp.cameras.new = function(name, pos, rot, fov) {
-    if (name == 'gameplay') {
+    if (name === 'gameplay') {
         return mp.cameras.gameplay;
     }
 

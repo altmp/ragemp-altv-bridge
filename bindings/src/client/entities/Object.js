@@ -2,7 +2,21 @@ import mp from '../../shared/mp';
 import * as alt from 'alt-client';
 import * as natives from 'natives';
 import {_Entity} from './Entity';
-import {Pool} from '../Pool';
+import { ClientPool } from '../ClientPool';
+import {EntityStoreView} from '../../shared/pools/EntityStoreView';
+import {EntityMixedView} from '../../shared/pools/EntityMixedView';
+import {EntityGetterView} from '../../shared/pools/EntityGetterView';
+
+const store = new EntityStoreView();
+const view = new EntityMixedView(store, new EntityGetterView(
+    () => alt.Object.all,
+    (id) => alt.Object.all.find(e => e.mp.id === id),
+    {
+        remoteIDGetter: alt.Object.getByID,
+        scriptIDGetter: alt.Object.getByScriptID,
+        streamRangeGetter: alt.Object.all.filter(e => e.scriptID !== 0)
+    }
+));
 
 export class _Object extends _Entity {
     /** @param {alt.Object} alt */
@@ -71,22 +85,7 @@ Object.defineProperty(alt.Object.prototype, 'mp', {
     }
 });
 
-Object.defineProperty(alt.NetworkObject.prototype, 'mp', {
-    get() {
-        return this._mp ??= new _Object(this);
-    }
-});
-
-// TODO: streamedIn
-mp.objects = new Pool(() => alt.Object.all, () => [], () => null, () => alt.Object.all.length);
-
-mp.objects.atRemoteId = function(id) {
-    return alt.Object.getByRemoteID(id)?.mp ?? null;
-};
-
-mp.objects.atHandle = function(handle) {
-    return alt.Object.getByScriptID(handle)?.mp ?? null;
-};
+mp.objects = new ClientPool(view);
 
 mp.objects.new = (model, position, params) => {
     console.log('Spawning model ' + model);

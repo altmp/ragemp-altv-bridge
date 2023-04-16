@@ -3,7 +3,8 @@ import { SyncedMetaProxy } from '../../shared/meta.js';
 import mp from '../../shared/mp.js';
 import {deg2rad, mpDimensionToAlt, rad2deg, vdist, vdist2} from '../../shared/utils.js';
 import { _Entity } from './Entity.js';
-import { Pool } from '../pools/Pool';
+import { ServerPool } from '../pools/ServerPool';
+import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 
 export class _Vehicle extends _Entity {
     alt;
@@ -279,7 +280,7 @@ Object.defineProperty(alt.Vehicle.prototype, 'mp', {
 
 mp.Vehicle = _Vehicle;
 
-mp.vehicles = new Pool(() => alt.Vehicle.all, alt.Vehicle.getByID);
+mp.vehicles = new ServerPool(EntityGetterView.fromClass(alt.Vehicle));
 
 mp.vehicles.new = function(model, position, options = {}) {
     const info = alt.getVehicleModelInfoByHash(model);
