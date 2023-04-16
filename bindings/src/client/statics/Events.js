@@ -63,7 +63,6 @@ class _Events extends BaseEvents {
 
     //region RPC
     callRemote(event, ...args) {
-        if (event == 'setChatPurge') console.log('БЛЯТЬ');
         if(mp.debug)console.log('Emitting remote ' + event);
         alt.emitServer(event, ...argsToAlt(args));
     }
