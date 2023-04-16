@@ -5,7 +5,8 @@
         "typeRoots": [
             "./node_modules/@types",
             "./node_modules/@altv"
-        ]
+        ],
+        "baseUrl": "./src"
     },
     "include": [
         "./src/**/*"
