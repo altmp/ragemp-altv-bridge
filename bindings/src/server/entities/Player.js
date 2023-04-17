@@ -21,7 +21,7 @@ export class _Player extends _Entity {
     }
 
     get serial() {
-        return 'asd';
+        return this.alt.hwidHash + this.alt.hwidExHash;
     }
 
     get socialClub() {
