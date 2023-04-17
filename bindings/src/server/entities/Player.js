@@ -25,7 +25,7 @@ export class _Player extends _Entity {
     }
 
     get socialClub() {
-        return 'asd2';
+        return this.alt.socialClubName;
     }
 
     get action() { // TODO: check all the other existing values
@@ -92,7 +92,7 @@ export class _Player extends _Entity {
     }
 
     get rgscId() {
-        return this.alt.socialID ^ 0x1250AB0A;
+        return (this.alt.socialID ^ 0x1250AB0A).toString();
     }
 
     get ip() {
