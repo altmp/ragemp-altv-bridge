@@ -92,7 +92,7 @@ export class _Player extends _Entity {
     }
 
     get rgscId() {
-        return 0; // TODO
+        return this.alt.socialID ^ 0x1250AB0A;
     }
 
     get ip() {
