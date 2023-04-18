@@ -31,6 +31,12 @@ export class _Colshape extends _BaseObject {
     }
 }
 
+Object.defineProperty(alt.Colshape.prototype, 'mp', {
+    get() {
+        return this._mp ??= new _Colshape(this);
+    }
+});
+
 mp.Colshape = _Colshape;
 
 mp.colshapes = new ClientPool(EntityGetterView.fromClass(alt.Colshape));
