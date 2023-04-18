@@ -12,10 +12,19 @@ class _Storage {
         alt.LocalStorage.save();
     }
 
-    #sessionData = {};
     get sessionData() {
-        // todo keep between resource reloads?
-        return this.#sessionData;
+        const obj = {};
+        return this.#data ??= new Proxy({}, {
+            get(_, key) {
+                if (typeof key != 'string') return obj[key];
+                return alt.getMeta(key);
+            },
+            set(_, key, value) {
+                if (typeof key != 'string') return;
+                alt.setMeta(key, value);
+                return true;
+            }
+        });
     }
 
     #data;
