@@ -28,7 +28,7 @@ export class _WorldObject extends _BaseObject {
     }
 
     get dimension() {
-        return 0; // TODO: dimension
+        return this.alt.dimension ?? alt.Player.local.dimension;
     }
 
     get id() {

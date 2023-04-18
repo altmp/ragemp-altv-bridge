@@ -49,8 +49,24 @@ export class _Vehicle extends _Entity {
     // TODO: reverse and implement steeringAngle in core
     // TODO: nosActive (nitro)
     // TODO: nosAmount (nitro)
-    // TODO: getHandling
-    // TODO: getDefaultHandling
+
+    #convertHandlingId(handlingId) {
+        if (typeof handlingId != 'string' || handlingId.length < 2) return;
+        return handlingId[1].toLowerCase() + handlingId.slice(2);
+    }
+
+    setHandling(id, value) {
+        this.alt.handling[this.#convertHandlingId(id)] = value;
+    }
+
+    getHandling(id) {
+        return this.alt.handling[this.#convertHandlingId(id)];
+    }
+
+    getDefaultHandling(id) {
+        const handling = alt.HandlingData.getForHandlingName(this.alt.handling.handlingNameHash);
+        return handling[this.#convertHandlingId(id)];
+    }
 
     get wheelCount() {
         return this.alt.wheelsCount;

@@ -42,7 +42,3 @@ function docReady(fn) {
         document.addEventListener('DOMContentLoaded', fn);
     }
 }
-
-docReady(() => {
-    alt.emit(mp.prefix + 'browserDomReady');
-});

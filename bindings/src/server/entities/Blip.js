@@ -44,7 +44,7 @@ export class _Blip extends _WorldObject {
     }
 
     get rotation() {
-        return this.alt.heading; // TODO: maybe convert units
+        return this.alt.heading;
     }
 
     set rotation(value) {

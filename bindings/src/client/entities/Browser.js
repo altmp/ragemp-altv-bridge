@@ -23,7 +23,7 @@ export class _Browser extends _BaseObject {
             mp.events.dispatch(evt, ...args);
         });
 
-        this.alt.on(mp.prefix + 'loaded', () => {
+        this.alt.on('load', () => {
             mp.events.dispatch('browserDomReady', this);
         });
 
@@ -42,10 +42,10 @@ export class _Browser extends _BaseObject {
         this.alt.emit(mp.prefix + 'event', event, ...args);
     }
 
-    // TODO: RPC (call, cancelPendingProc, hasPendingProc)
+    // TODO: RPC (callProc, cancelPendingProc, hasPendingProc)
 
     execute(code) {
-        this.alt.emit(mp.prefix + 'eval', code); // TODO: Implement in webview bridge
+        this.alt.emit(mp.prefix + 'eval', code);
     }
 
     executeCached(code) {
@@ -56,6 +56,9 @@ export class _Browser extends _BaseObject {
         this.alt.destroy();
     }
 
+    markAsChat() {
+
+    }
     // TODO: markAsChat ?
 
     #_url;

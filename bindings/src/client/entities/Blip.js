@@ -42,7 +42,7 @@ mp.blips.new = function(sprite, position, params) {
     if ('alpha' in params) blip.alpha = params.alpha;
     // TODO: draw distance
     if ('shortRange' in params) blip.shortRange = params.shortRange;
-    if ('rotation' in params) blip.heading = params.rotation; // TODO: deg or rad
+    if ('rotation' in params) blip.heading = params.rotation;
     // TODO: dimension
     // TODO: radius
     return blip.mp;

@@ -49,7 +49,15 @@ export class _Player extends _Entity {
     }
 
     // TODO: isTypingInTextChat
+    get isTypingInTextChat() {
+        return false;
+    }
+
     // TODO: isPositionFrozen
+    get isPositionFrozen() {
+        return false;
+    }
+
     voiceAutoVolume = false;
     voice3d = false;
 

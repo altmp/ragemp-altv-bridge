@@ -76,7 +76,13 @@ export class _Vehicle extends _Entity {
         this.alt.lockState = value ? 2 : 1;
     }
 
-    // TODO: movable
+    get movable() {
+        return !this.alt.frozen;
+    }
+
+    set movable(value) {
+        this.alt.frozen = !value;
+    }
     // TODO: mods
 
     get neonEnabled() {
@@ -124,13 +130,36 @@ export class _Vehicle extends _Entity {
         this.alt.rot = new alt.Vector3(value).toRadians();
     }
 
-    // TODO: siren
-    // TODO: steerAngle
-    // TODO: streamedPlayers
+    get siren() {
+        return false;
+    }
+
+    set siren(value) {
+        // TODO: siren
+    }
+
+    get steerAngle() {
+        return 0;
+    }
+
+    set steerAngle(value) {
+        // TODO: steerAngle
+    }
+
+    get streamedPlayers() {
+        return alt.Player.all.filter(e => e.isEntityInStreamRange(this.alt)); // TODO: implement in js module
+    }
+
     // TODO: taxiLights
-    // TODO: trailer
-    // TODO: traileredBy
     // TODO: trimColor
+
+    get trailer() {
+        return this.alt.attached?.mp ?? null;
+    }
+
+    get trailedBy() {
+        return this.alt.attachedTo?.mp ?? null;
+    }
 
     get velocity() {
         return this.alt.velocity;
@@ -196,7 +225,13 @@ export class _Vehicle extends _Entity {
         this.alt.destroy();
     }
 
-    // TODO: explode
+    explode() {
+        if (this.alt.netOwner) {
+            this.alt.setTimedExplosion(true, this.alt.netOwner, 1);
+        } else {
+            this.alt.bodyHealth = -1;
+        }
+    }
 
     getColor(id) {
         return id == 0 ? this.alt.primaryColor : this.alt.secondaryColor;
@@ -215,7 +250,9 @@ export class _Vehicle extends _Entity {
         return this.alt.getMod(id);
     }
 
-    // TODO: getNeonColor
+    getNeonColor() {
+        return [this.alt.neonColor.r, this.alt.neonColor.g, this.alt.neonColor.b];
+    }
 
     getOccupant(id) {
         // TODO: implement in core
@@ -228,6 +265,9 @@ export class _Vehicle extends _Entity {
     }
 
     // TODO: getPaint
+    getPaint() {
+        return 0;
+    }
 
     isStreamed(player) {
         return player.isEntityInStreamRange(this.alt);
@@ -263,8 +303,13 @@ export class _Vehicle extends _Entity {
         this.alt.neonColor = new alt.RGBA(r, g, b);
     }
 
-    // TODO: setOccupant
-    // TODO: setPaint
+    setOccupant(seat, player) {
+        player.alt.setIntoVehicle(this.alt, seat + 1);
+    }
+
+    setPaint(colorType, color) {
+        // todo setPaint
+    }
 
     spawn(pos, heading) {
         this.alt.pos = pos;

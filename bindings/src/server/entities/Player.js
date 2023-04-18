@@ -277,9 +277,16 @@ export class _Player extends _Entity {
         this.alt.kick(reason);
     }
 
-    // TODO: kickSilent
-    // TODO: playAnimation
+    kickSilent(reason) {
+        // TODO: kickSilent
+        this.kick(reason);
+    }
+
     // TODO: playScenario
+
+    playAnimation(dict, name, speed, flag) {
+        this.alt.playAnimation(dict, name, speed, speed, -1, flag, 1, false, false, false);
+    }
 
     outputChatBox(message) {
         InternalChat.send(this.alt, message);
@@ -298,7 +305,9 @@ export class _Player extends _Entity {
         this.alt.pos = this.alt.pos; // TODO: implement better in core
     }
 
-    // TODO: removeObject
+    removeObject(id) {
+        this.alt.clearProp(id);
+    }
 
     removeWeapon(weapon) {
         this.alt.removeWeapon(weapon);
