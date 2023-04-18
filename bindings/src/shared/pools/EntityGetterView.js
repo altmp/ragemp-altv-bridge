@@ -16,7 +16,7 @@ export class EntityGetterView extends EntityBaseView {
     }
 
     static fromClass(obj) {
-        new EntityGetterView(
+        return new EntityGetterView(
             () => obj.all,
             obj.getByID,
             {
