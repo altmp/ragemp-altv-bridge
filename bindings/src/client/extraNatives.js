@@ -11,10 +11,16 @@ mp.game.time = mp.game.clock;
 mp.game.rope = mp.game.physics;
 mp.game.controls = mp.game.pad;
 mp.game.ui = mp.game.hud;
+mp.game.decisionevent = mp.game.event;
 mp.gui = {};
 
 // #endregion
 
+mp._findEntity = (scriptID) => {
+    if (typeof scriptID != 'number') return scriptID;
+    // TODO: optimize objects scriptid stuff
+    return alt.Player.getByScriptID(scriptID)?.mp ?? alt.Vehicle.getByScriptID(scriptID)?.mp ?? alt.Object.getByScriptID(scriptID)?.mp ?? alt.Object.allWorld.find(e => e.scriptID === scriptID)?.mp ?? scriptID;
+};
 // #region JOAAT
 
 function joaat(key) {
@@ -77,13 +83,27 @@ mp.game.controls.setDisableControlActionBatch = function(isMoveOrLookInputGroup,
     if (isMoveOrLookInputGroup) disabledActionsMoveLook = controlActions;
     else disabledActionsFrontend = controlActions;
 };
+mp.game.pad.setDisableControlActionBatch = mp.game.controls.setDisableControlActionBatch;
 
 mp.game.controls.applyDisableControlActionBatch = function() {
     for (const action of disabledActionsMoveLook) natives.disableControlAction(0, action, false);
     for (const action of disabledActionsFrontend) natives.disableControlAction(2, action, false);
 };
+mp.game.pad.applyDisableControlActionBatch = mp.game.controls.applyDisableControlActionBatch;
 
 // #endregion
+
+//#region setShowHudComponentsThisFrameBatch
+let shownHudComponents = [];
+
+mp.game.controls.setShowHudComponentsThisFrameBatch = function(components) {
+    shownHudComponents = components;
+};
+
+mp.game.controls.applyDisableControlActionBatch = function() {
+    for (const component of shownHudComponents) natives.showHudComponentThisFrame(component);
+};
+//#endregion
 
 mp.gui.execute = () => {}; // seems to be doing nothing
 
@@ -110,6 +130,7 @@ mp.game.graphics.notify = (message) => {
 mp.game.audio.playSoundHash = mp.game.audio.playSound;
 mp.game.cam.setTimeIdleDrop = mp.game.cam.unk._0x9DFE13ECDC1EC196;
 mp.game.cam.resetClockTime = () => natives.setClockTime(12, 0, 0);
+mp.game.time.resetClockTime = () => natives.setClockTime(12, 0, 0);
 // TODO: setLightsState, resetLightsState, getLightsState
 
 mp.game.graphics.screen2dToWorld3d = (pos) => {
@@ -129,6 +150,73 @@ mp.game.graphics.setParticleFxBloodScale = mp.game.graphics.unk._0x908311265D42A
 mp.game.graphics.set2dLayer = mp.game.graphics.setScriptGfxDrawOrder;
 mp.game.graphics.drawScaleformMovie3d = mp.game.graphics.drawScaleformMovie3D;
 mp.game.graphics.drawDebugText2d = mp.game.graphics.drawDebugText2D;
+mp.game.hud.enableDeathbloodSeethrough = mp.game.hud.unk._0x4895BDEA16E7C080;
+mp.game.hud.endTextComponent = mp.game.graphics.endTextCommandScaleformString;
+// TODO: getGravityLevel
+mp.game.misc.getAngleBetween2dVectors = mp.game.misc.getAngleBetween2DVectors;
+mp.game.gameplay.getAngleBetween2dVectors = mp.game.misc.getAngleBetween2DVectors;
+mp.game.misc.getHeadingFromVector2d = mp.game.misc.getHeadingFromVector2D;
+mp.game.gameplay.getHeadingFromVector2d = mp.game.misc.getHeadingFromVector2D;
+mp.game.misc.getGroundZFor3dCoord = mp.game.misc.getGroundZFor3DCoord;
+mp.game.gameplay.getGroundZFor3dCoord = mp.game.misc.getGroundZFor3DCoord;
+mp.game.player.getEntityIsFreeAimingAt = () => {
+    const res = mp.game.player.getEntityIsFreeAimingAtRaw();
+    if (!res) return res;
+    return mp._findEntity(res);
+};
+// TODO: mp.game.object.getAllByHash
+// TODO: mp.game.object.getAllInRange
+// TODO: minimap components
+
+mp.game.pathfind = {};
+mp.game.pathfind.loadAllPathNodes = (set) => natives.loadAllPathNodes(set);
+mp.game.ped.isCopInArea3d = mp.game.ped.isCopInArea3D;
+mp.game.ped.setTimeExclusiveDisplayTexture = mp.game.ped.unk._0xFD325494792302D7;
+mp.game.player.intToindex = mp.game.player.intToIndex;
+mp.game.player.setAreasGeneratorOrientation = mp.game.player.unk._0xC3376F42B1FACCC6;
+mp.game.player.setAreasGeneratorOrientation = mp.game.player.unk._0xC3376F42B1FACCC6;
+mp.game.player.setAirDragMultiplierForsVehicle = mp.game.player.setAirDragMultiplierForPlayersVehicle;
+mp.game.player.setHudAnimStopLevel = mp.game.player.unk._0xDE45D1A1EF45EE61;
+mp.game.player.setHudAnimStopLevel = mp.game.player.unk._0xDE45D1A1EF45EE61;
+mp.game.player.hasTeleportFinished = mp.game.player.updateTeleport;
+// TODO: mp.streaming.getAllModelNames
+// TODO: mp.streaming.getAllModelHashes
+// TODO: mp.streaming.getModelNameFromHash
+// TODO: mp.streaming.forceStreamingUpdate
+
+mp.game.vehicle.setExperimentalAttachmentSyncEnabled = () => {};
+mp.game.vehicle.setExperimentalHornSyncEnabled = () => {};
+// TODO: mp.vehicle.addModelOverride
+// TODO: mp.vehicle.removeModelOverride
+// TODO: mp.vehicle.clearModelOverrides
+// TODO: mp.game.weapon.getWeaponInfo <- idk how this shit is supposed to work on RAGE:MP, looks like it just doesn't /shrug
+// TODO: mp.game.weapon.getAccuracyModifier <- same story
+// TODO: mp.game.weapon.getAllWeaponNames
+
+// TODO: dlc1, dlc2
+
+mp.game.unk = {};
+mp.game.unk.getBroadcastFinshedLosSound = mp.game.loadingscreen.getBroadcastFinshedLosSound;
+
+mp.game.recorder = {};
+mp.game.recorder.start = mp.game.recording.start;
+mp.game.recorder.isRecording = mp.game.recording.isRecording;
+mp.game.recorder.stop = mp.game.recording.stopAndSaveClip;
+mp.game.recorder.isRecording = mp.game.recording.isRecording;
+
+mp.game.weapon.cancelCurrentDamageEvent = () => {
+    // TODO?
+};
+
+mp.game.weapon.setCurrentDamageEventAmount = () => {
+    // TODO?
+};
+
+mp.game.weapon.setCurrentDamageEventCritical = () => {
+    // TODO?
+};
+
+mp.game.vehicle.isCopVehicleInArea3d = mp.game.vehicle.isCopInArea3D;
 
 mp.game.graphics.setLightsState = function() {
     // TODO
@@ -184,10 +272,21 @@ mp.game.hud.getCurrentStreetNameString = () => {
     return natives.getFilenameForAudioConversation(key);
 };
 
+mp.game.hud.getCurrentStreetNameHash = () => {
+    const pos = alt.Player.local.pos;
+    const key = natives.getStreetNameAtCoord(pos.x, pos.y, pos.z, 0, 0);
+    return key;
+};
+
 mp.game.hud.getCurrentAreaNameString = () => {
     const pos = alt.Player.local.pos;
     const key = natives.getHashOfMapAreaAtCoords(pos.x, pos.y, pos.z);
     return natives.getFilenameForAudioConversation(key);
+};
+
+mp.game.hud.getCurrentAreaNameHash = () => {
+    const pos = alt.Player.local.pos;
+    return natives.getHashOfMapAreaAtCoords(pos.x, pos.y, pos.z);
 };
 
 //#endregion

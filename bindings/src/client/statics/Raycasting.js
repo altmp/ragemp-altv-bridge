@@ -6,8 +6,8 @@ class _Raycasting {
     #handleResult([state, hit, position, surfaceNormal, scriptID]) {
         if (state != 2 || !hit) return;
         natives.releaseScriptGuidFromEntity(scriptID);
-        
-        let entity = alt.Player.getByScriptID(scriptID)?.mp ?? alt.Vehicle.getByScriptID(scriptID)?.mp ?? alt.Object.getByScriptID(scriptID)?.mp ?? scriptID;
+
+        let entity = mp._findEntity(scriptID);
         return { position: new mp.Vector3(position), surfaceNormal: new mp.Vector3(surfaceNormal), entity };
     }
 
