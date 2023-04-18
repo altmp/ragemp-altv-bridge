@@ -70,3 +70,13 @@ mp.colshapes.newTube = function(x, y, z, height, range, dimension = 0) {
     shape.playersOnly = true;
     return shape.mp;
 };
+
+alt.on('entityEnterColshape', (shape, ent) => {
+    if (!(ent instanceof alt.Player) || shape instanceof alt.Checkpoint) return;
+    mp.events.dispatch('playerEnterColshape', ent.mp, shape.mp);
+});
+
+alt.on('entityLeaveColshape', (shape, ent) => {
+    if (!(ent instanceof alt.Player) || shape instanceof alt.Checkpoint) return;
+    mp.events.dispatch('playerExitColshape', ent.mp, shape.mp);
+});

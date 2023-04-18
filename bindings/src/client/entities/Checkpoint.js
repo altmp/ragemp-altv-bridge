@@ -38,3 +38,13 @@ mp.checkpoints.new = function (type, pos, radius, options) {
     const checkpoint = new alt.Checkpoint(type, pos, options.nextPos ?? new alt.Vector3(0, 0, 0), radius, 100, options.color ? new alt.RGBA(...options.color) : alt.RGBA.red);
     return checkpoint.mp;
 };
+
+alt.on('entityEnterColshape', (shape, ent) => {
+    if (!(ent instanceof alt.Player) || !(shape instanceof alt.Checkpoint)) return;
+    mp.events.dispatch('playerEnterCheckpoint', ent.mp, shape.mp);
+});
+
+alt.on('entityLeaveColshape', (shape, ent) => {
+    if (!(ent instanceof alt.Player) || !(shape instanceof alt.Checkpoint)) return;
+    mp.events.dispatch('playerExitCheckpoint', ent.mp, shape.mp);
+});
