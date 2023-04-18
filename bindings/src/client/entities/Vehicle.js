@@ -8,7 +8,7 @@ import {VirtualEntityID} from '../../shared/VirtualEntityID';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 import {EntityStoreView} from '../../shared/pools/EntityStoreView';
 import {EntityMixedView} from '../../shared/pools/EntityMixedView';
-import {toAlt, toMp} from '../../shared/utils';
+import {hashIfNeeded, toAlt, toMp} from '../../shared/utils';
 
 const store = new EntityStoreView();
 const view = new EntityMixedView(store, EntityGetterView.fromClass(alt.Vehicle));
@@ -504,6 +504,7 @@ mp.vehicles = new ClientPool(view);
 
 const group = new alt.VirtualEntityGroup(100);
 mp.vehicles.new = function(model, position, params = {}) {
+    model = hashIfNeeded(model);
     const virtualEnt = new alt.VirtualEntity(group, position, 300);
     virtualEnt.setMeta(mp.prefix + 'type', VirtualEntityID.LocalVehicle);
     virtualEnt.setMeta(mp.prefix + 'model', model);

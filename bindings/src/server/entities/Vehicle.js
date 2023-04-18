@@ -1,7 +1,7 @@
 import * as alt from 'alt-server';
 import { SyncedMetaProxy } from '../../shared/meta.js';
 import mp from '../../shared/mp.js';
-import {deg2rad, mpDimensionToAlt, rad2deg, vdist, vdist2} from '../../shared/utils.js';
+import {deg2rad, hashIfNeeded, mpDimensionToAlt, rad2deg, vdist, vdist2} from '../../shared/utils.js';
 import { _Entity } from './Entity.js';
 import { ServerPool } from '../pools/ServerPool';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
@@ -328,6 +328,7 @@ mp.Vehicle = _Vehicle;
 mp.vehicles = new ServerPool(EntityGetterView.fromClass(alt.Vehicle));
 
 mp.vehicles.new = function(model, position, options = {}) {
+    model = hashIfNeeded(model);
     const info = alt.getVehicleModelInfoByHash(model);
     if (!info || !info.type) model = alt.hash('kuruma');
     const heading = options?.heading ?? 0;

@@ -8,7 +8,7 @@ import {EntityStoreView} from '../../shared/pools/EntityStoreView';
 import {EntityMixedView} from '../../shared/pools/EntityMixedView';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 import {VirtualEntityID} from '../../shared/VirtualEntityID';
-import {toAlt, toMp} from '../../shared/utils';
+import {hashIfNeeded, toAlt, toMp} from '../../shared/utils';
 
 const store = new EntityStoreView();
 const view = new EntityMixedView(store, EntityGetterView.fromClass(alt.Ped));
@@ -105,6 +105,7 @@ mp.peds = new ClientPool(view);
 
 const group = new alt.VirtualEntityGroup(100);
 mp.peds.new = function(model, position, heading, dimension) {
+    model = hashIfNeeded(model);
     const virtualEnt = new alt.VirtualEntity(group, position, 300);
     // TODO: dimension
     virtualEnt.setMeta(mp.prefix + 'type', VirtualEntityID.Ped);

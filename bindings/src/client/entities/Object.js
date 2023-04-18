@@ -6,6 +6,7 @@ import { ClientPool } from '../ClientPool';
 import {EntityStoreView} from '../../shared/pools/EntityStoreView';
 import {EntityMixedView} from '../../shared/pools/EntityMixedView';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
+import {hashIfNeeded} from '../../shared/utils';
 
 const store = new EntityStoreView();
 const view = new EntityMixedView(store, new EntityGetterView(
@@ -106,6 +107,7 @@ mp.objects.newWeak = (handle) => {
 };
 
 mp.objects.newWeaponObject = (model, position, params) => {
+    model = hashIfNeeded(model);
     const handle = natives.createWeaponObject(model, params.ammo ?? 0, position.x, position.y, position.z, params.showWorldObject ?? false, params.scale ?? 1, 0, 0, 0);
     const obj = mp.objects.newWeak(handle);
     natives.freezeEntityPosition(obj.handle, true);
