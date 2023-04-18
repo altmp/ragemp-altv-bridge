@@ -12,6 +12,7 @@ import './Colshape.js';
 import './Ped.js';
 import {_Label} from './label/Label.js';
 import {VirtualEntityID} from '../../shared/VirtualEntityID';
+import {_LocalPed} from './Ped';
 
 Object.defineProperty(alt.VirtualEntity.prototype, 'mp', {
     /** @this {alt.VirtualEntity} */
@@ -23,6 +24,8 @@ Object.defineProperty(alt.VirtualEntity.prototype, 'mp', {
                 return this._mp = new _Label(this);
             case VirtualEntityID.LocalVehicle:
                 return this._mp = new _LocalVehicle(this);
+            case VirtualEntityID.Ped:
+                return this._mp = new _LocalPed(this);
         }
 
         return null;

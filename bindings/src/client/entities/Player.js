@@ -15,14 +15,6 @@ export class _Player extends _Entity {
         this.alt = alt;
     }
 
-    get handle() {
-        return this.alt.scriptID;
-    }
-
-    get remoteId() {
-        return this.alt.remoteId;
-    }
-
     get position() {
         return new mp.Vector3(this.alt.pos);
     }

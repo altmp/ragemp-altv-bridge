@@ -6,6 +6,10 @@ import './entities/index.js';
 import './statics/index.js';
 
 globalThis.mp = mp;
+
+mp.init = () => {
+
+};
 // import { Blip, BlipSprite, Colshape, ColshapeSphere, onClient, Player, PointBlip, RadiusBlip, Vector3, Vehicle } from 'alt-server';
 // import alt, { emit, on, VehicleLockState } from 'alt-shared';
 

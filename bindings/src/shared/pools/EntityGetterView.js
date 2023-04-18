@@ -1,20 +1,22 @@
 import {EntityBaseView} from './EntityBaseView';
 import {toMp} from '../utils';
+import alt from 'alt-shared';
 
 export class EntityGetterView extends EntityBaseView {
-    constructor(listGetter, idGetter, {remoteIDGetter, scriptIDGetter, countGetter, streamRangeGetter}) {
+    constructor(listGetter, idGetter, {remoteIDGetter, scriptIDGetter, countGetter, streamRangeGetter}, name = '') {
         super();
         this.listGetter = listGetter;
-        if (!idGetter) console.trace('ID getter is not defined, polyfilling');
+        if (!idGetter) alt.logWarning(name, 'ID getter is not defined, polyfilling');
         this.idGetter = idGetter ?? ((id) => listGetter().find(e => e.id === id));
-        this.remoteIDGetter = remoteIDGetter;
+        if (!remoteIDGetter) alt.logWarning(name, 'Remote ID getter is not defined, polyfilling');
+        this.remoteIDGetter = remoteIDGetter ?? idGetter;
         this.scriptIDGetter = scriptIDGetter;
         this.streamRangeGetter = streamRangeGetter;
         this.countGetter = countGetter ?? (() => listGetter().length);
     }
 
     static fromClass(obj) {
-        return new EntityGetterView(
+        new EntityGetterView(
             () => obj.all,
             obj.getByID,
             {
@@ -22,7 +24,8 @@ export class EntityGetterView extends EntityBaseView {
                 scriptIDGetter: obj.getByScriptID,
                 streamRangeGetter: () => obj.streamedIn,
                 countGetter: () => obj.count
-            }
+            },
+            obj.name
         );
     }
 

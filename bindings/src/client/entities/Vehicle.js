@@ -8,6 +8,7 @@ import {VirtualEntityID} from '../../shared/VirtualEntityID';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 import {EntityStoreView} from '../../shared/pools/EntityStoreView';
 import {EntityMixedView} from '../../shared/pools/EntityMixedView';
+import {toAlt, toMp} from '../../shared/utils';
 
 const store = new EntityStoreView();
 const view = new EntityMixedView(store, EntityGetterView.fromClass(alt.Vehicle));
@@ -23,10 +24,6 @@ export class _Vehicle extends _Entity {
 
     get handle() {
         return this.alt.scriptID;
-    }
-
-    get remoteId() {
-        return this.alt.remoteId;
     }
 
     get position() {
@@ -462,6 +459,21 @@ export class _LocalVehicle extends _Vehicle {
     onDestroy() {}
     onCreate() {}
     update() {}
+
+    getVariable(key) {
+        if (this.alt.isRemote) return toMp(this.alt.getStreamSyncedMeta(key));
+        return toMp(this.alt.getMeta(key));
+    }
+
+    setVariable(key, value) {
+        if (this.alt.isRemote) return;
+        this.alt.setMeta(key, toAlt(value));
+    }
+
+    hasVariable(key) {
+        if (this.alt.isRemote) return this.alt.hasStreamSyncedMeta(key);
+        return this.alt.hasMeta(key);
+    }
 }
 
 Object.defineProperty(alt.Vehicle.prototype, 'mp', {
@@ -482,6 +494,7 @@ mp.vehicles.new = function(model, position, params = {}) {
 
     /** @type {_LocalVehicle} */
     const ent = virtualEnt.mp;
+    if (!virtualEnt.isStreamedIn) return ent;
     if ('heading' in params) ent.setRotation(0, 0, params.heading, 2, false);
     if ('numberPlate' in params) ent.setNumberPlateText(params.numberPlate);
     if ('alpha' in params) ent.setAlpha(params.alpha, false);

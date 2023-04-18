@@ -7,6 +7,7 @@ import { LabelRenderer } from './LabelRenderer';
 import { VirtualEntityID } from '../../../shared/VirtualEntityID';
 import { _VirtualEntityBase } from '../VirtualEntityBase';
 import {EntityStoreView} from '../../../shared/pools/EntityStoreView';
+import {toAlt, toMp} from '../../../shared/utils';
 
 const view = new EntityStoreView(1, (e) => e.isStreamedIn);
 
@@ -18,7 +19,7 @@ export class _Label extends _VirtualEntityBase {
         super(alt);
         this.alt = alt;
         this.renderer = new LabelRenderer(() => alt.pos);
-        view.add(this, this.id, undefined, this.alt.remoteId);
+        view.add(this, this.id, undefined, this.remoteId);
         this.updateData();
     }
 
@@ -47,22 +48,18 @@ export class _Label extends _VirtualEntityBase {
         this.renderer[key.substr(mp.prefix.length)] = value;
     };
 
-    remoteId() {
-        return this.alt.remoteId;
-    }
-
     getVariable(key) {
-        if (this.isRemote) return this.alt.getStreamSyncedMeta(key); // TODO: convert result
-        return this.alt.getMeta(key);
+        if (this.alt.isRemote) return toMp(this.alt.getStreamSyncedMeta(key));
+        return toMp(this.alt.getMeta(key));
     }
 
     setVariable(key, value) {
-        if (this.isRemote) return;
-        this.alt.setMeta(key, value);
+        if (this.alt.isRemote) return;
+        this.alt.setMeta(key, toAlt(value));
     }
 
     hasVariable(key) {
-        if (this.isRemote) return this.alt.hasStreamSyncedMeta(key);
+        if (this.alt.isRemote) return this.alt.hasStreamSyncedMeta(key);
         return this.alt.hasMeta(key);
     }
 

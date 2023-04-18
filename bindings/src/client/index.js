@@ -59,3 +59,7 @@ alt.on('consoleCommand', async (cmd, ...args) => {
     if (cmd !== 'eval') return;
     console.log(await (new AsyncFunction('alt', 'natives', args.join(' ')))(alt, natives));
 });
+
+mp.init = () => {
+    mp._initEventHandlers();
+};
