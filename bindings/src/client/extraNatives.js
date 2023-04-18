@@ -168,7 +168,6 @@ mp.game.player.getEntityIsFreeAimingAt = () => {
 // TODO: mp.game.object.getAllInRange
 // TODO: minimap components
 
-mp.game.pathfind = {};
 mp.game.pathfind.loadAllPathNodes = (set) => natives.loadAllPathNodes(set);
 mp.game.ped.isCopInArea3d = mp.game.ped.isCopInArea3D;
 mp.game.ped.setTimeExclusiveDisplayTexture = mp.game.ped.unk._0xFD325494792302D7;
