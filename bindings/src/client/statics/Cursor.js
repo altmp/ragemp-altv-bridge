@@ -21,9 +21,21 @@ class _Cursor {
         return alt.isCursorVisible();
     }
 
+    set visible(state) {
+        if (state) {
+            while (!alt.isCursorVisible()) alt.showCursor(true);
+        } else {
+            while (alt.isCursorVisible()) alt.showCursor(false);
+        }
+    }
+
     get position() {
         const pos = alt.getCursorPos();
         return { x: pos.x, y: pos.y };
+    }
+
+    set position(pos) {
+        alt.setCursorPos(pos, false);
     }
 }
 
