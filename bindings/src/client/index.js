@@ -38,11 +38,11 @@ globalThis.require = function (path) {
     const moduleObject = { exports: {}, __path: path };
     populateModule(moduleObject);
     const content = alt.File.read(path);
-    ({
-        [path]: () => {
-            [eval][0](content);
-        }
-    })[path]();
+    try {
+        [eval][0](content);
+    } catch(e) {
+        throw new Error(`Failed to require file ${path}:\n${e}`);
+    }
     if (oldModuleObject) populateModule(oldModuleObject);
     return moduleObject.exports;
 };
