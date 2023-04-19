@@ -83,25 +83,26 @@ mp.game.controls.setDisableControlActionBatch = function(isMoveOrLookInputGroup,
     if (isMoveOrLookInputGroup) disabledActionsMoveLook = controlActions;
     else disabledActionsFrontend = controlActions;
 };
-mp.game.pad.setDisableControlActionBatch = mp.game.controls.setDisableControlActionBatch;
 
 mp.game.controls.applyDisableControlActionBatch = function() {
     for (const action of disabledActionsMoveLook) natives.disableControlAction(0, action, false);
     for (const action of disabledActionsFrontend) natives.disableControlAction(2, action, false);
 };
-mp.game.pad.applyDisableControlActionBatch = mp.game.controls.applyDisableControlActionBatch;
 
 // #endregion
 
 //#region setShowHudComponentsThisFrameBatch
-let shownHudComponents = [];
+let hideHudComponents = [];
+let showHudComponents = [];
 
-mp.game.controls.setShowHudComponentsThisFrameBatch = function(components) {
-    shownHudComponents = components;
+mp.game.hud.setShowHudComponentsThisFrameBatch = function(isShow, components) {
+    if (isShow) showHudComponents = components;
+    else hideHudComponents = components;
 };
 
-mp.game.controls.applyDisableControlActionBatch = function() {
-    for (const component of shownHudComponents) natives.showHudComponentThisFrame(component);
+mp.game.hud.applyShowHudComponentsThisFrameBatch = function() {
+    for (const component of showHudComponents) natives.showHudComponentThisFrame(component);
+    for (const component of hideHudComponents) natives.hideHudComponentThisFrame(component);
 };
 //#endregion
 
