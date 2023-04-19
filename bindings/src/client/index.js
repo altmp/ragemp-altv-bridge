@@ -55,10 +55,13 @@ alt.everyTick(() => {
 });
 
 const AsyncFunction = (async function () {}).constructor;
-alt.on('consoleCommand', async (cmd, ...args) => {
-    if (cmd !== 'eval') return;
-    console.log(await (new AsyncFunction('alt', 'natives', args.join(' ')))(alt, natives));
-});
+// TODO delete after debugging
+if (alt.debug) {
+    alt.on('consoleCommand', async (cmd, ...args) => {
+        if (cmd !== 'eval') return;
+        console.log(await (new AsyncFunction('alt', 'natives', args.join(' ')))(alt, natives));
+    });
+}
 
 mp.init = () => {
     mp._initEventHandlers();
