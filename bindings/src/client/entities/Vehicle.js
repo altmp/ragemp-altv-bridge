@@ -10,6 +10,8 @@ import {EntityStoreView} from '../../shared/pools/EntityStoreView';
 import {EntityMixedView} from '../../shared/pools/EntityMixedView';
 import {hashIfNeeded, toAlt, toMp} from '../../shared/utils';
 
+/** @type {Record<string, string>} */
+const keys = {'handlingnamehash':'handlingNameHash','mass':'mass','initialdragcoeff':'initialDragCoeff','downforcemodifier':'downforceModifier','unkfloat1':'unkFloat1','unkfloat2':'unkFloat2','centreofmassoffset':'centreOfMassOffset','inertiamultiplier':'inertiaMultiplier','percentsubmerged':'percentSubmerged','percentsubmergedratio':'percentSubmergedRatio','drivebiasfront':'driveBiasFront','acceleration':'acceleration','initialdrivegears':'initialDriveGears','driveinertia':'driveInertia','clutchchangeratescaleupshift':'clutchChangeRateScaleUpShift','clutchchangeratescaledownshift':'clutchChangeRateScaleDownShift','initialdriveforce':'initialDriveForce','drivemaxflatvel':'driveMaxFlatVel','initialdrivemaxflatvel':'initialDriveMaxFlatVel','brakeforce':'brakeForce','unkfloat4':'unkFloat4','brakebiasfront':'brakeBiasFront','brakebiasrear':'brakeBiasRear','handbrakeforce':'handBrakeForce','steeringlock':'steeringLock','steeringlockratio':'steeringLockRatio','tractioncurvemax':'tractionCurveMax','tractioncurvemaxratio':'tractionCurveMaxRatio','tractioncurvemin':'tractionCurveMin','tractioncurveminratio':'tractionCurveMinRatio','tractioncurvelateral':'tractionCurveLateral','tractioncurvelateralratio':'tractionCurveLateralRatio','tractionspringdeltamax':'tractionSpringDeltaMax','tractionspringdeltamaxratio':'tractionSpringDeltaMaxRatio','lowspeedtractionlossmult':'lowSpeedTractionLossMult','camberstiffness':'camberStiffness','tractionbiasfront':'tractionBiasFront','tractionbiasrear':'tractionBiasRear','tractionlossmult':'tractionLossMult','suspensionforce':'suspensionForce','suspensioncompdamp':'suspensionCompDamp','suspensionrebounddamp':'suspensionReboundDamp','suspensionupperlimit':'suspensionUpperLimit','suspensionlowerlimit':'suspensionLowerLimit','suspensionraise':'suspensionRaise','suspensionbiasfront':'suspensionBiasFront','suspensionbiasrear':'suspensionBiasRear','antirollbarforce':'antiRollBarForce','antirollbarbiasfront':'antiRollBarBiasFront','antirollbarbiasrear':'antiRollBarBiasRear','rollcentreheightfront':'rollCentreHeightFront','rollcentreheightrear':'rollCentreHeightRear','collisiondamagemult':'collisionDamageMult','weapondamagemult':'weaponDamageMult','deformationdamagemult':'deformationDamageMult','enginedamagemult':'engineDamageMult','petroltankvolume':'petrolTankVolume','oilvolume':'oilVolume','unkfloat5':'unkFloat5','seatoffsetdistx':'seatOffsetDistX','seatoffsetdisty':'seatOffsetDistY','seatoffsetdistz':'seatOffsetDistZ','monetaryvalue':'monetaryValue','modelflags':'modelFlags','handlingflags':'handlingFlags','damageflags':'damageFlags'};
 const store = new EntityStoreView();
 const view = new EntityMixedView(store, EntityGetterView.fromClass(alt.Vehicle));
 
@@ -52,18 +54,23 @@ export class _Vehicle extends _Entity {
 
     #convertHandlingId(handlingId) {
         if (typeof handlingId != 'string' || handlingId.length < 2) return;
-        return handlingId[1].toLowerCase() + handlingId.slice(2);
+        const key = handlingId.slice(1).toLowerCase();
+        return keys[key] ?? key;
     }
 
     setHandling(id, value) {
+        if (!this.alt.handling) return;
         this.alt.handling[this.#convertHandlingId(id)] = value;
     }
 
     getHandling(id) {
+        if (!this.alt.handling) return;
+        const key = this.#convertHandlingId(id);
         return this.alt.handling[this.#convertHandlingId(id)];
     }
 
     getDefaultHandling(id) {
+        if (!this.alt.handling) return;
         const handling = alt.HandlingData.getForHandlingName(this.alt.handling.handlingNameHash);
         return handling[this.#convertHandlingId(id)];
     }
@@ -151,6 +158,11 @@ export class _Vehicle extends _Entity {
 
     // TODO: forceStreamingUpdate?
 
+
+
+    getSuspensionHeight() {
+        return 0;
+    }
 
     // TODO: setSuspensionHeight
 
@@ -521,6 +533,6 @@ mp.vehicles.new = function(model, position, params = {}) {
     }
     if ('locked' in params) ent.setDoorsLocked(params.locked ? 2 : 1);
     if ('engine' in params) ent.setEngineOn(params.engine, true, false);
-    // TODO: dimension
+    if ('dimension' in params) virtualEnt.dimension = params.dimension;
     return ent;
 };

@@ -14,7 +14,8 @@ export class PlayerPool extends ServerPool {
         if(typeof arg1 === 'string') {
             alt.emitAllClients(arg1, ...argsToAlt(args1));
         } else if(typeof arg1 === 'object' && Array.isArray(arg1)) {
-            alt.emitClient(arg1.map(p => p.alt), args1, ...argsToAlt(args2));
+            const players = arg1.map(p => p.alt).filter(Boolean);
+            if (players.length) alt.emitClient(players, args1, ...argsToAlt(args2));
         }
     }
 
@@ -22,19 +23,22 @@ export class PlayerPool extends ServerPool {
         if(typeof arg1 === 'string') {
             alt.emitAllClientsUnreliable(arg1, ...argsToAlt(args1));
         } else if(typeof arg1 === 'object' && Array.isArray(arg1)) {
-            alt.emitClientUnreliable(arg1.map(p => p.alt), args1, ...argsToAlt(args2));
+            const players = arg1.map(p => p.alt).filter(Boolean);
+            if (players.length) alt.emitClientUnreliable(players, args1, ...argsToAlt(args2));
         }
     }
 
     // todo: callInRange(pos, range, dimension, event, ...args)
     callInRange(pos, range, event, args) {
         const rangeSquared = range ** 2;
-        alt.emitClient(alt.Player.all.filter(e => e.pos.distanceToSquared(pos) <= rangeSquared), event, ...argsToAlt(args));
+        const players = alt.Player.all.filter(e => e.pos.distanceToSquared(pos) <= rangeSquared);
+        if (players.length) alt.emitClient(players, event, ...argsToAlt(args));
     }
 
     callInDimension(dimension, event, args) {
         dimension = mpDimensionToAlt(dimension);
-        alt.emitClient(alt.Player.all.filter(e => e.dimension === dimension), event, ...argsToAlt(args));
+        const players = alt.Player.all.filter(e => e.dimension === dimension);
+        if (players.length) alt.emitClient(players, event, ...argsToAlt(args));
     }
     /*
     broadcastInDimension(dimension, text){}

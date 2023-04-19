@@ -9,6 +9,7 @@ import './Blip.js';
 import './Marker.js';
 import {_Object} from './Object.js';
 import './Dummy.js';
+import './Pickup.js';
 import {_Label} from './Label.js';
 import {VirtualEntityID} from '../../shared/VirtualEntityID';
 

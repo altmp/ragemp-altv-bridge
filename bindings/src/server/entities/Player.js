@@ -20,6 +20,12 @@ export class _Player extends _Entity {
         this.data = new SyncedMetaProxy(alt);
     }
 
+    #ensureHeadblend() {
+        if (this.alt.hasMeta(mp.prefix + 'headblendInit')) return;
+        this.alt.setHeadBlendData(0, 0, 0, 0, 0, 0, 0, 0, 0);
+        this.alt.setMeta(mp.prefix + 'headblendInit', true);
+    }
+
     get serial() {
         return this.alt.hwidHash + this.alt.hwidExHash;
     }
@@ -84,11 +90,11 @@ export class _Player extends _Entity {
     }
 
     get health() {
-        return this.alt.health;
+        return this.alt.health - 100;
     }
 
     set health(value) {
-        this.alt.health = value;
+        this.alt.health = value + 100;
     }
 
     get rgscId() {
@@ -112,7 +118,6 @@ export class _Player extends _Entity {
     get name() {
         return this.alt.name;
     }
-
     set name(value) {
         // TODO
     }
@@ -159,6 +164,7 @@ export class _Player extends _Entity {
 
     set model(value) {
         const oldModel = this.alt.model;
+        this.alt.deleteMeta(mp.prefix + 'headblendInit');
         this.alt.model = value;
         mp.events.dispatch('entityModelChange', this, oldModel);
     }
@@ -214,6 +220,7 @@ export class _Player extends _Entity {
     // TODO: tattoos (decorations)
 
     getClothes(component) {
+        this.#ensureHeadblend();
         return this.alt.getClothes(component);
     }
 
@@ -222,6 +229,7 @@ export class _Player extends _Entity {
     }
 
     getHeadBlend() {
+        this.#ensureHeadblend();
         const data = this.alt.getHeadBlendData();
         return {
             shapes: [data.shapeFirstID, data.shapeSecondID, data.shapeThirdID],
@@ -233,6 +241,7 @@ export class _Player extends _Entity {
     }
 
     getHeadOverlay(idx) {
+        this.#ensureHeadblend();
         const data = this.alt.getHeadOverlay(idx);
         return [data.index, data.opacity, data.colorIndex, data.secondColorIndex];
     }
@@ -320,11 +329,11 @@ export class _Player extends _Entity {
     // TODO: resetWeapon
 
     setClothes(component, drawable, texture, palette) {
-
         this.alt.setClothes(component, drawable, texture, palette);
     }
 
     setCustomization(gender, shapeFirst, shapeSecond, shapeThird, skinFirst, skinSecond, skinThird, shapeMix, skinMix, thirdMix, eyeColor, hairColor, highlightColor, faceFeatures) {
+        this.#ensureHeadblend();
         this.alt.removeAllWeapons(); // TODO: is needed?
         // TODO: is model set needed?
         if (gender === true) this.model = alt.hash('mp_m_freemode_01');
@@ -339,10 +348,12 @@ export class _Player extends _Entity {
     }
 
     setFaceFeature(idx, scale) {
+        this.#ensureHeadblend();
         this.alt.setFaceFeature(idx, scale);
     }
 
     setHairColor(hairColor) {
+        this.#ensureHeadblend();
         this.alt.setHairColor(hairColor);
     }
 
@@ -351,9 +362,11 @@ export class _Player extends _Entity {
     }
 
     setHeadOverlay(overlay, params) {
+        this.#ensureHeadblend();
         const [index, opacity, firstColor, secondColor] = params;
         this.alt.setHeadOverlay(overlay, index, opacity);
-        this.alt.setHeadOverlayColor(overlay, 0, firstColor, secondColor); // TODO: calc color type
+
+        this.alt.setHeadOverlayColor(overlay, overlay === 5 || overlay === 8 ? 2 : 1, firstColor, secondColor);
     }
 
     setProp(prop, drawable, texture) {
@@ -370,6 +383,7 @@ export class _Player extends _Entity {
     // TODO: stopAnimation
 
     updateHeadBlend(shape, skin, third) {
+        this.#ensureHeadblend();
         const headBlend = this.alt.getHeadBlendData();
         this.alt.setHeadBlendData(headBlend.shapeFirstID, headBlend.shapeSecondID, headBlend.shapeThirdID,
             headBlend.skinFirstID, headBlend.skinSecondID, headBlend.skinThirdID,

@@ -10,6 +10,7 @@ import './Camera.js';
 import './Object.js';
 import './Colshape.js';
 import './Ped.js';
+import './Pickup.js';
 import {_Label} from './label/Label.js';
 import {VirtualEntityID} from '../../shared/VirtualEntityID';
 import {_LocalPed} from './Ped';

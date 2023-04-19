@@ -78,6 +78,6 @@ if (alt.debug) {
     });
 }
 
-mp.init = () => {
+if (mp._main) {
     mp._initEventHandlers();
-};
+}

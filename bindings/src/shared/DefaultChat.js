@@ -2,9 +2,8 @@ import alt from 'alt-shared';
 import mp from './mp';
 import { BaseEvents } from './BaseEvents';
 
-class DefaultChat extends BaseEvents {
+class DefaultChat {
     constructor() {
-        super();
 
         this.enabled = true;
 
@@ -17,6 +16,7 @@ class DefaultChat extends BaseEvents {
 
     handleServer(player, msg) {
         if(!this.enabled) return;
+        console.warn('Got event from client', msg);
 
         if(msg[0] == '/') {
             mp.events.dispatch('playerCommand', player.mp, msg);
@@ -27,7 +27,7 @@ class DefaultChat extends BaseEvents {
                 let args = msg.split(' ');
                 let cmd = args.shift();
 
-                this.dispatch(cmd, player, ...args);
+                alt.emit(mp.prefix + 'cmd', cmd, player, args.join(' '), ...args);
             }
         }
         else {

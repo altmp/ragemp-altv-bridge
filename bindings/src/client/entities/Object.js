@@ -38,6 +38,14 @@ export class _Object extends _Entity {
         this.alt.pos = value;
     }
 
+    get rotation() {
+        return new mp.Vector3(this.alt.rot);
+    }
+
+    set rotation(value) {
+        this.alt.rot = value;
+    }
+
     get model() {
         return this.alt.model;
     }
@@ -89,7 +97,6 @@ Object.defineProperty(alt.Object.prototype, 'mp', {
 mp.objects = new ClientPool(view);
 
 mp.objects.new = (model, position, params) => {
-    console.log('Spawning model ' + model);
     if (!natives.isModelValid(model)) model = alt.hash('prop_ecola_can');
     const obj = new alt.Object(model, position, params.rotation ?? alt.Vector3.zero, true, true);
     natives.freezeEntityPosition(obj, true);

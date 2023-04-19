@@ -13,11 +13,11 @@ function transformUrl(url) {
 export class _Browser extends _BaseObject {
     alt;
 
-    /** @param {alt.WebView} alt */
-    constructor(alt) {
+    /** @param {alt.WebView} _alt */
+    constructor(_alt) {
         super();
-        this.alt = alt;
-        this.#_url = alt.url;
+        this.alt = _alt;
+        this.#_url = _alt.url;
 
         this.alt.on(mp.prefix + 'event', (evt, ...args) => {
             mp.events.dispatch(evt, ...args);
@@ -26,6 +26,13 @@ export class _Browser extends _BaseObject {
         this.alt.on('load', () => {
             mp.events.dispatch('browserDomReady', this);
         });
+
+        if (mp._main) {
+            this.alt.on(mp.prefix + 'chat', (arg) => {
+                alt.emitServer(mp.prefix + 'onchat', arg);
+                alt.emit(mp.prefix + 'onchat', arg);
+            });
+        }
 
         // TODO: browserLoadingFailed
     }

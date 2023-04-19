@@ -1,5 +1,6 @@
 import {mpDimensionToAlt, vdist2} from '../shared/utils';
 import {EntityBaseView} from './pools/EntityBaseView';
+import * as alt from 'alt-shared';
 
 export class SharedPool {
     /** @type {EntityBaseView} */
@@ -7,6 +8,16 @@ export class SharedPool {
 
     constructor(view) {
         this.#view = view;
+
+        alt.on('resourceStop', () => {
+            this.toArray().forEach(e => {
+                try {
+                    e.destroy();
+                } catch(e) {
+                    //
+                }
+            });
+        });
     }
 
     at(id) {
@@ -15,6 +26,7 @@ export class SharedPool {
 
     exists(id) {
         if (typeof id === 'object' && id) return id.valid ?? id?.alt?.valid ?? false;
+        if (id == null) return false;
         return this.#view.has(id);
     }
 

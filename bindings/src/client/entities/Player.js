@@ -31,6 +31,10 @@ export class _Player extends _Entity {
         return this.alt.name;
     }
 
+    set name(value) {
+        // TODO
+    }
+
     get model() {
         return this.alt.model;
     }

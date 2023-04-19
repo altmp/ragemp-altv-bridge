@@ -6,6 +6,7 @@ import {BaseEvents} from '../../shared/BaseEvents';
 import { InternalChat } from 'shared/DefaultChat.js';
 
 let procHandlers = {};
+let cmdHandlers = {};
 class _Events extends BaseEvents {
 
     constructor() {
@@ -29,6 +30,10 @@ class _Events extends BaseEvents {
         });
         alt.onClient(mp.prefix + 'call', (player, event, id, ...args) => {
             this.dispatchRemoteProc(player, event, id, ...args);
+        });
+        alt.on(mp.prefix + 'cmd', (cmd, player, all, ...args) => {
+            if (!(cmd in cmdHandlers)) return;
+            cmdHandlers[cmd](player.mp, all, ...args);
         });
 
         alt.on('baseObjectCreate', (obj) => {
@@ -84,7 +89,7 @@ class _Events extends BaseEvents {
     }
 
     addCommand(command, handler) {
-        InternalChat.add(command, handler);
+        cmdHandlers[command] = handler;
     }
 
     hasPendingRpc(player) {

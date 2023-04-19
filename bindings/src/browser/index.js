@@ -8,6 +8,11 @@ mp.trigger = (event, ...args) => {
     alt.emit(mp.prefix + 'event', event, ...args);
 };
 
+mp.invoke = (event, arg) => {
+    if (event === 'command') alt.emit(mp.prefix + 'chat', '/' + arg);
+    if (event === 'chatMessage') alt.emit(mp.prefix + 'chat', arg);
+};
+
 const handlers = {};
 
 mp.events = {};
@@ -24,7 +29,9 @@ mp.events.remove = function(event, fn) {
 
 alt.on(mp.prefix + 'event', (event, ...args) => {
     if (!(event in handlers)) return;
-    for (const handler of handlers[event]) handler(...args);
+    for (const handler of handlers[event]) {
+        handler(...args);
+    }
 });
 
 globalThis.mp = mp;

@@ -104,10 +104,10 @@ mp.Ped = _Ped;
 mp.peds = new ClientPool(view);
 
 const group = new alt.VirtualEntityGroup(100);
-mp.peds.new = function(model, position, heading, dimension) {
+mp.peds.new = function(model, position, heading, dimension = 0) {
     model = hashIfNeeded(model);
     const virtualEnt = new alt.VirtualEntity(group, position, 300);
-    // TODO: dimension
+    virtualEnt.dimension = dimension;
     virtualEnt.setMeta(mp.prefix + 'type', VirtualEntityID.Ped);
     virtualEnt.setMeta(mp.prefix + 'model', model);
 

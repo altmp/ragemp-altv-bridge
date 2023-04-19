@@ -42,4 +42,8 @@ export class _WorldObject extends _BaseObject {
     get handle() {
         return this.alt.scriptID;
     }
+
+    get model() {
+        return this.alt.model;
+    }
 }
