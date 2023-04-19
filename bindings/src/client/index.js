@@ -53,7 +53,9 @@ globalThis.require = function (path) {
     populateModule(moduleObject);
     const content = alt.File.read(path);
     try {
-        [eval][0](content);
+        ({
+            [path]: () => [eval][0](content)
+        })[path]();
     } catch(e) {
         throw new Error(`Failed to require file ${path}:\n${e}`);
     }
