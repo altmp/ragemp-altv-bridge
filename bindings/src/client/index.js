@@ -47,9 +47,6 @@ globalThis.global = globalThis;
 
 globalThis.mp = mp;
 
-console.log('Emitting playerJoin');
-alt.emitServer(mp.prefix + 'playerJoin');
-
 const AsyncFunction = (async function () {}).constructor;
 // TODO delete after debugging
 if (alt.debug) {
