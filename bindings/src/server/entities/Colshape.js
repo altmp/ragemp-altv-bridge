@@ -31,6 +31,18 @@ export class _Colshape extends _WorldObject {
     get shapeType() {
         return colshapeTypes[this.alt.colshapeType];
     }
+
+    setVariable(key, value) {
+        this.alt.setMeta(key, toAlt(value));
+    }
+
+    hasVariable(key) {
+        return this.alt.hasMeta(key);
+    }
+
+    getVariable(key) {
+        return toMp(this.alt.getMeta(key));
+    }
 }
 
 Object.defineProperty(alt.Colshape.prototype, 'mp', {

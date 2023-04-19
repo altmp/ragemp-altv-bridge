@@ -86,7 +86,7 @@ alt.on('baseObjectRemove', (ent) => {
 
 mp.Object = _Object;
 
-// Object.defineProperty(alt.Object.prototype, 'mp', {
+// Object.defineProperty(alt.NetworkObject.prototype, 'mp', {
 //     get() {
 //         return this._mp ??= new _Object(this);
 //     }

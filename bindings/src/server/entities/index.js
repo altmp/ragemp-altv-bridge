@@ -7,7 +7,7 @@ import './Colshape.js';
 import './Checkpoint.js';
 import './Blip.js';
 import './Marker.js';
-import './Object.js';
+import {_Object} from './Object.js';
 import './Dummy.js';
 import {_Label} from './Label.js';
 import {VirtualEntityID} from '../../shared/VirtualEntityID';
@@ -20,6 +20,8 @@ Object.defineProperty(alt.VirtualEntity.prototype, 'mp', {
         switch (type) {
             case VirtualEntityID.Label:
                 return this._mp = new _Label(this);
+            case VirtualEntityID.Object:
+                return this._mp = new _Object(this);
         }
 
         return null;
