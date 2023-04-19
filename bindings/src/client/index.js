@@ -50,10 +50,6 @@ globalThis.mp = mp;
 console.log('Emitting playerJoin');
 alt.emitServer(mp.prefix + 'playerJoin');
 
-alt.everyTick(() => {
-    natives.drawRect(0, 0, 0, 0, 0, 0, 0, 0, 0, false);
-});
-
 const AsyncFunction = (async function () {}).constructor;
 // TODO delete after debugging
 if (alt.debug) {
