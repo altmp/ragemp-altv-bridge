@@ -266,20 +266,25 @@ Object.defineProperty(mp.game.gameplay, 'enableSnow', {
 
 mp.game.hud.getCurrentStreetNameString = () => {
     const pos = alt.Player.local.pos;
-    const key = natives.getStreetNameAtCoord(pos.x, pos.y, pos.z, 0, 0);
-    return natives.getFilenameForAudioConversation(key);
+    const [, key] = natives.getStreetNameAtCoord(pos.x, pos.y, pos.z, 0, 0);
+    return natives.getStreetNameFromHashKey(key);
 };
 
 mp.game.hud.getCurrentStreetNameHash = () => {
     const pos = alt.Player.local.pos;
-    const key = natives.getStreetNameAtCoord(pos.x, pos.y, pos.z, 0, 0);
+    const [, key] = natives.getStreetNameAtCoord(pos.x, pos.y, pos.z, 0, 0);
     return key;
 };
 
 mp.game.hud.getCurrentAreaNameString = () => {
     const pos = alt.Player.local.pos;
-    const key = natives.getHashOfMapAreaAtCoords(pos.x, pos.y, pos.z);
+    const key = natives.getNameOfZone(pos.x, pos.y, pos.z);
     return natives.getFilenameForAudioConversation(key);
+};
+
+mp.game.hud.getCurrentAreaNameLabel = () => {
+    const pos = alt.Player.local.pos;
+    return natives.getNameOfZone(pos.x, pos.y, pos.z);
 };
 
 mp.game.hud.getCurrentAreaNameHash = () => {
