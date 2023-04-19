@@ -21,8 +21,11 @@ export class EntityGetterView extends EntityBaseView {
             obj.getByID,
             {
                 remoteIDGetter: obj.getByRemoteID,
-                scriptIDGetter: obj.getByScriptID,
-                streamRangeGetter: () => obj.streamedIn,
+                scriptIDGetter: (scriptID) => {
+                    const ent = obj.getByScriptID(scriptID);
+                    return (ent instanceof obj) ? ent : null;
+                },
+                streamRangeGetter: () => (obj.streamedIn ?? []),
                 countGetter: () => obj.count
             },
             obj.name
@@ -34,7 +37,7 @@ export class EntityGetterView extends EntityBaseView {
     }
 
     toArrayInStreamRange() {
-        return this.streamRangeGetter?.().map(toMp) ?? [];
+        return this.streamRangeGetter?.().map(e => e.mp).filter(Boolean) ?? [];
     }
 
     getByID(id) {

@@ -35,7 +35,7 @@ export class EntityStoreView extends EntityBaseView {
     }
 
     toArrayInStreamRange() {
-        return this.toArray().map(this.isInStreamRange);
+        return this.toArray().filter(this.isInStreamRange);
     }
 
     getByID(id) {

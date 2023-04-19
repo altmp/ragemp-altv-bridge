@@ -17,6 +17,10 @@ export class EntityMixedView extends EntityBaseView {
         return [...this.store.toArray(), ...this.getter.toArray()];
     }
 
+    toArrayInStreamRange() {
+        return [...this.store.toArrayInStreamRange(), ...this.getter.toArrayInStreamRange()];
+    }
+
     getByID(id) {
         return this.store.getByID(id) ?? this.getter.getByID(id);
     }

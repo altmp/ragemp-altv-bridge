@@ -71,7 +71,7 @@ globalThis.mp = mp;
 
 const AsyncFunction = (async function () {}).constructor;
 // TODO delete after debugging
-if (alt.debug) {
+if (alt.debug && mp._main) {
     alt.on('consoleCommand', async (cmd, ...args) => {
         if (cmd !== 'eval') return;
         console.log(await (new AsyncFunction('alt', 'natives', args.join(' ')))(alt, natives));

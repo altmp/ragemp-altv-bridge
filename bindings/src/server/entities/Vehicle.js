@@ -147,7 +147,7 @@ export class _Vehicle extends _Entity {
     }
 
     get streamedPlayers() {
-        return alt.Player.all.filter(e => e.isEntityInStreamRange(this.alt)); // TODO: implement in js module
+        return alt.Player.all.filter(e => e.isEntityInStreamRange(this.alt)).map(e => e.mp); // TODO: implement in js module
     }
 
     // TODO: taxiLights

@@ -46,4 +46,8 @@ export class _WorldObject extends _BaseObject {
     get model() {
         return this.alt.model;
     }
+
+    get valid() {
+        return this.alt.valid;
+    }
 }

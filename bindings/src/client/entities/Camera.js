@@ -43,6 +43,10 @@ class _Camera {
         natives.setCamActive(this.handle, value);
         natives.renderScriptCams(true, false, 0, true, false, 0);
     }
+
+    get valid() {
+        return this.handle !== 0;
+    }
 }
 
 class _GameplayCamera extends _Camera {
@@ -76,6 +80,10 @@ class _GameplayCamera extends _Camera {
     }
 
     destroy() {}
+
+    get valid() {
+        return true;
+    }
 }
 
 mp.Camera = _Camera;

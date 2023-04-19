@@ -24,7 +24,10 @@ export class _Player extends _Entity {
     }
 
     get vehicle() {
-        return this.alt.vehicle?.mp ?? mp.vehicles.atHandle(natives.getVehiclePedIsIn(this.alt, false)) ?? null;
+        if (this.alt.vehicle?.mp) return this.alt.vehicle.mp;
+        const veh = natives.getVehiclePedIsIn(this.alt, false);
+        if (veh) return mp.vehicles.atHandle(veh);
+        return null;
     }
 
     get name() {
@@ -944,13 +947,6 @@ mp.players = new ClientPool(EntityGetterView.fromClass(alt.Player));
 
 mp.players.local = alt.Player.local.mp;
 
-mp.players.atHandle = function(handle) {
-    return alt.Player.getByScriptID(handle)?.mp ?? null;
-};
-
-mp.players.atRemoteId = function(remoteId) {
-    return alt.Player.getByID(remoteId)?.mp ?? null;
-};
 alt.onServer(mp.prefix + 'dead', (weapon, killer) => {
     mp.events.dispatch('playerDeath', alt.Player.local.mp, weapon, toMp(killer));
 });

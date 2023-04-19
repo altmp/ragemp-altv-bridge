@@ -28,6 +28,9 @@ function joaat(key) {
         return key.map(joaat);
     }
 
+    if (typeof key == 'number') return key;
+    if (typeof key != 'string') return 0;
+
     const keyLowered = key.toLowerCase();
     const length = keyLowered.length;
     let hash, i;
