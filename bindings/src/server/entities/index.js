@@ -8,6 +8,7 @@ import './Checkpoint.js';
 import './Blip.js';
 import './Marker.js';
 import './Object.js';
+import './Dummy.js';
 import {_Label} from './Label.js';
 import {VirtualEntityID} from '../../shared/VirtualEntityID';
 
