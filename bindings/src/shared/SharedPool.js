@@ -34,6 +34,10 @@ export class SharedPool {
         this.forEach(fn);
     }
 
+    get streamed() {
+        return this.#view.toArrayInStreamRange();
+    }
+
     apply(fn) {
         this.forEach(fn);
     }
