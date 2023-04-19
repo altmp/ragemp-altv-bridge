@@ -39,12 +39,14 @@ export class _Browser extends _BaseObject {
     }
 
     call(event, ...args) {
+        if (!this.alt.valid) return;
         this.alt.emit(mp.prefix + 'event', event, ...args);
     }
 
     // TODO: RPC (callProc, cancelPendingProc, hasPendingProc)
 
     execute(code) {
+        if (!this.alt.valid) return;
         this.alt.emit(mp.prefix + 'eval', code);
     }
 
@@ -53,6 +55,7 @@ export class _Browser extends _BaseObject {
     }
 
     destroy() {
+        if (!this.alt.valid) return;
         this.alt.destroy();
     }
 
@@ -65,10 +68,12 @@ export class _Browser extends _BaseObject {
     #_urlWasChanged = false;
 
     get url() {
+        if (!this.alt.valid) return '';
         return this.alt.url;
     }
 
     set url(value) {
+        if (!this.alt.valid) return;
         value = transformUrl(value);
         this.#_url = value;
         this.alt.url = value;
@@ -76,6 +81,7 @@ export class _Browser extends _BaseObject {
     }
 
     reload() {
+        if (!this.alt.valid) return;
         this.alt.url = 'data:text/html, ';
         setTimeout(() => {
             if (!this.#_urlWasChanged) this.alt.url = this.#_url;
@@ -83,10 +89,12 @@ export class _Browser extends _BaseObject {
     }
 
     get active() {
+        if (!this.alt.valid) return false;
         return this.alt.isVisible;
     }
 
     set active(value) {
+        if (!this.alt.valid) return;
         this.alt.isVisible = value;
     }
 }
