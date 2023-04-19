@@ -31,6 +31,20 @@ globalThis.require = function (path) {
     if (!alt.File.exists(path)) {
         if (alt.File.exists(path + '.js')) path += '.js';
         else if (alt.File.exists(path + '/index.js')) path += '/index.js';
+        else if (alt.File.exists('/node_modules' + path)) path = '/node_modules' + path;
+        else if (alt.File.exists('/node_modules' + path + '.js')) path = '/node_modules' + path + '.js';
+        else if (alt.File.exists('/node_modules' + path + '/package.json')) {
+            let content;
+            try {
+                content = JSON.parse(alt.File.read('/node_modules' + path + '/package.json'));
+            } catch(e) {
+                throw new Error(`Failed to import node module ${path.substring(1)}: ${e}`);
+            }
+
+            const main = content.main ?? 'index.js';
+            if (alt.File.exists('/node_modules' + path + '/' + main)) path = '/node_modules' + path + '/' + main;
+            else throw new Error(`Cannot find main file in module ${path.substring(1)}`);
+        }
         else throw new Error('Cannot find file ' + path);
     }
 
