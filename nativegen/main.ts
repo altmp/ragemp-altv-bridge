@@ -5,7 +5,13 @@ import type { Node, Identifier, FunctionExpression, MemberExpression, Literal } 
 import fetch from 'node-fetch';
 import { walk } from 'estree-walker';
 
-const source = fs.readFileSync('../client_internals.js', 'utf8');
+const source = fs.readFileSync('../dump/client_internals.js', 'utf8');
+
+function sanitizeNativeArgument(value, type) {
+    if (type === "string") return `typeof (${value}) == "string" ? ${value} : null`;
+    if (type === "boolean") return `Boolean(${value})`;
+    return `typeof (${value}) == "number" ? ${value} : 0`;
+}
 
 interface AltNative {
     name: string;
@@ -180,7 +186,12 @@ function registerNativeFunction(id: Identifier, fn: FunctionExpression, invoker:
             const index = +el.expression.arguments[0].raw;
             const argId = Math.floor((index - 2) / invoker.alignment);
             if (argId < 0 || argId >= scriptParamsCount) continue;
-            parsed.callArguments[argId] = el.expression.arguments[1].name;
+
+            if (parsed.altNative.params[argId].type == "string") {
+                parsed.callArguments[argId] = el.expression.arguments[1].name;
+            } else {
+                parsed.callArguments[argId] = sanitizeNativeArgument(el.expression.arguments[1].name, parsed.altNative.params[argId].type);
+            }
         }
 
         // Find all the return object members
@@ -427,7 +438,7 @@ function generateInvokeFunction(native: AltNative) {
     for (const param of native.params) {
         const name = `p${argId++}`;
         if (!param.ref || param.type === 'Any') {
-            args.push(name);
+            args.push(sanitizeNativeArgument(name, param.type));
             continue;
         }
         const currRef = refId++;
@@ -438,7 +449,7 @@ function generateInvokeFunction(native: AltNative) {
             result.push(`if (Array.isArray(${name}[0])) { ${name}[0][0] = ${resVar}.x; ${name}[0][1] = ${resVar}.y; ${name}[0][2] = ${resVar}.z }`);
                 result.push(`else { ${name}[0].x = ${resVar}.x; ${name}[0].y = ${resVar}.y; ${name}[0].z = ${resVar}.z; }`);
         } else {
-            output += `    if (!Array.isArray(${name})) throw new Error('Argument ${param.name} should be an array');\n`
+            args.push(sanitizeNativeArgument(`${name}[0]`, param.type));
             result.push(`${name}[0] = ${resVar};`);
         }
     }
