@@ -1,7 +1,7 @@
 import * as alt from 'alt-client';
 import * as natives from 'natives';
 import mp from '../../shared/mp.js';
-import { getRenderCorrection } from '../clientUtils';
+import {drawText3d, getRenderCorrection} from '../clientUtils';
 
 class _Nametags {
     enabled = false;
@@ -25,7 +25,7 @@ class _Nametags {
             const offset = p.vehicle ? style.vehOffset : style.offset;
             const pos = p.pos.add(correction);
 
-            alt.Utils.drawText3dThisFrame(p.name, pos.add(0, 0, offset), style.font, style.size, style.color, style.outline, true);
+            drawText3d(p.name, pos.add(0, 0, offset), style.font, style.size, style.color, style.outline, true);
 
             if (this.#healthStyle) {
                 natives.setDrawOrigin(pos.x, pos.y, pos.z + healthStyle.offset, false);

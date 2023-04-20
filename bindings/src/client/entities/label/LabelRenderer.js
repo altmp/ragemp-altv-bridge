@@ -1,7 +1,7 @@
 import * as alt from 'alt-client';
 import * as natives from 'natives';
 import mp from '../../../shared/mp.js';
-import { getRenderCorrection } from '../../clientUtils';
+import {drawText3d, getRenderCorrection} from '../../clientUtils';
 
 const labels = new Set();
 
@@ -25,7 +25,7 @@ export class LabelRenderer {
             if (mp.raycasting.testPointToPoint(camPos, pos, 0, -1)) return;
         }
 
-        alt.Utils.drawText3dThisFrame(this.text, pos.add(correction), this.font, 0.6, this.color, false, false);
+        drawText3d(this.text, pos.add(correction), this.font, 0.6, this.color, false, false);
     }
 
     setActive(state) {

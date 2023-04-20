@@ -1,6 +1,7 @@
 import * as natives from 'natives';
 import * as alt from 'alt-client';
 import mp from '../shared/mp.js';
+import {drawText2d, drawText3d} from './clientUtils';
 
 // #region Namespaces
 
@@ -146,7 +147,7 @@ mp.game.graphics.world3dToScreen2d = (pos) => {
 mp.game.graphics.drawScaleformMovie3dNonAdditive = mp.game.graphics.drawScaleformMovie3DSolid;
 
 mp.game.graphics.drawText3d = mp.game.graphics.drawText = (text, pos, data = {}) => {
-    alt.Utils.drawText3dThisFrame(text, pos, data.font, data.scale, data.color ? new alt.RGBA(data.color) : undefined, data.outline, false);
+    (pos[2] != null ? drawText3d : drawText2d)(text, { x: pos[0], y: pos[1], z: pos[2] }, data.font, data.scale, data.color ? new alt.RGBA(data.color) : undefined, data.outline, false);
 };
 
 mp.game.graphics.setParticleFxBloodScale = mp.game.graphics.unk._0x908311265D42A820;
