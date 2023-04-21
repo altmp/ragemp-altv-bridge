@@ -1,7 +1,7 @@
 import * as alt from 'alt-client';
 import mp from '../../shared/mp.js';
 import { ClientPool } from '../ClientPool.js';
-import { _BaseObject } from './BaseObject.js';
+import { _Entity } from './Entity';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 import {mpDimensionToAlt} from '../../shared/utils';
 
@@ -15,7 +15,7 @@ const colshapeTypes = {
     6: 'polygon'
 };
 
-export class _Colshape extends _BaseObject {
+export class _Colshape extends _Entity {
     /** @param {alt.Colshape} alt */
     constructor(alt) {
         super(alt);
