@@ -220,6 +220,7 @@ export class _Vehicle extends _Entity {
     type = 'vehicle';
 
     destroy() {
+        if (!this.alt.valid) return;
         this.alt.destroy();
     }
 

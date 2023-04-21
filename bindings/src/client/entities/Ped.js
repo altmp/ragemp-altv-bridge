@@ -21,6 +21,7 @@ export class _Ped extends _VirtualEntityBase {
     }
 
     destroy() {
+        if (!this.alt.valid) return;
         this.alt.destroy();
     }
 

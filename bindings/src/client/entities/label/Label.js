@@ -105,6 +105,7 @@ export class _Label extends _VirtualEntityBase {
     }
 
     destroy() {
+        if (!this.alt.valid) return;
         if (this.alt.isRemote) return;
         this.renderer.setActive(false);
         this.alt.destroy();

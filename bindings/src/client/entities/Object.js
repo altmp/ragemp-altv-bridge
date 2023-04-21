@@ -29,6 +29,7 @@ export class _Object extends _Entity {
     type = 'object';
 
     destroy() {
+        if (!this.alt.valid) return;
         this.alt.destroy();
     }
 
@@ -84,6 +85,14 @@ export class _Object extends _Entity {
 
     get setNoCollision() {
         return this.setNoCollisionEntity;
+    }
+
+    get attachTo() {
+        return this.attachToEntity;
+    }
+
+    get isAttachedTo() {
+        return this.isAttachedToEntity;
     }
 }
 

@@ -18,6 +18,7 @@ export class _Checkpoint extends _BaseObject {
     type = 'checkpoint';
 
     destroy() {
+        if (!this.alt.valid) return;
         this.alt.destroy();
     }
 }

@@ -398,6 +398,7 @@ export class _Player extends _Entity {
     // TODO: Weapons::clear
 
     destroy() {
+        if (!this.alt.valid) return;
         this.alt.destroy();
     }
 

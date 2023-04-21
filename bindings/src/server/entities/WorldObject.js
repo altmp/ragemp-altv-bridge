@@ -54,6 +54,7 @@ export class _WorldObject extends _BaseObject {
     }
 
     destroy() {
+        if (!this.alt.valid) return;
         this.#alt.destroy();
     }
 

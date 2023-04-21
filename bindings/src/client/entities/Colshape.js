@@ -2,6 +2,8 @@ import * as alt from 'alt-client';
 import mp from '../../shared/mp.js';
 import { ClientPool } from '../ClientPool.js';
 import { _Entity } from './Entity';
+import { _WorldObject } from './WorldObject';
+import { _BaseObject } from './BaseObject';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 import {mpDimensionToAlt} from '../../shared/utils';
 
@@ -15,7 +17,7 @@ const colshapeTypes = {
     6: 'polygon'
 };
 
-export class _Colshape extends _Entity {
+export class _Colshape extends _WorldObject {
     /** @param {alt.Colshape} alt */
     constructor(alt) {
         super(alt);
@@ -28,6 +30,14 @@ export class _Colshape extends _Entity {
 
     get shapeType() {
         return colshapeTypes[this.alt.colshapeType];
+    }
+
+    get position() {
+        return new mp.Vector3(this.alt.pos);
+    }
+
+    set position(value) {
+        this.alt.pos = value;
     }
 
     type = 'checkpoint';

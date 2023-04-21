@@ -20,6 +20,7 @@ export class _Label extends _Entity {
     type = 'label';
 
     destroy() {
+        if (!this.alt.valid) return;
         this.alt.destroy();
         view.remove(this.id);
     }
