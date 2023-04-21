@@ -99,11 +99,22 @@ Object.defineProperty(mp.cameras, 'gameplay', {
     configurable: true
 });
 
+const validNames = [
+    'DEFAULT_SCRIPTED_CAMERA',
+    'DEFAULT_ANIMATED_CAMERA',
+    'DEFAULT_SPLINE_CAMERA',
+    'DEFAULT_SCRIPTED_FLY_CAMERA',
+    'TIMED_SPLINE_CAMERA',
+    'CUSTOM_TIMED_SPLINE_CAMERA',
+    'ROUNDED_SPLINE_CAMERA',
+    'SMOOTHED_SPLINE_CAMERA'
+];
+
 mp.cameras.new = function(name, pos, rot, fov) {
     if (name === 'gameplay') {
         return mp.cameras.gameplay;
     }
 
-    const handle = natives.createCamWithParams('DEFAULT_SCRIPTED_CAMERA', pos.x, pos.y, pos.z, rot.x, rot.y, rot.z, fov, false, 2);
+    const handle = natives.createCamWithParams(validNames.includes(name) ? name : 'DEFAULT_SCRIPTED_CAMERA', pos.x, pos.y, pos.z, rot.x, rot.y, rot.z, fov, false, 2);
     return new _Camera(handle);
 };
