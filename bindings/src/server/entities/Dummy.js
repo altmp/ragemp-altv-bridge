@@ -11,6 +11,8 @@ class _MpEntity {
         this.#meta = {};
     }
 
+    type = 'dummy';
+
     setVariable(key, value) {
         if (typeof key === 'object' && key) {
             for (const [innerKey, innerValue] of Object.entries(key)) this.setVariable(innerKey, innerValue);
@@ -42,9 +44,7 @@ export class _Dummy extends _MpEntity {
         return this;
     }
 
-    get type() {
-        return 'dummy';
-    }
+    type = 'dummy';
 }
 
 mp.Dummy = _Dummy;

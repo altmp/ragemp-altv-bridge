@@ -13,6 +13,7 @@ export class _Pickup extends _WorldObject {
         super(alt);
     }
 
+    type = 'pickup';
 }
 
 mp.Pickup = _Pickup;

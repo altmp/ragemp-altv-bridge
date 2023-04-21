@@ -42,6 +42,17 @@ export class _Player extends _Entity {
         return this.alt.model;
     }
 
+    set model(value) {
+        throw new Error('Setting player.model is not supported. Use player.setModelAsync instead');
+    }
+
+    async setModelAsync(value) {
+        if (alt.Player.local !== this.alt) return;
+        const scriptID = this.handle;
+        alt.emitServerRaw(mp.prefix + 'setModel', value);
+        await alt.Utils.waitFor(() => this.handle !== scriptID);
+    }
+
     get voiceVolume() {
         return this.alt.spatialVolume; // TODO: what to do with non spatial volume?
     }
@@ -130,9 +141,7 @@ export class _Player extends _Entity {
 
 
 
-    get type() {
-        return 'player';
-    }
+    type = 'player';
 
     // #region Natives
     p2pCall() {

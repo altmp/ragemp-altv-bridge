@@ -17,6 +17,8 @@ export class _Label extends _Entity {
         this.alt.setStreamSyncedMeta(mp.prefix + 'drawDistance', this.alt.streamingDistance);
     }
 
+    type = 'label';
+
     destroy() {
         this.alt.destroy();
         view.remove(this.id);

@@ -1,6 +1,7 @@
 import * as alt from 'alt-client';
-import {toMp, vdist, vdist2} from '../../shared/utils';
+import {mpDimensionToAlt, toMp, vdist, vdist2} from '../../shared/utils';
 import { _BaseObject } from './BaseObject';
+import natives from 'natives';
 
 export class _WorldObject extends _BaseObject {
     #alt;
@@ -31,6 +32,11 @@ export class _WorldObject extends _BaseObject {
         return this.alt.dimension ?? alt.Player.local.dimension;
     }
 
+    set dimension(value) {
+        console.log('Setting dimension to', value, mpDimensionToAlt(value));
+        this.alt.dimension = mpDimensionToAlt(value);
+    }
+
     get id() {
         return this.alt.id;
     }
@@ -49,5 +55,9 @@ export class _WorldObject extends _BaseObject {
 
     get valid() {
         return this.alt.valid;
+    }
+
+    set position(value) {
+        natives.setEntityCoordsNoOffset(this.handle, value.x, value.y, value.z, false, false, false);
     }
 }

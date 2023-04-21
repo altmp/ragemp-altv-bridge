@@ -1,6 +1,7 @@
 import * as alt from 'alt-client';
 import { _Entity } from './Entity';
 import mp from '../../shared/mp';
+import {toMp} from '../../shared/utils';
 
 export class _VirtualEntityBase extends _Entity {
     streamIn() {}
@@ -14,10 +15,12 @@ export class _VirtualEntityBase extends _Entity {
 mp._initEventHandlers = () => {
     alt.on('worldObjectStreamIn', (ent) => {
         if (ent instanceof alt.VirtualEntity && ent.mp) ent.mp.streamIn();
+        mp.events.dispatch('entityStreamIn', toMp(ent));
     });
 
     alt.on('worldObjectStreamOut', (ent) => {
         if (ent instanceof alt.VirtualEntity && ent.mp) ent.mp.streamOut();
+        mp.events.dispatch('entityStreamOut', toMp(ent));
     });
 
     alt.on('worldObjectPositionChange', (ent, oldPos) => {

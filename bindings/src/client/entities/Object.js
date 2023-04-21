@@ -26,6 +26,8 @@ export class _Object extends _Entity {
         this.alt = alt;
     }
 
+    type = 'object';
+
     destroy() {
         this.alt.destroy();
     }

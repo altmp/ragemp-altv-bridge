@@ -14,6 +14,8 @@ class _Camera {
         view.add(this, this.id, handle);
     }
 
+    type = 'camera';
+
     destroy() {
         view.remove(this.id, this.handle);
         natives.destroyCam(this.handle, false);

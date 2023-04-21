@@ -15,11 +15,9 @@ class DefaultChat {
     }
 
     handleServer(player, msg) {
-        if(!this.enabled) return;
-        console.warn('Got event from client', msg);
 
         if(msg[0] == '/') {
-            mp.events.dispatch('playerCommand', player.mp, msg);
+            mp.events.dispatch('playerCommand', player.mp, msg.substring(1));
 
             msg = msg.trim().slice(1);
 
@@ -36,9 +34,7 @@ class DefaultChat {
     }
 
     handleClient(msg) {
-        if(!this.enabled) return;
-
-        if(msg[0] == '/') mp.events.dispatch('playerCommand', msg);
+        if(msg[0] == '/') mp.events.dispatch('playerCommand', msg.substring(1));
         else mp.events.dispatch('playerChat', msg);
     }
 

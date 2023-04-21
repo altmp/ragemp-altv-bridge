@@ -14,9 +14,7 @@ export class _Blip extends _WorldObject {
         return this.alt.scriptID;
     }
 
-    get type() {
-        return 'blip';
-    }
+    type = 'blip';
 
     setRotation(heading) {
         this.alt.heading = heading;

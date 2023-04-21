@@ -17,6 +17,8 @@ export class _Marker extends _Entity {
         this.data = new SyncedMetaProxy(alt);
     }
 
+    type = 'marker';
+
     showFor(player) {
         alt.emitClientRaw(player.alt, mp.prefix + 'toggleMarker', this.alt.id, true);
     }
@@ -57,9 +59,7 @@ export class _Marker extends _Entity {
         this.alt.visible = value;
     }
 
-    get type() {
-        return 'marker';
-    }
+    type = 'marker';
 }
 
 Object.defineProperty(alt.Marker.prototype, 'mp', {

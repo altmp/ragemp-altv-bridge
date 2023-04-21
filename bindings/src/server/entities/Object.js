@@ -19,6 +19,8 @@ export class _Object extends _Entity {
         view.add(this, this.id);
     }
 
+    type = 'object';
+
     destroy() {
         this.alt.destroy();
         view.remove(this.id);

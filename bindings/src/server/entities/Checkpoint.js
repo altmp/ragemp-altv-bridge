@@ -14,6 +14,8 @@ export class _Checkpoint extends _Colshape {
         // this.#lastColor = alt.color.toArray();
     }
 
+    type = 'checkpoint';
+
     #visible = true;
     #lastColor;
 

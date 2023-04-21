@@ -33,7 +33,7 @@ export class _Vehicle extends _Entity {
     }
 
     get gear() {
-        return this.alt.gear;
+            return this.alt.gear;
     }
 
     get rpm() {
@@ -79,9 +79,7 @@ export class _Vehicle extends _Entity {
         return this.alt.wheelsCount;
     }
 
-    get type() {
-        return 'vehicle';
-    }
+    type = 'vehicle';
 
     getWheelCamber(wheel) {
         return this.alt.getWheelCamber(wheel);
@@ -418,7 +416,6 @@ export class _Vehicle extends _Entity {
 export class _LocalVehicle extends _Vehicle {
     #handle = 0;
     #model = 0;
-    #lastHeading = 0;
 
     /** @param {alt.VirtualEntity} alt */
     constructor(alt) {
@@ -460,6 +457,10 @@ export class _LocalVehicle extends _Vehicle {
         return new mp.Vector3(natives.getEntityCoords(this.handle, false));
     }
 
+    set position(value) {
+        natives.setEntityCoordsNoOffset(this.#handle, value.x, value.y, value.z, false, false, false);
+    }
+
     get gear() {
         return 0; // TODO
     }
@@ -469,15 +470,17 @@ export class _LocalVehicle extends _Vehicle {
     }
 
     streamIn() {
+        console.log('VEHICLE STREAM IN', this.alt.id);
         alt.loadModel(this.#model);
-        this.#handle = natives.createVehicle(this.#model, this.alt.pos.x, this.alt.pos.y, this.alt.pos.z, this.#lastHeading, false, false, false);
+        this.#handle = natives.createVehicle(this.#model, this.alt.pos.x, this.alt.pos.y, this.alt.pos.z, this.alt.getMeta(mp.prefix + 'heading'), false, false, false);
         natives.setVehicleColourCombination(this.#handle, 0);
         store.add(this, undefined, this.#handle, undefined);
     }
 
     streamOut() {
+        console.log('VEHICLE STREAM OUT', this.alt.id);
         store.remove(undefined, this.#handle, undefined);
-        this.#lastHeading = natives.getEntityHeading(this.#handle);
+        this.alt.setMeta(mp.prefix + 'heading', this.#handle);
         natives.deleteVehicle(this.#handle);
         this.#handle = 0;
         natives.setModelAsNoLongerNeeded(this.#model);
@@ -517,12 +520,17 @@ mp.vehicles = new ClientPool(view);
 const group = new alt.VirtualEntityGroup(100);
 mp.vehicles.new = function(model, position, params = {}) {
     model = hashIfNeeded(model);
+    if (!natives.isModelValid(model)) model = alt.hash('oracle');
     const virtualEnt = new alt.VirtualEntity(group, position, 300);
     virtualEnt.setMeta(mp.prefix + 'type', VirtualEntityID.LocalVehicle);
     virtualEnt.setMeta(mp.prefix + 'model', model);
+    virtualEnt.setMeta(mp.prefix + 'heading', params.heading ?? 0);
 
     /** @type {_LocalVehicle} */
     const ent = virtualEnt.mp;
+
+    if ('dimension' in params) ent.dimension = params.dimension;
+
     if (!virtualEnt.isStreamedIn) return ent;
     if ('heading' in params) ent.setRotation(0, 0, params.heading, 2, false);
     if ('numberPlate' in params) ent.setNumberPlateText(params.numberPlate);
@@ -533,6 +541,5 @@ mp.vehicles.new = function(model, position, params = {}) {
     }
     if ('locked' in params) ent.setDoorsLocked(params.locked ? 2 : 1);
     if ('engine' in params) ent.setEngineOn(params.engine, true, false);
-    if ('dimension' in params) virtualEnt.dimension = params.dimension;
     return ent;
 };

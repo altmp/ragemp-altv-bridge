@@ -23,15 +23,22 @@ export class _Ped extends _VirtualEntityBase {
     destroy() {
         this.alt.destroy();
     }
+
+    get taskPlayAnim() {
+        return this.playAnim;
+    }
+
+    get taskStartScenarioInPlace() {
+        return this.startScenarioInPlace;
+    }
 }
 
 export class _LocalPed extends _Ped {
     #handle = 0;
     #model = 0;
-    #lastHeading = 0;
 
     /** @param {alt.VirtualEntity} alt */
-    constructor(alt) {
+    constructor(alt, heading) {
         super(alt);
         this.alt = alt;
         this.#model = alt.getMeta(mp.prefix + 'model');
@@ -41,6 +48,8 @@ export class _LocalPed extends _Ped {
     destroy() {
         store.remove(this.id, this.#handle, 65535);
     }
+
+    type = 'ped';
 
     get id() {
         return this.alt.id + 65536;
@@ -66,7 +75,7 @@ export class _LocalPed extends _Ped {
 
     streamIn() {
         alt.loadModel(this.#model);
-        this.#handle = natives.createPed(2, this.#model, this.alt.pos.x, this.alt.pos.y, this.alt.pos.z, this.#lastHeading, false, false);
+        this.#handle = natives.createPed(2, this.#model, this.alt.pos.x, this.alt.pos.y, this.alt.pos.z, this.alt.getMeta(mp.prefix + 'heading'), false, false);
         natives.setEntityCoordsNoOffset(this.#handle, this.alt.pos.x, this.alt.pos.y, this.alt.pos.z, false, false, false);
         natives.setEntityInvincible(this.#handle, true);
         natives.disablePedPainAudio(this.#handle, true);
@@ -77,7 +86,7 @@ export class _LocalPed extends _Ped {
 
     streamOut() {
         store.remove(undefined, this.#handle, undefined);
-        this.#lastHeading = natives.getEntityHeading(this.#handle);
+        this.alt.setMeta(mp.prefix + 'heading', natives.getEntityHeading(this.#handle));
         natives.deletePed(this.#handle);
         this.#handle = 0;
         natives.setModelAsNoLongerNeeded(this.#model);
@@ -107,12 +116,14 @@ const group = new alt.VirtualEntityGroup(100);
 mp.peds.new = function(model, position, heading, dimension = 0) {
     model = hashIfNeeded(model);
     const virtualEnt = new alt.VirtualEntity(group, position, 300);
-    virtualEnt.dimension = dimension;
     virtualEnt.setMeta(mp.prefix + 'type', VirtualEntityID.Ped);
     virtualEnt.setMeta(mp.prefix + 'model', model);
+    virtualEnt.setMeta(mp.prefix + 'heading', heading);
 
     /** @type {_Ped} */
     const ent = virtualEnt.mp;
+    ent.dimension = dimension;
+    if (!virtualEnt.isStreamedIn) return ent;
     ent.setHeading(heading);
 
     return ent;

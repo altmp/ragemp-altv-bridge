@@ -6324,16 +6324,16 @@ mp.Object.prototype.setCleanupByEngine ??= function (toggle) {
 mp.Vehicle.prototype.setCleanupByEngine ??= function (toggle) {
     let $res = natives.setEntityShouldFreezeWaitingOnCollision(this.handle, toggle | 0);
 };
-mp.Player.prototype.playAnim ??= function (animName, animDict, p3, loop, stayInAnim, p6, delta, bitset) {
-    let $res = natives.playEntityAnim(this.handle, animName, animDict, p3, loop | 0, stayInAnim | 0, p6 | 0, delta, bitset);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
-};
-mp.Ped.prototype.playAnim ??= function (animName, animDict, p3, loop, stayInAnim, p6, delta, bitset) {
-    let $res = natives.playEntityAnim(this.handle, animName, animDict, p3, loop | 0, stayInAnim | 0, p6 | 0, delta, bitset);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
-};
+// mp.Player.prototype.playAnim ??= function (animName, animDict, p3, loop, stayInAnim, p6, delta, bitset) {
+//     let $res = natives.playEntityAnim(this.handle, animName, animDict, p3, loop | 0, stayInAnim | 0, p6 | 0, delta, bitset);
+//     if (!Array.isArray($res)) $res = [$res];
+//     return $res[0] == 1;
+// };
+// mp.Ped.prototype.playAnim ??= function (animName, animDict, p3, loop, stayInAnim, p6, delta, bitset) {
+//     let $res = natives.playEntityAnim(this.handle, animName, animDict, p3, loop | 0, stayInAnim | 0, p6 | 0, delta, bitset);
+//     if (!Array.isArray($res)) $res = [$res];
+//     return $res[0] == 1;
+// };
 mp.Object.prototype.playAnim ??= function (animName, animDict, p3, loop, stayInAnim, p6, delta, bitset) {
     let $res = natives.playEntityAnim(this.handle, animName, animDict, p3, loop | 0, stayInAnim | 0, p6 | 0, delta, bitset);
     if (!Array.isArray($res)) $res = [$res];

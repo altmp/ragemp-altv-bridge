@@ -14,6 +14,8 @@ export class _Ped extends _Entity {
         this.alt = alt;
     }
 
+    type = 'ped';
+
     get controller() {
         return this.alt.netOwner;
     }

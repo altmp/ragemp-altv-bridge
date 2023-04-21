@@ -217,9 +217,7 @@ export class _Vehicle extends _Entity {
         this.alt.pos = value;
     }
 
-    get type() {
-        return 'vehicle';
-    }
+    type = 'vehicle';
 
     destroy() {
         this.alt.destroy();

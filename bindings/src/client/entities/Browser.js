@@ -37,9 +37,7 @@ export class _Browser extends _BaseObject {
         // TODO: browserLoadingFailed
     }
 
-    get type() {
-        return 'browser';
-    }
+    type = 'browser';
 
     get id() {
         return this.alt.id;

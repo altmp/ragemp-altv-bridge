@@ -29,6 +29,8 @@ export class _Colshape extends _BaseObject {
     get shapeType() {
         return colshapeTypes[this.alt.colshapeType];
     }
+
+    type = 'checkpoint';
 }
 
 Object.defineProperty(alt.Colshape.prototype, 'mp', {

@@ -24,6 +24,8 @@ export class _Colshape extends _WorldObject {
         this.alt = alt;
     }
 
+    type = 'colshape';
+
     isPointWithin(pos) {
         return this.alt.isPointIn(pos);
     }

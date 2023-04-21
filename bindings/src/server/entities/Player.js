@@ -177,9 +177,7 @@ export class _Player extends _Entity {
         this.alt.pos = value;
     }
 
-    get type() {
-        return 'player';
-    }
+    type = 'player';
 
     ban(reason = 'You were banned') {
         this.bannedHwids[this.alt.hwidHash + this.alt.hwidExHash] = reason;
@@ -445,4 +443,8 @@ alt.on('playerConnect', (player) => {
 
 alt.on('playerDisconnect', (player, reason) => {
     mp.events.dispatch('playerQuit', player.mp, 'unimplemented', 'unimplemented'); //player, exitType: string, reason: string
+});
+
+alt.onClient(mp.prefix + 'setModel', (player, model) => {
+    player.model = model;
 });

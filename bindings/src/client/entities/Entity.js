@@ -2,6 +2,7 @@ import * as alt from 'alt-client';
 import { _WorldObject } from './WorldObject';
 import mp from '../../shared/mp.js';
 import {toMp} from '../../shared/utils';
+import natives from 'natives';
 
 export class _Entity extends _WorldObject {
     #alt;

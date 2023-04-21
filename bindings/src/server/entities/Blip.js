@@ -82,9 +82,7 @@ export class _Blip extends _WorldObject {
         this.alt.pos = value;
     }
 
-    get type() {
-        return 'blip';
-    }
+    type = 'blip';
 
     // TODO: routeFor
     // TODO: unrouteFor
