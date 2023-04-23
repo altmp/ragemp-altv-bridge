@@ -31,6 +31,8 @@ class _Cursor {
             alt.clearEveryTick(this.#tick);
             this.#tick = 0;
         }
+
+        alt.WebView.all.forEach(e => e.emit(mp.prefix + 'receiveEvents', state));
     }
 
     get visible() {
