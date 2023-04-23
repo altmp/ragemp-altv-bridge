@@ -105,7 +105,7 @@ mp.objects.new = (model, position, params) => {
     const ent = virtualEnt.mp;
     ent.model = model;
     ent.position = position;
-    if ('rotation' in params) ent.rotation = params.rotation;
+    if ('rotation' in params) ent.rotation = new alt.Vector3(params.rotation).toRadians();
     if ('alpha' in params) ent.alpha = params.alpha;
     if ('dimension' in params) ent.dimension = params.dimension;
 

@@ -42,11 +42,11 @@ export class _Object extends _Entity {
     }
 
     get rotation() {
-        return new mp.Vector3(this.alt.rot);
+        return new mp.Vector3(this.alt.rot.toDegrees());
     }
 
     set rotation(value) {
-        this.alt.rot = value;
+        this.alt.rot = new alt.Vector3(value).toRadians();
     }
 
     get model() {
@@ -109,7 +109,7 @@ mp.objects = new ClientPool(view);
 
 mp.objects.new = (model, position, params) => {
     if (!natives.isModelValid(model)) model = alt.hash('prop_ecola_can');
-    const obj = new alt.Object(model, position, params.rotation ?? alt.Vector3.zero, true, true);
+    const obj = new alt.Object(model, position, new alt.Vector3(params.rotation ?? alt.Vector3.zero).toRadians(), true, true);
     natives.freezeEntityPosition(obj, true);
     if ('alpha' in params) obj.alpha = params.alpha;
     // TODO: dimension
