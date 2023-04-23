@@ -40,43 +40,11 @@ alt.on(mp.prefix + 'eval', (code) => {
     [eval][0](code);
 });
 
-let receiveEvents = true;
 const evts = ';pointer-events:none;';
 
 alt.on(mp.prefix + 'receiveEvents', (state) => {
     const prev = document.body.getAttribute('style')?.replaceAll(evts, '');
     document.body.setAttribute('style', state ? prev : (prev + evts));
-    receiveEvents = state;
 });
 
 alt.emit(mp.prefix + 'ready');
-
-function suppress(e) {
-    if (!receiveEvents) {
-        e.preventDefault();
-        e.stopPropagation();
-        e.stopImmediatePropagation?.();
-    }
-}
-
-document.addEventListener('keydown', suppress, true);
-document.addEventListener('keyup', suppress, true);
-document.addEventListener('keypress', suppress, true);
-document.addEventListener('mousedown', suppress, true);
-document.addEventListener('mouseup', suppress, true);
-document.addEventListener('mousemove', suppress, true);
-document.addEventListener('mouseenter', suppress, true);
-document.addEventListener('mouseleave', suppress, true);
-document.addEventListener('mouseover', suppress, true);
-document.addEventListener('mouseout', suppress, true);
-document.addEventListener('click', suppress, true);
-document.addEventListener('dblclick', suppress, true);
-document.addEventListener('contextmenu', suppress, true);
-document.addEventListener('wheel', suppress, true);
-document.addEventListener('pointerdown', suppress, true);
-document.addEventListener('pointerup', suppress, true);
-document.addEventListener('pointermove', suppress, true);
-document.addEventListener('pointerenter', suppress, true);
-document.addEventListener('pointerleave', suppress, true);
-document.addEventListener('pointerover', suppress, true);
-document.addEventListener('pointerout', suppress, true);
