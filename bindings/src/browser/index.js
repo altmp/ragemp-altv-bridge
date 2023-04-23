@@ -41,7 +41,11 @@ alt.on(mp.prefix + 'eval', (code) => {
 });
 
 let receiveEvents = true;
+const evts = ';pointer-events:none;';
+
 alt.on(mp.prefix + 'receiveEvents', (state) => {
+    const prev = document.body.getAttribute('style')?.replaceAll(evts, '');
+    document.body.setAttribute('style', state ? prev : (prev + evts));
     receiveEvents = state;
 });
 
