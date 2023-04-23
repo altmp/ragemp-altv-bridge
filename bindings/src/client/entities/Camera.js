@@ -112,7 +112,7 @@ const validNames = [
     'SMOOTHED_SPLINE_CAMERA'
 ];
 
-mp.cameras.new = function(name, pos, rot, fov) {
+mp.cameras.new = function(name, pos = mp.Vector3.zero, rot = mp.Vector3.zero, fov = natives.getGameplayCamFov()) {
     if (name === 'gameplay') {
         return mp.cameras.gameplay;
     }
