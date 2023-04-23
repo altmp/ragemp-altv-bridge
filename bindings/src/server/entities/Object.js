@@ -23,8 +23,8 @@ export class _Object extends _Entity {
 
     destroy() {
         if (!this.alt.valid) return;
-        this.alt.destroy();
         view.remove(this.id);
+        this.alt.destroy();
     }
 
     get setVariable() {
