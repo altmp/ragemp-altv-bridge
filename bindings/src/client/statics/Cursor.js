@@ -3,6 +3,8 @@ import * as natives from 'natives';
 import mp from '../../shared/mp.js';
 
 class _Cursor {
+    #tick;
+
     show(freezeControls, state) {
         // Workaround to mimic RAGEMP's behavior
         // alt:V does cursor counting, cursor had to be
@@ -14,7 +16,21 @@ class _Cursor {
             while (alt.isCursorVisible()) alt.showCursor(false);
         }
 
-        alt.toggleGameControls(!freezeControls);
+        if(freezeControls && state) {
+            if(this.#tick) {
+                alt.clearEveryTick(this.#tick);
+                this.#tick = 0;
+            }
+
+            this.#tick = alt.everyTick(() => {
+                natives.disableAllControlActions(0);
+                natives.disableAllControlActions(1);
+                natives.disableAllControlActions(2);
+            });
+        } else if(!state && this.#tick) {
+            alt.clearEveryTick(this.#tick);
+            this.#tick = 0;
+        }
     }
 
     get visible() {
