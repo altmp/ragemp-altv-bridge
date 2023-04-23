@@ -45,6 +45,10 @@ export class _Marker extends _Entity {
         this.alt.visible = value;
     }
 
+    destroy() {
+        this.alt.destroy();
+    }
+
     type = 'marker';
 }
 

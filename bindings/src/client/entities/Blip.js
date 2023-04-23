@@ -19,6 +19,10 @@ export class _Blip extends _WorldObject {
     setRotation(heading) {
         this.alt.heading = heading;
     }
+
+    destroy() {
+        this.alt.destroy();
+    }
 }
 
 Object.defineProperty(alt.Blip.prototype, 'mp', {
