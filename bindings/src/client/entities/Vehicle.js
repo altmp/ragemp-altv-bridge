@@ -32,6 +32,14 @@ export class _Vehicle extends _Entity {
         return new mp.Vector3(this.alt.pos);
     }
 
+    set position(value) {
+        if(this.alt.netOwner != alt.Player.local) {
+            throw new Error(`You cannot set the position of the vehicle if you are not the network owner!`);
+        } else {
+            natives.setEntityCoordsNoOffset(this.alt, value.x, value.y, value.z, false, false, false);
+        }
+    }
+
     get gear() {
             return this.alt.gear;
     }
