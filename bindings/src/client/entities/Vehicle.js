@@ -48,6 +48,10 @@ export class _Vehicle extends _Entity {
         return this.alt.rpm;
     }
 
+    set rpm(value) {
+        this.alt.rpm = value;
+    }
+
     get steeringAngle() {
         return 0;
     }
