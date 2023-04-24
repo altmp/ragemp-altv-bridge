@@ -14111,7 +14111,9 @@ mp.game2.misc.getModelDimensions ??= function (modelHash) {
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.minimum = new mp.Vector3($res[1]);
+    $resObj.min = $resObj.minimum;
     $resObj.maximum = new mp.Vector3($res[2]);
+    $resObj.max = $resObj.maximum;
     return $resObj;
 };
 mp.game2.misc.setFakeWantedLevel ??= function (fakeWantedLevel) {
