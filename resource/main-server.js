@@ -1,0 +1,1 @@
+__registerExtraBootstrapFile("/server.js")

@@ -1,7 +1,7 @@
 {
     "scripts": {
         "install": "cd bindings && npm install && cd ../nativegen && npm install",
-        "build": "cd bindings && npm run build",
+        "build": "cd bindings && npm run build && xcopy ..\\resource .\\dist /e /Y || cp -r ../resource/. ./dist",
         "update-natives": "cd nativegen && npm run start"
     },
     "devDependencies": {

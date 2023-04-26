@@ -1,0 +1,9 @@
+type = "js"
+main = "main-server.js"
+client-main = "main-client.js"
+
+client-files = [
+    "main-client.js",
+    "client.js",
+    "browser.js"
+]
