@@ -14,7 +14,7 @@
   },
   "scripts": {
     "install": "shx cp -r node_modules/@altv src/types/",
-    "build": "node build.js"
+    "build": "node build.js && shx cp -r ../resource/. ./dist"
   },
   "keywords": [],
   "author": "",
