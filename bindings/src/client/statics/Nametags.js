@@ -26,6 +26,7 @@ class _Nametags {
             if (!alt.isPointOnScreen(pos)) return;
 
             const dist = pos.distanceToSquared(localPos);
+            console.log('Nametag added', dist, pos);
             if (this.useScreen2dCoords) {
                 const screenPos = alt.worldToScreen(pos);
                 arr.push([p.mp, screenPos.x, screenPos.y, dist]);
@@ -40,6 +41,7 @@ class _Nametags {
             if (this.orderByDistance) arr.sort((a, b) => a[4] - b[4]);
         }
 
+        console.log('Nametags size', alt.Player.streamedIn.length, arr.length);
         mp.events.dispatch('render', arr);
 
         if (!this.enabled) return;
