@@ -429,7 +429,7 @@ esprima.parseScript(source, {}, (node) => {
     }
 });
 
-outputCode += Object.entries(prototypeCalls).map(([k, v]) => `${k} = ${v}`).join('\n');
+outputCode += Object.entries(prototypeCalls).map(([k, v]) => `${k} ??= ${v}`).join('\n');
 
 function generateInvokeFunction(native: AltNative) {
     let output = `function(${native.params.map((p, i) => `p${i}`).join(', ')}) {\n`;
