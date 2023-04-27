@@ -311,6 +311,7 @@ mp.game2 ??= {};
 const hashes = {};
 
 `;
+const prototypeCalls = {};
 
 let tempVars = {};
 
@@ -400,11 +401,11 @@ esprima.parseScript(source, {}, (node) => {
         const expr = node.expression;
         if (expr.left.type === 'MemberExpression' && expr.left.object.type === 'Identifier' && expr.left.object.name in prototypes && expr.left.property.type === 'Identifier') {
             const prototype = prototypes[expr.left.object.name];
-            outputCode += `${prototype}.prototype.${expr.left.property.name} ??= ${generateNativeCaller(nativeWrappers[name], true)};\n`;
+            prototypeCalls[`${prototype}.prototype.${expr.left.property.name}`] = `${generateNativeCaller(nativeWrappers[name], true)};\n`;
             if (prototype == "mp.Player") foundNativeNames.push(expr.left.property.name);
         } else if (expr.left.type === 'MemberExpression' && expr.left.object.type === 'Identifier' && expr.left.property.type === 'Identifier') {
             if (!tempVars[expr.left.object.name]) tempVars[expr.left.object.name] = [];
-            tempVars[expr.left.object.name].push(`.${expr.left.property.name} ??= ${generateNativeCaller(nativeWrappers[name])};\n`);
+            tempVars[expr.left.object.name].push(`.${expr.left.property.name} = ${generateNativeCaller(nativeWrappers[name])};\n`);
         }
     }
 
@@ -428,6 +429,7 @@ esprima.parseScript(source, {}, (node) => {
     }
 });
 
+outputCode += Object.entries(prototypeCalls).map(([k, v]) => `${k} = ${v}`).join('\n');
 
 function generateInvokeFunction(native: AltNative) {
     let output = `function(${native.params.map((p, i) => `p${i}`).join(', ')}) {\n`;
