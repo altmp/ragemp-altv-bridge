@@ -32,9 +32,8 @@ class _Events extends BaseEvents {
             this.dispatchRemoteProc(event, id, ...args);
         });
 
-        alt.everyTick(() => {
-            this.dispatch('render');
-        });
+        // render event is now being dispatched in Nametags.js
+
         alt.on('gameEntityCreate', (entity) => {
             this.dispatch('entityStreamIn', toMp(entity));
         });

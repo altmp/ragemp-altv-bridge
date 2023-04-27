@@ -15,11 +15,34 @@ class _Nametags {
     }
 
     #tick() {
-        if (!this.enabled) return;
-
         const correction = getRenderCorrection();
+        const localPos = alt.Player.local.pos;
         const style = this.#style;
         const healthStyle = this.#healthStyle;
+
+        let arr = [];
+        alt.Player.streamedIn.forEach(p => {
+            const pos = p.pos;
+            if (!alt.isPointOnScreen(pos)) return;
+
+            const dist = pos.distanceToSquared(localPos);
+            if (this.useScreen2dCoords) {
+                const screenPos = alt.worldToScreen(pos);
+                arr.push([p.mp, screenPos.x, screenPos.y, dist]);
+            } else {
+                arr.push([p.mp, pos.x, pos.y, pos.z, dist]);
+            }
+        });
+
+        if (this.useScreen2dCoords) {
+            if (this.orderByDistance) arr.sort((a, b) => a[3] - b[3]);
+        } else {
+            if (this.orderByDistance) arr.sort((a, b) => a[4] - b[4]);
+        }
+
+        mp.events.dispatch('render', arr);
+
+        if (!this.enabled) return;
 
         alt.Player.streamedIn.forEach(p => {
             const offset = p.vehicle ? style.vehOffset : style.offset;
@@ -67,6 +90,8 @@ class _Nametags {
         }
     }
 
+    orderByDistance = false;
+    useScreen2dCoords = true;
     // todo orderByDistance
     // todo useScreen2dCoordss
 }
