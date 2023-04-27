@@ -440,6 +440,7 @@ export class _LocalVehicle extends _Vehicle {
     }
 
     get id() {
+        if (!this.alt.valid) return -1;
         return this.alt.id + 65536;
     }
 

@@ -38,10 +38,12 @@ export class _WorldObject extends _BaseObject {
     }
 
     get id() {
+        if (!this.alt.valid) return -1;
         return this.alt.id;
     }
 
     get remoteId() {
+        if (!this.alt.valid) return -1;
         return this.alt.remoteId ?? this.alt.id;
     }
 
@@ -50,6 +52,7 @@ export class _WorldObject extends _BaseObject {
     }
 
     get model() {
+        if (!this.alt.valid) return 0;
         return this.alt.model;
     }
 

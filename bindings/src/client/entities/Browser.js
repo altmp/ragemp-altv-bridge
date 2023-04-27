@@ -44,6 +44,7 @@ export class _Browser extends _BaseObject {
     type = 'browser';
 
     get id() {
+        if (!this.alt.valid) return -1;
         return this.alt.id;
     }
 

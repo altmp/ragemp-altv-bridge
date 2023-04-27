@@ -50,6 +50,7 @@ export class _WorldObject extends _BaseObject {
     }
 
     get id() {
+        if (!this.alt.valid) return -1;
         return this.alt.id;
     }
 

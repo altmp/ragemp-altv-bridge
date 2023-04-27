@@ -53,6 +53,7 @@ export class _LocalPed extends _Ped {
     type = 'ped';
 
     get id() {
+        if (!this.alt.valid) return -1;
         return this.alt.id + 65536;
     }
 
