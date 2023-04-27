@@ -22,14 +22,15 @@ class _Nametags {
 
         let arr = [];
         alt.Player.streamedIn.forEach(p => {
-            const pos = p.pos;
+            const offset = 1 + ((p.vehicle ? style.vehOffset : style.offset) || 0);
+            const pos = p.pos.add(0, 0, offset);
             if (!alt.isPointOnScreen(pos)) return;
 
             const dist = pos.distanceToSquared(localPos);
-            console.log('Nametag added', dist, pos);
             if (this.useScreen2dCoords) {
+                const res = alt.getScreenResolution();
                 const screenPos = alt.worldToScreen(pos);
-                arr.push([p.mp, screenPos.x, screenPos.y, dist]);
+                arr.push([p.mp, screenPos.x / res.x, screenPos.y / res.y, dist]);
             } else {
                 arr.push([p.mp, pos.x, pos.y, pos.z, dist]);
             }
@@ -41,7 +42,6 @@ class _Nametags {
             if (this.orderByDistance) arr.sort((a, b) => a[4] - b[4]);
         }
 
-        console.log('Nametags size', alt.Player.streamedIn.length, arr.length);
         mp.events.dispatch('render', arr);
 
         if (!this.enabled) return;

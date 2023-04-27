@@ -138,15 +138,18 @@ mp.game.time.resetClockTime = () => natives.setClockTime(12, 0, 0);
 // TODO: setLightsState, resetLightsState, getLightsState
 
 mp.game.graphics.screen2dToWorld3d = (pos) => {
-    return alt.screenToWorld(pos);
+    return new mp.Vector3(alt.screenToWorld(pos));
 };
 
 mp.game.graphics.world3dToScreen2d = (pos) => {
-    return alt.worldToScreen(pos);
+    const res = alt.getScreenResolution();
+    const screenPos = alt.worldToScreen(pos);
+    return new mp.Vector3(screenPos.x / res.x, screenPos.y / res.y, 0);
 };
 mp.game.graphics.drawScaleformMovie3dNonAdditive = mp.game.graphics.drawScaleformMovie3DSolid;
 
 mp.game.graphics.drawText3d = mp.game.graphics.drawText = (text, pos, data = {}) => {
+    text = text.replaceAll('\n', '~n~');
     (pos[2] != null ? drawText3d : drawText2d)(text, { x: pos[0], y: pos[1], z: pos[2] }, data.font, data.scale, data.color ? new alt.RGBA(data.color) : undefined, data.outline, false);
 };
 
