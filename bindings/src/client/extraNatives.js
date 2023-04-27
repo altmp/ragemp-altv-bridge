@@ -138,7 +138,7 @@ mp.game.time.resetClockTime = () => natives.setClockTime(12, 0, 0);
 // TODO: setLightsState, resetLightsState, getLightsState
 
 mp.game.graphics.screen2dToWorld3d = (pos) => {
-    return new mp.Vector3(alt.screenToWorld(pos));
+    return new mp.Vector3(alt.screenToWorld(Array.isArray(pos) ? new alt.Vector3(pos[0], pos[1], 0) : pos));
 };
 
 mp.game.graphics.world3dToScreen2d = (pos) => {
