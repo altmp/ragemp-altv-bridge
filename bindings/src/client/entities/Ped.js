@@ -61,9 +61,10 @@ export class _LocalPed extends _Ped {
     }
 
     set model(value) {
-        if (this.alt.isStreamedIn) this.streamOut();
+        const wasStreamedIn = this.alt.isStreamedIn;
+        if (wasStreamedIn) this.streamOut();
         this.#model = value;
-        if (this.alt.isStreamedIn) this.streamIn();
+        if (wasStreamedIn) this.streamIn();
     }
 
     get remoteId() {
