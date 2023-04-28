@@ -4,16 +4,21 @@ import mp from '../../shared/mp.js';
 
 class _Raycasting {
     #handleResult([state, hit, position, surfaceNormal, scriptID]) {
+        console.log('test point debug 3', state, hit);
         if (state != 2 || !hit) return;
         natives.releaseScriptGuidFromEntity(scriptID);
-
+        console.log('test point debug 4', scriptID);
         let entity = mp._findEntity(scriptID);
+
+        console.log('test point debug 5', entity);
         return { position: new mp.Vector3(position), surfaceNormal: new mp.Vector3(surfaceNormal), entity };
     }
 
     testPointToPoint(pos1, pos2, ignoredEntity = 0, flags = -1) {
         const res = natives.startExpensiveSynchronousShapeTestLosProbe(pos1.x, pos1.y, pos1.z, pos2.x, pos2.y, pos2.z, flags, typeof ignoredEntity == 'number' ? ignoredEntity : (ignoredEntity?.handle ?? 0), 0);
+        console.log('test point debug 1', res);
         if (!res) return;
+        console.log('test point debug 2');
         return this.#handleResult(natives.getShapeTestResult(res));
     }
 
