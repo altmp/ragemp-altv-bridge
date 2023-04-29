@@ -123,7 +123,7 @@ mp.labels.new = (text, position, params) => {
     virtualEnt.setMeta(mp.prefix + 'type', VirtualEntityID.Label);
     const ent = virtualEnt.mp;
     ent.text = text;
-    ent.los = params.los ?? false;
+    ent.los = params.los ?? true;
     ent.font = params.font ?? 4;
     ent.color = params.color ? new alt.RGBA(params.color) : alt.RGBA.white;
     ent.dimension = params.dimension ?? 0;
