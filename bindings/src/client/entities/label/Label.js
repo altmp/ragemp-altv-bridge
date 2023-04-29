@@ -12,8 +12,6 @@ import {toAlt, toMp} from '../../../shared/utils';
 const view = new EntityStoreView(1, (e) => e.isStreamedIn);
 
 export class _Label extends _VirtualEntityBase {
-    #los;
-
     /** @param {alt.VirtualEntity} alt */
     constructor(alt) {
         super(alt);
@@ -89,11 +87,11 @@ export class _Label extends _VirtualEntityBase {
     }
 
     get los() {
-        return this.#los;
+        return this.renderer.los;
     }
 
     set los(value) {
-        this.#los = value;
+        this.renderer.los = value;
     }
 
     get text() {
