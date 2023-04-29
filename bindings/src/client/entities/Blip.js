@@ -36,9 +36,15 @@ mp.Blip = _Blip;
 mp.blips = new ClientPool(EntityGetterView.fromClass(alt.Blip));
 
 mp.blips.new = function(sprite, position, params) {
-    const blip = new alt.PointBlip(position.x, position.y, position.z);
-    blip.sprite = sprite;
-    if ('name' in params) blip.name = params.name;
+    const blip = sprite === 9
+        ? new alt.RadiusBlip(position.x, position.y, position.z, params.radius ?? 100)
+        : new alt.PointBlip(position.x, position.y, position.z);
+    if (sprite !== 9) blip.sprite = sprite;
+
+    if ('name' in params) {
+        blip.name = params.name;
+        blip.gxtName = params.name;
+    }
     if ('scale' in params) blip.scale = params.scale;
     if ('color' in params) blip.color = params.color;
     if ('alpha' in params) blip.alpha = params.alpha;
@@ -46,6 +52,6 @@ mp.blips.new = function(sprite, position, params) {
     if ('shortRange' in params) blip.shortRange = params.shortRange;
     if ('rotation' in params) blip.heading = params.rotation;
     // TODO: dimension
-    // TODO: radius
+
     return blip.mp;
 };
