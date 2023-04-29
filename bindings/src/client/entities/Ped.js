@@ -1,7 +1,7 @@
 import * as alt from 'alt-client';
 import mp from '../../shared/mp.js';
-import { ClientPool } from '../ClientPool.js';
-import { _BaseObject } from './BaseObject.js';
+import {ClientPool} from '../ClientPool.js';
+import {_BaseObject} from './BaseObject.js';
 import natives from 'natives';
 import {_VirtualEntityBase} from './VirtualEntityBase';
 import {EntityStoreView} from '../../shared/pools/EntityStoreView';
@@ -84,6 +84,24 @@ export class _LocalPed extends _Ped {
         natives.disablePedPainAudio(this.#handle, true);
         natives.freezeEntityPosition(this.#handle, true);
         natives.taskSetBlockingOfNonTemporaryEvents(this.#handle, true);
+        natives.setBlockingOfNonTemporaryEvents(this.#handle, true);
+        natives.setPedFleeAttributes(this.#handle, 0, false);
+        natives.setPedDefaultComponentVariation(this.#handle);
+        natives.setPedNeverLeavesGroup(this.#handle, true);
+        natives.setCanAttackFriendly(this.#handle, false, false);
+        natives.setPedCombatAbility(this.#handle, 100);
+        natives.setPedCombatMovement(this.#handle, 3);
+        natives.setPedConfigFlag(this.#handle, 32, false);
+        natives.setPedConfigFlag(this.#handle, 281, true);
+        natives.setPedCombatAttributes(this.#handle, 0, false);
+        natives.setPedCombatAttributes(this.#handle, 1, false);
+        natives.setPedCombatAttributes(this.#handle, 2, false);
+        natives.setPedCombatAttributes(this.#handle, 3, false);
+        natives.setPedCombatAttributes(this.#handle, 20, false);
+        natives.setPedCombatAttributes(this.#handle, 292, true);
+        natives.setPedCombatRange(this.#handle, 2);
+        natives.setPedKeepTask(this.#handle, true);
+
         store.add(this, undefined, this.#handle, undefined);
     }
 
@@ -116,7 +134,7 @@ mp.Ped = _Ped;
 mp.peds = new ClientPool(view);
 
 const group = new alt.VirtualEntityGroup(100);
-mp.peds.new = function(model, position, heading, dimension = 0) {
+mp.peds.new = function (model, position, heading, dimension = 0) {
     model = hashIfNeeded(model);
     const virtualEnt = new alt.VirtualEntity(group, position, 300);
     virtualEnt.setMeta(mp.prefix + 'type', VirtualEntityID.Ped);
