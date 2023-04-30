@@ -7,6 +7,7 @@ import {EntityStoreView} from '../../shared/pools/EntityStoreView';
 import {EntityMixedView} from '../../shared/pools/EntityMixedView';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 import {hashIfNeeded} from '../../shared/utils';
+import { mpDimensionToAlt } from '../../shared/utils';
 
 const store = new EntityStoreView();
 const view = new EntityMixedView(store, new EntityGetterView(
@@ -69,7 +70,13 @@ export class _Object extends _Entity {
         // unused
     }
 
-    // TODO: streaming range
+    get streamingRange() {
+        return this.alt.streamingDistance;
+    }
+
+    set streamingRange(value) {
+        this.alt.streamingDistance = value;
+    }
 
     get isWeak() {
         return this.alt.isWorldObject;
@@ -109,10 +116,10 @@ mp.objects = new ClientPool(view);
 
 mp.objects.new = (model, position, params) => {
     if (!natives.isModelValid(model)) model = alt.hash('prop_ecola_can');
-    const obj = new alt.Object(model, position, new alt.Vector3(params.rotation ?? alt.Vector3.zero).toRadians(), true, true);
+    const obj = new alt.Object(model, position, new alt.Vector3(params.rotation ?? alt.Vector3.zero).toRadians(), true, true, true, mp._objectStreamRange);
     natives.freezeEntityPosition(obj, true);
     if ('alpha' in params) obj.alpha = params.alpha;
-    // TODO: dimension
+    if ('dimension' in params) obj.dimension = mpDimensionToAlt(params.dimension);
 
     return obj.mp;
 };
