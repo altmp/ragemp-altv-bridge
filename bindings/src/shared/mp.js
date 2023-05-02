@@ -8,6 +8,7 @@ const mp = {
 };
 
 // TODO: find a way to specify custom main resource name
-mp._main = 'client_resources' === alt.resourceName;
+mp._main = alt.Resource.current.config?.config?.['bridge-main'] ?? false;
+console.log('IS MAIN: ', alt.Resource.current.name, mp._main);
 
 export default mp;
