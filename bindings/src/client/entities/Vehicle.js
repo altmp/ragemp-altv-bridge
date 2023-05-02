@@ -493,7 +493,7 @@ export class _LocalVehicle extends _Vehicle {
     streamOut() {
         console.log('VEHICLE STREAM OUT', this.alt.id);
         store.remove(undefined, this.#handle, undefined);
-        this.alt.setMeta(mp.prefix + 'heading', this.#handle);
+        this.alt.setMeta(mp.prefix + 'heading', natives.getEntityHeading(this.#handle));
         natives.deleteVehicle(this.#handle);
         this.#handle = 0;
         natives.setModelAsNoLongerNeeded(this.#model);
