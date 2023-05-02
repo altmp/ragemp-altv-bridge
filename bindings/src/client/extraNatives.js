@@ -73,6 +73,10 @@ mp.game.misc.getDistanceBetweenCoords = (x1, y1, z1, x2, y2, z2, useZ) => {
     if (useZ) return vdist(x1, y1, z1, x2, y2, z2);
     else return vdist(x1, y1, 0, x2, y2, 0);
 };
+
+// TODO: remove after fixed in core
+mp.game.shapetest ??= {};
+mp.game.shapetest.releaseScriptGuidFromEntity = () => {};
 // #endregion
 
 // #region disableControlActionBatch
