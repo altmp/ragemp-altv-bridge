@@ -41,7 +41,7 @@ interface NativeInvoker {
 let natives: Record<string, string> = {};
 const rawNatives = JSON.parse(fs.readFileSync('./assets/natives.json', 'utf8'));
 for (const namespace of Object.values(rawNatives)) {
-    for (let [hash, native] of Object.entries(namespace)) {
+    for (let [hash, native] of Object.entries(namespace as any)) {
         hash = hash.substring(2); // remove 0x
         natives[native.name] = hash;
         if (native.name.startsWith('_')) natives[native.name.substring(1)] = hash;
@@ -288,8 +288,11 @@ function generateNativeCaller(native: ParsedNative, entity = false) {
     const inArgs = native.functionArguments.slice(entity ? 1 : 0);
 
     // TODO: Do not create $res when it is not used
-    let res = `function (${inArgs.join(', ')}) {
-    let $res = natives.${native.altNative.altName}(${outArgs.join(', ')});\n`;
+    let res = `function (${inArgs.join(', ')}) {\n`
+    for (let param of native.altNative.params) {
+        if (param.type == "string") res += `    if (typeof ${param.name} != "string") ${param.name} = null;\n`;
+    }
+    res += `    let $res = natives.${native.altNative.altName}(${outArgs.join(', ')});\n`;
     // TODO: Avoid creating an array
     if (native.return) res += `    if (!Array.isArray($res)) $res = [$res];\n`;
     if (native.return && native.resObject && Object.values(native.resObject).length > 0) {
@@ -405,7 +408,7 @@ esprima.parseScript(source, {}, (node) => {
             if (prototype == "mp.Player") foundNativeNames.push(expr.left.property.name);
         } else if (expr.left.type === 'MemberExpression' && expr.left.object.type === 'Identifier' && expr.left.property.type === 'Identifier') {
             if (!tempVars[expr.left.object.name]) tempVars[expr.left.object.name] = [];
-            tempVars[expr.left.object.name].push(`.${expr.left.property.name} = ${generateNativeCaller(nativeWrappers[name])};\n`);
+            tempVars[expr.left.object.name].push(`.${expr.left.property.name} ??= ${generateNativeCaller(nativeWrappers[name])};\n`);
         }
     }
 
