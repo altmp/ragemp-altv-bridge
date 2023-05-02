@@ -941,7 +941,7 @@ export class _Player extends _Entity {
     }
 
     getHealth() {
-        return natives.getEntityHealth(this.alt);
+        return natives.getEntityHealth(this.alt) - 100;
     }
 
     get isAttachedTo() {
