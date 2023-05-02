@@ -34,9 +34,22 @@ export class _Vehicle extends _Entity {
 
     set position(value) {
         if(this.alt.netOwner != alt.Player.local) {
-            throw new Error(`You cannot set the position of the vehicle if you are not the network owner!`);
+            console.error(`You cannot set the position of the vehicle if you are not the network owner!`);
         } else {
+            this.alt.pos = value;
             natives.setEntityCoordsNoOffset(this.alt, value.x, value.y, value.z, false, false, false);
+        }
+    }
+
+    get rotation() {
+        return new mp.Vector3(this.alt.rot.toDegrees());
+    }
+
+    set rotation(value) {
+        if(this.alt.netOwner != alt.Player.local) {
+            console.error(`You cannot set the rotation of the vehicle if you are not the network owner!`);
+        } else {
+            natives.setEntityRotation(this.handle, value.x, value.y, value.z, 2, false);
         }
     }
 
@@ -436,6 +449,8 @@ export class _LocalVehicle extends _Vehicle {
         store.add(this, this.id, this.#handle, 65535);
     }
     destroy() {
+        if (!this.alt.valid) return;
+        this.alt.destroy();
         store.remove(this.id, this.#handle, 65535);
     }
 

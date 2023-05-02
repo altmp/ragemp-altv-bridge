@@ -23,6 +23,14 @@ export class _Player extends _Entity {
         natives.setEntityCoordsNoOffset(this.alt, value.x, value.y, value.z, false, false, false);
     }
 
+    get rotation() {
+        return new mp.Vector3(this.alt.rot.toDegrees());
+    }
+
+    set rotation(value) {
+        natives.setEntityRotation(this.handle, value.x, value.y, value.z, 2, false);
+    }
+
     get vehicle() {
         if (this.alt.vehicle?.mp) return this.alt.vehicle.mp;
         const veh = natives.isPedInAnyVehicle(this.handle, false)

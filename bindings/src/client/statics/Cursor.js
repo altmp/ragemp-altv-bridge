@@ -16,21 +16,7 @@ class _Cursor {
             while (alt.isCursorVisible()) alt.showCursor(false);
         }
 
-        if(freezeControls && state) {
-            if(this.#tick) {
-                alt.clearEveryTick(this.#tick);
-                this.#tick = 0;
-            }
-
-            this.#tick = alt.everyTick(() => {
-                natives.disableAllControlActions(0);
-                natives.disableAllControlActions(1);
-                natives.disableAllControlActions(2);
-            });
-        } else if(!state && this.#tick) {
-            alt.clearEveryTick(this.#tick);
-            this.#tick = 0;
-        }
+        alt.toggleGameControls(!freezeControls);
 
         alt.WebView.all.forEach(e => e.emit(mp.prefix + 'receiveEvents', state));
     }

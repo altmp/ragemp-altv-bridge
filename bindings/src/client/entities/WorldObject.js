@@ -2,6 +2,7 @@ import * as alt from 'alt-client';
 import {mpDimensionToAlt, toMp, vdist, vdist2} from '../../shared/utils';
 import { _BaseObject } from './BaseObject';
 import natives from 'natives';
+import mp from '../../shared/mp';
 
 export class _WorldObject extends _BaseObject {
     #alt;
@@ -60,7 +61,20 @@ export class _WorldObject extends _BaseObject {
         return this.alt.valid;
     }
 
+    get position() {
+        return this.alt.pos;
+    }
+
     set position(value) {
         natives.setEntityCoordsNoOffset(this.handle, value.x, value.y, value.z, false, false, false);
+    }
+
+
+    get rotation() {
+        return new mp.Vector3(this.alt.rot.toDegrees());
+    }
+
+    set rotation(value) {
+        natives.setEntityRotation(this.handle, value.x, value.y, value.z, 2, false);
     }
 }
