@@ -16,7 +16,6 @@ class _Cursor {
             while (alt.isCursorVisible()) alt.showCursor(false);
         }
 
-        alt.setCamFrozen(state);
         alt.toggleGameControls(!freezeControls);
 
         alt.WebView.all.forEach(e => e.emit(mp.prefix + 'receiveEvents', state));
