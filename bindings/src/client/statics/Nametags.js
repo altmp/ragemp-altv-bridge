@@ -24,7 +24,7 @@ class _Nametags {
         alt.Player.streamedIn.forEach(p => {
             const offset = 1 + ((p.vehicle ? style.vehOffset : style.offset) || 0);
             const pos = p.pos.add(0, 0, offset);
-            if (!alt.isPointOnScreen(pos)) return;
+            if (!alt.isPointOnScreen(p.pos)) return;
 
             const dist = pos.distanceToSquared(localPos);
             if (this.useScreen2dCoords) {
