@@ -54,6 +54,17 @@ export class _Object extends _Entity {
         return this.alt.model;
     }
 
+    set model(value) {
+        if (!this.alt?.valid) return;
+        value = hashIfNeeded(value);
+        const pos = this.alt.pos;
+        const rot = this.alt.rot;
+        const alpha = this.alt.alpha;
+        this.alt.destroy();
+        this.alt = new alt.Object(value, pos, rot, true, true, true, mp._objectStreamRange);
+        this.alt.alpha = alpha;
+    }
+
     get alpha() {
         return this.alt.alpha;
     }
@@ -74,20 +85,16 @@ export class _Object extends _Entity {
         return this.alt.streamingDistance;
     }
 
-    set streamingRange(value) {
-        this.alt.streamingDistance = value;
-    }
-
     get isWeak() {
         return this.alt.isWorldObject;
     }
 
     get hidden() {
-        return !natives.isEntityVisible(this.alt);
+        return !natives.isEntityVisible(this.handle);
     }
 
     set hidden(value) {
-        natives.setEntityVisible(this.alt, !value, false);
+        natives.setEntityVisible(this.handle, !value, false);
     }
 
     get setNoCollision() {
@@ -103,6 +110,68 @@ export class _Object extends _Entity {
     }
 }
 
+export class _NetworkObject extends _Object {
+    #handle;
+
+    /** @param {alt.VirtualEntity} alt */
+    constructor(alt) {
+        super(alt);
+        this.alt = alt;
+    }
+
+    get handle() {
+        return this.#handle;
+    }
+
+    streamIn() {
+        alt.loadModel(this.model);
+        this.#handle = natives.createObject(this.model, this.alt.pos.x, this.alt.pos.y, this.alt.pos.z, false, false, false);
+        natives.setEntityHeading(this.#handle, this.alt.getStreamSyncedMeta(mp.prefix + 'heading') ?? 0);
+        natives.freezeEntityPosition(this.#handle, true);
+        natives.setEntityCollision(this.#handle, false, true); // TODO: check if needed
+        natives.setVehicleColourCombination(this.#handle, 0);
+    }
+
+    streamOut() {
+        natives.deleteObject(this.#handle);
+        this.#handle = 0;
+        natives.setModelAsNoLongerNeeded(this.model);
+    }
+
+    posChange() {}
+    onDestroy() {
+        store.remove(this.id, this.handle, this.id);
+    }
+    onCreate() {
+        store.add(this, this.id, undefined, this.id);
+    }
+    update() {}
+
+    destroy() {}
+
+    get rotation() {
+        return this.alt.getStreamSyncedMeta(mp.prefix + 'rotation');
+    }
+
+    set rotation(value) {}
+
+    get model() {
+        return this.alt.getStreamSyncedMeta(mp.prefix + 'model');
+    }
+
+    set model(value) {}
+
+    get alpha() {
+        return this.alt.getStreamSyncedMeta(mp.prefix + 'alpha');
+    }
+
+    set alpha(value) {}
+
+    get isWeak() {
+        return false;
+    }
+}
+
 mp.Object = _Object;
 
 
@@ -115,9 +184,10 @@ Object.defineProperty(alt.Object.prototype, 'mp', {
 mp.objects = new ClientPool(view);
 
 mp.objects.new = (model, position, params) => {
+    model = hashIfNeeded(model);
     if (!natives.isModelValid(model)) model = alt.hash('prop_ecola_can');
-    const obj = new alt.Object(model, position, new alt.Vector3(params.rotation ?? alt.Vector3.zero).toRadians(), true, true, true, mp._objectStreamRange);
-    natives.freezeEntityPosition(obj, true);
+    const obj = new alt.Object(model, position, new alt.Vector3(params.rotation ?? alt.Vector3.zero).toRadians(), true, false, true, mp._objectStreamRange);
+    obj.setMeta(mp.prefix + 'bridge', true);
     if ('alpha' in params) obj.alpha = params.alpha;
     if ('dimension' in params) obj.dimension = mpDimensionToAlt(params.dimension);
 
@@ -135,10 +205,15 @@ mp.objects.newWeaponObject = (model, position, params) => {
     model = hashIfNeeded(model);
     const handle = natives.createWeaponObject(model, params.ammo ?? 0, position.x, position.y, position.z, params.showWorldObject ?? false, params.scale ?? 1, 0, 0, 0);
     const obj = mp.objects.newWeak(handle);
-    natives.freezeEntityPosition(obj.handle, true);
-    if ('rotation' in params) obj.alt.rot = params.rotation;
+    if ('rotation' in params) obj.rotation = params.rotation;
     if ('alpha' in params) obj.alt.alpha = params.alpha;
-    // TODO: dimension
 
     return obj;
 };
+
+alt.on('gameEntityCreate', (ent) => {
+    if (ent instanceof alt.Object && ent.getMeta(mp.prefix + 'bridge')) {
+        natives.freezeEntityPosition(ent.scriptID, true);
+        natives.setEntityCollision(ent.scriptID, false, true);
+    }
+});
