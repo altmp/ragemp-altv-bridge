@@ -39,9 +39,9 @@ interface NativeInvoker {
 
 // name to hash (without 0x)
 let natives: Record<string, string> = {};
-const rawNatives = JSON.parse(fs.readFileSync('./assets/natives.json', 'utf8'));
+const rawNatives = JSON.parse(fs.readFileSync('./assets/natives.json', 'utf8')) as Record<string, Record<string, any>>;
 for (const namespace of Object.values(rawNatives)) {
-    for (let [hash, native] of Object.entries(namespace as any)) {
+    for (let [hash, native] of Object.entries(namespace)) {
         hash = hash.substring(2); // remove 0x
         natives[native.name] = hash;
         if (native.name.startsWith('_')) natives[native.name.substring(1)] = hash;
@@ -109,7 +109,7 @@ let stringEncoder = '';
 const prototypes = {};
 let nativeWrappers: Record<string, ParsedNative> = {};
 let wrappersFound = 0;
-let foundNativeNames = [];
+let foundNativeNames = {};
 
 function isNodeInvoker(node: Node): boolean {
     if (node.type != 'CallExpression') return false;
@@ -405,7 +405,7 @@ esprima.parseScript(source, {}, (node) => {
         if (expr.left.type === 'MemberExpression' && expr.left.object.type === 'Identifier' && expr.left.object.name in prototypes && expr.left.property.type === 'Identifier') {
             const prototype = prototypes[expr.left.object.name];
             prototypeCalls[`${prototype}.prototype.${expr.left.property.name}`] = `${generateNativeCaller(nativeWrappers[name], true)};\n`;
-            if (prototype == "mp.Player") foundNativeNames.push(expr.left.property.name);
+            if (prototype == "mp.Ped") foundNativeNames[expr.left.property.name] = nativeWrappers[name].altNative.altName;
         } else if (expr.left.type === 'MemberExpression' && expr.left.object.type === 'Identifier' && expr.left.property.type === 'Identifier') {
             if (!tempVars[expr.left.object.name]) tempVars[expr.left.object.name] = [];
             tempVars[expr.left.object.name].push(`.${expr.left.property.name} ??= ${generateNativeCaller(nativeWrappers[name])};\n`);
