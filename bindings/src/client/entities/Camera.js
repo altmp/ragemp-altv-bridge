@@ -16,6 +16,14 @@ class _Camera {
 
     type = 'camera';
 
+    get position() {
+        return this.getPosition();
+    }
+
+    set position(value) {
+        this.setPosition(value);
+    }
+
     destroy() {
         view.remove(this.id, this.handle);
         natives.destroyCam(this.handle, false);
@@ -55,6 +63,10 @@ class _GameplayCamera extends _Camera {
     constructor(handle) {
         super(handle);
         Object.defineProperty(this, 'handle', { get: () => natives.getRenderingCam() });
+    }
+
+    get position() {
+        return this.getPosition();
     }
 
     getPosition() {

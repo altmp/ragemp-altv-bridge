@@ -49,7 +49,7 @@ class _Cursor {
 
     get position() {
         const pos = alt.getCursorPos();
-        return { x: pos.x, y: pos.y };
+        return [ pos.x, pos.y ];
     }
 
     set position(pos) {
