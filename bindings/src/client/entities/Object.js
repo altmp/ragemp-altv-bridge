@@ -127,8 +127,8 @@ export class _NetworkObject extends _Object {
         alt.loadModel(this.model);
         this.#handle = natives.createObject(this.model, this.alt.pos.x, this.alt.pos.y, this.alt.pos.z, false, false, false);
         natives.setEntityHeading(this.#handle, this.alt.getStreamSyncedMeta(mp.prefix + 'heading') ?? 0);
-        natives.freezeEntityPosition(this.#handle, true);
-        natives.setEntityCollision(this.#handle, false, true); // TODO: check if needed
+        // natives.freezeEntityPosition(this.#handle, true);
+        // natives.setEntityCollision(this.#handle, false, true); // TODO: check if needed
         natives.setVehicleColourCombination(this.#handle, 0);
     }
 
@@ -213,7 +213,7 @@ mp.objects.newWeaponObject = (model, position, params) => {
 
 alt.on('gameEntityCreate', (ent) => {
     if (ent instanceof alt.Object && ent.getMeta(mp.prefix + 'bridge')) {
-        natives.freezeEntityPosition(ent.scriptID, true);
-        natives.setEntityCollision(ent.scriptID, false, true);
+        // natives.freezeEntityPosition(ent.scriptID, true);
+        // natives.setEntityCollision(ent.scriptID, false, true);
     }
 });
