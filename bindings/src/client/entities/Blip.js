@@ -20,6 +20,14 @@ export class _Blip extends _WorldObject {
         this.alt.heading = heading;
     }
 
+    setAlpha(alpha) {
+        this.alt.alpha = alpha;
+    }
+
+    getAlpha() {
+        return this.alt.alpha;
+    }
+
     destroy() {
         this.alt.destroy();
     }
