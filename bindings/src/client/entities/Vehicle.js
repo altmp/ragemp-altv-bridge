@@ -360,8 +360,8 @@ export class _Vehicle extends _Entity {
         return this.hasClearLosToEntityInFront;
     }
 
-    get getPedIndexFromIndex() {
-        return this.getVehicleIndexFromIndex;
+    getPedIndexFromIndex() {
+        natives.getPedIndexFromEntityIndex(this.handle);
     }
 
     get isAMission() {

@@ -6,4 +6,8 @@ export class _BaseObject {
     toJSON() {
         return JSON.stringify(Object.fromEntries(Object.entries(this).filter(e => e[0] !== 'alt')))
     }
+
+    forceStreamingUpdate() {
+
+    }
 }

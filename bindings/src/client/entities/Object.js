@@ -108,6 +108,88 @@ export class _Object extends _Entity {
     get isAttachedTo() {
         return this.isAttachedToEntity;
     }
+
+    //#region Natives
+    get hasClearLosToInFront() {
+        return this.hasClearLosToEntityInFront; // hasEntityClearLosToEntityInFront
+    }
+
+    get isAMission() {
+        return this.isAMissionEntity; // isEntityAMissionEntity
+    }
+
+    get isTouching() {
+        return this.isTouchingEntity; // isEntityTouchingEntity
+    }
+
+    get attachTo() {
+        return this.attachToEntity; // attachEntityToEntity
+    }
+
+    get isAt() {
+        return this.isAtCoord; // isEntityAtCoord
+    }
+
+    get setNoCollision() {
+        return this.setNoCollisionEntity; // setEntityNoCollisionEntity
+    }
+
+    get clearLastDamage() {
+        return this.clearLastDamageEntity; // clearEntityLastDamageEntity
+    }
+
+    get setAsMission() {
+        return this.setAsMissionEntity; // setEntityAsMissionEntity
+    }
+
+    get attachToPhysically() {
+        return this.attachToEntityPhysically; // attachEntityToEntityPhysically
+    }
+
+    get hasBeenDamagedBy() {
+        return this.hasBeenDamagedByEntity; // hasEntityBeenDamagedByEntity
+    }
+
+    get isAttachedTo() {
+        return this.isAttachedToEntity; // isEntityAttachedToEntity
+    }
+
+    get hasClearLosTo() {
+        return this.hasClearLosToEntity; // hasEntityClearLosToEntity
+    }
+
+    rotate(p1, p2, p3) {
+        return natives.rotateObject(this.handle, p1, p2, p3);
+    }
+
+    getAlpha() {
+        return natives.getEntityAlpha(this.handle);
+    }
+
+    setAlpha(alpha, skin) {
+        return natives.setEntityAlpha(this.handle, alpha, skin);
+    }
+
+    getPedIndexFromIndex() {
+        return natives.getPedIndexFromEntityIndex(this.handle);
+    }
+
+    getVehicleIndexFromIndex() {
+        return natives.getVehicleIndexFromEntityIndex(this.handle);
+    }
+
+    get setCoords2() {
+        return this.setCoordsWithoutPlantsReset;
+    }
+
+    getModel() {
+        return natives.getEntityModel(this.handle);
+    }
+
+    get isCollisonDisabled() {
+        return this.getCollisionDisabled;
+    }
+    //#endregion Natives
 }
 
 export class _NetworkObject extends _Object {
