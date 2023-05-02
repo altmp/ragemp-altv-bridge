@@ -20,7 +20,7 @@ mp.gui = {};
 mp._findEntity = (scriptID) => {
     if (typeof scriptID != 'number') return scriptID;
     // TODO: optimize objects scriptid stuff
-    return alt.Player.getByScriptID(scriptID)?.mp ?? alt.Vehicle.getByScriptID(scriptID)?.mp ?? alt.Object.getByScriptID(scriptID)?.mp ?? alt.Object.allWorld.find(e => e.scriptID === scriptID)?.mp ?? scriptID;
+    return mp.players.atHandle(scriptID) ?? mp.vehicles.atHandle(scriptID) ?? mp.objects.atHandle(scriptID) ?? scriptID;
 };
 // #region JOAAT
 
