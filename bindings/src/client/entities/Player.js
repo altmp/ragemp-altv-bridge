@@ -25,7 +25,9 @@ export class _Player extends _Entity {
 
     get vehicle() {
         if (this.alt.vehicle?.mp) return this.alt.vehicle.mp;
-        const veh = natives.getVehiclePedIsIn(this.alt, false);
+        const veh = natives.isPedInAnyVehicle(this.handle, false)
+            ? natives.getVehiclePedIsIn(this.alt, false)
+            : 0;
         if (veh) return mp.vehicles.atHandle(veh);
         return null;
     }

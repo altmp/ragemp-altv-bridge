@@ -42,6 +42,14 @@ class _Events extends BaseEvents {
         alt.on('baseObjectRemove', (obj) => {
             if (obj.mp) this.dispatch('entityDestroyed', obj.mp);
         });
+
+        alt.on('resourceStop', async () => {
+            await mp.events.dispatch('serverShutdown');
+        });
+
+        alt.on('serverStarted', () => {
+            mp.events.dispatch('packagesLoaded');
+        });
     }
 
     addLocal(event, fn) {

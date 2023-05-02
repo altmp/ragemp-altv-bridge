@@ -442,6 +442,10 @@ alt.on('playerConnect', (player) => {
     mp.events.dispatch('playerReady', player.mp);
 });
 
+alt.on('playerDamage', (victim, attacker, healthDamage, armourDamage, weaponHash) => {
+    mp.events.dispatch('playerDamage', victim.mp, healthDamage, armourDamage);
+});
+
 alt.on('playerDisconnect', (player, reason) => {
     mp.events.dispatch('playerQuit', player.mp, 'unimplemented', 'unimplemented'); //player, exitType: string, reason: string
 });
@@ -449,3 +453,22 @@ alt.on('playerDisconnect', (player, reason) => {
 alt.onClient(mp.prefix + 'setModel', (player, model) => {
     player.model = model;
 });
+
+alt.on('playerEnteringVehicle', (player, vehicle, seat) => {
+    mp.events.dispatch('playerStartEnterVehicle', player.mp, vehicle?.mp, seat);
+});
+
+alt.on('playerEnteredVehicle', (player, vehicle, seat) => {
+    mp.events.dispatch('playerEnterVehicle', player.mp, vehicle?.mp, seat);
+});
+
+alt.on('playerLeftVehicle', (player, vehicle, seat) => {
+    mp.events.dispatch('playerStartExitVehicle', player.mp, vehicle?.mp, seat);
+    mp.events.dispatch('playerExitVehicle', player.mp, vehicle?.mp, seat);
+});
+
+alt.on('playerWeaponChange', (player, oldWeapon, newWeapon) => {
+    mp.events.dispatch('playerWeaponChange', player.mp, oldWeapon, newWeapon);
+});
+
+// TODO: playerStreamIn, playerStreamOut
