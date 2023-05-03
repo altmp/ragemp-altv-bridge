@@ -222,7 +222,7 @@ mp.Blip = _Blip;
 
 mp.blips = new ClientPool(EntityGetterView.fromClass(alt.Blip));
 
-mp.blips.new = function(sprite, position, params) {
+mp.blips.new = function(sprite, position, params = {}) {
     const blip = sprite === 9
         ? new alt.RadiusBlip(position.x, position.y, position.z, params.radius ?? 100)
         : new alt.PointBlip(position.x, position.y, position.z);

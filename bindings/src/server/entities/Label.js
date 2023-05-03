@@ -93,7 +93,7 @@ alt.on('baseObjectRemove', (ent) => {
 mp.labels = new ServerPool(view);
 
 const group = new alt.VirtualEntityGroup(40);
-mp.labels.new = function(text, position, params) {
+mp.labels.new = function(text, position, params = {}) {
     const virtualEnt = new alt.VirtualEntity(group, position, params.drawDistance ?? 30);
     virtualEnt.setStreamSyncedMeta(mp.prefix + 'type', VirtualEntityID.Label);
     const ent = virtualEnt.mp;

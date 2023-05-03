@@ -116,7 +116,7 @@ mp.labels = new ClientPool(view);
 
 const group = new alt.VirtualEntityGroup(40);
 
-mp.labels.new = (text, position, params) => {
+mp.labels.new = (text, position, params = {}) => {
     const virtualEnt = new alt.VirtualEntity(group, position, params.drawDistance ?? 30);
     virtualEnt.setMeta(mp.prefix + 'type', VirtualEntityID.Label);
     const ent = virtualEnt.mp;

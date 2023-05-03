@@ -62,7 +62,7 @@ mp.Marker = _Marker;
 
 mp.markers = new ClientPool(EntityGetterView.fromClass(alt.Marker));
 
-mp.markers.new = function(type, position, scale, options) {
+mp.markers.new = function(type, position, scale, options = {}) {
     let color = new alt.RGBA(0, 0, 0, 255);
     if ('color' in options) color = new alt.RGBA(options.color);
     const marker = new alt.Marker(type, position, color);

@@ -102,7 +102,7 @@ mp.Blip = _Blip;
 
 mp.blips = new ServerPool(EntityGetterView.fromClass(alt.Blip));
 
-mp.blips.new = function(sprite, position, options) {
+mp.blips.new = function(sprite, position, options = {}) {
     const blip = new alt.PointBlip(new alt.Vector3(position.x, position.y, position.z));
 
     blip.sprite = sprite;

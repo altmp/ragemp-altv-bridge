@@ -266,7 +266,7 @@ Object.defineProperty(alt.Object.prototype, 'mp', {
 
 mp.objects = new ClientPool(view);
 
-mp.objects.new = (model, position, params) => {
+mp.objects.new = (model, position, params = {}) => {
     model = hashIfNeeded(model);
     if (!natives.isModelValid(model)) model = alt.hash('prop_ecola_can');
     const obj = new alt.Object(model, position, new alt.Vector3(params.rotation ?? alt.Vector3.zero).toRadians(), true, false, true, mp._objectStreamRange);
@@ -284,7 +284,7 @@ mp.objects.newWeak = (handle) => {
     return obj.mp;
 };
 
-mp.objects.newWeaponObject = (model, position, params) => {
+mp.objects.newWeaponObject = (model, position, params = {}) => {
     model = hashIfNeeded(model);
     const handle = natives.createWeaponObject(model, params.ammo ?? 0, position.x, position.y, position.z, params.showWorldObject ?? false, params.scale ?? 1, 0, 0, 0);
     const obj = mp.objects.newWeak(handle);
