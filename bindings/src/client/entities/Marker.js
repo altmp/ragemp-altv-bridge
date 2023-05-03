@@ -66,6 +66,7 @@ mp.markers.new = function(type, position, scale, options) {
     let color = new alt.RGBA(0, 0, 0, 255);
     if ('color' in options) color = new alt.RGBA(options.color);
     const marker = new alt.Marker(type, position, color);
+    marker.faceCamera = true;
     if ('direction' in options) marker.dir = new alt.Vector3(options.direction.x, options.direction.y, options.direction.z);
     if ('rotation' in options) marker.rot = new alt.Vector3(options.rotation.x * deg2rad, options.rotation.y * deg2rad, options.rotation.z * deg2rad);
     if ('visible' in options) marker.visible = options.visible;
