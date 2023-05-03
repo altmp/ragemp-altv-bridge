@@ -72,11 +72,7 @@ mp.game.system.vdist2 = vdist2;
 mp.game.misc.getDistanceBetweenCoords = (x1, y1, z1, x2, y2, z2, useZ) => {
     if (useZ) return vdist(x1, y1, z1, x2, y2, z2);
     else return vdist(x1, y1, 0, x2, y2, 0);
-};
-
-// TODO: remove after fixed in core
-mp.game.shapetest ??= {};
-mp.game.shapetest.releaseScriptGuidFromEntity = () => {};
+};{};
 // #endregion
 
 // #region disableControlActionBatch
@@ -304,5 +300,22 @@ mp.game.hud.getCurrentAreaNameHash = () => {
     const pos = alt.Player.local.pos;
     return natives.getHashOfMapAreaAtCoords(pos.x, pos.y, pos.z);
 };
+
+// TODO: remove after fixed in core
+mp.game.shapetest ??= {};
+mp.game.shapetest.releaseScriptGuidFromEntity = () =>
+
+mp.game.hud.setBlipNameFromTextFile = (handle, gxt) => {
+    const blip = mp.blips.atHandle(handle);
+    if (blip) {
+        blip.alt.name = mp.game.gxt.get(gxt);
+        blip.alt.gxtName = gxt;
+        return;
+    }
+
+    console.warn('Blip ' + handle + ' not found! (setBlipName)');
+    natives.setBlipNameFromTextFile(handle, gxt);
+};
+
 
 //#endregion

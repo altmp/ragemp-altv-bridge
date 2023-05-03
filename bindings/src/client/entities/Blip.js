@@ -230,7 +230,7 @@ mp.blips.new = function(sprite, position, params) {
 
     if ('name' in params) {
         blip.name = params.name;
-        blip.gxtName = params.name;
+        // blip.gxtName = params.name;
     }
     if ('scale' in params) blip.scale = params.scale;
     if ('color' in params) blip.color = params.color;
