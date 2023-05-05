@@ -63,8 +63,10 @@ export class _Player extends _Entity {
         this.alt.setEyeColor(value);
     }
 
-    // TODO: face features
-
+    get faceFeatures() {
+        throw new Error("faceFeatures getter is not supported (does not work on 1.1)")
+    }
+    
     get hairColor() {
         return this.alt.getHairColor();
     }
@@ -154,8 +156,15 @@ export class _Player extends _Entity {
         return this.alt.currentWeapon;
     }
 
-    // TODO: weaponAmmo
-    // TODO: weapons
+    get weapons() {
+        throw new Error("weapons getter is not supported (does not work on 1.1)");
+    }
+
+    get weaponAmmo() {
+        return 0; // TODO
+    }
+
+    set weaponAmmo(value) {}
     // TODO: alpha
 
     get model() {
@@ -248,7 +257,9 @@ export class _Player extends _Entity {
         return this.alt.getProp(component);
     }
 
-    // TODO: getWeaponAmmo
+    getWeaponAmmo(weaponHash) {
+        return 0; // TODO
+    }
 
     giveWeapon(weapon, ammo) { // TODO: object overload
         if (Array.isArray(weapon)) {
@@ -270,7 +281,6 @@ export class _Player extends _Entity {
     invoke(native, ...args) {
         this.alt.emit('$invoke', native, ...argsToAlt(args));
     }
-    // TODO: invoke
 
     isStreamed(player) {
         return this.alt.isEntityInStreamRange(player.alt);
@@ -324,8 +334,6 @@ export class _Player extends _Entity {
         this.alt.removeAllWeapons();
     }
 
-    // TODO: resetWeapon
-
     setClothes(component, drawable, texture, palette) {
         this.alt.setClothes(component, drawable, texture, palette);
     }
@@ -371,14 +379,18 @@ export class _Player extends _Entity {
         this.alt.setProp(prop, drawable, texture);
     }
 
-    // TODO: setWeaponAmmo
+    setWeaponAmmo(weapon, ammo) {
+        // TODO
+    }
 
     spawn(pos) {
         this.alt.spawn(pos);
         mp.events.dispatch('playerSpawn', this);
     }
 
-    // TODO: stopAnimation
+    stopAnimation() {
+        this.alt.clearTasks();
+    }
 
     updateHeadBlend(shape, skin, third) {
         this.#ensureHeadblend();
@@ -395,7 +407,6 @@ export class _Player extends _Entity {
     disableVoiceTo() {
         console.warn('Voice methods are not supported');
     }
-    // TODO: Weapons::clear
 
     destroy() {
         if (!this.alt.valid) return;
