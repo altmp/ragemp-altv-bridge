@@ -16,9 +16,10 @@ export class _Vehicle extends _Entity {
         this.data = new SyncedMetaProxy(alt);
     }
 
-    get driver() {
-        return this.alt.driver?.mp;
-    }
+    // TODO
+    // get driver() {
+    //     return this.alt.driver?.mp;
+    // }
 
     get bodyHealth() {
         return this.alt.bodyHealth;
