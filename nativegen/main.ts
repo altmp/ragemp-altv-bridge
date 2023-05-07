@@ -289,8 +289,11 @@ function generateNativeCaller(native: ParsedNative, entity = false) {
 
     // TODO: Do not create $res when it is not used
     let res = `function (${inArgs.join(', ')}) {\n`
+    for (let i = 0; i < native.functionArguments.length; i++) {
+        if (native.altNative.params[i]?.type == "string")
+            res += `    if (typeof ${native.functionArguments[i]} != "string") ${native.functionArguments[i]} = null;\n`;
+    }
     for (let param of native.altNative.params) {
-        if (param.type == "string") res += `    if (typeof ${param.name} != "string") ${param.name} = null;\n`;
     }
     res += `    let $res = natives.${native.altNative.altName}(${outArgs.join(', ')});\n`;
     // TODO: Avoid creating an array

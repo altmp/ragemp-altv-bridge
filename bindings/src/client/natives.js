@@ -376,8 +376,6 @@ mp.game2.audio.skipToNextScriptedConversationLine ??= function () {
     let $res = natives.skipToNextScriptedConversationLine();
 };
 mp.game2.audio.interruptConversation ??= function (p0) {
-    if (typeof voiceline != "string") voiceline = null;
-    if (typeof speaker != "string") speaker = null;
     let $res = natives.interruptConversation(p0, null, null);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -387,7 +385,7 @@ mp.game2.audio.interruptConversation ??= function (p0) {
 };
 mp.game2.audio.interruptConversationAndPause ??= function (ped, p1, p2) {
     if (typeof p1 != "string") p1 = null;
-    if (typeof speaker != "string") speaker = null;
+    if (typeof p2 != "string") p2 = null;
     let $res = natives.interruptConversationAndPause(ped, p1, p2);
 };
 mp.game2.audio.registerScriptWith ??= function (p0) {
@@ -400,61 +398,61 @@ mp.game2.audio.unregisterScriptWith ??= function () {
     let $res = natives.unregisterScriptWithAudio();
 };
 mp.game2.audio.requestMissionBank ??= function (p0, p1, p2) {
-    if (typeof audioBank != "string") audioBank = null;
+    if (typeof p0 != "string") p0 = null;
     let $res = natives.requestMissionAudioBank(p0, p1 | 0, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
 mp.game2.audio.requestMissionAudioBank ??= function (p0, p1, p2) {
-    if (typeof audioBank != "string") audioBank = null;
+    if (typeof p0 != "string") p0 = null;
     let $res = natives.requestMissionAudioBank(p0, p1 | 0, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
 mp.game2.audio.requestAmbientBank ??= function (p0, p1, p2) {
-    if (typeof audioBank != "string") audioBank = null;
+    if (typeof p0 != "string") p0 = null;
     let $res = natives.requestAmbientAudioBank(p0, p1 | 0, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
 mp.game2.audio.requestAmbientAudioBank ??= function (p0, p1, p2) {
-    if (typeof audioBank != "string") audioBank = null;
+    if (typeof p0 != "string") p0 = null;
     let $res = natives.requestAmbientAudioBank(p0, p1 | 0, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
 mp.game2.audio.requestScriptBank ??= function (p0, p1, p2) {
-    if (typeof audioBank != "string") audioBank = null;
+    if (typeof p0 != "string") p0 = null;
     let $res = natives.requestScriptAudioBank(p0, p1 | 0, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
 mp.game2.audio.requestScriptAudioBank ??= function (p0, p1, p2) {
-    if (typeof audioBank != "string") audioBank = null;
+    if (typeof p0 != "string") p0 = null;
     let $res = natives.requestScriptAudioBank(p0, p1 | 0, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
 mp.game2.audio.hintAmbientBank ??= function (p0, p1, p2) {
-    if (typeof audioBank != "string") audioBank = null;
+    if (typeof p0 != "string") p0 = null;
     let $res = natives.hintAmbientAudioBank(p0, p1, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
 mp.game2.audio.hintAmbientAudioBank ??= function (p0, p1, p2) {
-    if (typeof audioBank != "string") audioBank = null;
+    if (typeof p0 != "string") p0 = null;
     let $res = natives.hintAmbientAudioBank(p0, p1, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
 mp.game2.audio.hintScriptBank ??= function (p0, p1, p2) {
-    if (typeof audioBank != "string") audioBank = null;
+    if (typeof p0 != "string") p0 = null;
     let $res = natives.hintScriptAudioBank(p0, p1, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
 mp.game2.audio.hintScriptAudioBank ??= function (p0, p1, p2) {
-    if (typeof audioBank != "string") audioBank = null;
+    if (typeof p0 != "string") p0 = null;
     let $res = natives.hintScriptAudioBank(p0, p1, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
@@ -523,7 +521,7 @@ mp.game2.audio.getSoundIdFromNetworkId ??= function (netId) {
     return $res[0];
 };
 mp.game2.audio.setVariableOnSound ??= function (soundId, p2) {
-    if (typeof unkVariable != "string") unkVariable = null;
+    if (typeof p2 != "string") p2 = null;
     let $res = natives.setVariableOnSound(soundId, null, p2);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -531,11 +529,11 @@ mp.game2.audio.setVariableOnSound ??= function (soundId, p2) {
     return $resObj.p1;
 };
 mp.game2.audio.setVariableOnStream ??= function (p0, p1) {
-    if (typeof unkVariable != "string") unkVariable = null;
+    if (typeof p0 != "string") p0 = null;
     let $res = natives.setVariableOnStream(p0, p1);
 };
 mp.game2.audio.overrideUnderwaterStream ??= function (p1) {
-    if (typeof p0 != "string") p0 = null;
+    if (typeof p1 != "string") p1 = null;
     let $res = natives.overrideUnderwaterStream(null, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -543,7 +541,7 @@ mp.game2.audio.overrideUnderwaterStream ??= function (p1) {
     return $resObj.p0;
 };
 mp.game2.audio.setVariableOnUnderWaterStream ??= function (variableName, value) {
-    if (typeof unkVariableName != "string") unkVariableName = null;
+    if (typeof variableName != "string") variableName = null;
     let $res = natives.setVariableOnUnderWaterStream(variableName, value);
 };
 mp.game2.audio.hasSoundFinished ??= function (soundId) {
@@ -602,11 +600,11 @@ mp.game2.audio.releaseWeapon ??= function () {
     let $res = natives.releaseWeaponAudio();
 };
 mp.game2.audio.activateSlowmoMode ??= function (p0) {
-    if (typeof mode != "string") mode = null;
+    if (typeof p0 != "string") p0 = null;
     let $res = natives.activateAudioSlowmoMode(p0);
 };
 mp.game2.audio.deactivateSlowmoMode ??= function (p0) {
-    if (typeof mode != "string") mode = null;
+    if (typeof p0 != "string") p0 = null;
     let $res = natives.deactivateAudioSlowmoMode(p0);
 };
 mp.game2.audio.setAmbientVoiceName ??= function (ped, name) {
@@ -893,7 +891,7 @@ mp.game2.audio.clearAmbientZoneState ??= function (zoneName, p1) {
     let $res = natives.clearAmbientZoneState(zoneName, p1 | 0);
 };
 mp.game2.audio.setAmbientZoneListState ??= function (p1, p2) {
-    if (typeof ambientZone != "string") ambientZone = null;
+    if (typeof p1 != "string") p1 = null;
     let $res = natives.setAmbientZoneListState(null, p1 | 0, p2 | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -901,7 +899,7 @@ mp.game2.audio.setAmbientZoneListState ??= function (p1, p2) {
     return $resObj.p0;
 };
 mp.game2.audio.clearAmbientZoneListState ??= function (p1) {
-    if (typeof ambientZone != "string") ambientZone = null;
+    if (typeof p1 != "string") p1 = null;
     let $res = natives.clearAmbientZoneListState(null, p1 | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -931,11 +929,11 @@ mp.game2.audio.setCutsceneAudioOverride ??= function (name) {
     let $res = natives.setCutsceneAudioOverride(name);
 };
 mp.game2.audio.setVariableOnCutscene ??= function (variableName, value) {
-    if (typeof unkVariableName != "string") unkVariableName = null;
+    if (typeof variableName != "string") variableName = null;
     let $res = natives.setVariableOnSynchSceneAudio(variableName, value);
 };
 mp.game2.audio.getPlayerHeadsetSoundAlternate ??= function (variableName, value) {
-    if (typeof unkVariableName != "string") unkVariableName = null;
+    if (typeof variableName != "string") variableName = null;
     let $res = natives.setVariableOnSynchSceneAudio(variableName, value);
 };
 mp.game2.audio.playPoliceReport ??= function (name, p1) {
@@ -1154,12 +1152,12 @@ mp.game2.audio.isAudioSceneActive ??= function (scene) {
 };
 mp.game2.audio.setSceneVariable ??= function (scene, variable, value) {
     if (typeof scene != "string") scene = null;
-    if (typeof unkVariable != "string") unkVariable = null;
+    if (typeof variable != "string") variable = null;
     let $res = natives.setAudioSceneVariable(scene, variable, value);
 };
 mp.game2.audio.setAudioSceneVariable ??= function (scene, variable, value) {
     if (typeof scene != "string") scene = null;
-    if (typeof unkVariable != "string") unkVariable = null;
+    if (typeof variable != "string") variable = null;
     let $res = natives.setAudioSceneVariable(scene, variable, value);
 };
 mp.game2.audio.setScriptCleanupTime ??= function (time) {
@@ -1285,19 +1283,18 @@ mp.game2.audio.setAudioFlag ??= function (flagName, toggle) {
     let $res = natives.setAudioFlag(flagName, toggle | 0);
 };
 mp.game2.audio.prepareSynchronizedEvent ??= function (p0, p1) {
-    if (typeof audioEvent != "string") audioEvent = null;
+    if (typeof p0 != "string") p0 = null;
     let $res = natives.prepareSynchronizedAudioEvent(p0, p1);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
 mp.game2.audio.prepareSynchronizedAudioEvent ??= function (p0, p1) {
-    if (typeof audioEvent != "string") audioEvent = null;
+    if (typeof p0 != "string") p0 = null;
     let $res = natives.prepareSynchronizedAudioEvent(p0, p1);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
 mp.game2.audio.prepareSynchronizedEventForScene ??= function (p0) {
-    if (typeof audioEvent != "string") audioEvent = null;
     let $res = natives.prepareSynchronizedAudioEventForScene(p0, null);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -1305,7 +1302,6 @@ mp.game2.audio.prepareSynchronizedEventForScene ??= function (p0) {
     return $res[0] == 1 ? $resObj.p1 : undefined;
 };
 mp.game2.audio.prepareSynchronizedAudioEventForScene ??= function (p0) {
-    if (typeof audioEvent != "string") audioEvent = null;
     let $res = natives.prepareSynchronizedAudioEventForScene(p0, null);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -1333,11 +1329,11 @@ mp.game2.audio.stopSynchronizedAudioEvent ??= function (p0) {
     return $res[0] == 1;
 };
 mp.game2.audio.setSynchronizedEventPositionThisFrame ??= function (p0, p1) {
-    if (typeof audioEvent != "string") audioEvent = null;
+    if (typeof p0 != "string") p0 = null;
     let $res = natives.initSynchSceneAudioWithEntity(p0, p1);
 };
 mp.game2.audio.setSynchronizedAudioEventPositionThisFrame ??= function (p0, p1) {
-    if (typeof audioEvent != "string") audioEvent = null;
+    if (typeof p0 != "string") p0 = null;
     let $res = natives.initSynchSceneAudioWithEntity(p0, p1);
 };
 mp.game2.audio.setSpecialEffectMode ??= function (mode) {
@@ -1415,7 +1411,7 @@ mp.game2.audio.unk._0xB542DE8C3D1CB210 ??= function (p0) {
     let $res = natives.setNoDuckingForConversation(p0 | 0);
 };
 mp.game2.audio.unk._0x40763EA7B9B783E7 ??= function (p0, p1, p2) {
-    if (typeof audioBank != "string") audioBank = null;
+    if (typeof p0 != "string") p0 = null;
     let $res = natives.hintMissionAudioBank(p0, p1, p2);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
@@ -1427,7 +1423,7 @@ mp.game2.audio.unk._0x9AC92EED5E4793AB ??= function () {
     let $res = natives.unhintScriptAudioBank();
 };
 mp.game2.audio.unk._0x11579D940949C49E ??= function (p0) {
-    if (typeof audioBank != "string") audioBank = null;
+    if (typeof p0 != "string") p0 = null;
     let $res = natives.unhintNamedScriptAudioBank(p0);
 };
 mp.game2.audio.unk._0x5B9853296731E88D ??= function (p0, p1, p2, p3, p4, p5) {
@@ -1454,8 +1450,8 @@ mp.game2.audio.unk._0xC1805D05E6D4FE10 ??= function (vehicle) {
     let $res = natives.setVehForcedRadioThisFrame(vehicle);
 };
 mp.game2.audio.unk._0x55ECF4D13D9903B0 ??= function (p0, p1, p2, p3) {
-    if (typeof radioName != "string") radioName = null;
-    if (typeof radioTrack != "string") radioTrack = null;
+    if (typeof p0 != "string") p0 = null;
+    if (typeof p1 != "string") p1 = null;
     if (typeof p2 != "string") p2 = null;
     if (typeof p3 != "string") p3 = null;
     let $res = natives.setNextRadioTrack(p0, p1, p2, p3);
@@ -1536,7 +1532,7 @@ mp.game2.audio.unk._0xB81CF134AEB56FFB ??= function () {
     let $res = natives.enableStuntJumpAudio();
 };
 mp.game2.audio.unk._0xC8EDE9BDBCCBA6D4 ??= function (p1, p2, p3) {
-    if (typeof audioEvent != "string") audioEvent = null;
+    if (typeof p1 != "string") p1 = null;
     let $res = natives.initSynchSceneAudioWithPosition(null, p1, p2, p3);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -2435,11 +2431,11 @@ mp.game2.cam.isCinematicRendering ??= function () {
     return $res[0] == 1;
 };
 mp.game2.cam.shakeCinematic ??= function (p0, p1) {
-    if (typeof shakeType != "string") shakeType = null;
+    if (typeof p0 != "string") p0 = null;
     let $res = natives.shakeCinematicCam(p0, p1);
 };
 mp.game2.cam.shakeCinematicCam ??= function (p0, p1) {
-    if (typeof shakeType != "string") shakeType = null;
+    if (typeof p0 != "string") p0 = null;
     let $res = natives.shakeCinematicCam(p0, p1);
 };
 mp.game2.cam.isCinematicShaking ??= function () {
@@ -3135,10 +3131,10 @@ mp.game2.datafile.deleteRequestedFile ??= function (p0) {
     return $res[0] == 1;
 };
 mp.game2.datafile.ugcCreateContent ??= function (dataCount, contentName, description, tagsCsv, contentTypeName, publish, p7) {
-    if (typeof contentName != "string") contentName = null;
     if (typeof description != "string") description = null;
     if (typeof tagsCsv != "string") tagsCsv = null;
     if (typeof contentTypeName != "string") contentTypeName = null;
+    if (typeof publish != "string") publish = null;
     let $res = natives.ugcCreateContent(0, dataCount, contentName, description, tagsCsv, contentTypeName, publish | 0, p7);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3156,10 +3152,10 @@ mp.game2.datafile.ugcCreateMission ??= function (contentName, description, tagsC
 };
 mp.game2.datafile.ugcUpdateContent ??= function (contentId, dataCount, contentName, description, tagsCsv, contentTypeName, p7) {
     if (typeof contentId != "string") contentId = null;
-    if (typeof contentName != "string") contentName = null;
     if (typeof description != "string") description = null;
     if (typeof tagsCsv != "string") tagsCsv = null;
     if (typeof contentTypeName != "string") contentTypeName = null;
+    if (typeof p7 != "string") p7 = null;
     let $res = natives.ugcUpdateContent(contentId, 0, dataCount, contentName, description, tagsCsv, contentTypeName, p7);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3251,7 +3247,7 @@ mp.game2.datafile.isSavePending ??= function () {
     return $res[0] == 1;
 };
 mp.game2.datafile.datadictSetBool ??= function (key, value) {
-    if (typeof key != "string") key = null;
+    if (typeof value != "string") value = null;
     let $res = natives.datadictSetBool(0, key, value | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3259,7 +3255,7 @@ mp.game2.datafile.datadictSetBool ??= function (key, value) {
     return $resObj.objectData;
 };
 mp.game2.datafile.objectValueAddBoolean ??= function (key, value) {
-    if (typeof key != "string") key = null;
+    if (typeof value != "string") value = null;
     let $res = natives.datadictSetBool(0, key, value | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3267,7 +3263,7 @@ mp.game2.datafile.objectValueAddBoolean ??= function (key, value) {
     return $resObj.objectData;
 };
 mp.game2.datafile.datadictSetInt ??= function (key, value) {
-    if (typeof key != "string") key = null;
+    if (typeof value != "string") value = null;
     let $res = natives.datadictSetInt(0, key, value);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3275,7 +3271,7 @@ mp.game2.datafile.datadictSetInt ??= function (key, value) {
     return $resObj.objectData;
 };
 mp.game2.datafile.objectValueAddInteger ??= function (key, value) {
-    if (typeof key != "string") key = null;
+    if (typeof value != "string") value = null;
     let $res = natives.datadictSetInt(0, key, value);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3283,7 +3279,7 @@ mp.game2.datafile.objectValueAddInteger ??= function (key, value) {
     return $resObj.objectData;
 };
 mp.game2.datafile.datadictSetFloat ??= function (key, value) {
-    if (typeof key != "string") key = null;
+    if (typeof value != "string") value = null;
     let $res = natives.datadictSetFloat(0, key, value);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3291,7 +3287,7 @@ mp.game2.datafile.datadictSetFloat ??= function (key, value) {
     return $resObj.objectData;
 };
 mp.game2.datafile.objectValueAddFloat ??= function (key, value) {
-    if (typeof key != "string") key = null;
+    if (typeof value != "string") value = null;
     let $res = natives.datadictSetFloat(0, key, value);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3299,7 +3295,6 @@ mp.game2.datafile.objectValueAddFloat ??= function (key, value) {
     return $resObj.objectData;
 };
 mp.game2.datafile.datadictSetString ??= function (key, value) {
-    if (typeof key != "string") key = null;
     if (typeof value != "string") value = null;
     let $res = natives.datadictSetString(0, key, value);
     if (!Array.isArray($res)) $res = [$res];
@@ -3308,7 +3303,6 @@ mp.game2.datafile.datadictSetString ??= function (key, value) {
     return $resObj.objectData;
 };
 mp.game2.datafile.objectValueAddString ??= function (key, value) {
-    if (typeof key != "string") key = null;
     if (typeof value != "string") value = null;
     let $res = natives.datadictSetString(0, key, value);
     if (!Array.isArray($res)) $res = [$res];
@@ -3317,7 +3311,7 @@ mp.game2.datafile.objectValueAddString ??= function (key, value) {
     return $resObj.objectData;
 };
 mp.game2.datafile.datadictSetVector ??= function (key, valueX, valueY, valueZ) {
-    if (typeof key != "string") key = null;
+    if (typeof valueX != "string") valueX = null;
     let $res = natives.datadictSetVector(0, key, valueX, valueY, valueZ);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3325,7 +3319,7 @@ mp.game2.datafile.datadictSetVector ??= function (key, valueX, valueY, valueZ) {
     return $resObj.objectData;
 };
 mp.game2.datafile.objectValueAddVector3 ??= function (key, valueX, valueY, valueZ) {
-    if (typeof key != "string") key = null;
+    if (typeof valueX != "string") valueX = null;
     let $res = natives.datadictSetVector(0, key, valueX, valueY, valueZ);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3333,7 +3327,6 @@ mp.game2.datafile.objectValueAddVector3 ??= function (key, valueX, valueY, value
     return $resObj.objectData;
 };
 mp.game2.datafile.datadictCreateDict ??= function (key) {
-    if (typeof key != "string") key = null;
     let $res = natives.datadictCreateDict(0, key);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3341,7 +3334,6 @@ mp.game2.datafile.datadictCreateDict ??= function (key) {
     return $resObj;
 };
 mp.game2.datafile.objectValueAddObject ??= function (key) {
-    if (typeof key != "string") key = null;
     let $res = natives.datadictCreateDict(0, key);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3349,7 +3341,6 @@ mp.game2.datafile.objectValueAddObject ??= function (key) {
     return $resObj;
 };
 mp.game2.datafile.datadictCreateArray ??= function (key) {
-    if (typeof key != "string") key = null;
     let $res = natives.datadictCreateArray(0, key);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3357,7 +3348,6 @@ mp.game2.datafile.datadictCreateArray ??= function (key) {
     return $resObj;
 };
 mp.game2.datafile.objectValueAddArray ??= function (key) {
-    if (typeof key != "string") key = null;
     let $res = natives.datadictCreateArray(0, key);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3365,7 +3355,6 @@ mp.game2.datafile.objectValueAddArray ??= function (key) {
     return $resObj;
 };
 mp.game2.datafile.datadictGetBool ??= function (key) {
-    if (typeof key != "string") key = null;
     let $res = natives.datadictGetBool(0, key);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3373,7 +3362,6 @@ mp.game2.datafile.datadictGetBool ??= function (key) {
     return $res[0] == 1 ? $resObj.objectData : undefined;
 };
 mp.game2.datafile.objectValueGetBoolean ??= function (key) {
-    if (typeof key != "string") key = null;
     let $res = natives.datadictGetBool(0, key);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3381,7 +3369,6 @@ mp.game2.datafile.objectValueGetBoolean ??= function (key) {
     return $res[0] == 1 ? $resObj.objectData : undefined;
 };
 mp.game2.datafile.datadictGetInt ??= function (key) {
-    if (typeof key != "string") key = null;
     let $res = natives.datadictGetInt(0, key);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3390,7 +3377,6 @@ mp.game2.datafile.datadictGetInt ??= function (key) {
     return $resObj;
 };
 mp.game2.datafile.objectValueGetInteger ??= function (key) {
-    if (typeof key != "string") key = null;
     let $res = natives.datadictGetInt(0, key);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3399,7 +3385,6 @@ mp.game2.datafile.objectValueGetInteger ??= function (key) {
     return $resObj;
 };
 mp.game2.datafile.datadictGetFloat ??= function (key) {
-    if (typeof key != "string") key = null;
     let $res = natives.datadictGetFloat(0, key);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3408,7 +3393,6 @@ mp.game2.datafile.datadictGetFloat ??= function (key) {
     return $resObj;
 };
 mp.game2.datafile.objectValueGetFloat ??= function (key) {
-    if (typeof key != "string") key = null;
     let $res = natives.datadictGetFloat(0, key);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3417,7 +3401,6 @@ mp.game2.datafile.objectValueGetFloat ??= function (key) {
     return $resObj;
 };
 mp.game2.datafile.datadictGetString ??= function (key) {
-    if (typeof key != "string") key = null;
     let $res = natives.datadictGetString(0, key);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3425,7 +3408,6 @@ mp.game2.datafile.datadictGetString ??= function (key) {
     return $resObj;
 };
 mp.game2.datafile.objectValueGetString ??= function (key) {
-    if (typeof key != "string") key = null;
     let $res = natives.datadictGetString(0, key);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3433,7 +3415,6 @@ mp.game2.datafile.objectValueGetString ??= function (key) {
     return $resObj;
 };
 mp.game2.datafile.datadictGetVector ??= function (key) {
-    if (typeof key != "string") key = null;
     let $res = natives.datadictGetVector(0, key);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -3442,7 +3423,6 @@ mp.game2.datafile.datadictGetVector ??= function (key) {
     return $resObj;
 };
 mp.game2.datafile.objectValueGetVector3 ??= function (key) {
-    if (typeof key != "string") key = null;
     let $res = natives.datadictGetVector(0, key);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = new mp.Vector3(0, 0, 0);
@@ -3451,7 +3431,6 @@ mp.game2.datafile.objectValueGetVector3 ??= function (key) {
     return $resObj;
 };
 mp.game2.datafile.datadictGetDict ??= function (key) {
-    if (typeof key != "string") key = null;
     let $res = natives.datadictGetDict(0, key);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3459,7 +3438,6 @@ mp.game2.datafile.datadictGetDict ??= function (key) {
     return $resObj;
 };
 mp.game2.datafile.objectValueGetObject ??= function (key) {
-    if (typeof key != "string") key = null;
     let $res = natives.datadictGetDict(0, key);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3467,7 +3445,6 @@ mp.game2.datafile.objectValueGetObject ??= function (key) {
     return $resObj;
 };
 mp.game2.datafile.datadictGetArray ??= function (key) {
-    if (typeof key != "string") key = null;
     let $res = natives.datadictGetArray(0, key);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3475,7 +3452,6 @@ mp.game2.datafile.datadictGetArray ??= function (key) {
     return $resObj;
 };
 mp.game2.datafile.objectValueGetArray ??= function (key) {
-    if (typeof key != "string") key = null;
     let $res = natives.datadictGetArray(0, key);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3483,7 +3459,6 @@ mp.game2.datafile.objectValueGetArray ??= function (key) {
     return $resObj;
 };
 mp.game2.datafile.datadictGetType ??= function (key) {
-    if (typeof key != "string") key = null;
     let $res = natives.datadictGetType(0, key);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3492,7 +3467,6 @@ mp.game2.datafile.datadictGetType ??= function (key) {
     return $resObj;
 };
 mp.game2.datafile.objectValueGetType ??= function (key) {
-    if (typeof key != "string") key = null;
     let $res = natives.datadictGetType(0, key);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3543,7 +3517,6 @@ mp.game2.datafile.arrayValueAddFloat ??= function (value) {
     return $resObj.arrayData;
 };
 mp.game2.datafile.dataarrayAddString ??= function (value) {
-    if (typeof value != "string") value = null;
     let $res = natives.dataarrayAddString(0, value);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -3551,7 +3524,6 @@ mp.game2.datafile.dataarrayAddString ??= function (value) {
     return $resObj.arrayData;
 };
 mp.game2.datafile.arrayValueAddString ??= function (value) {
-    if (typeof value != "string") value = null;
     let $res = natives.dataarrayAddString(0, value);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -4417,8 +4389,8 @@ mp.game2.entity.playSynchronizedAnim ??= function (entity, syncedScene, animatio
     return $res[0] == 1;
 };
 mp.game2.entity.playSynchronizedMapAnim ??= function (p0, p1, p2, p3, p4, p5, p8, p9, p10, p11) {
-    if (typeof p6 != "string") p6 = null;
-    if (typeof p7 != "string") p7 = null;
+    if (typeof p8 != "string") p8 = null;
+    if (typeof p9 != "string") p9 = null;
     let $res = natives.playSynchronizedMapEntityAnim(p0, p1, p2, p3, p4, p5, null, null, p8, p9, p10, p11);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -4428,8 +4400,8 @@ mp.game2.entity.playSynchronizedMapAnim ??= function (p0, p1, p2, p3, p4, p5, p8
     return $resObj;
 };
 mp.game2.entity.playSynchronizedMapEntityAnim ??= function (p0, p1, p2, p3, p4, p5, p8, p9, p10, p11) {
-    if (typeof p6 != "string") p6 = null;
-    if (typeof p7 != "string") p7 = null;
+    if (typeof p8 != "string") p8 = null;
+    if (typeof p9 != "string") p9 = null;
     let $res = natives.playSynchronizedMapEntityAnim(p0, p1, p2, p3, p4, p5, null, null, p8, p9, p10, p11);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -7116,10 +7088,6 @@ mp.game2.hud.thefeedSetFlushAnimpostfx ??= function (p0) {
     let $res = natives.thefeedSetSnapFeedItemPositions(p0 | 0);
 };
 mp.game2.hud.thefeedAddTxdRef ??= function () {
-    if (typeof txdString1 != "string") txdString1 = null;
-    if (typeof txnString1 != "string") txnString1 = null;
-    if (typeof txdString2 != "string") txdString2 = null;
-    if (typeof txnString2 != "string") txnString2 = null;
     let $res = natives.thefeedUpdateItemTexture(null, null, null, null);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -7268,7 +7236,7 @@ mp.game2.hud.endTextCommandThefeedPostCrewtag ??= function (p0, p1, p3, isLeader
     return $resObj;
 };
 mp.game2.hud.endTextCommandThefeedPostCrewtagWithGameName ??= function (p0, p1, p3, isLeader, unk0, clanDesc, playerName, R, G, B) {
-    if (typeof playerName != "string") playerName = null;
+    if (typeof R != "string") R = null;
     let $res = natives.endTextCommandThefeedPostCrewtagWithGameName(p0 | 0, p1 | 0, 0, p3, isLeader | 0, unk0 | 0, clanDesc, playerName, R, G, B);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -7277,15 +7245,15 @@ mp.game2.hud.endTextCommandThefeedPostCrewtagWithGameName ??= function (p0, p1, 
     return $resObj;
 };
 mp.game2.hud.endTextCommandThefeedPostUnlock ??= function (p0, p1, p2) {
-    if (typeof gxtLabel1 != "string") gxtLabel1 = null;
-    if (typeof gxtLabel2 != "string") gxtLabel2 = null;
+    if (typeof p0 != "string") p0 = null;
+    if (typeof p2 != "string") p2 = null;
     let $res = natives.endTextCommandThefeedPostUnlock(p0, p1, p2);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
 mp.game2.hud.endTextCommandThefeedPostUnlockTu ??= function (p0, p1, p2, p3) {
-    if (typeof gxtLabel1 != "string") gxtLabel1 = null;
-    if (typeof gxtLabel2 != "string") gxtLabel2 = null;
+    if (typeof p0 != "string") p0 = null;
+    if (typeof p2 != "string") p2 = null;
     let $res = natives.endTextCommandThefeedPostUnlockTu(p0, p1, p2, p3);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
@@ -7314,10 +7282,9 @@ mp.game2.hud.endTextCommandThefeedPostCrewRankup ??= function (p0, p1, p2, p3, p
     return $res[0];
 };
 mp.game2.hud.endTextCommandThefeedPostVersusTu ??= function (p2, p5, p6, p7) {
-    if (typeof txdName1 != "string") txdName1 = null;
-    if (typeof textureName1 != "string") textureName1 = null;
-    if (typeof txdName2 != "string") txdName2 = null;
-    if (typeof textureName2 != "string") textureName2 = null;
+    if (typeof p2 != "string") p2 = null;
+    if (typeof p5 != "string") p5 = null;
+    if (typeof p7 != "string") p7 = null;
     let $res = natives.endTextCommandThefeedPostVersusTu(null, null, p2, null, null, p5, p6, p7);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -9155,14 +9122,6 @@ mp.game2.hud.unk._0x801879A9B4F4B2FB ??= function () {
     return $res[0] == 1;
 };
 mp.game2.hud.unk._0x817B86108EB94E51 ??= function (p0) {
-    if (typeof p1 != "string") p1 = null;
-    if (typeof p2 != "string") p2 = null;
-    if (typeof p3 != "string") p3 = null;
-    if (typeof p4 != "string") p4 = null;
-    if (typeof p5 != "string") p5 = null;
-    if (typeof p6 != "string") p6 = null;
-    if (typeof p7 != "string") p7 = null;
-    if (typeof p8 != "string") p8 = null;
     let $res = natives.setDescriptionForUgcMissionEightStrings(p0 | 0, null, null, null, null, null, null, null, null);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -10211,7 +10170,7 @@ mp.game2.misc.setFadeInAfterLoad ??= function (toggle) {
     let $res = natives.setFadeInAfterLoad(toggle | 0);
 };
 mp.game2.misc.registerSaveHouse ??= function (p0, p1, p2, p3, p5, p6) {
-    if (typeof p4 != "string") p4 = null;
+    if (typeof p5 != "string") p5 = null;
     let $res = natives.registerSaveHouse(p0, p1, p2, p3, null, p5, p6);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -10631,7 +10590,6 @@ mp.game2.misc.getSizeOfSaveData ??= function (p0) {
     return $res[0];
 };
 mp.game2.misc.registerIntToSave ??= function (name) {
-    if (typeof name != "string") name = null;
     let $res = natives.registerIntToSave(0, name);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -10639,7 +10597,6 @@ mp.game2.misc.registerIntToSave ??= function (name) {
     return $resObj.p0;
 };
 mp.game2.misc.registerInt64ToSave ??= function (name) {
-    if (typeof name != "string") name = null;
     let $res = natives.registerInt64ToSave(0, name);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -10647,7 +10604,6 @@ mp.game2.misc.registerInt64ToSave ??= function (name) {
     return $resObj.p0;
 };
 mp.game2.misc.registerEnumToSave ??= function (name) {
-    if (typeof name != "string") name = null;
     let $res = natives.registerEnumToSave(0, name);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -10655,7 +10611,6 @@ mp.game2.misc.registerEnumToSave ??= function (name) {
     return $resObj.p0;
 };
 mp.game2.misc.registerFloatToSave ??= function (name) {
-    if (typeof name != "string") name = null;
     let $res = natives.registerFloatToSave(0, name);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -10663,7 +10618,6 @@ mp.game2.misc.registerFloatToSave ??= function (name) {
     return $resObj.p0;
 };
 mp.game2.misc.registerBoolToSave ??= function (name) {
-    if (typeof name != "string") name = null;
     let $res = natives.registerBoolToSave(0, name);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -10671,7 +10625,6 @@ mp.game2.misc.registerBoolToSave ??= function (name) {
     return $resObj.p0;
 };
 mp.game2.misc.registerTextLabelToSave ??= function (name) {
-    if (typeof name != "string") name = null;
     let $res = natives.registerTextLabelToSave(0, name);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -10679,7 +10632,6 @@ mp.game2.misc.registerTextLabelToSave ??= function (name) {
     return $resObj.p0;
 };
 mp.game2.misc.registerTextLabelToSave2 ??= function (name) {
-    if (typeof name != "string") name = null;
     let $res = natives.registerTextLabel15ToSave(0, name);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -10687,7 +10639,6 @@ mp.game2.misc.registerTextLabelToSave2 ??= function (name) {
     return $resObj.p0;
 };
 mp.game2.misc.startSaveStructWithSize ??= function (size, structName) {
-    if (typeof structName != "string") structName = null;
     let $res = natives.startSaveStructWithSize(0, size, structName);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -10695,7 +10646,6 @@ mp.game2.misc.startSaveStructWithSize ??= function (size, structName) {
     return $resObj.p0;
 };
 mp.game2.misc.startSaveStruct ??= function (size, structName) {
-    if (typeof structName != "string") structName = null;
     let $res = natives.startSaveStructWithSize(0, size, structName);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -10706,7 +10656,6 @@ mp.game2.misc.stopSaveStruct ??= function () {
     let $res = natives.stopSaveStruct();
 };
 mp.game2.misc.startSaveArrayWithSize ??= function (size, arrayName) {
-    if (typeof arrayName != "string") arrayName = null;
     let $res = natives.startSaveArrayWithSize(0, size, arrayName);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -10714,7 +10663,6 @@ mp.game2.misc.startSaveArrayWithSize ??= function (size, arrayName) {
     return $resObj.p0;
 };
 mp.game2.misc.startSaveArray ??= function (size, arrayName) {
-    if (typeof arrayName != "string") arrayName = null;
     let $res = natives.startSaveArrayWithSize(0, size, arrayName);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -10878,7 +10826,6 @@ mp.game2.misc.setRiotModeEnabled ??= function (toggle) {
 };
 mp.game2.misc.displayOnscreenKeyboardWithLongerInitialString ??= function (p0, windowTitle, defaultText, defaultConcat1, defaultConcat2, defaultConcat3, defaultConcat4, defaultConcat5, defaultConcat6, defaultConcat7, maxInputLength) {
     if (typeof windowTitle != "string") windowTitle = null;
-    if (typeof defaultText != "string") defaultText = null;
     if (typeof defaultConcat1 != "string") defaultConcat1 = null;
     if (typeof defaultConcat2 != "string") defaultConcat2 = null;
     if (typeof defaultConcat3 != "string") defaultConcat3 = null;
@@ -10886,6 +10833,7 @@ mp.game2.misc.displayOnscreenKeyboardWithLongerInitialString ??= function (p0, w
     if (typeof defaultConcat5 != "string") defaultConcat5 = null;
     if (typeof defaultConcat6 != "string") defaultConcat6 = null;
     if (typeof defaultConcat7 != "string") defaultConcat7 = null;
+    if (typeof maxInputLength != "string") maxInputLength = null;
     let $res = natives.displayOnscreenKeyboardWithLongerInitialString(p0, windowTitle, 0, defaultText, defaultConcat1, defaultConcat2, defaultConcat3, defaultConcat4, defaultConcat5, defaultConcat6, defaultConcat7, maxInputLength);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -11154,7 +11102,6 @@ mp.game2.misc.unk._0xFA3FFB0EEBC288A3 ??= function (p0) {
     let $res = natives.overrideFreezeFlags(p0 | 0);
 };
 mp.game2.misc.unk._0x48F069265A0E4BEC ??= function (name) {
-    if (typeof name != "string") name = null;
     let $res = natives.registerTextLabel23ToSave(0, name);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -11162,7 +11109,6 @@ mp.game2.misc.unk._0x48F069265A0E4BEC ??= function (name) {
     return $resObj.p0;
 };
 mp.game2.misc.unk._0x8269816F6CFD40F8 ??= function (name) {
-    if (typeof name != "string") name = null;
     let $res = natives.registerTextLabel31ToSave(0, name);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -11170,7 +11116,6 @@ mp.game2.misc.unk._0x8269816F6CFD40F8 ??= function (name) {
     return $resObj.p0;
 };
 mp.game2.misc.unk._0xFAA457EF263E8763 ??= function (name) {
-    if (typeof name != "string") name = null;
     let $res = natives.registerTextLabel63ToSave(0, name);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -11971,7 +11916,7 @@ mp.game2.network.applyTransitionParameterString ??= function (p0, string, p2) {
     let $res = natives.networkApplyTransitionParameterString(p0, string, p2 | 0);
 };
 mp.game2.network.sendTransitionGamerInstruction ??= function (p1, p2, p3, p4) {
-    if (typeof p1 != "string") p1 = null;
+    if (typeof p2 != "string") p2 = null;
     let $res = natives.networkSendTransitionGamerInstruction(0, p1, p2, p3, p4 | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -12077,7 +12022,7 @@ mp.game2.network.isActivitySession ??= function () {
     return $res[0] == 1;
 };
 mp.game2.network.sendInviteViaPresence ??= function (p2, p3) {
-    if (typeof p1 != "string") p1 = null;
+    if (typeof p3 != "string") p3 = null;
     let $res = natives.networkSendInviteViaPresence(0, null, p2, p3);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -12087,7 +12032,7 @@ mp.game2.network.sendInviteViaPresence ??= function (p2, p3) {
     return $resObj;
 };
 mp.game2.network.sendPresenceTransitionInvite ??= function (p2, p3) {
-    if (typeof p1 != "string") p1 = null;
+    if (typeof p3 != "string") p3 = null;
     let $res = natives.networkSendTransitionInviteViaPresence(0, null, p2, p3);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -12363,7 +12308,6 @@ mp.game2.network.getScriptStatus ??= function () {
     return $res[0];
 };
 mp.game2.network.registerHostBroadcastVariables ??= function (numVars) {
-    if (typeof debugName != "string") debugName = null;
     let $res = natives.networkRegisterHostBroadcastVariables(0, numVars, null);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -12371,7 +12315,6 @@ mp.game2.network.registerHostBroadcastVariables ??= function (numVars) {
     return $resObj.vars;
 };
 mp.game2.network.registerPlayerBroadcastVariables ??= function (numVars) {
-    if (typeof debugName != "string") debugName = null;
     let $res = natives.networkRegisterPlayerBroadcastVariables(0, numVars, null);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -12467,7 +12410,7 @@ mp.game2.network.isThreadActive ??= function (threadId) {
     return $res[0] == 1;
 };
 mp.game2.network.getNumScriptParticipants ??= function (p1, p2) {
-    if (typeof scriptName != "string") scriptName = null;
+    if (typeof p1 != "string") p1 = null;
     let $res = natives.networkGetNumScriptParticipants(null, p1, p2);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -12917,7 +12860,6 @@ mp.game2.network.isAddingFriend ??= function () {
     return $res[0];
 };
 mp.game2.network.addFriend ??= function (message) {
-    if (typeof message != "string") message = null;
     let $res = natives.networkAddFriend(0, message);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -13196,7 +13138,6 @@ mp.game2.network.clanIsRockstarClan ??= function (bufferSize) {
     return $res[0] == 1 ? $resObj.clanDesc : undefined;
 };
 mp.game2.network.clanGetUiFormattedTag ??= function (bufferSize) {
-    if (typeof formattedTag != "string") formattedTag = null;
     let $res = natives.networkClanGetUiFormattedTag(0, bufferSize, null);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -13278,7 +13219,6 @@ mp.game2.network.clanAnimation ??= function (animDict, animName) {
     return $res[0] == 1;
 };
 mp.game2.network.clanGetEmblemTxdName ??= function () {
-    if (typeof txdName != "string") txdName = null;
     let $res = natives.networkClanGetEmblemTxdName(0, null);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -14130,7 +14070,6 @@ mp.game2.network.ugcQueryByContentId ??= function (contentId, latestVersion, con
     return $res[0] == 1;
 };
 mp.game2.network.ugcQueryByContentIds ??= function (count, latestVersion, contentTypeName) {
-    if (typeof contentTypeName != "string") contentTypeName = null;
     let $res = natives.ugcQueryByContentIds(0, count, latestVersion | 0, contentTypeName);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -14191,7 +14130,6 @@ mp.game2.network.setBalanceAddMachine ??= function (contentId, contentTypeName) 
     return $res[0] == 1;
 };
 mp.game2.network.setBalanceAddMachines ??= function (dataCount, contentTypeName) {
-    if (typeof contentTypeName != "string") contentTypeName = null;
     let $res = natives.ugcGetGetByContentIds(0, dataCount, contentTypeName);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -14374,7 +14312,6 @@ mp.game2.network.ugcSetBookmarked ??= function (contentId, bookmarked, contentTy
     return $res[0] == 1;
 };
 mp.game2.network.ugcSetDeleted ??= function (p1, p2) {
-    if (typeof p2 != "string") p2 = null;
     let $res = natives.ugcSetDeleted(0, p1 | 0, p2);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -14447,8 +14384,8 @@ mp.game2.network.facebookIsAvailable ??= function () {
     return $res[0] == 1;
 };
 mp.game2.network.textureDownloadRequest ??= function (filePath, name, p3) {
-    if (typeof filePath != "string") filePath = null;
     if (typeof name != "string") name = null;
+    if (typeof p3 != "string") p3 = null;
     let $res = natives.textureDownloadRequest(0, filePath, name, p3 | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -14842,7 +14779,7 @@ mp.game2.network.unk._0x4A9FDE3A5A6D0437 ??= function (toggle) {
     let $res = natives.networkSetPresenceSessionInvitesBlocked(toggle | 0);
 };
 mp.game2.network.unk._0x1171A97A3D3981B6 ??= function (p2, p3) {
-    if (typeof p1 != "string") p1 = null;
+    if (typeof p3 != "string") p3 = null;
     let $res = natives.networkSendImportantTransitionInviteViaPresence(0, null, p2, p3);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -14907,14 +14844,11 @@ mp.game2.network.unk._0x25D990F8E0E3F13C ??= function () {
     let $res = natives.networkRemoveAllQueuedJoinRequests();
 };
 mp.game2.network.unk._0xA12D3A5A3753CC23 ??= function () {
-    if (typeof p1 != "string") p1 = null;
-    if (typeof p2 != "string") p2 = null;
     let $res = natives.triggerTuningCrcHackerCheck(0, null, null);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
 mp.game2.network.unk._0xF287F506767CC8A9 ??= function () {
-    if (typeof p1 != "string") p1 = null;
     let $res = natives.triggerFileCrcHackerCheck(0, null);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
@@ -16271,13 +16205,13 @@ mp.game2.pad.enableAllControlActions ??= function (padIndex) {
     let $res = natives.enableAllControlActions(padIndex);
 };
 mp.game2.pad.switchToInputMappingScheme ??= function (name) {
-    if (typeof schemeName != "string") schemeName = null;
+    if (typeof name != "string") name = null;
     let $res = natives.initPcScriptedControls(name);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
 mp.game2.pad.switchToInputMappingScheme2 ??= function (name) {
-    if (typeof schemeName != "string") schemeName = null;
+    if (typeof name != "string") name = null;
     let $res = natives.switchPcScriptedControls(name);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
@@ -21096,7 +21030,6 @@ mp.game2.stats.playBackgroundScriptAction ??= function (action, value) {
     let $res = natives.playstatsBackgroundScriptAction(action, value);
 };
 mp.game2.stats.playNpcInvite ??= function () {
-    if (typeof p0 != "string") p0 = null;
     let $res = natives.playstatsNpcInvite(null);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -21104,7 +21037,6 @@ mp.game2.stats.playNpcInvite ??= function () {
     return $resObj.p0;
 };
 mp.game2.stats.playstatsNpcInvite ??= function () {
-    if (typeof p0 != "string") p0 = null;
     let $res = natives.playstatsNpcInvite(null);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -21133,7 +21065,7 @@ mp.game2.stats.playLeaveJobChain ??= function (p0, p1, p2, p3, p4) {
     let $res = natives.playstatsLeaveJobChain(p0, p1, p2, p3, p4);
 };
 mp.game2.stats.playMissionStarted ??= function (p1, p2, p3) {
-    if (typeof p0 != "string") p0 = null;
+    if (typeof p1 != "string") p1 = null;
     let $res = natives.playstatsMissionStarted(null, p1, p2, p3 | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -21141,7 +21073,7 @@ mp.game2.stats.playMissionStarted ??= function (p1, p2, p3) {
     return $resObj.p0;
 };
 mp.game2.stats.playstatsMissionStarted ??= function (p1, p2, p3) {
-    if (typeof p0 != "string") p0 = null;
+    if (typeof p1 != "string") p1 = null;
     let $res = natives.playstatsMissionStarted(null, p1, p2, p3 | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -21149,7 +21081,7 @@ mp.game2.stats.playstatsMissionStarted ??= function (p1, p2, p3) {
     return $resObj.p0;
 };
 mp.game2.stats.playMissionOver ??= function (p1, p2, p3, p4, p5) {
-    if (typeof p0 != "string") p0 = null;
+    if (typeof p1 != "string") p1 = null;
     let $res = natives.playstatsMissionOver(null, p1, p2, p3 | 0, p4 | 0, p5 | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -21157,7 +21089,7 @@ mp.game2.stats.playMissionOver ??= function (p1, p2, p3, p4, p5) {
     return $resObj.p0;
 };
 mp.game2.stats.playstatsMissionOver ??= function (p1, p2, p3, p4, p5) {
-    if (typeof p0 != "string") p0 = null;
+    if (typeof p1 != "string") p1 = null;
     let $res = natives.playstatsMissionOver(null, p1, p2, p3 | 0, p4 | 0, p5 | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -21165,7 +21097,7 @@ mp.game2.stats.playstatsMissionOver ??= function (p1, p2, p3, p4, p5) {
     return $resObj.p0;
 };
 mp.game2.stats.playMissionCheckpoint ??= function (p1, p2, p3) {
-    if (typeof p0 != "string") p0 = null;
+    if (typeof p1 != "string") p1 = null;
     let $res = natives.playstatsMissionCheckpoint(null, p1, p2, p3);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -21173,7 +21105,7 @@ mp.game2.stats.playMissionCheckpoint ??= function (p1, p2, p3) {
     return $resObj.p0;
 };
 mp.game2.stats.playstatsMissionCheckpoint ??= function (p1, p2, p3) {
-    if (typeof p0 != "string") p0 = null;
+    if (typeof p1 != "string") p1 = null;
     let $res = natives.playstatsMissionCheckpoint(null, p1, p2, p3);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -21443,7 +21375,6 @@ mp.game2.stats.leaderboards2ReadRankPrediction ??= function () {
     return $resObj;
 };
 mp.game2.stats.leaderboards2ReadByPlatform ??= function (gamerHandleCsv, platformName) {
-    if (typeof gamerHandleCsv != "string") gamerHandleCsv = null;
     if (typeof platformName != "string") platformName = null;
     let $res = natives.leaderboards2ReadByPlaform(0, gamerHandleCsv, platformName);
     if (!Array.isArray($res)) $res = [$res];
@@ -22173,7 +22104,6 @@ mp.game2.stats.unk._0x8EC74CEB042E7CFF ??= function (p0) {
     let $res = natives.leaderboardsClearCacheDataId(p0);
 };
 mp.game2.stats.unk._0x6483C25849031C4F ??= function (p0, p1, p2) {
-    if (typeof string != "string") string = null;
     let $res = natives.presenceEventUpdatestatIntWithString(p0, p1, p2, null);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -22801,11 +22731,11 @@ mp.game2.task.taskOpenVehicleDoor ??= function (ped, vehicle, timeOut, seat, spe
     let $res = natives.taskOpenVehicleDoor(ped, vehicle, timeOut, seat, speed);
 };
 mp.game2.task.enterVehicle ??= function (ped, vehicle, timeout, seat, speed, flag, p6) {
-    if (typeof overrideEntryClipsetName != "string") overrideEntryClipsetName = null;
+    if (typeof p6 != "string") p6 = null;
     let $res = natives.taskEnterVehicle(ped, vehicle, timeout, seat, speed, flag, p6);
 };
 mp.game2.task.taskEnterVehicle ??= function (ped, vehicle, timeout, seat, speed, flag, p6) {
-    if (typeof overrideEntryClipsetName != "string") overrideEntryClipsetName = null;
+    if (typeof p6 != "string") p6 = null;
     let $res = natives.taskEnterVehicle(ped, vehicle, timeout, seat, speed, flag, p6);
 };
 mp.game2.task.leaveVehicle ??= function (ped, vehicle, flags) {
@@ -22938,8 +22868,8 @@ mp.game2.task.taskWanderStandard ??= function (ped, p1, p2) {
     let $res = natives.taskWanderStandard(ped, p1, p2);
 };
 mp.game2.task.wanderSpecific ??= function (p0, p1, p2, p3) {
-    if (typeof conditionalAnimGroupStr != "string") conditionalAnimGroupStr = null;
-    if (typeof conditionalAnimStr != "string") conditionalAnimStr = null;
+    if (typeof p1 != "string") p1 = null;
+    if (typeof p2 != "string") p2 = null;
     let $res = natives.taskWanderSpecific(p0, p1, p2, p3);
 };
 mp.game2.task.vehiclePark ??= function (ped, vehicle, x, y, z, heading, mode, radius, keepEngineOn) {
@@ -23468,7 +23398,7 @@ mp.game2.task.taskClimbLadder ??= function (ped, p1) {
     let $res = natives.taskClimbLadder(ped, p1);
 };
 mp.game2.task.rappelDownWall ??= function (p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) {
-    if (typeof clipSet != "string") clipSet = null;
+    if (typeof p9 != "string") p9 = null;
     let $res = natives.taskRappelDownWallUsingClipsetOverride(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10);
 };
 mp.game2.task.clearPedTasksImmediately ??= function (ped) {
@@ -23648,7 +23578,7 @@ mp.game2.task.doesScenarioExistInArea ??= function (x, y, z, radius, b) {
     return $res[0] == 1;
 };
 mp.game2.task.doesScenarioOfTypeExistInArea ??= function (p0, p1, p2, p4, p5) {
-    if (typeof scenarioName != "string") scenarioName = null;
+    if (typeof p4 != "string") p4 = null;
     let $res = natives.doesScenarioOfTypeExistInArea(p0, p1, p2, null, p4, p5 | 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -23778,7 +23708,7 @@ mp.game2.task.closePatrolRoute ??= function () {
     let $res = natives.closePatrolRoute();
 };
 mp.game2.task.addPatrolRouteNode ??= function (p0, p1, x1, y1, z1, x2, y2, z2, p8) {
-    if (typeof nodeType != "string") nodeType = null;
+    if (typeof p1 != "string") p1 = null;
     let $res = natives.addPatrolRouteNode(p0, p1, x1, y1, z1, x2, y2, z2, p8);
 };
 mp.game2.task.addPatrolRouteLink ??= function (p0, p1) {
@@ -23792,11 +23722,11 @@ mp.game2.task.deletePatrolRoute ??= function (patrolRoute) {
     let $res = natives.deletePatrolRoute(patrolRoute);
 };
 mp.game2.task.patrol ??= function (ped, p1, p2, p3, p4) {
-    if (typeof patrolRouteName != "string") patrolRouteName = null;
+    if (typeof p1 != "string") p1 = null;
     let $res = natives.taskPatrol(ped, p1, p2, p3 | 0, p4 | 0);
 };
 mp.game2.task.taskPatrol ??= function (ped, p1, p2, p3, p4) {
-    if (typeof patrolRouteName != "string") patrolRouteName = null;
+    if (typeof p1 != "string") p1 = null;
     let $res = natives.taskPatrol(ped, p1, p2, p3 | 0, p4 | 0);
 };
 mp.game2.task.stayInCover ??= function (ped) {
@@ -23904,7 +23834,7 @@ mp.game2.task.waypointRecordingGetClosestWaypoint ??= function (name, x, y, z) {
     return $res[0] == 1 ? $resObj.point : undefined;
 };
 mp.game2.task.followWaypointRecording ??= function (p0, p1, p2, p3, p4) {
-    if (typeof name != "string") name = null;
+    if (typeof p1 != "string") p1 = null;
     let $res = natives.taskFollowWaypointRecording(p0, p1, p2, p3, p4);
 };
 mp.game2.task.isWaypointPlaybackGoingOnForPed ??= function (p0) {
@@ -23928,7 +23858,7 @@ mp.game2.task.setPedWaypointRouteOffset ??= function (p0, p1, p2, p3) {
     return $res[0];
 };
 mp.game2.task.getWaypointDistanceAlongRoute ??= function (p0, p1) {
-    if (typeof name != "string") name = null;
+    if (typeof p0 != "string") p0 = null;
     let $res = natives.getWaypointDistanceAlongRoute(p0, p1);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
@@ -24048,18 +23978,18 @@ mp.game2.task.taskMoveNetwork ??= function (ped, task, multiplier, p3, animDict,
     let $res = natives.taskMoveNetworkByName(ped, task, multiplier, p3 | 0, animDict, flags);
 };
 mp.game2.task.moveNetworkAdvancedByName ??= function (ped, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, animDict, flags) {
-    if (typeof network != "string") network = null;
+    if (typeof p1 != "string") p1 = null;
     if (typeof animDict != "string") animDict = null;
     let $res = natives.taskMoveNetworkAdvancedByName(ped, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10 | 0, animDict, flags);
 };
 mp.game2.task.taskMoveNetworkAdvanced ??= function (ped, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, animDict, flags) {
-    if (typeof network != "string") network = null;
+    if (typeof p1 != "string") p1 = null;
     if (typeof animDict != "string") animDict = null;
     let $res = natives.taskMoveNetworkAdvancedByName(ped, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10 | 0, animDict, flags);
 };
 mp.game2.task.moveNetworkByNameWithInitParams ??= function (ped, p1, p3, p4, animDict, flags) {
-    if (typeof network != "string") network = null;
-    if (typeof animDict != "string") animDict = null;
+    if (typeof p1 != "string") p1 = null;
+    if (typeof flags != "string") flags = null;
     let $res = natives.taskMoveNetworkByNameWithInitParams(ped, p1, 0, p3, p4 | 0, animDict, flags);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -24176,10 +24106,10 @@ mp.game2.task.agitatedAction ??= function (ped, ped2) {
     let $res = natives.taskAgitatedActionConfrontResponse(ped, ped2);
 };
 mp.game2.task.sweepAimEntity ??= function (ped, anim, p2, p3, p4, p5, vehicle, p7, p8) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof lowAnimName != "string") lowAnimName = null;
-    if (typeof medAnimName != "string") medAnimName = null;
-    if (typeof hiAnimName != "string") hiAnimName = null;
+    if (typeof anim != "string") anim = null;
+    if (typeof p2 != "string") p2 = null;
+    if (typeof p3 != "string") p3 = null;
+    if (typeof p4 != "string") p4 = null;
     let $res = natives.taskSweepAimEntity(ped, anim, p2, p3, p4, p5, vehicle, p7, p8);
 };
 mp.game2.task.updateSweepAimEntity ??= function (ped, entity) {
@@ -24189,10 +24119,10 @@ mp.game2.task.updateTaskSweepAimEntity ??= function (ped, entity) {
     let $res = natives.updateTaskSweepAimEntity(ped, entity);
 };
 mp.game2.task.sweepAimPosition ??= function (p0, p5, p6, p7, p8, p9, p10) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof lowAnimName != "string") lowAnimName = null;
-    if (typeof medAnimName != "string") medAnimName = null;
-    if (typeof hiAnimName != "string") hiAnimName = null;
+    if (typeof p5 != "string") p5 = null;
+    if (typeof p6 != "string") p6 = null;
+    if (typeof p7 != "string") p7 = null;
+    if (typeof p8 != "string") p8 = null;
     let $res = natives.taskSweepAimPosition(p0, null, null, null, null, p5, p6, p7, p8, p9, p10);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -24251,12 +24181,12 @@ mp.game2.task.unk._0x1F351CF1C6475734 ??= function (p0, p1, p2, p3, p4, p5, p6, 
     let $res = natives.removeSpecificCoverBlockingAreas(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9);
 };
 mp.game2.task.unk._0x29682E2CCF21E9B5 ??= function (p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) {
-    if (typeof network != "string") network = null;
-    if (typeof dictionary != "string") dictionary = null;
+    if (typeof p1 != "string") p1 = null;
+    if (typeof p12 != "string") p12 = null;
     let $res = natives.taskMoveNetworkAdvancedByNameWithInitParams(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13);
 };
 mp.game2.task.unk._0xAB13A5565480B6D9 ??= function (ped, p1) {
-    if (typeof state != "string") state = null;
+    if (typeof p1 != "string") p1 = null;
     let $res = natives.setExpectedCloneNextTaskMoveNetworkState(ped, p1);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
@@ -24265,7 +24195,7 @@ mp.game2.task.unk._0x8423541E8B3A1589 ??= function (p0, p1, p2) {
     let $res = natives.setTaskMoveNetworkAnimSet(p0, p1, p2);
 };
 mp.game2.task.unk._0x8634CEF2522D987B ??= function (ped, p1, value) {
-    if (typeof signalName != "string") signalName = null;
+    if (typeof p1 != "string") p1 = null;
     let $res = natives.setTaskMoveNetworkSignalFloatLerpRate(ped, p1, value);
 };
 mp.game2.task.unk._0x0FFB3C758E8C07B9 ??= function (ped, p1) {
@@ -28228,13 +28158,13 @@ mp.Ped.prototype.stopPedRingtone ??= function () {
 
 mp.Player.prototype.interruptConversationAndPause ??= function (p1, p2) {
     if (typeof p1 != "string") p1 = null;
-    if (typeof speaker != "string") speaker = null;
+    if (typeof p2 != "string") p2 = null;
     let $res = natives.interruptConversationAndPause(this.handle, p1, p2);
 };
 
 mp.Ped.prototype.interruptConversationAndPause ??= function (p1, p2) {
     if (typeof p1 != "string") p1 = null;
-    if (typeof speaker != "string") speaker = null;
+    if (typeof p2 != "string") p2 = null;
     let $res = natives.interruptConversationAndPause(this.handle, p1, p2);
 };
 
@@ -39571,12 +39501,12 @@ mp.Ped.prototype.openVehicleDoor ??= function (vehicle, timeOut, seat, speed) {
 };
 
 mp.Player.prototype.enterVehicle ??= function (vehicle, timeout, seat, speed, flag, p6) {
-    if (typeof overrideEntryClipsetName != "string") overrideEntryClipsetName = null;
+    if (typeof p6 != "string") p6 = null;
     let $res = natives.taskEnterVehicle(this.handle, vehicle, timeout, seat, speed, flag, p6);
 };
 
 mp.Ped.prototype.enterVehicle ??= function (vehicle, timeout, seat, speed, flag, p6) {
-    if (typeof overrideEntryClipsetName != "string") overrideEntryClipsetName = null;
+    if (typeof p6 != "string") p6 = null;
     let $res = natives.taskEnterVehicle(this.handle, vehicle, timeout, seat, speed, flag, p6);
 };
 
@@ -40837,12 +40767,12 @@ mp.Ped.prototype.isPedInWrithe ??= function () {
 };
 
 mp.Player.prototype.patrol ??= function (p1, p2, p3, p4) {
-    if (typeof patrolRouteName != "string") patrolRouteName = null;
+    if (typeof p1 != "string") p1 = null;
     let $res = natives.taskPatrol(this.handle, p1, p2, p3 | 0, p4 | 0);
 };
 
 mp.Ped.prototype.patrol ??= function (p1, p2, p3, p4) {
-    if (typeof patrolRouteName != "string") patrolRouteName = null;
+    if (typeof p1 != "string") p1 = null;
     let $res = natives.taskPatrol(this.handle, p1, p2, p3 | 0, p4 | 0);
 };
 
@@ -41043,20 +40973,20 @@ mp.Ped.prototype.moveNetworkByName ??= function (task, multiplier, p3, animDict,
 };
 
 mp.Player.prototype.moveNetworkAdvancedByName ??= function (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, animDict, flags) {
-    if (typeof network != "string") network = null;
+    if (typeof p1 != "string") p1 = null;
     if (typeof animDict != "string") animDict = null;
     let $res = natives.taskMoveNetworkAdvancedByName(this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10 | 0, animDict, flags);
 };
 
 mp.Ped.prototype.moveNetworkAdvancedByName ??= function (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, animDict, flags) {
-    if (typeof network != "string") network = null;
+    if (typeof p1 != "string") p1 = null;
     if (typeof animDict != "string") animDict = null;
     let $res = natives.taskMoveNetworkAdvancedByName(this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10 | 0, animDict, flags);
 };
 
 mp.Player.prototype.moveNetworkByNameWithInitParams ??= function (p1, p3, p4, animDict, flags) {
-    if (typeof network != "string") network = null;
-    if (typeof animDict != "string") animDict = null;
+    if (typeof p1 != "string") p1 = null;
+    if (typeof flags != "string") flags = null;
     let $res = natives.taskMoveNetworkByNameWithInitParams(this.handle, p1, 0, p3, p4 | 0, animDict, flags);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -41065,8 +40995,8 @@ mp.Player.prototype.moveNetworkByNameWithInitParams ??= function (p1, p3, p4, an
 };
 
 mp.Ped.prototype.moveNetworkByNameWithInitParams ??= function (p1, p3, p4, animDict, flags) {
-    if (typeof network != "string") network = null;
-    if (typeof animDict != "string") animDict = null;
+    if (typeof p1 != "string") p1 = null;
+    if (typeof flags != "string") flags = null;
     let $res = natives.taskMoveNetworkByNameWithInitParams(this.handle, p1, 0, p3, p4 | 0, animDict, flags);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
@@ -41325,18 +41255,18 @@ mp.Ped.prototype.agitatedAction ??= function (ped2) {
 };
 
 mp.Player.prototype.sweepAimEntity ??= function (anim, p2, p3, p4, p5, vehicle, p7, p8) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof lowAnimName != "string") lowAnimName = null;
-    if (typeof medAnimName != "string") medAnimName = null;
-    if (typeof hiAnimName != "string") hiAnimName = null;
+    if (typeof anim != "string") anim = null;
+    if (typeof p2 != "string") p2 = null;
+    if (typeof p3 != "string") p3 = null;
+    if (typeof p4 != "string") p4 = null;
     let $res = natives.taskSweepAimEntity(this.handle, anim, p2, p3, p4, p5, vehicle, p7, p8);
 };
 
 mp.Ped.prototype.sweepAimEntity ??= function (anim, p2, p3, p4, p5, vehicle, p7, p8) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof lowAnimName != "string") lowAnimName = null;
-    if (typeof medAnimName != "string") medAnimName = null;
-    if (typeof hiAnimName != "string") hiAnimName = null;
+    if (typeof anim != "string") anim = null;
+    if (typeof p2 != "string") p2 = null;
+    if (typeof p3 != "string") p3 = null;
+    if (typeof p4 != "string") p4 = null;
     let $res = natives.taskSweepAimEntity(this.handle, anim, p2, p3, p4, p5, vehicle, p7, p8);
 };
 
