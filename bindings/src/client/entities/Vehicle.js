@@ -25,6 +25,7 @@ export class _Vehicle extends _Entity {
     }
 
     get handle() {
+        if (!this.alt.valid) return 0;
         return this.alt.scriptID;
     }
 

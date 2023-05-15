@@ -49,6 +49,7 @@ export class _WorldObject extends _BaseObject {
     }
 
     get handle() {
+        if (!this.alt.valid) return 0;
         return this.alt.scriptID;
     }
 

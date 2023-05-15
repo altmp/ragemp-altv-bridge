@@ -12,6 +12,7 @@ export class _Blip extends _WorldObject {
     }
 
     get handle() {
+        if (!this.alt.valid) return 0;
         return this.alt.scriptID;
     }
 
