@@ -12,7 +12,7 @@ import { mpDimensionToAlt } from '../../shared/utils';
 const store = new EntityStoreView();
 const view = new EntityMixedView(store, new EntityGetterView(
     () => alt.Object.all,
-    (id) => alt.Object.all.find(e => e.mp.id === id),
+    (id) => alt.Object.all.find(e => e && e.mp.id === id),
     {
         remoteIDGetter: alt.Object.getByID,
         scriptIDGetter: (scriptID) => alt.Object.all.find(e => e && e.scriptID === scriptID), // TODO: alt.Object.getByScriptID
