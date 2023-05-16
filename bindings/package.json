@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "devDependencies": {
-    "@altv/types-client": "^2.5.6",
+    "@altv/types-client": "^2.5.9",
     "@altv/types-natives": "^1.5.3",
-    "@altv/types-server": "^2.6.6",
-    "@altv/types-shared": "^1.4.2",
+    "@altv/types-server": "^2.7.1",
+    "@altv/types-shared": "^1.4.6",
     "@fal-works/esbuild-plugin-global-externals": "^2.1.2",
     "esbuild": "^0.17.14",
     "shx": "^0.3.4"
