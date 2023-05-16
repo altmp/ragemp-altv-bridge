@@ -231,6 +231,9 @@ mp.blips.new = function(sprite, position, params = {}) {
             break;
         case 5:
             blip = new alt.AreaBlip(position.x, position.y, position.z, params.radius ?? 100, params.radius ?? 100);
+            blip.shortRange = false;
+            // TODO: better fix for area blip issues
+            blip.sprite = 0;
             break;
         default:
             blip = new alt.PointBlip(position.x, position.y, position.z);
@@ -245,7 +248,7 @@ mp.blips.new = function(sprite, position, params = {}) {
     if ('color' in params) blip.color = params.color;
     if ('alpha' in params) blip.alpha = params.alpha;
     // TODO: draw distance
-    if ('shortRange' in params) blip.shortRange = params.shortRange;
+    if ('shortRange' in params && sprite !== 5) blip.shortRange = params.shortRange;
     if ('rotation' in params) blip.heading = params.rotation;
     // TODO: dimension
 
