@@ -224,13 +224,21 @@ mp.Blip = _Blip;
 mp.blips = new ClientPool(EntityGetterView.fromClass(alt.Blip));
 
 mp.blips.new = function(sprite, position, params = {}) {
-    const blip = sprite === 9
-        ? new alt.RadiusBlip(position.x, position.y, position.z, params.radius ?? 100)
-        : new alt.PointBlip(position.x, position.y, position.z);
-    if (sprite !== 9) blip.sprite = sprite;
+    let blip;
+    switch(sprite) {
+        case 9:
+            blip = new alt.RadiusBlip(position.x, position.y, position.z, params.radius ?? 100);
+            break;
+        case 5:
+            blip = new alt.AreaBlip(position.x, position.y, position.z, params.radius ?? 100, params.radius ?? 100);
+            break;
+        default:
+            blip = new alt.PointBlip(position.x, position.y, position.z);
+            blip.sprite = sprite;
+    }
 
     if ('name' in params) {
-        blip.name = params.name;
+        blip.name = natives.getFilenameForAudioConversation(params.name);
         // blip.gxtName = params.name;
     }
     if ('scale' in params) blip.scale = params.scale;
