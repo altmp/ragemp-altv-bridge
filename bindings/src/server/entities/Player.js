@@ -64,9 +64,9 @@ export class _Player extends _Entity {
     }
 
     get faceFeatures() {
-        throw new Error("faceFeatures getter is not supported (does not work on 1.1)")
+        throw new Error('faceFeatures getter is not supported (does not work on 1.1)');
     }
-    
+
     get hairColor() {
         return this.alt.getHairColor();
     }
@@ -157,7 +157,7 @@ export class _Player extends _Entity {
     }
 
     get weapons() {
-        throw new Error("weapons getter is not supported (does not work on 1.1)");
+        throw new Error('weapons getter is not supported (does not work on 1.1)');
     }
 
     get weaponAmmo() {
@@ -197,7 +197,7 @@ export class _Player extends _Entity {
     }
 
     callUnreliable(evt, args = []) {
-        alt.emitClientUnreliable(this.alt, evt, ...argsToAlt(args));
+        (mp._forceReliable ? alt.emitClient : alt.emitClientUnreliable)(this.alt, evt, ...argsToAlt(args));
     }
 
     callProc(evt, args = []) {
@@ -221,7 +221,7 @@ export class _Player extends _Entity {
     callToStreamedUnreliable(includeSelf, evt, args) {
         const altArgs = argsToAlt(args);
         if (includeSelf) this.alt.emitClient(evt, ...altArgs);
-        alt.emitClientUnreliable(alt.Player.all.filter(p => this.alt.isEntityInStreamRange(p)), evt, ...altArgs);
+        (mp._forceReliable ? alt.emitClient : alt.emitClientUnreliable)(alt.Player.all.filter(p => this.alt.isEntityInStreamRange(p)), evt, ...altArgs);
     }
 
     // TODO: tattoos (decorations)

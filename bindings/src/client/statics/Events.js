@@ -68,7 +68,7 @@ class _Events extends BaseEvents {
 
     callRemoteUnreliable(event, ...args) {
         if(mp.debug)console.log('Emitting remote unreliable ' + event);
-        alt.emitServerUnreliable(event, ...argsToAlt(args));
+        (mp._forceReliable ? alt.emitServer : alt.emitServerUnreliable)(event, ...argsToAlt(args));
     }
 
     callRemoteProc(event, ...args) {

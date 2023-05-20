@@ -1,5 +1,6 @@
 import alt from 'alt-server';
 import { ServerPool } from './ServerPool.js';
+import mp from 'shared/mp';
 import { InternalChat } from 'shared/DefaultChat.js';
 import {argsToAlt, mpDimensionToAlt} from 'shared/utils';
 
@@ -21,10 +22,10 @@ export class PlayerPool extends ServerPool {
 
     callUnreliable(arg1, args1 = [], args2 = []) {
         if(typeof arg1 === 'string') {
-            alt.emitAllClientsUnreliable(arg1, ...argsToAlt(args1));
+            (mp._forceReliable ? alt.emitAllClients : alt.emitAllClientsUnreliable)(arg1, ...argsToAlt(args1));
         } else if(typeof arg1 === 'object' && Array.isArray(arg1)) {
             const players = arg1.map(p => p.alt).filter(Boolean);
-            if (players.length) alt.emitClientUnreliable(players, args1, ...argsToAlt(args2));
+            if (players.length) (mp._forceReliable ? alt.emitClient : alt.emitClientUnreliable)(players, args1, ...argsToAlt(args2));
         }
     }
 
