@@ -229,13 +229,14 @@ mp.blips.new = function(sprite, position, params = {}) {
         case 9:
             blip = new alt.RadiusBlip(position.x, position.y, position.z, params.radius ?? 100);
             break;
-        case 5:
-            blip = new alt.AreaBlip(position.x, position.y, position.z, params.radius ?? 100, params.radius ?? 100);
+        case 5: {
+            const side = (params.radius ?? 50) * 2;
+            blip = new alt.AreaBlip(position.x, position.y, position.z, side, side);
             blip.shortRange = false;
             // TODO: better fix for area blip issues
             blip.sprite = 0;
             break;
-        default:
+        } default:
             blip = new alt.PointBlip(position.x, position.y, position.z);
             blip.sprite = sprite;
     }
