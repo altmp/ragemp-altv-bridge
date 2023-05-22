@@ -34,7 +34,6 @@ export class _WorldObject extends _BaseObject {
     }
 
     set dimension(value) {
-        console.log('Setting dimension to', value, mpDimensionToAlt(value));
         this.alt.dimension = mpDimensionToAlt(value);
     }
 

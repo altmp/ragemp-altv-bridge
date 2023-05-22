@@ -215,7 +215,6 @@ export class _Player extends _Entity {
     }
 
     setAlpha(value, skin) {
-        console.log(new Error().stack, 'set alpha to ' + value);
         if (value === 255) return natives.resetEntityAlpha(this.alt);
         return natives.setEntityAlpha(this.alt, value, skin);
     }

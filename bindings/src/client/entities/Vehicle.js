@@ -499,7 +499,6 @@ export class _LocalVehicle extends _Vehicle {
     }
 
     streamIn() {
-        console.log('VEHICLE STREAM IN', this.alt.id);
         alt.loadModel(this.#model);
         this.#handle = natives.createVehicle(this.#model, this.alt.pos.x, this.alt.pos.y, this.alt.pos.z, this.alt.getMeta(mp.prefix + 'heading'), false, false, false);
         natives.setVehicleColourCombination(this.#handle, 0);
@@ -507,7 +506,6 @@ export class _LocalVehicle extends _Vehicle {
     }
 
     streamOut() {
-        console.log('VEHICLE STREAM OUT', this.alt.id);
         store.remove(undefined, this.#handle, undefined);
         this.alt.setMeta(mp.prefix + 'heading', natives.getEntityHeading(this.#handle));
         natives.deleteVehicle(this.#handle);

@@ -4607,7 +4607,6 @@ mp.game2.entity.getLodDist ??= function (entity) {
     return $res[0];
 };
 mp.game2.entity.setAlpha ??= function (entity, alphaLevel, skin) {
-    console.log(new Error().stack, 'set alpha to ' + alphaLevel);
     let $res = natives.setEntityAlpha(entity, alphaLevel, skin | 0);
 };
 mp.game2.entity.getAlpha ??= function (entity) {
@@ -32401,7 +32400,6 @@ mp.Vehicle.prototype.getLodDist ??= function () {
 };
 
 mp.Ped.prototype.setAlpha ??= function (alphaLevel, skin) {
-    console.log(new Error().stack, 'set alpha to ' + alphaLevel);
     let $res = natives.setEntityAlpha(this.handle, alphaLevel, skin | 0);
 };
 
