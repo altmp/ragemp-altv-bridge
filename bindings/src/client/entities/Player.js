@@ -1,8 +1,8 @@
 import * as alt from 'alt-client';
 import * as natives from 'natives';
 import mp from '../../shared/mp.js';
-import { ClientPool } from '../ClientPool.js';
-import { _Entity } from './Entity.js';
+import {ClientPool} from '../ClientPool.js';
+import {_Entity} from './Entity.js';
 import {toMp} from '../../shared/utils';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 
@@ -1014,14 +1014,37 @@ alt.on('spawned', () => {
     mp.events.dispatch('playerSpawn', alt.Player.local.mp);
 });
 
-alt.on('enteredVehicle', (vehicle, seat) => {
-    mp.events.dispatch('playerEnterVehicle', toMp(vehicle), seat);
-    mp.events.dispatch('playerStartEnterVehicle', toMp(vehicle), seat);
-});
+function getSeat() {
+    if (!natives.isPedInAnyVehicle(alt.Player.local, false)) return 0;
+    const veh = natives.getVehiclePedIsIn(alt.Player.local, false);
+    const seats = natives.getVehicleModelNumberOfSeats(natives.getEntityModel(veh));
+    for(let i = -1; i <= seats - 2; i++) {
+        if (natives.getPedInVehicleSeat(veh, i, false) !== alt.Player.local.scriptID) continue;
+        return i;
+    }
+}
 
-alt.on('leftVehicle', (vehicle, seat) => {
-    mp.events.dispatch('playerLeaveVehicle', toMp(vehicle), seat);
-});
+let lastVehicle = mp.players.local.vehicle;
+let lastSeat = getSeat();
+setInterval(() => {
+    const newVehicle = mp.players.local.vehicle;
+    if (newVehicle !== lastVehicle) {
+        if (lastVehicle) {
+            mp.events.dispatch('playerLeaveVehicle', lastVehicle, lastSeat);
+        }
+
+        if (newVehicle) {
+            const newSeat = getSeat();
+            mp.events.dispatch('playerEnterVehicle', newVehicle, newSeat);
+            mp.events.dispatch('playerStartEnterVehicle', newVehicle, newSeat);
+            lastSeat = newSeat;
+        }
+
+        lastVehicle = newVehicle;
+    } else if (lastVehicle) {
+        lastSeat = getSeat();
+    }
+}, 500);
 
 alt.on('netOwnerChange', (ent, oldOwner, newOwner) => {
     mp.events.dispatch('entityControllerChange', ent, toMp(newOwner));
