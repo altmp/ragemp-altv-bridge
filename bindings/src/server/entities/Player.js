@@ -172,7 +172,7 @@ export class _Player extends _Entity {
     }
 
     set alpha(value) {
-        this.alt.setStreamSyncedMeta(mp.prefix + value, 'value');
+        this.alt.setStreamSyncedMeta(mp.prefix + 'alpha', value);
     }
 
     get model() {
