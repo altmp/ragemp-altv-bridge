@@ -992,6 +992,7 @@ alt.on('gameEntityCreate', (player) => {
         if (value === 255) {
             natives.resetEntityAlpha(player);
         } else {
+            console.log('setEntityAlpha', player.id, value);
             natives.setEntityAlpha(player, value, false);
         }
     }
