@@ -76,6 +76,8 @@ if (alt.debug && mp._main) {
     });
 }
 
+alt.loadDefaultIpls();
+
 if (mp._main) {
     mp._initEventHandlers();
 }
