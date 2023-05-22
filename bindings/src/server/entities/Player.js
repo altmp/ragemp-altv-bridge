@@ -11,6 +11,7 @@ let bannedHwids = {};
 const ipRegex = /^::ffff:([0-9.]+)$/;
 
 export class _Player extends _Entity {
+    /** @type {alt.Player} alt */
     alt;
 
     /** @param {alt.Player} alt */
@@ -165,7 +166,14 @@ export class _Player extends _Entity {
     }
 
     set weaponAmmo(value) {}
-    // TODO: alpha
+
+    get alpha() {
+        return this.alt.getStreamSyncedMeta(mp.prefix + 'alpha');
+    }
+
+    set alpha(value) {
+        this.alt.setStreamSyncedMeta(mp.prefix + value, 'value');
+    }
 
     get model() {
         return this.alt.model;

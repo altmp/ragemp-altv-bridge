@@ -966,6 +966,20 @@ mp.players = new ClientPool(EntityGetterView.fromClass(alt.Player));
 
 mp.players.local = alt.Player.local.mp;
 
+alt.on('streamSyncedMetaUpdate', (player, key, newValue) => {
+    if (!(player instanceof alt.Player)) return;
+    if (key === (mp.prefix + 'alpha')) {
+        natives.setEntityAlpha(player, newValue, false);
+    }
+});
+
+alt.on('gameEntityCreate', (player) => {
+    if (!(player instanceof alt.Player)) return;
+    if (player.hasStreamSyncedMeta(mp.prefix + 'alpha')) {
+        natives.setEntityAlpha(player, player.getStreamSyncedMeta(mp.prefix + 'alpha'), false);
+    }
+});
+
 alt.onServer(mp.prefix + 'dead', (weapon, killer) => {
     mp.events.dispatch('playerDeath', alt.Player.local.mp, weapon, toMp(killer));
 });
