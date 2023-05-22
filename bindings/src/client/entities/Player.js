@@ -215,6 +215,7 @@ export class _Player extends _Entity {
     }
 
     setAlpha(value, skin) {
+        if (value === 255) return natives.resetEntityAlpha(this.alt);
         return natives.setEntityAlpha(this.alt, value, skin);
     }
 
@@ -969,14 +970,17 @@ mp.players.local = alt.Player.local.mp;
 alt.on('streamSyncedMetaUpdate', (player, key, newValue) => {
     if (!(player instanceof alt.Player)) return;
     if (key === (mp.prefix + 'alpha')) {
-        natives.setEntityAlpha(player, newValue, false);
+        if (newValue !== 255) natives.setEntityAlpha(player, newValue, false);
+        else natives.resetEntityAlpha(player);
     }
 });
 
 alt.on('gameEntityCreate', (player) => {
     if (!(player instanceof alt.Player)) return;
     if (player.hasStreamSyncedMeta(mp.prefix + 'alpha')) {
-        natives.setEntityAlpha(player, player.getStreamSyncedMeta(mp.prefix + 'alpha'), false);
+        const value = player.getStreamSyncedMeta(mp.prefix + 'alpha');
+        if (value !== 255) natives.setEntityAlpha(player, value, false);
+        else natives.resetEntityAlpha(player);
     }
 });
 
