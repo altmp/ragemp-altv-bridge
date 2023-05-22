@@ -984,29 +984,32 @@ alt.on('streamSyncedMetaChange', (player, key, newValue) => {
 
 alt.on('gameEntityCreate', (player) => {
     if (!(player instanceof alt.Player)) return;
-    console.log('game entity create', player.getStreamSyncedMetaKeys());
-    if (player.hasStreamSyncedMeta(mp.prefix + 'alpha')) {
-        console.log('has alpha key');
-        const value = player.getStreamSyncedMeta(mp.prefix + 'alpha');
-        console.log('alpha key value is ' + value);
-        if (value === 255) {
-            natives.resetEntityAlpha(player);
-        } else {
-            console.log('setEntityAlpha', player.id, value);
-            natives.setEntityAlpha(player, value, false);
+    alt.nextTick(() => {
+        if (!player.valid || player.scriptID === 0) return;
+        console.log('game entity create', player.getStreamSyncedMetaKeys());
+        if (player.hasStreamSyncedMeta(mp.prefix + 'alpha')) {
+            console.log('has alpha key');
+            const value = player.getStreamSyncedMeta(mp.prefix + 'alpha');
+            console.log('alpha key value is ' + value);
+            if (value === 255) {
+                natives.resetEntityAlpha(player);
+            } else {
+                console.log('setEntityAlpha', player.id, value);
+                natives.setEntityAlpha(player, value, false);
 
-            let i = 0;
-            // eslint-disable-next-line no-inner-declarations
-            function handler() {
-                if (i >= 50) return;
-                i++;
-                console.log(i, 'alpha value is ', natives.getEntityAlpha(player));
-                alt.nextTick(handler);
+                // let i = 0;
+                // // eslint-disable-next-line no-inner-declarations
+                // function handler() {
+                //     if (i >= 50) return;
+                //     i++;
+                //     console.log(i, 'alpha value is ', natives.getEntityAlpha(player));
+                //     alt.nextTick(handler);
+                // }
+                //
+                // handler();
             }
-
-            handler();
         }
-    }
+    });
 });
 
 alt.onServer(mp.prefix + 'dead', (weapon, killer) => {
