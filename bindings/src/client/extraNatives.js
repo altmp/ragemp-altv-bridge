@@ -72,7 +72,7 @@ mp.game.system.vdist2 = vdist2;
 mp.game.misc.getDistanceBetweenCoords = (x1, y1, z1, x2, y2, z2, useZ) => {
     if (useZ) return vdist(x1, y1, z1, x2, y2, z2);
     else return vdist(x1, y1, 0, x2, y2, 0);
-};{};
+};
 // #endregion
 
 // #region disableControlActionBatch
@@ -317,5 +317,13 @@ mp.game.hud.setBlipNameFromTextFile = (handle, gxt) => {
     natives.setBlipNameFromTextFile(handle, gxt);
 };
 
-
+mp.game.gameplay.getModelDimensions = (model) => {
+    const [, min, max] = natives.getModelDimensions(model);
+    return {
+        min: new mp.Vector3(min),
+        max: new mp.Vector3(max),
+        minimum: new mp.Vector3(min),
+        maximum: new mp.Vector3(max)
+    };
+};
 //#endregion
