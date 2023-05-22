@@ -994,6 +994,17 @@ alt.on('gameEntityCreate', (player) => {
         } else {
             console.log('setEntityAlpha', player.id, value);
             natives.setEntityAlpha(player, value, false);
+
+            let i = 0;
+            // eslint-disable-next-line no-inner-declarations
+            function handler() {
+                if (i >= 50) return;
+                i++;
+                console.log(i, 'alpha value is ', natives.getEntityAlpha(player));
+                alt.nextTick(handler);
+            }
+
+            handler();
         }
     }
 });
