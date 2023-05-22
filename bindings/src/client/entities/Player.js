@@ -967,20 +967,32 @@ mp.players = new ClientPool(EntityGetterView.fromClass(alt.Player));
 
 mp.players.local = alt.Player.local.mp;
 
-alt.on('streamSyncedMetaUpdate', (player, key, newValue) => {
+alt.on('streamSyncedMetaChange', (player, key, newValue) => {
     if (!(player instanceof alt.Player)) return;
+
+    console.log('stream synced meta update ' + key);
     if (key === (mp.prefix + 'alpha')) {
-        if (newValue !== 255) natives.setEntityAlpha(player, newValue, false);
-        else natives.resetEntityAlpha(player);
+        console.log('stream synced meta update alpha 1 ' + newValue);
+        if (newValue === 255) {
+            natives.resetEntityAlpha(player);
+        } else {
+            natives.setEntityAlpha(player, newValue, false);
+        }
     }
 });
 
 alt.on('gameEntityCreate', (player) => {
     if (!(player instanceof alt.Player)) return;
+    console.log('game entity create', player.getStreamSyncedMetaKeys());
     if (player.hasStreamSyncedMeta(mp.prefix + 'alpha')) {
+        console.log('has alpha key');
         const value = player.getStreamSyncedMeta(mp.prefix + 'alpha');
-        if (value !== 255) natives.setEntityAlpha(player, value, false);
-        else natives.resetEntityAlpha(player);
+        console.log('alpha key value is ' + value);
+        if (value === 255) {
+            natives.resetEntityAlpha(player);
+        } else {
+            natives.setEntityAlpha(player, value, false);
+        }
     }
 });
 
