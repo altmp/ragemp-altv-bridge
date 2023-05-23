@@ -1053,7 +1053,11 @@ setInterval(() => {
 
 alt.everyTick(() => {
     if (!isLocal) return;
-    lastVehicle.alt.pos = natives.getEntityCoords(lastVehicle.alt.scriptID, false);
+    if (alt.Player.local.pos.distanceToSquared(lastVehicle.alt.pos) > 5) {
+        const pos = natives.getEntityCoords(lastVehicle.alt.scriptID, !natives.isEntityDead(lastVehicle.alt.scriptID, false));
+        console.log('current vehicle too far! moving vehicle to', pos);
+        lastVehicle.alt.pos = pos;
+    }
 });
 
 alt.on('netOwnerChange', (ent, oldOwner, newOwner) => {
