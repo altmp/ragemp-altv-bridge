@@ -22,6 +22,7 @@ export class _Ped extends _VirtualEntityBase {
 
     destroy() {
         if (!this.alt.valid) return;
+        if (this.alt.isStreamedIn) this.streamOut(); // TODO: fix in core
         this.alt.destroy();
     }
 
