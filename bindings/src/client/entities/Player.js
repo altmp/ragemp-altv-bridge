@@ -1026,6 +1026,7 @@ function getSeat() {
 
 let lastVehicle = mp.players.local.vehicle;
 let lastSeat = getSeat();
+let isLocal = false;
 setInterval(() => {
     const newVehicle = mp.players.local.vehicle;
     if (newVehicle !== lastVehicle) {
@@ -1034,11 +1035,14 @@ setInterval(() => {
             mp.events.dispatch('playerLeaveVehicle', lastVehicle, lastSeat);
         }
 
+        isLocal = false;
+
         if (newVehicle) {
             const newSeat = getSeat();
             mp.events.dispatch('playerEnterVehicle', newVehicle, newSeat);
             mp.events.dispatch('playerStartEnterVehicle', newVehicle, newSeat);
             lastSeat = newSeat;
+            isLocal = newVehicle.alt instanceof alt.VirtualEntity;
         }
 
         lastVehicle = newVehicle;
@@ -1046,6 +1050,11 @@ setInterval(() => {
         lastSeat = getSeat();
     }
 }, 500);
+
+alt.everyTick(() => {
+    if (!isLocal) return;
+    lastVehicle.alt.pos = natives.getEntityCoords(lastVehicle.alt.scriptID, false);
+});
 
 alt.on('netOwnerChange', (ent, oldOwner, newOwner) => {
     mp.events.dispatch('entityControllerChange', ent, toMp(newOwner));
