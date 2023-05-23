@@ -1029,6 +1029,7 @@ let lastSeat = getSeat();
 setInterval(() => {
     const newVehicle = mp.players.local.vehicle;
     if (newVehicle !== lastVehicle) {
+        console.log('Changed vehicle from ' + lastVehicle?.id + ' to ' + newVehicle?.id);
         if (lastVehicle) {
             mp.events.dispatch('playerLeaveVehicle', lastVehicle, lastSeat);
         }
