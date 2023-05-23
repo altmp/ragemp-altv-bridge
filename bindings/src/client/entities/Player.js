@@ -1058,7 +1058,7 @@ alt.everyTick(() => {
     if (alt.Player.local.pos.distanceToSquared(lastVehicle.alt.pos) > 5) {
         const pos = natives.getEntityCoords(lastVehicle.handle, !natives.isEntityDead(lastVehicle.handle, false));
         console.log('current vehicle too far! moving vehicle to', pos);
-        switchCooldown = Date.now() + 1000;
+        switchCooldown = Date.now() + 5000;
         lastVehicle.alt.pos = pos;
     }
 });
