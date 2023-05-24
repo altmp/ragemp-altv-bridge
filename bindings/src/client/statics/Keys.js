@@ -6,11 +6,13 @@ class _Keys {
 
     constructor() {
         alt.on('keydown', (key) => {
+            if (alt.isConsoleOpen()) return;
             const set = this.#bound.keydown[key];
             if (!set) return;
             for (const el of set) el();
         });
         alt.on('keyup', (key) => {
+            if (alt.isConsoleOpen()) return;
             const set = this.#bound.keyup[key];
             if (!set) return;
             for (const el of set) el();
@@ -28,7 +30,7 @@ class _Keys {
         if (!(code in obj)) return;
         obj[code].delete(handler);
     }
-    
+
     isDown(key) {
         return alt.isKeyDown(key);
     }
