@@ -18,7 +18,7 @@ class _Cursor {
 
         alt.toggleGameControls(!freezeControls);
 
-        alt.WebView.all.forEach(e => e.emit(mp.prefix + 'receiveEvents', state));
+        // alt.WebView.all.forEach(e => e.emit(mp.prefix + 'receiveEvents', state));
     }
 
     get visible() {
