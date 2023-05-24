@@ -27,9 +27,9 @@ export class _Browser extends _BaseObject {
             mp.events.dispatch('browserDomReady', this);
         });
 
-        this.alt.on(mp.prefix + 'ready', () => {
-            this.alt.emit(mp.prefix + 'receiveEvents', alt.isCursorVisible());
-        });
+        // this.alt.on(mp.prefix + 'ready', () => {
+        //     this.alt.emit(mp.prefix + 'receiveEvents', alt.isCursorVisible());
+        // });
 
         if (mp._main) {
             this.alt.on(mp.prefix + 'chat', (arg) => {
