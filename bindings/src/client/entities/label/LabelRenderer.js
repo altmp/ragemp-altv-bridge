@@ -25,7 +25,7 @@ export class LabelRenderer {
             if (mp.raycasting.testPointToPoint(camPos, pos, 0, -1)) return;
         }
 
-        drawText3d(this.text, pos.add(correction), this.font, 0.6, this.color, false, false);
+        drawText3d(this.text, pos.add(correction), this.font, 0.5, this.color, true, false);
     }
 
     setActive(state) {
