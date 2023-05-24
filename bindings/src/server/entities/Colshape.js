@@ -96,9 +96,15 @@ mp.colshapes.newTube = function(x, y, z, height, range, dimension = 0) {
 alt.on('entityEnterColshape', (shape, ent) => {
     if (!(ent instanceof alt.Player) || shape instanceof alt.Checkpoint) return;
     mp.events.dispatch('playerEnterColshape', ent.mp, shape.mp);
+    const keys = shape.getMetaDataKeys();
+    ent.emit(mp.prefix + 'enterColshape', shape.pos, shape.dimension, shape.mp.shapeType, Object.fromEntries(keys.map(e => [e, shape.getMeta(e)])));
+    console.log('EMIT ENTER COLSHAPE');
 });
 
 alt.on('entityLeaveColshape', (shape, ent) => {
     if (!(ent instanceof alt.Player) || shape instanceof alt.Checkpoint) return;
     mp.events.dispatch('playerExitColshape', ent.mp, shape.mp);
+    const keys = shape.getMetaDataKeys();
+    ent.emit(mp.prefix + 'leaveColshape', shape.pos, shape.dimension, shape.mp.shapeType, Object.fromEntries(keys.map(e => [e, shape.getMeta(e)])));
+    console.log('EMIT LEAVE COLSHAPE');
 });

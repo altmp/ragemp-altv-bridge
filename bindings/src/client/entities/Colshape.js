@@ -40,8 +40,10 @@ export class _Colshape extends _WorldObject {
         this.alt.pos = value;
     }
 
-    type = 'checkpoint';
+    type = 'colshape';
 }
+
+// TODO: server colshape getter
 
 Object.defineProperty(alt.Colshape.prototype, 'mp', {
     get() {
@@ -97,4 +99,43 @@ alt.on('entityEnterColshape', (shape, ent) => {
 alt.on('entityLeaveColshape', (shape, ent) => {
     if (!(ent instanceof alt.Player) || shape instanceof alt.Checkpoint) return;
     mp.events.dispatch('playerExitColshape', shape.mp);
+});
+
+// TODO: proper implementation
+alt.onServer(mp.prefix + 'enterColshape', (position, dimension, type, meta) => {
+    console.log('RECEIVE ENTER COLSHAPE', position, dimension, type, meta);
+    mp.events.dispatch('playerEnterColshape', {
+        position: new mp.Vector3(position),
+        dimension,
+        shapeType: type,
+        getVariable(key) {
+            return meta[key];
+        },
+        hasVariable(key) {
+            return key in meta;
+        },
+        isPointWithin() {
+            return false;
+        },
+        valid: true
+    });
+});
+
+alt.onServer(mp.prefix + 'leaveColshape', (position, dimension, type, meta) => {
+    console.log('RECEIVE LEAVE COLSHAPE', position, dimension, type, meta);
+    mp.events.dispatch('playerExitColshape', {
+        position: new mp.Vector3(position),
+        dimension,
+        shapeType: type,
+        getVariable(key) {
+            return meta[key];
+        },
+        hasVariable(key) {
+            return key in meta;
+        },
+        isPointWithin() {
+            return false;
+        },
+        valid: true
+    });
 });
