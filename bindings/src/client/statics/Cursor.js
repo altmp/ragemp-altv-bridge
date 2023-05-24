@@ -26,11 +26,7 @@ class _Cursor {
     }
 
     set visible(state) {
-        if (state) {
-            while (!alt.isCursorVisible()) alt.showCursor(true);
-        } else {
-            while (alt.isCursorVisible()) alt.showCursor(false);
-        }
+        this.show(state, state);
     }
 
     get position() {
