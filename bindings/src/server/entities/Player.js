@@ -1,7 +1,7 @@
 import * as alt from 'alt-server';
 import { SyncedMetaProxy } from '../../shared/meta.js';
 import mp from '../../shared/mp.js';
-import { argsToAlt, deg2rad, rad2deg, vdist, vdist2 } from '../../shared/utils.js';
+import {altSeatToMp, argsToAlt, deg2rad, rad2deg, vdist, vdist2} from '../../shared/utils.js';
 import { _Entity } from './Entity.js';
 import { PlayerPool } from '../pools/PlayerPool';
 import { InternalChat } from '../../shared/DefaultChat.js';
@@ -135,7 +135,7 @@ export class _Player extends _Entity {
     }
 
     get seat() {
-        return this.alt.seat - 1; // RAGEMP seats start with 0
+        return altSeatToMp(this.alt.seat); // RAGEMP seats start with 0
     }
 
     get streamedPlayers() {
@@ -474,16 +474,20 @@ alt.onClient(mp.prefix + 'setModel', (player, model) => {
 });
 
 alt.on('playerEnteringVehicle', (player, vehicle, seat) => {
-    mp.events.dispatch('playerStartEnterVehicle', player.mp, vehicle?.mp, seat);
+    mp.events.dispatch('playerStartEnterVehicle', player.mp, vehicle?.mp, altSeatToMp(seat));
 });
 
 alt.on('playerEnteredVehicle', (player, vehicle, seat) => {
-    mp.events.dispatch('playerEnterVehicle', player.mp, vehicle?.mp, seat);
+    mp.events.dispatch('playerEnterVehicle', player.mp, vehicle?.mp, altSeatToMp(seat));
+});
+
+alt.on('playerChangedVehicleSeat', (player, vehicle, oldSeat, seat) => {
+    mp.events.dispatch('playerEnterVehicle', player.mp, vehicle?.mp, altSeatToMp(seat));
 });
 
 alt.on('playerLeftVehicle', (player, vehicle, seat) => {
-    mp.events.dispatch('playerStartExitVehicle', player.mp, vehicle?.mp, seat);
-    mp.events.dispatch('playerExitVehicle', player.mp, vehicle?.mp, seat);
+    mp.events.dispatch('playerStartExitVehicle', player.mp, vehicle?.mp, altSeatToMp(seat));
+    mp.events.dispatch('playerExitVehicle', player.mp, vehicle?.mp, altSeatToMp(seat));
 });
 
 alt.on('playerWeaponChange', (player, oldWeapon, newWeapon) => {

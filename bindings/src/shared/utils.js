@@ -104,3 +104,11 @@ export const hashIfNeeded = (value) => {
     if (typeof value != 'string') return value;
     return alt.hash(value);
 };
+
+export const altSeatToMp = (altSeat) => {
+    return altSeat - 1;
+};
+
+export const mpSeatToAlt = (mpSeat) => {
+    return mpSeat + 1;
+};
