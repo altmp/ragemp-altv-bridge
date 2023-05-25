@@ -5,14 +5,14 @@ import alt from 'alt-shared';
 export class EntityGetterView extends EntityBaseView {
     constructor(listGetter, idGetter, {remoteIDGetter, scriptIDGetter, countGetter, streamRangeGetter}, name = '') {
         super();
-        this.listGetter = listGetter;
+        this.listGetter = () => listGetter().filter(e => e != null);
         if (!idGetter) alt.logWarning(name, 'ID getter is not defined, polyfilling');
-        this.idGetter = idGetter ?? ((id) => listGetter().find(e => e.id === id));
+        this.idGetter = idGetter ?? ((id) => this.listGetter().find(e => e.id === id));
         if (!remoteIDGetter) alt.logWarning(name, 'Remote ID getter is not defined, polyfilling');
-        this.remoteIDGetter = remoteIDGetter ?? idGetter;
-        this.scriptIDGetter = scriptIDGetter;
+        this.remoteIDGetter = remoteIDGetter ?? (id => this.listGetter().find(e => e.remoteId == null ? (e.id === id) : (e.remoteId === id)));
+        this.scriptIDGetter = (scriptID => this.listGetter().find(e => e.scriptID === scriptID)); // TODO: use scriptIDGetter
         this.streamRangeGetter = streamRangeGetter;
-        this.countGetter = countGetter ?? (() => listGetter().length);
+        this.countGetter = countGetter ?? (() => this.listGetter().length);
     }
 
     static fromClass(obj) {

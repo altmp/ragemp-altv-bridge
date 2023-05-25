@@ -159,8 +159,8 @@ export class _Blip extends _WorldObject {
         return this.isBlipOnMinimap; // isBlipOnMinimap
     }
 
-    get setNameFromTextFile() {
-        return this.setBlipNameFromTextFile; // setBlipNameFromTextFile
+    setNameFromTextFile(gxt) {
+        return mp.game.hud.setBlipNameFromTextFile(this.handle, gxt);
     }
 
     get setCoords() {
@@ -242,8 +242,7 @@ mp.blips.new = function(sprite, position, params = {}) {
     }
 
     if ('name' in params) {
-        blip.name = natives.getFilenameForAudioConversation(params.name);
-        // blip.gxtName = params.name;
+        blip.name = params.name;
     }
     if ('scale' in params) blip.scale = params.scale;
     if ('color' in params) blip.color = params.color;

@@ -303,17 +303,15 @@ mp.game.hud.getCurrentAreaNameHash = () => {
 
 // TODO: remove after fixed in core
 mp.game.shapetest ??= {};
-mp.game.shapetest.releaseScriptGuidFromEntity = () =>
+mp.game.shapetest.releaseScriptGuidFromEntity = () => {};
 
 mp.game.hud.setBlipNameFromTextFile = (handle, gxt) => {
     const blip = mp.blips.atHandle(handle);
     if (blip) {
         blip.alt.name = mp.game.gxt.get(gxt);
-        blip.alt.gxtName = gxt;
         return;
     }
 
-    console.warn('Blip ' + handle + ' not found! (setBlipName)');
     natives.setBlipNameFromTextFile(handle, gxt);
 };
 
