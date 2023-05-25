@@ -391,7 +391,7 @@ export class _LocalPed extends _Ped {
     }
 
     get taskLookAt() {
-        return this.lookAtCoord; // taskLookAtCoord
+        return this.lookAtEntity; // taskLookAtCoord
     }
 
     get taskReactAndFlee() {
