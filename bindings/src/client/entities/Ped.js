@@ -48,6 +48,9 @@ export class _LocalPed extends _Ped {
     }
 
     destroy() {
+        if (!this.alt.valid) return;
+        if (this.alt.isStreamedIn) this.streamOut(); // TODO: fix in core
+        this.alt.destroy();
         store.remove(this.id, this.#handle, 65535);
     }
 
