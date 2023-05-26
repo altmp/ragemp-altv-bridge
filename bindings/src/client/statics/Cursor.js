@@ -4,6 +4,7 @@ import mp from '../../shared/mp.js';
 
 class _Cursor {
     #tick;
+    _controlDisabled = false;
 
     show(freezeControls, state) {
         // Workaround to mimic RAGEMP's behavior
@@ -16,7 +17,8 @@ class _Cursor {
             while (alt.isCursorVisible()) alt.showCursor(false);
         }
 
-        alt.toggleGameControls(!freezeControls);
+        this._controlDisabled = freezeControls;
+        // alt.toggleGameControls(!freezeControls);
 
         // alt.WebView.all.forEach(e => e.emit(mp.prefix + 'receiveEvents', state));
     }
@@ -64,4 +66,11 @@ alt.on('keydown', (key) => {
 alt.on('keyup', (key) => {
     if (key != 0x1 && key != 0x2) return;
     dispatchClickEvent(key == 0x1 ? 'left' : 'right', 'up');
+});
+
+alt.everyTick(() => {
+    if (mp.gui.cursor._controlDisabled) {
+        natives.disableAllControlActions(0);
+        natives.disableAllControlActions(2);
+    }
 });
