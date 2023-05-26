@@ -67,9 +67,15 @@ export class _LocalPed extends _Ped {
 
     set model(value) {
         const wasStreamedIn = this.alt.isStreamedIn;
-        if (wasStreamedIn) this.streamOut();
+        if (wasStreamedIn) {
+            this.#lastPos = natives.getEntityCoords(this.#handle, !natives.isEntityDead(this.#handle, false));
+            this.streamOut();
+        }
         this.#model = value;
-        if (wasStreamedIn) this.streamIn();
+        if (wasStreamedIn) {
+            this.streamIn();
+            this.#lastPos = undefined;
+        }
     }
 
     get remoteId() {
@@ -80,10 +86,23 @@ export class _LocalPed extends _Ped {
         return this.#handle;
     }
 
+    get position() {
+        if (this.alt.isStreamedIn && this.handle !== 0) return new mp.Vector3(natives.getEntityCoords(this.handle, !natives.isEntityDead(this.handle, false)));
+        return new mp.Vector3(this.alt.pos);
+    }
+
+    set position(value) {
+        this.alt.pos = value;
+        this.#lastPos = value;
+    }
+
+    #lastPos;
+
     streamIn() {
         alt.loadModel(this.#model);
-        this.#handle = natives.createPed(2, this.#model, this.alt.pos.x, this.alt.pos.y, this.alt.pos.z, this.alt.getMeta(mp.prefix + 'heading'), false, false);
-        natives.setEntityCoordsNoOffset(this.#handle, this.alt.pos.x, this.alt.pos.y, this.alt.pos.z, false, false, false);
+        const pos = this.#lastPos ?? this.alt.pos;
+        this.#handle = natives.createPed(2, this.#model, pos.x, pos.y, pos.z, this.alt.getMeta(mp.prefix + 'heading'), false, false);
+        natives.setEntityCoordsNoOffset(this.#handle, pos.x, pos.y, pos.z, false, false, false);
         natives.setEntityInvincible(this.#handle, true);
         natives.disablePedPainAudio(this.#handle, true);
         natives.freezeEntityPosition(this.#handle, true);
@@ -110,6 +129,8 @@ export class _LocalPed extends _Ped {
     }
 
     streamOut() {
+        this.#lastPos = natives.getEntityCoords(this.handle, !natives.isEntityDead(this.handle, false));
+        this.alt.pos = this.#lastPos;
         store.remove(undefined, this.#handle, undefined);
         this.alt.setMeta(mp.prefix + 'heading', natives.getEntityHeading(this.#handle));
         natives.deletePed(this.#handle);
