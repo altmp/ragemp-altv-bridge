@@ -134,16 +134,6 @@ export class _Vehicle extends _Entity {
         this.alt.rot = new alt.Vector3(value).toRadians();
     }
 
-    get position() {
-        return new mp.Vector3(this.alt.pos);
-    }
-
-    set position(value) {
-        const rot = this.alt.rot;
-        this.alt.pos = value;
-        this.alt.rot = rot; // TODO: fix in core
-    }
-
     get siren() {
         return false;
     }
@@ -221,6 +211,14 @@ export class _Vehicle extends _Entity {
 
         this.alt.destroy();
         this.alt = newVehicle;
+    }
+
+    get position() {
+        return new mp.Vector3(this.alt.pos);
+    }
+
+    set position(value) {
+        this.alt.pos = value;
     }
 
     type = 'vehicle';
