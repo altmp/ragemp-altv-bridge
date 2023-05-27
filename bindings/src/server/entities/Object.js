@@ -71,7 +71,7 @@ export class _Object extends _Entity {
     }
     set rotation(value) {
         this.#rotation = value;
-        this.alt.setStreamSyncedMeta(mp.prefix + 'rotation', value);
+        this.alt.setStreamSyncedMeta(mp.prefix + 'rotation', new alt.Vector3(value));
     }
 
     get notifyStreaming() {
@@ -105,7 +105,7 @@ mp.objects.new = (model, position, params = {}) => {
     const ent = virtualEnt.mp;
     ent.model = model;
     ent.position = position;
-    if ('rotation' in params) ent.rotation = new alt.Vector3(params.rotation).toRadians();
+    if ('rotation' in params) ent.rotation = params.rotation;
     if ('alpha' in params) ent.alpha = params.alpha;
     if ('dimension' in params) ent.dimension = params.dimension;
 

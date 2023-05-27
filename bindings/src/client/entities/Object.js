@@ -97,18 +97,6 @@ export class _Object extends _Entity {
         natives.setEntityVisible(this.handle, !value, false);
     }
 
-    get setNoCollision() {
-        return this.setNoCollisionEntity;
-    }
-
-    get attachTo() {
-        return this.attachToEntity;
-    }
-
-    get isAttachedTo() {
-        return this.isAttachedToEntity;
-    }
-
     //#region Natives
     get hasClearLosToInFront() {
         return this.hasClearLosToEntityInFront; // hasEntityClearLosToEntityInFront
@@ -208,8 +196,14 @@ export class _NetworkObject extends _Object {
     streamIn() {
         alt.loadModel(this.model);
         this.#handle = natives.createObject(this.model, this.alt.pos.x, this.alt.pos.y, this.alt.pos.z, false, false, false);
-        natives.setEntityHeading(this.#handle, this.alt.getStreamSyncedMeta(mp.prefix + 'heading') ?? 0);
+        // natives.setEntityHeading(this.#handle, this.alt.getStreamSyncedMeta(mp.prefix + 'heading') ?? 0);
+        const rot = this.alt.getStreamSyncedMeta(mp.prefix + 'rotation') ?? alt.Vector3.zero;
+        natives.setEntityRotation(this.#handle, rot.x, rot.y, rot.z, 2, false);
         natives.activatePhysics(this.#handle);
+        const alpha = this.alt.getStreamSyncedMeta(mp.prefix + 'alpha') ?? 255;
+        if (alpha < 255) {
+            natives.setEntityAlpha(this.#handle, alpha, false);
+        }
         // natives.freezeEntityPosition(this.#handle, true);
         // natives.setEntityCollision(this.#handle, false, true); // TODO: check if needed
         natives.setVehicleColourCombination(this.#handle, 0);
@@ -221,19 +215,38 @@ export class _NetworkObject extends _Object {
         natives.setModelAsNoLongerNeeded(this.model);
     }
 
-    posChange() {}
+    posChange() {
+        const pos = this.alt.pos;
+        natives.setEntityCoords(this.#handle, pos.x, pos.y, pos.z, false, false, false, false);
+    }
     onDestroy() {
         store.remove(this.id, this.handle, this.id);
     }
     onCreate() {
         store.add(this, this.id, undefined, this.id);
     }
-    update() {}
+    update(key, value) {
+        if (key === (mp.prefix + 'rotation')) {
+            const rot = value ?? alt.Vector3.zero;
+            natives.setEntityRotation(this.#handle, value.x, value.y, value.z, 2, false);
+        }
+        if (key === (mp.prefix + 'alpha')) {
+            if (value >= 255) {
+                natives.resetEntityAlpha(this.#handle);
+            } else {
+                natives.setEntityAlpha(this.#handle, value, false);
+            }
+        }
+        if (key === (mp.prefix + 'model')) {
+            this.streamOut();
+            this.streamIn();
+        }
+    }
 
     destroy() {}
 
     get rotation() {
-        return this.alt.getStreamSyncedMeta(mp.prefix + 'rotation');
+        return new mp.Vector3(this.alt.getStreamSyncedMeta(mp.prefix + 'rotation'));
     }
 
     set rotation(value) {}
