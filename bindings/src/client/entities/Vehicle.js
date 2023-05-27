@@ -37,7 +37,7 @@ export class _Vehicle extends _Entity {
         if(this.alt.netOwner != alt.Player.local) {
             console.error(`You cannot set the position of the vehicle if you are not the network owner!`);
         } else {
-            this.alt.pos = value;
+            // this.alt.pos = value;
             natives.setEntityCoordsNoOffset(this.alt, value.x, value.y, value.z, false, false, false);
         }
     }
