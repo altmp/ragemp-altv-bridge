@@ -2,7 +2,7 @@ import mp from './mp.js';
 
 class _Vector3 {
     constructor(x, y, z) {
-        if (typeof z !== 'undefined') {
+        if (typeof x === 'number'){
             this.x = x || 0.0;
             this.y = y || 0.0;
             this.z = z || 0.0;
