@@ -1,7 +1,8 @@
 import mp from '../shared/mp.js';
 import alt from 'alt-client';
 
-mp.streamingDistance = alt.getSyncedMeta(mp.prefix + 'streamingDistance');
+mp.streamingDistance = alt.getSyncedMeta(mp.prefix + 'streamingDistance') ?? 300;
+// TODO: pass streaming distance in core
 
 import natives from 'natives';
 import '../shared/index.js';
@@ -58,8 +59,7 @@ globalThis.require = function (path) {
     try {
         alt.evalModule(path, content);
     } catch(e) {
-        const msg = `Failed to require file ${path}:\n${e}\n${e.stack}`;
-        console.error(msg);
+        const msg = `Failed to require file ${path}:\n${e}\n${e?.stack}`;
         throw new Error(msg);
     }
     if (oldModuleObject) populateModule(oldModuleObject);
