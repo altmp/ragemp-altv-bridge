@@ -204,6 +204,7 @@ export class _Vehicle extends _Entity {
         newVehicle.dimension = this.alt.dimension;
         newVehicle.numberPlateText = this.alt.numberPlateText;
         newVehicle.numberPlateIndex = this.alt.numberPlateIndex;
+        if (newVehicle.modKitsCount > 0) newVehicle.modKit = 1;
         const players = alt.Player.all.filter(e => e.vehicle === this.alt);
         for (const player of players) {
             player.setIntoVehicle(newVehicle, player.seat);
