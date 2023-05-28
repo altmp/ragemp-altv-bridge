@@ -549,7 +549,7 @@ const group = new alt.VirtualEntityGroup(100);
 mp.vehicles.new = function(model, position, params = {}) {
     model = hashIfNeeded(model);
     if (!natives.isModelValid(model)) model = alt.hash('oracle');
-    const virtualEnt = new alt.VirtualEntity(group, position, 300);
+    const virtualEnt = new alt.VirtualEntity(group, position, mp.streamingDistance);
     virtualEnt.setMeta(mp.prefix + 'type', VirtualEntityID.LocalVehicle);
     virtualEnt.setMeta(mp.prefix + 'model', model);
     virtualEnt.setMeta(mp.prefix + 'heading', params.heading ?? 0);

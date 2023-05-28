@@ -100,7 +100,7 @@ mp.objects = new ServerPool(view);
 const group = new alt.VirtualEntityGroup(255);
 mp.objects.new = (model, position, params = {}) => {
     model = hashIfNeeded(model);
-    const virtualEnt = new alt.VirtualEntity(group, position, params.drawDistance ?? 300);
+    const virtualEnt = new alt.VirtualEntity(group, position, params.drawDistance ?? mp.streamingDistance);
     virtualEnt.setStreamSyncedMeta(mp.prefix + 'type', VirtualEntityID.Object);
     const ent = virtualEnt.mp;
     ent.model = model;

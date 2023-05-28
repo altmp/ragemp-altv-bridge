@@ -61,7 +61,7 @@ export class _Object extends _Entity {
         const rot = this.alt.rot;
         const alpha = this.alt.alpha;
         this.alt.destroy();
-        this.alt = new alt.Object(value, pos, rot, true, true, true, mp._objectStreamRange);
+        this.alt = new alt.Object(value, pos, rot, true, true, true, mp.streamingDistance);
         this.alt.alpha = alpha;
     }
 
@@ -282,7 +282,7 @@ mp.objects = new ClientPool(view);
 mp.objects.new = (model, position, params = {}) => {
     model = hashIfNeeded(model);
     if (!natives.isModelValid(model)) model = alt.hash('prop_ecola_can');
-    const obj = new alt.Object(model, position, new alt.Vector3(params.rotation ?? alt.Vector3.zero).toRadians(), true, false, true, mp._objectStreamRange);
+    const obj = new alt.Object(model, position, new alt.Vector3(params.rotation ?? alt.Vector3.zero).toRadians(), true, false, true, mp.streamingDistance);
     obj.setMeta(mp.prefix + 'bridge', true);
     if ('alpha' in params) obj.alpha = params.alpha;
     if ('dimension' in params) obj.dimension = mpDimensionToAlt(params.dimension);

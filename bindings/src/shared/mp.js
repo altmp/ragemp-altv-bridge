@@ -4,7 +4,6 @@ import * as alt from 'alt-shared';
 const mp = {
     prefix: globalThis.overrideBridgePrefix ?? '$bridge$', // prefix for bridge events and metas
     debug: false,
-    _objectStreamRange: 1000,
     _forceReliable: false
 };
 

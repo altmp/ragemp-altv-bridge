@@ -1,5 +1,8 @@
 import mp from '../shared/mp.js';
 import alt from 'alt-client';
+
+mp.streamingDistance = alt.getSyncedMeta(mp.prefix + 'streamingDistance');
+
 import natives from 'natives';
 import '../shared/index.js';
 import './statics/Events.js';

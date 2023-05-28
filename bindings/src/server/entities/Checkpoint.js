@@ -73,7 +73,7 @@ mp.Checkpoint = _Checkpoint;
 mp.checkpoints = new ServerPool(EntityGetterView.fromClass(alt.Checkpoint));
 
 mp.checkpoints.new = function(type, position, radius, params = {}) {
-    const checkpoint = new alt.Checkpoint(type, position, radius, 100, params.color ? new alt.RGBA(params.color) : alt.RGBA.white, 100);
+    const checkpoint = new alt.Checkpoint(type, position, radius, 100, params.color ? new alt.RGBA(params.color) : alt.RGBA.white, mp.streamingDistance);
     if ('visible' in params) checkpoint.mp.visible = params.visible;
     if ('dimension' in params) checkpoint.dimension = mpDimensionToAlt(params.dimension);
     if ('direction' in params) checkpoint.nextPos = params.direction;
