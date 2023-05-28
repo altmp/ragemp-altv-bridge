@@ -58,7 +58,9 @@ globalThis.require = function (path) {
     try {
         alt.evalModule(path, content);
     } catch(e) {
-        throw new Error(`Failed to require file ${path}:\n${e}`);
+        const msg = `Failed to require file ${path}:\n${e}\n${e.stack}`;
+        console.error(msg);
+        throw new Error(msg);
     }
     if (oldModuleObject) populateModule(oldModuleObject);
     return moduleObject.exports;
