@@ -8,12 +8,12 @@ import {VirtualEntityID} from '../../shared/VirtualEntityID';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 import {EntityStoreView} from '../../shared/pools/EntityStoreView';
 import {EntityMixedView} from '../../shared/pools/EntityMixedView';
-import {hashIfNeeded, toAlt, toMp} from '../../shared/utils';
+import {hashIfNeeded, mpDimensionToAlt, toAlt, toMp} from '../../shared/utils';
 
 /** @type {Record<string, string>} */
 const keys = {'handlingnamehash':'handlingNameHash','mass':'mass','initialdragcoeff':'initialDragCoeff','downforcemodifier':'downforceModifier','unkfloat1':'unkFloat1','unkfloat2':'unkFloat2','centreofmassoffset':'centreOfMassOffset','inertiamultiplier':'inertiaMultiplier','percentsubmerged':'percentSubmerged','percentsubmergedratio':'percentSubmergedRatio','drivebiasfront':'driveBiasFront','acceleration':'acceleration','initialdrivegears':'initialDriveGears','driveinertia':'driveInertia','clutchchangeratescaleupshift':'clutchChangeRateScaleUpShift','clutchchangeratescaledownshift':'clutchChangeRateScaleDownShift','initialdriveforce':'initialDriveForce','drivemaxflatvel':'driveMaxFlatVel','initialdrivemaxflatvel':'initialDriveMaxFlatVel','brakeforce':'brakeForce','unkfloat4':'unkFloat4','brakebiasfront':'brakeBiasFront','brakebiasrear':'brakeBiasRear','handbrakeforce':'handBrakeForce','steeringlock':'steeringLock','steeringlockratio':'steeringLockRatio','tractioncurvemax':'tractionCurveMax','tractioncurvemaxratio':'tractionCurveMaxRatio','tractioncurvemin':'tractionCurveMin','tractioncurveminratio':'tractionCurveMinRatio','tractioncurvelateral':'tractionCurveLateral','tractioncurvelateralratio':'tractionCurveLateralRatio','tractionspringdeltamax':'tractionSpringDeltaMax','tractionspringdeltamaxratio':'tractionSpringDeltaMaxRatio','lowspeedtractionlossmult':'lowSpeedTractionLossMult','camberstiffness':'camberStiffness','tractionbiasfront':'tractionBiasFront','tractionbiasrear':'tractionBiasRear','tractionlossmult':'tractionLossMult','suspensionforce':'suspensionForce','suspensioncompdamp':'suspensionCompDamp','suspensionrebounddamp':'suspensionReboundDamp','suspensionupperlimit':'suspensionUpperLimit','suspensionlowerlimit':'suspensionLowerLimit','suspensionraise':'suspensionRaise','suspensionbiasfront':'suspensionBiasFront','suspensionbiasrear':'suspensionBiasRear','antirollbarforce':'antiRollBarForce','antirollbarbiasfront':'antiRollBarBiasFront','antirollbarbiasrear':'antiRollBarBiasRear','rollcentreheightfront':'rollCentreHeightFront','rollcentreheightrear':'rollCentreHeightRear','collisiondamagemult':'collisionDamageMult','weapondamagemult':'weaponDamageMult','deformationdamagemult':'deformationDamageMult','enginedamagemult':'engineDamageMult','petroltankvolume':'petrolTankVolume','oilvolume':'oilVolume','unkfloat5':'unkFloat5','seatoffsetdistx':'seatOffsetDistX','seatoffsetdisty':'seatOffsetDistY','seatoffsetdistz':'seatOffsetDistZ','monetaryvalue':'monetaryValue','modelflags':'modelFlags','handlingflags':'handlingFlags','damageflags':'damageFlags'};
 const store = new EntityStoreView();
-const view = new EntityMixedView(store, EntityGetterView.fromClass(alt.Vehicle));
+const view = EntityGetterView.fromClass(alt.Vehicle);
 
 export class _Vehicle extends _Entity {
     alt;
@@ -440,97 +440,46 @@ export class _Vehicle extends _Entity {
 }
 
 export class _LocalVehicle extends _Vehicle {
-    #handle = 0;
-    #model = 0;
+    /** @type {alt.LocalVehicle} */
+    alt;
 
-    /** @param {alt.VirtualEntity} alt */
+    /** @param {alt.LocalVehicle} alt */
     constructor(alt) {
         super(alt);
-        this.#model = alt.getMeta(mp.prefix + 'model');
-        store.add(this, this.id, this.#handle, 65535);
-    }
-    destroy() {
-        if (!this.alt.valid) return;
-        if (this.alt.isStreamedIn) this.streamOut(); // TODO: fix in core
-        this.alt.destroy();
-        store.remove(this.id, this.#handle, 65535);
-    }
-
-    get id() {
-        if (!this.alt.valid) return -1;
-        return this.alt.id + 65536;
+        this.alt = alt;
     }
 
     get model() {
-        return this.#model;
+        return this.alt.model;
     }
 
     set model(value) {
-        if (this.alt.isStreamedIn) this.streamOut();
-        this.#model = value;
-        if (this.alt.isStreamedIn) this.streamIn();
+        this.alt.model = value;
     }
 
     get remoteId() {
         return 65535;
     }
 
-    get rpm() {
-        return 0; // TODO
-    }
-
-    get handle() {
-        return this.#handle;
-    }
-
     get position() {
-        return new mp.Vector3(natives.getEntityCoords(this.handle, false));
+        return new mp.Vector3(this.alt.pos);
     }
 
     set position(value) {
-        natives.setEntityCoordsNoOffset(this.#handle, value.x, value.y, value.z, false, false, false);
+        this.alt.pos = value;
     }
 
-    get gear() {
-        return 0; // TODO
-    }
-
-    get wheelCount() {
-        return 4; // TODO
-    }
-
-    streamIn() {
-        alt.loadModel(this.#model);
-        this.#handle = natives.createVehicle(this.#model, this.alt.pos.x, this.alt.pos.y, this.alt.pos.z, this.alt.getMeta(mp.prefix + 'heading'), false, false, false);
-        natives.setVehicleColourCombination(this.#handle, 0);
-        store.add(this, undefined, this.#handle, undefined);
-    }
-
-    streamOut() {
-        store.remove(undefined, this.#handle, undefined);
-        this.alt.setMeta(mp.prefix + 'heading', natives.getEntityHeading(this.#handle));
-        natives.deleteVehicle(this.#handle);
-        this.#handle = 0;
-        natives.setModelAsNoLongerNeeded(this.#model);
-    }
-
-    posChange() {}
-    onDestroy() {}
-    onCreate() {}
-    update() {}
+    // TODO: override natives to use pos setter
 
     getVariable(key) {
-        if (this.alt.isRemote) return toMp(this.alt.getStreamSyncedMeta(key));
         return toMp(this.alt.getMeta(key));
     }
 
     setVariable(key, value) {
-        if (this.alt.isRemote) return;
         this.alt.setMeta(key, toAlt(value));
     }
 
     hasVariable(key) {
-        if (this.alt.isRemote) return this.alt.hasStreamSyncedMeta(key);
         return this.alt.hasMeta(key);
     }
 }
@@ -541,25 +490,26 @@ Object.defineProperty(alt.Vehicle.prototype, 'mp', {
     }
 });
 
+Object.defineProperty(alt.LocalVehicle.prototype, 'mp', {
+    get() {
+        return this._mp ??= new _LocalVehicle(this);
+    }
+});
+
 mp.Vehicle = _Vehicle;
 
 mp.vehicles = new ClientPool(view);
 
-const group = new alt.VirtualEntityGroup(100);
 mp.vehicles.new = function(model, position, params = {}) {
     model = hashIfNeeded(model);
     if (!natives.isModelValid(model)) model = alt.hash('oracle');
-    const virtualEnt = new alt.VirtualEntity(group, position, mp.streamingDistance);
-    virtualEnt.setMeta(mp.prefix + 'type', VirtualEntityID.LocalVehicle);
-    virtualEnt.setMeta(mp.prefix + 'model', model);
-    virtualEnt.setMeta(mp.prefix + 'heading', params.heading ?? 0);
+
+    const veh = new alt.LocalVehicle(model, mpDimensionToAlt(params.dimension ?? 0), position, new alt.Vector3(0, 0, params.heading ?? 0), true, mp.streamingDistance);
 
     /** @type {_LocalVehicle} */
-    const ent = virtualEnt.mp;
+    const ent = veh.mp;
 
-    if ('dimension' in params) ent.dimension = params.dimension;
-
-    if (!virtualEnt.isStreamedIn) return ent;
+    if (!veh.isStreamedIn) return ent;
     if ('heading' in params) ent.setRotation(0, 0, params.heading, 2, false);
     if ('numberPlate' in params) ent.setNumberPlateText(params.numberPlate);
     if ('alpha' in params) ent.setAlpha(params.alpha, false);
