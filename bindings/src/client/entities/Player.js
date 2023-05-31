@@ -36,7 +36,7 @@ export class _Player extends _Entity {
         const veh = natives.isPedInAnyVehicle(this.handle, false)
             ? natives.getVehiclePedIsIn(this.alt, false)
             : 0;
-        if (veh) return alt.LocalVehicle.getByScriptID(veh)?.mp; // TODO: fix in core
+        if (veh) return mp.vehicles.atHandle(veh);
         return null;
     }
 
