@@ -452,8 +452,8 @@ mp.Player = _Player;
 mp.players = new PlayerPool(EntityGetterView.fromClass(alt.Player));
 
 alt.on('playerDeath', (player, killer, weapon) => {
-    mp.events.dispatch('playerDeath', player.mp, weapon, killer ? killer.mp : killer);
-    player.emit(mp.prefix + 'dead', killer, weapon);
+    mp.events.dispatch('playerDeath', player.mp, weapon, killer && killer instanceof alt.Player ? killer.mp : null);
+    player.emit(mp.prefix + 'dead', weapon, killer && killer instanceof alt.Player ? killer : null);
 });
 
 alt.on('playerConnect', (player) => {
