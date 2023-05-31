@@ -1070,3 +1070,7 @@ alt.on('netOwnerChange', (ent, oldOwner, newOwner) => {
 alt.onServer(mp.prefix + 'notify', message => {
     mp.game.graphics.notify(message);
 });
+
+alt.on('spawned', () => {
+    natives.setPedConfigFlag(alt.Player.local.scriptID, 184, true);
+});
