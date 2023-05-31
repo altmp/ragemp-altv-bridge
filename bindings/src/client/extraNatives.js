@@ -325,3 +325,33 @@ mp.game.gameplay.getModelDimensions = (model) => {
     };
 };
 //#endregion
+
+mp.game2.entity.setCoords = function (entity, xPos, yPos, zPos, xAxis, yAxis, zAxis, clearArea) {
+    const ent = alt.LocalVehicle.getByScriptID(entity);
+    if (ent && ent.valid) {
+        ent.pos = new alt.Vector3(xPos, yPos, zPos);
+        return;
+    }
+
+    natives.setEntityCoords(entity, xPos, yPos, zPos, xAxis, yAxis, zAxis, clearArea);
+};
+
+mp.game2.entity.setCoordsNoOffset = function (entity, xPos, yPos, zPos, xAxis, yAxis, zAxis) {
+    const ent = alt.LocalVehicle.getByScriptID(entity);
+    if (ent && ent.valid) {
+        ent.pos = new alt.Vector3(xPos, yPos, zPos);
+        return;
+    }
+
+    natives.setEntityCoordsNoOffset(entity, xPos, yPos, zPos, xAxis, yAxis, zAxis);
+};
+
+mp.game2.entity.setCoordsWithoutPlantsReset = function (entity, xPos, yPos, zPos, alive, deadFlag, ragdollFlag, clearArea) {
+    const ent = alt.LocalVehicle.getByScriptID(entity);
+    if (ent && ent.valid) {
+        ent.pos = new alt.Vector3(xPos, yPos, zPos);
+        return;
+    }
+
+    natives.setEntityCoordsWithoutPlantsReset(entity, xPos, yPos, zPos, alive, deadFlag, ragdollFlag, clearArea);
+};

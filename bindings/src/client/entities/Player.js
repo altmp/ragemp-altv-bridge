@@ -36,7 +36,7 @@ export class _Player extends _Entity {
         const veh = natives.isPedInAnyVehicle(this.handle, false)
             ? natives.getVehiclePedIsIn(this.alt, false)
             : 0;
-        if (veh) return mp.vehicles.atHandle(veh);
+        if (veh) return alt.LocalVehicle.getByScriptID(veh)?.mp; // TODO: fix in core
         return null;
     }
 
@@ -1026,7 +1026,7 @@ function getSeat() {
 
 let lastVehicle = mp.players.local.vehicle;
 let lastSeat = getSeat();
-let isLocal = false;
+// let isLocal = false;
 // let switchCooldown = 0;
 setInterval(() => {
     // if (Date.now() < switchCooldown) return;
@@ -1037,14 +1037,14 @@ setInterval(() => {
             mp.events.dispatch('playerLeaveVehicle', lastVehicle, lastSeat);
         }
 
-        isLocal = false;
+        // isLocal = false;
 
         if (newVehicle) {
             const newSeat = getSeat();
             mp.events.dispatch('playerEnterVehicle', newVehicle, newSeat);
             mp.events.dispatch('playerStartEnterVehicle', newVehicle, newSeat);
             lastSeat = newSeat;
-            isLocal = newVehicle.alt instanceof alt.VirtualEntity;
+            // isLocal = newVehicle.alt instanceof alt.VirtualEntity;
         }
 
         lastVehicle = newVehicle;
@@ -1053,15 +1053,15 @@ setInterval(() => {
     }
 }, 500);
 
-alt.everyTick(() => {
-    if (!isLocal) return;
-    if (alt.Player.local.pos.distanceToSquared(lastVehicle.alt.pos) > 5) {
-        const pos = natives.getEntityCoords(lastVehicle.handle, !natives.isEntityDead(lastVehicle.handle, false));
-        console.log('current vehicle too far! moving vehicle to', pos);
-        // switchCooldown = Date.now() + 5000;
-        lastVehicle.alt.pos = pos;
-    }
-});
+// alt.everyTick(() => {
+//     if (!isLocal) return;
+//     if (alt.Player.local.pos.distanceToSquared(lastVehicle.alt.pos) > 5) {
+//         const pos = natives.getEntityCoords(lastVehicle.handle, !natives.isEntityDead(lastVehicle.handle, false));
+//         console.log('current vehicle too far! moving vehicle to', pos);
+//         // switchCooldown = Date.now() + 5000;
+//         lastVehicle.alt.pos = pos;
+//     }
+// });
 
 alt.on('netOwnerChange', (ent, oldOwner, newOwner) => {
     mp.events.dispatch('entityControllerChange', ent, toMp(newOwner));

@@ -482,6 +482,11 @@ export class _LocalVehicle extends _Vehicle {
     hasVariable(key) {
         return this.alt.hasMeta(key);
     }
+
+    destroy() {
+        if (!this.alt.valid) return;
+        this.alt.destroy();
+    }
 }
 
 Object.defineProperty(alt.Vehicle.prototype, 'mp', {
@@ -504,7 +509,7 @@ mp.vehicles.new = function(model, position, params = {}) {
     model = hashIfNeeded(model);
     if (!natives.isModelValid(model)) model = alt.hash('oracle');
 
-    const veh = new alt.LocalVehicle(model, mpDimensionToAlt(params.dimension ?? 0), position, new alt.Vector3(0, 0, params.heading ?? 0), true, mp.streamingDistance);
+    const veh = new alt.LocalVehicle(model, mpDimensionToAlt(params.dimension ?? 0), position, new alt.Vector3(0, 0, params.heading ?? 0).toRadians(), true, mp.streamingDistance);
 
     /** @type {_LocalVehicle} */
     const ent = veh.mp;
