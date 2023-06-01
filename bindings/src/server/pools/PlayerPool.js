@@ -13,7 +13,7 @@ export class PlayerPool extends ServerPool {
     //mp.players.call(Array players, String eventName[, Array Arguments]);
     call(arg1, args1 = [], args2 = []) {
         if(typeof arg1 === 'string') {
-            console.log('EMIT CALL ALL CLIENTS', this.alt.id, arg1, args1);
+            console.log('EMIT CALL ALL CLIENTS', arg1, args1);
             alt.emitAllClients(arg1, ...argsToAlt(args1));
         } else if(typeof arg1 === 'object' && Array.isArray(arg1)) {
             const players = arg1.map(p => p.alt).filter(Boolean);
@@ -24,7 +24,7 @@ export class PlayerPool extends ServerPool {
 
     callUnreliable(arg1, args1 = [], args2 = []) {
         if(typeof arg1 === 'string') {
-            console.log('EMIT CALL ALL CLIENTS UNRELIABLE', this.alt.id, arg1, args1);
+            console.log('EMIT CALL ALL CLIENTS UNRELIABLE', arg1, args1);
             (mp._forceReliable ? alt.emitAllClients : alt.emitAllClientsUnreliable)(arg1, ...argsToAlt(args1));
         } else if(typeof arg1 === 'object' && Array.isArray(arg1)) {
             const players = arg1.map(p => p.alt).filter(Boolean);
