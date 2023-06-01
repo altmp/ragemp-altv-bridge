@@ -1079,7 +1079,7 @@ alt.onServer((evt, ...data) => {
     console.log('EVENT RECEIVED ' + evt, data);
 });
 
-let lastSent = BigInt(0), lastLost = BigInt(0);
+let lastSent = 0n, lastLost = 0n;
 setInterval(() => {
     const sent = alt.getTotalPacketsSent();
     const lost = alt.getTotalPacketsLost();
