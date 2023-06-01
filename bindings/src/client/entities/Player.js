@@ -1074,16 +1074,3 @@ alt.onServer(mp.prefix + 'notify', message => {
 alt.on('spawned', () => {
     natives.setPedConfigFlag(alt.Player.local.scriptID, 184, true);
 });
-
-alt.onServer((evt, ...data) => {
-    console.log('EVENT RECEIVED ' + evt, data);
-});
-
-let lastSent = 0, lastLost = 0;
-setInterval(() => {
-    const sent = alt.getTotalPacketsSent();
-    const lost = alt.getTotalPacketsLost();
-    console.log('PACKETS STATS', sent - lastSent, lost - lastLost);
-    lastSent = sent;
-    lastLost = lost;
-}, 1000);
