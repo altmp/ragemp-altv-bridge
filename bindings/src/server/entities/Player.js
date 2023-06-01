@@ -201,17 +201,14 @@ export class _Player extends _Entity {
     }
 
     call(evt, args = []) {
-        console.log('EMIT CALL', this.alt.id, evt, args);
         this.alt.emit(evt, ...argsToAlt(args));
     }
 
     callUnreliable(evt, args = []) {
-        console.log('EMIT CALL UNRELIABLE', this.alt.id, evt, args);
         (mp._forceReliable ? alt.emitClient : alt.emitClientUnreliable)(this.alt, evt, ...argsToAlt(args));
     }
 
     callProc(evt, args = []) {
-        console.log('EMIT CALL PROCEDURE', this.alt.id, evt, args);
         return mp.events.callRemoteProc(this.alt, evt, ...args);
     }
 
@@ -225,14 +222,12 @@ export class _Player extends _Entity {
 
     callToStreamed(includeSelf, evt, args) {
         const altArgs = argsToAlt(args);
-        console.log('EMIT CALL TO STREAMED', this.alt.id, evt, args);
         if (includeSelf) this.alt.emitClient(evt, ...altArgs);
         alt.emitClient(alt.Player.all.filter(p => this.alt.isEntityInStreamRange(p)), evt, ...altArgs);
     }
 
     callToStreamedUnreliable(includeSelf, evt, args) {
         const altArgs = argsToAlt(args);
-        console.log('EMIT CALL TO STREAMED', this.alt.id, evt, args);
         if (includeSelf) this.alt.emitClient(evt, ...altArgs);
         (mp._forceReliable ? alt.emitClient : alt.emitClientUnreliable)(alt.Player.all.filter(p => this.alt.isEntityInStreamRange(p)), evt, ...altArgs);
     }
