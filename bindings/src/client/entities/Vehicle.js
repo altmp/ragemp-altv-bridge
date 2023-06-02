@@ -34,11 +34,10 @@ export class _Vehicle extends _Entity {
     }
 
     set position(value) {
-        if(this.alt.netOwner != alt.Player.local) {
+        if(this.alt.netOwner !== alt.Player.local) {
             console.error(`You cannot set the position of the vehicle if you are not the network owner!`);
         } else {
-            // this.alt.pos = value;
-            natives.setEntityCoordsNoOffset(this.alt, value.x, value.y, value.z, false, false, false);
+            this.alt.pos = value;
         }
     }
 
@@ -47,10 +46,10 @@ export class _Vehicle extends _Entity {
     }
 
     set rotation(value) {
-        if(this.alt.netOwner != alt.Player.local) {
+        if(this.alt.netOwner !== alt.Player.local) {
             console.error(`You cannot set the rotation of the vehicle if you are not the network owner!`);
         } else {
-            natives.setEntityRotation(this.handle, value.x, value.y, value.z, 2, false);
+            this.alt.rot = value;
         }
     }
 
