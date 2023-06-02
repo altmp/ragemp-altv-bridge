@@ -1074,3 +1074,7 @@ alt.onServer(mp.prefix + 'notify', message => {
 alt.on('spawned', () => {
     natives.setPedConfigFlag(alt.Player.local.scriptID, 184, true);
 });
+
+alt.on('playerWeaponShoot', () => {
+    mp.events.dispatch('playerWeaponShot', new mp.Vector3(0, 0, 0), null); // TODO: get target data from core
+});
