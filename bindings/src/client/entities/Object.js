@@ -294,20 +294,33 @@ mp.objects.newWeak = (handle) => {
     const obj = alt.Object.allWorld.find(e => e.scriptID === handle);
 
     if (!obj) return null;
-    return obj.mp;
+    const ent = obj.mp;
+
+    ent.destroy = () => {
+        if (!ent.alt.valid) return;
+        const scriptID = ent.handle;
+        natives.deleteObject(scriptID);
+        ent.alt.destroy();
+    };
+
+    return ent;
 };
 
 mp.objects.newWeaponObject = (model, position, params = {}) => {
     model = hashIfNeeded(model);
     const handle = natives.createWeaponObject(model, params.ammo ?? 0, position.x, position.y, position.z, params.showWorldObject ?? false, params.scale ?? 1, 0, 0, 0);
     const obj = mp.objects.newWeak(handle);
+    console.log('Created weapon object! Weak is: ' + obj);
     if ('rotation' in params) obj.rotation = params.rotation;
     if ('alpha' in params) obj.alt.alpha = params.alpha;
 
+    setTimeout(() => {
+        mp.events.dispatch('entityStreamIn', obj); // TODO weapon objects in core
+    }, 50);
     return obj;
 };
 
-alt.on('gameEntityCreate', (ent) => {
+alt.on('gameEntityCreate',  (ent) => {
     if (ent instanceof alt.Object && ent.getMeta(mp.prefix + 'bridge')) {
         // natives.freezeEntityPosition(ent.scriptID, true);
         // natives.setEntityCollision(ent.scriptID, false, true);
