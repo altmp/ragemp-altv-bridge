@@ -1,7 +1,7 @@
 import mp from '../shared/mp.js';
 import alt from 'alt-client';
 
-mp.streamingDistance = alt.getSyncedMeta(mp.prefix + 'streamingDistance') ?? 300;
+mp.streamingDistance = 10;
 // TODO: pass streaming distance in core
 
 import natives from 'natives';

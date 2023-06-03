@@ -1,7 +1,7 @@
 import * as alt from 'alt-client';
 import mp from 'shared/mp';
 import './Player.js';
-import {_LocalVehicle} from './Vehicle.js';
+import './Vehicle.js';
 import './Checkpoint.js';
 import './Blip.js';
 import './Marker.js';
@@ -11,7 +11,7 @@ import './Colshape.js';
 import './Pickup.js';
 import {_Label} from './label/Label.js';
 import {VirtualEntityID} from '../../shared/VirtualEntityID';
-import {_LocalPed} from './Ped';
+import './Ped';
 import {_NetworkObject} from './Object';
 
 Object.defineProperty(alt.VirtualEntity.prototype, 'mp', {
@@ -22,12 +22,8 @@ Object.defineProperty(alt.VirtualEntity.prototype, 'mp', {
         switch (type) {
             case VirtualEntityID.Label:
                 return this._mp = new _Label(this);
-            case VirtualEntityID.LocalVehicle:
-                return this._mp = new _LocalVehicle(this);
             case VirtualEntityID.Object:
                 return this._mp = new _NetworkObject(this);
-            case VirtualEntityID.Ped:
-                return this._mp = new _LocalPed(this);
         }
 
         return null;
