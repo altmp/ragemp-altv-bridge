@@ -98,7 +98,6 @@ alt.on('entityEnterColshape', (shape, ent) => {
     mp.events.dispatch('playerEnterColshape', ent.mp, shape.mp);
     const keys = shape.getMetaDataKeys();
     ent.emit(mp.prefix + 'enterColshape', shape.pos, shape.dimension, shape.mp.shapeType, Object.fromEntries(keys.map(e => [e, shape.getMeta(e)])));
-    console.log('EMIT ENTER COLSHAPE');
 });
 
 alt.on('entityLeaveColshape', (shape, ent) => {
@@ -106,5 +105,4 @@ alt.on('entityLeaveColshape', (shape, ent) => {
     mp.events.dispatch('playerExitColshape', ent.mp, shape.mp);
     const keys = shape.getMetaDataKeys();
     ent.emit(mp.prefix + 'leaveColshape', shape.pos, shape.dimension, shape.mp.shapeType, Object.fromEntries(keys.map(e => [e, shape.getMeta(e)])));
-    console.log('EMIT LEAVE COLSHAPE');
 });

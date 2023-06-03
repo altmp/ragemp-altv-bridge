@@ -310,7 +310,6 @@ mp.objects.newWeaponObject = (model, position, params = {}) => {
     model = hashIfNeeded(model);
     const handle = natives.createWeaponObject(model, params.ammo ?? 0, position.x, position.y, position.z, params.showWorldObject ?? false, params.scale ?? 1, 0, 0, 0);
     const obj = mp.objects.newWeak(handle);
-    console.log('Created weapon object! Weak is: ' + obj);
     if ('rotation' in params) obj.rotation = params.rotation;
     if ('alpha' in params) obj.alt.alpha = params.alpha;
 

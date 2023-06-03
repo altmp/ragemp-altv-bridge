@@ -103,7 +103,6 @@ alt.on('entityLeaveColshape', (shape, ent) => {
 
 // TODO: proper implementation
 alt.onServer(mp.prefix + 'enterColshape', (position, dimension, type, meta) => {
-    console.log('RECEIVE ENTER COLSHAPE', position, dimension, type, meta);
     mp.events.dispatch('playerEnterColshape', {
         position: new mp.Vector3(position),
         dimension,
@@ -122,7 +121,6 @@ alt.onServer(mp.prefix + 'enterColshape', (position, dimension, type, meta) => {
 });
 
 alt.onServer(mp.prefix + 'leaveColshape', (position, dimension, type, meta) => {
-    console.log('RECEIVE LEAVE COLSHAPE', position, dimension, type, meta);
     mp.events.dispatch('playerExitColshape', {
         position: new mp.Vector3(position),
         dimension,

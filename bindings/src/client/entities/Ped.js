@@ -841,7 +841,6 @@ mp.peds.new = function (model, position, heading = 0, dimension = 0) {
 
 alt.on('worldObjectStreamIn', (ent) => {
     if (ent?.mp instanceof _LocalPed) {
-        console.log('LOCAL PED STREAM IN', ent.id);
         natives.setEntityInvincible(ent, true);
         natives.disablePedPainAudio(ent, true);
         natives.freezeEntityPosition(ent, true);
