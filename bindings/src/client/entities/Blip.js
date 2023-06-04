@@ -262,7 +262,7 @@ mp.blips.new = function(sprite, position, params = {}) {
     if ('shortRange' in params && sprite !== 5) blip.shortRange = params.shortRange;
     if ('rotation' in params) blip.heading = params.rotation;
     blip.mp.dimension = params.dimension ?? 0;
-    natives.setBlipDisplay(blip.scriptID, 0);
+    blip.display = 0;
 
     return blip.mp;
 };
@@ -274,8 +274,7 @@ if (mp._main) {
             const dim = blip.mp.dimension;
             const state = dim === -1 ? true : dim === playerDim;
             if (state !== blip.mp._lastState) {
-                console.log('Changing state of blip', blip.id, 'to', state);
-                natives.setBlipDisplay(blip.scriptID, state ? 2 : 0);
+                blip.display = state ? 2 : 0;
                 blip.mp._lastState = state;
                 mp.events.dispatch(state ? 'entityStreamIn' : 'entityStreamOut', blip);
             }
