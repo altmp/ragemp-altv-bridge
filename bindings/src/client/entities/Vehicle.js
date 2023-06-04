@@ -54,7 +54,7 @@ export class _Vehicle extends _Entity {
     }
 
     get gear() {
-            return this.alt.gear;
+        return this.alt.gear;
     }
 
     get rpm() {
