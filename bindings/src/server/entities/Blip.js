@@ -86,6 +86,14 @@ export class _Blip extends _WorldObject {
         this.alt.destroy();
     }
 
+    get dimension() {
+        return this.alt.getSyncedMeta(mp.prefix + 'dimension');
+    }
+
+    set dimension(value) {
+        this.alt.setSyncedMeta(mp.prefix + 'dimension', value);
+    }
+
     type = 'blip';
 
     // TODO: routeFor
@@ -102,18 +110,18 @@ mp.Blip = _Blip;
 
 mp.blips = new ServerPool(EntityGetterView.fromClass(alt.Blip));
 
-mp.blips.new = function(sprite, position, options = {}) {
+mp.blips.new = function(sprite, position, params = {}) {
     const blip = new alt.PointBlip(new alt.Vector3(position.x, position.y, position.z));
 
     blip.sprite = sprite;
-    if ('name' in options) blip.name = options.name;
-    if ('scale' in options) blip.scale = options.scale;
-    if ('color' in options) blip.color = options.color;
-    if ('alpha' in options) blip.alpha = options.alpha;
+    if ('name' in params) blip.name = params.name;
+    if ('scale' in params) blip.scale = params.scale;
+    if ('color' in params) blip.color = params.color;
+    if ('alpha' in params) blip.alpha = params.alpha;
     // TODO: drawDistance?
-    if ('shortRange' in options) blip.shortRange = options.shortRange;
-    if ('rotation' in options) blip.heading = options.rotation; // TODO: convert units?
-    if ('dimension' in options) blip.dimension = mpDimensionToAlt(options.dimension);
+    if ('shortRange' in params) blip.shortRange = params.shortRange;
+    if ('rotation' in params) blip.heading = params.rotation; // TODO: convert units?
+    blip.mp.dimension = params.dimension ?? 0;
     // TODO: radius
     return blip.mp;
 };

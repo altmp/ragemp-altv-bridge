@@ -22,6 +22,16 @@ export class _Blip extends _WorldObject {
         this.alt.destroy();
     }
 
+    get dimension() {
+        if (this.alt.isRemote) return this.alt.getSyncedMeta(mp.prefix + 'dimension') ?? 0;
+        return this.alt.getMeta(mp.prefix + 'dimension') ?? 0;
+    }
+
+    set dimension(value) {
+        if (this.alt.isRemote) return;
+        this.alt.setMeta(mp.prefix + 'dimension', value);
+    }
+
     //#region Natives
     get setColour() {
         return this.setBlipColour; // setBlipColour
@@ -236,7 +246,8 @@ mp.blips.new = function(sprite, position, params = {}) {
             // TODO: better fix for area blip issues
             blip.sprite = 0;
             break;
-        } default:
+        }
+        default:
             blip = new alt.PointBlip(position.x, position.y, position.z);
             blip.sprite = sprite;
     }
@@ -250,7 +261,24 @@ mp.blips.new = function(sprite, position, params = {}) {
     // TODO: draw distance
     if ('shortRange' in params && sprite !== 5) blip.shortRange = params.shortRange;
     if ('rotation' in params) blip.heading = params.rotation;
-    // TODO: dimension
+    blip.mp.dimension = params.dimension ?? 0;
+    natives.setBlipDisplay(blip.scriptID, 0);
 
     return blip.mp;
 };
+
+if (mp._main) {
+    alt.setInterval(() => {
+        const playerDim = alt.Player.local.dimension;
+        for (const blip of alt.Blip.all) {
+            const dim = blip.mp.dimension;
+            const state = dim === -1 ? true : dim === playerDim;
+            if (state !== blip.mp._lastState) {
+                console.log('Changing state of blip', blip.id, 'to', state);
+                natives.setBlipDisplay(blip.scriptID, state ? 2 : 0);
+                blip.mp._lastState = state;
+                mp.events.dispatch(state ? 'entityStreamIn' : 'entityStreamOut', blip);
+            }
+        }
+    }, 500);
+}
