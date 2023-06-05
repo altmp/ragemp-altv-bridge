@@ -9,12 +9,11 @@ import {EntityMixedView} from '../../shared/pools/EntityMixedView';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 import {VirtualEntityID} from '../../shared/VirtualEntityID';
 import {hashIfNeeded, toAlt, toMp} from '../../shared/utils';
-import {_LocalVehicle} from './Vehicle';
-import {_Entity} from './Entity';
 
-const view = EntityGetterView.fromClass(alt.Ped);
+const store = new EntityStoreView();
+const view = new EntityMixedView(store, EntityGetterView.fromClass(alt.Ped));
 
-export class _Ped extends _Entity {
+export class _Ped extends _VirtualEntityBase {
     /** @param {alt.Ped} alt */
     constructor(alt) {
         super(alt);
@@ -25,6 +24,137 @@ export class _Ped extends _Entity {
         if (!this.alt.valid) return;
         if (this.alt.isStreamedIn) this.streamOut(); // TODO: fix in core
         this.alt.destroy();
+    }
+
+    get taskPlayAnim() {
+        return this.playAnim;
+    }
+
+    get taskStartScenarioInPlace() {
+        return this.startScenarioInPlace;
+    }
+}
+
+export class _LocalPed extends _Ped {
+    #handle = 0;
+    #model = 0;
+
+    /** @param {alt.VirtualEntity} alt */
+    constructor(alt, heading) {
+        super(alt);
+        this.alt = alt;
+        this.#model = alt.getMeta(mp.prefix + 'model');
+        store.add(this, this.id, this.#handle, 65535);
+    }
+
+    destroy() {
+        if (!this.alt.valid) return;
+        if (this.alt.isStreamedIn) this.streamOut(); // TODO: fix in core
+        this.alt.destroy();
+        store.remove(this.id, this.#handle, 65535);
+    }
+
+    type = 'ped';
+
+    get id() {
+        if (!this.alt.valid) return -1;
+        return this.alt.id + 65536;
+    }
+
+    get model() {
+        return this.#model;
+    }
+
+    set model(value) {
+        const wasStreamedIn = this.alt.isStreamedIn;
+        if (wasStreamedIn) {
+            this.#lastPos = natives.getEntityCoords(this.#handle, !natives.isEntityDead(this.#handle, false));
+            this.streamOut();
+        }
+        this.#model = value;
+        if (wasStreamedIn) {
+            this.streamIn();
+            this.#lastPos = undefined;
+        }
+    }
+
+    get remoteId() {
+        return 65535;
+    }
+
+    get handle() {
+        return this.#handle;
+    }
+
+    get position() {
+        if (this.alt.isStreamedIn && this.handle !== 0) return new mp.Vector3(natives.getEntityCoords(this.handle, !natives.isEntityDead(this.handle, false)));
+        return new mp.Vector3(this.alt.pos);
+    }
+
+    set position(value) {
+        this.alt.pos = value;
+        this.#lastPos = value;
+    }
+
+    #lastPos;
+
+    streamIn() {
+        alt.loadModel(this.#model);
+        const pos = this.#lastPos ?? this.alt.pos;
+        this.#handle = natives.createPed(2, this.#model, pos.x, pos.y, pos.z, this.alt.getMeta(mp.prefix + 'heading'), false, false);
+        natives.setEntityCoordsNoOffset(this.#handle, pos.x, pos.y, pos.z, false, false, false);
+        natives.setEntityInvincible(this.#handle, true);
+        natives.disablePedPainAudio(this.#handle, true);
+        natives.freezeEntityPosition(this.#handle, true);
+        natives.taskSetBlockingOfNonTemporaryEvents(this.#handle, true);
+        natives.setBlockingOfNonTemporaryEvents(this.#handle, true);
+        natives.setPedFleeAttributes(this.#handle, 0, false);
+        natives.setPedDefaultComponentVariation(this.#handle);
+        natives.setPedNeverLeavesGroup(this.#handle, true);
+        natives.setCanAttackFriendly(this.#handle, false, false);
+        natives.setPedCombatAbility(this.#handle, 100);
+        natives.setPedCombatMovement(this.#handle, 3);
+        natives.setPedConfigFlag(this.#handle, 32, false);
+        natives.setPedConfigFlag(this.#handle, 281, true);
+        natives.setPedCombatAttributes(this.#handle, 0, false);
+        natives.setPedCombatAttributes(this.#handle, 1, false);
+        natives.setPedCombatAttributes(this.#handle, 2, false);
+        natives.setPedCombatAttributes(this.#handle, 3, false);
+        natives.setPedCombatAttributes(this.#handle, 20, false);
+        natives.setPedCombatAttributes(this.#handle, 292, true);
+        natives.setPedCombatRange(this.#handle, 2);
+        natives.setPedKeepTask(this.#handle, true);
+
+        store.add(this, undefined, this.#handle, undefined);
+    }
+
+    streamOut() {
+        this.#lastPos = natives.getEntityCoords(this.handle, !natives.isEntityDead(this.handle, false));
+        this.alt.pos = this.#lastPos;
+        store.remove(undefined, this.#handle, undefined);
+        this.alt.setMeta(mp.prefix + 'heading', natives.getEntityHeading(this.#handle));
+        natives.deletePed(this.#handle);
+        this.#handle = 0;
+        natives.setModelAsNoLongerNeeded(this.#model);
+    }
+
+    getVariable(key) {
+        if (this.alt.isRemote) return toMp(this.alt.getStreamSyncedMeta(key));
+        return toMp(this.alt.getMeta(key));
+    }
+
+    setVariable(key, value) {
+        if (this.alt.isRemote) return;
+        this.alt.setMeta(key, toAlt(value));
+    }
+
+    hasVariable(key) {
+        if (this.alt.isRemote) return this.alt.hasStreamSyncedMeta(key);
+        return this.alt.hasMeta(key);
+    }
+
+    getHealth() {
+        return natives.getEntityHealth(this.handle) - 100;
     }
 
     //#region Natives
@@ -778,89 +908,23 @@ export class _Ped extends _Entity {
     //#endregion
 }
 
-export class _LocalPed extends _Ped {
-    /** @param {alt.LocalPed} alt */
-    constructor(alt) {
-        super(alt);
-        this.alt = alt;
-    }
-
-    destroy() {
-        if (!this.alt.valid) return;
-        this.alt.destroy();
-    }
-
-    type = 'ped';
-
-    // TODO: set model
-
-    get remoteId() {
-        return 65535;
-    }
-
-
-    getVariable(key) {
-        return toMp(this.alt.getMeta(key));
-    }
-
-    setVariable(key, value) {
-        this.alt.setMeta(key, toAlt(value));
-    }
-
-    hasVariable(key) {
-        return this.alt.hasMeta(key);
-    }
-
-    getHealth() {
-        return natives.getEntityHealth(this.handle) - 100;
-    }
-}
-
-
-Object.defineProperty(alt.Ped.prototype, 'mp', {
-    get() {
-        return this._mp ??= new _Ped(this);
-    }
-});
-
-Object.defineProperty(alt.LocalPed.prototype, 'mp', {
-    get() {
-        return this._mp ??= new _LocalPed(this);
-    }
-});
-
 mp.Ped = _Ped;
 
 mp.peds = new ClientPool(view);
 
-mp.peds.new = function (model, position, heading = 0, dimension = 0) {
-    const ent = new alt.LocalPed(model, dimension, new alt.Vector3(position), new alt.Vector3(0, 0, heading).toRadians(), true, mp.streamingDistance);
-    ent.pos = new alt.Vector3(position);
-    return ent.mp;
-};
+const group = new alt.VirtualEntityGroup(100);
+mp.peds.new = function (model, position, heading, dimension = 0) {
+    model = hashIfNeeded(model);
+    const virtualEnt = new alt.VirtualEntity(group, position, mp.streamingDistance);
+    virtualEnt.setMeta(mp.prefix + 'type', VirtualEntityID.Ped);
+    virtualEnt.setMeta(mp.prefix + 'model', model);
+    virtualEnt.setMeta(mp.prefix + 'heading', heading);
 
-alt.on('worldObjectStreamIn', (ent) => {
-    if (ent?.mp instanceof _LocalPed) {
-        natives.setEntityInvincible(ent, true);
-        natives.disablePedPainAudio(ent, true);
-        natives.freezeEntityPosition(ent, true);
-        natives.taskSetBlockingOfNonTemporaryEvents(ent, true);
-        natives.setBlockingOfNonTemporaryEvents(ent, true);
-        natives.setPedFleeAttributes(ent, 0, false);
-        natives.setPedDefaultComponentVariation(ent);
-        natives.setPedNeverLeavesGroup(ent, true);
-        natives.setCanAttackFriendly(ent, false, false);
-        natives.setPedCombatAbility(ent, 100);
-        natives.setPedCombatMovement(ent, 3);
-        natives.setPedConfigFlag(ent, 32, false);
-        natives.setPedConfigFlag(ent, 281, true);
-        natives.setPedCombatAttributes(ent, 0, false);
-        natives.setPedCombatAttributes(ent, 1, false);
-        natives.setPedCombatAttributes(ent, 2, false);
-        natives.setPedCombatAttributes(ent, 3, false);
-        natives.setPedCombatAttributes(ent, 20, false);
-        natives.setPedCombatAttributes(ent, 292, true);
-        natives.setPedCombatRange(ent, 2);
-        natives.setPedKeepTask(ent, true);
-    }
-});
+    /** @type {_Ped} */
+    const ent = virtualEnt.mp;
+    ent.dimension = dimension;
+    if (!virtualEnt.isStreamedIn) return ent;
+    ent.setHeading(heading);
+
+    return ent;
+};
