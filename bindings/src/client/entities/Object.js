@@ -204,7 +204,7 @@ export class _NetworkObject extends _Object {
         if (alpha < 255) {
             natives.setEntityAlpha(this.#handle, alpha, false);
         }
-        // natives.freezeEntityPosition(this.#handle, true);
+        natives.freezeEntityPosition(this.#handle, true);
         // natives.setEntityCollision(this.#handle, false, true); // TODO: check if needed
         natives.setVehicleColourCombination(this.#handle, 0);
     }
@@ -321,7 +321,6 @@ mp.objects.newWeaponObject = (model, position, params = {}) => {
 
 alt.on('gameEntityCreate',  (ent) => {
     if (ent instanceof alt.Object && ent.getMeta(mp.prefix + 'bridge')) {
-        // natives.freezeEntityPosition(ent.scriptID, true);
-        // natives.setEntityCollision(ent.scriptID, false, true);
+        natives.freezeEntityPosition(ent.scriptID, true);
     }
 });
