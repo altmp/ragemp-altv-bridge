@@ -26,14 +26,13 @@ class _Nametags {
             const pos = p.pos.add(0, 0, offset);
             if (!alt.isPointOnScreen(p.pos)) return;
 
-            const realPos = natives.getEntityCoords(p, true);
             const dist = pos.distanceToSquared(localPos);
             if (this.useScreen2dCoords) {
                 const res = alt.getScreenResolution();
-                const screenPos = alt.worldToScreen(realPos);
+                const screenPos = alt.worldToScreen(pos);
                 arr.push([p.mp, screenPos.x / res.x, screenPos.y / res.y, dist]);
             } else {
-                arr.push([p.mp, realPos.x, realPos.y, realPos.z, dist]);
+                arr.push([p.mp, pos.x, pos.y, pos.z, dist]);
             }
         });
 
