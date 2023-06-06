@@ -16,7 +16,7 @@ export class _Player extends _Entity {
     }
 
     get position() { //TODO: add in core
-        return new mp.Vector3(natives.getEntityCoords(this.alt, false));
+        return new mp.Vector3(this.alt.position);
     }
 
     set position(value) {
