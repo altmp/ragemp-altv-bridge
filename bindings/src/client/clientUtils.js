@@ -7,6 +7,7 @@ export function getRenderCorrection() {
     const frameTime = natives.getFrameTime();
     return natives.getEntityVelocity(entity).mul(frameTime);
 }
+globalThis.getCorr = getRenderCorrection;
 
 export const drawText3d = (
     text,
@@ -17,7 +18,8 @@ export const drawText3d = (
     outline = true,
     dropShadow = true) => {
 
-    natives.setDrawOrigin(pos3d.x, pos3d.y, pos3d.z, false);
+    const corr = globalThis.getCorr();
+    natives.setDrawOrigin(pos3d.x + corr.x, pos3d.y + corr.y, pos3d.z + corr.z, false);
     natives.beginTextCommandDisplayText('STRING');
     natives.addTextComponentSubstringPlayerName(text);
     natives.setTextFont(font);
