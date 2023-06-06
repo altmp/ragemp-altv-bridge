@@ -366,9 +366,10 @@ export class _Player extends _Entity {
         this.alt.setFaceFeature(idx, scale);
     }
 
-    setHairColor(hairColor) {
+    setHairColor(hairColor, hairHighlightColor) {
         this.#ensureHeadblend();
         this.alt.setHairColor(hairColor);
+        if (hairHighlightColor != null) this.alt.setHairHighlightColor(hairHighlightColor);
     }
 
     setHeadBlend(shapeFirst, shapeSecond, shapeThird, skinFirst, skinSecond, skinThird, shapeMix, skinMix, thirdMix) {
