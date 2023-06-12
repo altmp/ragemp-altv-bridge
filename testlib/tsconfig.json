@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "module": "ES2020",
+        "target": "es6",
+        "sourceMap": true,
+        "strict": true,
+        "moduleResolution": "node",
+        "skipLibCheck": true,
+        "lib": [
+            "ES2022",
+            "DOM"
+        ],
+        "typeRoots": [
+            "./node_modules/@types",
+            "./node_modules/@altv",
+            "./@ragemp"
+        ]
+    },
+    "include": [
+        "./src/**/*.ts",
+        "./dist/**/*.ts",
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

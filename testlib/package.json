@@ -1,0 +1,26 @@
+{
+    "name": "altv-unit-tests",
+    "version": "0.0.1",
+    "scripts": {
+        "build": "node build.mjs"
+    },
+    "main": "dist/index.js",
+    "dependencies": {
+        "chai": "^4.3.7",
+        "chalk": "^5.2.0",
+        "crc-32": "^1.2.2",
+        "esbuild-plugin-d.ts": "^1.1.0"
+    },
+    "devDependencies": {
+        "@altv/types-client": "^2.6.8",
+        "@altv/types-natives": "^1.5.3",
+        "@altv/types-server": "^2.7.3",
+        "@altv/types-shared": "^1.4.9",
+        "@ragemp/types-client": "github:ragempcommunity/ragemp-types#types-client",
+        "@ragemp/types-server": "github:ragempcommunity/ragemp-types#types-server",
+        "@types/chai": "^4.3.5",
+        "chalk-template": "^1.1.0",
+        "esbuild": "^0.17.19",
+        "typescript": "^5.1.3"
+    }
+}

@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "install": "cd bindings && npm install && cd ../nativegen && npm install",
+        "install": "cd bindings && npm install && cd ../nativegen && npm install && cd ../testlib && npm install",
         "build": "cd bindings && npm run build",
         "update-natives": "cd nativegen && npm run start"
     },
