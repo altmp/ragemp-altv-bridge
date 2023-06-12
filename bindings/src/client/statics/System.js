@@ -4,11 +4,10 @@ import mp from '../../shared/mp.js';
 class _System {
     notify(args) {
         console.warn('Attempted to emit notification', args);
-        // TODO?
     }
 
     get isFullscreen() {
-        return false; // TODO
+        return alt.isFullScreen();
     }
 
     get isFocused() {
