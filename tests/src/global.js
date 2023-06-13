@@ -215,7 +215,7 @@ describe('global', () => {
 
         it('should invoke float', async ({server, client}) => {
             await client(async ({mp}) => {
-                mp.game.invokeFloat('0xF6829842C06AE524', 5000, 5000, 0, 0).should.equal(0);
+                mp.game.invokeFloat('0xBBDA792448DB5A89', 5).should.equal(5);
             });
         });
 
@@ -227,7 +227,7 @@ describe('global', () => {
 
         it('should invoke vector3', async ({server, client}) => {
             await client(async ({mp}) => {
-                mp.game.invokeVector3('0x3FEF770D40960D5A', 0, false).should.contain.members(['x', 'y', 'z']);
+                mp.game.invokeVector3('0x3FEF770D40960D5A', 0, false).should.contain.keys(['x', 'y', 'z']);
             });
         });
 
