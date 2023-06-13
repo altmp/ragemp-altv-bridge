@@ -33,6 +33,9 @@ export class ClientError extends Error {
     }
 }
 
+export class SkipError extends Error {
+}
+
 export function defineName<T>(value: T, name: string): T {
     Object.defineProperty(value, 'name', { get: () => name });
     return value;

@@ -3,6 +3,7 @@ import {prefix} from "./constants";
 import {findFunction, getDataHash} from "./indexing";
 import {TestContext} from "./types";
 import * as natives from "natives";
+import {SkipError} from "./utils";
 
 function waitForEvent(event: string, timeout = 10000) {
     return new Promise<any[]>((resolve, reject) => {
@@ -68,7 +69,7 @@ export default function init() {
             alt.emitServer(prefix + 'executeStatus', -1, true);
         } catch(e: any) {
             console.log(e);
-            alt.emitServer(prefix + 'executeStatus', -1, false, String(e?.stack ? e.stack : e));
+            alt.emitServer(prefix + 'executeStatus', -1, false, e instanceof SkipError ? `$SKIP$${e.message}` : String(e?.stack ? e.stack : e));
         }
 
         console.log(`${func.name} execution finished`);

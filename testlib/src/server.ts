@@ -4,7 +4,7 @@ import chalkTemplate from 'chalk-template';
 import {findProperty, getDataHash, getFunctionPath, getRoot} from "./indexing";
 import {prefix} from "./constants";
 import {TestContext, TestFunction, TestItem, TestResults} from "./types";
-import {ClientError} from "./utils";
+import {ClientError, SkipError} from "./utils";
 import {autoReconnect} from "./autoReconnect";
 
 function waitForEvent(player: alt.Player, event: string, timeout = 10000) {
@@ -38,7 +38,10 @@ async function executeFunction(func: TestFunction, players: alt.Player[]) {
             receivedStatuses[playerId ?? 0]?.find((e): boolean => e[0] == -1 || e[0] == id)
             ?? await waitForEvent(player, prefix + 'executeStatus');
             if (statusId != -1 && statusId != id) throw new ClientError(`Execution step ID mismatch, expected ${id}, received ${statusId}`, playerId ?? 0);
-            if (!status) throw new ClientError(reason, playerId ?? 0);
+            if (!status) {
+                if (reason.startsWith('$SKIP$')) throw new SkipError(reason.substring(6));
+                throw new ClientError(reason, playerId ?? 0);
+            }
         },
         server: async (func) => {
             const id = counter++;
@@ -65,7 +68,10 @@ async function executeFunction(func: TestFunction, players: alt.Player[]) {
                         receivedStatuses[index]?.find((e): boolean => e[0] == -1)
                         ?? await waitForEvent(player, prefix + 'executeStatus');
                         if (statusId != -1) continue;
-                        if (!status && doThrow) throw new ClientError(reason, index);
+                        if (!status && doThrow) {
+                            if (reason.startsWith('$SKIP$')) throw new SkipError(reason.substring(6));
+                            throw new ClientError(reason, index);
+                        }
                         break;
                     }
                 })
@@ -101,6 +107,10 @@ async function execute(func: TestFunction, players: alt.Player[], results: TestR
         try {
             await executeFunction(currentFunction, players);
         } catch(e: any) {
+            if (e instanceof SkipError) {
+                results.skipped++;
+                return console.log(chalkTemplate`${indent}{gray ○ ${func.name} (${e.message})}`);
+            }
             results.errors.push({
                 path: getFunctionPath(func),
                 error: e instanceof ClientError ? e.message : String(e?.stack ? e.stack : e),

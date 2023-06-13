@@ -1,4 +1,4 @@
-import {describe, it, tryFor} from './testlib/index.js';
+import {describe, it, tryFor, SkipError} from 'testlib/index.js';
 
 describe('global', () => {
     it('should hash joaat', async ({ client, server }) => {

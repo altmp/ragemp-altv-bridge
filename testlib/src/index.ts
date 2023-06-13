@@ -1,5 +1,3 @@
-/// <reference path="./global.d.ts" />
-
 import * as chai from 'chai';
 import {isServer} from "./platforms";
 
@@ -17,4 +15,4 @@ export async function init() {
 
 export * from './types';
 export { describe, it, beforeEach, afterEach, beforeAll, afterAll } from './indexing';
-export { wait, waitFor, tryFor } from './utils';
+export { wait, waitFor, tryFor, SkipError } from './utils';

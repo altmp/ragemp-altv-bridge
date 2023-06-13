@@ -3,7 +3,7 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build": "cd ../testlib && node build.mjs && cd ../tests && shx cp -r ../testlib/dist testlib"
+        "build": "cd ../testlib && node build.mjs && cd ../tests && node build.mjs"
     },
     "devDependencies": {
         "@altv/types-client": "^2.6.8",
