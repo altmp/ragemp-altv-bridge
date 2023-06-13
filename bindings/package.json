@@ -9,8 +9,7 @@
     "@altv/types-server": "^2.7.3",
     "@altv/types-shared": "^1.4.8",
     "@fal-works/esbuild-plugin-global-externals": "^2.1.2",
-    "esbuild": "^0.17.14",
-    "shx": "^0.3.4"
+    "esbuild": "^0.17.14"
   },
   "scripts": {
     "install": "shx cp -r node_modules/@altv src/types/",

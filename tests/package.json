@@ -1,18 +1,17 @@
 {
     "name": "bridge-unit-tests",
     "private": true,
+    "type": "module",
     "scripts": {
-        "build": "node build.js"
-    },
-    "dependencies": {
-        "altv-unit-tests": "file:../testlib"
+        "build": "cd ../testlib && node build.mjs && cd ../tests && shx cp -r ../testlib/dist testlib"
     },
     "devDependencies": {
         "@altv/types-client": "^2.6.8",
         "@altv/types-natives": "^1.5.3",
         "@altv/types-server": "^2.7.3",
         "@altv/types-shared": "^1.4.9",
-        "@types/chai": "^4.3.5",
-        "esbuild": "^0.18.1"
+        "@ragemp/types-client": "github:ragempcommunity/ragemp-types#types-client",
+        "@ragemp/types-server": "github:ragempcommunity/ragemp-types#types-server",
+        "@types/chai": "^4.3.5"
     }
 }

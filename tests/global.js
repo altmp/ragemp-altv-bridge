@@ -1,4 +1,4 @@
-import {describe, it, tryFor} from 'altv-unit-tests';
+import {describe, it, tryFor} from './testlib/index.js';
 
 describe('global', () => {
     it('should hash joaat', async ({ client, server }) => {
@@ -71,14 +71,14 @@ describe('global', () => {
 
         it('should sync time via properties', async ({ server, client }) => {
             await server(({ mp }) => {
-                mp.world.time.hour = 26;
+                mp.world.time.hour = 22;
                 mp.world.time.minute = 4;
                 mp.world.time.second = 0;
                 mp.world.time.set();
             });
 
             await client(async ({ mp }) => {
-                await tryFor(() => mp.game.clock.getHours().should.equal(26));
+                await tryFor(() => mp.game.clock.getHours().should.equal(22));
                 await tryFor(() => mp.game.clock.getMinutes().should.equal(4));
             });
         });

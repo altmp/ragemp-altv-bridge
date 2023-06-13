@@ -1,10 +1,11 @@
 {
     "scripts": {
-        "install": "cd bindings && npm install && cd ../nativegen && npm install && cd ../testlib && npm install",
+        "install": "cd bindings && npm install && cd ../nativegen && npm install && cd ../testlib && npm install && cd ../tests && npm install",
         "build": "cd bindings && npm run build",
         "update-natives": "cd nativegen && npm run start"
     },
     "devDependencies": {
-        "eslint": "^8.36.0"
+        "eslint": "^8.36.0",
+        "shx": "^0.3.4"
     }
 }
