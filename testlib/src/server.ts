@@ -55,8 +55,7 @@ async function executeFunction(func: TestFunction, players: alt.Player[]) {
 
     alt.emitClient(players, prefix + 'execute', func.index);
 
-    try {
-        await func.func(context);
+    async function waitForAllClients(doThrow = true) {
         await Promise.all(
             players
                 .map(async player => {
@@ -66,13 +65,18 @@ async function executeFunction(func: TestFunction, players: alt.Player[]) {
                         receivedStatuses[index]?.find((e): boolean => e[0] == -1)
                         ?? await waitForEvent(player, prefix + 'executeStatus');
                         if (statusId != -1) continue;
-                        if (!status) throw new ClientError(reason, index);
+                        if (!status && doThrow) throw new ClientError(reason, index);
                         break;
                     }
                 })
         )
+    }
+    try {
+        await func.func(context);
+        await waitForAllClients();
     } catch(e) {
         alt.emitClient(players, prefix + 'executeStatus', -1, false, String(e));
+        await waitForAllClients(false);
         throw e;
     }
 }
