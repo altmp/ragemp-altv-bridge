@@ -26,13 +26,14 @@ export function describe(name: string, func: () => void) {
     current = previous;
 }
 
-export function it(name: string, func: (ctx: TestContext) => any, requiredPlayers = 1) {
+export function it(name: string, func: (ctx: TestContext) => any, requiredPlayers = 1, params: any = undefined) {
     const item: TestFunction = {
         name,
         type: 'function',
         func: defineName(func, name),
         index: lastIndex++,
         parent: current,
+        params,
         requiredPlayers
     };
     current.children.push(item);

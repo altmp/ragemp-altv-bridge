@@ -3,7 +3,7 @@ import chalk from "chalk";
 import chalkTemplate from 'chalk-template';
 import {findProperty, getDataHash, getFunctionPath, getRoot} from "./indexing";
 import {prefix} from "./constants";
-import {TestContext, TestFunction, TestItem, TestResults} from "./types";
+import {TestContext, TestFunction, TestGroup, TestItem, TestResults} from "./types";
 import {ClientError, SkipError} from "./utils";
 import {autoReconnect} from "./autoReconnect";
 
@@ -20,7 +20,7 @@ function waitForEvent(player: alt.Player, event: string, timeout = 10000) {
     })
 }
 
-async function executeFunction(func: TestFunction, players: alt.Player[]) {
+async function executeFunction(func: TestFunction, players: alt.Player[], params: any) {
     const receivedStatuses: Record<number, [number, boolean, string][]> = {};
 
     alt.onClient(prefix + 'executeStatus', (player: alt.Player, id: number, status: boolean, reason: string) => {
@@ -53,10 +53,11 @@ async function executeFunction(func: TestFunction, players: alt.Player[]) {
                 throw e;
             }
         },
-        player: players[0]
+        player: (players[0] as any).mp,
+        params
     }
 
-    alt.emitClient(players, prefix + 'execute', func.index);
+    alt.emitClient(players, prefix + 'execute', func.index, params);
 
     async function waitForAllClients(doThrow = true) {
         await Promise.all(
@@ -103,9 +104,11 @@ async function execute(func: TestFunction, players: alt.Player[], results: TestR
     const after = findProperty('afterEach', func);
     if (after && !skipAutoTasks) functions.push(after);
 
+    const params = func.params ?? {};
+
     for (let currentFunction of functions) {
         try {
-            await executeFunction(currentFunction, players);
+            await executeFunction(currentFunction, players, params);
         } catch(e: any) {
             if (e instanceof SkipError) {
                 results.skipped++;
@@ -153,7 +156,7 @@ async function run(item: TestItem, players: alt.Player[], results: TestResults, 
     }
 }
 
-async function start() {
+async function start(category?: string) {
     const hash = getDataHash();
 
     console.log(chalkTemplate`Initializing test with hash {white.bold ${hash}}...`);
@@ -190,7 +193,8 @@ async function start() {
 
     console.log();
 
-    const root = getRoot();
+    let root = getRoot();
+    if (category) root = root.children.find(e => e.type === 'group' && e.name?.toLowerCase() == category.toLowerCase()) as TestGroup ?? root;
     await run(root, players, results);
 
     console.log();
@@ -214,9 +218,9 @@ async function start() {
 }
 
 export default async function init() {
-    alt.on('consoleCommand', (cmd) => {
+    alt.on('consoleCommand', (cmd, arg) => {
         if (cmd != 'startTest') return;
-        start();
+        start(arg);
     });
     alt.on('playerConnect', (player) => {
         console.log(chalk.blueBright(chalkTemplate`Player {white.bold ${player.name} [${player.id}]} connected`));

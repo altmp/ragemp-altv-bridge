@@ -31,7 +31,7 @@ export default function init() {
         console.log(`Registered onto test with hash ${hash} as client #${index} successfully`);
     });
 
-    alt.onServer(prefix + 'execute', async (functionIndex) => {
+    alt.onServer(prefix + 'execute', async (functionIndex, params) => {
         const func = findFunction(functionIndex);
         console.log(`Executing function ${func.name}...`);
 
@@ -61,7 +61,8 @@ export default function init() {
                 await func({ alt, natives, mp: (globalThis as any).mp } as any);
                 alt.emitServer(prefix + 'executeStatus', id, true);
             },
-            player: alt.Player.local
+            player: (alt.Player.local as any).mp,
+            params
         }
 
         try {

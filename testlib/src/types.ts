@@ -7,7 +7,8 @@ export type TestClientCallback = (func: (ctx: ClientActionContext) => void, play
 export interface TestContext {
     client: TestClientCallback,
     server: TestServerCallback,
-    player: any
+    player: any,
+    params: any
 }
 
 export interface ServerActionContext {
@@ -27,7 +28,8 @@ export interface TestFunction {
     func: (ctx: TestContext) => any,
     index: number,
     parent?: TestGroup,
-    requiredPlayers: number
+    requiredPlayers: number,
+    params?: any
 }
 
 export interface TestGroup {
