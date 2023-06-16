@@ -1,4 +1,4 @@
-import {afterEach, beforeAll, beforeEach, describe, it, tryFor, waitFor} from 'testlib/index.js';
+import {afterEach, beforeEach, describe, it, tryFor, waitFor} from 'testlib/index.js';
 
 describe('vehicle', () => {
     describe('multiple vehicles', () => {
@@ -164,6 +164,7 @@ describe('vehicle', () => {
 
             await client(async ({mp}) => {
                 await tryFor(() => veh.getModel().should.equal(mp.game.joaat('neon')));
+                await tryFor(() => veh.model.should.equal(mp.game.joaat('neon')));
             });
         });
 
