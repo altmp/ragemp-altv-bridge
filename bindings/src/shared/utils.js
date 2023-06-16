@@ -1,4 +1,5 @@
 import * as alt from 'alt-shared';
+import mp from './mp.js';
 
 export const vdist2 = (v1, v2, useZ = true) => {
     if (!v1 || !v2) {
@@ -77,6 +78,13 @@ export const argsToAlt = (args) => {
     return args;
 };
 
+mp.convert = {
+    toMp,
+    toAlt,
+    argsToMp,
+    argsToAlt
+};
+
 // alt.Vector3, rotation in radians
 export const rotToDir = (rot) => {
     return new alt.Vector3(
@@ -112,3 +120,32 @@ export const altSeatToMp = (altSeat) => {
 export const mpSeatToAlt = (mpSeat) => {
     return mpSeat + 1;
 };
+
+export class TemporaryContainer {
+    _timer;
+    _timestamp;
+    _value;
+
+    /** @param {() => (false | number)} timestampGetter */
+    constructor(timestampGetter) {
+        this.timestampGetter = timestampGetter;
+    }
+
+    get value() {
+        return this._value;
+    }
+
+    set value(value) {
+        if (this._timer) alt.clearTimer(this._timer);
+        this._value = value;
+        this._timestamp = this.timestampGetter();
+        this._timer = alt.everyTick(() => {
+            const timestamp = this.timestampGetter();
+            if (timestamp === this._timestamp && timestamp) return;
+            this._value = undefined;
+            this._timestamp = undefined;
+            alt.clearTimer(this._timer);
+            this._timer = undefined;
+        });
+    }
+}

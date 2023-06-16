@@ -1,6 +1,7 @@
 import * as alt from 'alt-server';
 import { _WorldObject } from './WorldObject';
-import {toAlt, toMp} from '../../shared/utils';
+import {TemporaryContainer, toAlt, toMp} from '../../shared/utils';
+import mp from '../../shared/mp';
 
 export class _Entity extends _WorldObject {
     #alt;
@@ -30,5 +31,21 @@ export class _Entity extends _WorldObject {
 
     hasStreamVariable(key) {
         return this.#alt.hasStreamSyncedMeta(key);
+    }
+
+    _position = new TemporaryContainer(() => this.alt.valid && this.alt.getTimestamp);
+    get position() {
+        return this._position.value ?? new mp.Vector3(this.alt.pos);
+    }
+    set position(value) {
+        this._position.value = this.alt.pos = value;
+    }
+
+    _rotation = new TemporaryContainer(() => this.alt.valid && this.alt.getTimestamp);
+    get rotation() {
+        return this._rotation.value ?? new mp.Vector3(this.alt.rot.toDegrees());
+    }
+    set rotation(value) {
+        this._rotation.value = this.alt.pos = new alt.Vector3(value).toRadians();
     }
 }

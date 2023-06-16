@@ -172,8 +172,6 @@ export class _Player extends _Entity {
 
     // TODO: blips
 
-    // TODO: polyfill client appearance setters
-
     setFaceFeature(index, feature) {
         natives.setPedMicroMorph(this.alt, index, feature);
     }
@@ -218,8 +216,6 @@ export class _Player extends _Entity {
         if (value === 255) return natives.resetEntityAlpha(this.alt);
         return natives.setEntityAlpha(this.alt, value, skin);
     }
-
-    // TODO: weapon methods
 
     get setParachuteTaskThrust() {
         return this.setParachuteThrust;

@@ -1,12 +1,13 @@
 import * as alt from 'alt-server';
 import { SyncedMetaProxy } from '../../shared/meta.js';
 import mp from '../../shared/mp.js';
-import {deg2rad, hashIfNeeded, mpDimensionToAlt, rad2deg, vdist, vdist2} from '../../shared/utils.js';
+import {deg2rad, hashIfNeeded, mpDimensionToAlt, TemporaryContainer, rad2deg, vdist, vdist2} from '../../shared/utils.js';
 import { _Entity } from './Entity.js';
 import { ServerPool } from '../pools/ServerPool';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 
 export class _Vehicle extends _Entity {
+    /** @type {import('alt-server').Vehicle} */
     alt;
 
     /** @param {alt.Vehicle} alt */
@@ -113,7 +114,7 @@ export class _Vehicle extends _Entity {
     }
 
     set numberPlateType(value) {
-        this.alt.numberPlateType = value;
+        this.alt.numberPlateIndex = value;
     }
 
     get pearlescentColor() {
@@ -126,20 +127,16 @@ export class _Vehicle extends _Entity {
 
     // TODO: rocketBoost
 
-    get rotation() {
-        return new mp.Vector3(this.alt.rot.toDegrees());
-    }
-
-    set rotation(value) {
-        this.alt.rot = new alt.Vector3(value).toRadians();
-    }
-
     get siren() {
-        return false;
+        return this.alt.sirenActive;
     }
 
     set siren(value) {
-        // TODO: siren
+        this.alt.sirenActive = value;
+    }
+
+    get horn() {
+        return false; // TODO
     }
 
     get steerAngle() {
@@ -190,7 +187,7 @@ export class _Vehicle extends _Entity {
     }
 
     set wheelType(value) {
-        this.alt.wheelType = value;
+        this.alt.setWheels(value, this.alt.frontWheels);
     }
 
     // TODO: alpha
@@ -214,14 +211,6 @@ export class _Vehicle extends _Entity {
         this.alt = newVehicle;
     }
 
-    get position() {
-        return new mp.Vector3(this.alt.pos);
-    }
-
-    set position(value) {
-        this.alt.pos = value;
-    }
-
     type = 'vehicle';
 
     destroy() {
@@ -238,12 +227,11 @@ export class _Vehicle extends _Entity {
     }
 
     getColor(id) {
-        return id == 0 ? this.alt.primaryColor : this.alt.secondaryColor;
+        return id === 0 ? this.alt.primaryColor : this.alt.secondaryColor;
     }
 
     getColorRGB(id) {
-        // TODO: return null
-        return id == 0 ? this.alt.customPrimaryColor : this.alt.customSecondaryColor;
+        return (id === 0 ? this.alt.customPrimaryColor : this.alt.customSecondaryColor).toArray().slice(0, 3);
     }
 
     getExtra(id) {
@@ -320,8 +308,8 @@ export class _Vehicle extends _Entity {
     }
 
     spawn(pos, heading) {
-        this.alt.pos = pos;
-        this.alt.rot = new alt.Vector3(0, 0, heading * deg2rad);
+        this.position = pos;
+        this.rotation = new mp.Vector3(0, 0, heading * rad2deg);
     }
 }
 

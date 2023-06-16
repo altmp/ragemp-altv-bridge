@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "devDependencies": {
-    "@altv/types-client": "^2.6.3",
+    "@altv/types-client": "^2.7.2",
     "@altv/types-natives": "^1.5.3",
     "@altv/types-server": "^2.7.3",
     "@altv/types-shared": "^1.4.8",
