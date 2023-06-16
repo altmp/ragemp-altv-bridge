@@ -3,7 +3,7 @@ import {prefix} from "./constants";
 import {findFunction, getDataHash} from "./indexing";
 import {TestContext} from "./types";
 import * as natives from "natives";
-import {SkipError} from "./utils";
+import {SkipError, waitFor} from "./utils";
 
 function waitForEvent(event: string, timeout = 10000) {
     return new Promise<any[]>((resolve, reject) => {
@@ -17,8 +17,22 @@ function waitForEvent(event: string, timeout = 10000) {
     })
 }
 
+let data: Record<string, any> = {};
+export async function setSyncedData(key: string, value: any) {
+    alt.emitServer(prefix + 'syncData', key, value);
+    await waitFor(() => data[key] === value);
+}
+
+export function getSyncedData(key: string): any {
+    return data[key];
+}
+
 let playerIndex = 0;
 export default function init() {
+    alt.onServer(prefix + 'syncData', (key, value) => {
+        data[key] = value;
+    });
+
     alt.onServer(prefix + 'register', (hash, index) => {
         const localHash = getDataHash();
         if (localHash != hash) {

@@ -7,7 +7,7 @@ export type TestClientCallback = (func: (ctx: ClientActionContext) => void, play
 export interface TestContext {
     client: TestClientCallback,
     server: TestServerCallback,
-    player: any,
+    player: InstanceType<(typeof import('mp-server'))['mp']['Player']> | (typeof import('mp-client'))['mp']['players']['local'],
     params: any
 }
 

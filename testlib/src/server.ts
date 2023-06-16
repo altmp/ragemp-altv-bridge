@@ -6,6 +6,7 @@ import {prefix} from "./constants";
 import {TestContext, TestFunction, TestGroup, TestItem, TestResults} from "./types";
 import {ClientError, SkipError} from "./utils";
 import {autoReconnect} from "./autoReconnect";
+import {Player} from "alt-server";
 
 function waitForEvent(player: alt.Player, event: string, timeout = 10000) {
     return new Promise<any[]>((resolve, reject) => {
@@ -217,14 +218,30 @@ async function start(category?: string) {
     console.log(chalkTemplate`{redBright.bold ${results.failed} failed}, {greenBright.bold ${results.passed} passed}, {gray.bold ${results.skipped} skipped}, ${results.passed + results.failed + results.skipped} total`);
 }
 
+let data: Record<string, any> = {};
+export function setSyncedData(key: string, value: any) {
+    data[key] = value;
+    alt.emitClient(alt.Player.all as Player[], prefix + 'syncData', key, value);
+}
+
+export function getSyncedData(key: string): any {
+    return data[key];
+}
+
 export default async function init() {
     alt.on('consoleCommand', (cmd, arg) => {
         if (cmd != 'startTest') return;
         start(arg);
     });
+
     alt.on('playerConnect', (player) => {
         console.log(chalk.blueBright(chalkTemplate`Player {white.bold ${player.name} [${player.id}]} connected`));
-    })
+    });
+
+    alt.onClient(prefix + 'syncData', (sender, key, value) => {
+        data[key] = value;
+        alt.emitClient(alt.Player.all as Player[], prefix + 'syncData', key, value);
+    });
 
     alt.nextTick(() => {
         autoReconnect();
