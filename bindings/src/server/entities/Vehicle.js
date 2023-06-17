@@ -166,20 +166,27 @@ export class _Vehicle extends _Entity {
         return this.alt.velocity;
     }
 
+    _setWindowTint = false;
     get windowTint() {
+        if (!this._setWindowTint) return 255;
         return this.alt.windowTint;
     }
-
     set windowTint(value) {
+        this._setWindowTint = true;
         this.alt.windowTint = value;
     }
 
+    _wheelColor = new TemporaryContainer(() => this.alt.valid && this.alt.getTimestamp);
+    _setWheelColor = false;
     get wheelColor() {
-        return this.alt.wheelColor;
+        if (!this._setWheelColor) return 255;
+
+        return this._wheelColor.value ?? this.alt.wheelColor;
     }
 
     set wheelColor(value) {
-        this.alt.wheelColor = value;
+        this._setWheelColor = true;
+        this._wheelColor.value = this.alt.wheelColor = value;
     }
 
     get wheelType() {
@@ -309,7 +316,7 @@ export class _Vehicle extends _Entity {
 
     spawn(pos, heading) {
         this.position = pos;
-        this.rotation = new mp.Vector3(0, 0, heading * rad2deg);
+        this.rotation = new mp.Vector3(0, 0, heading * deg2rad);
     }
 }
 

@@ -35,17 +35,17 @@ export class _Entity extends _WorldObject {
 
     _position = new TemporaryContainer(() => this.alt.valid && this.alt.getTimestamp);
     get position() {
-        return this._position.value ?? new mp.Vector3(this.alt.pos);
+        return new mp.Vector3(this._position.value ?? this.alt.pos);
     }
     set position(value) {
-        this._position.value = this.alt.pos = value;
+        this._position.value = this.alt.pos = new alt.Vector3(value);
     }
 
     _rotation = new TemporaryContainer(() => this.alt.valid && this.alt.getTimestamp);
     get rotation() {
-        return this._rotation.value ?? new mp.Vector3(this.alt.rot.toDegrees());
+        return new mp.Vector3(new alt.Vector3(this._rotation.value ?? this.alt.rot).toDegrees());
     }
     set rotation(value) {
-        this._rotation.value = this.alt.pos = new alt.Vector3(value).toRadians();
+        this._rotation.value = this.alt.rot = new alt.Vector3(value).toRadians();
     }
 }

@@ -31,7 +31,7 @@ export class _Player extends _Entity {
 
     set rotation(value) {
         if (this.alt !== alt.Player.local) return;
-        this.alt.rot = value;
+        this.alt.rot = new alt.Vector3(value).toRadians();
     }
 
     get vehicle() {
