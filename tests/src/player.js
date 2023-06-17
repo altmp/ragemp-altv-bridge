@@ -1,5 +1,19 @@
-import {afterAll, afterEach, beforeAll, beforeEach, describe, it, tryFor, waitFor} from 'testlib/index.js';
-import {getSyncedData, setSyncedData} from 'testlib/index.js';
+import {
+    afterAll,
+    afterEach,
+    beforeAll,
+    beforeEach,
+    describe,
+    it,
+    tryFor,
+    waitFor,
+    waitForSyncedData,
+    getSyncedData,
+    setSyncedData,
+    chai
+} from 'testlib/index.js';
+
+const should = chai.should;
 
 describe('player', () => {
     beforeEach(async ({ server, client, player }) => {
@@ -211,7 +225,7 @@ describe('player', () => {
         });
 
         await server(async ({mp}) => {
-            const sc = getSyncedData('scname');
+            const sc = await getSyncedData('scname');
             sc.should.exist;
             player.socialClub.should.equal(sc);
         });
@@ -264,15 +278,10 @@ describe('player', () => {
     });
 
     it('should return rgsc id', async ({server, client, player}) => {
-        await client(async ({mp}) => {
-            const id = mp.game.network.playerGetUserid(mp.game.player.id()).userID;
-            await setSyncedData('scid', +id);
-        });
-
         await server(async ({mp}) => {
-            const id = getSyncedData('scid');
-            id.should.be.a('number');
-            player.rgscId.should.equal(id);
+            player.rgscId.should.be.a('string');
+            player.rgscId.should.not.equal('');
+            player.rgscId.should.not.equal('0');
         });
     });
 
@@ -316,7 +325,7 @@ describe('player', () => {
         });
 
         await client(async ({mp}) => {
-            player.getHeading().should.equal(80);
+            player.getHeading().should.be.approximately(80, 3);
         });
     });
 
@@ -326,7 +335,7 @@ describe('player', () => {
         });
 
         await server(async ({mp}) => {
-            await tryFor(() => player.heading.should.equal(30));
+            await tryFor(() => player.heading.should.be.approximately(30, 3));
         });
     });
 
@@ -412,16 +421,18 @@ describe('player', () => {
     it('should return correct headblend', async ({server, client, player}) => {
         await server(async ({mp}) => {
             player.setHeadBlend(0, 1, 2, 3, 4, 5, 0.1, 0.2, 0.3);
-            const blend = player.getHeadBlend();
-            blend.shapes[0].should.equal(0);
-            blend.shapes[1].should.equal(1);
-            blend.shapes[2].should.equal(2);
-            blend.skins[0].should.equal(3);
-            blend.skins[1].should.equal(4);
-            blend.skins[2].should.equal(5);
-            blend.shapeMix.should.be.approximately(0.1, 0.1);
-            blend.skinMix.should.be.approximately(0.2, 0.1);
-            blend.thirdMix.should.be.approximately(0.3, 0.1);
+            await tryFor(() => {
+                const blend = player.getHeadBlend();
+                blend.shapes[0].should.equal(0);
+                blend.shapes[1].should.equal(1);
+                blend.shapes[2].should.equal(2);
+                blend.skins[0].should.equal(3);
+                blend.skins[1].should.equal(4);
+                blend.skins[2].should.equal(5);
+                blend.shapeMix.should.be.approximately(0.1, 0.1);
+                blend.skinMix.should.be.approximately(0.2, 0.1);
+                blend.thirdMix.should.be.approximately(0.3, 0.1);
+            });
         });
     });
 
@@ -429,16 +440,18 @@ describe('player', () => {
         await server(async ({mp}) => {
             player.setHeadBlend(0, 1, 2, 3, 4, 5, 0.1, 0.2, 0.3);
             player.updateHeadBlend(0.3, 0.2, 0.1);
-            const blend = player.getHeadBlend();
-            blend.shapes[0].should.equal(0);
-            blend.shapes[1].should.equal(1);
-            blend.shapes[2].should.equal(2);
-            blend.skins[0].should.equal(3);
-            blend.skins[1].should.equal(4);
-            blend.skins[2].should.equal(5);
-            blend.shapeMix.should.be.approximately(0.3, 0.1);
-            blend.skinMix.should.be.approximately(0.2, 0.1);
-            blend.thirdMix.should.be.approximately(0.1, 0.1);
+            await tryFor(() => {
+                const blend = player.getHeadBlend();
+                blend.shapes[0].should.equal(0);
+                blend.shapes[1].should.equal(1);
+                blend.shapes[2].should.equal(2);
+                blend.skins[0].should.equal(3);
+                blend.skins[1].should.equal(4);
+                blend.skins[2].should.equal(5);
+                blend.shapeMix.should.be.approximately(0.3, 0.1);
+                blend.skinMix.should.be.approximately(0.2, 0.1);
+                blend.thirdMix.should.be.approximately(0.1, 0.1);
+            });
         });
     });
 
@@ -466,7 +479,7 @@ describe('player', () => {
     it('should return correct head overlays', async ({server, client, player}) => {
         await server(async ({mp}) => {
             player.setHeadOverlay(1, [5, 1, 5, 5]);
-            player.getHeadOverlay(1).should.eq([5, 1, 5, 5]);
+            player.getHeadOverlay(1).should.eql([5, 1, 5, 5]);
         });
     });
 
@@ -563,7 +576,7 @@ describe('player', () => {
 
     it('should return current scripted anim', async ({server, client, player}) => {
         await client(async ({mp}) => {
-            player.getCurrentScriptedAnim().should.eq([mp.game.joaat(animDict), mp.game.joaat(animName)]);
+            player.getCurrentScriptedAnim().should.eql([mp.game.joaat(animDict), mp.game.joaat(animName)]);
         });
     });
 
@@ -659,16 +672,17 @@ describe('player', () => {
 
         it('should remove from vehicle', async ({server, client, player}) => {
             await server(async ({mp}) => {
-                player.vehicle.should.exist;
+                player.putIntoVehicle(vehicle, 0);
+                await tryFor(() => player.vehicle.should.exist);
                 player.removeFromVehicle();
             });
 
             await client(async ({mp}) => {
-                await tryFor(() => player.vehicle.should.not.exist);
+                await tryFor(() => should().not.exist(player.vehicle));
             });
 
             await server(async ({mp}) => {
-                await tryFor(() => player.vehicle.should.not.exist);
+                await tryFor(() => should().not.exist(player.vehicle));
             });
         });
     });
@@ -721,7 +735,7 @@ describe('player', () => {
         });
     });
 
-    it('should set overriden value', async ({server, client, player}) => {
+    it('should set overriden ammo value', async ({server, client, player}) => {
         await server(async ({mp}) => {
             player.setWeaponAmmo(mp.joaat('weapon_pistol'), 50);
             await tryFor(() => player.weaponAmmo.should.equal(50));

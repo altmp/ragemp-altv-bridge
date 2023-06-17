@@ -1,4 +1,5 @@
-import {describe, it, tryFor, SkipError} from 'testlib/index.js';
+import {describe, it, tryFor, SkipError, chai} from 'testlib/index.js';
+const should = chai.should;
 
 describe('global', () => {
     it('should hash joaat', async ({ client, server }) => {
@@ -30,20 +31,20 @@ describe('global', () => {
             mp.config.language.should.equal(config.language);
             mp.config['sync-rate'].should.equal(40);
             mp.config['resource-scan-thread-limit'].should.equal(100);
-            mp.config['max-ping'].should.equal(undefined);
-            mp.config['min-fps'].should.equal(undefined);
-            mp.config['max-packet-loss'].should.equal(undefined);
+            should.equal(mp.config['max-ping'], undefined);
+            should.equal(mp.config['min-fps'], undefined);
+            should.equal(mp.config['max-packet-loss'], undefined);
             mp.config['allow-cef-debugging'].should.equal(config.debug);
             mp.config['enable-nodejs'].should.equal(true);
             mp.config.csharp.should.equal('disabled');
             mp.config['enable-http-security'].should.equal(true);
             mp.config['voice-chat'].should.equal(false);
-            mp.config['allow-voice-chat-input'].should.equal(undefined);
+            should.equal(mp.config['allow-voice-chat-input'], undefined);
             mp.config['voice-chat-sample-rate'].should.equal(44100);
-            mp.config['fastdl-host'].should.equal(undefined);
+            should.equal(mp.config['fastdl-host'], undefined);
             mp.config['server-side-weapons-only-mode'].should.equal(true);
             mp.config['api-threading-debugging'].should.equal(false);
-            mp.config['fqdn'].should.equal(undefined);
+            should.equal(mp.config['fqdn'], undefined);
             mp.config['resources-compression-level'].should.equal(1);
             mp.config['node-commandline-flags'].should.equal(config['js-module']?.['extra-cli-args']?.join(' ') ?? '');
             mp.config['synchronization-extrapolation-multiplier'].should.equal(0);
@@ -53,7 +54,7 @@ describe('global', () => {
             mp.config['trigger-compression-dictionary'].should.equal(false);
             mp.config['create-fastdl-snapshot'].should.equal(false);
             mp.config['disable-client-packages-ram-cache'].should.equal(false);
-            mp.config['client-packages-shared-folder'].should.equal(undefined);
+            should.equal(mp.config['client-packages-shared-folder'], undefined);
         });
     }, 0);
 
