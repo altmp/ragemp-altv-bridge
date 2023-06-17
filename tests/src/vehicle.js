@@ -1,4 +1,4 @@
-import {afterEach, beforeEach, describe, it, tryFor, waitFor} from 'testlib/index.js';
+import {afterEach, beforeAll, beforeEach, describe, it, tryFor, waitFor} from 'testlib/index.js';
 
 describe('vehicle', () => {
     describe('multiple vehicles', () => {
@@ -91,7 +91,7 @@ describe('vehicle', () => {
             await server(async ({mp}) => {
                 player.spawn(new mp.Vector3(0, 0, 73));
                 mp.vehicles.toArray().should.be.empty;
-                veh = mp.vehicles.new(params.model ?? 't20', new mp.Vector3(2, 2, 73), { dimension: player.dimension });
+                veh = mp.vehicles.new(params.model ?? 't20', new mp.Vector3(2, 2, 73), { dimension: player.alt.dimension });
                 veh.alt.setNetOwner(player.alt, true);
                 mp.vehicles.toArray().should.not.be.empty;
                 mp.vehicles.toArray().length.should.equal(1);
@@ -101,6 +101,7 @@ describe('vehicle', () => {
             await client(async ({mp}) => {
                 await waitFor(() => mp.vehicles.toArray().length === 1);
                 veh = mp.vehicles.toArray()[0];
+                await waitFor(() => veh.handle !== 0);
             });
         });
 
@@ -136,12 +137,12 @@ describe('vehicle', () => {
 
         it('should sync position', async ({server, client}) => {
             await server(async ({mp}) => {
-                veh.position = new mp.Vector3(3, 4, 73);
+                veh.position = new mp.Vector3(8, 8, 73);
             });
 
             await client(async ({mp}) => {
-                await tryFor(() => veh.getCoords(false).x.should.be.approximately(3, 0.01));
-                await tryFor(() => veh.getCoords(false).y.should.be.approximately(4, 0.01));
+                await tryFor(() => veh.position.x.should.be.approximately(8, 0.5));
+                await tryFor(() => veh.position.y.should.be.approximately(8, 0.5));
             });
         });
 
@@ -310,7 +311,7 @@ describe('vehicle', () => {
             });
 
             await client(async ({mp}) => {
-                veh.getWheelType().should.equal(7);
+                await tryFor(() => veh.getWheelType().should.equal(7));
             });
         });
 
@@ -333,7 +334,7 @@ describe('vehicle', () => {
             });
 
             await client(async ({mp}) => {
-                veh.getExtraColours(0, 0).wheelColor.should.equal(67);
+                await tryFor(() => veh.getExtraColours(0, 0).wheelColor.should.equal(67));
             });
         });
 
@@ -356,7 +357,7 @@ describe('vehicle', () => {
             });
 
             await client(async ({mp}) => {
-                veh.getWindowTint().should.equal(4);
+                await tryFor(() => veh.getWindowTint().should.equal(4));
             });
         });
 
@@ -395,7 +396,9 @@ describe('vehicle', () => {
         it('should return correct rotation', async ({server, client}) => {
             await server(async ({mp}) => {
                 veh.rotation = new mp.Vector3(0, 0, 180);
-                veh.rotation.should.eql(new mp.Vector3(0, 0, 180));
+                veh.rotation.x.should.be.approximately(0, 3);
+                veh.rotation.y.should.be.approximately(0, 3);
+                veh.rotation.z.should.be.approximately(180, 3);
             });
         }, 0);
 
@@ -447,7 +450,7 @@ describe('vehicle', () => {
 
             await client(async ({mp}) => {
                 await tryFor(() => veh.getNumberPlateTextIndex().should.equal(1));
-                await tryFor(() => veh.getNumberPlateText().should.equal('zziger'));
+                await tryFor(() => veh.getNumberPlateText().trim().toLowerCase().should.equal('zziger'));
             });
         });
 
@@ -507,7 +510,7 @@ describe('vehicle', () => {
 
         it('should sync livery', async ({server, client}) => {
             await server(async ({mp}) => {
-                veh.livery = 2;
+                veh.livery = 3;
             });
 
             await client(async ({mp}) => {

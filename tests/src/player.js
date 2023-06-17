@@ -694,84 +694,95 @@ describe('player', () => {
         });
     });
 
-    it('should return correct weapon ammo amount', async ({server, client, player}) => {
-        await server(async ({mp}) => {
-            player.removeAllWeapons();
-            player.giveWeapon(mp.joaat('weapon_assaultrifle'), 50);
-            await tryFor(() => player.getWeaponAmmo(mp.joaat('weapon_assaultrifle')).should.equal(50));
-        });
-    });
-
-    it('should return correct weapon ammo amount when set multiple', async ({server, client, player}) => {
-        await server(async ({mp}) => {
-            player.removeAllWeapons();
-            player.giveWeapon([mp.joaat('weapon_assaultshotgun'), mp.joaat('weapon_heavysniper')], 150);
-            await tryFor(() => player.getWeaponAmmo(mp.joaat('weapon_assaultshotgun')).should.equal(150));
-            await tryFor(() => player.getWeaponAmmo(mp.joaat('weapon_heavysniper')).should.equal(150));
-        });
-    });
-
-    it('should sync weapon', async ({server, client, player}) => {
-        await server(async ({mp}) => {
-            player.removeAllWeapons();
-            player.giveWeapon(mp.joaat('weapon_pistol'), 100);
+    describe('weapons', () => {
+        beforeAll(async ({ server, player }) => {
+            await server(({ mp }) => {
+                player.model = mp.joaat('mp_m_freemode_01');
+                player.spawn(new mp.Vector3(0, 0, 73));
+            });
         });
 
-        await client(async ({mp}) => {
-            await tryFor(() => player.hasPedGot(mp.game.joaat('weapon_pistol'), false).should.be.true);
-            await tryFor(() => player.getAmmoInPed(mp.game.joaat('weapon_pistol')).should.equal(100));
-        });
-    });
+        beforeEach(() => {}); // override player respawn between each task
 
-    it('should return current weapon', async ({server, client, player}) => {
-        await server(async ({mp}) => {
-            await tryFor(() => player.weapon.should.equal(mp.joaat('weapon_pistol')));
-        });
-    });
-
-    it('should return current weapon ammo', async ({server, client, player}) => {
-        await server(async ({mp}) => {
-            await tryFor(() => player.weaponAmmo.should.equal(100));
-        });
-    });
-
-    it('should set overriden ammo value', async ({server, client, player}) => {
-        await server(async ({mp}) => {
-            player.setWeaponAmmo(mp.joaat('weapon_pistol'), 50);
-            await tryFor(() => player.weaponAmmo.should.equal(50));
+        it('should return correct weapon ammo amount', async ({server, client, player}) => {
+            await server(async ({mp}) => {
+                player.removeAllWeapons();
+                player.giveWeapon(mp.joaat('weapon_assaultrifle'), 50);
+                await tryFor(() => player.getWeaponAmmo(mp.joaat('weapon_assaultrifle')).should.equal(50));
+            });
         });
 
-        await client(async ({mp}) => {
-            await tryFor(() => player.getAmmoInPed(mp.game.joaat('weapon_pistol')).should.equal(50));
-        });
-    });
-
-    it('should remove weapon', async ({server, client, player}) => {
-        await server(async ({mp}) => {
-            player.removeWeapon(mp.joaat('weapon_pistol'));
-            await tryFor(() => player.getWeaponAmmo(mp.joaat('weapon_pistol')).should.equal(0));
+        it('should return correct weapon ammo amount when set multiple', async ({server, client, player}) => {
+            await server(async ({mp}) => {
+                player.removeAllWeapons();
+                player.giveWeapon([mp.joaat('weapon_assaultshotgun'), mp.joaat('weapon_heavysniper')], 150);
+                await tryFor(() => player.getWeaponAmmo(mp.joaat('weapon_assaultshotgun')).should.equal(150));
+                await tryFor(() => player.getWeaponAmmo(mp.joaat('weapon_heavysniper')).should.equal(150));
+            });
         });
 
-        await client(async ({mp}) => {
-            await tryFor(() => player.hasPedGot(mp.game.joaat('weapon_pistol'), false).should.be.false);
-        });
-    });
+        it('should sync weapon', async ({server, client, player}) => {
+            await server(async ({mp}) => {
+                player.removeAllWeapons();
+                player.giveWeapon(mp.joaat('weapon_pistol'), 100);
+            });
 
-    it('should remove all weapons', async ({server, client, player}) => {
-        await server(async ({mp}) => {
-            player.removeAllWeapons();
-            await tryFor(() => player.getWeaponAmmo(mp.joaat('weapon_assaultrifle')).should.equal(0));
-            Object.entries(player.allWeapons).filter(e => e[1] !== 0).should.be.empty;
+            await client(async ({mp}) => {
+                await tryFor(() => player.hasPedGot(mp.game.joaat('weapon_pistol'), false).should.be.true);
+                await tryFor(() => player.getAmmoInPed(mp.game.joaat('weapon_pistol')).should.equal(100));
+            });
         });
 
-        await client(async ({mp}) => {
-            await tryFor(() => player.hasPedGot(mp.game.joaat('weapon_assaultrifle'), false).should.be.false);
+        it('should return current weapon', async ({server, client, player}) => {
+            await server(async ({mp}) => {
+                await tryFor(() => player.weapon.should.equal(mp.joaat('weapon_pistol')));
+            });
         });
-    });
 
-    it('should return all weapons', async ({server, client, player}) => {
-        await server(async ({mp}) => {
-            player.allWeapons.should.be.an('object');
+        it('should return current weapon ammo', async ({server, client, player}) => {
+            await server(async ({mp}) => {
+                await tryFor(() => player.weaponAmmo.should.equal(100));
+            });
+        });
+
+        it('should set overriden ammo value', async ({server, client, player}) => {
+            await server(async ({mp}) => {
+                player.setWeaponAmmo(mp.joaat('weapon_pistol'), 50);
+                await tryFor(() => player.weaponAmmo.should.equal(50));
+            });
+
+            await client(async ({mp}) => {
+                await tryFor(() => player.getAmmoInPed(mp.game.joaat('weapon_pistol')).should.equal(50));
+            });
+        });
+
+        it('should remove weapon', async ({server, client, player}) => {
+            await server(async ({mp}) => {
+                player.removeWeapon(mp.joaat('weapon_pistol'));
+                await tryFor(() => player.getWeaponAmmo(mp.joaat('weapon_pistol')).should.equal(0));
+            });
+
+            await client(async ({mp}) => {
+                await tryFor(() => player.hasPedGot(mp.game.joaat('weapon_pistol'), false).should.be.false);
+            });
+        });
+
+        it('should remove all weapons', async ({server, client, player}) => {
+            await server(async ({mp}) => {
+                player.removeAllWeapons();
+                await tryFor(() => player.getWeaponAmmo(mp.joaat('weapon_assaultrifle')).should.equal(0));
+                Object.entries(player.allWeapons).filter(e => e[1] !== 0).should.be.empty;
+            });
+
+            await client(async ({mp}) => {
+                await tryFor(() => player.hasPedGot(mp.game.joaat('weapon_assaultrifle'), false).should.be.false);
+            });
+        });
+
+        it('should return all weapons', async ({server, client, player}) => {
+            await server(async ({mp}) => {
+                player.allWeapons.should.be.an('object');
+            });
         });
     });
 
