@@ -228,10 +228,16 @@ export function getSyncedData(key: string): any {
     return data[key];
 }
 
+export const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;
 export default async function init() {
-    alt.on('consoleCommand', (cmd, arg) => {
-        if (cmd != 'startTest') return;
-        start(arg);
+    alt.on('consoleCommand', (cmd, ...args) => {
+        if (cmd == 'startTest') {
+            start(args[0]);
+        } else if (cmd == 'eval') {
+            (async () => {
+                console.log(await new AsyncFunction('alt', 'mp', args.join(' '))(alt, (globalThis as any).mp));
+            })();
+        }
     });
 
     alt.on('playerConnect', (player) => {
