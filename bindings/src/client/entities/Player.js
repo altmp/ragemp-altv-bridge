@@ -7,6 +7,7 @@ import {toMp} from '../../shared/utils';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 
 export class _Player extends _Entity {
+    /** @type {import('alt-client').Player} */
     alt;
 
     /** @param {alt.Player} alt */
@@ -15,12 +16,13 @@ export class _Player extends _Entity {
         this.alt = alt;
     }
 
-    get position() { //TODO: add in core
+    get position() {
         return new mp.Vector3(this.alt.pos);
     }
 
     set position(value) {
-        natives.setEntityCoordsNoOffset(this.alt, value.x, value.y, value.z, false, false, false);
+        if (this.alt !== alt.Player.local) return;
+        this.alt.pos = value;
     }
 
     get rotation() {
@@ -28,7 +30,8 @@ export class _Player extends _Entity {
     }
 
     set rotation(value) {
-        natives.setEntityRotation(this.handle, value.x, value.y, value.z, 2, false);
+        if (this.alt !== alt.Player.local) return;
+        this.alt.rot = value;
     }
 
     get vehicle() {
@@ -163,11 +166,11 @@ export class _Player extends _Entity {
     }
 
     getCurrentScriptedAnim() {
-        return 0; // TODO
+        return undefined; // TODO
     }
 
     getCurrentScenarioId() {
-        return 0; // TODO
+        return undefined; // TODO
     }
 
     // TODO: blips
@@ -939,6 +942,10 @@ export class _Player extends _Entity {
 
     getHealth() {
         return natives.getEntityHealth(this.alt) - 100;
+    }
+
+    setHealth(value) {
+        natives.setEntityHealth(this.alt, value + 100);
     }
 
     get isAttachedTo() {

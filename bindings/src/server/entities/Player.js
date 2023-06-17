@@ -1,7 +1,16 @@
 import * as alt from 'alt-server';
 import { SyncedMetaProxy } from '../../shared/meta.js';
 import mp from '../../shared/mp.js';
-import {altSeatToMp, argsToAlt, deg2rad, hashIfNeeded, rad2deg, vdist, vdist2} from '../../shared/utils.js';
+import {
+    altSeatToMp,
+    argsToAlt,
+    deg2rad,
+    hashIfNeeded,
+    rad2deg,
+    TemporaryContainer,
+    vdist,
+    vdist2
+} from '../../shared/utils.js';
 import { _Entity } from './Entity.js';
 import { PlayerPool } from '../pools/PlayerPool';
 import { InternalChat } from '../../shared/DefaultChat.js';
@@ -48,19 +57,23 @@ export class _Player extends _Entity {
         return Object.fromEntries(this.alt.weapons.map(e => [e.hash, this.alt.getWeaponAmmo(e.hash)])); // TODO: ammo
     }
 
+
+    _armour = new TemporaryContainer(() => this.alt.valid && this.alt.getTimestamp);
     get armour() {
-        return this.alt.armour;
+        return (this._armour.value ?? this.alt.armour);
     }
-
     set armour(value) {
-        this.alt.armour = value;
+        this._armour.value = this.alt.armour = value;
     }
 
+    _eyeColor = new TemporaryContainer(() => this.alt.valid && this.alt.getTimestamp);
     get eyeColor() {
-        return this.alt.getEyeColor();
+        this.#ensureHeadblend();
+        return (this._eyeColor.value ?? this.alt.getEyeColor());
     }
-
     set eyeColor(value) {
+        this.#ensureHeadblend();
+        this._eyeColor.value = value;
         this.alt.setEyeColor(value);
     }
 
@@ -69,18 +82,22 @@ export class _Player extends _Entity {
     }
 
     get hairColor() {
+        this.#ensureHeadblend();
         return this.alt.getHairColor();
     }
 
     set hairColor(value) {
+        this.#ensureHeadblend();
         this.alt.setHairColor(value);
     }
 
     get hairHighlightColor() {
+        this.#ensureHeadblend();
         return this.alt.getHairHighlightColor();
     }
 
     set hairHighlightColor(value) {
+        this.#ensureHeadblend();
         this.alt.setHairHighlightColor(value);
     }
 
@@ -92,12 +109,12 @@ export class _Player extends _Entity {
         this.alt.rot = new alt.Vector3(this.alt.rot.x, this.alt.rot.y, value * deg2rad);
     }
 
+    _health = new TemporaryContainer(() => this.alt.valid && this.alt.getTimestamp);
     get health() {
-        return this.alt.health - 100;
+        return (this._health.value ?? this.alt.health) - 100;
     }
-
     set health(value) {
-        this.alt.health = value + 100;
+        this._health.value = this.alt.health = value + 100;
     }
 
     get rgscId() {
@@ -188,14 +205,6 @@ export class _Player extends _Entity {
         this.alt.deleteMeta(mp.prefix + 'headblendInit');
         this.alt.model = value;
         mp.events.dispatch('entityModelChange', this, oldModel);
-    }
-
-    get position() {
-        return new mp.Vector3(this.alt.pos);
-    }
-
-    set position(value) {
-        this.alt.pos = value;
     }
 
     type = 'player';
@@ -293,7 +302,7 @@ export class _Player extends _Entity {
     }
 
     invoke(native, ...args) {
-        this.alt.emit('$invoke', native, ...argsToAlt(args));
+        this.alt.emit(mp.prefix + 'invoke', native, ...argsToAlt(args));
     }
 
     isStreamed(player) {
@@ -377,6 +386,7 @@ export class _Player extends _Entity {
     }
 
     setHeadBlend(shapeFirst, shapeSecond, shapeThird, skinFirst, skinSecond, skinThird, shapeMix, skinMix, thirdMix) {
+        this.#ensureHeadblend();
         this.alt.setHeadBlendData(shapeFirst, shapeSecond, shapeThird, skinFirst, skinSecond, skinThird, shapeMix, skinMix, thirdMix);
     }
 

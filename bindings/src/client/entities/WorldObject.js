@@ -1,5 +1,5 @@
 import * as alt from 'alt-client';
-import {mpDimensionToAlt, toMp, vdist, vdist2} from '../../shared/utils';
+import {altDimensionToMp, mpDimensionToAlt, toMp, vdist, vdist2} from '../../shared/utils';
 import { _BaseObject } from './BaseObject';
 import natives from 'natives';
 import mp from '../../shared/mp';
@@ -30,7 +30,7 @@ export class _WorldObject extends _BaseObject {
     }
 
     get dimension() {
-        return this.alt.dimension ?? alt.Player.local.dimension;
+        return altDimensionToMp(this.alt.dimension ?? alt.Player.local.dimension);
     }
 
     set dimension(value) {
