@@ -27,6 +27,10 @@ export function getSyncedData(key: string): any {
     return data[key];
 }
 
+export function hasSyncedData(key: string): boolean {
+    return key in data;
+}
+
 export const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;
 let playerIndex = 0;
 export default function init() {
@@ -42,6 +46,7 @@ export default function init() {
     });
 
     alt.onServer(prefix + 'register', (hash, index) => {
+        data = {};
         const localHash = getDataHash();
         if (localHash != hash) {
             alt.emitServer(prefix + 'registerStatus', false, `Test hash match failed. Local hash is ${localHash}, while expected is ${hash}`);

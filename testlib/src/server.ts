@@ -158,6 +158,7 @@ async function run(item: TestItem, players: alt.Player[], results: TestResults, 
 }
 
 async function start(category?: string) {
+    data = {};
     const hash = getDataHash();
 
     console.log(chalkTemplate`Initializing test with hash {white.bold ${hash}}...`);
@@ -226,6 +227,10 @@ export function setSyncedData(key: string, value: any) {
 
 export function getSyncedData(key: string): any {
     return data[key];
+}
+
+export function hasSyncedData(key: string): boolean {
+    return key in data;
 }
 
 export const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;
