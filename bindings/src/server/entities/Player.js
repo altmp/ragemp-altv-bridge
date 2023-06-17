@@ -1,7 +1,7 @@
 import * as alt from 'alt-server';
 import { SyncedMetaProxy } from '../../shared/meta.js';
 import mp from '../../shared/mp.js';
-import {altSeatToMp, argsToAlt, deg2rad, rad2deg, vdist, vdist2} from '../../shared/utils.js';
+import {altSeatToMp, argsToAlt, deg2rad, hashIfNeeded, rad2deg, vdist, vdist2} from '../../shared/utils.js';
 import { _Entity } from './Entity.js';
 import { PlayerPool } from '../pools/PlayerPool';
 import { InternalChat } from '../../shared/DefaultChat.js';
@@ -45,7 +45,7 @@ export class _Player extends _Entity {
     }
 
     get allWeapons() {
-        return Object.fromEntries(this.alt.weapons.map(e => [e.hash, 0])); // TODO: ammo
+        return Object.fromEntries(this.alt.weapons.map(e => [e.hash, this.alt.getWeaponAmmo(e.hash)])); // TODO: ammo
     }
 
     get armour() {
@@ -162,10 +162,14 @@ export class _Player extends _Entity {
     }
 
     get weaponAmmo() {
-        return 0; // TODO
+        if (!this.alt.currentWeapon) return 0;
+        return this.alt.getWeaponAmmo(this.alt.currentWeapon);
     }
 
-    set weaponAmmo(value) {}
+    set weaponAmmo(value) {
+        if (!this.alt.currentWeapon) return;
+        this.alt.setWeaponAmmo(this.alt.currentWeapon, value);
+    }
 
     get alpha() {
         return this.alt.getStreamSyncedMeta(mp.prefix + 'alpha');
@@ -266,24 +270,26 @@ export class _Player extends _Entity {
     }
 
     getWeaponAmmo(weaponHash) {
-        return 0; // TODO
+        if (!this.alt.weapons.some(e => e.hash === weaponHash)) return 0; // todo implement HasWeapon in core
+        return this.alt.getWeaponAmmo(hashIfNeeded(weaponHash)) ?? 0;
     }
 
-    giveWeapon(weapon, ammo) { // TODO: object overload
+    giveWeapon(weapon, ammo) {
+        if (!ammo) return;
         if (Array.isArray(weapon)) {
             if (Array.isArray(ammo)) {
                 for (let i = 0; i < weapon.length; i++) {
-                    this.giveWeapon(weapon[i], ammo[i] ?? 1);
+                    this.giveWeapon(weapon[i], ammo[i] ?? 0);
                 }
             } else {
-                for (const weapon of weapon) {
-                    this.giveWeapon(weapon, ammo);
+                for (const hash of weapon) {
+                    this.giveWeapon(hash, ammo);
                 }
             }
             return;
         }
 
-        this.alt.giveWeapon(weapon, ammo, true); // TODO: is true?
+        this.alt.giveWeapon(weapon, ammo, true);
     }
 
     invoke(native, ...args) {
@@ -335,7 +341,7 @@ export class _Player extends _Entity {
     }
 
     removeWeapon(weapon) {
-        this.alt.removeWeapon(weapon);
+        this.alt.removeWeapon(hashIfNeeded(weapon));
     }
 
     removeAllWeapons() {
@@ -348,8 +354,6 @@ export class _Player extends _Entity {
 
     setCustomization(gender, shapeFirst, shapeSecond, shapeThird, skinFirst, skinSecond, skinThird, shapeMix, skinMix, thirdMix, eyeColor, hairColor, highlightColor, faceFeatures) {
         this.#ensureHeadblend();
-        this.alt.removeAllWeapons(); // TODO: is needed?
-        // TODO: is model set needed?
         if (gender === true) this.model = alt.hash('mp_m_freemode_01');
         else this.model = alt.hash('mp_f_freemode_01');
         this.alt.setHeadBlendData(shapeFirst, shapeSecond, shapeThird, skinFirst, skinSecond, skinThird, shapeMix, skinMix, thirdMix);
@@ -389,7 +393,7 @@ export class _Player extends _Entity {
     }
 
     setWeaponAmmo(weapon, ammo) {
-        // TODO
+        this.alt.setWeaponAmmo(hashIfNeeded(weapon), ammo);
     }
 
     spawn(pos) {
