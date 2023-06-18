@@ -37,6 +37,7 @@ class _Cursor {
     }
 
     set position(pos) {
+        if (Array.isArray(pos)) pos = { x: pos[0], y: pos[1] };
         alt.setCursorPos(pos, false);
     }
 }

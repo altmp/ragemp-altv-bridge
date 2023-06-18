@@ -19,7 +19,7 @@ class _Time {
     }
 
     set hour(value) {
-        if(value < 0 || value > 23) throw new Error('The valid values for hour is from 0 to 23');
+        if(value < 0 || value > 23) return;
         this.#hour = value;
     }
 
@@ -28,7 +28,7 @@ class _Time {
     }
 
     set minute(value) {
-        if(value < 0 || value > 59) throw new Error('The valid values for minute is from 0 to 59');
+        if(value < 0 || value > 59) return;
         this.#minute = value;
     }
 
@@ -37,45 +37,35 @@ class _Time {
     }
 
     set second(value) {
-        if(value < 0 || value > 59) throw new Error('The valid values for second is from 0 to 59');
+        if(value < 0 || value > 59) return;
         this.#second = value;
     }
 
     set(h, m, s) {
-        if(h < 0 || h > 23) throw new Error('The valid values for hour is from 0 to 23');
-        if(m < 0 || m > 59) throw new Error('The valid values for minute is from 0 to 59');
-        if(s < 0 || s > 59) throw new Error('The valid values for second is from 0 to 59');
-        this.#hour = h;
-        this.#minute = m;
-        this.#second = s;
+        if (h != null) {
+            if (h < 0 || h > 23) return;
+            if (m < 0 || m > 59) return;
+            if (s < 0 || s > 59) return;
+            this.#hour = h;
+            this.#minute = m;
+            this.#second = s;
+        }
+        alt.setSyncedMeta(mp.prefix + 'time', [this.#hour, this.#minute, this.#second]);
     }
 }
 
 class _TrafficLights {
-    #state;
-
-    constructor() {
-        this.#state = 0;
-    }
-
-    get state() {
-        return this.#state;
-    }
-
-    set state(value) {
-        this.#state = value;
-    }
+    state = 0;
+    locked = false;
 }
 
 export class _World {
     #weather;
-    #easeTime;
 
     constructor() {
         this.time = new _Time;
         this.trafficLights = new _TrafficLights;
         this.#weather = 'CLEAR';
-        this.#easeTime = -1;
     }
 
     get weather() {
@@ -84,17 +74,22 @@ export class _World {
 
     set weather(value) {
         this.#weather = value;
+        alt.setSyncedMeta(mp.prefix + 'weather', value);
+        alt.emitAllClients(mp.prefix + 'weather', value);
     }
 
     setWeatherTransition(weather, easeTime) {
         this.#weather = weather;
-        if(easeTime) {
-            this.#easeTime = easeTime;
-        }
+        alt.setSyncedMeta(mp.prefix + 'weather', weather);
+        alt.emitAllClients(mp.prefix + 'weatherTransition', weather, easeTime);
     }
 
-    removeIpl(ipl) {}
-    requestIpl(ipl) {}
+    removeIpl(ipl) {
+        alt.emitAllClients(mp.prefix + 'removeIpl', ipl);
+    }
+    requestIpl(ipl) {
+        alt.emitAllClients(mp.prefix + 'requestIpl', ipl);
+    }
 }
 
 mp.world = new _World;
