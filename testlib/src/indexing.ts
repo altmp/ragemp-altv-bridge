@@ -17,7 +17,8 @@ export function describe(name: string, func: () => void) {
     const group: TestGroup = {
         name,
         type: 'group',
-        children: []
+        children: [],
+        parent: current
     };
     previous.children.push(group);
     current = group;

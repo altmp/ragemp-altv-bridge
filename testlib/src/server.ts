@@ -157,7 +157,7 @@ async function run(item: TestItem, players: alt.Player[], results: TestResults, 
     }
 }
 
-async function start(category?: string) {
+async function start(path?: string[]) {
     data = {};
     const hash = getDataHash();
 
@@ -196,7 +196,10 @@ async function start(category?: string) {
     console.log();
 
     let root = getRoot();
-    if (category) root = root.children.find(e => e.type === 'group' && e.name?.toLowerCase() == category.toLowerCase()) as TestGroup ?? root;
+    while (path && path.length) {
+        const el = path.shift();
+        root = root.children.find(e => e.type === 'group' && e.name?.toLowerCase() == el!.toLowerCase()) as TestGroup ?? root;
+    }
     await run(root, players, results);
 
     console.log();
@@ -237,7 +240,7 @@ export const AsyncFunction = Object.getPrototypeOf(async function () {}).constru
 export default async function init() {
     alt.on('consoleCommand', (cmd, ...args) => {
         if (cmd == 'startTest') {
-            start(args[0]);
+            start(args);
         } else if (cmd == 'eval') {
             (async () => {
                 console.log(await new AsyncFunction('alt', 'mp', args.join(' '))(alt, (globalThis as any).mp));
