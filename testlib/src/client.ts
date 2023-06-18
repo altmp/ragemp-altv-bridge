@@ -34,12 +34,12 @@ export function hasSyncedData(key: string): boolean {
 export const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;
 let playerIndex = 0;
 export default function init() {
-    alt.on('consoleCommand', (cmd, ...args) => {
-        if (cmd != 'eval') return;
-        (async () => {
-            console.log(await new AsyncFunction('alt', 'natives', 'mp', args.join(' '))(alt, natives, (globalThis as any).mp));
-        })();
-    })
+    // alt.on('consoleCommand', (cmd, ...args) => {
+    //     if (cmd != 'eval') return;
+    //     (async () => {
+    //         console.log(await new AsyncFunction('alt', 'natives', 'mp', args.join(' '))(alt, natives, (globalThis as any).mp));
+    //     })();
+    // })
 
     alt.onServer(prefix + 'syncData', (key, value) => {
         data[key] = value;
