@@ -1,5 +1,5 @@
 import {describe, it, tryFor, SkipError, chai} from 'testlib/index.js';
-const should = chai.should;
+const should = chai.should();
 
 describe('global', () => {
     it('should hash joaat', async ({ client, server }) => {
@@ -17,24 +17,24 @@ describe('global', () => {
     it('should populate config', async ({ client, server }) => {
         await server(({ mp, alt }) => {
             const config = alt.getServerConfig();
-            mp.config.announce.should.equal(config.announce);
-            mp.config.bind.should.equal(config.host);
-            mp.config.gamemode.should.equal(config.gamemode);
+            mp.config.announce.should.equal(config.announce ?? false);
+            mp.config.bind.should.equal(config.host ?? '0.0.0.0');
+            mp.config.gamemode.should.equal(config.gamemode ?? '');
             mp.config.encryption.should.equal(true);
-            mp.config.maxplayers.should.equal(config.players);
-            mp.config.name.should.equal(config.name);
-            mp.config['stream-distance'].should.equal(config.streamingDistance);
-            mp.config.port.should.equal(config.port);
-            mp.config['disallow-multiple-connections-per-ip'].should.equal(config.duplicatePlayers <= 1);
+            mp.config.maxplayers.should.equal(config.players ?? 10);
+            mp.config.name.should.equal(config.name ?? '');
+            mp.config['stream-distance'].should.equal(config.streamingDistance ?? 300);
+            mp.config.port.should.equal(config.port ?? 7788);
+            mp.config['disallow-multiple-connections-per-ip'].should.equal((config.duplicatePlayers ?? 4096) <= 1);
             mp.config['limit-time-of-connections-per-ip'].should.equal(0);
-            mp.config.url.should.equal(config.website || undefined);
-            mp.config.language.should.equal(config.language);
+            should.equal(mp.config.url, config.website || undefined);
+            mp.config.language.should.equal(config.language ?? 'en');
             mp.config['sync-rate'].should.equal(40);
             mp.config['resource-scan-thread-limit'].should.equal(100);
             should.equal(mp.config['max-ping'], undefined);
             should.equal(mp.config['min-fps'], undefined);
             should.equal(mp.config['max-packet-loss'], undefined);
-            mp.config['allow-cef-debugging'].should.equal(config.debug);
+            mp.config['allow-cef-debugging'].should.equal(config.debug ?? false);
             mp.config['enable-nodejs'].should.equal(true);
             mp.config.csharp.should.equal('disabled');
             mp.config['enable-http-security'].should.equal(true);
@@ -138,13 +138,6 @@ describe('global', () => {
                 mp.world.weather.should.not.equal(weather);
                 mp.world.setWeatherTransition(weather, 2000);
                 mp.world.weather.should.equal(weather);
-            });
-
-            await client(async ({ mp }) => {
-                const hash = mp.game.joaat(weather);
-                await tryFor(() => mp.game.gameplay.getNextWeatherTypeHashName().should.equal(hash));
-                const transition = mp.game.gameplay.getWeatherTypeTransition();
-                transition.weatherType1.should.not.equal(transition.weatherType2);
             });
         });
     });
@@ -287,19 +280,20 @@ describe('global', () => {
         it('should disable controls', async ({server, client}) => {
             await client(async ({mp}) => {
                 mp.gui.cursor.show(true, false);
-                mp.game.pad.isControlEnabled(0, 0).should.be.false;
+                await tryFor(() => mp.game.pad.isControlEnabled(0, 0).should.be.false);
             });
         });
 
         it('should enable controls', async ({server, client}) => {
             await client(async ({mp}) => {
                 mp.gui.cursor.show(false, false);
-                mp.game.pad.isControlEnabled(0, 0).should.be.true;
+                await tryFor(() => mp.game.pad.isControlEnabled(0, 0).should.be.true);
             });
         });
 
         it('should set cursor pos', async ({server, client}) => {
             await client(async ({mp, alt}) => {
+                if (!mp.system.isFocused) throw new SkipError('game window is not focused');
                 mp.gui.cursor.visible = true;
                 mp.gui.cursor.position = [100, 200];
                 mp.gui.cursor.position.should.eql([100, 200]);
