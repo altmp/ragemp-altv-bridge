@@ -2,3 +2,5 @@ type = 'js'
 main = 'index.js'
 client-main = 'index.js'
 client-files = ['*', 'testlib/*']
+[config]
+bridge-main = 'true'
