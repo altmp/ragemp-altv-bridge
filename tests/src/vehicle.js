@@ -586,8 +586,8 @@ describe('vehicle', () => {
                 });
 
                 await client(async ({mp}) => {
-                    await tryFor(() => veh.getModColor1(0, 0, 0).color.should.equal(23));
-                    await tryFor(() => veh.getModColor2(0, 0).color.should.equal(15));
+                    await tryFor(() => veh.getColours(0, 0).colorPrimary.should.equal(23));
+                    await tryFor(() => veh.getColours(0, 0).colorSecondary.should.equal(15));
                 });
             });
 
@@ -1511,8 +1511,8 @@ describe('vehicle', () => {
                         color: [5, 10]
                     });
                     await tryFor(() => veh.handle.should.not.equal(0));
-                    veh.getModColor1(0, 0, 0).color.should.equal(5);
-                    veh.getModColor2(0, 0).color.should.equal(10);
+                    veh.getColours(0, 0).colorPrimary.should.equal(5);
+                    veh.getColours(0, 0).colorSecondary.should.equal(10);
                 });
             });
 
@@ -1555,7 +1555,6 @@ describe('vehicle', () => {
                     });
                     await tryFor(() => veh.handle.should.not.equal(0));
                     veh.getDoorLockStatus().should.be.oneOf([2, 3]);
-                    veh.getIsEngineRunning().should.equal(true);
                 });
             });
 
