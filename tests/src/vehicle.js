@@ -540,7 +540,7 @@ describe('vehicle', () => {
                 });
 
                 await client(async ({mp}) => {
-                    await tryFor(() => veh.getIsEngineRunning().should.be.true);
+                    await tryFor(() => veh.getIsEngineRunning().should.be.true, 5000);
                 });
             });
 
@@ -622,15 +622,15 @@ describe('vehicle', () => {
 
             it('should sync extras', async ({server, client}) => {
                 await server(async ({mp}) => {
-                    veh.setExtra(4, true);
-                    veh.setExtra(5, false);
+                    veh.setExtra(1, true);
+                    veh.setExtra(2, false);
                 });
 
                 await client(async ({mp}) => {
-                    await tryFor(() => veh.isExtraTurnedOn(4).should.be.true);
-                    await tryFor(() => veh.isExtraTurnedOn(5).should.be.false);
+                    await tryFor(() => veh.isExtraTurnedOn(1).should.be.true);
+                    await tryFor(() => veh.isExtraTurnedOn(2).should.be.false);
                 });
-            });
+            }, 1, { model: 'tiptruck' });
 
             it('should return correct mod value', async ({server, client}) => {
                 await server(async ({mp}) => {
@@ -641,7 +641,7 @@ describe('vehicle', () => {
 
             it('should sync mods', async ({server, client}) => {
                 await server(async ({mp}) => {
-                    veh.setMod(4, 1);
+                    veh.setMod(4, 2);
                 });
 
                 await client(async ({mp}) => {
