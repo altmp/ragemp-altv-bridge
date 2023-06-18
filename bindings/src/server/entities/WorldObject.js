@@ -47,6 +47,7 @@ export class _WorldObject extends _BaseObject {
 
     set dimension(value) {
         this.alt.dimension = mpDimensionToAlt(value);
+        this.setVariable(mp.prefix + 'dimension', value);
     }
 
     get id() {

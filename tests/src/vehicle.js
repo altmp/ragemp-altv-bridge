@@ -93,6 +93,7 @@ describe('vehicle', () => {
             beforeEach(async ({server, client, player, params}) => {
                 await server(async ({mp}) => {
                     player.spawn(new mp.Vector3(0, 0, 73));
+                    player.dimension = 0;
                     mp.vehicles.toArray().should.be.empty;
                     veh = mp.vehicles.new(params.model ?? 't20', new mp.Vector3(2, 2, 73), {dimension: player.dimension});
                     veh.alt.setNetOwner(player.alt, true);
@@ -432,7 +433,7 @@ describe('vehicle', () => {
                 });
 
                 await client(async ({mp}) => {
-                    await tryFor(() => veh.getModColor1(0, 0, 0).pearlescentColor.should.equal(100));
+                    await tryFor(() => veh.getExtraColours(0, 0).pearlescentColor.should.equal(100));
                 });
             });
 
@@ -929,8 +930,9 @@ describe('vehicle', () => {
 
         describe(null, () => {
 
-            beforeEach(async ({ client, server }) => {
+            beforeEach(async ({ client, server, player }) => {
                 await server(async ({mp}) => {
+                    player.spawn(new mp.Vector3(0, 0, 73));
                     mp.vehicles.toArray().should.be.empty;
                     mp.vehicles.length.should.equal(0);
                 });
@@ -948,7 +950,7 @@ describe('vehicle', () => {
 
             it('should spawn invalid model properly', async ({server, client, player}) => {
                 await server(async ({mp}) => {
-                    mp.vehicles.new(mp.joaat('thismodeldoesnotexist'), new mp.Vector3(2, 2, 73), {});
+                    mp.vehicles.new(mp.joaat('thismodeldoesnotexist'), new mp.Vector3(2, 2, 73), { dimension: player.dimension });
                     mp.vehicles.toArray().should.not.be.empty;
                     mp.vehicles.length.should.equal(1);
                 });
@@ -1235,6 +1237,7 @@ describe('vehicle', () => {
             beforeEach(async ({server, client, player, params}) => {
                 await server(async ({mp}) => {
                     player.spawn(new mp.Vector3(0, 0, 73));
+                    player.dimension = 0;
                 });
 
                 await client(async ({mp}) => {

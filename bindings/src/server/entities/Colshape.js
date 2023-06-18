@@ -59,28 +59,28 @@ mp.colshapes = new ServerPool(EntityGetterView.fromClass(alt.Colshape));
 
 mp.colshapes.newCircle = function(x, y, radius, dimension = 0) {
     const shape = new alt.ColshapeCircle(x, y, radius);
-    shape.dimension = mpDimensionToAlt(dimension);
+    shape.mp.dimension = dimension;
     shape.playersOnly = true;
     return shape.mp;
 };
 
 mp.colshapes.newSphere = function(x, y, z, range, dimension = 0) {
     const shape = new alt.ColshapeSphere(x, y, z, range);
-    shape.dimension = mpDimensionToAlt(dimension);
+    shape.mp.dimension = dimension;
     shape.playersOnly = true;
     return shape.mp;
 };
 
 mp.colshapes.newCuboid = function(x, y, z, width, depth, height, dimension = 0) {
     const shape = new alt.ColshapeCuboid(x - width / 2, y - depth / 2, z - height / 2, x + width / 2, y + depth / 2, z + height / 2);
-    shape.dimension = mpDimensionToAlt(dimension);
+    shape.mp.dimension = dimension;
     shape.playersOnly = true;
     return shape.mp;
 };
 
 mp.colshapes.newRectangle = function(x, y, width, height, dimension = 0) {
     const shape = new alt.ColshapeRectangle(x - width / 2, y - height / 2, x + width / 2, y + height / 2);
-    shape.dimension = mpDimensionToAlt(dimension);
+    shape.mp.dimension = dimension;
     shape.playersOnly = true;
     return shape.mp;
 };
@@ -88,7 +88,7 @@ mp.colshapes.newRectangle = function(x, y, width, height, dimension = 0) {
 // RAGE MP docs don't have dimension arg here wtf
 mp.colshapes.newTube = function(x, y, z, height, range, dimension = 0) {
     const shape = new alt.ColshapeCylinder(x, y, z, range, height);
-    shape.dimension = mpDimensionToAlt(dimension);
+    shape.mp.dimension = dimension;
     shape.playersOnly = true;
     return shape.mp;
 };

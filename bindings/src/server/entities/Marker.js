@@ -62,8 +62,6 @@ export class _Marker extends _Entity {
     destroy() {
         this.alt.destroy();
     }
-
-    type = 'marker';
 }
 
 Object.defineProperty(alt.Marker.prototype, 'mp', {
@@ -84,7 +82,7 @@ mp.markers.new = function(type, position, scale, options = {}) {
     if ('direction' in options) marker.dir = new alt.Vector3(options.direction.x, options.direction.y, options.direction.z);
     if ('rotation' in options) marker.rot = new alt.Vector3(options.rotation.x * deg2rad, options.rotation.y * deg2rad, options.rotation.z * deg2rad);
     if ('visible' in options) marker.visible = options.visible;
-    if ('dimension' in options) marker.dimension = mpDimensionToAlt(options.dimension);
+    if ('dimension' in options) marker.mp.dimension = options.dimension;
     marker.scale = new alt.Vector3(scale, scale, scale);
     return marker.mp;
 };

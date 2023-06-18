@@ -30,7 +30,7 @@ export class _WorldObject extends _BaseObject {
     }
 
     get dimension() {
-        return altDimensionToMp(this.alt.dimension ?? alt.Player.local.dimension);
+        return altDimensionToMp(this.getVariable(mp.prefix + 'dimension') ?? this.alt.dimension ?? alt.Player.local.dimension);
     }
 
     set dimension(value) {

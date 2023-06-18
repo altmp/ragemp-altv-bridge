@@ -1,18 +1,9 @@
 import * as alt from 'alt-server';
-import { SyncedMetaProxy } from '../../shared/meta.js';
+import {SyncedMetaProxy} from '../../shared/meta.js';
 import mp from '../../shared/mp.js';
-import {
-    deg2rad,
-    hashIfNeeded,
-    mpDimensionToAlt,
-    TemporaryContainer,
-    rad2deg,
-    vdist,
-    vdist2,
-    mpSeatToAlt
-} from '../../shared/utils.js';
-import { _Entity } from './Entity.js';
-import { ServerPool } from '../pools/ServerPool';
+import {deg2rad, hashIfNeeded, mpSeatToAlt, rad2deg, TemporaryContainer} from '../../shared/utils.js';
+import {_Entity} from './Entity.js';
+import {ServerPool} from '../pools/ServerPool';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 
 export class _Vehicle extends _Entity {
@@ -54,12 +45,13 @@ export class _Vehicle extends _Entity {
         return this.alt.destroyed;
     }
 
+    _engine = new TemporaryContainer(() => this.alt.valid && this.alt.getTimestamp);
     get engine() {
-        return this.alt.engineOn;
+        return this._engine.value ?? this.alt.engineOn;
     }
 
     set engine(value) {
-        this.alt.engineOn = value;
+        this._engine.value = this.alt.engineOn = value;
     }
 
     get engineHealth() {
@@ -99,15 +91,14 @@ export class _Vehicle extends _Entity {
     }
     // TODO: mods
 
+    _neon = new TemporaryContainer(() => this.alt.valid && this.alt.getTimestamp);
     get neonEnabled() {
-        return this.alt.neon.back || this.alt.neon.front || this.alt.neon.left || this.alt.neon.right;
+        return this._neon.value ?? (this.alt.neon.back || this.alt.neon.front || this.alt.neon.left || this.alt.neon.right);
     }
 
     set neonEnabled(value) {
-        this.alt.neon.left = value;
-        this.alt.neon.right = value;
-        this.alt.neon.front = value;
-        this.alt.neon.back = value;
+        this._neon.value = value;
+        this.alt.neon = { left: value, right: value, front: value, back: value };
     }
 
     get numberPlate() {
@@ -258,18 +249,20 @@ export class _Vehicle extends _Entity {
         return this.alt.getMod(id);
     }
 
+    _neonColor = new TemporaryContainer(() => this.alt.valid && this.alt.getTimestamp);
     getNeonColor() {
-        return [this.alt.neonColor.r, this.alt.neonColor.g, this.alt.neonColor.b];
+        const color = this._neonColor.value ?? this.alt.neonColor;
+        return [color.r, color.g, color.b];
     }
 
     getOccupant(id) {
         // TODO: implement in core
-        return alt.Player.all.find(p => p.vehicle === this.alt && p.seat === mpSeatToAlt(id));
+        return alt.Player.all.find(p => p.vehicle === this.alt && p.seat === mpSeatToAlt(id))?.mp;
     }
 
     getOccupants() {
         // TODO: implement in core
-        return alt.Player.all.filter(p => p.vehicle === this.alt);
+        return alt.Player.all.filter(p => p.vehicle === this.alt).map(e => e.mp);
     }
 
     // TODO: getPaint
@@ -312,7 +305,7 @@ export class _Vehicle extends _Entity {
     }
 
     setNeonColor(r, g, b) {
-        this.alt.neonColor = new alt.RGBA(r, g, b);
+        this._neonColor.value = this.alt.neonColor = new alt.RGBA(r, g, b, 255);
     }
 
     setOccupant(seat, player) {
@@ -325,7 +318,7 @@ export class _Vehicle extends _Entity {
 
     spawn(pos, heading) {
         this.position = pos;
-        this.rotation = new mp.Vector3(0, 0, heading * deg2rad);
+        this.rotation = new mp.Vector3(0, 0, heading * rad2deg);
     }
 }
 
@@ -350,7 +343,7 @@ mp.vehicles.new = function(model, position, options = {}) {
     // TODO: alpha
     if ('locked' in options) veh.mp.locked = options.locked;
     if ('engine' in options) veh.engineOn = options.engine;
-    if ('dimension' in options) veh.dimension = mpDimensionToAlt(options.dimension);
+    if ('dimension' in options) veh.mp.dimension = options.dimension;
     if ('color' in options) {
         veh.customPrimaryColor = new alt.RGBA(options.color[0]);
         veh.customSecondaryColor = new alt.RGBA(options.color[1]);

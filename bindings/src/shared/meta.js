@@ -17,11 +17,12 @@ export class SyncedMetaProxy extends ExtendableProxy {
                 return obj[prop];
             },
             set: readOnly
-                ? (() => {})
+                ? (() => true)
                 : ((_, prop, value) => {
-                    if (typeof prop != 'string') return;
-                    if (!target.setSyncedMeta) return;
+                    if (typeof prop != 'string') return true;
+                    if (!target.setSyncedMeta) return true;
                     target.setSyncedMeta(prop, toAlt(value));
+                    return true;
                 })
         });
     }

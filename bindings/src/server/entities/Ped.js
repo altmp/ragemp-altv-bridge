@@ -34,6 +34,6 @@ mp.peds = new ServerPool(EntityGetterView.fromClass(alt.Ped));
 mp.peds.new = function(model, position, heading, dimension) {
     model = hashIfNeeded(model);
     const ped = new alt.Ped(model, position, new alt.Vector3(0, 0, heading * deg2rad));
-    ped.dimension = mpDimensionToAlt(dimension);
+    ped.mp.dimension = dimension ?? 0;
     return ped.mp;
 };
