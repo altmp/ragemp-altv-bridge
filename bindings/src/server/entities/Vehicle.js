@@ -293,7 +293,7 @@ export class _Vehicle extends _Entity {
     }
 
     setExtra(extraId, disabled) {
-        this.alt.setExtra(extraId, !disabled);
+        this.alt.setExtra(extraId - 1, !disabled);
     }
 
     setMod(type, index) {
