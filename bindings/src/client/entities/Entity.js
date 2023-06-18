@@ -16,6 +16,10 @@ export class _Entity extends _WorldObject {
     getStreamVariable(key) {
         return toMp(this.#alt.getStreamSyncedMeta(key));
     }
+
+    get isPositionFrozen() {
+        return this.#alt.frozen;
+    }
 }
 
 mp.entity = _Entity;

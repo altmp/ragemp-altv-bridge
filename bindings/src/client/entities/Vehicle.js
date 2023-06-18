@@ -504,6 +504,8 @@ mp.Vehicle = _Vehicle;
 
 mp.vehicles = new ClientPool(view);
 
+const initializers = {};
+
 mp.vehicles.new = function(model, position, params = {}) {
     model = hashIfNeeded(model);
     if (!natives.isModelValid(model)) model = alt.hash('oracle');
@@ -513,15 +515,35 @@ mp.vehicles.new = function(model, position, params = {}) {
     /** @type {_LocalVehicle} */
     const ent = veh.mp;
 
-    if (!veh.isStreamedIn) return ent;
-    if ('heading' in params) ent.setRotation(0, 0, params.heading, 2, false);
-    if ('numberPlate' in params) ent.setNumberPlateText(params.numberPlate);
-    if ('alpha' in params) ent.setAlpha(params.alpha, false);
-    if ('color' in params) {
-        ent.setCustomPrimaryColour(params.color[0][0], params.color[0][1], params.color[0][2]);
-        ent.setCustomSecondaryColour(params.color[1][0], params.color[1][1], params.color[1][2]);
-    }
-    if ('locked' in params) ent.setDoorsLocked(params.locked ? 2 : 1);
-    if ('engine' in params) ent.setEngineOn(params.engine, true, false);
+    initializers[veh.id] = () => {
+        if ('heading' in params) ent.setRotation(0, 0, params.heading, 2, false);
+        if ('numberPlate' in params) ent.setNumberPlateText(params.numberPlate);
+        if ('alpha' in params) ent.setAlpha(params.alpha, false);
+        if ('color' in params) {
+            if (typeof params.color[0] === 'number') {
+                ent.setColours(params.color[0], params.color[1]);
+            } else {
+                ent.setCustomPrimaryColour(params.color[0][0], params.color[0][1], params.color[0][2]);
+                ent.setCustomSecondaryColour(params.color[1][0], params.color[1][1], params.color[1][2]);
+            }
+        }
+        if ('locked' in params) ent.setDoorsLocked(params.locked ? 2 : 1);
+        if ('engine' in params) ent.setEngineOn(params.engine, true, false);
+    };
+
     return ent;
 };
+
+if (mp._main) {
+    alt.on('worldObjectStreamIn', (entity) => {
+        if (entity.mp instanceof _LocalVehicle && entity.id in initializers) {
+            initializers[entity.id](entity);
+        }
+    });
+
+    alt.on('baseObjectRemove', (entity) => {
+        if (entity.mp instanceof _LocalVehicle) {
+            delete initializers[entity.id];
+        }
+    });
+}

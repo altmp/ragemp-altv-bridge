@@ -84,11 +84,6 @@ export class _Player extends _Entity {
         return false;
     }
 
-    // TODO: isPositionFrozen
-    get isPositionFrozen() {
-        return false;
-    }
-
     voiceAutoVolume = false;
     voice3d = false;
 
