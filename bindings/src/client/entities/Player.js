@@ -3,7 +3,7 @@ import * as natives from 'natives';
 import mp from '../../shared/mp.js';
 import {ClientPool} from '../ClientPool.js';
 import {_Entity} from './Entity.js';
-import {toMp} from '../../shared/utils';
+import {altSeatToMp, toMp} from '../../shared/utils';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 
 export class _Player extends _Entity {
@@ -1018,37 +1018,45 @@ alt.on('spawned', () => {
 });
 
 function getSeat() {
-    if (!natives.isPedInAnyVehicle(alt.Player.local, false)) return 0;
+    if (!natives.isPedInAnyVehicle(alt.Player.local, false)) return -1;
     const veh = natives.getVehiclePedIsIn(alt.Player.local, false);
     const seats = natives.getVehicleModelNumberOfSeats(natives.getEntityModel(veh));
     for(let i = -1; i <= seats - 2; i++) {
         if (natives.getPedInVehicleSeat(veh, i, false) !== alt.Player.local.scriptID) continue;
-        return i;
+        return i + 1;
     }
 }
 
-let lastVehicle = mp.players.local.vehicle;
-let lastSeat = getSeat();
-setInterval(() => {
-    const newVehicle = mp.players.local.vehicle;
-    if (newVehicle !== lastVehicle) {
-        console.log('Changed vehicle from ' + lastVehicle?.id + ' to ' + newVehicle?.id);
-        if (lastVehicle) {
-            mp.events.dispatch('playerLeaveVehicle', lastVehicle, lastSeat);
-        }
+if (mp._main) {
+    let lastVehicle = mp.players.local.vehicle;
+    let lastSeat = getSeat();
+    setInterval(() => {
+        const newVehicle = mp.players.local.vehicle;
+        if (newVehicle !== lastVehicle) {
+            console.log('Changed vehicle from ' + lastVehicle?.id + ' to ' + newVehicle?.id);
+            if (lastVehicle) {
+                mp.events.dispatch('playerLeaveVehicle', lastVehicle, lastSeat);
+            }
 
-        if (newVehicle) {
+            if (newVehicle) {
+                const newSeat = getSeat();
+                mp.events.dispatch('playerStartEnterVehicle', newVehicle, newSeat);
+                mp.events.dispatch('playerEnterVehicle', newVehicle, newSeat);
+                lastSeat = newSeat;
+            }
+
+            lastVehicle = newVehicle;
+        } else if (lastVehicle) {
             const newSeat = getSeat();
-            mp.events.dispatch('playerEnterVehicle', newVehicle, newSeat);
-            mp.events.dispatch('playerStartEnterVehicle', newVehicle, newSeat);
-            lastSeat = newSeat;
+            console.log('new seat', newSeat, 'last seat', lastSeat);
+            if (newSeat !== lastSeat) {
+                console.log('Changed vehicle seat from ' + lastSeat + ' to ' + newSeat);
+                mp.events.dispatch('playerEnterVehicle', newVehicle, newSeat);
+                lastSeat = newSeat;
+            }
         }
-
-        lastVehicle = newVehicle;
-    } else if (lastVehicle) {
-        lastSeat = getSeat();
-    }
-}, 500);
+    }, 500);
+}
 
 alt.on('netOwnerChange', (ent, oldOwner, newOwner) => {
     mp.events.dispatch('entityControllerChange', ent, toMp(newOwner));

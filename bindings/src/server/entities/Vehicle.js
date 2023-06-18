@@ -1,7 +1,16 @@
 import * as alt from 'alt-server';
 import { SyncedMetaProxy } from '../../shared/meta.js';
 import mp from '../../shared/mp.js';
-import {deg2rad, hashIfNeeded, mpDimensionToAlt, TemporaryContainer, rad2deg, vdist, vdist2} from '../../shared/utils.js';
+import {
+    deg2rad,
+    hashIfNeeded,
+    mpDimensionToAlt,
+    TemporaryContainer,
+    rad2deg,
+    vdist,
+    vdist2,
+    mpSeatToAlt
+} from '../../shared/utils.js';
 import { _Entity } from './Entity.js';
 import { ServerPool } from '../pools/ServerPool';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
@@ -255,7 +264,7 @@ export class _Vehicle extends _Entity {
 
     getOccupant(id) {
         // TODO: implement in core
-        return alt.Player.all.find(p => p.vehicle === this.alt && p.seat === id);
+        return alt.Player.all.find(p => p.vehicle === this.alt && p.seat === mpSeatToAlt(id));
     }
 
     getOccupants() {
