@@ -284,7 +284,8 @@ export class _Player extends _Entity {
     }
 
     giveWeapon(weapon, ammo) {
-        if (!ammo) return;
+        if (ammo == null) return;
+
         if (Array.isArray(weapon)) {
             if (Array.isArray(ammo)) {
                 for (let i = 0; i < weapon.length; i++) {
