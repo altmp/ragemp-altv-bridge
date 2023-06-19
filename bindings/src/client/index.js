@@ -1,5 +1,6 @@
 import mp from '../shared/mp.js';
 import alt from 'alt-client';
+import altShared from 'alt-shared';
 
 mp.streamingDistance = alt.getSyncedMeta(mp.prefix + 'streamingDistance') ?? 300;
 // TODO: pass streaming distance in core
@@ -29,6 +30,10 @@ function populateModule(moduleObject) {
 }
 
 globalThis.require = function (path) {
+    if (path === 'alt-client') return alt;
+    if (path === 'alt-shared') return altShared;
+    if (path === 'natives') return natives;
+
     path = path.replaceAll('./', '');
     if (!path.startsWith('/')) path = '/' + path;
     if (path.endsWith('/')) path = path.substring(0, path.length - 1);
