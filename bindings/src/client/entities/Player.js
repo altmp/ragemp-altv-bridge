@@ -79,6 +79,10 @@ export class _Player extends _Entity {
         return this.alt.isTalking;
     }
 
+    get isVoiceActive() {
+        return this.alt.isTalking;
+    }
+
     // TODO: isTypingInTextChat
     get isTypingInTextChat() {
         return false;
