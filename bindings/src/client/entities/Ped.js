@@ -8,7 +8,7 @@ import {EntityStoreView} from '../../shared/pools/EntityStoreView';
 import {EntityMixedView} from '../../shared/pools/EntityMixedView';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 import {VirtualEntityID} from '../../shared/VirtualEntityID';
-import {hashIfNeeded, toAlt, toMp} from '../../shared/utils';
+import {hashIfNeeded, mpDimensionToAlt, toAlt, toMp} from '../../shared/utils';
 import {_LocalVehicle} from './Vehicle';
 import {_Entity} from './Entity';
 
@@ -848,7 +848,7 @@ mp.Ped = _Ped;
 mp.peds = new ClientPool(view);
 
 mp.peds.new = function (model, position, heading = 0, dimension = 0) {
-    const ent = new alt.LocalPed(model, dimension, new alt.Vector3(position), new alt.Vector3(0, 0, heading).toRadians(), true, mp.streamingDistance);
+    const ent = new alt.LocalPed(model, mpDimensionToAlt(dimension), new alt.Vector3(position), new alt.Vector3(0, 0, heading).toRadians(), true, mp.streamingDistance);
     ent.pos = new alt.Vector3(position);
     return ent.mp;
 };
