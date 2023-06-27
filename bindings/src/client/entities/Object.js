@@ -6,7 +6,7 @@ import { ClientPool } from '../ClientPool';
 import {EntityStoreView} from '../../shared/pools/EntityStoreView';
 import {EntityMixedView} from '../../shared/pools/EntityMixedView';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
-import {hashIfNeeded} from '../../shared/utils';
+import {hashIfNeeded, toAlt, toMp} from '../../shared/utils';
 import { mpDimensionToAlt } from '../../shared/utils';
 
 const store = new EntityStoreView();
@@ -28,6 +28,18 @@ export class _Object extends _Entity {
     }
 
     type = 'object';
+
+    getVariable(key) {
+        return toMp(this.alt.getMeta(key));
+    }
+
+    hasVariable(key) {
+        return this.alt.hasMeta(key);
+    }
+
+    setVariable(key, value) {
+        this.alt.setMeta(key, toAlt(value));
+    }
 
     destroy() {
         if (!this.alt.valid) return;
@@ -189,13 +201,30 @@ export class _NetworkObject extends _Object {
         this.alt = alt;
     }
 
+    getVariable(key) {
+        return toMp(this.alt.getStreamSyncedMeta(key));
+    }
+
+    hasVariable(key) {
+        return this.alt.hasStreamSyncedMeta(key);
+    }
+
     get handle() {
         return this.#handle;
+    }
+
+    get id() {
+        return this.alt.id + 65536;
+    }
+
+    get remoteId() {
+        return this.alt.id + 65536;
     }
 
     streamIn() {
         alt.loadModel(this.model);
         this.#handle = natives.createObject(this.model, this.alt.pos.x, this.alt.pos.y, this.alt.pos.z, false, false, false);
+        store.add(this, undefined, this.#handle, undefined);
         // natives.setEntityHeading(this.#handle, this.alt.getStreamSyncedMeta(mp.prefix + 'heading') ?? 0);
         const rot = this.alt.getStreamSyncedMeta(mp.prefix + 'rotation') ?? alt.Vector3.zero;
         natives.setEntityRotation(this.#handle, rot.x, rot.y, rot.z, 2, false);
@@ -211,6 +240,7 @@ export class _NetworkObject extends _Object {
 
     streamOut() {
         natives.deleteObject(this.#handle);
+        store.remove(undefined, this.#handle, undefined);
         this.#handle = 0;
         natives.setModelAsNoLongerNeeded(this.model);
     }
@@ -220,10 +250,10 @@ export class _NetworkObject extends _Object {
         natives.setEntityCoords(this.#handle, pos.x, pos.y, pos.z, false, false, false, false);
     }
     onDestroy() {
-        store.remove(this.id, this.handle, this.id);
+        store.remove(this.id, this.handle, this.remoteId);
     }
     onCreate() {
-        store.add(this, this.id, undefined, this.id);
+        store.add(this, this.id, undefined, this.remoteId);
     }
     update(key, value) {
         if (key === (mp.prefix + 'rotation')) {

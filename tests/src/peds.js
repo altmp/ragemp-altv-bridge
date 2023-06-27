@@ -122,11 +122,11 @@ describe('ped', () => {
 
             it('should return correct type', async ({server, client}) => {
                 await server(async ({mp}) => {
-                    ped.type.should.equal('vehicle');
+                    ped.type.should.equal('ped');
                 });
 
                 await client(async ({mp}) => {
-                    ped.type.should.equal('vehicle');
+                    ped.type.should.equal('ped');
                 });
             });
 
@@ -141,7 +141,7 @@ describe('ped', () => {
 
             it('should sync position', async ({server, client}) => {
                 await server(async ({mp}) => {
-                    ped.position = new mp.Vector3(4, 3, 73);
+                    ped.position = new mp.Vector3(4, 4, 73);
                 });
 
                 await client(async ({mp}) => {

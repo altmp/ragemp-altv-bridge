@@ -20,14 +20,14 @@ export class EntityStoreView extends EntityBaseView {
         if (id != null) this.entities[id] = ent;
         if (scriptID != null) this.scriptIDEntities[scriptID] = ent;
         if (remoteID != null) this.remoteIDEntities[remoteID] = ent;
-        if (id != null) this.entitiesArr = Object.values(this.entities);
+        if (id != null) this.entitiesArr = Object.values(this.entities).filter(e => e != null);
     }
 
     remove(id, scriptID, remoteID) {
         if (id != null) delete this.entities[id];
         if (scriptID != null) delete this.scriptIDEntities[scriptID];
         if (remoteID != null) delete this.remoteIDEntities[remoteID];
-        if (id != null) this.entitiesArr = Object.values(this.entities);
+        if (id != null) this.entitiesArr = Object.values(this.entities).filter(e => e != null);
     }
 
     toArray() {

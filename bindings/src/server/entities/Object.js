@@ -6,6 +6,7 @@ import {_Label} from './Label';
 import {VirtualEntityID} from '../../shared/VirtualEntityID';
 import {EntityStoreView} from '../../shared/pools/EntityStoreView';
 import {hashIfNeeded} from '../../shared/utils';
+import {StreamSyncedMetaProxy} from '../../shared/meta';
 
 
 const view = new EntityStoreView();
@@ -17,6 +18,7 @@ export class _Object extends _Entity {
         super(alt);
         this.alt = alt;
         view.add(this, this.id);
+        this.data = new StreamSyncedMetaProxy(alt);
     }
 
     type = 'object';
