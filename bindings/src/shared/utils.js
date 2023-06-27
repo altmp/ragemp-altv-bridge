@@ -42,7 +42,7 @@ export const toMp = (obj) => {
 export const toAlt = (obj) => {
     if (typeof obj === 'object' && obj) {
         if (obj?.isMpWrapper && obj.alt) {
-            if (obj.alt instanceof alt.Blip) return {};
+            if ('_ignore' in obj.alt) return {};
             return obj.alt;
         }
 

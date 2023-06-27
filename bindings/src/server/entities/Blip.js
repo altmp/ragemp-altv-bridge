@@ -130,7 +130,8 @@ mp.blips.new = function(sprite, position, params = {}) {
         rot: alt.Vector3.zero,
         model: 0,
         dimension: 0,
-        destroy() {}
+        destroy() {},
+        _ignore: true,
     };
     blip.mp = new _Blip(blip);
     // const blip = new alt.PointBlip(new alt.Vector3(position.x, position.y, position.z));
