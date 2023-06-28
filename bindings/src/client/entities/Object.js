@@ -214,11 +214,11 @@ export class _NetworkObject extends _Object {
     }
 
     get id() {
-        return this.alt.id + 65536;
+        return this.alt.remoteId + 65536;
     }
 
     get remoteId() {
-        return this.alt.id + 65536;
+        return this.alt.remoteId + 65536;
     }
 
     streamIn() {

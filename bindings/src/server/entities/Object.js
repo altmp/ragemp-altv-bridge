@@ -29,6 +29,10 @@ export class _Object extends _Entity {
         this.alt.destroy();
     }
 
+    get id() {
+        return this.alt.id + 65536;
+    }
+
     get setVariable() {
         return this.setStreamVariable;
     }
