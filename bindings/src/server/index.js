@@ -18,3 +18,13 @@ mp.init = () => {
 };
 
 mp._main = true;
+
+const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;
+
+// TODO delete after debugging
+if (alt.debug && mp._main) {
+    alt.on('consoleCommand', async (cmd, ...args) => {
+        if (cmd !== 'eval') return;
+        console.log(await (new AsyncFunction('alt', 'mp', args.join(' ')))(alt, mp));
+    });
+}

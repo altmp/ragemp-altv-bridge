@@ -298,7 +298,7 @@ export class _Vehicle extends _Entity {
 
     setMod(type, index) {
         try {
-            this.alt.setMod(type, index);
+            this.alt.setMod(type, (index >= 255 || index < 0) ? 0 : index + 1);
         } catch(e) {
             console.log(`Failed to set mod ${type} to ${index} on vehicle ${this.id}: ${e}`);
         }
