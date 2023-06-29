@@ -508,7 +508,7 @@ const initializers = {};
 
 mp.vehicles.new = function(model, position, params = {}) {
     model = hashIfNeeded(model);
-    if (!natives.isModelValid(model)) model = alt.hash('oracle');
+    if (!natives.isModelValid(model)) model = alt.hash('kuruma');
 
     const veh = new alt.LocalVehicle(model, mpDimensionToAlt(params.dimension ?? 0), position, new alt.Vector3(0, 0, params.heading ?? 0).toRadians(), true, mp.streamingDistance);
 

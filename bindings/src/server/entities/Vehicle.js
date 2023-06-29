@@ -334,10 +334,14 @@ mp.vehicles = new ServerPool(EntityGetterView.fromClass(alt.Vehicle));
 
 mp.vehicles.new = function(model, position, options = {}) {
     model = hashIfNeeded(model);
-    const info = alt.getVehicleModelInfoByHash(model);
-    if (!info || !info.type) model = alt.hash('kuruma');
     const heading = options?.heading ?? 0;
-    const veh = new alt.Vehicle(model, position, new alt.Vector3(0, 0, heading * deg2rad));
+    let veh;
+    try {
+        veh = new alt.Vehicle(model, position, new alt.Vector3(0, 0, heading * deg2rad));
+    } catch(e) {
+        console.log('Failed to spawn vehicle model ' + model + ', falling back to kuruma: ' + (e?.stack ?? String(e)));
+        veh = new alt.Vehicle(alt.hash('kuruma'), position, new alt.Vector3(0, 0, heading * deg2rad));
+    }
     if (veh.modKitsCount > 0) veh.modKit = 1;
     if ('numberPlate' in options) veh.numberPlateText = options.numberPlate;
     // TODO: alpha
