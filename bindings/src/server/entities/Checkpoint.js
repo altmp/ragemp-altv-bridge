@@ -60,6 +60,17 @@ export class _Checkpoint extends _Colshape {
         this.#visible = value;
         this.alt.color = value ? new alt.RGBA(this.#lastColor) : new alt.RGBA(0, 0, 0, 0);
     }
+
+    destroy() {
+        if (!this.alt.valid) return;
+
+        for (let player of alt.Player.all) {
+            if (this.alt.isPointIn(player.pos))
+                mp.events.dispatch('playerExitCheckpoint', player.mp, this);
+        }
+
+        this.alt.destroy();
+    }
 }
 
 Object.defineProperty(alt.Checkpoint.prototype, 'mp', {
@@ -81,11 +92,11 @@ mp.checkpoints.new = function(type, position, radius, params = {}) {
 };
 
 alt.on('entityEnterColshape', (shape, ent) => {
-    if (!(ent instanceof alt.Player) || !(shape instanceof alt.Checkpoint)) return;
+    if (!(ent instanceof alt.Player) || !(shape instanceof alt.Checkpoint) || !shape) return;
     mp.events.dispatch('playerEnterCheckpoint', ent.mp, shape.mp);
 });
 
 alt.on('entityLeaveColshape', (shape, ent) => {
-    if (!(ent instanceof alt.Player) || !(shape instanceof alt.Checkpoint)) return;
+    if (!(ent instanceof alt.Player) || !(shape instanceof alt.Checkpoint) || !shape) return;
     mp.events.dispatch('playerExitCheckpoint', ent.mp, shape.mp);
 });

@@ -45,6 +45,17 @@ export class _Colshape extends _WorldObject {
     getVariable(key) {
         return toMp(this.alt.getMeta(key));
     }
+
+    destroy() {
+        if (!this.alt.valid) return;
+
+        for (let player of alt.Player.all) {
+            if (this.alt.isPointIn(player.pos))
+                leaveColshape(this.alt, player);
+        }
+
+        this.alt.destroy();
+    }
 }
 
 Object.defineProperty(alt.Colshape.prototype, 'mp', {
@@ -93,16 +104,20 @@ mp.colshapes.newTube = function(x, y, z, height, range, dimension = 0) {
     return shape.mp;
 };
 
-alt.on('entityEnterColshape', (shape, ent) => {
-    if (!(ent instanceof alt.Player) || shape instanceof alt.Checkpoint) return;
+function enterColshape(shape, ent) {
+    if (!(ent instanceof alt.Player) || shape instanceof alt.Checkpoint || !shape) return;
     mp.events.dispatch('playerEnterColshape', ent.mp, shape.mp);
     const keys = shape.getMetaDataKeys();
     ent.emit(mp.prefix + 'enterColshape', shape.pos, shape.dimension, shape.mp.shapeType, Object.fromEntries(keys.map(e => [e, shape.getMeta(e)])));
-});
+}
 
-alt.on('entityLeaveColshape', (shape, ent) => {
-    if (!(ent instanceof alt.Player) || shape instanceof alt.Checkpoint) return;
+alt.on('entityEnterColshape', enterColshape);
+
+function leaveColshape(shape, ent) {
+    if (!(ent instanceof alt.Player) || shape instanceof alt.Checkpoint || !shape) return;
     mp.events.dispatch('playerExitColshape', ent.mp, shape.mp);
     const keys = shape.getMetaDataKeys();
     ent.emit(mp.prefix + 'leaveColshape', shape.pos, shape.dimension, shape.mp.shapeType, Object.fromEntries(keys.map(e => [e, shape.getMeta(e)])));
-});
+}
+
+alt.on('entityLeaveColshape', leaveColshape);

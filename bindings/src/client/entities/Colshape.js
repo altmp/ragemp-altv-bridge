@@ -41,6 +41,15 @@ export class _Colshape extends _WorldObject {
     }
 
     type = 'colshape';
+
+    destroy() {
+        if (!this.alt.valid) return;
+
+        if (this.alt.isPointIn(alt.Player.local.pos))
+            mp.events.dispatch('playerExitColshape', this);
+
+        this.alt.destroy();
+    }
 }
 
 // TODO: server colshape getter
@@ -92,12 +101,12 @@ mp.colshapes.newTube = function(x, y, z, height, range, dimension = 0) {
 };
 
 alt.on('entityEnterColshape', (shape, ent) => {
-    if (!(ent instanceof alt.Player) || shape instanceof alt.Checkpoint) return;
+    if (ent !== alt.Player.local || shape instanceof alt.Checkpoint || !shape) return;
     mp.events.dispatch('playerEnterColshape', shape.mp);
 });
 
 alt.on('entityLeaveColshape', (shape, ent) => {
-    if (!(ent instanceof alt.Player) || shape instanceof alt.Checkpoint) return;
+    if (ent !== alt.Player.local || shape instanceof alt.Checkpoint || !shape) return;
     mp.events.dispatch('playerExitColshape', shape.mp);
 });
 
