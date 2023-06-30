@@ -779,6 +779,10 @@ export class _Ped extends _Entity {
     getObjectIndexFromIndex() {
         return natives.getObjectIndexFromEntityIndex(this.handle);
     }
+
+    getHealth() {
+        return natives.getEntityHealth(this.handle) - 100;
+    }
     //#endregion
 }
 
@@ -796,22 +800,6 @@ export class _LocalPed extends _Ped {
 
     type = 'ped';
 
-    get position() {
-        return new mp.Vector3(this.alt.pos);
-    }
-
-    set position(value) {
-        this.alt.pos = value;
-    }
-
-    get rotation() {
-        return new mp.Vector3(this.alt.rot.toDegrees());
-    }
-
-    set rotation(value) {
-        this.alt.rot = new alt.Vector3(value).toRadians();
-    }
-
     get remoteId() {
         return 65535;
     }
@@ -827,10 +815,6 @@ export class _LocalPed extends _Ped {
 
     hasVariable(key) {
         return this.alt.hasMeta(key);
-    }
-
-    getHealth() {
-        return natives.getEntityHealth(this.handle) - 100;
     }
 }
 
