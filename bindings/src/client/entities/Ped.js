@@ -21,6 +21,8 @@ export class _Ped extends _Entity {
         this.alt = alt;
     }
 
+    type = 'ped';
+
     destroy() {
         if (!this.alt.valid) return;
         if (this.alt.isStreamedIn) this.streamOut(); // TODO: fix in core
@@ -798,12 +800,9 @@ export class _LocalPed extends _Ped {
         this.alt.destroy();
     }
 
-    type = 'ped';
-
     get remoteId() {
         return 65535;
     }
-
 
     getVariable(key) {
         return toMp(this.alt.getMeta(key));
