@@ -48,4 +48,12 @@ export class _Entity extends _WorldObject {
     set rotation(value) {
         this._rotation.value = this.alt.rot = new alt.Vector3(value).toRadians();
     }
+
+    get heading() {
+        return this.rotation.z;
+    }
+
+    set heading(value) {
+        this.rotation = new mp.Vector3(this.rotation.x, this.rotation.y, value);
+    }
 }

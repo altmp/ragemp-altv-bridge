@@ -27,6 +27,10 @@ export class _Ped extends _Entity {
         this.alt.destroy();
     }
 
+    get isDynamic() {
+        return true;
+    }
+
     //#region Natives
     get giveWeapon() {
         return this.giveToPed; // giveWeaponToPed
