@@ -67,4 +67,12 @@ export class _WorldObject extends _BaseObject {
     set position(value) {
         this.alt.pos = value;
     }
+
+    get controller() {
+        return toMp(this.alt.netOwner);
+    }
+
+    set controller(value) {
+        this.alt.setNetOwner(value, false);
+    }
 }

@@ -82,4 +82,8 @@ export class _WorldObject extends _BaseObject {
     set rotation(value) {
         natives.setEntityRotation(this.handle, value.x, value.y, value.z, 2, false);
     }
+
+    get controller() {
+        return toMp(this.alt.netOwner);
+    }
 }

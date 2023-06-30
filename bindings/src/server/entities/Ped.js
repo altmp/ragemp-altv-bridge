@@ -15,10 +15,6 @@ export class _Ped extends _Entity {
     }
 
     type = 'ped';
-
-    get controller() {
-        return this.alt.netOwner;
-    }
 }
 
 Object.defineProperty(alt.Ped.prototype, 'mp', {
