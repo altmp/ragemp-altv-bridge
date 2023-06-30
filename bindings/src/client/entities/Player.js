@@ -1047,7 +1047,6 @@ if (mp._main) {
             lastVehicle = newVehicle;
         } else if (lastVehicle) {
             const newSeat = getSeat();
-            console.log('new seat', newSeat, 'last seat', lastSeat);
             if (newSeat !== lastSeat) {
                 console.log('Changed vehicle seat from ' + lastSeat + ' to ' + newSeat);
                 mp.events.dispatch('playerEnterVehicle', newVehicle, newSeat);
