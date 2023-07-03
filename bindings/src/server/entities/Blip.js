@@ -111,30 +111,7 @@ mp.Blip = _Blip;
 mp.blips = new ServerPool(EntityGetterView.fromClass(alt.Blip));
 
 mp.blips.new = function(sprite, position, params = {}) {
-    const blip = {
-        setSyncedMeta() {},
-        hasSyncedMeta() {},
-        getSyncedMeta() {},
-        setStreamSyncedMeta() {},
-        hasStreamSyncedMeta() {},
-        getStreamSyncedMeta() {},
-        setMeta() {},
-        getMeta() {},
-        alpha: 255,
-        color: alt.RGBA.white,
-        name: '',
-        heading: 0,
-        scale: 1,
-        shortRange: false,
-        pos: alt.Vector3.zero,
-        rot: alt.Vector3.zero,
-        model: 0,
-        dimension: 0,
-        destroy() {},
-        _ignore: true,
-    };
-    blip.mp = new _Blip(blip);
-    // const blip = new alt.PointBlip(new alt.Vector3(position.x, position.y, position.z));
+    const blip = new alt.PointBlip(new alt.Vector3(position.x, position.y, position.z), true);
 
     blip.sprite = sprite;
     if ('name' in params) blip.name = params.name;
