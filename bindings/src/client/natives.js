@@ -4910,7 +4910,7 @@ mp.game2.files.getHashNameForProp ??= function (entity, componentId, propIndex, 
     return $res[0];
 };
 mp.game2.files.getShopPedApparelVariantComponentCount ??= function (componentHash) {
-    let $res = natives.getItemVariantsCount(componentHash);
+    let $res = natives.getShopPedApparelVariantComponentCount(componentHash);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0];
 };
@@ -4971,7 +4971,7 @@ mp.game2.files.getForcedProp ??= function (componentHash, forcedPropIndex) {
     return $resObj;
 };
 mp.game2.files.doesShopPedApparelHaveRestrictionTag ??= function (componentHash, restrictionTagHash, componentId) {
-    let $res = natives.isTagRestricted(componentHash, restrictionTagHash, componentId);
+    let $res = natives.doesShopPedApparelHaveRestrictionTag(componentHash, restrictionTagHash, componentId);
     if (!Array.isArray($res)) $res = [$res];
     return $res[0] == 1;
 };
@@ -8250,7 +8250,7 @@ mp.game2.hud.displayLoadingScreenTips ??= function () {
     let $res = natives.hudForceSpecialVehicleWeaponWheel();
 };
 mp.game2.hud.weaponWheelIgnoreSelection ??= function () {
-    let $res = natives.blockWeaponWheelThisFrame();
+    let $res = natives.hudSuppressWeaponWheelResultsThisFrame();
 };
 mp.game2.hud.weaponWheelGetSelectedHash ??= function () {
     let $res = natives.hudGetWeaponWheelCurrentlyHighlighted();
@@ -8494,7 +8494,7 @@ mp.game2.hud.clearReminderMessage ??= function () {
     let $res = natives.clearReminderMessage();
 };
 mp.game2.hud.getScreenPositionFromWorldPosition ??= function (worldX, worldY, worldZ) {
-    let $res = natives.getScreenCoordFromWorldCoord2(worldX, worldY, worldZ, 0, 0);
+    let $res = natives.getHudScreenPositionFromWorldPosition(worldX, worldY, worldZ, 0, 0);
     if (!Array.isArray($res)) $res = [$res];
     let $resObj = {};
     $resObj.screenX = $res[1];
@@ -16259,7 +16259,7 @@ mp.game2.pad.unk._0x25AAA32BDC98F2A3 ??= function () {
     return $res[0];
 };
 mp.game2.pad.unk._0x7F4724035FDCA1DD ??= function (padIndex) {
-    let $res = natives.disableInputGroup(padIndex);
+    let $res = natives.allowAlternativeScriptControlsLayout(padIndex);
 };
 mp.game2.pathfind ??= {};
 mp.game2.pathfind.setRoadsInArea ??= function (x1, y1, z1, x2, y2, z2, nodeEnabled, unknown2) {
@@ -28137,16544 +28137,12839 @@ mp.game2.zone.getHashOfMapAreaAtCoords ??= function (x, y, z) {
     return $res[0];
 };
 mp.Player.prototype.isPedRingtonePlaying ??= function () {
-    let $res = natives.isPedRingtonePlaying(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.audio.isPedRingtonePlaying.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isPedRingtonePlaying ??= function () {
-    let $res = natives.isPedRingtonePlaying(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.audio.isPedRingtonePlaying.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.stopPedRingtone ??= function () {
-    let $res = natives.stopPedRingtone(this.handle);
+    return mp.game2.audio.stopPedRingtone.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.stopPedRingtone ??= function () {
-    let $res = natives.stopPedRingtone(this.handle);
+    return mp.game2.audio.stopPedRingtone.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.interruptConversationAndPause ??= function (p1, p2) {
-    if (typeof p1 != "string") p1 = null;
-    if (typeof p2 != "string") p2 = null;
-    let $res = natives.interruptConversationAndPause(this.handle, p1, p2);
+    return mp.game2.audio.interruptConversationAndPause.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Ped.prototype.interruptConversationAndPause ??= function (p1, p2) {
-    if (typeof p1 != "string") p1 = null;
-    if (typeof p2 != "string") p2 = null;
-    let $res = natives.interruptConversationAndPause(this.handle, p1, p2);
+    return mp.game2.audio.interruptConversationAndPause.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Player.prototype.playPedAmbientSpeechNative ??= function (speechName, speechParam, p3) {
-    if (typeof speechName != "string") speechName = null;
-    if (typeof speechParam != "string") speechParam = null;
-    let $res = natives.playPedAmbientSpeechNative(this.handle, speechName, speechParam, p3 | 0);
+    return mp.game2.audio.playPedAmbientSpeechNative.apply(this, [this.handle, speechName, speechParam, p3]);
 };
 
 mp.Ped.prototype.playPedAmbientSpeechNative ??= function (speechName, speechParam, p3) {
-    if (typeof speechName != "string") speechName = null;
-    if (typeof speechParam != "string") speechParam = null;
-    let $res = natives.playPedAmbientSpeechNative(this.handle, speechName, speechParam, p3 | 0);
+    return mp.game2.audio.playPedAmbientSpeechNative.apply(this, [this.handle, speechName, speechParam, p3]);
 };
 
 mp.Player.prototype.playPedAmbientSpeechAndCloneNative ??= function (speechName, speechParam, p3) {
-    if (typeof speechName != "string") speechName = null;
-    if (typeof speechParam != "string") speechParam = null;
-    let $res = natives.playPedAmbientSpeechAndCloneNative(this.handle, speechName, speechParam, p3 | 0);
+    return mp.game2.audio.playPedAmbientSpeechAndCloneNative.apply(this, [this.handle, speechName, speechParam, p3]);
 };
 
 mp.Ped.prototype.playPedAmbientSpeechAndCloneNative ??= function (speechName, speechParam, p3) {
-    if (typeof speechName != "string") speechName = null;
-    if (typeof speechParam != "string") speechParam = null;
-    let $res = natives.playPedAmbientSpeechAndCloneNative(this.handle, speechName, speechParam, p3 | 0);
+    return mp.game2.audio.playPedAmbientSpeechAndCloneNative.apply(this, [this.handle, speechName, speechParam, p3]);
 };
 
 mp.Player.prototype.playPedAmbientSpeechWithVoiceNative ??= function (speechName, voiceName, speechParam, p4) {
-    if (typeof speechName != "string") speechName = null;
-    if (typeof voiceName != "string") voiceName = null;
-    if (typeof speechParam != "string") speechParam = null;
-    let $res = natives.playPedAmbientSpeechWithVoiceNative(this.handle, speechName, voiceName, speechParam, p4 | 0);
+    return mp.game2.audio.playPedAmbientSpeechWithVoiceNative.apply(this, [this.handle, speechName, voiceName, speechParam, p4]);
 };
 
 mp.Ped.prototype.playPedAmbientSpeechWithVoiceNative ??= function (speechName, voiceName, speechParam, p4) {
-    if (typeof speechName != "string") speechName = null;
-    if (typeof voiceName != "string") voiceName = null;
-    if (typeof speechParam != "string") speechParam = null;
-    let $res = natives.playPedAmbientSpeechWithVoiceNative(this.handle, speechName, voiceName, speechParam, p4 | 0);
+    return mp.game2.audio.playPedAmbientSpeechWithVoiceNative.apply(this, [this.handle, speechName, voiceName, speechParam, p4]);
 };
 
 mp.Player.prototype.setPlayerAngry ??= function (toggle) {
-    let $res = natives.setPlayerAngry(this.handle, toggle | 0);
+    return mp.game2.audio.setPlayerAngry.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setPlayerAngry ??= function (toggle) {
-    let $res = natives.setPlayerAngry(this.handle, toggle | 0);
+    return mp.game2.audio.setPlayerAngry.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.playPain ??= function (painID, p1, p3) {
-    let $res = natives.playPain(this.handle, painID, p1, p3 | 0);
+    return mp.game2.audio.playPain.apply(this, [this.handle, painID, p1, p3]);
 };
 
 mp.Ped.prototype.playPain ??= function (painID, p1, p3) {
-    let $res = natives.playPain(this.handle, painID, p1, p3 | 0);
+    return mp.game2.audio.playPain.apply(this, [this.handle, painID, p1, p3]);
 };
 
 mp.Player.prototype.setAmbientVoiceName ??= function (name) {
-    if (typeof name != "string") name = null;
-    let $res = natives.setAmbientVoiceName(this.handle, name);
+    return mp.game2.audio.setAmbientVoiceName.apply(this, [this.handle, name]);
 };
 
 mp.Ped.prototype.setAmbientVoiceName ??= function (name) {
-    if (typeof name != "string") name = null;
-    let $res = natives.setAmbientVoiceName(this.handle, name);
+    return mp.game2.audio.setAmbientVoiceName.apply(this, [this.handle, name]);
 };
 
 mp.Player.prototype.setAmbientVoiceNameHash ??= function (hash) {
-    let $res = natives.setAmbientVoiceNameHash(this.handle, hash);
+    return mp.game2.audio.setAmbientVoiceNameHash.apply(this, [this.handle, hash]);
 };
 
 mp.Ped.prototype.setAmbientVoiceNameHash ??= function (hash) {
-    let $res = natives.setAmbientVoiceNameHash(this.handle, hash);
+    return mp.game2.audio.setAmbientVoiceNameHash.apply(this, [this.handle, hash]);
 };
 
 mp.Player.prototype.getAmbientVoiceNameHash ??= function () {
-    let $res = natives.getAmbientVoiceNameHash(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.audio.getAmbientVoiceNameHash.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getAmbientVoiceNameHash ??= function () {
-    let $res = natives.getAmbientVoiceNameHash(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.audio.getAmbientVoiceNameHash.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setPedScream ??= function () {
-    let $res = natives.setPedVoiceFull(this.handle);
+    return mp.game2.audio.setPedScream.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.setPedScream ??= function () {
-    let $res = natives.setPedVoiceFull(this.handle);
+    return mp.game2.audio.setPedScream.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setPedVoiceGroup ??= function (voiceGroupHash) {
-    let $res = natives.setPedVoiceGroup(this.handle, voiceGroupHash);
+    return mp.game2.audio.setPedVoiceGroup.apply(this, [this.handle, voiceGroupHash]);
 };
 
 mp.Ped.prototype.setPedVoiceGroup ??= function (voiceGroupHash) {
-    let $res = natives.setPedVoiceGroup(this.handle, voiceGroupHash);
+    return mp.game2.audio.setPedVoiceGroup.apply(this, [this.handle, voiceGroupHash]);
 };
 
 mp.Player.prototype.setPedGender ??= function (p1) {
-    let $res = natives.setPedGender(this.handle, p1 | 0);
+    return mp.game2.audio.setPedGender.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.setPedGender ??= function (p1) {
-    let $res = natives.setPedGender(this.handle, p1 | 0);
+    return mp.game2.audio.setPedGender.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.stopCurrentPlayingSpeech ??= function () {
-    let $res = natives.stopCurrentPlayingSpeech(this.handle);
+    return mp.game2.audio.stopCurrentPlayingSpeech.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.stopCurrentPlayingSpeech ??= function () {
-    let $res = natives.stopCurrentPlayingSpeech(this.handle);
+    return mp.game2.audio.stopCurrentPlayingSpeech.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.stopCurrentPlayingAmbientSpeech ??= function () {
-    let $res = natives.stopCurrentPlayingAmbientSpeech(this.handle);
+    return mp.game2.audio.stopCurrentPlayingAmbientSpeech.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.stopCurrentPlayingAmbientSpeech ??= function () {
-    let $res = natives.stopCurrentPlayingAmbientSpeech(this.handle);
+    return mp.game2.audio.stopCurrentPlayingAmbientSpeech.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isAmbientSpeechPlaying ??= function () {
-    let $res = natives.isAmbientSpeechPlaying(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.audio.isAmbientSpeechPlaying.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isAmbientSpeechPlaying ??= function () {
-    let $res = natives.isAmbientSpeechPlaying(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.audio.isAmbientSpeechPlaying.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isAnySpeechPlaying ??= function () {
-    let $res = natives.isAnySpeechPlaying(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.audio.isAnySpeechPlaying.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isAnySpeechPlaying ??= function () {
-    let $res = natives.isAnySpeechPlaying(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.audio.isAnySpeechPlaying.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.canPedSpeak ??= function (speechName, unk) {
-    if (typeof speechName != "string") speechName = null;
-    let $res = natives.doesContextExistForThisPed(this.handle, speechName, unk | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.audio.canPedSpeak.apply(this, [this.handle, speechName, unk]);
 };
 
 mp.Ped.prototype.canPedSpeak ??= function (speechName, unk) {
-    if (typeof speechName != "string") speechName = null;
-    let $res = natives.doesContextExistForThisPed(this.handle, speechName, unk | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.audio.canPedSpeak.apply(this, [this.handle, speechName, unk]);
 };
 
 mp.Player.prototype.isPedInCurrentConversation ??= function () {
-    let $res = natives.isPedInCurrentConversation(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.audio.isPedInCurrentConversation.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isPedInCurrentConversation ??= function () {
-    let $res = natives.isPedInCurrentConversation(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.audio.isPedInCurrentConversation.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setPedIsDrunk ??= function (toggle) {
-    let $res = natives.setPedIsDrunk(this.handle, toggle | 0);
+    return mp.game2.audio.setPedIsDrunk.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setPedIsDrunk ??= function (toggle) {
-    let $res = natives.setPedIsDrunk(this.handle, toggle | 0);
+    return mp.game2.audio.setPedIsDrunk.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.playAnimalVocalization ??= function (p1, speechName) {
-    if (typeof speechName != "string") speechName = null;
-    let $res = natives.playAnimalVocalization(this.handle, p1, speechName);
+    return mp.game2.audio.playAnimalVocalization.apply(this, [this.handle, p1, speechName]);
 };
 
 mp.Ped.prototype.playAnimalVocalization ??= function (p1, speechName) {
-    if (typeof speechName != "string") speechName = null;
-    let $res = natives.playAnimalVocalization(this.handle, p1, speechName);
+    return mp.game2.audio.playAnimalVocalization.apply(this, [this.handle, p1, speechName]);
 };
 
 mp.Player.prototype.isAnimalVocalizationPlaying ??= function () {
-    let $res = natives.isAnimalVocalizationPlaying(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.audio.isAnimalVocalizationPlaying.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isAnimalVocalizationPlaying ??= function () {
-    let $res = natives.isAnimalVocalizationPlaying(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.audio.isAnimalVocalizationPlaying.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setAnimalMood ??= function (mood) {
-    let $res = natives.setAnimalMood(this.handle, mood);
+    return mp.game2.audio.setAnimalMood.apply(this, [this.handle, mood]);
 };
 
 mp.Ped.prototype.setAnimalMood ??= function (mood) {
-    let $res = natives.setAnimalMood(this.handle, mood);
+    return mp.game2.audio.setAnimalMood.apply(this, [this.handle, mood]);
 };
 
 mp.Vehicle.prototype.setVehRadioStation ??= function (radioStation) {
-    if (typeof radioStation != "string") radioStation = null;
-    let $res = natives.setVehRadioStation(this.handle, radioStation);
+    return mp.game2.audio.setVehRadioStation.apply(this, [this.handle, radioStation]);
 };
 
 mp.Vehicle.prototype.setVehHasRadioOverride ??= function () {
-    let $res = natives.setVehHasNormalRadio(this.handle);
+    return mp.game2.audio.setVehHasRadioOverride.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isVehicleRadioEnabled ??= function () {
-    let $res = natives.isVehicleRadioOn(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.audio.isVehicleRadioEnabled.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setVehicleRadioLoud ??= function (toggle) {
-    let $res = natives.setVehicleRadioLoud(this.handle, toggle | 0);
+    return mp.game2.audio.setVehicleRadioLoud.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.isVehicleRadioLoud ??= function () {
-    let $res = natives.canVehicleReceiveCbRadio(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.audio.isVehicleRadioLoud.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setVehicleRadioEnabled ??= function (toggle) {
-    let $res = natives.setVehicleRadioEnabled(this.handle, toggle | 0);
+    return mp.game2.audio.setVehicleRadioEnabled.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.blipSiren ??= function () {
-    let $res = natives.blipSiren(this.handle);
+    return mp.game2.audio.blipSiren.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.overrideVehHorn ??= function (override, hornHash) {
-    let $res = natives.overrideVehHorn(this.handle, override | 0, hornHash);
+    return mp.game2.audio.overrideVehHorn.apply(this, [this.handle, override, hornHash]);
 };
 
 mp.Vehicle.prototype.isHornActive ??= function () {
-    let $res = natives.isHornActive(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.audio.isHornActive.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.playStreamFromPed ??= function () {
-    let $res = natives.playStreamFromPed(this.handle);
+    return mp.game2.audio.playStreamFromPed.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.playStreamFromPed ??= function () {
-    let $res = natives.playStreamFromPed(this.handle);
+    return mp.game2.audio.playStreamFromPed.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.playStreamFromVehicle ??= function () {
-    let $res = natives.playStreamFromVehicle(this.handle);
+    return mp.game2.audio.playStreamFromVehicle.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.playStreamFromObject ??= function () {
-    let $res = natives.playStreamFromObject(this.handle);
+    return mp.game2.audio.playStreamFromObject.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.stopPedSpeaking ??= function (shaking) {
-    let $res = natives.stopPedSpeaking(this.handle, shaking | 0);
+    return mp.game2.audio.stopPedSpeaking.apply(this, [this.handle, shaking]);
 };
 
 mp.Ped.prototype.stopPedSpeaking ??= function (shaking) {
-    let $res = natives.stopPedSpeaking(this.handle, shaking | 0);
+    return mp.game2.audio.stopPedSpeaking.apply(this, [this.handle, shaking]);
 };
 
 mp.Player.prototype.disablePedPain ??= function (toggle) {
-    let $res = natives.disablePedPainAudio(this.handle, toggle | 0);
+    return mp.game2.audio.disablePedPain.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.disablePedPain ??= function (toggle) {
-    let $res = natives.disablePedPainAudio(this.handle, toggle | 0);
+    return mp.game2.audio.disablePedPain.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.isAmbientSpeechDisabled ??= function () {
-    let $res = natives.isAmbientSpeechDisabled(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.audio.isAmbientSpeechDisabled.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isAmbientSpeechDisabled ??= function () {
-    let $res = natives.isAmbientSpeechDisabled(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.audio.isAmbientSpeechDisabled.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setSirenWithNoDriver ??= function (toggle) {
-    let $res = natives.setSirenWithNoDriver(this.handle, toggle | 0);
+    return mp.game2.audio.setSirenWithNoDriver.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setSirenKeepOn ??= function (toggle) {
-    let $res = natives.setSirenBypassMpDriverCheck(this.handle, toggle | 0);
+    return mp.game2.audio.setSirenKeepOn.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.triggerSiren ??= function () {
-    let $res = natives.triggerSirenAudio(this.handle);
+    return mp.game2.audio.triggerSiren.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setHornPermanentlyOn ??= function () {
-    let $res = natives.setHornPermanentlyOn(this.handle);
+    return mp.game2.audio.setHornPermanentlyOn.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setHornEnabled ??= function (toggle) {
-    let $res = natives.setHornEnabled(this.handle, toggle | 0);
+    return mp.game2.audio.setHornEnabled.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setVehiclePriority ??= function (p1) {
-    let $res = natives.setAudioVehiclePriority(this.handle, p1);
+    return mp.game2.audio.setVehiclePriority.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.setHornPermanentlyOnTime ??= function (time) {
-    let $res = natives.setHornPermanentlyOnTime(this.handle, time);
+    return mp.game2.audio.setHornPermanentlyOnTime.apply(this, [this.handle, time]);
 };
 
 mp.Vehicle.prototype.useSirenAsHorn ??= function (toggle) {
-    let $res = natives.useSirenAsHorn(this.handle, toggle | 0);
+    return mp.game2.audio.useSirenAsHorn.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.forceVehicleEngine ??= function (audioName) {
-    if (typeof audioName != "string") audioName = null;
-    let $res = natives.forceUseAudioGameObject(this.handle, audioName);
+    return mp.game2.audio.forceVehicleEngine.apply(this, [this.handle, audioName]);
 };
 
 mp.Vehicle.prototype.setVehicleStartupRevSound ??= function (p1, p2) {
-    if (typeof p1 != "string") p1 = null;
-    if (typeof p2 != "string") p2 = null;
-    let $res = natives.setVehicleStartupRevSound(this.handle, p1, p2);
+    return mp.game2.audio.setVehicleStartupRevSound.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Vehicle.prototype.resetVehicleStartupRevSound ??= function () {
-    let $res = natives.resetVehicleStartupRevSound(this.handle);
+    return mp.game2.audio.resetVehicleStartupRevSound.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isVehicleAudiblyDamaged ??= function () {
-    let $res = natives.isVehicleAudiblyDamaged(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.audio.isVehicleAudiblyDamaged.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setVehicleEngineDamageFactor ??= function (damageFactor) {
-    let $res = natives.setVehicleAudioEngineDamageFactor(this.handle, damageFactor);
+    return mp.game2.audio.setVehicleEngineDamageFactor.apply(this, [this.handle, damageFactor]);
 };
 
 mp.Vehicle.prototype.setVehicleBodyDamageFactor ??= function (intensity) {
-    let $res = natives.setVehicleAudioBodyDamageFactor(this.handle, intensity);
+    return mp.game2.audio.setVehicleBodyDamageFactor.apply(this, [this.handle, intensity]);
 };
 
 mp.Vehicle.prototype.enableVehicleFanbeltDamage ??= function (toggle) {
-    let $res = natives.enableVehicleFanbeltDamage(this.handle, toggle | 0);
+    return mp.game2.audio.enableVehicleFanbeltDamage.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.enableVehicleExhaustPops ??= function (toggle) {
-    let $res = natives.enableVehicleExhaustPops(this.handle, toggle | 0);
+    return mp.game2.audio.enableVehicleExhaustPops.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setVehicleBoostActive ??= function (toggle) {
-    let $res = natives.setVehicleBoostActive(this.handle, toggle | 0);
+    return mp.game2.audio.setVehicleBoostActive.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.playVehicleDoorOpenSound ??= function (doorId) {
-    let $res = natives.playVehicleDoorOpenSound(this.handle, doorId);
+    return mp.game2.audio.playVehicleDoorOpenSound.apply(this, [this.handle, doorId]);
 };
 
 mp.Vehicle.prototype.playVehicleDoorCloseSound ??= function (doorId) {
-    let $res = natives.playVehicleDoorCloseSound(this.handle, doorId);
+    return mp.game2.audio.playVehicleDoorCloseSound.apply(this, [this.handle, doorId]);
 };
 
 mp.Vehicle.prototype.enableStallWarningSounds ??= function (toggle) {
-    let $res = natives.enableStallWarningSounds(this.handle, toggle | 0);
+    return mp.game2.audio.enableStallWarningSounds.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.addEntityToMixGroup ??= function (groupName, p2) {
-    if (typeof groupName != "string") groupName = null;
-    let $res = natives.addEntityToAudioMixGroup(this.handle, groupName, p2);
+    return mp.game2.audio.addEntityToMixGroup.apply(this, [this.handle, groupName, p2]);
 };
 
 mp.Ped.prototype.addEntityToMixGroup ??= function (groupName, p2) {
-    if (typeof groupName != "string") groupName = null;
-    let $res = natives.addEntityToAudioMixGroup(this.handle, groupName, p2);
+    return mp.game2.audio.addEntityToMixGroup.apply(this, [this.handle, groupName, p2]);
 };
 
 mp.Object.prototype.addEntityToMixGroup ??= function (groupName, p2) {
-    if (typeof groupName != "string") groupName = null;
-    let $res = natives.addEntityToAudioMixGroup(this.handle, groupName, p2);
+    return mp.game2.audio.addEntityToMixGroup.apply(this, [this.handle, groupName, p2]);
 };
 
 mp.Vehicle.prototype.addEntityToMixGroup ??= function (groupName, p2) {
-    if (typeof groupName != "string") groupName = null;
-    let $res = natives.addEntityToAudioMixGroup(this.handle, groupName, p2);
+    return mp.game2.audio.addEntityToMixGroup.apply(this, [this.handle, groupName, p2]);
 };
 
 mp.Player.prototype.removeEntityFromMixGroup ??= function (p1) {
-    let $res = natives.removeEntityFromAudioMixGroup(this.handle, p1);
+    return mp.game2.audio.removeEntityFromMixGroup.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.removeEntityFromMixGroup ??= function (p1) {
-    let $res = natives.removeEntityFromAudioMixGroup(this.handle, p1);
+    return mp.game2.audio.removeEntityFromMixGroup.apply(this, [this.handle, p1]);
 };
 
 mp.Object.prototype.removeEntityFromMixGroup ??= function (p1) {
-    let $res = natives.removeEntityFromAudioMixGroup(this.handle, p1);
+    return mp.game2.audio.removeEntityFromMixGroup.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.removeEntityFromMixGroup ??= function (p1) {
-    let $res = natives.removeEntityFromAudioMixGroup(this.handle, p1);
+    return mp.game2.audio.removeEntityFromMixGroup.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.getVehicleDefaultHorn ??= function () {
-    let $res = natives.getVehicleDefaultHorn(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.audio.getVehicleDefaultHorn.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getVehicleDefaultHornIgnoreMods ??= function () {
-    let $res = natives.getVehicleDefaultHornIgnoreMods(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.audio.getVehicleDefaultHornIgnoreMods.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.resetPedFlags ??= function () {
-    let $res = natives.resetPedAudioFlags(this.handle);
+    return mp.game2.audio.resetPedFlags.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.resetPedFlags ??= function () {
-    let $res = natives.resetPedAudioFlags(this.handle);
+    return mp.game2.audio.resetPedFlags.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setPedFootstepLoud ??= function (toggle) {
-    let $res = natives.setPedFootstepsEventsEnabled(this.handle, toggle | 0);
+    return mp.game2.audio.setPedFootstepLoud.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setPedFootstepLoud ??= function (toggle) {
-    let $res = natives.setPedFootstepsEventsEnabled(this.handle, toggle | 0);
+    return mp.game2.audio.setPedFootstepLoud.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setPedFootstepQuiet ??= function (toggle) {
-    let $res = natives.setPedClothEventsEnabled(this.handle, toggle | 0);
+    return mp.game2.audio.setPedFootstepQuiet.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setPedFootstepQuiet ??= function (toggle) {
-    let $res = natives.setPedClothEventsEnabled(this.handle, toggle | 0);
+    return mp.game2.audio.setPedFootstepQuiet.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.requestTennisBanks ??= function () {
-    let $res = natives.requestTennisBanks(this.handle);
+    return mp.game2.audio.requestTennisBanks.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.requestTennisBanks ??= function () {
-    let $res = natives.requestTennisBanks(this.handle);
+    return mp.game2.audio.requestTennisBanks.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getVehicleDefaultHornVariation ??= function () {
-    let $res = natives.getVehicleHornSoundIndex(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.audio.getVehicleDefaultHornVariation.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setVehicleHornVariation ??= function (value) {
-    let $res = natives.setVehicleHornSoundIndex(this.handle, value);
+    return mp.game2.audio.setVehicleHornVariation.apply(this, [this.handle, value]);
 };
 
 mp.Object.prototype.isObjectWithinActivationRange ??= function () {
-    let $res = natives.isObjectWithinBrainActivationRange(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.brain.isObjectWithinActivationRange.apply(this, [this.handle]);
 };
 
 mp.Camera.prototype.doesExist ??= function () {
-    let $res = natives.doesCamExist(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.cam.doesExist.apply(this, [this.handle]);
 };
 
 mp.Camera.prototype.setActive ??= function (active) {
-    let $res = natives.setCamActive(this.handle, active | 0);
+    return mp.game2.cam.setActive.apply(this, [this.handle, active]);
 };
 
 mp.Camera.prototype.isActive ??= function () {
-    let $res = natives.isCamActive(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.cam.isActive.apply(this, [this.handle]);
 };
 
 mp.Camera.prototype.isRendering ??= function () {
-    let $res = natives.isCamRendering(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.cam.isRendering.apply(this, [this.handle]);
 };
 
 mp.Camera.prototype.getCoord ??= function () {
-    let $res = natives.getCamCoord(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.cam.getCoord.apply(this, [this.handle]);
 };
 
 mp.Camera.prototype.getRot ??= function (rotationOrder) {
-    let $res = natives.getCamRot(this.handle, rotationOrder);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.cam.getRot.apply(this, [this.handle, rotationOrder]);
 };
 
 mp.Camera.prototype.getFov ??= function () {
-    let $res = natives.getCamFov(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.cam.getFov.apply(this, [this.handle]);
 };
 
 mp.Camera.prototype.getNearClip ??= function () {
-    let $res = natives.getCamNearClip(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.cam.getNearClip.apply(this, [this.handle]);
 };
 
 mp.Camera.prototype.getFarClip ??= function () {
-    let $res = natives.getCamFarClip(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.cam.getFarClip.apply(this, [this.handle]);
 };
 
 mp.Camera.prototype.getFarDof ??= function () {
-    let $res = natives.getCamFarDof(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.cam.getFarDof.apply(this, [this.handle]);
 };
 
 mp.Camera.prototype.setParams ??= function (posX, posY, posZ, rotX, rotY, rotZ, fieldOfView, p8, p9, p10, p11) {
-    let $res = natives.setCamParams(this.handle, posX, posY, posZ, rotX, rotY, rotZ, fieldOfView, p8, p9, p10, p11);
+    return mp.game2.cam.setParams.apply(this, [this.handle, posX, posY, posZ, rotX, rotY, rotZ, fieldOfView, p8, p9, p10, p11]);
 };
 
 mp.Camera.prototype.setCoord ??= function (posX, posY, posZ) {
-    let $res = natives.setCamCoord(this.handle, posX, posY, posZ);
+    return mp.game2.cam.setCoord.apply(this, [this.handle, posX, posY, posZ]);
 };
 
 mp.Camera.prototype.setRot ??= function (rotX, rotY, rotZ, rotationOrder) {
-    let $res = natives.setCamRot(this.handle, rotX, rotY, rotZ, rotationOrder);
+    return mp.game2.cam.setRot.apply(this, [this.handle, rotX, rotY, rotZ, rotationOrder]);
 };
 
 mp.Camera.prototype.setFov ??= function (fieldOfView) {
-    let $res = natives.setCamFov(this.handle, fieldOfView);
+    return mp.game2.cam.setFov.apply(this, [this.handle, fieldOfView]);
 };
 
 mp.Camera.prototype.setNearClip ??= function (nearClip) {
-    let $res = natives.setCamNearClip(this.handle, nearClip);
+    return mp.game2.cam.setNearClip.apply(this, [this.handle, nearClip]);
 };
 
 mp.Camera.prototype.setFarClip ??= function (farClip) {
-    let $res = natives.setCamFarClip(this.handle, farClip);
+    return mp.game2.cam.setFarClip.apply(this, [this.handle, farClip]);
 };
 
 mp.Camera.prototype.setMotionBlurStrength ??= function (strength) {
-    let $res = natives.setCamMotionBlurStrength(this.handle, strength);
+    return mp.game2.cam.setMotionBlurStrength.apply(this, [this.handle, strength]);
 };
 
 mp.Camera.prototype.setNearDof ??= function (nearDOF) {
-    let $res = natives.setCamNearDof(this.handle, nearDOF);
+    return mp.game2.cam.setNearDof.apply(this, [this.handle, nearDOF]);
 };
 
 mp.Camera.prototype.setFarDof ??= function (farDOF) {
-    let $res = natives.setCamFarDof(this.handle, farDOF);
+    return mp.game2.cam.setFarDof.apply(this, [this.handle, farDOF]);
 };
 
 mp.Camera.prototype.setDofStrength ??= function (dofStrength) {
-    let $res = natives.setCamDofStrength(this.handle, dofStrength);
+    return mp.game2.cam.setDofStrength.apply(this, [this.handle, dofStrength]);
 };
 
 mp.Camera.prototype.setDofPlanes ??= function (p1, p2, p3, p4) {
-    let $res = natives.setCamDofPlanes(this.handle, p1, p2, p3, p4);
+    return mp.game2.cam.setDofPlanes.apply(this, [this.handle, p1, p2, p3, p4]);
 };
 
 mp.Camera.prototype.setUseShallowDofMode ??= function (toggle) {
-    let $res = natives.setCamUseShallowDofMode(this.handle, toggle | 0);
+    return mp.game2.cam.setUseShallowDofMode.apply(this, [this.handle, toggle]);
 };
 
 mp.Camera.prototype.setDofFnumberOfLens ??= function (p1) {
-    let $res = natives.setCamDofFnumberOfLens(this.handle, p1);
+    return mp.game2.cam.setDofFnumberOfLens.apply(this, [this.handle, p1]);
 };
 
 mp.Camera.prototype.setDofFocalLengthMultiplier ??= function (multiplier) {
-    let $res = natives.setCamDofFocalLengthMultiplier(this.handle, multiplier);
+    return mp.game2.cam.setDofFocalLengthMultiplier.apply(this, [this.handle, multiplier]);
 };
 
 mp.Camera.prototype.setDofFocusDistanceBias ??= function (p1) {
-    let $res = natives.setCamDofFocusDistanceBias(this.handle, p1);
+    return mp.game2.cam.setDofFocusDistanceBias.apply(this, [this.handle, p1]);
 };
 
 mp.Camera.prototype.setDofMaxNearInFocusDistance ??= function (p1) {
-    let $res = natives.setCamDofMaxNearInFocusDistance(this.handle, p1);
+    return mp.game2.cam.setDofMaxNearInFocusDistance.apply(this, [this.handle, p1]);
 };
 
 mp.Camera.prototype.setDofMaxNearInFocusDistanceBlendLevel ??= function (p1) {
-    let $res = natives.setCamDofMaxNearInFocusDistanceBlendLevel(this.handle, p1);
+    return mp.game2.cam.setDofMaxNearInFocusDistanceBlendLevel.apply(this, [this.handle, p1]);
 };
 
 mp.Camera.prototype.attachToEntity ??= function (entity, xOffset, yOffset, zOffset, isRelative) {
-    let $res = natives.attachCamToEntity(this.handle, entity, xOffset, yOffset, zOffset, isRelative | 0);
+    return mp.game2.cam.attachToEntity.apply(this, [this.handle, entity, xOffset, yOffset, zOffset, isRelative]);
 };
 
 mp.Camera.prototype.attachToPedBone ??= function (ped, boneIndex, x, y, z, heading) {
-    let $res = natives.attachCamToPedBone(this.handle, ped, boneIndex, x, y, z, heading | 0);
+    return mp.game2.cam.attachToPedBone.apply(this, [this.handle, ped, boneIndex, x, y, z, heading]);
 };
 
 mp.Camera.prototype.attachToPedBone2 ??= function (ped, boneIndex, p3, p4, p5, p6, p7, p8, p9) {
-    let $res = natives.hardAttachCamToPedBone(this.handle, ped, boneIndex, p3, p4, p5, p6, p7, p8, p9 | 0);
+    return mp.game2.cam.attachToPedBone2.apply(this, [this.handle, ped, boneIndex, p3, p4, p5, p6, p7, p8, p9]);
 };
 
 mp.Camera.prototype.attachToVehicleBone ??= function (vehicle, boneIndex, relativeRotation, rotX, rotY, rotZ, offsetX, offsetY, offsetZ, fixedDirection) {
-    let $res = natives.attachCamToVehicleBone(this.handle, vehicle, boneIndex, relativeRotation | 0, rotX, rotY, rotZ, offsetX, offsetY, offsetZ, fixedDirection | 0);
+    return mp.game2.cam.attachToVehicleBone.apply(this, [this.handle, vehicle, boneIndex, relativeRotation, rotX, rotY, rotZ, offsetX, offsetY, offsetZ, fixedDirection]);
 };
 
 mp.Camera.prototype.detach ??= function () {
-    let $res = natives.detachCam(this.handle);
+    return mp.game2.cam.detach.apply(this, [this.handle]);
 };
 
 mp.Camera.prototype.setInheritRollVehicle ??= function (p1) {
-    let $res = natives.setCamInheritRollVehicle(this.handle, p1 | 0);
+    return mp.game2.cam.setInheritRollVehicle.apply(this, [this.handle, p1]);
 };
 
 mp.Camera.prototype.pointAtCoord ??= function (x, y, z) {
-    let $res = natives.pointCamAtCoord(this.handle, x, y, z);
+    return mp.game2.cam.pointAtCoord.apply(this, [this.handle, x, y, z]);
 };
 
 mp.Camera.prototype.pointAtEntity ??= function (entity, p2, p3, p4, p5) {
-    let $res = natives.pointCamAtEntity(this.handle, entity, p2, p3, p4, p5 | 0);
+    return mp.game2.cam.pointAtEntity.apply(this, [this.handle, entity, p2, p3, p4, p5]);
 };
 
 mp.Camera.prototype.pointAtPedBone ??= function (ped, boneIndex, x, y, z, p6) {
-    let $res = natives.pointCamAtPedBone(this.handle, ped, boneIndex, x, y, z, p6 | 0);
+    return mp.game2.cam.pointAtPedBone.apply(this, [this.handle, ped, boneIndex, x, y, z, p6]);
 };
 
 mp.Camera.prototype.stopPointing ??= function () {
-    let $res = natives.stopCamPointing(this.handle);
+    return mp.game2.cam.stopPointing.apply(this, [this.handle]);
 };
 
 mp.Camera.prototype.setAffectsAiming ??= function (toggle) {
-    let $res = natives.setCamAffectsAiming(this.handle, toggle | 0);
+    return mp.game2.cam.setAffectsAiming.apply(this, [this.handle, toggle]);
 };
 
 mp.Camera.prototype.setDebugName ??= function (name) {
-    if (typeof name != "string") name = null;
-    let $res = natives.setCamDebugName(this.handle, name);
+    return mp.game2.cam.setDebugName.apply(this, [this.handle, name]);
 };
 
 mp.Camera.prototype.addSplineNode ??= function (x, y, z, xRot, yRot, zRot, length, smoothingStyle, rotationOrder) {
-    let $res = natives.addCamSplineNode(this.handle, x, y, z, xRot, yRot, zRot, length, smoothingStyle, rotationOrder);
+    return mp.game2.cam.addSplineNode.apply(this, [this.handle, x, y, z, xRot, yRot, zRot, length, smoothingStyle, rotationOrder]);
 };
 
 mp.Camera.prototype.addSplineNodeUsingCameraFrame ??= function (cam2, p2, p3) {
-    let $res = natives.addCamSplineNodeUsingCameraFrame(this.handle, cam2, p2, p3);
+    return mp.game2.cam.addSplineNodeUsingCameraFrame.apply(this, [this.handle, cam2, p2, p3]);
 };
 
 mp.Camera.prototype.addSplineNodeUsingCamera ??= function (cam2, p2, p3) {
-    let $res = natives.addCamSplineNodeUsingCamera(this.handle, cam2, p2, p3);
+    return mp.game2.cam.addSplineNodeUsingCamera.apply(this, [this.handle, cam2, p2, p3]);
 };
 
 mp.Camera.prototype.addSplineNodeUsingGameplayFrame ??= function (p1, p2) {
-    let $res = natives.addCamSplineNodeUsingGameplayFrame(this.handle, p1, p2);
+    return mp.game2.cam.addSplineNodeUsingGameplayFrame.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Camera.prototype.setSplinePhase ??= function (p1) {
-    let $res = natives.setCamSplinePhase(this.handle, p1);
+    return mp.game2.cam.setSplinePhase.apply(this, [this.handle, p1]);
 };
 
 mp.Camera.prototype.getSplinePhase ??= function () {
-    let $res = natives.getCamSplinePhase(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.cam.getSplinePhase.apply(this, [this.handle]);
 };
 
 mp.Camera.prototype.getSplineNodePhase ??= function () {
-    let $res = natives.getCamSplineNodePhase(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.cam.getSplineNodePhase.apply(this, [this.handle]);
 };
 
 mp.Camera.prototype.setSplineDuration ??= function (timeDuration) {
-    let $res = natives.setCamSplineDuration(this.handle, timeDuration);
+    return mp.game2.cam.setSplineDuration.apply(this, [this.handle, timeDuration]);
 };
 
 mp.Camera.prototype.setSplineSmoothingStyle ??= function (smoothingStyle) {
-    let $res = natives.setCamSplineSmoothingStyle(this.handle, smoothingStyle);
+    return mp.game2.cam.setSplineSmoothingStyle.apply(this, [this.handle, smoothingStyle]);
 };
 
 mp.Camera.prototype.getSplineNodeIndex ??= function () {
-    let $res = natives.getCamSplineNodeIndex(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.cam.getSplineNodeIndex.apply(this, [this.handle]);
 };
 
 mp.Camera.prototype.setSplineNodeEase ??= function (easingFunction, p2, p3) {
-    let $res = natives.setCamSplineNodeEase(this.handle, easingFunction, p2, p3);
+    return mp.game2.cam.setSplineNodeEase.apply(this, [this.handle, easingFunction, p2, p3]);
 };
 
 mp.Camera.prototype.setSplineNodeVelocityScale ??= function (p1, scale) {
-    let $res = natives.setCamSplineNodeVelocityScale(this.handle, p1, scale);
+    return mp.game2.cam.setSplineNodeVelocityScale.apply(this, [this.handle, p1, scale]);
 };
 
 mp.Camera.prototype.overrideSplineVelocity ??= function (p1, p2, p3) {
-    let $res = natives.overrideCamSplineVelocity(this.handle, p1, p2, p3);
+    return mp.game2.cam.overrideSplineVelocity.apply(this, [this.handle, p1, p2, p3]);
 };
 
 mp.Camera.prototype.overrideSplineMotionBlur ??= function (p1, p2, p3) {
-    let $res = natives.overrideCamSplineMotionBlur(this.handle, p1, p2, p3);
+    return mp.game2.cam.overrideSplineMotionBlur.apply(this, [this.handle, p1, p2, p3]);
 };
 
 mp.Camera.prototype.setSplineNodeExtraFlags ??= function (p1, flags) {
-    let $res = natives.setCamSplineNodeExtraFlags(this.handle, p1, flags);
+    return mp.game2.cam.setSplineNodeExtraFlags.apply(this, [this.handle, p1, flags]);
 };
 
 mp.Camera.prototype.isSplinePaused ??= function () {
-    let $res = natives.isCamSplinePaused(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.cam.isSplinePaused.apply(this, [this.handle]);
 };
 
 mp.Camera.prototype.setActiveWithInterp ??= function (camFrom, duration, easeLocation, easeRotation) {
-    let $res = natives.setCamActiveWithInterp(this.handle, camFrom, duration, easeLocation, easeRotation);
+    return mp.game2.cam.setActiveWithInterp.apply(this, [this.handle, camFrom, duration, easeLocation, easeRotation]);
 };
 
 mp.Camera.prototype.isInterpolating ??= function () {
-    let $res = natives.isCamInterpolating(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.cam.isInterpolating.apply(this, [this.handle]);
 };
 
 mp.Camera.prototype.shake ??= function (type, amplitude) {
-    if (typeof type != "string") type = null;
-    let $res = natives.shakeCam(this.handle, type, amplitude);
+    return mp.game2.cam.shake.apply(this, [this.handle, type, amplitude]);
 };
 
 mp.Camera.prototype.animatedShake ??= function (p1, p2, p3, amplitude) {
-    if (typeof p1 != "string") p1 = null;
-    if (typeof p2 != "string") p2 = null;
-    if (typeof p3 != "string") p3 = null;
-    let $res = natives.animatedShakeCam(this.handle, p1, p2, p3, amplitude);
+    return mp.game2.cam.animatedShake.apply(this, [this.handle, p1, p2, p3, amplitude]);
 };
 
 mp.Camera.prototype.isShaking ??= function () {
-    let $res = natives.isCamShaking(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.cam.isShaking.apply(this, [this.handle]);
 };
 
 mp.Camera.prototype.setShakeAmplitude ??= function (amplitude) {
-    let $res = natives.setCamShakeAmplitude(this.handle, amplitude);
+    return mp.game2.cam.setShakeAmplitude.apply(this, [this.handle, amplitude]);
 };
 
 mp.Camera.prototype.stopShaking ??= function (p1) {
-    let $res = natives.stopCamShaking(this.handle, p1 | 0);
+    return mp.game2.cam.stopShaking.apply(this, [this.handle, p1]);
 };
 
 mp.Camera.prototype.playAnim ??= function (animName, animDictionary, x, y, z, xRot, yRot, zRot, p9, p10) {
-    if (typeof animName != "string") animName = null;
-    if (typeof animDictionary != "string") animDictionary = null;
-    let $res = natives.playCamAnim(this.handle, animName, animDictionary, x, y, z, xRot, yRot, zRot, p9 | 0, p10);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.cam.playAnim.apply(this, [this.handle, animName, animDictionary, x, y, z, xRot, yRot, zRot, p9, p10]);
 };
 
 mp.Camera.prototype.isPlayingAnim ??= function (animName, animDictionary) {
-    if (typeof animName != "string") animName = null;
-    if (typeof animDictionary != "string") animDictionary = null;
-    let $res = natives.isCamPlayingAnim(this.handle, animName, animDictionary);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.cam.isPlayingAnim.apply(this, [this.handle, animName, animDictionary]);
 };
 
 mp.Camera.prototype.setAnimCurrentPhase ??= function (phase) {
-    let $res = natives.setCamAnimCurrentPhase(this.handle, phase);
+    return mp.game2.cam.setAnimCurrentPhase.apply(this, [this.handle, phase]);
 };
 
 mp.Camera.prototype.getAnimCurrentPhase ??= function () {
-    let $res = natives.getCamAnimCurrentPhase(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.cam.getAnimCurrentPhase.apply(this, [this.handle]);
 };
 
 mp.Camera.prototype.setFlyHorizontalResponse ??= function (p1, p2, p3) {
-    let $res = natives.setFlyCamHorizontalResponse(this.handle, p1, p2, p3);
+    return mp.game2.cam.setFlyHorizontalResponse.apply(this, [this.handle, p1, p2, p3]);
 };
 
 mp.Camera.prototype.setFlyVerticalSpeedMultiplier ??= function (p1, p2, p3) {
-    let $res = natives.setFlyCamVerticalResponse(this.handle, p1, p2, p3);
+    return mp.game2.cam.setFlyVerticalSpeedMultiplier.apply(this, [this.handle, p1, p2, p3]);
 };
 
 mp.Camera.prototype.setFlyMaxHeight ??= function (height) {
-    let $res = natives.setFlyCamMaxHeight(this.handle, height);
+    return mp.game2.cam.setFlyMaxHeight.apply(this, [this.handle, height]);
 };
 
 mp.Camera.prototype.setFlyCoordAndConstrain ??= function (x, y, z) {
-    let $res = natives.setFlyCamCoordAndConstrain(this.handle, x, y, z);
+    return mp.game2.cam.setFlyCoordAndConstrain.apply(this, [this.handle, x, y, z]);
 };
 
 mp.Player.prototype.setGameplayFollowPedThisUpdate ??= function () {
-    let $res = natives.setGameplayCamFollowPedThisUpdate(this.handle);
+    return mp.game2.cam.setGameplayFollowPedThisUpdate.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.setGameplayFollowPedThisUpdate ??= function () {
-    let $res = natives.setGameplayCamFollowPedThisUpdate(this.handle);
+    return mp.game2.cam.setGameplayFollowPedThisUpdate.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.disableCollisionForEntity ??= function () {
-    let $res = natives.setGameplayCamIgnoreEntityCollisionThisUpdate(this.handle);
+    return mp.game2.cam.disableCollisionForEntity.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.disableCollisionForEntity ??= function () {
-    let $res = natives.setGameplayCamIgnoreEntityCollisionThisUpdate(this.handle);
+    return mp.game2.cam.disableCollisionForEntity.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.disableCollisionForEntity ??= function () {
-    let $res = natives.setGameplayCamIgnoreEntityCollisionThisUpdate(this.handle);
+    return mp.game2.cam.disableCollisionForEntity.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.disableCollisionForEntity ??= function () {
-    let $res = natives.setGameplayCamIgnoreEntityCollisionThisUpdate(this.handle);
+    return mp.game2.cam.disableCollisionForEntity.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.disableCollisionForObject ??= function () {
-    let $res = natives.disableCamCollisionForObject(this.handle);
+    return mp.game2.cam.disableCollisionForObject.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.disableCollisionForObject ??= function () {
-    let $res = natives.disableCamCollisionForObject(this.handle);
+    return mp.game2.cam.disableCollisionForObject.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.disableCollisionForObject ??= function () {
-    let $res = natives.disableCamCollisionForObject(this.handle);
+    return mp.game2.cam.disableCollisionForObject.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.disableCollisionForObject ??= function () {
-    let $res = natives.disableCamCollisionForObject(this.handle);
+    return mp.game2.cam.disableCollisionForObject.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setInVehicleStateThisUpdate ??= function (p1) {
-    let $res = natives.setInVehicleCamStateThisUpdate(this.handle, p1);
+    return mp.game2.cam.setInVehicleStateThisUpdate.apply(this, [this.handle, p1]);
 };
 
 mp.Camera.prototype.getViewModeForContext ??= function () {
-    let $res = natives.getCamViewModeForContext(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.cam.getViewModeForContext.apply(this, [this.handle]);
 };
 
 mp.Camera.prototype.setViewModeForContext ??= function (viewMode) {
-    let $res = natives.setCamViewModeForContext(this.handle, viewMode);
+    return mp.game2.cam.setViewModeForContext.apply(this, [this.handle, viewMode]);
 };
 
 mp.Player.prototype.setGameplayPedHint ??= function (x1, y1, z1, p4, duration, blendOutDuration, blendInDuration) {
-    let $res = natives.setGameplayPedHint(this.handle, x1, y1, z1, p4 | 0, duration, blendOutDuration, blendInDuration);
+    return mp.game2.cam.setGameplayPedHint.apply(this, [this.handle, x1, y1, z1, p4, duration, blendOutDuration, blendInDuration]);
 };
 
 mp.Ped.prototype.setGameplayPedHint ??= function (x1, y1, z1, p4, duration, blendOutDuration, blendInDuration) {
-    let $res = natives.setGameplayPedHint(this.handle, x1, y1, z1, p4 | 0, duration, blendOutDuration, blendInDuration);
+    return mp.game2.cam.setGameplayPedHint.apply(this, [this.handle, x1, y1, z1, p4, duration, blendOutDuration, blendInDuration]);
 };
 
 mp.Vehicle.prototype.setGameplayVehicleHint ??= function (offsetX, offsetY, offsetZ, p4, time, easeInTime, easeOutTime) {
-    let $res = natives.setGameplayVehicleHint(this.handle, offsetX, offsetY, offsetZ, p4 | 0, time, easeInTime, easeOutTime);
+    return mp.game2.cam.setGameplayVehicleHint.apply(this, [this.handle, offsetX, offsetY, offsetZ, p4, time, easeInTime, easeOutTime]);
 };
 
 mp.Player.prototype.setGameplayEntityHint ??= function (xOffset, yOffset, zOffset, p4, p5, p6, p7, p8) {
-    let $res = natives.setGameplayEntityHint(this.handle, xOffset, yOffset, zOffset, p4 | 0, p5, p6, p7, p8);
+    return mp.game2.cam.setGameplayEntityHint.apply(this, [this.handle, xOffset, yOffset, zOffset, p4, p5, p6, p7, p8]);
 };
 
 mp.Ped.prototype.setGameplayEntityHint ??= function (xOffset, yOffset, zOffset, p4, p5, p6, p7, p8) {
-    let $res = natives.setGameplayEntityHint(this.handle, xOffset, yOffset, zOffset, p4 | 0, p5, p6, p7, p8);
+    return mp.game2.cam.setGameplayEntityHint.apply(this, [this.handle, xOffset, yOffset, zOffset, p4, p5, p6, p7, p8]);
 };
 
 mp.Object.prototype.setGameplayEntityHint ??= function (xOffset, yOffset, zOffset, p4, p5, p6, p7, p8) {
-    let $res = natives.setGameplayEntityHint(this.handle, xOffset, yOffset, zOffset, p4 | 0, p5, p6, p7, p8);
+    return mp.game2.cam.setGameplayEntityHint.apply(this, [this.handle, xOffset, yOffset, zOffset, p4, p5, p6, p7, p8]);
 };
 
 mp.Vehicle.prototype.setGameplayEntityHint ??= function (xOffset, yOffset, zOffset, p4, p5, p6, p7, p8) {
-    let $res = natives.setGameplayEntityHint(this.handle, xOffset, yOffset, zOffset, p4 | 0, p5, p6, p7, p8);
+    return mp.game2.cam.setGameplayEntityHint.apply(this, [this.handle, xOffset, yOffset, zOffset, p4, p5, p6, p7, p8]);
 };
 
 mp.Camera.prototype.setEffect ??= function () {
-    let $res = natives.setCamDeathFailEffectState(this.handle);
+    return mp.game2.cam.setEffect.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.registerEntityFor ??= function (cutsceneEntName, p2, modelHash, p4) {
-    if (typeof cutsceneEntName != "string") cutsceneEntName = null;
-    let $res = natives.registerEntityForCutscene(this.handle, cutsceneEntName, p2, modelHash, p4);
+    return mp.game2.cutscene.registerEntityFor.apply(this, [this.handle, cutsceneEntName, p2, modelHash, p4]);
 };
 
 mp.Ped.prototype.registerEntityFor ??= function (cutsceneEntName, p2, modelHash, p4) {
-    if (typeof cutsceneEntName != "string") cutsceneEntName = null;
-    let $res = natives.registerEntityForCutscene(this.handle, cutsceneEntName, p2, modelHash, p4);
+    return mp.game2.cutscene.registerEntityFor.apply(this, [this.handle, cutsceneEntName, p2, modelHash, p4]);
 };
 
 mp.Player.prototype.decorSetTime ??= function (propertyName, timestamp) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorSetTime(this.handle, propertyName, timestamp);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorSetTime.apply(this, [this.handle, propertyName, timestamp]);
 };
 
 mp.Ped.prototype.decorSetTime ??= function (propertyName, timestamp) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorSetTime(this.handle, propertyName, timestamp);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorSetTime.apply(this, [this.handle, propertyName, timestamp]);
 };
 
 mp.Object.prototype.decorSetTime ??= function (propertyName, timestamp) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorSetTime(this.handle, propertyName, timestamp);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorSetTime.apply(this, [this.handle, propertyName, timestamp]);
 };
 
 mp.Vehicle.prototype.decorSetTime ??= function (propertyName, timestamp) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorSetTime(this.handle, propertyName, timestamp);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorSetTime.apply(this, [this.handle, propertyName, timestamp]);
 };
 
 mp.Player.prototype.decorSetBool ??= function (propertyName, value) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorSetBool(this.handle, propertyName, value | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorSetBool.apply(this, [this.handle, propertyName, value]);
 };
 
 mp.Ped.prototype.decorSetBool ??= function (propertyName, value) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorSetBool(this.handle, propertyName, value | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorSetBool.apply(this, [this.handle, propertyName, value]);
 };
 
 mp.Object.prototype.decorSetBool ??= function (propertyName, value) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorSetBool(this.handle, propertyName, value | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorSetBool.apply(this, [this.handle, propertyName, value]);
 };
 
 mp.Vehicle.prototype.decorSetBool ??= function (propertyName, value) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorSetBool(this.handle, propertyName, value | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorSetBool.apply(this, [this.handle, propertyName, value]);
 };
 
 mp.Player.prototype.decorSetFloat ??= function (propertyName, value) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorSetFloat(this.handle, propertyName, value);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorSetFloat.apply(this, [this.handle, propertyName, value]);
 };
 
 mp.Ped.prototype.decorSetFloat ??= function (propertyName, value) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorSetFloat(this.handle, propertyName, value);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorSetFloat.apply(this, [this.handle, propertyName, value]);
 };
 
 mp.Object.prototype.decorSetFloat ??= function (propertyName, value) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorSetFloat(this.handle, propertyName, value);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorSetFloat.apply(this, [this.handle, propertyName, value]);
 };
 
 mp.Vehicle.prototype.decorSetFloat ??= function (propertyName, value) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorSetFloat(this.handle, propertyName, value);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorSetFloat.apply(this, [this.handle, propertyName, value]);
 };
 
 mp.Player.prototype.decorSetInt ??= function (propertyName, value) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorSetInt(this.handle, propertyName, value);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorSetInt.apply(this, [this.handle, propertyName, value]);
 };
 
 mp.Ped.prototype.decorSetInt ??= function (propertyName, value) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorSetInt(this.handle, propertyName, value);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorSetInt.apply(this, [this.handle, propertyName, value]);
 };
 
 mp.Object.prototype.decorSetInt ??= function (propertyName, value) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorSetInt(this.handle, propertyName, value);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorSetInt.apply(this, [this.handle, propertyName, value]);
 };
 
 mp.Vehicle.prototype.decorSetInt ??= function (propertyName, value) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorSetInt(this.handle, propertyName, value);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorSetInt.apply(this, [this.handle, propertyName, value]);
 };
 
 mp.Player.prototype.decorGetBool ??= function (propertyName) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorGetBool(this.handle, propertyName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorGetBool.apply(this, [this.handle, propertyName]);
 };
 
 mp.Ped.prototype.decorGetBool ??= function (propertyName) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorGetBool(this.handle, propertyName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorGetBool.apply(this, [this.handle, propertyName]);
 };
 
 mp.Object.prototype.decorGetBool ??= function (propertyName) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorGetBool(this.handle, propertyName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorGetBool.apply(this, [this.handle, propertyName]);
 };
 
 mp.Vehicle.prototype.decorGetBool ??= function (propertyName) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorGetBool(this.handle, propertyName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorGetBool.apply(this, [this.handle, propertyName]);
 };
 
 mp.Player.prototype.decorGetFloat ??= function (propertyName) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorGetFloat(this.handle, propertyName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.decorator.decorGetFloat.apply(this, [this.handle, propertyName]);
 };
 
 mp.Ped.prototype.decorGetFloat ??= function (propertyName) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorGetFloat(this.handle, propertyName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.decorator.decorGetFloat.apply(this, [this.handle, propertyName]);
 };
 
 mp.Object.prototype.decorGetFloat ??= function (propertyName) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorGetFloat(this.handle, propertyName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.decorator.decorGetFloat.apply(this, [this.handle, propertyName]);
 };
 
 mp.Vehicle.prototype.decorGetFloat ??= function (propertyName) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorGetFloat(this.handle, propertyName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.decorator.decorGetFloat.apply(this, [this.handle, propertyName]);
 };
 
 mp.Player.prototype.decorGetInt ??= function (propertyName) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorGetInt(this.handle, propertyName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.decorator.decorGetInt.apply(this, [this.handle, propertyName]);
 };
 
 mp.Ped.prototype.decorGetInt ??= function (propertyName) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorGetInt(this.handle, propertyName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.decorator.decorGetInt.apply(this, [this.handle, propertyName]);
 };
 
 mp.Object.prototype.decorGetInt ??= function (propertyName) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorGetInt(this.handle, propertyName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.decorator.decorGetInt.apply(this, [this.handle, propertyName]);
 };
 
 mp.Vehicle.prototype.decorGetInt ??= function (propertyName) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorGetInt(this.handle, propertyName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.decorator.decorGetInt.apply(this, [this.handle, propertyName]);
 };
 
 mp.Player.prototype.decorExistOn ??= function (propertyName) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorExistOn(this.handle, propertyName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorExistOn.apply(this, [this.handle, propertyName]);
 };
 
 mp.Ped.prototype.decorExistOn ??= function (propertyName) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorExistOn(this.handle, propertyName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorExistOn.apply(this, [this.handle, propertyName]);
 };
 
 mp.Object.prototype.decorExistOn ??= function (propertyName) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorExistOn(this.handle, propertyName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorExistOn.apply(this, [this.handle, propertyName]);
 };
 
 mp.Vehicle.prototype.decorExistOn ??= function (propertyName) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorExistOn(this.handle, propertyName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorExistOn.apply(this, [this.handle, propertyName]);
 };
 
 mp.Player.prototype.decorRemove ??= function (propertyName) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorRemove(this.handle, propertyName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorRemove.apply(this, [this.handle, propertyName]);
 };
 
 mp.Ped.prototype.decorRemove ??= function (propertyName) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorRemove(this.handle, propertyName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorRemove.apply(this, [this.handle, propertyName]);
 };
 
 mp.Object.prototype.decorRemove ??= function (propertyName) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorRemove(this.handle, propertyName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorRemove.apply(this, [this.handle, propertyName]);
 };
 
 mp.Vehicle.prototype.decorRemove ??= function (propertyName) {
-    if (typeof propertyName != "string") propertyName = null;
-    let $res = natives.decorRemove(this.handle, propertyName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.decorator.decorRemove.apply(this, [this.handle, propertyName]);
 };
 
 mp.Player.prototype.doesExist ??= function () {
-    let $res = natives.doesEntityExist(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.doesExist.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.doesExist ??= function () {
-    let $res = natives.doesEntityExist(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.doesExist.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.doesExist ??= function () {
-    let $res = natives.doesEntityExist(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.doesExist.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.doesExist ??= function () {
-    let $res = natives.doesEntityExist(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.doesExist.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.doesBelongToThisScript ??= function (p1) {
-    let $res = natives.doesEntityBelongToThisScript(this.handle, p1 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.doesBelongToThisScript.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.doesBelongToThisScript ??= function (p1) {
-    let $res = natives.doesEntityBelongToThisScript(this.handle, p1 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.doesBelongToThisScript.apply(this, [this.handle, p1]);
 };
 
 mp.Object.prototype.doesBelongToThisScript ??= function (p1) {
-    let $res = natives.doesEntityBelongToThisScript(this.handle, p1 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.doesBelongToThisScript.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.doesBelongToThisScript ??= function (p1) {
-    let $res = natives.doesEntityBelongToThisScript(this.handle, p1 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.doesBelongToThisScript.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.doesHaveDrawable ??= function () {
-    let $res = natives.doesEntityHaveDrawable(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.doesHaveDrawable.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.doesHaveDrawable ??= function () {
-    let $res = natives.doesEntityHaveDrawable(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.doesHaveDrawable.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.doesHaveDrawable ??= function () {
-    let $res = natives.doesEntityHaveDrawable(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.doesHaveDrawable.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.doesHaveDrawable ??= function () {
-    let $res = natives.doesEntityHaveDrawable(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.doesHaveDrawable.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.doesHavePhysics ??= function () {
-    let $res = natives.doesEntityHavePhysics(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.doesHavePhysics.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.doesHavePhysics ??= function () {
-    let $res = natives.doesEntityHavePhysics(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.doesHavePhysics.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.doesHavePhysics ??= function () {
-    let $res = natives.doesEntityHavePhysics(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.doesHavePhysics.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.doesHavePhysics ??= function () {
-    let $res = natives.doesEntityHavePhysics(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.doesHavePhysics.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.hasAnimFinished ??= function (animDict, animName, p3) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.hasEntityAnimFinished(this.handle, animDict, animName, p3);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasAnimFinished.apply(this, [this.handle, animDict, animName, p3]);
 };
 
 mp.Ped.prototype.hasAnimFinished ??= function (animDict, animName, p3) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.hasEntityAnimFinished(this.handle, animDict, animName, p3);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasAnimFinished.apply(this, [this.handle, animDict, animName, p3]);
 };
 
 mp.Object.prototype.hasAnimFinished ??= function (animDict, animName, p3) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.hasEntityAnimFinished(this.handle, animDict, animName, p3);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasAnimFinished.apply(this, [this.handle, animDict, animName, p3]);
 };
 
 mp.Vehicle.prototype.hasAnimFinished ??= function (animDict, animName, p3) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.hasEntityAnimFinished(this.handle, animDict, animName, p3);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasAnimFinished.apply(this, [this.handle, animDict, animName, p3]);
 };
 
 mp.Player.prototype.hasBeenDamagedByAnyObject ??= function () {
-    let $res = natives.hasEntityBeenDamagedByAnyObject(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasBeenDamagedByAnyObject.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.hasBeenDamagedByAnyObject ??= function () {
-    let $res = natives.hasEntityBeenDamagedByAnyObject(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasBeenDamagedByAnyObject.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.hasBeenDamagedByAnyObject ??= function () {
-    let $res = natives.hasEntityBeenDamagedByAnyObject(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasBeenDamagedByAnyObject.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.hasBeenDamagedByAnyObject ??= function () {
-    let $res = natives.hasEntityBeenDamagedByAnyObject(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasBeenDamagedByAnyObject.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.hasBeenDamagedByAnyPed ??= function () {
-    let $res = natives.hasEntityBeenDamagedByAnyPed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasBeenDamagedByAnyPed.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.hasBeenDamagedByAnyPed ??= function () {
-    let $res = natives.hasEntityBeenDamagedByAnyPed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasBeenDamagedByAnyPed.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.hasBeenDamagedByAnyPed ??= function () {
-    let $res = natives.hasEntityBeenDamagedByAnyPed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasBeenDamagedByAnyPed.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.hasBeenDamagedByAnyPed ??= function () {
-    let $res = natives.hasEntityBeenDamagedByAnyPed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasBeenDamagedByAnyPed.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.hasBeenDamagedByAnyVehicle ??= function () {
-    let $res = natives.hasEntityBeenDamagedByAnyVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasBeenDamagedByAnyVehicle.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.hasBeenDamagedByAnyVehicle ??= function () {
-    let $res = natives.hasEntityBeenDamagedByAnyVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasBeenDamagedByAnyVehicle.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.hasBeenDamagedByAnyVehicle ??= function () {
-    let $res = natives.hasEntityBeenDamagedByAnyVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasBeenDamagedByAnyVehicle.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.hasBeenDamagedByAnyVehicle ??= function () {
-    let $res = natives.hasEntityBeenDamagedByAnyVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasBeenDamagedByAnyVehicle.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.hasBeenDamagedByEntity ??= function (entity2, p2) {
-    let $res = natives.hasEntityBeenDamagedByEntity(this.handle, entity2, p2 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasBeenDamagedByEntity.apply(this, [this.handle, entity2, p2]);
 };
 
 mp.Ped.prototype.hasBeenDamagedByEntity ??= function (entity2, p2) {
-    let $res = natives.hasEntityBeenDamagedByEntity(this.handle, entity2, p2 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasBeenDamagedByEntity.apply(this, [this.handle, entity2, p2]);
 };
 
 mp.Object.prototype.hasBeenDamagedByEntity ??= function (entity2, p2) {
-    let $res = natives.hasEntityBeenDamagedByEntity(this.handle, entity2, p2 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasBeenDamagedByEntity.apply(this, [this.handle, entity2, p2]);
 };
 
 mp.Vehicle.prototype.hasBeenDamagedByEntity ??= function (entity2, p2) {
-    let $res = natives.hasEntityBeenDamagedByEntity(this.handle, entity2, p2 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasBeenDamagedByEntity.apply(this, [this.handle, entity2, p2]);
 };
 
 mp.Player.prototype.hasClearLosToEntity ??= function (entity2, traceType) {
-    let $res = natives.hasEntityClearLosToEntity(this.handle, entity2, traceType);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasClearLosToEntity.apply(this, [this.handle, entity2, traceType]);
 };
 
 mp.Ped.prototype.hasClearLosToEntity ??= function (entity2, traceType) {
-    let $res = natives.hasEntityClearLosToEntity(this.handle, entity2, traceType);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasClearLosToEntity.apply(this, [this.handle, entity2, traceType]);
 };
 
 mp.Object.prototype.hasClearLosToEntity ??= function (entity2, traceType) {
-    let $res = natives.hasEntityClearLosToEntity(this.handle, entity2, traceType);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasClearLosToEntity.apply(this, [this.handle, entity2, traceType]);
 };
 
 mp.Vehicle.prototype.hasClearLosToEntity ??= function (entity2, traceType) {
-    let $res = natives.hasEntityClearLosToEntity(this.handle, entity2, traceType);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasClearLosToEntity.apply(this, [this.handle, entity2, traceType]);
 };
 
 mp.Player.prototype.hasClearLosToEntity2 ??= function (entity2, traceType) {
-    let $res = natives.hasEntityClearLosToEntityAdjustForCover(this.handle, entity2, traceType);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.hasClearLosToEntity2.apply(this, [this.handle, entity2, traceType]);
 };
 
 mp.Ped.prototype.hasClearLosToEntity2 ??= function (entity2, traceType) {
-    let $res = natives.hasEntityClearLosToEntityAdjustForCover(this.handle, entity2, traceType);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.hasClearLosToEntity2.apply(this, [this.handle, entity2, traceType]);
 };
 
 mp.Object.prototype.hasClearLosToEntity2 ??= function (entity2, traceType) {
-    let $res = natives.hasEntityClearLosToEntityAdjustForCover(this.handle, entity2, traceType);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.hasClearLosToEntity2.apply(this, [this.handle, entity2, traceType]);
 };
 
 mp.Vehicle.prototype.hasClearLosToEntity2 ??= function (entity2, traceType) {
-    let $res = natives.hasEntityClearLosToEntityAdjustForCover(this.handle, entity2, traceType);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.hasClearLosToEntity2.apply(this, [this.handle, entity2, traceType]);
 };
 
 mp.Player.prototype.hasClearLosToEntityInFront ??= function (entity2) {
-    let $res = natives.hasEntityClearLosToEntityInFront(this.handle, entity2);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasClearLosToEntityInFront.apply(this, [this.handle, entity2]);
 };
 
 mp.Ped.prototype.hasClearLosToEntityInFront ??= function (entity2) {
-    let $res = natives.hasEntityClearLosToEntityInFront(this.handle, entity2);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasClearLosToEntityInFront.apply(this, [this.handle, entity2]);
 };
 
 mp.Object.prototype.hasClearLosToEntityInFront ??= function (entity2) {
-    let $res = natives.hasEntityClearLosToEntityInFront(this.handle, entity2);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasClearLosToEntityInFront.apply(this, [this.handle, entity2]);
 };
 
 mp.Vehicle.prototype.hasClearLosToEntityInFront ??= function (entity2) {
-    let $res = natives.hasEntityClearLosToEntityInFront(this.handle, entity2);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasClearLosToEntityInFront.apply(this, [this.handle, entity2]);
 };
 
 mp.Player.prototype.hasCollidedWithAnything ??= function () {
-    let $res = natives.hasEntityCollidedWithAnything(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasCollidedWithAnything.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.hasCollidedWithAnything ??= function () {
-    let $res = natives.hasEntityCollidedWithAnything(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasCollidedWithAnything.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.hasCollidedWithAnything ??= function () {
-    let $res = natives.hasEntityCollidedWithAnything(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasCollidedWithAnything.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.hasCollidedWithAnything ??= function () {
-    let $res = natives.hasEntityCollidedWithAnything(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasCollidedWithAnything.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getLastMaterialHitBy ??= function () {
-    let $res = natives.getLastMaterialHitByEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getLastMaterialHitBy.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getLastMaterialHitBy ??= function () {
-    let $res = natives.getLastMaterialHitByEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getLastMaterialHitBy.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getLastMaterialHitBy ??= function () {
-    let $res = natives.getLastMaterialHitByEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getLastMaterialHitBy.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getLastMaterialHitBy ??= function () {
-    let $res = natives.getLastMaterialHitByEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getLastMaterialHitBy.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getCollisionNormalOfLastHitFor ??= function () {
-    let $res = natives.getCollisionNormalOfLastHitForEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getCollisionNormalOfLastHitFor.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getCollisionNormalOfLastHitFor ??= function () {
-    let $res = natives.getCollisionNormalOfLastHitForEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getCollisionNormalOfLastHitFor.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getCollisionNormalOfLastHitFor ??= function () {
-    let $res = natives.getCollisionNormalOfLastHitForEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getCollisionNormalOfLastHitFor.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getCollisionNormalOfLastHitFor ??= function () {
-    let $res = natives.getCollisionNormalOfLastHitForEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getCollisionNormalOfLastHitFor.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.forceAiAndAnimationUpdate ??= function (p1, p2) {
-    let $res = natives.forcePedAiAndAnimationUpdate(this.handle, p1 | 0, p2 | 0);
+    return mp.game2.ped.forceAiAndAnimationUpdate.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Ped.prototype.forceAiAndAnimationUpdate ??= function (p1, p2) {
-    let $res = natives.forcePedAiAndAnimationUpdate(this.handle, p1 | 0, p2 | 0);
+    return mp.game2.ped.forceAiAndAnimationUpdate.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Object.prototype.forceAiAndAnimationUpdate ??= function () {
-    let $res = natives.forceEntityAiAndAnimationUpdate(this.handle);
+    return mp.game2.entity.forceAiAndAnimationUpdate.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.forceAiAndAnimationUpdate ??= function () {
-    let $res = natives.forceEntityAiAndAnimationUpdate(this.handle);
+    return mp.game2.entity.forceAiAndAnimationUpdate.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getAnimCurrentTime ??= function (animDict, animName) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.getEntityAnimCurrentTime(this.handle, animDict, animName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getAnimCurrentTime.apply(this, [this.handle, animDict, animName]);
 };
 
 mp.Ped.prototype.getAnimCurrentTime ??= function (animDict, animName) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.getEntityAnimCurrentTime(this.handle, animDict, animName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getAnimCurrentTime.apply(this, [this.handle, animDict, animName]);
 };
 
 mp.Object.prototype.getAnimCurrentTime ??= function (animDict, animName) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.getEntityAnimCurrentTime(this.handle, animDict, animName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getAnimCurrentTime.apply(this, [this.handle, animDict, animName]);
 };
 
 mp.Vehicle.prototype.getAnimCurrentTime ??= function (animDict, animName) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.getEntityAnimCurrentTime(this.handle, animDict, animName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getAnimCurrentTime.apply(this, [this.handle, animDict, animName]);
 };
 
 mp.Player.prototype.getAnimTotalTime ??= function (animDict, animName) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.getEntityAnimTotalTime(this.handle, animDict, animName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getAnimTotalTime.apply(this, [this.handle, animDict, animName]);
 };
 
 mp.Ped.prototype.getAnimTotalTime ??= function (animDict, animName) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.getEntityAnimTotalTime(this.handle, animDict, animName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getAnimTotalTime.apply(this, [this.handle, animDict, animName]);
 };
 
 mp.Object.prototype.getAnimTotalTime ??= function (animDict, animName) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.getEntityAnimTotalTime(this.handle, animDict, animName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getAnimTotalTime.apply(this, [this.handle, animDict, animName]);
 };
 
 mp.Vehicle.prototype.getAnimTotalTime ??= function (animDict, animName) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.getEntityAnimTotalTime(this.handle, animDict, animName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getAnimTotalTime.apply(this, [this.handle, animDict, animName]);
 };
 
 mp.Player.prototype.getAttachedTo ??= function () {
-    let $res = natives.getEntityAttachedTo(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getAttachedTo.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getAttachedTo ??= function () {
-    let $res = natives.getEntityAttachedTo(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getAttachedTo.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getAttachedTo ??= function () {
-    let $res = natives.getEntityAttachedTo(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getAttachedTo.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getAttachedTo ??= function () {
-    let $res = natives.getEntityAttachedTo(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getAttachedTo.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getCoords ??= function (alive) {
-    let $res = natives.getEntityCoords(this.handle, alive | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getCoords.apply(this, [this.handle, alive]);
 };
 
 mp.Ped.prototype.getCoords ??= function (alive) {
-    let $res = natives.getEntityCoords(this.handle, alive | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getCoords.apply(this, [this.handle, alive]);
 };
 
 mp.Object.prototype.getCoords ??= function (alive) {
-    let $res = natives.getEntityCoords(this.handle, alive | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getCoords.apply(this, [this.handle, alive]);
 };
 
 mp.Vehicle.prototype.getCoords ??= function (alive) {
-    let $res = natives.getEntityCoords(this.handle, alive | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getCoords.apply(this, [this.handle, alive]);
 };
 
 mp.Player.prototype.getForwardVector ??= function () {
-    let $res = natives.getEntityForwardVector(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getForwardVector.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getForwardVector ??= function () {
-    let $res = natives.getEntityForwardVector(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getForwardVector.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getForwardVector ??= function () {
-    let $res = natives.getEntityForwardVector(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getForwardVector.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getForwardVector ??= function () {
-    let $res = natives.getEntityForwardVector(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getForwardVector.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getForwardX ??= function () {
-    let $res = natives.getEntityForwardX(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getForwardX.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getForwardX ??= function () {
-    let $res = natives.getEntityForwardX(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getForwardX.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getForwardX ??= function () {
-    let $res = natives.getEntityForwardX(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getForwardX.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getForwardX ??= function () {
-    let $res = natives.getEntityForwardX(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getForwardX.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getForwardY ??= function () {
-    let $res = natives.getEntityForwardY(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getForwardY.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getForwardY ??= function () {
-    let $res = natives.getEntityForwardY(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getForwardY.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getForwardY ??= function () {
-    let $res = natives.getEntityForwardY(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getForwardY.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getForwardY ??= function () {
-    let $res = natives.getEntityForwardY(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getForwardY.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getHeading ??= function () {
-    let $res = natives.getEntityHeading(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getHeading.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getHeading ??= function () {
-    let $res = natives.getEntityHeading(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getHeading.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getHeading ??= function () {
-    let $res = natives.getEntityHeading(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getHeading.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getHeading ??= function () {
-    let $res = natives.getEntityHeading(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getHeading.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getPhysicsHeading ??= function () {
-    let $res = natives.getEntityHeadingFromEulers(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getPhysicsHeading.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getPhysicsHeading ??= function () {
-    let $res = natives.getEntityHeadingFromEulers(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getPhysicsHeading.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getPhysicsHeading ??= function () {
-    let $res = natives.getEntityHeadingFromEulers(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getPhysicsHeading.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getPhysicsHeading ??= function () {
-    let $res = natives.getEntityHeadingFromEulers(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getPhysicsHeading.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getHealth ??= function () {
-    let $res = natives.getEntityHealth(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getHealth.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getHealth ??= function () {
-    let $res = natives.getEntityHealth(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getHealth.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getMaxHealth ??= function () {
-    let $res = natives.getPedMaxHealth(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getMaxHealth.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getMaxHealth ??= function () {
-    let $res = natives.getPedMaxHealth(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getMaxHealth.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getMaxHealth ??= function () {
-    let $res = natives.getEntityMaxHealth(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getMaxHealth.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getMaxHealth ??= function () {
-    let $res = natives.getEntityMaxHealth(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getMaxHealth.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setMaxHealth ??= function (value) {
-    let $res = natives.setPedMaxHealth(this.handle, value);
+    return mp.game2.ped.setMaxHealth.apply(this, [this.handle, value]);
 };
 
 mp.Ped.prototype.setMaxHealth ??= function (value) {
-    let $res = natives.setPedMaxHealth(this.handle, value);
+    return mp.game2.ped.setMaxHealth.apply(this, [this.handle, value]);
 };
 
 mp.Object.prototype.setMaxHealth ??= function (value) {
-    let $res = natives.setEntityMaxHealth(this.handle, value);
+    return mp.game2.entity.setMaxHealth.apply(this, [this.handle, value]);
 };
 
 mp.Vehicle.prototype.setMaxHealth ??= function (value) {
-    let $res = natives.setEntityMaxHealth(this.handle, value);
+    return mp.game2.entity.setMaxHealth.apply(this, [this.handle, value]);
 };
 
 mp.Player.prototype.getHeight ??= function (X, Y, Z, atTop, inWorldCoords) {
-    let $res = natives.getEntityHeight(this.handle, X, Y, Z, atTop | 0, inWorldCoords | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getHeight.apply(this, [this.handle, X, Y, Z, atTop, inWorldCoords]);
 };
 
 mp.Ped.prototype.getHeight ??= function (X, Y, Z, atTop, inWorldCoords) {
-    let $res = natives.getEntityHeight(this.handle, X, Y, Z, atTop | 0, inWorldCoords | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getHeight.apply(this, [this.handle, X, Y, Z, atTop, inWorldCoords]);
 };
 
 mp.Object.prototype.getHeight ??= function (X, Y, Z, atTop, inWorldCoords) {
-    let $res = natives.getEntityHeight(this.handle, X, Y, Z, atTop | 0, inWorldCoords | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getHeight.apply(this, [this.handle, X, Y, Z, atTop, inWorldCoords]);
 };
 
 mp.Vehicle.prototype.getHeight ??= function (X, Y, Z, atTop, inWorldCoords) {
-    let $res = natives.getEntityHeight(this.handle, X, Y, Z, atTop | 0, inWorldCoords | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getHeight.apply(this, [this.handle, X, Y, Z, atTop, inWorldCoords]);
 };
 
 mp.Player.prototype.getHeightAboveGround ??= function () {
-    let $res = natives.getEntityHeightAboveGround(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getHeightAboveGround.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getHeightAboveGround ??= function () {
-    let $res = natives.getEntityHeightAboveGround(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getHeightAboveGround.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getHeightAboveGround ??= function () {
-    let $res = natives.getEntityHeightAboveGround(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getHeightAboveGround.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getHeightAboveGround ??= function () {
-    let $res = natives.getEntityHeightAboveGround(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getHeightAboveGround.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getMatrix ??= function () {
-    let $res = natives.getEntityMatrix(this.handle, undefined, undefined, undefined, undefined);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.forwardVector = new mp.Vector3($res[1]);
-    $resObj.rightVector = new mp.Vector3($res[2]);
-    $resObj.upVector = new mp.Vector3($res[3]);
-    $resObj.position = new mp.Vector3($res[4]);
-    return $resObj;
+    return mp.game2.entity.getMatrix.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getMatrix ??= function () {
-    let $res = natives.getEntityMatrix(this.handle, undefined, undefined, undefined, undefined);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.forwardVector = new mp.Vector3($res[1]);
-    $resObj.rightVector = new mp.Vector3($res[2]);
-    $resObj.upVector = new mp.Vector3($res[3]);
-    $resObj.position = new mp.Vector3($res[4]);
-    return $resObj;
+    return mp.game2.entity.getMatrix.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getMatrix ??= function () {
-    let $res = natives.getEntityMatrix(this.handle, undefined, undefined, undefined, undefined);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.forwardVector = new mp.Vector3($res[1]);
-    $resObj.rightVector = new mp.Vector3($res[2]);
-    $resObj.upVector = new mp.Vector3($res[3]);
-    $resObj.position = new mp.Vector3($res[4]);
-    return $resObj;
+    return mp.game2.entity.getMatrix.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getMatrix ??= function () {
-    let $res = natives.getEntityMatrix(this.handle, undefined, undefined, undefined, undefined);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.forwardVector = new mp.Vector3($res[1]);
-    $resObj.rightVector = new mp.Vector3($res[2]);
-    $resObj.upVector = new mp.Vector3($res[3]);
-    $resObj.position = new mp.Vector3($res[4]);
-    return $resObj;
+    return mp.game2.entity.getMatrix.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getModel ??= function () {
-    let $res = natives.getEntityModel(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getModel.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getOffsetFromGivenWorldCoords ??= function (posX, posY, posZ) {
-    let $res = natives.getOffsetFromEntityGivenWorldCoords(this.handle, posX, posY, posZ);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getOffsetFromGivenWorldCoords.apply(this, [this.handle, posX, posY, posZ]);
 };
 
 mp.Ped.prototype.getOffsetFromGivenWorldCoords ??= function (posX, posY, posZ) {
-    let $res = natives.getOffsetFromEntityGivenWorldCoords(this.handle, posX, posY, posZ);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getOffsetFromGivenWorldCoords.apply(this, [this.handle, posX, posY, posZ]);
 };
 
 mp.Object.prototype.getOffsetFromGivenWorldCoords ??= function (posX, posY, posZ) {
-    let $res = natives.getOffsetFromEntityGivenWorldCoords(this.handle, posX, posY, posZ);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getOffsetFromGivenWorldCoords.apply(this, [this.handle, posX, posY, posZ]);
 };
 
 mp.Vehicle.prototype.getOffsetFromGivenWorldCoords ??= function (posX, posY, posZ) {
-    let $res = natives.getOffsetFromEntityGivenWorldCoords(this.handle, posX, posY, posZ);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getOffsetFromGivenWorldCoords.apply(this, [this.handle, posX, posY, posZ]);
 };
 
 mp.Player.prototype.getOffsetFromInWorldCoords ??= function (offsetX, offsetY, offsetZ) {
-    let $res = natives.getOffsetFromEntityInWorldCoords(this.handle, offsetX, offsetY, offsetZ);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getOffsetFromInWorldCoords.apply(this, [this.handle, offsetX, offsetY, offsetZ]);
 };
 
 mp.Ped.prototype.getOffsetFromInWorldCoords ??= function (offsetX, offsetY, offsetZ) {
-    let $res = natives.getOffsetFromEntityInWorldCoords(this.handle, offsetX, offsetY, offsetZ);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getOffsetFromInWorldCoords.apply(this, [this.handle, offsetX, offsetY, offsetZ]);
 };
 
 mp.Object.prototype.getOffsetFromInWorldCoords ??= function (offsetX, offsetY, offsetZ) {
-    let $res = natives.getOffsetFromEntityInWorldCoords(this.handle, offsetX, offsetY, offsetZ);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getOffsetFromInWorldCoords.apply(this, [this.handle, offsetX, offsetY, offsetZ]);
 };
 
 mp.Vehicle.prototype.getOffsetFromInWorldCoords ??= function (offsetX, offsetY, offsetZ) {
-    let $res = natives.getOffsetFromEntityInWorldCoords(this.handle, offsetX, offsetY, offsetZ);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getOffsetFromInWorldCoords.apply(this, [this.handle, offsetX, offsetY, offsetZ]);
 };
 
 mp.Player.prototype.getPitch ??= function () {
-    let $res = natives.getEntityPitch(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getPitch.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getPitch ??= function () {
-    let $res = natives.getEntityPitch(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getPitch.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getPitch ??= function () {
-    let $res = natives.getEntityPitch(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getPitch.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getPitch ??= function () {
-    let $res = natives.getEntityPitch(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getPitch.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getQuaternion ??= function () {
-    let $res = natives.getEntityQuaternion(this.handle, 0, 0, 0, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.x = $res[1];
-    $resObj.y = $res[2];
-    $resObj.z = $res[3];
-    $resObj.w = $res[4];
-    return $resObj;
+    return mp.game2.entity.getQuaternion.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getQuaternion ??= function () {
-    let $res = natives.getEntityQuaternion(this.handle, 0, 0, 0, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.x = $res[1];
-    $resObj.y = $res[2];
-    $resObj.z = $res[3];
-    $resObj.w = $res[4];
-    return $resObj;
+    return mp.game2.entity.getQuaternion.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getQuaternion ??= function () {
-    let $res = natives.getEntityQuaternion(this.handle, 0, 0, 0, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.x = $res[1];
-    $resObj.y = $res[2];
-    $resObj.z = $res[3];
-    $resObj.w = $res[4];
-    return $resObj;
+    return mp.game2.entity.getQuaternion.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getQuaternion ??= function () {
-    let $res = natives.getEntityQuaternion(this.handle, 0, 0, 0, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.x = $res[1];
-    $resObj.y = $res[2];
-    $resObj.z = $res[3];
-    $resObj.w = $res[4];
-    return $resObj;
+    return mp.game2.entity.getQuaternion.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getRoll ??= function () {
-    let $res = natives.getEntityRoll(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getRoll.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getRoll ??= function () {
-    let $res = natives.getEntityRoll(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getRoll.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getRoll ??= function () {
-    let $res = natives.getEntityRoll(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getRoll.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getRoll ??= function () {
-    let $res = natives.getEntityRoll(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getRoll.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getRotation ??= function (rotationOrder) {
-    let $res = natives.getEntityRotation(this.handle, rotationOrder);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getRotation.apply(this, [this.handle, rotationOrder]);
 };
 
 mp.Ped.prototype.getRotation ??= function (rotationOrder) {
-    let $res = natives.getEntityRotation(this.handle, rotationOrder);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getRotation.apply(this, [this.handle, rotationOrder]);
 };
 
 mp.Object.prototype.getRotation ??= function (rotationOrder) {
-    let $res = natives.getEntityRotation(this.handle, rotationOrder);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getRotation.apply(this, [this.handle, rotationOrder]);
 };
 
 mp.Vehicle.prototype.getRotation ??= function (rotationOrder) {
-    let $res = natives.getEntityRotation(this.handle, rotationOrder);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getRotation.apply(this, [this.handle, rotationOrder]);
 };
 
 mp.Player.prototype.getRotationVelocity ??= function () {
-    let $res = natives.getEntityRotationVelocity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getRotationVelocity.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getRotationVelocity ??= function () {
-    let $res = natives.getEntityRotationVelocity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getRotationVelocity.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getRotationVelocity ??= function () {
-    let $res = natives.getEntityRotationVelocity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getRotationVelocity.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getRotationVelocity ??= function () {
-    let $res = natives.getEntityRotationVelocity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getRotationVelocity.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getScript ??= function () {
-    let $res = natives.getEntityScript(this.handle, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.script = $res[1];
-    return $resObj;
+    return mp.game2.entity.getScript.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getScript ??= function () {
-    let $res = natives.getEntityScript(this.handle, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.script = $res[1];
-    return $resObj;
+    return mp.game2.entity.getScript.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getScript ??= function () {
-    let $res = natives.getEntityScript(this.handle, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.script = $res[1];
-    return $resObj;
+    return mp.game2.entity.getScript.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getScript ??= function () {
-    let $res = natives.getEntityScript(this.handle, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.script = $res[1];
-    return $resObj;
+    return mp.game2.entity.getScript.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getSpeed ??= function () {
-    let $res = natives.getEntitySpeed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getSpeed.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getSpeed ??= function () {
-    let $res = natives.getEntitySpeed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getSpeed.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getSpeed ??= function () {
-    let $res = natives.getEntitySpeed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getSpeed.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getSpeed ??= function () {
-    let $res = natives.getEntitySpeed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getSpeed.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getSpeedVector ??= function (relative) {
-    let $res = natives.getEntitySpeedVector(this.handle, relative | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getSpeedVector.apply(this, [this.handle, relative]);
 };
 
 mp.Ped.prototype.getSpeedVector ??= function (relative) {
-    let $res = natives.getEntitySpeedVector(this.handle, relative | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getSpeedVector.apply(this, [this.handle, relative]);
 };
 
 mp.Object.prototype.getSpeedVector ??= function (relative) {
-    let $res = natives.getEntitySpeedVector(this.handle, relative | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getSpeedVector.apply(this, [this.handle, relative]);
 };
 
 mp.Vehicle.prototype.getSpeedVector ??= function (relative) {
-    let $res = natives.getEntitySpeedVector(this.handle, relative | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getSpeedVector.apply(this, [this.handle, relative]);
 };
 
 mp.Player.prototype.getUprightValue ??= function () {
-    let $res = natives.getEntityUprightValue(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getUprightValue.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getUprightValue ??= function () {
-    let $res = natives.getEntityUprightValue(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getUprightValue.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getUprightValue ??= function () {
-    let $res = natives.getEntityUprightValue(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getUprightValue.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getUprightValue ??= function () {
-    let $res = natives.getEntityUprightValue(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getUprightValue.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getVelocity ??= function () {
-    let $res = natives.getEntityVelocity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getVelocity.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getVelocity ??= function () {
-    let $res = natives.getEntityVelocity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getVelocity.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getObjectIndexFromIndex ??= function () {
-    let $res = natives.getObjectIndexFromEntityIndex(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getObjectIndexFromIndex.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getPedIndexFromIndex ??= function () {
-    let $res = natives.getPedIndexFromEntityIndex(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getPedIndexFromIndex.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getPedIndexFromIndex ??= function () {
-    let $res = natives.getPedIndexFromEntityIndex(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getPedIndexFromIndex.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getVehicleIndexFromIndex ??= function () {
-    let $res = natives.getVehicleIndexFromEntityIndex(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getVehicleIndexFromIndex.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getWorldPositionOfBone ??= function (boneIndex) {
-    let $res = natives.getWorldPositionOfEntityBone(this.handle, boneIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getWorldPositionOfBone.apply(this, [this.handle, boneIndex]);
 };
 
 mp.Ped.prototype.getWorldPositionOfBone ??= function (boneIndex) {
-    let $res = natives.getWorldPositionOfEntityBone(this.handle, boneIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getWorldPositionOfBone.apply(this, [this.handle, boneIndex]);
 };
 
 mp.Object.prototype.getWorldPositionOfBone ??= function (boneIndex) {
-    let $res = natives.getWorldPositionOfEntityBone(this.handle, boneIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getWorldPositionOfBone.apply(this, [this.handle, boneIndex]);
 };
 
 mp.Vehicle.prototype.getWorldPositionOfBone ??= function (boneIndex) {
-    let $res = natives.getWorldPositionOfEntityBone(this.handle, boneIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getWorldPositionOfBone.apply(this, [this.handle, boneIndex]);
 };
 
 mp.Player.prototype.getNearestPlayerTo ??= function () {
-    let $res = natives.getNearestPlayerToEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getNearestPlayerTo.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getNearestPlayerTo ??= function () {
-    let $res = natives.getNearestPlayerToEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getNearestPlayerTo.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getNearestPlayerTo ??= function () {
-    let $res = natives.getNearestPlayerToEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getNearestPlayerTo.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getNearestPlayerTo ??= function () {
-    let $res = natives.getNearestPlayerToEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getNearestPlayerTo.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getNearestPlayerToOnTeam ??= function (team) {
-    let $res = natives.getNearestPlayerToEntityOnTeam(this.handle, team);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getNearestPlayerToOnTeam.apply(this, [this.handle, team]);
 };
 
 mp.Ped.prototype.getNearestPlayerToOnTeam ??= function (team) {
-    let $res = natives.getNearestPlayerToEntityOnTeam(this.handle, team);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getNearestPlayerToOnTeam.apply(this, [this.handle, team]);
 };
 
 mp.Object.prototype.getNearestPlayerToOnTeam ??= function (team) {
-    let $res = natives.getNearestPlayerToEntityOnTeam(this.handle, team);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getNearestPlayerToOnTeam.apply(this, [this.handle, team]);
 };
 
 mp.Vehicle.prototype.getNearestPlayerToOnTeam ??= function (team) {
-    let $res = natives.getNearestPlayerToEntityOnTeam(this.handle, team);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getNearestPlayerToOnTeam.apply(this, [this.handle, team]);
 };
 
 mp.Player.prototype.getType ??= function () {
-    let $res = natives.getPedType(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getType.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getType ??= function () {
-    let $res = natives.getPedType(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getType.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getType ??= function () {
-    let $res = natives.getEntityType(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getType.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getType ??= function () {
-    let $res = natives.getEntityType(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getType.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getPopulationType ??= function () {
-    let $res = natives.getEntityPopulationType(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getPopulationType.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getPopulationType ??= function () {
-    let $res = natives.getEntityPopulationType(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getPopulationType.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getPopulationType ??= function () {
-    let $res = natives.getEntityPopulationType(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getPopulationType.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getPopulationType ??= function () {
-    let $res = natives.getEntityPopulationType(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getPopulationType.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isAPed ??= function () {
-    let $res = natives.isEntityAPed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAPed.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isAPed ??= function () {
-    let $res = natives.isEntityAPed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAPed.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.isAPed ??= function () {
-    let $res = natives.isEntityAPed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAPed.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isAPed ??= function () {
-    let $res = natives.isEntityAPed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAPed.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isAMissionEntity ??= function () {
-    let $res = natives.isEntityAMissionEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAMissionEntity.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isAMissionEntity ??= function () {
-    let $res = natives.isEntityAMissionEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAMissionEntity.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.isAMissionEntity ??= function () {
-    let $res = natives.isEntityAMissionEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAMissionEntity.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isAMissionEntity ??= function () {
-    let $res = natives.isEntityAMissionEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAMissionEntity.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isAVehicle ??= function () {
-    let $res = natives.isEntityAVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAVehicle.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isAVehicle ??= function () {
-    let $res = natives.isEntityAVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAVehicle.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.isAVehicle ??= function () {
-    let $res = natives.isEntityAVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAVehicle.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isAVehicle ??= function () {
-    let $res = natives.isEntityAVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAVehicle.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isAnObject ??= function () {
-    let $res = natives.isEntityAnObject(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAnObject.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isAnObject ??= function () {
-    let $res = natives.isEntityAnObject(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAnObject.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.isAnObject ??= function () {
-    let $res = natives.isEntityAnObject(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAnObject.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isAnObject ??= function () {
-    let $res = natives.isEntityAnObject(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAnObject.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isAtCoord ??= function (xPos, yPos, zPos, xSize, ySize, zSize, p7, p8, p9) {
-    let $res = natives.isEntityAtCoord(this.handle, xPos, yPos, zPos, xSize, ySize, zSize, p7 | 0, p8 | 0, p9);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAtCoord.apply(this, [this.handle, xPos, yPos, zPos, xSize, ySize, zSize, p7, p8, p9]);
 };
 
 mp.Ped.prototype.isAtCoord ??= function (xPos, yPos, zPos, xSize, ySize, zSize, p7, p8, p9) {
-    let $res = natives.isEntityAtCoord(this.handle, xPos, yPos, zPos, xSize, ySize, zSize, p7 | 0, p8 | 0, p9);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAtCoord.apply(this, [this.handle, xPos, yPos, zPos, xSize, ySize, zSize, p7, p8, p9]);
 };
 
 mp.Object.prototype.isAtCoord ??= function (xPos, yPos, zPos, xSize, ySize, zSize, p7, p8, p9) {
-    let $res = natives.isEntityAtCoord(this.handle, xPos, yPos, zPos, xSize, ySize, zSize, p7 | 0, p8 | 0, p9);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAtCoord.apply(this, [this.handle, xPos, yPos, zPos, xSize, ySize, zSize, p7, p8, p9]);
 };
 
 mp.Vehicle.prototype.isAtCoord ??= function (xPos, yPos, zPos, xSize, ySize, zSize, p7, p8, p9) {
-    let $res = natives.isEntityAtCoord(this.handle, xPos, yPos, zPos, xSize, ySize, zSize, p7 | 0, p8 | 0, p9);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAtCoord.apply(this, [this.handle, xPos, yPos, zPos, xSize, ySize, zSize, p7, p8, p9]);
 };
 
 mp.Player.prototype.isAtEntity ??= function (entity2, xSize, ySize, zSize, p5, p6, p7) {
-    let $res = natives.isEntityAtEntity(this.handle, entity2, xSize, ySize, zSize, p5 | 0, p6 | 0, p7);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAtEntity.apply(this, [this.handle, entity2, xSize, ySize, zSize, p5, p6, p7]);
 };
 
 mp.Ped.prototype.isAtEntity ??= function (entity2, xSize, ySize, zSize, p5, p6, p7) {
-    let $res = natives.isEntityAtEntity(this.handle, entity2, xSize, ySize, zSize, p5 | 0, p6 | 0, p7);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAtEntity.apply(this, [this.handle, entity2, xSize, ySize, zSize, p5, p6, p7]);
 };
 
 mp.Object.prototype.isAtEntity ??= function (entity2, xSize, ySize, zSize, p5, p6, p7) {
-    let $res = natives.isEntityAtEntity(this.handle, entity2, xSize, ySize, zSize, p5 | 0, p6 | 0, p7);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAtEntity.apply(this, [this.handle, entity2, xSize, ySize, zSize, p5, p6, p7]);
 };
 
 mp.Vehicle.prototype.isAtEntity ??= function (entity2, xSize, ySize, zSize, p5, p6, p7) {
-    let $res = natives.isEntityAtEntity(this.handle, entity2, xSize, ySize, zSize, p5 | 0, p6 | 0, p7);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAtEntity.apply(this, [this.handle, entity2, xSize, ySize, zSize, p5, p6, p7]);
 };
 
 mp.Player.prototype.isAttached ??= function () {
-    let $res = natives.isEntityAttached(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAttached.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isAttached ??= function () {
-    let $res = natives.isEntityAttached(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAttached.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.isAttached ??= function () {
-    let $res = natives.isEntityAttached(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAttached.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isAttached ??= function () {
-    let $res = natives.isEntityAttached(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAttached.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isAttachedToAnyObject ??= function () {
-    let $res = natives.isEntityAttachedToAnyObject(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAttachedToAnyObject.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isAttachedToAnyObject ??= function () {
-    let $res = natives.isEntityAttachedToAnyObject(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAttachedToAnyObject.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.isAttachedToAnyObject ??= function () {
-    let $res = natives.isEntityAttachedToAnyObject(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAttachedToAnyObject.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isAttachedToAnyObject ??= function () {
-    let $res = natives.isEntityAttachedToAnyObject(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAttachedToAnyObject.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isAttachedToAnyPed ??= function () {
-    let $res = natives.isEntityAttachedToAnyPed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAttachedToAnyPed.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isAttachedToAnyPed ??= function () {
-    let $res = natives.isEntityAttachedToAnyPed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAttachedToAnyPed.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.isAttachedToAnyPed ??= function () {
-    let $res = natives.isEntityAttachedToAnyPed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAttachedToAnyPed.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isAttachedToAnyPed ??= function () {
-    let $res = natives.isEntityAttachedToAnyPed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAttachedToAnyPed.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isAttachedToAnyVehicle ??= function () {
-    let $res = natives.isEntityAttachedToAnyVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAttachedToAnyVehicle.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isAttachedToAnyVehicle ??= function () {
-    let $res = natives.isEntityAttachedToAnyVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAttachedToAnyVehicle.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.isAttachedToAnyVehicle ??= function () {
-    let $res = natives.isEntityAttachedToAnyVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAttachedToAnyVehicle.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isAttachedToAnyVehicle ??= function () {
-    let $res = natives.isEntityAttachedToAnyVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAttachedToAnyVehicle.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isAttachedToEntity ??= function (to) {
-    let $res = natives.isEntityAttachedToEntity(this.handle, to);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAttachedToEntity.apply(this, [this.handle, to]);
 };
 
 mp.Ped.prototype.isAttachedToEntity ??= function (to) {
-    let $res = natives.isEntityAttachedToEntity(this.handle, to);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAttachedToEntity.apply(this, [this.handle, to]);
 };
 
 mp.Object.prototype.isAttachedToEntity ??= function (to) {
-    let $res = natives.isEntityAttachedToEntity(this.handle, to);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAttachedToEntity.apply(this, [this.handle, to]);
 };
 
 mp.Vehicle.prototype.isAttachedToEntity ??= function (to) {
-    let $res = natives.isEntityAttachedToEntity(this.handle, to);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isAttachedToEntity.apply(this, [this.handle, to]);
 };
 
 mp.Player.prototype.isDead ??= function (p1) {
-    let $res = natives.isEntityDead(this.handle, p1 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isDead.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.isDead ??= function (p1) {
-    let $res = natives.isEntityDead(this.handle, p1 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isDead.apply(this, [this.handle, p1]);
 };
 
 mp.Object.prototype.isDead ??= function (p1) {
-    let $res = natives.isEntityDead(this.handle, p1 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isDead.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.isDead ??= function (p1) {
-    let $res = natives.isEntityDead(this.handle, p1 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isDead.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.isInAir ??= function () {
-    let $res = natives.isEntityInAir(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isInAir.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isInAir ??= function () {
-    let $res = natives.isEntityInAir(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isInAir.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.isInAir ??= function () {
-    let $res = natives.isEntityInAir(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isInAir.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isInAir ??= function () {
-    let $res = natives.isEntityInAir(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isInAir.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isInAngledArea ??= function (x1, y1, z1, x2, y2, z2, width, debug, includeZ, p10) {
-    let $res = natives.isEntityInAngledArea(this.handle, x1, y1, z1, x2, y2, z2, width, debug | 0, includeZ | 0, p10);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isInAngledArea.apply(this, [this.handle, x1, y1, z1, x2, y2, z2, width, debug, includeZ, p10]);
 };
 
 mp.Ped.prototype.isInAngledArea ??= function (x1, y1, z1, x2, y2, z2, width, debug, includeZ, p10) {
-    let $res = natives.isEntityInAngledArea(this.handle, x1, y1, z1, x2, y2, z2, width, debug | 0, includeZ | 0, p10);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isInAngledArea.apply(this, [this.handle, x1, y1, z1, x2, y2, z2, width, debug, includeZ, p10]);
 };
 
 mp.Object.prototype.isInAngledArea ??= function (x1, y1, z1, x2, y2, z2, width, debug, includeZ, p10) {
-    let $res = natives.isEntityInAngledArea(this.handle, x1, y1, z1, x2, y2, z2, width, debug | 0, includeZ | 0, p10);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isInAngledArea.apply(this, [this.handle, x1, y1, z1, x2, y2, z2, width, debug, includeZ, p10]);
 };
 
 mp.Vehicle.prototype.isInAngledArea ??= function (x1, y1, z1, x2, y2, z2, width, debug, includeZ, p10) {
-    let $res = natives.isEntityInAngledArea(this.handle, x1, y1, z1, x2, y2, z2, width, debug | 0, includeZ | 0, p10);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isInAngledArea.apply(this, [this.handle, x1, y1, z1, x2, y2, z2, width, debug, includeZ, p10]);
 };
 
 mp.Player.prototype.isInArea ??= function (x1, y1, z1, x2, y2, z2, p7, p8, p9) {
-    let $res = natives.isEntityInArea(this.handle, x1, y1, z1, x2, y2, z2, p7 | 0, p8 | 0, p9);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isInArea.apply(this, [this.handle, x1, y1, z1, x2, y2, z2, p7, p8, p9]);
 };
 
 mp.Ped.prototype.isInArea ??= function (x1, y1, z1, x2, y2, z2, p7, p8, p9) {
-    let $res = natives.isEntityInArea(this.handle, x1, y1, z1, x2, y2, z2, p7 | 0, p8 | 0, p9);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isInArea.apply(this, [this.handle, x1, y1, z1, x2, y2, z2, p7, p8, p9]);
 };
 
 mp.Object.prototype.isInArea ??= function (x1, y1, z1, x2, y2, z2, p7, p8, p9) {
-    let $res = natives.isEntityInArea(this.handle, x1, y1, z1, x2, y2, z2, p7 | 0, p8 | 0, p9);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isInArea.apply(this, [this.handle, x1, y1, z1, x2, y2, z2, p7, p8, p9]);
 };
 
 mp.Vehicle.prototype.isInArea ??= function (x1, y1, z1, x2, y2, z2, p7, p8, p9) {
-    let $res = natives.isEntityInArea(this.handle, x1, y1, z1, x2, y2, z2, p7 | 0, p8 | 0, p9);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isInArea.apply(this, [this.handle, x1, y1, z1, x2, y2, z2, p7, p8, p9]);
 };
 
 mp.Player.prototype.isInZone ??= function (zone) {
-    if (typeof zone != "string") zone = null;
-    let $res = natives.isEntityInZone(this.handle, zone);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isInZone.apply(this, [this.handle, zone]);
 };
 
 mp.Ped.prototype.isInZone ??= function (zone) {
-    if (typeof zone != "string") zone = null;
-    let $res = natives.isEntityInZone(this.handle, zone);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isInZone.apply(this, [this.handle, zone]);
 };
 
 mp.Object.prototype.isInZone ??= function (zone) {
-    if (typeof zone != "string") zone = null;
-    let $res = natives.isEntityInZone(this.handle, zone);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isInZone.apply(this, [this.handle, zone]);
 };
 
 mp.Vehicle.prototype.isInZone ??= function (zone) {
-    if (typeof zone != "string") zone = null;
-    let $res = natives.isEntityInZone(this.handle, zone);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isInZone.apply(this, [this.handle, zone]);
 };
 
 mp.Player.prototype.isInWater ??= function () {
-    let $res = natives.isEntityInWater(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isInWater.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isInWater ??= function () {
-    let $res = natives.isEntityInWater(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isInWater.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.isInWater ??= function () {
-    let $res = natives.isEntityInWater(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isInWater.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isInWater ??= function () {
-    let $res = natives.isEntityInWater(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isInWater.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getSubmergedLevel ??= function () {
-    let $res = natives.getEntitySubmergedLevel(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getSubmergedLevel.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getSubmergedLevel ??= function () {
-    let $res = natives.getEntitySubmergedLevel(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getSubmergedLevel.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getSubmergedLevel ??= function () {
-    let $res = natives.getEntitySubmergedLevel(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getSubmergedLevel.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getSubmergedLevel ??= function () {
-    let $res = natives.getEntitySubmergedLevel(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getSubmergedLevel.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isOnScreen ??= function () {
-    let $res = natives.isEntityOnScreen(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isOnScreen.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isOnScreen ??= function () {
-    let $res = natives.isEntityOnScreen(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isOnScreen.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.isOnScreen ??= function () {
-    let $res = natives.isEntityOnScreen(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isOnScreen.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isOnScreen ??= function () {
-    let $res = natives.isEntityOnScreen(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isOnScreen.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isPlayingAnim ??= function (animDict, animName, taskFlag) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.isEntityPlayingAnim(this.handle, animDict, animName, taskFlag);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isPlayingAnim.apply(this, [this.handle, animDict, animName, taskFlag]);
 };
 
 mp.Ped.prototype.isPlayingAnim ??= function (animDict, animName, taskFlag) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.isEntityPlayingAnim(this.handle, animDict, animName, taskFlag);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isPlayingAnim.apply(this, [this.handle, animDict, animName, taskFlag]);
 };
 
 mp.Object.prototype.isPlayingAnim ??= function (animDict, animName, taskFlag) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.isEntityPlayingAnim(this.handle, animDict, animName, taskFlag);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isPlayingAnim.apply(this, [this.handle, animDict, animName, taskFlag]);
 };
 
 mp.Vehicle.prototype.isPlayingAnim ??= function (animDict, animName, taskFlag) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.isEntityPlayingAnim(this.handle, animDict, animName, taskFlag);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isPlayingAnim.apply(this, [this.handle, animDict, animName, taskFlag]);
 };
 
 mp.Player.prototype.isStatic ??= function () {
-    let $res = natives.isEntityStatic(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isStatic.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isStatic ??= function () {
-    let $res = natives.isEntityStatic(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isStatic.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.isStatic ??= function () {
-    let $res = natives.isEntityStatic(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isStatic.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isStatic ??= function () {
-    let $res = natives.isEntityStatic(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isStatic.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isTouchingEntity ??= function (targetEntity) {
-    let $res = natives.isEntityTouchingEntity(this.handle, targetEntity);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isTouchingEntity.apply(this, [this.handle, targetEntity]);
 };
 
 mp.Ped.prototype.isTouchingEntity ??= function (targetEntity) {
-    let $res = natives.isEntityTouchingEntity(this.handle, targetEntity);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isTouchingEntity.apply(this, [this.handle, targetEntity]);
 };
 
 mp.Object.prototype.isTouchingEntity ??= function (targetEntity) {
-    let $res = natives.isEntityTouchingEntity(this.handle, targetEntity);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isTouchingEntity.apply(this, [this.handle, targetEntity]);
 };
 
 mp.Vehicle.prototype.isTouchingEntity ??= function (targetEntity) {
-    let $res = natives.isEntityTouchingEntity(this.handle, targetEntity);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isTouchingEntity.apply(this, [this.handle, targetEntity]);
 };
 
 mp.Player.prototype.isTouchingModel ??= function (modelHash) {
-    let $res = natives.isEntityTouchingModel(this.handle, modelHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isTouchingModel.apply(this, [this.handle, modelHash]);
 };
 
 mp.Ped.prototype.isTouchingModel ??= function (modelHash) {
-    let $res = natives.isEntityTouchingModel(this.handle, modelHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isTouchingModel.apply(this, [this.handle, modelHash]);
 };
 
 mp.Object.prototype.isTouchingModel ??= function (modelHash) {
-    let $res = natives.isEntityTouchingModel(this.handle, modelHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isTouchingModel.apply(this, [this.handle, modelHash]);
 };
 
 mp.Vehicle.prototype.isTouchingModel ??= function (modelHash) {
-    let $res = natives.isEntityTouchingModel(this.handle, modelHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isTouchingModel.apply(this, [this.handle, modelHash]);
 };
 
 mp.Player.prototype.isUpright ??= function (angle) {
-    let $res = natives.isEntityUpright(this.handle, angle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isUpright.apply(this, [this.handle, angle]);
 };
 
 mp.Ped.prototype.isUpright ??= function (angle) {
-    let $res = natives.isEntityUpright(this.handle, angle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isUpright.apply(this, [this.handle, angle]);
 };
 
 mp.Object.prototype.isUpright ??= function (angle) {
-    let $res = natives.isEntityUpright(this.handle, angle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isUpright.apply(this, [this.handle, angle]);
 };
 
 mp.Vehicle.prototype.isUpright ??= function (angle) {
-    let $res = natives.isEntityUpright(this.handle, angle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isUpright.apply(this, [this.handle, angle]);
 };
 
 mp.Player.prototype.isUpsidedown ??= function () {
-    let $res = natives.isEntityUpsidedown(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isUpsidedown.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isUpsidedown ??= function () {
-    let $res = natives.isEntityUpsidedown(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isUpsidedown.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.isUpsidedown ??= function () {
-    let $res = natives.isEntityUpsidedown(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isUpsidedown.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isUpsidedown ??= function () {
-    let $res = natives.isEntityUpsidedown(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isUpsidedown.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isVisible ??= function () {
-    let $res = natives.isEntityVisible(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isVisible.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isVisible ??= function () {
-    let $res = natives.isEntityVisible(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isVisible.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.isVisible ??= function () {
-    let $res = natives.isObjectVisible(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.object.isVisible.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isVisible ??= function () {
-    let $res = natives.isVehicleVisible(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isVisible.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isVisibleToScript ??= function () {
-    let $res = natives.isEntityVisibleToScript(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isVisibleToScript.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isVisibleToScript ??= function () {
-    let $res = natives.isEntityVisibleToScript(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isVisibleToScript.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.isVisibleToScript ??= function () {
-    let $res = natives.isEntityVisibleToScript(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isVisibleToScript.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isVisibleToScript ??= function () {
-    let $res = natives.isEntityVisibleToScript(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isVisibleToScript.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isOccluded ??= function () {
-    let $res = natives.isEntityOccluded(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isOccluded.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isOccluded ??= function () {
-    let $res = natives.isEntityOccluded(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isOccluded.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.isOccluded ??= function () {
-    let $res = natives.isEntityOccluded(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isOccluded.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isOccluded ??= function () {
-    let $res = natives.isEntityOccluded(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isOccluded.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isWaitingForWorldCollision ??= function () {
-    let $res = natives.isEntityWaitingForWorldCollision(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isWaitingForWorldCollision.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isWaitingForWorldCollision ??= function () {
-    let $res = natives.isEntityWaitingForWorldCollision(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isWaitingForWorldCollision.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.isWaitingForWorldCollision ??= function () {
-    let $res = natives.isEntityWaitingForWorldCollision(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isWaitingForWorldCollision.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isWaitingForWorldCollision ??= function () {
-    let $res = natives.isEntityWaitingForWorldCollision(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.isWaitingForWorldCollision.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.applyForceToCenterOfMass ??= function (forceType, x, y, z, p5, isDirectionRel, isForceRel, p8) {
-    let $res = natives.applyForceToEntityCenterOfMass(this.handle, forceType, x, y, z, p5 | 0, isDirectionRel | 0, isForceRel | 0, p8 | 0);
+    return mp.game2.entity.applyForceToCenterOfMass.apply(this, [this.handle, forceType, x, y, z, p5, isDirectionRel, isForceRel, p8]);
 };
 
 mp.Ped.prototype.applyForceToCenterOfMass ??= function (forceType, x, y, z, p5, isDirectionRel, isForceRel, p8) {
-    let $res = natives.applyForceToEntityCenterOfMass(this.handle, forceType, x, y, z, p5 | 0, isDirectionRel | 0, isForceRel | 0, p8 | 0);
+    return mp.game2.entity.applyForceToCenterOfMass.apply(this, [this.handle, forceType, x, y, z, p5, isDirectionRel, isForceRel, p8]);
 };
 
 mp.Object.prototype.applyForceToCenterOfMass ??= function (forceType, x, y, z, p5, isDirectionRel, isForceRel, p8) {
-    let $res = natives.applyForceToEntityCenterOfMass(this.handle, forceType, x, y, z, p5 | 0, isDirectionRel | 0, isForceRel | 0, p8 | 0);
+    return mp.game2.entity.applyForceToCenterOfMass.apply(this, [this.handle, forceType, x, y, z, p5, isDirectionRel, isForceRel, p8]);
 };
 
 mp.Vehicle.prototype.applyForceToCenterOfMass ??= function (forceType, x, y, z, p5, isDirectionRel, isForceRel, p8) {
-    let $res = natives.applyForceToEntityCenterOfMass(this.handle, forceType, x, y, z, p5 | 0, isDirectionRel | 0, isForceRel | 0, p8 | 0);
+    return mp.game2.entity.applyForceToCenterOfMass.apply(this, [this.handle, forceType, x, y, z, p5, isDirectionRel, isForceRel, p8]);
 };
 
 mp.Player.prototype.applyForceTo ??= function (forceFlags, x, y, z, offX, offY, offZ, boneIndex, isDirectionRel, ignoreUpVec, isForceRel, p12, p13) {
-    let $res = natives.applyForceToEntity(this.handle, forceFlags, x, y, z, offX, offY, offZ, boneIndex, isDirectionRel | 0, ignoreUpVec | 0, isForceRel | 0, p12 | 0, p13 | 0);
+    return mp.game2.entity.applyForceTo.apply(this, [this.handle, forceFlags, x, y, z, offX, offY, offZ, boneIndex, isDirectionRel, ignoreUpVec, isForceRel, p12, p13]);
 };
 
 mp.Ped.prototype.applyForceTo ??= function (forceFlags, x, y, z, offX, offY, offZ, boneIndex, isDirectionRel, ignoreUpVec, isForceRel, p12, p13) {
-    let $res = natives.applyForceToEntity(this.handle, forceFlags, x, y, z, offX, offY, offZ, boneIndex, isDirectionRel | 0, ignoreUpVec | 0, isForceRel | 0, p12 | 0, p13 | 0);
+    return mp.game2.entity.applyForceTo.apply(this, [this.handle, forceFlags, x, y, z, offX, offY, offZ, boneIndex, isDirectionRel, ignoreUpVec, isForceRel, p12, p13]);
 };
 
 mp.Object.prototype.applyForceTo ??= function (forceFlags, x, y, z, offX, offY, offZ, boneIndex, isDirectionRel, ignoreUpVec, isForceRel, p12, p13) {
-    let $res = natives.applyForceToEntity(this.handle, forceFlags, x, y, z, offX, offY, offZ, boneIndex, isDirectionRel | 0, ignoreUpVec | 0, isForceRel | 0, p12 | 0, p13 | 0);
+    return mp.game2.entity.applyForceTo.apply(this, [this.handle, forceFlags, x, y, z, offX, offY, offZ, boneIndex, isDirectionRel, ignoreUpVec, isForceRel, p12, p13]);
 };
 
 mp.Vehicle.prototype.applyForceTo ??= function (forceFlags, x, y, z, offX, offY, offZ, boneIndex, isDirectionRel, ignoreUpVec, isForceRel, p12, p13) {
-    let $res = natives.applyForceToEntity(this.handle, forceFlags, x, y, z, offX, offY, offZ, boneIndex, isDirectionRel | 0, ignoreUpVec | 0, isForceRel | 0, p12 | 0, p13 | 0);
+    return mp.game2.entity.applyForceTo.apply(this, [this.handle, forceFlags, x, y, z, offX, offY, offZ, boneIndex, isDirectionRel, ignoreUpVec, isForceRel, p12, p13]);
 };
 
 mp.Player.prototype.attachToEntity ??= function (entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9, useSoftPinning, collision, isPed, vertexIndex, fixedRot) {
-    let $res = natives.attachEntityToEntity(this.handle, entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9 | 0, useSoftPinning | 0, collision | 0, isPed | 0, vertexIndex, fixedRot | 0, 0);
+    return mp.game2.entity.attachToEntity.apply(this, [this.handle, entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9, useSoftPinning, collision, isPed, vertexIndex, fixedRot]);
 };
 
 mp.Ped.prototype.attachToEntity ??= function (entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9, useSoftPinning, collision, isPed, vertexIndex, fixedRot) {
-    let $res = natives.attachEntityToEntity(this.handle, entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9 | 0, useSoftPinning | 0, collision | 0, isPed | 0, vertexIndex, fixedRot | 0, 0);
+    return mp.game2.entity.attachToEntity.apply(this, [this.handle, entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9, useSoftPinning, collision, isPed, vertexIndex, fixedRot]);
 };
 
 mp.Object.prototype.attachToEntity ??= function (entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9, useSoftPinning, collision, isPed, vertexIndex, fixedRot) {
-    let $res = natives.attachEntityToEntity(this.handle, entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9 | 0, useSoftPinning | 0, collision | 0, isPed | 0, vertexIndex, fixedRot | 0, 0);
+    return mp.game2.entity.attachToEntity.apply(this, [this.handle, entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9, useSoftPinning, collision, isPed, vertexIndex, fixedRot]);
 };
 
 mp.Vehicle.prototype.attachToEntity ??= function (entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9, useSoftPinning, collision, isPed, vertexIndex, fixedRot) {
-    let $res = natives.attachEntityToEntity(this.handle, entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9 | 0, useSoftPinning | 0, collision | 0, isPed | 0, vertexIndex, fixedRot | 0, 0);
+    return mp.game2.entity.attachToEntity.apply(this, [this.handle, entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9, useSoftPinning, collision, isPed, vertexIndex, fixedRot]);
 };
 
 mp.Player.prototype.attachBoneToEntityBone ??= function (entity2, boneIndex1, boneIndex2, p4, p5) {
-    let $res = natives.attachEntityBoneToEntityBone(this.handle, entity2, boneIndex1, boneIndex2, p4 | 0, p5 | 0);
+    return mp.game2.entity.attachBoneToEntityBone.apply(this, [this.handle, entity2, boneIndex1, boneIndex2, p4, p5]);
 };
 
 mp.Ped.prototype.attachBoneToEntityBone ??= function (entity2, boneIndex1, boneIndex2, p4, p5) {
-    let $res = natives.attachEntityBoneToEntityBone(this.handle, entity2, boneIndex1, boneIndex2, p4 | 0, p5 | 0);
+    return mp.game2.entity.attachBoneToEntityBone.apply(this, [this.handle, entity2, boneIndex1, boneIndex2, p4, p5]);
 };
 
 mp.Object.prototype.attachBoneToEntityBone ??= function (entity2, boneIndex1, boneIndex2, p4, p5) {
-    let $res = natives.attachEntityBoneToEntityBone(this.handle, entity2, boneIndex1, boneIndex2, p4 | 0, p5 | 0);
+    return mp.game2.entity.attachBoneToEntityBone.apply(this, [this.handle, entity2, boneIndex1, boneIndex2, p4, p5]);
 };
 
 mp.Vehicle.prototype.attachBoneToEntityBone ??= function (entity2, boneIndex1, boneIndex2, p4, p5) {
-    let $res = natives.attachEntityBoneToEntityBone(this.handle, entity2, boneIndex1, boneIndex2, p4 | 0, p5 | 0);
+    return mp.game2.entity.attachBoneToEntityBone.apply(this, [this.handle, entity2, boneIndex1, boneIndex2, p4, p5]);
 };
 
 mp.Player.prototype.attachBoneToEntityBonePhysically ??= function (entity2, boneIndex1, boneIndex2, p4, p5) {
-    let $res = natives.attachEntityBoneToEntityBoneYForward(this.handle, entity2, boneIndex1, boneIndex2, p4 | 0, p5 | 0);
+    return mp.game2.entity.attachBoneToEntityBonePhysically.apply(this, [this.handle, entity2, boneIndex1, boneIndex2, p4, p5]);
 };
 
 mp.Ped.prototype.attachBoneToEntityBonePhysically ??= function (entity2, boneIndex1, boneIndex2, p4, p5) {
-    let $res = natives.attachEntityBoneToEntityBoneYForward(this.handle, entity2, boneIndex1, boneIndex2, p4 | 0, p5 | 0);
+    return mp.game2.entity.attachBoneToEntityBonePhysically.apply(this, [this.handle, entity2, boneIndex1, boneIndex2, p4, p5]);
 };
 
 mp.Object.prototype.attachBoneToEntityBonePhysically ??= function (entity2, boneIndex1, boneIndex2, p4, p5) {
-    let $res = natives.attachEntityBoneToEntityBoneYForward(this.handle, entity2, boneIndex1, boneIndex2, p4 | 0, p5 | 0);
+    return mp.game2.entity.attachBoneToEntityBonePhysically.apply(this, [this.handle, entity2, boneIndex1, boneIndex2, p4, p5]);
 };
 
 mp.Vehicle.prototype.attachBoneToEntityBonePhysically ??= function (entity2, boneIndex1, boneIndex2, p4, p5) {
-    let $res = natives.attachEntityBoneToEntityBoneYForward(this.handle, entity2, boneIndex1, boneIndex2, p4 | 0, p5 | 0);
+    return mp.game2.entity.attachBoneToEntityBonePhysically.apply(this, [this.handle, entity2, boneIndex1, boneIndex2, p4, p5]);
 };
 
 mp.Player.prototype.attachToEntityPhysically ??= function (entity2, boneIndex1, boneIndex2, xPos1, yPos1, zPos1, xPos2, yPos2, zPos2, xRot, yRot, zRot, breakForce, fixedRot, p15, collision, p17, p18) {
-    let $res = natives.attachEntityToEntityPhysically(this.handle, entity2, boneIndex1, boneIndex2, xPos1, yPos1, zPos1, xPos2, yPos2, zPos2, xRot, yRot, zRot, breakForce, fixedRot | 0, p15 | 0, collision | 0, p17 | 0, p18);
+    return mp.game2.entity.attachToEntityPhysically.apply(this, [this.handle, entity2, boneIndex1, boneIndex2, xPos1, yPos1, zPos1, xPos2, yPos2, zPos2, xRot, yRot, zRot, breakForce, fixedRot, p15, collision, p17, p18]);
 };
 
 mp.Ped.prototype.attachToEntityPhysically ??= function (entity2, boneIndex1, boneIndex2, xPos1, yPos1, zPos1, xPos2, yPos2, zPos2, xRot, yRot, zRot, breakForce, fixedRot, p15, collision, p17, p18) {
-    let $res = natives.attachEntityToEntityPhysically(this.handle, entity2, boneIndex1, boneIndex2, xPos1, yPos1, zPos1, xPos2, yPos2, zPos2, xRot, yRot, zRot, breakForce, fixedRot | 0, p15 | 0, collision | 0, p17 | 0, p18);
+    return mp.game2.entity.attachToEntityPhysically.apply(this, [this.handle, entity2, boneIndex1, boneIndex2, xPos1, yPos1, zPos1, xPos2, yPos2, zPos2, xRot, yRot, zRot, breakForce, fixedRot, p15, collision, p17, p18]);
 };
 
 mp.Object.prototype.attachToEntityPhysically ??= function (entity2, boneIndex1, boneIndex2, xPos1, yPos1, zPos1, xPos2, yPos2, zPos2, xRot, yRot, zRot, breakForce, fixedRot, p15, collision, p17, p18) {
-    let $res = natives.attachEntityToEntityPhysically(this.handle, entity2, boneIndex1, boneIndex2, xPos1, yPos1, zPos1, xPos2, yPos2, zPos2, xRot, yRot, zRot, breakForce, fixedRot | 0, p15 | 0, collision | 0, p17 | 0, p18);
+    return mp.game2.entity.attachToEntityPhysically.apply(this, [this.handle, entity2, boneIndex1, boneIndex2, xPos1, yPos1, zPos1, xPos2, yPos2, zPos2, xRot, yRot, zRot, breakForce, fixedRot, p15, collision, p17, p18]);
 };
 
 mp.Vehicle.prototype.attachToEntityPhysically ??= function (entity2, boneIndex1, boneIndex2, xPos1, yPos1, zPos1, xPos2, yPos2, zPos2, xRot, yRot, zRot, breakForce, fixedRot, p15, collision, p17, p18) {
-    let $res = natives.attachEntityToEntityPhysically(this.handle, entity2, boneIndex1, boneIndex2, xPos1, yPos1, zPos1, xPos2, yPos2, zPos2, xRot, yRot, zRot, breakForce, fixedRot | 0, p15 | 0, collision | 0, p17 | 0, p18);
+    return mp.game2.entity.attachToEntityPhysically.apply(this, [this.handle, entity2, boneIndex1, boneIndex2, xPos1, yPos1, zPos1, xPos2, yPos2, zPos2, xRot, yRot, zRot, breakForce, fixedRot, p15, collision, p17, p18]);
 };
 
 mp.Player.prototype.processAttachments ??= function () {
-    let $res = natives.processEntityAttachments(this.handle);
+    return mp.game2.entity.processAttachments.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.processAttachments ??= function () {
-    let $res = natives.processEntityAttachments(this.handle);
+    return mp.game2.entity.processAttachments.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.processAttachments ??= function () {
-    let $res = natives.processEntityAttachments(this.handle);
+    return mp.game2.entity.processAttachments.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.processAttachments ??= function () {
-    let $res = natives.processEntityAttachments(this.handle);
+    return mp.game2.entity.processAttachments.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getBoneIndexByName ??= function (boneName) {
-    if (typeof boneName != "string") boneName = null;
-    let $res = natives.getEntityBoneIndexByName(this.handle, boneName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getBoneIndexByName.apply(this, [this.handle, boneName]);
 };
 
 mp.Ped.prototype.getBoneIndexByName ??= function (boneName) {
-    if (typeof boneName != "string") boneName = null;
-    let $res = natives.getEntityBoneIndexByName(this.handle, boneName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getBoneIndexByName.apply(this, [this.handle, boneName]);
 };
 
 mp.Object.prototype.getBoneIndexByName ??= function (boneName) {
-    if (typeof boneName != "string") boneName = null;
-    let $res = natives.getEntityBoneIndexByName(this.handle, boneName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getBoneIndexByName.apply(this, [this.handle, boneName]);
 };
 
 mp.Vehicle.prototype.getBoneIndexByName ??= function (boneName) {
-    if (typeof boneName != "string") boneName = null;
-    let $res = natives.getEntityBoneIndexByName(this.handle, boneName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getBoneIndexByName.apply(this, [this.handle, boneName]);
 };
 
 mp.Player.prototype.clearLastDamageEntity ??= function () {
-    let $res = natives.clearEntityLastDamageEntity(this.handle);
+    return mp.game2.entity.clearLastDamageEntity.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.clearLastDamageEntity ??= function () {
-    let $res = natives.clearEntityLastDamageEntity(this.handle);
+    return mp.game2.entity.clearLastDamageEntity.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.clearLastDamageEntity ??= function () {
-    let $res = natives.clearEntityLastDamageEntity(this.handle);
+    return mp.game2.entity.clearLastDamageEntity.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.clearLastDamageEntity ??= function () {
-    let $res = natives.clearEntityLastDamageEntity(this.handle);
+    return mp.game2.entity.clearLastDamageEntity.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.detach ??= function (dynamic, collision) {
-    let $res = natives.detachEntity(this.handle, dynamic | 0, collision | 0);
+    return mp.game2.entity.detach.apply(this, [this.handle, dynamic, collision]);
 };
 
 mp.Ped.prototype.detach ??= function (dynamic, collision) {
-    let $res = natives.detachEntity(this.handle, dynamic | 0, collision | 0);
+    return mp.game2.entity.detach.apply(this, [this.handle, dynamic, collision]);
 };
 
 mp.Object.prototype.detach ??= function (dynamic, collision) {
-    let $res = natives.detachEntity(this.handle, dynamic | 0, collision | 0);
+    return mp.game2.entity.detach.apply(this, [this.handle, dynamic, collision]);
 };
 
 mp.Vehicle.prototype.detach ??= function (dynamic, collision) {
-    let $res = natives.detachEntity(this.handle, dynamic | 0, collision | 0);
+    return mp.game2.entity.detach.apply(this, [this.handle, dynamic, collision]);
 };
 
 mp.Player.prototype.freezePosition ??= function (toggle) {
-    let $res = natives.freezeEntityPosition(this.handle, toggle | 0);
+    return mp.game2.entity.freezePosition.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.freezePosition ??= function (toggle) {
-    let $res = natives.freezeEntityPosition(this.handle, toggle | 0);
+    return mp.game2.entity.freezePosition.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.freezePosition ??= function (toggle) {
-    let $res = natives.freezeEntityPosition(this.handle, toggle | 0);
+    return mp.game2.entity.freezePosition.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.freezePosition ??= function (toggle) {
-    let $res = natives.freezeEntityPosition(this.handle, toggle | 0);
+    return mp.game2.entity.freezePosition.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setCleanupByEngine ??= function (toggle) {
-    let $res = natives.setEntityShouldFreezeWaitingOnCollision(this.handle, toggle | 0);
+    return mp.game2.entity.setCleanupByEngine.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setCleanupByEngine ??= function (toggle) {
-    let $res = natives.setEntityShouldFreezeWaitingOnCollision(this.handle, toggle | 0);
+    return mp.game2.entity.setCleanupByEngine.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.setCleanupByEngine ??= function (toggle) {
-    let $res = natives.setEntityShouldFreezeWaitingOnCollision(this.handle, toggle | 0);
+    return mp.game2.entity.setCleanupByEngine.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setCleanupByEngine ??= function (toggle) {
-    let $res = natives.setEntityShouldFreezeWaitingOnCollision(this.handle, toggle | 0);
+    return mp.game2.entity.setCleanupByEngine.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.playAnim ??= function (animDictionary, animationName, blendInSpeed, blendOutSpeed, duration, flag, playbackRate, lockX, lockY, lockZ) {
-    if (typeof animDictionary != "string") animDictionary = null;
-    if (typeof animationName != "string") animationName = null;
-    let $res = natives.taskPlayAnim(this.handle, animDictionary, animationName, blendInSpeed, blendOutSpeed, duration, flag, playbackRate, lockX | 0, lockY | 0, lockZ | 0);
+    return mp.game2.task.playAnim.apply(this, [this.handle, animDictionary, animationName, blendInSpeed, blendOutSpeed, duration, flag, playbackRate, lockX, lockY, lockZ]);
 };
 
 mp.Ped.prototype.playAnim ??= function (animDictionary, animationName, blendInSpeed, blendOutSpeed, duration, flag, playbackRate, lockX, lockY, lockZ) {
-    if (typeof animDictionary != "string") animDictionary = null;
-    if (typeof animationName != "string") animationName = null;
-    let $res = natives.taskPlayAnim(this.handle, animDictionary, animationName, blendInSpeed, blendOutSpeed, duration, flag, playbackRate, lockX | 0, lockY | 0, lockZ | 0);
+    return mp.game2.task.playAnim.apply(this, [this.handle, animDictionary, animationName, blendInSpeed, blendOutSpeed, duration, flag, playbackRate, lockX, lockY, lockZ]);
 };
 
 mp.Object.prototype.playAnim ??= function (animName, animDict, p3, loop, stayInAnim, p6, delta, bitset) {
-    if (typeof animName != "string") animName = null;
-    if (typeof animDict != "string") animDict = null;
-    let $res = natives.playEntityAnim(this.handle, animName, animDict, p3, loop | 0, stayInAnim | 0, p6 | 0, delta, bitset);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.playAnim.apply(this, [this.handle, animName, animDict, p3, loop, stayInAnim, p6, delta, bitset]);
 };
 
 mp.Vehicle.prototype.playAnim ??= function (animName, animDict, p3, loop, stayInAnim, p6, delta, bitset) {
-    if (typeof animName != "string") animName = null;
-    if (typeof animDict != "string") animDict = null;
-    let $res = natives.playEntityAnim(this.handle, animName, animDict, p3, loop | 0, stayInAnim | 0, p6 | 0, delta, bitset);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.playAnim.apply(this, [this.handle, animName, animDict, p3, loop, stayInAnim, p6, delta, bitset]);
 };
 
 mp.Player.prototype.playSynchronizedAnim ??= function (syncedScene, animation, propName, p4, p5, p6, p7) {
-    if (typeof animation != "string") animation = null;
-    if (typeof propName != "string") propName = null;
-    let $res = natives.playSynchronizedEntityAnim(this.handle, syncedScene, animation, propName, p4, p5, p6, p7);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.playSynchronizedAnim.apply(this, [this.handle, syncedScene, animation, propName, p4, p5, p6, p7]);
 };
 
 mp.Ped.prototype.playSynchronizedAnim ??= function (syncedScene, animation, propName, p4, p5, p6, p7) {
-    if (typeof animation != "string") animation = null;
-    if (typeof propName != "string") propName = null;
-    let $res = natives.playSynchronizedEntityAnim(this.handle, syncedScene, animation, propName, p4, p5, p6, p7);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.playSynchronizedAnim.apply(this, [this.handle, syncedScene, animation, propName, p4, p5, p6, p7]);
 };
 
 mp.Object.prototype.playSynchronizedAnim ??= function (syncedScene, animation, propName, p4, p5, p6, p7) {
-    if (typeof animation != "string") animation = null;
-    if (typeof propName != "string") propName = null;
-    let $res = natives.playSynchronizedEntityAnim(this.handle, syncedScene, animation, propName, p4, p5, p6, p7);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.playSynchronizedAnim.apply(this, [this.handle, syncedScene, animation, propName, p4, p5, p6, p7]);
 };
 
 mp.Vehicle.prototype.playSynchronizedAnim ??= function (syncedScene, animation, propName, p4, p5, p6, p7) {
-    if (typeof animation != "string") animation = null;
-    if (typeof propName != "string") propName = null;
-    let $res = natives.playSynchronizedEntityAnim(this.handle, syncedScene, animation, propName, p4, p5, p6, p7);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.playSynchronizedAnim.apply(this, [this.handle, syncedScene, animation, propName, p4, p5, p6, p7]);
 };
 
 mp.Player.prototype.stopAnim ??= function (animDictionary, animationName, p3) {
-    if (typeof animDictionary != "string") animDictionary = null;
-    if (typeof animationName != "string") animationName = null;
-    let $res = natives.stopAnimTask(this.handle, animDictionary, animationName, p3);
+    return mp.game2.task.stopAnim.apply(this, [this.handle, animDictionary, animationName, p3]);
 };
 
 mp.Ped.prototype.stopAnim ??= function (animDictionary, animationName, p3) {
-    if (typeof animDictionary != "string") animDictionary = null;
-    if (typeof animationName != "string") animationName = null;
-    let $res = natives.stopAnimTask(this.handle, animDictionary, animationName, p3);
+    return mp.game2.task.stopAnim.apply(this, [this.handle, animDictionary, animationName, p3]);
 };
 
 mp.Object.prototype.stopAnim ??= function (animation, animGroup, p3) {
-    if (typeof animation != "string") animation = null;
-    if (typeof animGroup != "string") animGroup = null;
-    let $res = natives.stopEntityAnim(this.handle, animation, animGroup, p3);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.stopAnim.apply(this, [this.handle, animation, animGroup, p3]);
 };
 
 mp.Vehicle.prototype.stopAnim ??= function (animation, animGroup, p3) {
-    if (typeof animation != "string") animation = null;
-    if (typeof animGroup != "string") animGroup = null;
-    let $res = natives.stopEntityAnim(this.handle, animation, animGroup, p3);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.stopAnim.apply(this, [this.handle, animation, animGroup, p3]);
 };
 
 mp.Player.prototype.stopSynchronizedAnim ??= function (p1, p2) {
-    let $res = natives.stopSynchronizedEntityAnim(this.handle, p1, p2 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.stopSynchronizedAnim.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Ped.prototype.stopSynchronizedAnim ??= function (p1, p2) {
-    let $res = natives.stopSynchronizedEntityAnim(this.handle, p1, p2 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.stopSynchronizedAnim.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Object.prototype.stopSynchronizedAnim ??= function (p1, p2) {
-    let $res = natives.stopSynchronizedEntityAnim(this.handle, p1, p2 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.stopSynchronizedAnim.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Vehicle.prototype.stopSynchronizedAnim ??= function (p1, p2) {
-    let $res = natives.stopSynchronizedEntityAnim(this.handle, p1, p2 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.stopSynchronizedAnim.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Player.prototype.hasAnimEventFired ??= function (actionHash) {
-    let $res = natives.hasAnimEventFired(this.handle, actionHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasAnimEventFired.apply(this, [this.handle, actionHash]);
 };
 
 mp.Ped.prototype.hasAnimEventFired ??= function (actionHash) {
-    let $res = natives.hasAnimEventFired(this.handle, actionHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasAnimEventFired.apply(this, [this.handle, actionHash]);
 };
 
 mp.Object.prototype.hasAnimEventFired ??= function (actionHash) {
-    let $res = natives.hasAnimEventFired(this.handle, actionHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasAnimEventFired.apply(this, [this.handle, actionHash]);
 };
 
 mp.Vehicle.prototype.hasAnimEventFired ??= function (actionHash) {
-    let $res = natives.hasAnimEventFired(this.handle, actionHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasAnimEventFired.apply(this, [this.handle, actionHash]);
 };
 
 mp.Player.prototype.setAnimCurrentTime ??= function (animDictionary, animName, time) {
-    if (typeof animDictionary != "string") animDictionary = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.setEntityAnimCurrentTime(this.handle, animDictionary, animName, time);
+    return mp.game2.entity.setAnimCurrentTime.apply(this, [this.handle, animDictionary, animName, time]);
 };
 
 mp.Ped.prototype.setAnimCurrentTime ??= function (animDictionary, animName, time) {
-    if (typeof animDictionary != "string") animDictionary = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.setEntityAnimCurrentTime(this.handle, animDictionary, animName, time);
+    return mp.game2.entity.setAnimCurrentTime.apply(this, [this.handle, animDictionary, animName, time]);
 };
 
 mp.Object.prototype.setAnimCurrentTime ??= function (animDictionary, animName, time) {
-    if (typeof animDictionary != "string") animDictionary = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.setEntityAnimCurrentTime(this.handle, animDictionary, animName, time);
+    return mp.game2.entity.setAnimCurrentTime.apply(this, [this.handle, animDictionary, animName, time]);
 };
 
 mp.Vehicle.prototype.setAnimCurrentTime ??= function (animDictionary, animName, time) {
-    if (typeof animDictionary != "string") animDictionary = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.setEntityAnimCurrentTime(this.handle, animDictionary, animName, time);
+    return mp.game2.entity.setAnimCurrentTime.apply(this, [this.handle, animDictionary, animName, time]);
 };
 
 mp.Player.prototype.setAnimSpeed ??= function (animDictionary, animName, speedMultiplier) {
-    if (typeof animDictionary != "string") animDictionary = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.setEntityAnimSpeed(this.handle, animDictionary, animName, speedMultiplier);
+    return mp.game2.entity.setAnimSpeed.apply(this, [this.handle, animDictionary, animName, speedMultiplier]);
 };
 
 mp.Ped.prototype.setAnimSpeed ??= function (animDictionary, animName, speedMultiplier) {
-    if (typeof animDictionary != "string") animDictionary = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.setEntityAnimSpeed(this.handle, animDictionary, animName, speedMultiplier);
+    return mp.game2.entity.setAnimSpeed.apply(this, [this.handle, animDictionary, animName, speedMultiplier]);
 };
 
 mp.Object.prototype.setAnimSpeed ??= function (animDictionary, animName, speedMultiplier) {
-    if (typeof animDictionary != "string") animDictionary = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.setEntityAnimSpeed(this.handle, animDictionary, animName, speedMultiplier);
+    return mp.game2.entity.setAnimSpeed.apply(this, [this.handle, animDictionary, animName, speedMultiplier]);
 };
 
 mp.Vehicle.prototype.setAnimSpeed ??= function (animDictionary, animName, speedMultiplier) {
-    if (typeof animDictionary != "string") animDictionary = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.setEntityAnimSpeed(this.handle, animDictionary, animName, speedMultiplier);
+    return mp.game2.entity.setAnimSpeed.apply(this, [this.handle, animDictionary, animName, speedMultiplier]);
 };
 
 mp.Player.prototype.setAsMissionEntity ??= function (p1, p2) {
-    let $res = natives.setEntityAsMissionEntity(this.handle, p1 | 0, p2 | 0);
+    return mp.game2.entity.setAsMissionEntity.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Ped.prototype.setAsMissionEntity ??= function (p1, p2) {
-    let $res = natives.setEntityAsMissionEntity(this.handle, p1 | 0, p2 | 0);
+    return mp.game2.entity.setAsMissionEntity.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Object.prototype.setAsMissionEntity ??= function (p1, p2) {
-    let $res = natives.setEntityAsMissionEntity(this.handle, p1 | 0, p2 | 0);
+    return mp.game2.entity.setAsMissionEntity.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Vehicle.prototype.setAsMissionEntity ??= function (p1, p2) {
-    let $res = natives.setEntityAsMissionEntity(this.handle, p1 | 0, p2 | 0);
+    return mp.game2.entity.setAsMissionEntity.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Player.prototype.setCanBeDamaged ??= function (toggle) {
-    let $res = natives.setEntityCanBeDamaged(this.handle, toggle | 0);
+    return mp.game2.entity.setCanBeDamaged.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setCanBeDamaged ??= function (toggle) {
-    let $res = natives.setEntityCanBeDamaged(this.handle, toggle | 0);
+    return mp.game2.entity.setCanBeDamaged.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.setCanBeDamaged ??= function (toggle) {
-    let $res = natives.setEntityCanBeDamaged(this.handle, toggle | 0);
+    return mp.game2.entity.setCanBeDamaged.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setCanBeDamaged ??= function (toggle) {
-    let $res = natives.setEntityCanBeDamaged(this.handle, toggle | 0);
+    return mp.game2.entity.setCanBeDamaged.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.getCanBeDamaged ??= function () {
-    let $res = natives.getEntityCanBeDamaged(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.getCanBeDamaged.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getCanBeDamaged ??= function () {
-    let $res = natives.getEntityCanBeDamaged(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.getCanBeDamaged.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getCanBeDamaged ??= function () {
-    let $res = natives.getEntityCanBeDamaged(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.getCanBeDamaged.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getCanBeDamaged ??= function () {
-    let $res = natives.getEntityCanBeDamaged(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.getCanBeDamaged.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setCanBeDamagedByRelationshipGroup ??= function (bCanBeDamaged, relGroup) {
-    let $res = natives.setEntityCanBeDamagedByRelationshipGroup(this.handle, bCanBeDamaged | 0, relGroup);
+    return mp.game2.entity.setCanBeDamagedByRelationshipGroup.apply(this, [this.handle, bCanBeDamaged, relGroup]);
 };
 
 mp.Ped.prototype.setCanBeDamagedByRelationshipGroup ??= function (bCanBeDamaged, relGroup) {
-    let $res = natives.setEntityCanBeDamagedByRelationshipGroup(this.handle, bCanBeDamaged | 0, relGroup);
+    return mp.game2.entity.setCanBeDamagedByRelationshipGroup.apply(this, [this.handle, bCanBeDamaged, relGroup]);
 };
 
 mp.Object.prototype.setCanBeDamagedByRelationshipGroup ??= function (bCanBeDamaged, relGroup) {
-    let $res = natives.setEntityCanBeDamagedByRelationshipGroup(this.handle, bCanBeDamaged | 0, relGroup);
+    return mp.game2.entity.setCanBeDamagedByRelationshipGroup.apply(this, [this.handle, bCanBeDamaged, relGroup]);
 };
 
 mp.Vehicle.prototype.setCanBeDamagedByRelationshipGroup ??= function (bCanBeDamaged, relGroup) {
-    let $res = natives.setEntityCanBeDamagedByRelationshipGroup(this.handle, bCanBeDamaged | 0, relGroup);
+    return mp.game2.entity.setCanBeDamagedByRelationshipGroup.apply(this, [this.handle, bCanBeDamaged, relGroup]);
 };
 
 mp.Player.prototype.setCanBeTargetedWithoutLos ??= function (toggle) {
-    let $res = natives.setPedCanBeTargetedWithoutLos(this.handle, toggle | 0);
+    return mp.game2.ped.setCanBeTargetedWithoutLos.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setCanBeTargetedWithoutLos ??= function (toggle) {
-    let $res = natives.setPedCanBeTargetedWithoutLos(this.handle, toggle | 0);
+    return mp.game2.ped.setCanBeTargetedWithoutLos.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.setCanBeTargetedWithoutLos ??= function (toggle) {
-    let $res = natives.setEntityCanBeTargetedWithoutLos(this.handle, toggle | 0);
+    return mp.game2.entity.setCanBeTargetedWithoutLos.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setCanBeTargetedWithoutLos ??= function (toggle) {
-    let $res = natives.setEntityCanBeTargetedWithoutLos(this.handle, toggle | 0);
+    return mp.game2.entity.setCanBeTargetedWithoutLos.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setCollision ??= function (toggle, keepPhysics) {
-    let $res = natives.setEntityCollision(this.handle, toggle | 0, keepPhysics | 0);
+    return mp.game2.entity.setCollision.apply(this, [this.handle, toggle, keepPhysics]);
 };
 
 mp.Ped.prototype.setCollision ??= function (toggle, keepPhysics) {
-    let $res = natives.setEntityCollision(this.handle, toggle | 0, keepPhysics | 0);
+    return mp.game2.entity.setCollision.apply(this, [this.handle, toggle, keepPhysics]);
 };
 
 mp.Object.prototype.setCollision ??= function (toggle, keepPhysics) {
-    let $res = natives.setEntityCollision(this.handle, toggle | 0, keepPhysics | 0);
+    return mp.game2.entity.setCollision.apply(this, [this.handle, toggle, keepPhysics]);
 };
 
 mp.Vehicle.prototype.setCollision ??= function (toggle, keepPhysics) {
-    let $res = natives.setEntityCollision(this.handle, toggle | 0, keepPhysics | 0);
+    return mp.game2.entity.setCollision.apply(this, [this.handle, toggle, keepPhysics]);
 };
 
 mp.Player.prototype.getCollisionDisabled ??= function () {
-    let $res = natives.getEntityCollisionDisabled(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.getCollisionDisabled.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getCollisionDisabled ??= function () {
-    let $res = natives.getEntityCollisionDisabled(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.getCollisionDisabled.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getCollisionDisabled ??= function () {
-    let $res = natives.getEntityCollisionDisabled(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.getCollisionDisabled.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getCollisionDisabled ??= function () {
-    let $res = natives.getEntityCollisionDisabled(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.getCollisionDisabled.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setCompletelyDisableCollision ??= function (toggle, keepPhysics) {
-    let $res = natives.setEntityCompletelyDisableCollision(this.handle, toggle | 0, keepPhysics | 0);
+    return mp.game2.entity.setCompletelyDisableCollision.apply(this, [this.handle, toggle, keepPhysics]);
 };
 
 mp.Ped.prototype.setCompletelyDisableCollision ??= function (toggle, keepPhysics) {
-    let $res = natives.setEntityCompletelyDisableCollision(this.handle, toggle | 0, keepPhysics | 0);
+    return mp.game2.entity.setCompletelyDisableCollision.apply(this, [this.handle, toggle, keepPhysics]);
 };
 
 mp.Object.prototype.setCompletelyDisableCollision ??= function (toggle, keepPhysics) {
-    let $res = natives.setEntityCompletelyDisableCollision(this.handle, toggle | 0, keepPhysics | 0);
+    return mp.game2.entity.setCompletelyDisableCollision.apply(this, [this.handle, toggle, keepPhysics]);
 };
 
 mp.Vehicle.prototype.setCompletelyDisableCollision ??= function (toggle, keepPhysics) {
-    let $res = natives.setEntityCompletelyDisableCollision(this.handle, toggle | 0, keepPhysics | 0);
+    return mp.game2.entity.setCompletelyDisableCollision.apply(this, [this.handle, toggle, keepPhysics]);
 };
 
 mp.Player.prototype.setCoords ??= function (xPos, yPos, zPos, xAxis, yAxis, zAxis, clearArea) {
-    let $res = natives.setEntityCoords(this.handle, xPos, yPos, zPos, xAxis | 0, yAxis | 0, zAxis | 0, clearArea | 0);
+    return mp.game2.entity.setCoords.apply(this, [this.handle, xPos, yPos, zPos, xAxis, yAxis, zAxis, clearArea]);
 };
 
 mp.Ped.prototype.setCoords ??= function (xPos, yPos, zPos, xAxis, yAxis, zAxis, clearArea) {
-    let $res = natives.setEntityCoords(this.handle, xPos, yPos, zPos, xAxis | 0, yAxis | 0, zAxis | 0, clearArea | 0);
+    return mp.game2.entity.setCoords.apply(this, [this.handle, xPos, yPos, zPos, xAxis, yAxis, zAxis, clearArea]);
 };
 
 mp.Object.prototype.setCoords ??= function (xPos, yPos, zPos, xAxis, yAxis, zAxis, clearArea) {
-    let $res = natives.setEntityCoords(this.handle, xPos, yPos, zPos, xAxis | 0, yAxis | 0, zAxis | 0, clearArea | 0);
+    return mp.game2.entity.setCoords.apply(this, [this.handle, xPos, yPos, zPos, xAxis, yAxis, zAxis, clearArea]);
 };
 
 mp.Vehicle.prototype.setCoords ??= function (xPos, yPos, zPos, xAxis, yAxis, zAxis, clearArea) {
-    let $res = natives.setEntityCoords(this.handle, xPos, yPos, zPos, xAxis | 0, yAxis | 0, zAxis | 0, clearArea | 0);
+    return mp.game2.entity.setCoords.apply(this, [this.handle, xPos, yPos, zPos, xAxis, yAxis, zAxis, clearArea]);
 };
 
 mp.Player.prototype.setCoordsWithoutPlantsReset ??= function (xPos, yPos, zPos, alive, deadFlag, ragdollFlag, clearArea) {
-    let $res = natives.setEntityCoordsWithoutPlantsReset(this.handle, xPos, yPos, zPos, alive | 0, deadFlag | 0, ragdollFlag | 0, clearArea | 0);
+    return mp.game2.entity.setCoordsWithoutPlantsReset.apply(this, [this.handle, xPos, yPos, zPos, alive, deadFlag, ragdollFlag, clearArea]);
 };
 
 mp.Ped.prototype.setCoordsWithoutPlantsReset ??= function (xPos, yPos, zPos, alive, deadFlag, ragdollFlag, clearArea) {
-    let $res = natives.setEntityCoordsWithoutPlantsReset(this.handle, xPos, yPos, zPos, alive | 0, deadFlag | 0, ragdollFlag | 0, clearArea | 0);
+    return mp.game2.entity.setCoordsWithoutPlantsReset.apply(this, [this.handle, xPos, yPos, zPos, alive, deadFlag, ragdollFlag, clearArea]);
 };
 
 mp.Object.prototype.setCoordsWithoutPlantsReset ??= function (xPos, yPos, zPos, alive, deadFlag, ragdollFlag, clearArea) {
-    let $res = natives.setEntityCoordsWithoutPlantsReset(this.handle, xPos, yPos, zPos, alive | 0, deadFlag | 0, ragdollFlag | 0, clearArea | 0);
+    return mp.game2.entity.setCoordsWithoutPlantsReset.apply(this, [this.handle, xPos, yPos, zPos, alive, deadFlag, ragdollFlag, clearArea]);
 };
 
 mp.Vehicle.prototype.setCoordsWithoutPlantsReset ??= function (xPos, yPos, zPos, alive, deadFlag, ragdollFlag, clearArea) {
-    let $res = natives.setEntityCoordsWithoutPlantsReset(this.handle, xPos, yPos, zPos, alive | 0, deadFlag | 0, ragdollFlag | 0, clearArea | 0);
+    return mp.game2.entity.setCoordsWithoutPlantsReset.apply(this, [this.handle, xPos, yPos, zPos, alive, deadFlag, ragdollFlag, clearArea]);
 };
 
 mp.Player.prototype.setCoordsNoOffset ??= function (xPos, yPos, zPos, xAxis, yAxis, zAxis) {
-    let $res = natives.setEntityCoordsNoOffset(this.handle, xPos, yPos, zPos, xAxis | 0, yAxis | 0, zAxis | 0);
+    return mp.game2.entity.setCoordsNoOffset.apply(this, [this.handle, xPos, yPos, zPos, xAxis, yAxis, zAxis]);
 };
 
 mp.Ped.prototype.setCoordsNoOffset ??= function (xPos, yPos, zPos, xAxis, yAxis, zAxis) {
-    let $res = natives.setEntityCoordsNoOffset(this.handle, xPos, yPos, zPos, xAxis | 0, yAxis | 0, zAxis | 0);
+    return mp.game2.entity.setCoordsNoOffset.apply(this, [this.handle, xPos, yPos, zPos, xAxis, yAxis, zAxis]);
 };
 
 mp.Object.prototype.setCoordsNoOffset ??= function (xPos, yPos, zPos, xAxis, yAxis, zAxis) {
-    let $res = natives.setEntityCoordsNoOffset(this.handle, xPos, yPos, zPos, xAxis | 0, yAxis | 0, zAxis | 0);
+    return mp.game2.entity.setCoordsNoOffset.apply(this, [this.handle, xPos, yPos, zPos, xAxis, yAxis, zAxis]);
 };
 
 mp.Vehicle.prototype.setCoordsNoOffset ??= function (xPos, yPos, zPos, xAxis, yAxis, zAxis) {
-    let $res = natives.setEntityCoordsNoOffset(this.handle, xPos, yPos, zPos, xAxis | 0, yAxis | 0, zAxis | 0);
+    return mp.game2.entity.setCoordsNoOffset.apply(this, [this.handle, xPos, yPos, zPos, xAxis, yAxis, zAxis]);
 };
 
 mp.Player.prototype.setDynamic ??= function (toggle) {
-    let $res = natives.setEntityDynamic(this.handle, toggle | 0);
+    return mp.game2.entity.setDynamic.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setDynamic ??= function (toggle) {
-    let $res = natives.setEntityDynamic(this.handle, toggle | 0);
+    return mp.game2.entity.setDynamic.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.setDynamic ??= function (toggle) {
-    let $res = natives.setEntityDynamic(this.handle, toggle | 0);
+    return mp.game2.entity.setDynamic.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setDynamic ??= function (toggle) {
-    let $res = natives.setEntityDynamic(this.handle, toggle | 0);
+    return mp.game2.entity.setDynamic.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setHeading ??= function (heading) {
-    let $res = natives.setEntityHeading(this.handle, heading);
+    return mp.game2.entity.setHeading.apply(this, [this.handle, heading]);
 };
 
 mp.Ped.prototype.setHeading ??= function (heading) {
-    let $res = natives.setEntityHeading(this.handle, heading);
+    return mp.game2.entity.setHeading.apply(this, [this.handle, heading]);
 };
 
 mp.Object.prototype.setHeading ??= function (heading) {
-    let $res = natives.setEntityHeading(this.handle, heading);
+    return mp.game2.entity.setHeading.apply(this, [this.handle, heading]);
 };
 
 mp.Vehicle.prototype.setHeading ??= function (heading) {
-    let $res = natives.setEntityHeading(this.handle, heading);
+    return mp.game2.entity.setHeading.apply(this, [this.handle, heading]);
 };
 
 mp.Player.prototype.setHealth ??= function (health, p2) {
-    let $res = natives.setEntityHealth(this.handle, health, p2 | 0);
+    return mp.game2.entity.setHealth.apply(this, [this.handle, health, p2]);
 };
 
 mp.Ped.prototype.setHealth ??= function (health, p2) {
-    let $res = natives.setEntityHealth(this.handle, health, p2 | 0);
+    return mp.game2.entity.setHealth.apply(this, [this.handle, health, p2]);
 };
 
 mp.Object.prototype.setHealth ??= function (health, p2) {
-    let $res = natives.setEntityHealth(this.handle, health, p2 | 0);
+    return mp.game2.entity.setHealth.apply(this, [this.handle, health, p2]);
 };
 
 mp.Vehicle.prototype.setHealth ??= function (health, p2) {
-    let $res = natives.setEntityHealth(this.handle, health, p2 | 0);
+    return mp.game2.entity.setHealth.apply(this, [this.handle, health, p2]);
 };
 
 mp.Player.prototype.setInvincible ??= function (toggle) {
-    let $res = natives.setEntityInvincible(this.handle, toggle | 0);
+    return mp.game2.entity.setInvincible.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setInvincible ??= function (toggle) {
-    let $res = natives.setEntityInvincible(this.handle, toggle | 0);
+    return mp.game2.entity.setInvincible.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.setInvincible ??= function (toggle) {
-    let $res = natives.setEntityInvincible(this.handle, toggle | 0);
+    return mp.game2.entity.setInvincible.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setInvincible ??= function (toggle) {
-    let $res = natives.setEntityInvincible(this.handle, toggle | 0);
+    return mp.game2.entity.setInvincible.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setIsTargetPriority ??= function (p1, p2) {
-    let $res = natives.setEntityIsTargetPriority(this.handle, p1 | 0, p2);
+    return mp.game2.entity.setIsTargetPriority.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Ped.prototype.setIsTargetPriority ??= function (p1, p2) {
-    let $res = natives.setEntityIsTargetPriority(this.handle, p1 | 0, p2);
+    return mp.game2.entity.setIsTargetPriority.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Object.prototype.setIsTargetPriority ??= function (p1, p2) {
-    let $res = natives.setEntityIsTargetPriority(this.handle, p1 | 0, p2);
+    return mp.game2.entity.setIsTargetPriority.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Vehicle.prototype.setIsTargetPriority ??= function (p1, p2) {
-    let $res = natives.setEntityIsTargetPriority(this.handle, p1 | 0, p2);
+    return mp.game2.entity.setIsTargetPriority.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Player.prototype.setLights ??= function (toggle) {
-    let $res = natives.setEntityLights(this.handle, toggle | 0);
+    return mp.game2.entity.setLights.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setLights ??= function (toggle) {
-    let $res = natives.setEntityLights(this.handle, toggle | 0);
+    return mp.game2.entity.setLights.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.setLights ??= function (toggle) {
-    let $res = natives.setEntityLights(this.handle, toggle | 0);
+    return mp.game2.entity.setLights.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setLights ??= function (state) {
-    let $res = natives.setVehicleLights(this.handle, state);
+    return mp.game2.vehicle.setLights.apply(this, [this.handle, state]);
 };
 
 mp.Player.prototype.setLoadCollisionFlag ??= function (toggle, p2) {
-    let $res = natives.setEntityLoadCollisionFlag(this.handle, toggle | 0, p2 | 0);
+    return mp.game2.entity.setLoadCollisionFlag.apply(this, [this.handle, toggle, p2]);
 };
 
 mp.Ped.prototype.setLoadCollisionFlag ??= function (toggle, p2) {
-    let $res = natives.setEntityLoadCollisionFlag(this.handle, toggle | 0, p2 | 0);
+    return mp.game2.entity.setLoadCollisionFlag.apply(this, [this.handle, toggle, p2]);
 };
 
 mp.Object.prototype.setLoadCollisionFlag ??= function (toggle, p2) {
-    let $res = natives.setEntityLoadCollisionFlag(this.handle, toggle | 0, p2 | 0);
+    return mp.game2.entity.setLoadCollisionFlag.apply(this, [this.handle, toggle, p2]);
 };
 
 mp.Vehicle.prototype.setLoadCollisionFlag ??= function (toggle, p2) {
-    let $res = natives.setEntityLoadCollisionFlag(this.handle, toggle | 0, p2 | 0);
+    return mp.game2.entity.setLoadCollisionFlag.apply(this, [this.handle, toggle, p2]);
 };
 
 mp.Player.prototype.hasCollisionLoadedAround ??= function () {
-    let $res = natives.hasCollisionLoadedAroundEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasCollisionLoadedAround.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.hasCollisionLoadedAround ??= function () {
-    let $res = natives.hasCollisionLoadedAroundEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasCollisionLoadedAround.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.hasCollisionLoadedAround ??= function () {
-    let $res = natives.hasCollisionLoadedAroundEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasCollisionLoadedAround.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.hasCollisionLoadedAround ??= function () {
-    let $res = natives.hasCollisionLoadedAroundEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.entity.hasCollisionLoadedAround.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setMaxSpeed ??= function (speed) {
-    let $res = natives.setEntityMaxSpeed(this.handle, speed);
+    return mp.game2.entity.setMaxSpeed.apply(this, [this.handle, speed]);
 };
 
 mp.Ped.prototype.setMaxSpeed ??= function (speed) {
-    let $res = natives.setEntityMaxSpeed(this.handle, speed);
+    return mp.game2.entity.setMaxSpeed.apply(this, [this.handle, speed]);
 };
 
 mp.Object.prototype.setMaxSpeed ??= function (speed) {
-    let $res = natives.setEntityMaxSpeed(this.handle, speed);
+    return mp.game2.entity.setMaxSpeed.apply(this, [this.handle, speed]);
 };
 
 mp.Vehicle.prototype.setMaxSpeed ??= function (speed) {
-    let $res = natives.setVehicleMaxSpeed(this.handle, speed);
+    return mp.game2.vehicle.setMaxSpeed.apply(this, [this.handle, speed]);
 };
 
 mp.Player.prototype.setOnlyDamagedByPlayer ??= function (toggle) {
-    let $res = natives.setEntityOnlyDamagedByPlayer(this.handle, toggle | 0);
+    return mp.game2.entity.setOnlyDamagedByPlayer.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setOnlyDamagedByPlayer ??= function (toggle) {
-    let $res = natives.setEntityOnlyDamagedByPlayer(this.handle, toggle | 0);
+    return mp.game2.entity.setOnlyDamagedByPlayer.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.setOnlyDamagedByPlayer ??= function (toggle) {
-    let $res = natives.setEntityOnlyDamagedByPlayer(this.handle, toggle | 0);
+    return mp.game2.entity.setOnlyDamagedByPlayer.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setOnlyDamagedByPlayer ??= function (toggle) {
-    let $res = natives.setEntityOnlyDamagedByPlayer(this.handle, toggle | 0);
+    return mp.game2.entity.setOnlyDamagedByPlayer.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setOnlyDamagedByRelationshipGroup ??= function (p1, p2) {
-    let $res = natives.setEntityOnlyDamagedByRelationshipGroup(this.handle, p1 | 0, p2);
+    return mp.game2.entity.setOnlyDamagedByRelationshipGroup.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Ped.prototype.setOnlyDamagedByRelationshipGroup ??= function (p1, p2) {
-    let $res = natives.setEntityOnlyDamagedByRelationshipGroup(this.handle, p1 | 0, p2);
+    return mp.game2.entity.setOnlyDamagedByRelationshipGroup.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Object.prototype.setOnlyDamagedByRelationshipGroup ??= function (p1, p2) {
-    let $res = natives.setEntityOnlyDamagedByRelationshipGroup(this.handle, p1 | 0, p2);
+    return mp.game2.entity.setOnlyDamagedByRelationshipGroup.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Vehicle.prototype.setOnlyDamagedByRelationshipGroup ??= function (p1, p2) {
-    let $res = natives.setEntityOnlyDamagedByRelationshipGroup(this.handle, p1 | 0, p2);
+    return mp.game2.entity.setOnlyDamagedByRelationshipGroup.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Player.prototype.setProofs ??= function (bulletProof, fireProof, explosionProof, collisionProof, meleeProof, p6, p7, drownProof) {
-    let $res = natives.setEntityProofs(this.handle, bulletProof | 0, fireProof | 0, explosionProof | 0, collisionProof | 0, meleeProof | 0, p6 | 0, p7 | 0, drownProof | 0);
+    return mp.game2.entity.setProofs.apply(this, [this.handle, bulletProof, fireProof, explosionProof, collisionProof, meleeProof, p6, p7, drownProof]);
 };
 
 mp.Ped.prototype.setProofs ??= function (bulletProof, fireProof, explosionProof, collisionProof, meleeProof, p6, p7, drownProof) {
-    let $res = natives.setEntityProofs(this.handle, bulletProof | 0, fireProof | 0, explosionProof | 0, collisionProof | 0, meleeProof | 0, p6 | 0, p7 | 0, drownProof | 0);
+    return mp.game2.entity.setProofs.apply(this, [this.handle, bulletProof, fireProof, explosionProof, collisionProof, meleeProof, p6, p7, drownProof]);
 };
 
 mp.Object.prototype.setProofs ??= function (bulletProof, fireProof, explosionProof, collisionProof, meleeProof, p6, p7, drownProof) {
-    let $res = natives.setEntityProofs(this.handle, bulletProof | 0, fireProof | 0, explosionProof | 0, collisionProof | 0, meleeProof | 0, p6 | 0, p7 | 0, drownProof | 0);
+    return mp.game2.entity.setProofs.apply(this, [this.handle, bulletProof, fireProof, explosionProof, collisionProof, meleeProof, p6, p7, drownProof]);
 };
 
 mp.Vehicle.prototype.setProofs ??= function (bulletProof, fireProof, explosionProof, collisionProof, meleeProof, p6, p7, drownProof) {
-    let $res = natives.setEntityProofs(this.handle, bulletProof | 0, fireProof | 0, explosionProof | 0, collisionProof | 0, meleeProof | 0, p6 | 0, p7 | 0, drownProof | 0);
+    return mp.game2.entity.setProofs.apply(this, [this.handle, bulletProof, fireProof, explosionProof, collisionProof, meleeProof, p6, p7, drownProof]);
 };
 
 mp.Player.prototype.getProofs ??= function () {
-    let $res = natives.getEntityProofs(this.handle, false, false, false, false, false, false, false, false);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.bulletProof = $res[1] == 1;
-    $resObj.fireProof = $res[2] == 1;
-    $resObj.explosionProof = $res[3] == 1;
-    $resObj.collisionProof = $res[4] == 1;
-    $resObj.meleeProof = $res[5] == 1;
-    $resObj.steamProof = $res[6] == 1;
-    $resObj.p7 = $res[7] == 1;
-    $resObj.drownProof = $res[8] == 1;
-    $resObj.result = $res[0] == 1;
-    return $resObj;
+    return mp.game2.entity.getProofs.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getProofs ??= function () {
-    let $res = natives.getEntityProofs(this.handle, false, false, false, false, false, false, false, false);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.bulletProof = $res[1] == 1;
-    $resObj.fireProof = $res[2] == 1;
-    $resObj.explosionProof = $res[3] == 1;
-    $resObj.collisionProof = $res[4] == 1;
-    $resObj.meleeProof = $res[5] == 1;
-    $resObj.steamProof = $res[6] == 1;
-    $resObj.p7 = $res[7] == 1;
-    $resObj.drownProof = $res[8] == 1;
-    $resObj.result = $res[0] == 1;
-    return $resObj;
+    return mp.game2.entity.getProofs.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getProofs ??= function () {
-    let $res = natives.getEntityProofs(this.handle, false, false, false, false, false, false, false, false);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.bulletProof = $res[1] == 1;
-    $resObj.fireProof = $res[2] == 1;
-    $resObj.explosionProof = $res[3] == 1;
-    $resObj.collisionProof = $res[4] == 1;
-    $resObj.meleeProof = $res[5] == 1;
-    $resObj.steamProof = $res[6] == 1;
-    $resObj.p7 = $res[7] == 1;
-    $resObj.drownProof = $res[8] == 1;
-    $resObj.result = $res[0] == 1;
-    return $resObj;
+    return mp.game2.entity.getProofs.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getProofs ??= function () {
-    let $res = natives.getEntityProofs(this.handle, false, false, false, false, false, false, false, false);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.bulletProof = $res[1] == 1;
-    $resObj.fireProof = $res[2] == 1;
-    $resObj.explosionProof = $res[3] == 1;
-    $resObj.collisionProof = $res[4] == 1;
-    $resObj.meleeProof = $res[5] == 1;
-    $resObj.steamProof = $res[6] == 1;
-    $resObj.p7 = $res[7] == 1;
-    $resObj.drownProof = $res[8] == 1;
-    $resObj.result = $res[0] == 1;
-    return $resObj;
+    return mp.game2.entity.getProofs.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setQuaternion ??= function (x, y, z, w) {
-    let $res = natives.setEntityQuaternion(this.handle, x, y, z, w);
+    return mp.game2.entity.setQuaternion.apply(this, [this.handle, x, y, z, w]);
 };
 
 mp.Ped.prototype.setQuaternion ??= function (x, y, z, w) {
-    let $res = natives.setEntityQuaternion(this.handle, x, y, z, w);
+    return mp.game2.entity.setQuaternion.apply(this, [this.handle, x, y, z, w]);
 };
 
 mp.Object.prototype.setQuaternion ??= function (x, y, z, w) {
-    let $res = natives.setEntityQuaternion(this.handle, x, y, z, w);
+    return mp.game2.entity.setQuaternion.apply(this, [this.handle, x, y, z, w]);
 };
 
 mp.Vehicle.prototype.setQuaternion ??= function (x, y, z, w) {
-    let $res = natives.setEntityQuaternion(this.handle, x, y, z, w);
+    return mp.game2.entity.setQuaternion.apply(this, [this.handle, x, y, z, w]);
 };
 
 mp.Player.prototype.setRecordsCollisions ??= function (toggle) {
-    let $res = natives.setEntityRecordsCollisions(this.handle, toggle | 0);
+    return mp.game2.entity.setRecordsCollisions.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setRecordsCollisions ??= function (toggle) {
-    let $res = natives.setEntityRecordsCollisions(this.handle, toggle | 0);
+    return mp.game2.entity.setRecordsCollisions.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.setRecordsCollisions ??= function (toggle) {
-    let $res = natives.setEntityRecordsCollisions(this.handle, toggle | 0);
+    return mp.game2.entity.setRecordsCollisions.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setRecordsCollisions ??= function (toggle) {
-    let $res = natives.setEntityRecordsCollisions(this.handle, toggle | 0);
+    return mp.game2.entity.setRecordsCollisions.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setRotation ??= function (pitch, roll, yaw, rotationOrder, p5) {
-    let $res = natives.setEntityRotation(this.handle, pitch, roll, yaw, rotationOrder, p5 | 0);
+    return mp.game2.entity.setRotation.apply(this, [this.handle, pitch, roll, yaw, rotationOrder, p5]);
 };
 
 mp.Ped.prototype.setRotation ??= function (pitch, roll, yaw, rotationOrder, p5) {
-    let $res = natives.setEntityRotation(this.handle, pitch, roll, yaw, rotationOrder, p5 | 0);
+    return mp.game2.entity.setRotation.apply(this, [this.handle, pitch, roll, yaw, rotationOrder, p5]);
 };
 
 mp.Object.prototype.setRotation ??= function (pitch, roll, yaw, rotationOrder, p5) {
-    let $res = natives.setEntityRotation(this.handle, pitch, roll, yaw, rotationOrder, p5 | 0);
+    return mp.game2.entity.setRotation.apply(this, [this.handle, pitch, roll, yaw, rotationOrder, p5]);
 };
 
 mp.Vehicle.prototype.setRotation ??= function (pitch, roll, yaw, rotationOrder, p5) {
-    let $res = natives.setEntityRotation(this.handle, pitch, roll, yaw, rotationOrder, p5 | 0);
+    return mp.game2.entity.setRotation.apply(this, [this.handle, pitch, roll, yaw, rotationOrder, p5]);
 };
 
 mp.Player.prototype.setVisible ??= function (toggle, unk) {
-    let $res = natives.setEntityVisible(this.handle, toggle | 0, unk | 0);
+    return mp.game2.entity.setVisible.apply(this, [this.handle, toggle, unk]);
 };
 
 mp.Ped.prototype.setVisible ??= function (toggle, unk) {
-    let $res = natives.setEntityVisible(this.handle, toggle | 0, unk | 0);
+    return mp.game2.entity.setVisible.apply(this, [this.handle, toggle, unk]);
 };
 
 mp.Object.prototype.setVisible ??= function (toggle, unk) {
-    let $res = natives.setEntityVisible(this.handle, toggle | 0, unk | 0);
+    return mp.game2.entity.setVisible.apply(this, [this.handle, toggle, unk]);
 };
 
 mp.Vehicle.prototype.setVisible ??= function (toggle, unk) {
-    let $res = natives.setEntityVisible(this.handle, toggle | 0, unk | 0);
+    return mp.game2.entity.setVisible.apply(this, [this.handle, toggle, unk]);
 };
 
 mp.Player.prototype.setVelocity ??= function (x, y, z) {
-    let $res = natives.setEntityVelocity(this.handle, x, y, z);
+    return mp.game2.entity.setVelocity.apply(this, [this.handle, x, y, z]);
 };
 
 mp.Ped.prototype.setVelocity ??= function (x, y, z) {
-    let $res = natives.setEntityVelocity(this.handle, x, y, z);
+    return mp.game2.entity.setVelocity.apply(this, [this.handle, x, y, z]);
 };
 
 mp.Object.prototype.setVelocity ??= function (x, y, z) {
-    let $res = natives.setEntityVelocity(this.handle, x, y, z);
+    return mp.game2.entity.setVelocity.apply(this, [this.handle, x, y, z]);
 };
 
 mp.Vehicle.prototype.setVelocity ??= function (x, y, z) {
-    let $res = natives.setEntityVelocity(this.handle, x, y, z);
+    return mp.game2.entity.setVelocity.apply(this, [this.handle, x, y, z]);
 };
 
 mp.Player.prototype.setAngularVelocity ??= function (x, y, z) {
-    let $res = natives.setEntityAngularVelocity(this.handle, x, y, z);
+    return mp.game2.entity.setAngularVelocity.apply(this, [this.handle, x, y, z]);
 };
 
 mp.Ped.prototype.setAngularVelocity ??= function (x, y, z) {
-    let $res = natives.setEntityAngularVelocity(this.handle, x, y, z);
+    return mp.game2.entity.setAngularVelocity.apply(this, [this.handle, x, y, z]);
 };
 
 mp.Object.prototype.setAngularVelocity ??= function (x, y, z) {
-    let $res = natives.setEntityAngularVelocity(this.handle, x, y, z);
+    return mp.game2.entity.setAngularVelocity.apply(this, [this.handle, x, y, z]);
 };
 
 mp.Vehicle.prototype.setAngularVelocity ??= function (x, y, z) {
-    let $res = natives.setEntityAngularVelocity(this.handle, x, y, z);
+    return mp.game2.entity.setAngularVelocity.apply(this, [this.handle, x, y, z]);
 };
 
 mp.Player.prototype.setHasGravity ??= function (toggle) {
-    let $res = natives.setEntityHasGravity(this.handle, toggle | 0);
+    return mp.game2.entity.setHasGravity.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setHasGravity ??= function (toggle) {
-    let $res = natives.setEntityHasGravity(this.handle, toggle | 0);
+    return mp.game2.entity.setHasGravity.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.setHasGravity ??= function (toggle) {
-    let $res = natives.setEntityHasGravity(this.handle, toggle | 0);
+    return mp.game2.entity.setHasGravity.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setHasGravity ??= function (toggle) {
-    let $res = natives.setEntityHasGravity(this.handle, toggle | 0);
+    return mp.game2.entity.setHasGravity.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setLodDist ??= function (value) {
-    let $res = natives.setEntityLodDist(this.handle, value);
+    return mp.game2.entity.setLodDist.apply(this, [this.handle, value]);
 };
 
 mp.Ped.prototype.setLodDist ??= function (value) {
-    let $res = natives.setEntityLodDist(this.handle, value);
+    return mp.game2.entity.setLodDist.apply(this, [this.handle, value]);
 };
 
 mp.Object.prototype.setLodDist ??= function (value) {
-    let $res = natives.setEntityLodDist(this.handle, value);
+    return mp.game2.entity.setLodDist.apply(this, [this.handle, value]);
 };
 
 mp.Vehicle.prototype.setLodDist ??= function (value) {
-    let $res = natives.setEntityLodDist(this.handle, value);
+    return mp.game2.entity.setLodDist.apply(this, [this.handle, value]);
 };
 
 mp.Player.prototype.getLodDist ??= function () {
-    let $res = natives.getEntityLodDist(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getLodDist.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getLodDist ??= function () {
-    let $res = natives.getEntityLodDist(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getLodDist.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getLodDist ??= function () {
-    let $res = natives.getEntityLodDist(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getLodDist.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getLodDist ??= function () {
-    let $res = natives.getEntityLodDist(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getLodDist.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.setAlpha ??= function (alphaLevel, skin) {
-    let $res = natives.setEntityAlpha(this.handle, alphaLevel, skin | 0);
+    return mp.game2.entity.setAlpha.apply(this, [this.handle, alphaLevel, skin]);
 };
 
 mp.Ped.prototype.getAlpha ??= function () {
-    let $res = natives.getEntityAlpha(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getAlpha.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.resetAlpha ??= function () {
-    let $res = natives.resetEntityAlpha(this.handle);
+    return mp.game2.entity.resetAlpha.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.resetAlpha ??= function () {
-    let $res = natives.resetEntityAlpha(this.handle);
+    return mp.game2.entity.resetAlpha.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.resetAlpha ??= function () {
-    let $res = natives.resetEntityAlpha(this.handle);
+    return mp.game2.entity.resetAlpha.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.resetAlpha ??= function () {
-    let $res = natives.resetEntityAlpha(this.handle);
+    return mp.game2.entity.resetAlpha.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setAlwaysPrerender ??= function (toggle) {
-    let $res = natives.setEntityAlwaysPrerender(this.handle, toggle | 0);
+    return mp.game2.entity.setAlwaysPrerender.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setAlwaysPrerender ??= function (toggle) {
-    let $res = natives.setEntityAlwaysPrerender(this.handle, toggle | 0);
+    return mp.game2.entity.setAlwaysPrerender.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.setAlwaysPrerender ??= function (toggle) {
-    let $res = natives.setEntityAlwaysPrerender(this.handle, toggle | 0);
+    return mp.game2.entity.setAlwaysPrerender.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setAlwaysPrerender ??= function (toggle) {
-    let $res = natives.setEntityAlwaysPrerender(this.handle, toggle | 0);
+    return mp.game2.entity.setAlwaysPrerender.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setRenderScorched ??= function (toggle) {
-    let $res = natives.setEntityRenderScorched(this.handle, toggle | 0);
+    return mp.game2.entity.setRenderScorched.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setRenderScorched ??= function (toggle) {
-    let $res = natives.setEntityRenderScorched(this.handle, toggle | 0);
+    return mp.game2.entity.setRenderScorched.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.setRenderScorched ??= function (toggle) {
-    let $res = natives.setEntityRenderScorched(this.handle, toggle | 0);
+    return mp.game2.entity.setRenderScorched.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setRenderScorched ??= function (toggle) {
-    let $res = natives.setEntityRenderScorched(this.handle, toggle | 0);
+    return mp.game2.entity.setRenderScorched.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setTrafficlightOverride ??= function (state) {
-    let $res = natives.setEntityTrafficlightOverride(this.handle, state);
+    return mp.game2.entity.setTrafficlightOverride.apply(this, [this.handle, state]);
 };
 
 mp.Ped.prototype.setTrafficlightOverride ??= function (state) {
-    let $res = natives.setEntityTrafficlightOverride(this.handle, state);
+    return mp.game2.entity.setTrafficlightOverride.apply(this, [this.handle, state]);
 };
 
 mp.Object.prototype.setTrafficlightOverride ??= function (state) {
-    let $res = natives.setEntityTrafficlightOverride(this.handle, state);
+    return mp.game2.entity.setTrafficlightOverride.apply(this, [this.handle, state]);
 };
 
 mp.Vehicle.prototype.setTrafficlightOverride ??= function (state) {
-    let $res = natives.setEntityTrafficlightOverride(this.handle, state);
+    return mp.game2.entity.setTrafficlightOverride.apply(this, [this.handle, state]);
 };
 
 mp.Player.prototype.setNoCollisionEntity ??= function (entity2, thisFrameOnly) {
-    let $res = natives.setEntityNoCollisionEntity(this.handle, entity2, thisFrameOnly | 0);
+    return mp.game2.entity.setNoCollisionEntity.apply(this, [this.handle, entity2, thisFrameOnly]);
 };
 
 mp.Ped.prototype.setNoCollisionEntity ??= function (entity2, thisFrameOnly) {
-    let $res = natives.setEntityNoCollisionEntity(this.handle, entity2, thisFrameOnly | 0);
+    return mp.game2.entity.setNoCollisionEntity.apply(this, [this.handle, entity2, thisFrameOnly]);
 };
 
 mp.Object.prototype.setNoCollisionEntity ??= function (entity2, thisFrameOnly) {
-    let $res = natives.setEntityNoCollisionEntity(this.handle, entity2, thisFrameOnly | 0);
+    return mp.game2.entity.setNoCollisionEntity.apply(this, [this.handle, entity2, thisFrameOnly]);
 };
 
 mp.Vehicle.prototype.setNoCollisionEntity ??= function (entity2, thisFrameOnly) {
-    let $res = natives.setEntityNoCollisionEntity(this.handle, entity2, thisFrameOnly | 0);
+    return mp.game2.entity.setNoCollisionEntity.apply(this, [this.handle, entity2, thisFrameOnly]);
 };
 
 mp.Player.prototype.setMotionBlur ??= function (toggle) {
-    let $res = natives.setPedMotionBlur(this.handle, toggle | 0);
+    return mp.game2.ped.setMotionBlur.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setMotionBlur ??= function (toggle) {
-    let $res = natives.setPedMotionBlur(this.handle, toggle | 0);
+    return mp.game2.ped.setMotionBlur.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.setMotionBlur ??= function (toggle) {
-    let $res = natives.setEntityMotionBlur(this.handle, toggle | 0);
+    return mp.game2.entity.setMotionBlur.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setMotionBlur ??= function (toggle) {
-    let $res = natives.setEntityMotionBlur(this.handle, toggle | 0);
+    return mp.game2.entity.setMotionBlur.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setCanAutoVaultOn ??= function (toggle) {
-    let $res = natives.setCanAutoVaultOnEntity(this.handle, toggle | 0);
+    return mp.game2.entity.setCanAutoVaultOn.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setCanAutoVaultOn ??= function (toggle) {
-    let $res = natives.setCanAutoVaultOnEntity(this.handle, toggle | 0);
+    return mp.game2.entity.setCanAutoVaultOn.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.setCanAutoVaultOn ??= function (toggle) {
-    let $res = natives.setCanAutoVaultOnEntity(this.handle, toggle | 0);
+    return mp.game2.entity.setCanAutoVaultOn.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setCanAutoVaultOn ??= function (toggle) {
-    let $res = natives.setCanAutoVaultOnEntity(this.handle, toggle | 0);
+    return mp.game2.entity.setCanAutoVaultOn.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setCanClimbOn ??= function (toggle) {
-    let $res = natives.setCanClimbOnEntity(this.handle, toggle | 0);
+    return mp.game2.entity.setCanClimbOn.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setCanClimbOn ??= function (toggle) {
-    let $res = natives.setCanClimbOnEntity(this.handle, toggle | 0);
+    return mp.game2.entity.setCanClimbOn.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.setCanClimbOn ??= function (toggle) {
-    let $res = natives.setCanClimbOnEntity(this.handle, toggle | 0);
+    return mp.game2.entity.setCanClimbOn.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setCanClimbOn ??= function (toggle) {
-    let $res = natives.setCanClimbOnEntity(this.handle, toggle | 0);
+    return mp.game2.entity.setCanClimbOn.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setDecalsDisabled ??= function (p1) {
-    let $res = natives.setEntityNoweapondecals(this.handle, p1 | 0);
+    return mp.game2.entity.setDecalsDisabled.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.setDecalsDisabled ??= function (p1) {
-    let $res = natives.setEntityNoweapondecals(this.handle, p1 | 0);
+    return mp.game2.entity.setDecalsDisabled.apply(this, [this.handle, p1]);
 };
 
 mp.Object.prototype.setDecalsDisabled ??= function (p1) {
-    let $res = natives.setEntityNoweapondecals(this.handle, p1 | 0);
+    return mp.game2.entity.setDecalsDisabled.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.setDecalsDisabled ??= function (p1) {
-    let $res = natives.setEntityNoweapondecals(this.handle, p1 | 0);
+    return mp.game2.entity.setDecalsDisabled.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.getBoneRotation ??= function (boneIndex) {
-    let $res = natives.getEntityBoneRotation(this.handle, boneIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getBoneRotation.apply(this, [this.handle, boneIndex]);
 };
 
 mp.Ped.prototype.getBoneRotation ??= function (boneIndex) {
-    let $res = natives.getEntityBoneRotation(this.handle, boneIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getBoneRotation.apply(this, [this.handle, boneIndex]);
 };
 
 mp.Object.prototype.getBoneRotation ??= function (boneIndex) {
-    let $res = natives.getEntityBoneRotation(this.handle, boneIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getBoneRotation.apply(this, [this.handle, boneIndex]);
 };
 
 mp.Vehicle.prototype.getBoneRotation ??= function (boneIndex) {
-    let $res = natives.getEntityBoneRotation(this.handle, boneIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getBoneRotation.apply(this, [this.handle, boneIndex]);
 };
 
 mp.Player.prototype.getBonePosition2 ??= function (boneIndex) {
-    let $res = natives.getEntityBonePostion(this.handle, boneIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getBonePosition2.apply(this, [this.handle, boneIndex]);
 };
 
 mp.Ped.prototype.getBonePosition2 ??= function (boneIndex) {
-    let $res = natives.getEntityBonePostion(this.handle, boneIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getBonePosition2.apply(this, [this.handle, boneIndex]);
 };
 
 mp.Object.prototype.getBonePosition2 ??= function (boneIndex) {
-    let $res = natives.getEntityBonePostion(this.handle, boneIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getBonePosition2.apply(this, [this.handle, boneIndex]);
 };
 
 mp.Vehicle.prototype.getBonePosition2 ??= function (boneIndex) {
-    let $res = natives.getEntityBonePostion(this.handle, boneIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getBonePosition2.apply(this, [this.handle, boneIndex]);
 };
 
 mp.Player.prototype.getBoneRotationLocal ??= function (boneIndex) {
-    let $res = natives.getEntityBoneObjectRotation(this.handle, boneIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getBoneRotationLocal.apply(this, [this.handle, boneIndex]);
 };
 
 mp.Ped.prototype.getBoneRotationLocal ??= function (boneIndex) {
-    let $res = natives.getEntityBoneObjectRotation(this.handle, boneIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getBoneRotationLocal.apply(this, [this.handle, boneIndex]);
 };
 
 mp.Object.prototype.getBoneRotationLocal ??= function (boneIndex) {
-    let $res = natives.getEntityBoneObjectRotation(this.handle, boneIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getBoneRotationLocal.apply(this, [this.handle, boneIndex]);
 };
 
 mp.Vehicle.prototype.getBoneRotationLocal ??= function (boneIndex) {
-    let $res = natives.getEntityBoneObjectRotation(this.handle, boneIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.entity.getBoneRotationLocal.apply(this, [this.handle, boneIndex]);
 };
 
 mp.Player.prototype.getBoneCount ??= function () {
-    let $res = natives.getEntityBoneCount(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getBoneCount.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getBoneCount ??= function () {
-    let $res = natives.getEntityBoneCount(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getBoneCount.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getBoneCount ??= function () {
-    let $res = natives.getEntityBoneCount(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getBoneCount.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getBoneCount ??= function () {
-    let $res = natives.getEntityBoneCount(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getBoneCount.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.enableUnk ??= function () {
-    let $res = natives.enableEntityBulletCollision(this.handle);
+    return mp.game2.entity.enableUnk.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.enableUnk ??= function () {
-    let $res = natives.enableEntityBulletCollision(this.handle);
+    return mp.game2.entity.enableUnk.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.enableUnk ??= function () {
-    let $res = natives.enableEntityBulletCollision(this.handle);
+    return mp.game2.entity.enableUnk.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.enableUnk ??= function () {
-    let $res = natives.enableEntityBulletCollision(this.handle);
+    return mp.game2.entity.enableUnk.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getPickup ??= function (modelHash) {
-    let $res = natives.getEntityOfTypeAttachedToEntity(this.handle, modelHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getPickup.apply(this, [this.handle, modelHash]);
 };
 
 mp.Ped.prototype.getPickup ??= function (modelHash) {
-    let $res = natives.getEntityOfTypeAttachedToEntity(this.handle, modelHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getPickup.apply(this, [this.handle, modelHash]);
 };
 
 mp.Object.prototype.getPickup ??= function (modelHash) {
-    let $res = natives.getEntityOfTypeAttachedToEntity(this.handle, modelHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getPickup.apply(this, [this.handle, modelHash]);
 };
 
 mp.Vehicle.prototype.getPickup ??= function (modelHash) {
-    let $res = natives.getEntityOfTypeAttachedToEntity(this.handle, modelHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.entity.getPickup.apply(this, [this.handle, modelHash]);
 };
 
 mp.Player.prototype.setDecisionMaker ??= function (p1) {
-    let $res = natives.taskSetDecisionMaker(this.handle, p1);
+    return mp.game2.task.setDecisionMaker.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.setDecisionMaker ??= function (p1) {
-    let $res = natives.taskSetDecisionMaker(this.handle, p1);
+    return mp.game2.task.setDecisionMaker.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.getHashNameForComponent ??= function (componentId, drawableVariant, textureVariant) {
-    let $res = natives.getHashNameForComponent(this.handle, componentId, drawableVariant, textureVariant);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.files.getHashNameForComponent.apply(this, [this.handle, componentId, drawableVariant, textureVariant]);
 };
 
 mp.Ped.prototype.getHashNameForComponent ??= function (componentId, drawableVariant, textureVariant) {
-    let $res = natives.getHashNameForComponent(this.handle, componentId, drawableVariant, textureVariant);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.files.getHashNameForComponent.apply(this, [this.handle, componentId, drawableVariant, textureVariant]);
 };
 
 mp.Object.prototype.getHashNameForComponent ??= function (componentId, drawableVariant, textureVariant) {
-    let $res = natives.getHashNameForComponent(this.handle, componentId, drawableVariant, textureVariant);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.files.getHashNameForComponent.apply(this, [this.handle, componentId, drawableVariant, textureVariant]);
 };
 
 mp.Vehicle.prototype.getHashNameForComponent ??= function (componentId, drawableVariant, textureVariant) {
-    let $res = natives.getHashNameForComponent(this.handle, componentId, drawableVariant, textureVariant);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.files.getHashNameForComponent.apply(this, [this.handle, componentId, drawableVariant, textureVariant]);
 };
 
 mp.Player.prototype.getHashNameForProp ??= function (componentId, propIndex, propTextureIndex) {
-    let $res = natives.getHashNameForProp(this.handle, componentId, propIndex, propTextureIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.files.getHashNameForProp.apply(this, [this.handle, componentId, propIndex, propTextureIndex]);
 };
 
 mp.Ped.prototype.getHashNameForProp ??= function (componentId, propIndex, propTextureIndex) {
-    let $res = natives.getHashNameForProp(this.handle, componentId, propIndex, propTextureIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.files.getHashNameForProp.apply(this, [this.handle, componentId, propIndex, propTextureIndex]);
 };
 
 mp.Object.prototype.getHashNameForProp ??= function (componentId, propIndex, propTextureIndex) {
-    let $res = natives.getHashNameForProp(this.handle, componentId, propIndex, propTextureIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.files.getHashNameForProp.apply(this, [this.handle, componentId, propIndex, propTextureIndex]);
 };
 
 mp.Vehicle.prototype.getHashNameForProp ??= function (componentId, propIndex, propTextureIndex) {
-    let $res = natives.getHashNameForProp(this.handle, componentId, propIndex, propTextureIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.files.getHashNameForProp.apply(this, [this.handle, componentId, propIndex, propTextureIndex]);
 };
 
 mp.Player.prototype.startEntity ??= function () {
-    let $res = natives.startEntityFire(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.fire.startEntity.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.startEntity ??= function () {
-    let $res = natives.startEntityFire(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.fire.startEntity.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.startEntity ??= function () {
-    let $res = natives.startEntityFire(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.fire.startEntity.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.startEntity ??= function () {
-    let $res = natives.startEntityFire(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.fire.startEntity.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.stopEntity ??= function () {
-    let $res = natives.stopEntityFire(this.handle);
+    return mp.game2.fire.stopEntity.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.stopEntity ??= function () {
-    let $res = natives.stopEntityFire(this.handle);
+    return mp.game2.fire.stopEntity.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.stopEntity ??= function () {
-    let $res = natives.stopEntityFire(this.handle);
+    return mp.game2.fire.stopEntity.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.stopEntity ??= function () {
-    let $res = natives.stopEntityFire(this.handle);
+    return mp.game2.fire.stopEntity.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isEntityOn ??= function () {
-    let $res = natives.isEntityOnFire(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.fire.isEntityOn.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isEntityOn ??= function () {
-    let $res = natives.isEntityOnFire(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.fire.isEntityOn.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.isEntityOn ??= function () {
-    let $res = natives.isEntityOnFire(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.fire.isEntityOn.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isEntityOn ??= function () {
-    let $res = natives.isEntityOnFire(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.fire.isEntityOn.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.addOwnedExplosion ??= function (x, y, z, explosionType, damageScale, isAudible, isInvisible, cameraShake) {
-    let $res = natives.addOwnedExplosion(this.handle, x, y, z, explosionType, damageScale, isAudible | 0, isInvisible | 0, cameraShake);
+    return mp.game2.fire.addOwnedExplosion.apply(this, [this.handle, x, y, z, explosionType, damageScale, isAudible, isInvisible, cameraShake]);
 };
 
 mp.Ped.prototype.addOwnedExplosion ??= function (x, y, z, explosionType, damageScale, isAudible, isInvisible, cameraShake) {
-    let $res = natives.addOwnedExplosion(this.handle, x, y, z, explosionType, damageScale, isAudible | 0, isInvisible | 0, cameraShake);
+    return mp.game2.fire.addOwnedExplosion.apply(this, [this.handle, x, y, z, explosionType, damageScale, isAudible, isInvisible, cameraShake]);
 };
 
 mp.Player.prototype.getEntityInsideExplosionSphere ??= function (x, y, z, radius) {
-    let $res = natives.getOwnerOfExplosionInSphere(this.handle, x, y, z, radius);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.fire.getEntityInsideExplosionSphere.apply(this, [this.handle, x, y, z, radius]);
 };
 
 mp.Ped.prototype.getEntityInsideExplosionSphere ??= function (x, y, z, radius) {
-    let $res = natives.getOwnerOfExplosionInSphere(this.handle, x, y, z, radius);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.fire.getEntityInsideExplosionSphere.apply(this, [this.handle, x, y, z, radius]);
 };
 
 mp.Object.prototype.getEntityInsideExplosionSphere ??= function (x, y, z, radius) {
-    let $res = natives.getOwnerOfExplosionInSphere(this.handle, x, y, z, radius);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.fire.getEntityInsideExplosionSphere.apply(this, [this.handle, x, y, z, radius]);
 };
 
 mp.Vehicle.prototype.getEntityInsideExplosionSphere ??= function (x, y, z, radius) {
-    let $res = natives.getOwnerOfExplosionInSphere(this.handle, x, y, z, radius);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.fire.getEntityInsideExplosionSphere.apply(this, [this.handle, x, y, z, radius]);
 };
 
 mp.Blip.prototype.setBackfaceculling ??= function () {
-    let $res = natives.setBackfaceculling(this.handle);
+    return mp.game2.graphics.setBackfaceculling.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.updateLightsOnEntity ??= function () {
-    let $res = natives.updateLightsOnEntity(this.handle);
+    return mp.game2.graphics.updateLightsOnEntity.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.updateLightsOnEntity ??= function () {
-    let $res = natives.updateLightsOnEntity(this.handle);
+    return mp.game2.graphics.updateLightsOnEntity.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.updateLightsOnEntity ??= function () {
-    let $res = natives.updateLightsOnEntity(this.handle);
+    return mp.game2.graphics.updateLightsOnEntity.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.updateLightsOnEntity ??= function () {
-    let $res = natives.updateLightsOnEntity(this.handle);
+    return mp.game2.graphics.updateLightsOnEntity.apply(this, [this.handle]);
 };
 
 mp.Checkpoint.prototype.setCheckpointScale ??= function (p0) {
-    let $res = natives.setCheckpointInsideCylinderHeightScale(this.handle, p0);
+    return mp.game2.graphics.setCheckpointScale.apply(this, [this.handle, p0]);
 };
 
 mp.Checkpoint.prototype.setCheckpointIconScale ??= function (scale) {
-    let $res = natives.setCheckpointInsideCylinderScale(this.handle, scale);
+    return mp.game2.graphics.setCheckpointIconScale.apply(this, [this.handle, scale]);
 };
 
 mp.Checkpoint.prototype.setCheckpointCylinderHeight ??= function (nearHeight, farHeight, radius) {
-    let $res = natives.setCheckpointCylinderHeight(this.handle, nearHeight, farHeight, radius);
+    return mp.game2.graphics.setCheckpointCylinderHeight.apply(this, [this.handle, nearHeight, farHeight, radius]);
 };
 
 mp.Checkpoint.prototype.setCheckpointRgba ??= function (red, green, blue, alpha) {
-    let $res = natives.setCheckpointRgba(this.handle, red, green, blue, alpha);
+    return mp.game2.graphics.setCheckpointRgba.apply(this, [this.handle, red, green, blue, alpha]);
 };
 
 mp.Checkpoint.prototype.setCheckpointRgba2 ??= function (red, green, blue, alpha) {
-    let $res = natives.setCheckpointRgba2(this.handle, red, green, blue, alpha);
+    return mp.game2.graphics.setCheckpointRgba2.apply(this, [this.handle, red, green, blue, alpha]);
 };
 
 mp.Checkpoint.prototype.deleteCheckpoint ??= function () {
-    let $res = natives.deleteCheckpoint(this.handle);
+    return mp.game2.graphics.deleteCheckpoint.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.addEntityIcon ??= function (icon) {
-    if (typeof icon != "string") icon = null;
-    let $res = natives.addEntityIcon(this.handle, icon);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.graphics.addEntityIcon.apply(this, [this.handle, icon]);
 };
 
 mp.Ped.prototype.addEntityIcon ??= function (icon) {
-    if (typeof icon != "string") icon = null;
-    let $res = natives.addEntityIcon(this.handle, icon);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.graphics.addEntityIcon.apply(this, [this.handle, icon]);
 };
 
 mp.Object.prototype.addEntityIcon ??= function (icon) {
-    if (typeof icon != "string") icon = null;
-    let $res = natives.addEntityIcon(this.handle, icon);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.graphics.addEntityIcon.apply(this, [this.handle, icon]);
 };
 
 mp.Vehicle.prototype.addEntityIcon ??= function (icon) {
-    if (typeof icon != "string") icon = null;
-    let $res = natives.addEntityIcon(this.handle, icon);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.graphics.addEntityIcon.apply(this, [this.handle, icon]);
 };
 
 mp.Player.prototype.setEntityIconVisibility ??= function (toggle) {
-    let $res = natives.setEntityIconVisibility(this.handle, toggle | 0);
+    return mp.game2.graphics.setEntityIconVisibility.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setEntityIconVisibility ??= function (toggle) {
-    let $res = natives.setEntityIconVisibility(this.handle, toggle | 0);
+    return mp.game2.graphics.setEntityIconVisibility.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.setEntityIconVisibility ??= function (toggle) {
-    let $res = natives.setEntityIconVisibility(this.handle, toggle | 0);
+    return mp.game2.graphics.setEntityIconVisibility.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setEntityIconVisibility ??= function (toggle) {
-    let $res = natives.setEntityIconVisibility(this.handle, toggle | 0);
+    return mp.game2.graphics.setEntityIconVisibility.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setEntityIconColor ??= function (red, green, blue, alpha) {
-    let $res = natives.setEntityIconColor(this.handle, red, green, blue, alpha);
+    return mp.game2.graphics.setEntityIconColor.apply(this, [this.handle, red, green, blue, alpha]);
 };
 
 mp.Ped.prototype.setEntityIconColor ??= function (red, green, blue, alpha) {
-    let $res = natives.setEntityIconColor(this.handle, red, green, blue, alpha);
+    return mp.game2.graphics.setEntityIconColor.apply(this, [this.handle, red, green, blue, alpha]);
 };
 
 mp.Object.prototype.setEntityIconColor ??= function (red, green, blue, alpha) {
-    let $res = natives.setEntityIconColor(this.handle, red, green, blue, alpha);
+    return mp.game2.graphics.setEntityIconColor.apply(this, [this.handle, red, green, blue, alpha]);
 };
 
 mp.Vehicle.prototype.setEntityIconColor ??= function (red, green, blue, alpha) {
-    let $res = natives.setEntityIconColor(this.handle, red, green, blue, alpha);
+    return mp.game2.graphics.setEntityIconColor.apply(this, [this.handle, red, green, blue, alpha]);
 };
 
 mp.Blip.prototype.setBinkMovieTime ??= function (progress) {
-    let $res = natives.setBinkMovieTime(this.handle, progress);
+    return mp.game2.graphics.setBinkMovieTime.apply(this, [this.handle, progress]);
 };
 
 mp.Blip.prototype.getBinkMovieTime ??= function () {
-    let $res = natives.getBinkMovieTime(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.graphics.getBinkMovieTime.apply(this, [this.handle]);
 };
 
 mp.Blip.prototype.setBinkMovieVolume ??= function (value) {
-    let $res = natives.setBinkMovieVolume(this.handle, value);
+    return mp.game2.graphics.setBinkMovieVolume.apply(this, [this.handle, value]);
 };
 
 mp.Player.prototype.attachTvAudioToEntity ??= function () {
-    let $res = natives.attachTvAudioToEntity(this.handle);
+    return mp.game2.graphics.attachTvAudioToEntity.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.attachTvAudioToEntity ??= function () {
-    let $res = natives.attachTvAudioToEntity(this.handle);
+    return mp.game2.graphics.attachTvAudioToEntity.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.attachTvAudioToEntity ??= function () {
-    let $res = natives.attachTvAudioToEntity(this.handle);
+    return mp.game2.graphics.attachTvAudioToEntity.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.attachTvAudioToEntity ??= function () {
-    let $res = natives.attachTvAudioToEntity(this.handle);
+    return mp.game2.graphics.attachTvAudioToEntity.apply(this, [this.handle]);
 };
 
 mp.Blip.prototype.setBinkMovieUnk2 ??= function (p1) {
-    let $res = natives.setBinkMovieAudioFrontend(this.handle, p1 | 0);
+    return mp.game2.graphics.setBinkMovieUnk2.apply(this, [this.handle, p1]);
 };
 
 mp.Blip.prototype.setBinkShouldSkip ??= function (bShouldSkip) {
-    let $res = natives.setBinkShouldSkip(this.handle, bShouldSkip | 0);
+    return mp.game2.graphics.setBinkShouldSkip.apply(this, [this.handle, bShouldSkip]);
 };
 
 mp.Blip.prototype.getAspectRatio ??= function () {
-    let $res = natives.getAspectRatio(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.graphics.getAspectRatio.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.overridePedBadgeTexture ??= function (txd, txn) {
-    if (typeof txd != "string") txd = null;
-    if (typeof txn != "string") txn = null;
-    let $res = natives.overridePedCrewLogoTexture(this.handle, txd, txn);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.graphics.overridePedBadgeTexture.apply(this, [this.handle, txd, txn]);
 };
 
 mp.Ped.prototype.overridePedBadgeTexture ??= function (txd, txn) {
-    if (typeof txd != "string") txd = null;
-    if (typeof txn != "string") txn = null;
-    let $res = natives.overridePedCrewLogoTexture(this.handle, txd, txn);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.graphics.overridePedBadgeTexture.apply(this, [this.handle, txd, txn]);
 };
 
 mp.Player.prototype.removeParticleFxFromEntity ??= function () {
-    let $res = natives.removeParticleFxFromEntity(this.handle);
+    return mp.game2.graphics.removeParticleFxFromEntity.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.removeParticleFxFromEntity ??= function () {
-    let $res = natives.removeParticleFxFromEntity(this.handle);
+    return mp.game2.graphics.removeParticleFxFromEntity.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.removeParticleFxFromEntity ??= function () {
-    let $res = natives.removeParticleFxFromEntity(this.handle);
+    return mp.game2.graphics.removeParticleFxFromEntity.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.removeParticleFxFromEntity ??= function () {
-    let $res = natives.removeParticleFxFromEntity(this.handle);
+    return mp.game2.graphics.removeParticleFxFromEntity.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setParticleFxCamInsideNonplayerVehicle ??= function (p1) {
-    let $res = natives.setParticleFxCamInsideNonplayerVehicle(this.handle, p1 | 0);
+    return mp.game2.graphics.setParticleFxCamInsideNonplayerVehicle.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.washDecalsFromVehicle ??= function (p1) {
-    let $res = natives.washDecalsFromVehicle(this.handle, p1);
+    return mp.game2.graphics.washDecalsFromVehicle.apply(this, [this.handle, p1]);
 };
 
 mp.Object.prototype.removeDecalsFromObject ??= function () {
-    let $res = natives.removeDecalsFromObject(this.handle);
+    return mp.game2.graphics.removeDecalsFromObject.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.removeDecalsFromObjectFacing ??= function (x, y, z) {
-    let $res = natives.removeDecalsFromObjectFacing(this.handle, x, y, z);
+    return mp.game2.graphics.removeDecalsFromObjectFacing.apply(this, [this.handle, x, y, z]);
 };
 
 mp.Vehicle.prototype.removeDecalsFromVehicle ??= function () {
-    let $res = natives.removeDecalsFromVehicle(this.handle);
+    return mp.game2.graphics.removeDecalsFromVehicle.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.addVehicleCrewEmblem ??= function (ped, boneIndex, x1, x2, x3, y1, y2, y3, z1, z2, z3, scale, p13, alpha) {
-    let $res = natives.addVehicleCrewEmblem(this.handle, ped, boneIndex, x1, x2, x3, y1, y2, y3, z1, z2, z3, scale, p13, alpha);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.graphics.addVehicleCrewEmblem.apply(this, [this.handle, ped, boneIndex, x1, x2, x3, y1, y2, y3, z1, z2, z3, scale, p13, alpha]);
 };
 
 mp.Vehicle.prototype.removeVehicleCrewEmblem ??= function (p1) {
-    let $res = natives.removeVehicleCrewEmblem(this.handle, p1);
+    return mp.game2.graphics.removeVehicleCrewEmblem.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.getVehicleCrewEmblemRequestState ??= function (p1) {
-    let $res = natives.getVehicleCrewEmblemRequestState(this.handle, p1);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.graphics.getVehicleCrewEmblemRequestState.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.doesVehicleHaveCrewEmblem ??= function (p1) {
-    let $res = natives.doesVehicleHaveCrewEmblem(this.handle, p1);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.graphics.doesVehicleHaveCrewEmblem.apply(this, [this.handle, p1]);
 };
 
 mp.Blip.prototype.setBlipRoute ??= function (enabled) {
-    let $res = natives.setBlipRoute(this.handle, enabled | 0);
+    return mp.game2.hud.setBlipRoute.apply(this, [this.handle, enabled]);
 };
 
 mp.Blip.prototype.setBlipRouteColour ??= function (colour) {
-    let $res = natives.setBlipRouteColour(this.handle, colour);
+    return mp.game2.hud.setBlipRouteColour.apply(this, [this.handle, colour]);
 };
 
 mp.Blip.prototype.getBlipInfoIdCoord ??= function () {
-    let $res = natives.getBlipInfoIdCoord(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.hud.getBlipInfoIdCoord.apply(this, [this.handle]);
 };
 
 mp.Blip.prototype.getBlipInfoIdDisplay ??= function () {
-    let $res = natives.getBlipInfoIdDisplay(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.hud.getBlipInfoIdDisplay.apply(this, [this.handle]);
 };
 
 mp.Blip.prototype.getBlipInfoIdType ??= function () {
-    let $res = natives.getBlipInfoIdType(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.hud.getBlipInfoIdType.apply(this, [this.handle]);
 };
 
 mp.Blip.prototype.getBlipInfoIdEntityIndex ??= function () {
-    let $res = natives.getBlipInfoIdEntityIndex(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.hud.getBlipInfoIdEntityIndex.apply(this, [this.handle]);
 };
 
 mp.Blip.prototype.getBlipInfoIdPickupIndex ??= function () {
-    let $res = natives.getBlipInfoIdPickupIndex(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.hud.getBlipInfoIdPickupIndex.apply(this, [this.handle]);
 };
 
 mp.Blip.prototype.getBlipFromEntity ??= function () {
-    let $res = natives.getBlipFromEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.hud.getBlipFromEntity.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.addBlipForEntity ??= function () {
-    let $res = natives.addBlipForEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.hud.addBlipForEntity.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.addBlipForEntity ??= function () {
-    let $res = natives.addBlipForEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.hud.addBlipForEntity.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.addBlipForEntity ??= function () {
-    let $res = natives.addBlipForEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.hud.addBlipForEntity.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.addBlipForEntity ??= function () {
-    let $res = natives.addBlipForEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.hud.addBlipForEntity.apply(this, [this.handle]);
 };
 
 mp.Blip.prototype.setBlipCoords ??= function (posX, posY, posZ) {
-    let $res = natives.setBlipCoords(this.handle, posX, posY, posZ);
+    return mp.game2.hud.setBlipCoords.apply(this, [this.handle, posX, posY, posZ]);
 };
 
 mp.Blip.prototype.getBlipCoords ??= function () {
-    let $res = natives.getBlipCoords(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.hud.getBlipCoords.apply(this, [this.handle]);
 };
 
 mp.Blip.prototype.setBlipSprite ??= function (spriteId) {
-    let $res = natives.setBlipSprite(this.handle, spriteId);
+    return mp.game2.hud.setBlipSprite.apply(this, [this.handle, spriteId]);
 };
 
 mp.Blip.prototype.getBlipSprite ??= function () {
-    let $res = natives.getBlipSprite(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.hud.getBlipSprite.apply(this, [this.handle]);
 };
 
 mp.Blip.prototype.setBlipNameFromTextFile ??= function (gxtEntry) {
-    if (typeof gxtEntry != "string") gxtEntry = null;
-    let $res = natives.setBlipNameFromTextFile(this.handle, gxtEntry);
+    return mp.game2.hud.setBlipNameFromTextFile.apply(this, [this.handle, gxtEntry]);
 };
 
 mp.Blip.prototype.setBlipNameToPlayerName ??= function (player) {
-    let $res = natives.setBlipNameToPlayerName(this.handle, player);
+    return mp.game2.hud.setBlipNameToPlayerName.apply(this, [this.handle, player]);
 };
 
 mp.Blip.prototype.setBlipAlpha ??= function (alpha) {
-    let $res = natives.setBlipAlpha(this.handle, alpha);
+    return mp.game2.hud.setBlipAlpha.apply(this, [this.handle, alpha]);
 };
 
 mp.Blip.prototype.getBlipAlpha ??= function () {
-    let $res = natives.getBlipAlpha(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.hud.getBlipAlpha.apply(this, [this.handle]);
 };
 
 mp.Blip.prototype.setBlipFade ??= function (opacity, duration) {
-    let $res = natives.setBlipFade(this.handle, opacity, duration);
+    return mp.game2.hud.setBlipFade.apply(this, [this.handle, opacity, duration]);
 };
 
 mp.Blip.prototype.getBlipFadeStatus ??= function () {
-    let $res = natives.getBlipFadeDirection(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.hud.getBlipFadeStatus.apply(this, [this.handle]);
 };
 
 mp.Blip.prototype.setBlipRotation ??= function (rotation) {
-    let $res = natives.setBlipRotation(this.handle, rotation);
+    return mp.game2.hud.setBlipRotation.apply(this, [this.handle, rotation]);
 };
 
 mp.Blip.prototype.setBlipSquaredRotation ??= function (heading) {
-    let $res = natives.setBlipRotationWithFloat(this.handle, heading);
+    return mp.game2.hud.setBlipSquaredRotation.apply(this, [this.handle, heading]);
 };
 
 mp.Blip.prototype.getBlipRotation ??= function () {
-    let $res = natives.getBlipRotation(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.hud.getBlipRotation.apply(this, [this.handle]);
 };
 
 mp.Blip.prototype.setBlipFlashTimer ??= function (duration) {
-    let $res = natives.setBlipFlashTimer(this.handle, duration);
+    return mp.game2.hud.setBlipFlashTimer.apply(this, [this.handle, duration]);
 };
 
 mp.Blip.prototype.setBlipFlashInterval ??= function (p1) {
-    let $res = natives.setBlipFlashInterval(this.handle, p1);
+    return mp.game2.hud.setBlipFlashInterval.apply(this, [this.handle, p1]);
 };
 
 mp.Blip.prototype.setBlipColour ??= function (color) {
-    let $res = natives.setBlipColour(this.handle, color);
+    return mp.game2.hud.setBlipColour.apply(this, [this.handle, color]);
 };
 
 mp.Blip.prototype.setBlipSecondaryColour ??= function (r, g, b) {
-    let $res = natives.setBlipSecondaryColour(this.handle, r, g, b);
+    return mp.game2.hud.setBlipSecondaryColour.apply(this, [this.handle, r, g, b]);
 };
 
 mp.Blip.prototype.getBlipColour ??= function () {
-    let $res = natives.getBlipHudColour(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.hud.getBlipColour.apply(this, [this.handle]);
 };
 
 mp.Blip.prototype.isBlipShortRange ??= function () {
-    let $res = natives.isBlipShortRange(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.hud.isBlipShortRange.apply(this, [this.handle]);
 };
 
 mp.Blip.prototype.isBlipOnMinimap ??= function () {
-    let $res = natives.isBlipOnMinimap(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.hud.isBlipOnMinimap.apply(this, [this.handle]);
 };
 
 mp.Blip.prototype.doesBlipHaveGpsRoute ??= function () {
-    let $res = natives.doesBlipHaveGpsRoute(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.hud.doesBlipHaveGpsRoute.apply(this, [this.handle]);
 };
 
 mp.Blip.prototype.setBlipHiddenOnLegend ??= function (toggle) {
-    let $res = natives.setBlipHiddenOnLegend(this.handle, toggle | 0);
+    return mp.game2.hud.setBlipHiddenOnLegend.apply(this, [this.handle, toggle]);
 };
 
 mp.Blip.prototype.setBlipHighDetail ??= function (toggle) {
-    let $res = natives.setBlipHighDetail(this.handle, toggle | 0);
+    return mp.game2.hud.setBlipHighDetail.apply(this, [this.handle, toggle]);
 };
 
 mp.Blip.prototype.setBlipAsMissionCreatorBlip ??= function (toggle) {
-    let $res = natives.setBlipAsMissionCreatorBlip(this.handle, toggle | 0);
+    return mp.game2.hud.setBlipAsMissionCreatorBlip.apply(this, [this.handle, toggle]);
 };
 
 mp.Blip.prototype.setBlipFlashes ??= function (toggle) {
-    let $res = natives.setBlipFlashes(this.handle, toggle | 0);
+    return mp.game2.hud.setBlipFlashes.apply(this, [this.handle, toggle]);
 };
 
 mp.Blip.prototype.setBlipFlashesAlternate ??= function (toggle) {
-    let $res = natives.setBlipFlashesAlternate(this.handle, toggle | 0);
+    return mp.game2.hud.setBlipFlashesAlternate.apply(this, [this.handle, toggle]);
 };
 
 mp.Blip.prototype.isBlipFlashing ??= function () {
-    let $res = natives.isBlipFlashing(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.hud.isBlipFlashing.apply(this, [this.handle]);
 };
 
 mp.Blip.prototype.setBlipAsShortRange ??= function (toggle) {
-    let $res = natives.setBlipAsShortRange(this.handle, toggle | 0);
+    return mp.game2.hud.setBlipAsShortRange.apply(this, [this.handle, toggle]);
 };
 
 mp.Blip.prototype.setBlipScale ??= function (scale) {
-    let $res = natives.setBlipScale(this.handle, scale);
+    return mp.game2.hud.setBlipScale.apply(this, [this.handle, scale]);
 };
 
 mp.Blip.prototype.setBlipScaleTransformation ??= function (xScale, yScale) {
-    let $res = natives.setBlipScale2d(this.handle, xScale, yScale);
+    return mp.game2.hud.setBlipScaleTransformation.apply(this, [this.handle, xScale, yScale]);
 };
 
 mp.Blip.prototype.setBlipPriority ??= function (priority) {
-    let $res = natives.setBlipPriority(this.handle, priority);
+    return mp.game2.hud.setBlipPriority.apply(this, [this.handle, priority]);
 };
 
 mp.Blip.prototype.setBlipDisplay ??= function (displayId) {
-    let $res = natives.setBlipDisplay(this.handle, displayId);
+    return mp.game2.hud.setBlipDisplay.apply(this, [this.handle, displayId]);
 };
 
 mp.Blip.prototype.setBlipCategory ??= function (index) {
-    let $res = natives.setBlipCategory(this.handle, index);
+    return mp.game2.hud.setBlipCategory.apply(this, [this.handle, index]);
 };
 
 mp.Blip.prototype.setBlipAsFriendly ??= function (toggle) {
-    let $res = natives.setBlipAsFriendly(this.handle, toggle | 0);
+    return mp.game2.hud.setBlipAsFriendly.apply(this, [this.handle, toggle]);
 };
 
 mp.Blip.prototype.setBlipDisplayIndicatorOnBlip ??= function (toggle) {
-    let $res = natives.setBlipExtendedHeightThreshold(this.handle, toggle | 0);
+    return mp.game2.hud.setBlipDisplayIndicatorOnBlip.apply(this, [this.handle, toggle]);
 };
 
 mp.Blip.prototype.setBlipAsMinimalOnEdge ??= function (toggle) {
-    let $res = natives.setBlipAsMinimalOnEdge(this.handle, toggle | 0);
+    return mp.game2.hud.setBlipAsMinimalOnEdge.apply(this, [this.handle, toggle]);
 };
 
 mp.Blip.prototype.doesBlipExist ??= function () {
-    let $res = natives.doesBlipExist(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.hud.doesBlipExist.apply(this, [this.handle]);
 };
 
 mp.Blip.prototype.setBlipBright ??= function (toggle) {
-    let $res = natives.setBlipBright(this.handle, toggle | 0);
+    return mp.game2.hud.setBlipBright.apply(this, [this.handle, toggle]);
 };
 
 mp.Blip.prototype.setBlipShowCone ??= function (toggle, p2) {
-    let $res = natives.setBlipShowCone(this.handle, toggle | 0, p2 | 0);
+    return mp.game2.hud.setBlipShowCone.apply(this, [this.handle, toggle, p2]);
 };
 
 mp.Blip.prototype.setBigmapActive ??= function (showFullMap) {
-    let $res = natives.setBigmapActive(this.handle, showFullMap | 0);
+    return mp.game2.hud.setBigmapActive.apply(this, [this.handle, showFullMap]);
 };
 
 mp.Player.prototype.createFakeMpGamerTag ??= function (username, pointedClanTag, isRockstarClan, clanTag, clanFlag) {
-    if (typeof username != "string") username = null;
-    if (typeof clanTag != "string") clanTag = null;
-    let $res = natives.createFakeMpGamerTag(this.handle, username, pointedClanTag | 0, isRockstarClan | 0, clanTag, clanFlag);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.hud.createFakeMpGamerTag.apply(this, [this.handle, username, pointedClanTag, isRockstarClan, clanTag, clanFlag]);
 };
 
 mp.Ped.prototype.createFakeMpGamerTag ??= function (username, pointedClanTag, isRockstarClan, clanTag, clanFlag) {
-    if (typeof username != "string") username = null;
-    if (typeof clanTag != "string") clanTag = null;
-    let $res = natives.createFakeMpGamerTag(this.handle, username, pointedClanTag | 0, isRockstarClan | 0, clanTag, clanFlag);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.hud.createFakeMpGamerTag.apply(this, [this.handle, username, pointedClanTag, isRockstarClan, clanTag, clanFlag]);
 };
 
 mp.Player.prototype.givePedToPauseMenu ??= function (p1) {
-    let $res = natives.givePedToPauseMenu(this.handle, p1);
+    return mp.game2.hud.givePedToPauseMenu.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.givePedToPauseMenu ??= function (p1) {
-    let $res = natives.givePedToPauseMenu(this.handle, p1);
+    return mp.game2.hud.givePedToPauseMenu.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.setPedHasAiBlip ??= function (hasCone) {
-    let $res = natives.setPedHasAiBlip(this.handle, hasCone | 0);
+    return mp.game2.hud.setPedHasAiBlip.apply(this, [this.handle, hasCone]);
 };
 
 mp.Ped.prototype.setPedHasAiBlip ??= function (hasCone) {
-    let $res = natives.setPedHasAiBlip(this.handle, hasCone | 0);
+    return mp.game2.hud.setPedHasAiBlip.apply(this, [this.handle, hasCone]);
 };
 
 mp.Player.prototype.setPedHasAiBlipWithColor ??= function (hasCone, color) {
-    let $res = natives.setPedHasAiBlipWithColour(this.handle, hasCone | 0, color);
+    return mp.game2.hud.setPedHasAiBlipWithColor.apply(this, [this.handle, hasCone, color]);
 };
 
 mp.Ped.prototype.setPedHasAiBlipWithColor ??= function (hasCone, color) {
-    let $res = natives.setPedHasAiBlipWithColour(this.handle, hasCone | 0, color);
+    return mp.game2.hud.setPedHasAiBlipWithColor.apply(this, [this.handle, hasCone, color]);
 };
 
 mp.Player.prototype.doesPedHaveAiBlip ??= function () {
-    let $res = natives.doesPedHaveAiBlip(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.hud.doesPedHaveAiBlip.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.doesPedHaveAiBlip ??= function () {
-    let $res = natives.doesPedHaveAiBlip(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.hud.doesPedHaveAiBlip.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setPedAiBlipGangId ??= function (gangId) {
-    let $res = natives.setPedAiBlipGangId(this.handle, gangId);
+    return mp.game2.hud.setPedAiBlipGangId.apply(this, [this.handle, gangId]);
 };
 
 mp.Ped.prototype.setPedAiBlipGangId ??= function (gangId) {
-    let $res = natives.setPedAiBlipGangId(this.handle, gangId);
+    return mp.game2.hud.setPedAiBlipGangId.apply(this, [this.handle, gangId]);
 };
 
 mp.Player.prototype.setPedAiBlipHasCone ??= function (toggle) {
-    let $res = natives.setPedAiBlipHasCone(this.handle, toggle | 0);
+    return mp.game2.hud.setPedAiBlipHasCone.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setPedAiBlipHasCone ??= function (toggle) {
-    let $res = natives.setPedAiBlipHasCone(this.handle, toggle | 0);
+    return mp.game2.hud.setPedAiBlipHasCone.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setPedAiBlipForcedOn ??= function (toggle) {
-    let $res = natives.setPedAiBlipForcedOn(this.handle, toggle | 0);
+    return mp.game2.hud.setPedAiBlipForcedOn.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setPedAiBlipForcedOn ??= function (toggle) {
-    let $res = natives.setPedAiBlipForcedOn(this.handle, toggle | 0);
+    return mp.game2.hud.setPedAiBlipForcedOn.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setPedAiBlipNoticeRange ??= function (range) {
-    let $res = natives.setPedAiBlipNoticeRange(this.handle, range);
+    return mp.game2.hud.setPedAiBlipNoticeRange.apply(this, [this.handle, range]);
 };
 
 mp.Ped.prototype.setPedAiBlipNoticeRange ??= function (range) {
-    let $res = natives.setPedAiBlipNoticeRange(this.handle, range);
+    return mp.game2.hud.setPedAiBlipNoticeRange.apply(this, [this.handle, range]);
 };
 
 mp.Player.prototype.setPedAiBlipSprite ??= function (spriteId) {
-    let $res = natives.setPedAiBlipSprite(this.handle, spriteId);
+    return mp.game2.hud.setPedAiBlipSprite.apply(this, [this.handle, spriteId]);
 };
 
 mp.Ped.prototype.setPedAiBlipSprite ??= function (spriteId) {
-    let $res = natives.setPedAiBlipSprite(this.handle, spriteId);
+    return mp.game2.hud.setPedAiBlipSprite.apply(this, [this.handle, spriteId]);
 };
 
 mp.Player.prototype.getAiBlip2 ??= function () {
-    let $res = natives.getAiPedPedBlipIndex(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.hud.getAiBlip2.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getAiBlip2 ??= function () {
-    let $res = natives.getAiPedPedBlipIndex(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.hud.getAiBlip2.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getAiBlip ??= function () {
-    let $res = natives.getAiPedVehicleBlipIndex(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.hud.getAiBlip.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getAiBlip ??= function () {
-    let $res = natives.getAiPedVehicleBlipIndex(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.hud.getAiBlip.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.clearRoomForEntity ??= function () {
-    let $res = natives.clearRoomForEntity(this.handle);
+    return mp.game2.interior.clearRoomForEntity.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.clearRoomForEntity ??= function () {
-    let $res = natives.clearRoomForEntity(this.handle);
+    return mp.game2.interior.clearRoomForEntity.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.clearRoomForEntity ??= function () {
-    let $res = natives.clearRoomForEntity(this.handle);
+    return mp.game2.interior.clearRoomForEntity.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.clearRoomForEntity ??= function () {
-    let $res = natives.clearRoomForEntity(this.handle);
+    return mp.game2.interior.clearRoomForEntity.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.forceRoomForEntity ??= function (interior, roomHashKey) {
-    let $res = natives.forceRoomForEntity(this.handle, interior, roomHashKey);
+    return mp.game2.interior.forceRoomForEntity.apply(this, [this.handle, interior, roomHashKey]);
 };
 
 mp.Ped.prototype.forceRoomForEntity ??= function (interior, roomHashKey) {
-    let $res = natives.forceRoomForEntity(this.handle, interior, roomHashKey);
+    return mp.game2.interior.forceRoomForEntity.apply(this, [this.handle, interior, roomHashKey]);
 };
 
 mp.Object.prototype.forceRoomForEntity ??= function (interior, roomHashKey) {
-    let $res = natives.forceRoomForEntity(this.handle, interior, roomHashKey);
+    return mp.game2.interior.forceRoomForEntity.apply(this, [this.handle, interior, roomHashKey]);
 };
 
 mp.Vehicle.prototype.forceRoomForEntity ??= function (interior, roomHashKey) {
-    let $res = natives.forceRoomForEntity(this.handle, interior, roomHashKey);
+    return mp.game2.interior.forceRoomForEntity.apply(this, [this.handle, interior, roomHashKey]);
 };
 
 mp.Player.prototype.getRoomKeyFromEntity ??= function () {
-    let $res = natives.getRoomKeyFromEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.interior.getRoomKeyFromEntity.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getRoomKeyFromEntity ??= function () {
-    let $res = natives.getRoomKeyFromEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.interior.getRoomKeyFromEntity.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getRoomKeyFromEntity ??= function () {
-    let $res = natives.getRoomKeyFromEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.interior.getRoomKeyFromEntity.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getRoomKeyFromEntity ??= function () {
-    let $res = natives.getRoomKeyFromEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.interior.getRoomKeyFromEntity.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getKeyForEntityInRoom ??= function () {
-    let $res = natives.getKeyForEntityInRoom(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.interior.getKeyForEntityInRoom.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getKeyForEntityInRoom ??= function () {
-    let $res = natives.getKeyForEntityInRoom(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.interior.getKeyForEntityInRoom.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getKeyForEntityInRoom ??= function () {
-    let $res = natives.getKeyForEntityInRoom(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.interior.getKeyForEntityInRoom.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getKeyForEntityInRoom ??= function () {
-    let $res = natives.getKeyForEntityInRoom(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.interior.getKeyForEntityInRoom.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getFromEntity ??= function () {
-    let $res = natives.getInteriorFromEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.interior.getFromEntity.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getFromEntity ??= function () {
-    let $res = natives.getInteriorFromEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.interior.getFromEntity.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getFromEntity ??= function () {
-    let $res = natives.getInteriorFromEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.interior.getFromEntity.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getFromEntity ??= function () {
-    let $res = natives.getInteriorFromEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.interior.getFromEntity.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.clearForEntity ??= function () {
-    let $res = natives.clearInteriorStateOfEntity(this.handle);
+    return mp.game2.interior.clearForEntity.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.clearForEntity ??= function () {
-    let $res = natives.clearInteriorStateOfEntity(this.handle);
+    return mp.game2.interior.clearForEntity.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.clearForEntity ??= function () {
-    let $res = natives.clearInteriorStateOfEntity(this.handle);
+    return mp.game2.interior.clearForEntity.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.clearForEntity ??= function () {
-    let $res = natives.clearInteriorStateOfEntity(this.handle);
+    return mp.game2.interior.clearForEntity.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getCoordsOfProjectileTypeWithinDistance ??= function (weaponHash, distance, p4) {
-    let $res = natives.getCoordsOfProjectileTypeWithinDistance(this.handle, weaponHash, distance, undefined, p4 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.outCoords = new mp.Vector3($res[1]);
-    return $res[0] == 1 ? $resObj.outCoords : undefined;
+    return mp.game2.misc.getCoordsOfProjectileTypeWithinDistance.apply(this, [this.handle, weaponHash, distance, p4]);
 };
 
 mp.Ped.prototype.getCoordsOfProjectileTypeWithinDistance ??= function (weaponHash, distance, p4) {
-    let $res = natives.getCoordsOfProjectileTypeWithinDistance(this.handle, weaponHash, distance, undefined, p4 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.outCoords = new mp.Vector3($res[1]);
-    return $res[0] == 1 ? $resObj.outCoords : undefined;
+    return mp.game2.misc.getCoordsOfProjectileTypeWithinDistance.apply(this, [this.handle, weaponHash, distance, p4]);
 };
 
 mp.Player.prototype.getProjectileNearPed ??= function (weaponHash, distance, p5) {
-    let $res = natives.getProjectileOfProjectileTypeWithinDistance(this.handle, weaponHash, distance, undefined, 0, p5 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.outCoords = new mp.Vector3($res[1]);
-    $resObj.outProjectile = $res[2];
-    $resObj.result = $res[0] == 1;
-    return $resObj;
+    return mp.game2.misc.getProjectileNearPed.apply(this, [this.handle, weaponHash, distance, p5]);
 };
 
 mp.Ped.prototype.getProjectileNearPed ??= function (weaponHash, distance, p5) {
-    let $res = natives.getProjectileOfProjectileTypeWithinDistance(this.handle, weaponHash, distance, undefined, 0, p5 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.outCoords = new mp.Vector3($res[1]);
-    $resObj.outProjectile = $res[2];
-    $resObj.result = $res[0] == 1;
-    return $resObj;
+    return mp.game2.misc.getProjectileNearPed.apply(this, [this.handle, weaponHash, distance, p5]);
 };
 
 mp.Blip.prototype.isBulletInAngledArea ??= function (y1, z1, x2, y2, z2, width, ownedByPlayer) {
-    let $res = natives.isBulletInAngledArea(this.handle, y1, z1, x2, y2, z2, width, ownedByPlayer | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.misc.isBulletInAngledArea.apply(this, [this.handle, y1, z1, x2, y2, z2, width, ownedByPlayer]);
 };
 
 mp.Blip.prototype.isBulletInArea ??= function (y, z, radius, ownedByPlayer) {
-    let $res = natives.isBulletInArea(this.handle, y, z, radius, ownedByPlayer | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.misc.isBulletInArea.apply(this, [this.handle, y, z, radius, ownedByPlayer]);
 };
 
 mp.Blip.prototype.isBulletInBox ??= function (y1, z1, x2, y2, z2, ownedByPlayer) {
-    let $res = natives.isBulletInBox(this.handle, y1, z1, x2, y2, z2, ownedByPlayer | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.misc.isBulletInBox.apply(this, [this.handle, y1, z1, x2, y2, z2, ownedByPlayer]);
 };
 
 mp.Blip.prototype.hasBulletImpactedInArea ??= function (y, z, p3, p4, p5) {
-    let $res = natives.hasBulletImpactedInArea(this.handle, y, z, p3, p4 | 0, p5 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.misc.hasBulletImpactedInArea.apply(this, [this.handle, y, z, p3, p4, p5]);
 };
 
 mp.Blip.prototype.hasBulletImpactedInBox ??= function (p1, p2, p3, p4, p5, p6, p7) {
-    let $res = natives.hasBulletImpactedInBox(this.handle, p1, p2, p3, p4, p5, p6 | 0, p7 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.misc.hasBulletImpactedInBox.apply(this, [this.handle, p1, p2, p3, p4, p5, p6, p7]);
 };
 
 mp.Blip.prototype.getBitsInRange ??= function (rangeStart, rangeEnd) {
-    let $res = natives.getBitsInRange(this.handle, rangeStart, rangeEnd);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.misc.getBitsInRange.apply(this, [this.handle, rangeStart, rangeEnd]);
 };
 
 mp.Blip.prototype.hasButtonCombinationJustBeenEntered ??= function (amount) {
-    let $res = natives.hasCheatWithHashBeenActivated(this.handle, amount);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.misc.hasButtonCombinationJustBeenEntered.apply(this, [this.handle, amount]);
 };
 
 mp.Player.prototype.enableTennisMode ??= function (toggle, p2) {
-    let $res = natives.enableTennisMode(this.handle, toggle | 0, p2 | 0);
+    return mp.game2.misc.enableTennisMode.apply(this, [this.handle, toggle, p2]);
 };
 
 mp.Ped.prototype.enableTennisMode ??= function (toggle, p2) {
-    let $res = natives.enableTennisMode(this.handle, toggle | 0, p2 | 0);
+    return mp.game2.misc.enableTennisMode.apply(this, [this.handle, toggle, p2]);
 };
 
 mp.Player.prototype.isTennisMode ??= function () {
-    let $res = natives.isTennisMode(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.misc.isTennisMode.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isTennisMode ??= function () {
-    let $res = natives.isTennisMode(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.misc.isTennisMode.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.playTennisSwingAnim ??= function (animDict, animName, p3, p4, p5) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.playTennisSwingAnim(this.handle, animDict, animName, p3, p4, p5 | 0);
+    return mp.game2.misc.playTennisSwingAnim.apply(this, [this.handle, animDict, animName, p3, p4, p5]);
 };
 
 mp.Ped.prototype.playTennisSwingAnim ??= function (animDict, animName, p3, p4, p5) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.playTennisSwingAnim(this.handle, animDict, animName, p3, p4, p5 | 0);
+    return mp.game2.misc.playTennisSwingAnim.apply(this, [this.handle, animDict, animName, p3, p4, p5]);
 };
 
 mp.Player.prototype.getTennisSwingAnimComplete ??= function () {
-    let $res = natives.getTennisSwingAnimComplete(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.misc.getTennisSwingAnimComplete.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getTennisSwingAnimComplete ??= function () {
-    let $res = natives.getTennisSwingAnimComplete(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.misc.getTennisSwingAnimComplete.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.playTennisDiveAnim ??= function (p1, p2, p3, p4, p5) {
-    let $res = natives.playTennisDiveAnim(this.handle, p1, p2, p3, p4, p5 | 0);
+    return mp.game2.misc.playTennisDiveAnim.apply(this, [this.handle, p1, p2, p3, p4, p5]);
 };
 
 mp.Ped.prototype.playTennisDiveAnim ??= function (p1, p2, p3, p4, p5) {
-    let $res = natives.playTennisDiveAnim(this.handle, p1, p2, p3, p4, p5 | 0);
+    return mp.game2.misc.playTennisDiveAnim.apply(this, [this.handle, p1, p2, p3, p4, p5]);
 };
 
 mp.Blip.prototype.setBeastModeActive ??= function () {
-    let $res = natives.setBeastJumpThisFrame(this.handle);
+    return mp.game2.misc.setBeastModeActive.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.applyPedScarData ??= function (p1) {
-    let $res = natives.networkApplyPedScarData(this.handle, p1);
+    return mp.game2.network.applyPedScarData.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.applyPedScarData ??= function (p1) {
-    let $res = natives.networkApplyPedScarData(this.handle, p1);
+    return mp.game2.network.applyPedScarData.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.getPlayerIndexFromPed ??= function () {
-    let $res = natives.networkGetPlayerIndexFromPed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.network.getPlayerIndexFromPed.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getPlayerIndexFromPed ??= function () {
-    let $res = natives.networkGetPlayerIndexFromPed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.network.getPlayerIndexFromPed.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getDestroyerOfEntity ??= function () {
-    let $res = natives.networkGetAssistedDamageOfEntity(this.handle, 0, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.weaponHash = $res[0];
-    $resObj.result = $res[0];
-    return $resObj;
+    return mp.game2.network.getDestroyerOfEntity.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getDestroyerOfEntity ??= function () {
-    let $res = natives.networkGetAssistedDamageOfEntity(this.handle, 0, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.weaponHash = $res[0];
-    $resObj.result = $res[0];
-    return $resObj;
+    return mp.game2.network.getDestroyerOfEntity.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getDestroyerOfEntity ??= function () {
-    let $res = natives.networkGetAssistedDamageOfEntity(this.handle, 0, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.weaponHash = $res[0];
-    $resObj.result = $res[0];
-    return $resObj;
+    return mp.game2.network.getDestroyerOfEntity.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getDestroyerOfEntity ??= function () {
-    let $res = natives.networkGetAssistedDamageOfEntity(this.handle, 0, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.weaponHash = $res[0];
-    $resObj.result = $res[0];
-    return $resObj;
+    return mp.game2.network.getDestroyerOfEntity.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.pedForceGameStateUpdate ??= function () {
-    let $res = natives.networkPatchPostCutsceneHs4fTunEnt(this.handle);
+    return mp.game2.network.pedForceGameStateUpdate.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.pedForceGameStateUpdate ??= function () {
-    let $res = natives.networkPatchPostCutsceneHs4fTunEnt(this.handle);
+    return mp.game2.network.pedForceGameStateUpdate.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.hasEntityBeenRegisteredWithThisThread ??= function () {
-    let $res = natives.networkHasEntityBeenRegisteredWithThisThread(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.hasEntityBeenRegisteredWithThisThread.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.hasEntityBeenRegisteredWithThisThread ??= function () {
-    let $res = natives.networkHasEntityBeenRegisteredWithThisThread(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.hasEntityBeenRegisteredWithThisThread.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.hasEntityBeenRegisteredWithThisThread ??= function () {
-    let $res = natives.networkHasEntityBeenRegisteredWithThisThread(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.hasEntityBeenRegisteredWithThisThread.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.hasEntityBeenRegisteredWithThisThread ??= function () {
-    let $res = natives.networkHasEntityBeenRegisteredWithThisThread(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.hasEntityBeenRegisteredWithThisThread.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getNetworkIdFromEntity ??= function () {
-    let $res = natives.networkGetNetworkIdFromEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.network.getNetworkIdFromEntity.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getNetworkIdFromEntity ??= function () {
-    let $res = natives.networkGetNetworkIdFromEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.network.getNetworkIdFromEntity.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getNetworkIdFromEntity ??= function () {
-    let $res = natives.networkGetNetworkIdFromEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.network.getNetworkIdFromEntity.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getNetworkIdFromEntity ??= function () {
-    let $res = natives.networkGetNetworkIdFromEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.network.getNetworkIdFromEntity.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getEntityIsNetworked ??= function () {
-    let $res = natives.networkGetEntityIsNetworked(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.getEntityIsNetworked.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getEntityIsNetworked ??= function () {
-    let $res = natives.networkGetEntityIsNetworked(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.getEntityIsNetworked.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getEntityIsNetworked ??= function () {
-    let $res = natives.networkGetEntityIsNetworked(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.getEntityIsNetworked.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getEntityIsNetworked ??= function () {
-    let $res = natives.networkGetEntityIsNetworked(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.getEntityIsNetworked.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getEntityIsLocal ??= function () {
-    let $res = natives.networkGetEntityIsLocal(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.getEntityIsLocal.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getEntityIsLocal ??= function () {
-    let $res = natives.networkGetEntityIsLocal(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.getEntityIsLocal.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getEntityIsLocal ??= function () {
-    let $res = natives.networkGetEntityIsLocal(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.getEntityIsLocal.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getEntityIsLocal ??= function () {
-    let $res = natives.networkGetEntityIsLocal(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.getEntityIsLocal.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.registerEntityAsNetworked ??= function () {
-    let $res = natives.networkRegisterEntityAsNetworked(this.handle);
+    return mp.game2.network.registerEntityAsNetworked.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.registerEntityAsNetworked ??= function () {
-    let $res = natives.networkRegisterEntityAsNetworked(this.handle);
+    return mp.game2.network.registerEntityAsNetworked.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.registerEntityAsNetworked ??= function () {
-    let $res = natives.networkRegisterEntityAsNetworked(this.handle);
+    return mp.game2.network.registerEntityAsNetworked.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.registerEntityAsNetworked ??= function () {
-    let $res = natives.networkRegisterEntityAsNetworked(this.handle);
+    return mp.game2.network.registerEntityAsNetworked.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.unregisterNetworkedEntity ??= function () {
-    let $res = natives.networkUnregisterNetworkedEntity(this.handle);
+    return mp.game2.network.unregisterNetworkedEntity.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.unregisterNetworkedEntity ??= function () {
-    let $res = natives.networkUnregisterNetworkedEntity(this.handle);
+    return mp.game2.network.unregisterNetworkedEntity.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.unregisterNetworkedEntity ??= function () {
-    let $res = natives.networkUnregisterNetworkedEntity(this.handle);
+    return mp.game2.network.unregisterNetworkedEntity.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.unregisterNetworkedEntity ??= function () {
-    let $res = natives.networkUnregisterNetworkedEntity(this.handle);
+    return mp.game2.network.unregisterNetworkedEntity.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.requestControlOfEntity ??= function () {
-    let $res = natives.networkRequestControlOfEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.requestControlOfEntity.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.requestControlOfEntity ??= function () {
-    let $res = natives.networkRequestControlOfEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.requestControlOfEntity.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.requestControlOfEntity ??= function () {
-    let $res = natives.networkRequestControlOfEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.requestControlOfEntity.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.requestControlOfEntity ??= function () {
-    let $res = natives.networkRequestControlOfEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.requestControlOfEntity.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.hasControlOfEntity ??= function () {
-    let $res = natives.networkHasControlOfEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.hasControlOfEntity.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.hasControlOfEntity ??= function () {
-    let $res = natives.networkHasControlOfEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.hasControlOfEntity.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.hasControlOfEntity ??= function () {
-    let $res = natives.networkHasControlOfEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.hasControlOfEntity.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.hasControlOfEntity ??= function () {
-    let $res = natives.networkHasControlOfEntity(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.hasControlOfEntity.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.vehToNet ??= function () {
-    let $res = natives.vehToNet(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.network.vehToNet.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.pedToNet ??= function () {
-    let $res = natives.pedToNet(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.network.pedToNet.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.pedToNet ??= function () {
-    let $res = natives.pedToNet(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.network.pedToNet.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.objToNet ??= function () {
-    let $res = natives.objToNet(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.network.objToNet.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getEntityNetScriptId ??= function () {
-    let $res = natives.networkEntityGetObjectId(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.network.getEntityNetScriptId.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getEntityNetScriptId ??= function () {
-    let $res = natives.networkEntityGetObjectId(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.network.getEntityNetScriptId.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getEntityNetScriptId ??= function () {
-    let $res = natives.networkEntityGetObjectId(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.network.getEntityNetScriptId.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getEntityNetScriptId ??= function () {
-    let $res = natives.networkEntityGetObjectId(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.network.getEntityNetScriptId.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.removeAllStickyBombsFromEntity ??= function (ped) {
-    let $res = natives.removeAllStickyBombsFromEntity(this.handle, ped);
+    return mp.game2.network.removeAllStickyBombsFromEntity.apply(this, [this.handle, ped]);
 };
 
 mp.Ped.prototype.removeAllStickyBombsFromEntity ??= function (ped) {
-    let $res = natives.removeAllStickyBombsFromEntity(this.handle, ped);
+    return mp.game2.network.removeAllStickyBombsFromEntity.apply(this, [this.handle, ped]);
 };
 
 mp.Object.prototype.removeAllStickyBombsFromEntity ??= function (ped) {
-    let $res = natives.removeAllStickyBombsFromEntity(this.handle, ped);
+    return mp.game2.network.removeAllStickyBombsFromEntity.apply(this, [this.handle, ped]);
 };
 
 mp.Vehicle.prototype.removeAllStickyBombsFromEntity ??= function (ped) {
-    let $res = natives.removeAllStickyBombsFromEntity(this.handle, ped);
+    return mp.game2.network.removeAllStickyBombsFromEntity.apply(this, [this.handle, ped]);
 };
 
 mp.Player.prototype.setEntityCanBlend ??= function (toggle) {
-    let $res = natives.networkSetEntityCanBlend(this.handle, toggle | 0);
+    return mp.game2.network.setEntityCanBlend.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setEntityCanBlend ??= function (toggle) {
-    let $res = natives.networkSetEntityCanBlend(this.handle, toggle | 0);
+    return mp.game2.network.setEntityCanBlend.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.setEntityCanBlend ??= function (toggle) {
-    let $res = natives.networkSetEntityCanBlend(this.handle, toggle | 0);
+    return mp.game2.network.setEntityCanBlend.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setEntityCanBlend ??= function (toggle) {
-    let $res = natives.networkSetEntityCanBlend(this.handle, toggle | 0);
+    return mp.game2.network.setEntityCanBlend.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setEntityInvisibleToNetwork ??= function (toggle) {
-    let $res = natives.networkSetEntityOnlyExistsForParticipants(this.handle, toggle | 0);
+    return mp.game2.network.setEntityInvisibleToNetwork.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setEntityInvisibleToNetwork ??= function (toggle) {
-    let $res = natives.networkSetEntityOnlyExistsForParticipants(this.handle, toggle | 0);
+    return mp.game2.network.setEntityInvisibleToNetwork.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.setEntityInvisibleToNetwork ??= function (toggle) {
-    let $res = natives.networkSetEntityOnlyExistsForParticipants(this.handle, toggle | 0);
+    return mp.game2.network.setEntityInvisibleToNetwork.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setEntityInvisibleToNetwork ??= function (toggle) {
-    let $res = natives.networkSetEntityOnlyExistsForParticipants(this.handle, toggle | 0);
+    return mp.game2.network.setEntityInvisibleToNetwork.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.fadeOutEntity ??= function (normal, slow) {
-    let $res = natives.networkFadeOutEntity(this.handle, normal | 0, slow | 0);
+    return mp.game2.network.fadeOutEntity.apply(this, [this.handle, normal, slow]);
 };
 
 mp.Ped.prototype.fadeOutEntity ??= function (normal, slow) {
-    let $res = natives.networkFadeOutEntity(this.handle, normal | 0, slow | 0);
+    return mp.game2.network.fadeOutEntity.apply(this, [this.handle, normal, slow]);
 };
 
 mp.Object.prototype.fadeOutEntity ??= function (normal, slow) {
-    let $res = natives.networkFadeOutEntity(this.handle, normal | 0, slow | 0);
+    return mp.game2.network.fadeOutEntity.apply(this, [this.handle, normal, slow]);
 };
 
 mp.Vehicle.prototype.fadeOutEntity ??= function (normal, slow) {
-    let $res = natives.networkFadeOutEntity(this.handle, normal | 0, slow | 0);
+    return mp.game2.network.fadeOutEntity.apply(this, [this.handle, normal, slow]);
 };
 
 mp.Player.prototype.fadeInEntity ??= function (state, p2) {
-    let $res = natives.networkFadeInEntity(this.handle, state | 0, p2 | 0);
+    return mp.game2.network.fadeInEntity.apply(this, [this.handle, state, p2]);
 };
 
 mp.Ped.prototype.fadeInEntity ??= function (state, p2) {
-    let $res = natives.networkFadeInEntity(this.handle, state | 0, p2 | 0);
+    return mp.game2.network.fadeInEntity.apply(this, [this.handle, state, p2]);
 };
 
 mp.Object.prototype.fadeInEntity ??= function (state, p2) {
-    let $res = natives.networkFadeInEntity(this.handle, state | 0, p2 | 0);
+    return mp.game2.network.fadeInEntity.apply(this, [this.handle, state, p2]);
 };
 
 mp.Vehicle.prototype.fadeInEntity ??= function (state, p2) {
-    let $res = natives.networkFadeInEntity(this.handle, state | 0, p2 | 0);
+    return mp.game2.network.fadeInEntity.apply(this, [this.handle, state, p2]);
 };
 
 mp.Player.prototype.isEntityFading ??= function () {
-    let $res = natives.networkIsEntityFading(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.isEntityFading.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isEntityFading ??= function () {
-    let $res = natives.networkIsEntityFading(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.isEntityFading.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.isEntityFading ??= function () {
-    let $res = natives.networkIsEntityFading(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.isEntityFading.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isEntityFading ??= function () {
-    let $res = natives.networkIsEntityFading(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.isEntityFading.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setEntityVisibleInCutscene ??= function (p1, p2) {
-    let $res = natives.setEntityVisibleInCutscene(this.handle, p1 | 0, p2 | 0);
+    return mp.game2.network.setEntityVisibleInCutscene.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Ped.prototype.setEntityVisibleInCutscene ??= function (p1, p2) {
-    let $res = natives.setEntityVisibleInCutscene(this.handle, p1 | 0, p2 | 0);
+    return mp.game2.network.setEntityVisibleInCutscene.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Object.prototype.setEntityVisibleInCutscene ??= function (p1, p2) {
-    let $res = natives.setEntityVisibleInCutscene(this.handle, p1 | 0, p2 | 0);
+    return mp.game2.network.setEntityVisibleInCutscene.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Vehicle.prototype.setEntityVisibleInCutscene ??= function (p1, p2) {
-    let $res = natives.setEntityVisibleInCutscene(this.handle, p1 | 0, p2 | 0);
+    return mp.game2.network.setEntityVisibleInCutscene.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Player.prototype.setEntityLocallyInvisible ??= function () {
-    let $res = natives.setEntityLocallyInvisible(this.handle);
+    return mp.game2.network.setEntityLocallyInvisible.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.setEntityLocallyInvisible ??= function () {
-    let $res = natives.setEntityLocallyInvisible(this.handle);
+    return mp.game2.network.setEntityLocallyInvisible.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.setEntityLocallyInvisible ??= function () {
-    let $res = natives.setEntityLocallyInvisible(this.handle);
+    return mp.game2.network.setEntityLocallyInvisible.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setEntityLocallyInvisible ??= function () {
-    let $res = natives.setEntityLocallyInvisible(this.handle);
+    return mp.game2.network.setEntityLocallyInvisible.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setEntityLocallyVisible ??= function () {
-    let $res = natives.setEntityLocallyVisible(this.handle);
+    return mp.game2.network.setEntityLocallyVisible.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.setEntityLocallyVisible ??= function () {
-    let $res = natives.setEntityLocallyVisible(this.handle);
+    return mp.game2.network.setEntityLocallyVisible.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.setEntityLocallyVisible ??= function () {
-    let $res = natives.setEntityLocallyVisible(this.handle);
+    return mp.game2.network.setEntityLocallyVisible.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setEntityLocallyVisible ??= function () {
-    let $res = natives.setEntityLocallyVisible(this.handle);
+    return mp.game2.network.setEntityLocallyVisible.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.setObjectInterestRange ??= function (range) {
-    let $res = natives.networkSetObjectScopeDistance(this.handle, range);
+    return mp.game2.network.setObjectInterestRange.apply(this, [this.handle, range]);
 };
 
 mp.Vehicle.prototype.setVehicleAsGhost ??= function (toggle) {
-    let $res = natives.setNetworkVehicleAsGhost(this.handle, toggle | 0);
+    return mp.game2.network.setVehicleAsGhost.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setVehiclePositionUpdateMultiplier ??= function (multiplier) {
-    let $res = natives.setNetworkVehicleMaxPositionDeltaMultiplier(this.handle, multiplier);
+    return mp.game2.network.setVehiclePositionUpdateMultiplier.apply(this, [this.handle, multiplier]);
 };
 
 mp.Vehicle.prototype.setEnableVehiclePositionCorrection ??= function (toggle) {
-    let $res = natives.setNetworkEnableHighSpeedEdgeFallDetection(this.handle, toggle | 0);
+    return mp.game2.network.setEnableVehiclePositionCorrection.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.isEntityGhostedToLocalPlayer ??= function () {
-    let $res = natives.isEntityAGhost(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.isEntityGhostedToLocalPlayer.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isEntityGhostedToLocalPlayer ??= function () {
-    let $res = natives.isEntityAGhost(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.isEntityGhostedToLocalPlayer.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.isEntityGhostedToLocalPlayer ??= function () {
-    let $res = natives.isEntityAGhost(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.isEntityGhostedToLocalPlayer.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isEntityGhostedToLocalPlayer ??= function () {
-    let $res = natives.isEntityAGhost(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.isEntityGhostedToLocalPlayer.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setEntityGhostedWithOwner ??= function (p1) {
-    let $res = natives.setEntityGhostedForGhostPlayers(this.handle, p1 | 0);
+    return mp.game2.network.setEntityGhostedWithOwner.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.setEntityGhostedWithOwner ??= function (p1) {
-    let $res = natives.setEntityGhostedForGhostPlayers(this.handle, p1 | 0);
+    return mp.game2.network.setEntityGhostedWithOwner.apply(this, [this.handle, p1]);
 };
 
 mp.Object.prototype.setEntityGhostedWithOwner ??= function (p1) {
-    let $res = natives.setEntityGhostedForGhostPlayers(this.handle, p1 | 0);
+    return mp.game2.network.setEntityGhostedWithOwner.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.setEntityGhostedWithOwner ??= function (p1) {
-    let $res = natives.setEntityGhostedForGhostPlayers(this.handle, p1 | 0);
+    return mp.game2.network.setEntityGhostedWithOwner.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.addPedToSynchronisedScene ??= function (netScene, animDict, animnName, speed, speedMultiplier, duration, flag, playbackRate, p9) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animnName != "string") animnName = null;
-    let $res = natives.networkAddPedToSynchronisedScene(this.handle, netScene, animDict, animnName, speed, speedMultiplier, duration, flag, playbackRate, p9);
+    return mp.game2.network.addPedToSynchronisedScene.apply(this, [this.handle, netScene, animDict, animnName, speed, speedMultiplier, duration, flag, playbackRate, p9]);
 };
 
 mp.Ped.prototype.addPedToSynchronisedScene ??= function (netScene, animDict, animnName, speed, speedMultiplier, duration, flag, playbackRate, p9) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animnName != "string") animnName = null;
-    let $res = natives.networkAddPedToSynchronisedScene(this.handle, netScene, animDict, animnName, speed, speedMultiplier, duration, flag, playbackRate, p9);
+    return mp.game2.network.addPedToSynchronisedScene.apply(this, [this.handle, netScene, animDict, animnName, speed, speedMultiplier, duration, flag, playbackRate, p9]);
 };
 
 mp.Player.prototype.addEntityToSynchronisedScene ??= function (netScene, animDict, animName, speed, speedMulitiplier, flag) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.networkAddEntityToSynchronisedScene(this.handle, netScene, animDict, animName, speed, speedMulitiplier, flag);
+    return mp.game2.network.addEntityToSynchronisedScene.apply(this, [this.handle, netScene, animDict, animName, speed, speedMulitiplier, flag]);
 };
 
 mp.Ped.prototype.addEntityToSynchronisedScene ??= function (netScene, animDict, animName, speed, speedMulitiplier, flag) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.networkAddEntityToSynchronisedScene(this.handle, netScene, animDict, animName, speed, speedMulitiplier, flag);
+    return mp.game2.network.addEntityToSynchronisedScene.apply(this, [this.handle, netScene, animDict, animName, speed, speedMulitiplier, flag]);
 };
 
 mp.Object.prototype.addEntityToSynchronisedScene ??= function (netScene, animDict, animName, speed, speedMulitiplier, flag) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.networkAddEntityToSynchronisedScene(this.handle, netScene, animDict, animName, speed, speedMulitiplier, flag);
+    return mp.game2.network.addEntityToSynchronisedScene.apply(this, [this.handle, netScene, animDict, animName, speed, speedMulitiplier, flag]);
 };
 
 mp.Vehicle.prototype.addEntityToSynchronisedScene ??= function (netScene, animDict, animName, speed, speedMulitiplier, flag) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.networkAddEntityToSynchronisedScene(this.handle, netScene, animDict, animName, speed, speedMulitiplier, flag);
+    return mp.game2.network.addEntityToSynchronisedScene.apply(this, [this.handle, netScene, animDict, animName, speed, speedMulitiplier, flag]);
 };
 
 mp.Player.prototype.concealEntity ??= function (toggle) {
-    let $res = natives.networkConcealEntity(this.handle, toggle | 0);
+    return mp.game2.network.concealEntity.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.concealEntity ??= function (toggle) {
-    let $res = natives.networkConcealEntity(this.handle, toggle | 0);
+    return mp.game2.network.concealEntity.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.concealEntity ??= function (toggle) {
-    let $res = natives.networkConcealEntity(this.handle, toggle | 0);
+    return mp.game2.network.concealEntity.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.concealEntity ??= function (toggle) {
-    let $res = natives.networkConcealEntity(this.handle, toggle | 0);
+    return mp.game2.network.concealEntity.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.isEntityConcealed ??= function () {
-    let $res = natives.networkIsEntityConcealed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.isEntityConcealed.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isEntityConcealed ??= function () {
-    let $res = natives.networkIsEntityConcealed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.isEntityConcealed.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.isEntityConcealed ??= function () {
-    let $res = natives.networkIsEntityConcealed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.isEntityConcealed.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isEntityConcealed ??= function () {
-    let $res = natives.networkIsEntityConcealed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.isEntityConcealed.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setVehicleWheelsDestructible ??= function (toggle) {
-    let $res = natives.networkTriggerDamageEventForZeroDamage(this.handle, toggle | 0);
+    return mp.game2.network.setVehicleWheelsDestructible.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setVehicleWheelsDestructible ??= function (toggle) {
-    let $res = natives.networkTriggerDamageEventForZeroDamage(this.handle, toggle | 0);
+    return mp.game2.network.setVehicleWheelsDestructible.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.setVehicleWheelsDestructible ??= function (toggle) {
-    let $res = natives.networkTriggerDamageEventForZeroDamage(this.handle, toggle | 0);
+    return mp.game2.network.setVehicleWheelsDestructible.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setVehicleWheelsDestructible ??= function (toggle) {
-    let $res = natives.networkTriggerDamageEventForZeroDamage(this.handle, toggle | 0);
+    return mp.game2.network.setVehicleWheelsDestructible.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.explodeVehicle ??= function (isAudible, isInvisible, netId) {
-    let $res = natives.networkExplodeVehicle(this.handle, isAudible | 0, isInvisible | 0, netId | 0);
+    return mp.game2.network.explodeVehicle.apply(this, [this.handle, isAudible, isInvisible, netId]);
 };
 
 mp.Vehicle.prototype.explodeHeli ??= function (isAudible, isInvisible, netId) {
-    let $res = natives.networkExplodeHeli(this.handle, isAudible | 0, isInvisible | 0, netId);
+    return mp.game2.network.explodeHeli.apply(this, [this.handle, isAudible, isInvisible, netId]);
 };
 
 mp.Player.prototype.useLogarithmicBlendingThisFrame ??= function () {
-    let $res = natives.networkUseLogarithmicBlendingThisFrame(this.handle);
+    return mp.game2.network.useLogarithmicBlendingThisFrame.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.useLogarithmicBlendingThisFrame ??= function () {
-    let $res = natives.networkUseLogarithmicBlendingThisFrame(this.handle);
+    return mp.game2.network.useLogarithmicBlendingThisFrame.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.useLogarithmicBlendingThisFrame ??= function () {
-    let $res = natives.networkUseLogarithmicBlendingThisFrame(this.handle);
+    return mp.game2.network.useLogarithmicBlendingThisFrame.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.useLogarithmicBlendingThisFrame ??= function () {
-    let $res = natives.networkUseLogarithmicBlendingThisFrame(this.handle);
+    return mp.game2.network.useLogarithmicBlendingThisFrame.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.overrideCoordsAndHeading ??= function (x, y, z, heading) {
-    let $res = natives.networkOverrideCoordsAndHeading(this.handle, x, y, z, heading);
+    return mp.game2.network.overrideCoordsAndHeading.apply(this, [this.handle, x, y, z, heading]);
 };
 
 mp.Ped.prototype.overrideCoordsAndHeading ??= function (x, y, z, heading) {
-    let $res = natives.networkOverrideCoordsAndHeading(this.handle, x, y, z, heading);
+    return mp.game2.network.overrideCoordsAndHeading.apply(this, [this.handle, x, y, z, heading]);
 };
 
 mp.Object.prototype.overrideCoordsAndHeading ??= function (x, y, z, heading) {
-    let $res = natives.networkOverrideCoordsAndHeading(this.handle, x, y, z, heading);
+    return mp.game2.network.overrideCoordsAndHeading.apply(this, [this.handle, x, y, z, heading]);
 };
 
 mp.Vehicle.prototype.overrideCoordsAndHeading ??= function (x, y, z, heading) {
-    let $res = natives.networkOverrideCoordsAndHeading(this.handle, x, y, z, heading);
+    return mp.game2.network.overrideCoordsAndHeading.apply(this, [this.handle, x, y, z, heading]);
 };
 
 mp.Player.prototype.applyCachedPlayerHeadBlendData ??= function (player) {
-    let $res = natives.networkApplyCachedPlayerHeadBlendData(this.handle, player);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.applyCachedPlayerHeadBlendData.apply(this, [this.handle, player]);
 };
 
 mp.Ped.prototype.applyCachedPlayerHeadBlendData ??= function (player) {
-    let $res = natives.networkApplyCachedPlayerHeadBlendData(this.handle, player);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.network.applyCachedPlayerHeadBlendData.apply(this, [this.handle, player]);
 };
 
 mp.Player.prototype.allowLocalEntityAttachment ??= function (toggle) {
-    let $res = natives.networkAllowRemoteAttachmentModification(this.handle, toggle | 0);
+    return mp.game2.network.allowLocalEntityAttachment.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.allowLocalEntityAttachment ??= function (toggle) {
-    let $res = natives.networkAllowRemoteAttachmentModification(this.handle, toggle | 0);
+    return mp.game2.network.allowLocalEntityAttachment.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.allowLocalEntityAttachment ??= function (toggle) {
-    let $res = natives.networkAllowRemoteAttachmentModification(this.handle, toggle | 0);
+    return mp.game2.network.allowLocalEntityAttachment.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.allowLocalEntityAttachment ??= function (toggle) {
-    let $res = natives.networkAllowRemoteAttachmentModification(this.handle, toggle | 0);
+    return mp.game2.network.allowLocalEntityAttachment.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.getLastVelocityReceived ??= function () {
-    let $res = natives.networkGetLastVelReceivedOverNetwork(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.network.getLastVelocityReceived.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getLastVelocityReceived ??= function () {
-    let $res = natives.networkGetLastVelReceivedOverNetwork(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.network.getLastVelocityReceived.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getLastVelocityReceived ??= function () {
-    let $res = natives.networkGetLastVelReceivedOverNetwork(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.network.getLastVelocityReceived.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getLastVelocityReceived ??= function () {
-    let $res = natives.networkGetLastVelReceivedOverNetwork(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.network.getLastVelocityReceived.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.placeOnGroundProperly ??= function () {
-    let $res = natives.placeObjectOnGroundProperly(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.object.placeOnGroundProperly.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.placeOnGroundProperly2 ??= function () {
-    let $res = natives.placeObjectOnGroundOrObjectProperly(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.object.placeOnGroundProperly2.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.slide ??= function (toX, toY, toZ, speedX, speedY, speedZ, collision) {
-    let $res = natives.slideObject(this.handle, toX, toY, toZ, speedX, speedY, speedZ, collision | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.object.slide.apply(this, [this.handle, toX, toY, toZ, speedX, speedY, speedZ, collision]);
 };
 
 mp.Object.prototype.setTargettable ??= function (targettable) {
-    let $res = natives.setObjectTargettable(this.handle, targettable | 0);
+    return mp.game2.object.setTargettable.apply(this, [this.handle, targettable]);
 };
 
 mp.Object.prototype.setForceVehiclesToAvoid ??= function (toggle) {
-    let $res = natives.setObjectForceVehiclesToAvoid(this.handle, toggle | 0);
+    return mp.game2.object.setForceVehiclesToAvoid.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.hasBeenBroken ??= function (p1) {
-    let $res = natives.hasObjectBeenBroken(this.handle, p1 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.object.hasBeenBroken.apply(this, [this.handle, p1]);
 };
 
 mp.Object.prototype.getOffsetFromCoords ??= function (yPos, zPos, heading, xOffset, yOffset, zOffset) {
-    let $res = natives.getOffsetFromCoordAndHeadingInWorldCoords(this.handle, yPos, zPos, heading, xOffset, yOffset, zOffset);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.object.getOffsetFromCoords.apply(this, [this.handle, yPos, zPos, heading, xOffset, yOffset, zOffset]);
 };
 
 mp.Object.prototype.isEntirelyInsideGarage ??= function (entity, p2, p3) {
-    let $res = natives.isObjectEntirelyInsideGarage(this.handle, entity, p2, p3);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.object.isEntirelyInsideGarage.apply(this, [this.handle, entity, p2, p3]);
 };
 
 mp.Object.prototype.isPartiallyInsideGarage ??= function (entity, p2) {
-    let $res = natives.isObjectPartiallyInsideGarage(this.handle, entity, p2);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.object.isPartiallyInsideGarage.apply(this, [this.handle, entity, p2]);
 };
 
 mp.Object.prototype.doesOfTypeExistAtCoords ??= function (y, z, radius, hash, p5) {
-    let $res = natives.doesObjectOfTypeExistAtCoords(this.handle, y, z, radius, hash, p5 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.object.doesOfTypeExistAtCoords.apply(this, [this.handle, y, z, radius, hash, p5]);
 };
 
 mp.Object.prototype.setAllowLowLodBuoyancy ??= function (toggle) {
-    let $res = natives.setObjectAllowLowLodBuoyancy(this.handle, toggle | 0);
+    return mp.game2.object.setAllowLowLodBuoyancy.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.setPhysicsParams ??= function (weight, p2, p3, p4, p5, gravity, p7, p8, p9, p10, buoyancy) {
-    let $res = natives.setObjectPhysicsParams(this.handle, weight, p2, p3, p4, p5, gravity, p7, p8, p9, p10, buoyancy);
+    return mp.game2.object.setPhysicsParams.apply(this, [this.handle, weight, p2, p3, p4, p5, gravity, p7, p8, p9, p10, buoyancy]);
 };
 
 mp.Object.prototype.getFragmentDamageHealth ??= function (p1) {
-    let $res = natives.getObjectFragmentDamageHealth(this.handle, p1 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.object.getFragmentDamageHealth.apply(this, [this.handle, p1]);
 };
 
 mp.Object.prototype.setActivatePhysicsAsSoonAsItIsUnfrozen ??= function (toggle) {
-    let $res = natives.setActivateObjectPhysicsAsSoonAsItIsUnfrozen(this.handle, toggle | 0);
+    return mp.game2.object.setActivatePhysicsAsSoonAsItIsUnfrozen.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.isNearPoint ??= function (x, y, z, range) {
-    let $res = natives.isObjectNearPoint(this.handle, x, y, z, range);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.object.isNearPoint.apply(this, [this.handle, x, y, z, range]);
 };
 
 mp.Object.prototype.removeHighDetailModel ??= function () {
-    let $res = natives.removeObjectHighDetailModel(this.handle);
+    return mp.game2.object.removeHighDetailModel.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.breakFragmentChild ??= function (p1, p2) {
-    let $res = natives.breakObjectFragmentChild(this.handle, p1, p2 | 0);
+    return mp.game2.object.breakFragmentChild.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Object.prototype.trackVisibility ??= function () {
-    let $res = natives.trackObjectVisibility(this.handle);
+    return mp.game2.object.trackVisibility.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.setCreateWeaponLightSource ??= function (toggle) {
-    let $res = natives.setCutscenesWeaponFlashlightOnThisFrame(this.handle, toggle | 0);
+    return mp.game2.object.setCreateWeaponLightSource.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.setStateOfRayfireMap ??= function (state) {
-    let $res = natives.setStateOfRayfireMapObject(this.handle, state);
+    return mp.game2.object.setStateOfRayfireMap.apply(this, [this.handle, state]);
 };
 
 mp.Object.prototype.getStateOfRayfireMap ??= function () {
-    let $res = natives.getStateOfRayfireMapObject(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.object.getStateOfRayfireMap.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.doesRayfireMapExist ??= function () {
-    let $res = natives.doesRayfireMapObjectExist(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.object.doesRayfireMapExist.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getRayfireMapAnimPhase ??= function () {
-    let $res = natives.getRayfireMapObjectAnimPhase(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.object.getRayfireMapAnimPhase.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.attachPortablePickupToPed ??= function (ped) {
-    let $res = natives.attachPortablePickupToPed(this.handle, ped);
+    return mp.game2.object.attachPortablePickupToPed.apply(this, [this.handle, ped]);
 };
 
 mp.Object.prototype.detachPortablePickupFromPed ??= function () {
-    let $res = natives.detachPortablePickupFromPed(this.handle);
+    return mp.game2.object.detachPortablePickupFromPed.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.hidePickup ??= function (toggle) {
-    let $res = natives.hidePortablePickupWhenDetached(this.handle, toggle | 0);
+    return mp.game2.object.hidePickup.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.doesPickupExist ??= function () {
-    let $res = natives.doesPickupObjectExist(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.object.doesPickupExist.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.isAPortablePickup ??= function () {
-    let $res = natives.isObjectAPickup(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.object.isAPortablePickup.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.isAPickup ??= function () {
-    let $res = natives.isObjectAPortablePickup(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.object.isAPickup.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.setTeamPickup ??= function (p1, p2) {
-    let $res = natives.setTeamPickupObject(this.handle, p1, p2 | 0);
+    return mp.game2.object.setTeamPickup.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Object.prototype.preventCollectionOfPortablePickup ??= function (p1, p2) {
-    let $res = natives.preventCollectionOfPortablePickup(this.handle, p1 | 0, p2 | 0);
+    return mp.game2.object.preventCollectionOfPortablePickup.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Object.prototype.isPickupWeaponValid ??= function () {
-    let $res = natives.isPickupWeaponObjectValid(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.object.isPickupWeaponValid.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getTextureVariation ??= function () {
-    let $res = natives.getObjectTintIndex(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.object.getTextureVariation.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.setTextureVariation ??= function (textureVariation) {
-    let $res = natives.setObjectTintIndex(this.handle, textureVariation);
+    return mp.game2.object.setTextureVariation.apply(this, [this.handle, textureVariation]);
 };
 
 mp.Object.prototype.setLightColor ??= function (p1, r, g, b) {
-    let $res = natives.setPropLightColor(this.handle, p1 | 0, r, g, b);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.object.setLightColor.apply(this, [this.handle, p1, r, g, b]);
 };
 
 mp.Object.prototype.setStuntPropSpeedup ??= function (p1) {
-    let $res = natives.setObjectSpeedBoostAmount(this.handle, p1);
+    return mp.game2.object.setStuntPropSpeedup.apply(this, [this.handle, p1]);
 };
 
 mp.Object.prototype.setStuntPropDuration ??= function (duration) {
-    let $res = natives.setObjectSpeedBoostDuration(this.handle, duration);
+    return mp.game2.object.setStuntPropDuration.apply(this, [this.handle, duration]);
 };
 
 mp.Object.prototype.markForDeletion ??= function () {
-    let $res = natives.onlyCleanUpObjectWhenOutOfRange(this.handle);
+    return mp.game2.object.markForDeletion.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.setEnableArenaPropPhysics ??= function (toggle, p2) {
-    let $res = natives.setDriveArticulatedJoint(this.handle, toggle | 0, p2);
+    return mp.game2.object.setEnableArenaPropPhysics.apply(this, [this.handle, toggle, p2]);
 };
 
 mp.Object.prototype.setEnableArenaPropPhysicsOnPed ??= function (toggle, p2, ped) {
-    let $res = natives.setDriveArticulatedJointWithInflictor(this.handle, toggle | 0, p2, ped);
+    return mp.game2.object.setEnableArenaPropPhysicsOnPed.apply(this, [this.handle, toggle, p2, ped]);
 };
 
 mp.Object.prototype.getIsArenaPropPhysicsDisabled ??= function (p1) {
-    let $res = natives.getIsArticulatedJointAtMinAngle(this.handle, p1);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.object.getIsArenaPropPhysicsDisabled.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.setPedPathsInArea ??= function (y1, z1, x2, y2, z2, unknown, p7) {
-    let $res = natives.setPedPathsInArea(this.handle, y1, z1, x2, y2, z2, unknown | 0, p7 | 0);
+    return mp.game2.pathfind.setPedPathsInArea.apply(this, [this.handle, y1, z1, x2, y2, z2, unknown, p7]);
 };
 
 mp.Ped.prototype.setPedPathsInArea ??= function (y1, z1, x2, y2, z2, unknown, p7) {
-    let $res = natives.setPedPathsInArea(this.handle, y1, z1, x2, y2, z2, unknown | 0, p7 | 0);
+    return mp.game2.pathfind.setPedPathsInArea.apply(this, [this.handle, y1, z1, x2, y2, z2, unknown, p7]);
 };
 
 mp.Vehicle.prototype.getVehicleNodeProperties ??= function (y, z) {
-    let $res = natives.getVehicleNodeProperties(this.handle, y, z, 0, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.density = $res[1];
-    $resObj.flags = $res[2];
-    $resObj.result = $res[0] == 1;
-    return $resObj;
+    return mp.game2.pathfind.getVehicleNodeProperties.apply(this, [this.handle, y, z]);
 };
 
 mp.Vehicle.prototype.isVehicleNodeIdValid ??= function () {
-    let $res = natives.isVehicleNodeIdValid(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.pathfind.isVehicleNodeIdValid.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getVehicleNodePosition ??= function () {
-    let $res = natives.getVehicleNodePosition(this.handle, undefined);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.outPosition = new mp.Vector3($res[1]);
-    return $resObj.outPosition;
+    return mp.game2.pathfind.getVehicleNodePosition.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getVehicleNodeIsGpsAllowed ??= function () {
-    let $res = natives.getVehicleNodeIsGpsAllowed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.pathfind.getVehicleNodeIsGpsAllowed.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getVehicleNodeIsSwitchedOff ??= function () {
-    let $res = natives.getVehicleNodeIsSwitchedOff(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.pathfind.getVehicleNodeIsSwitchedOff.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setPedPathsBackToOriginal ??= function (p1, p2, p3, p4, p5, p6) {
-    let $res = natives.setPedPathsBackToOriginal(this.handle, p1, p2, p3, p4, p5, p6 | 0);
+    return mp.game2.pathfind.setPedPathsBackToOriginal.apply(this, [this.handle, p1, p2, p3, p4, p5, p6]);
 };
 
 mp.Ped.prototype.setPedPathsBackToOriginal ??= function (p1, p2, p3, p4, p5, p6) {
-    let $res = natives.setPedPathsBackToOriginal(this.handle, p1, p2, p3, p4, p5, p6 | 0);
+    return mp.game2.pathfind.setPedPathsBackToOriginal.apply(this, [this.handle, p1, p2, p3, p4, p5, p6]);
 };
 
 mp.Player.prototype.clone ??= function (isNetwork, bScriptHostPed, copyHeadBlendFlag) {
-    let $res = natives.clonePed(this.handle, isNetwork | 0, bScriptHostPed | 0, copyHeadBlendFlag | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.clone.apply(this, [this.handle, isNetwork, bScriptHostPed, copyHeadBlendFlag]);
 };
 
 mp.Ped.prototype.clone ??= function (isNetwork, bScriptHostPed, copyHeadBlendFlag) {
-    let $res = natives.clonePed(this.handle, isNetwork | 0, bScriptHostPed | 0, copyHeadBlendFlag | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.clone.apply(this, [this.handle, isNetwork, bScriptHostPed, copyHeadBlendFlag]);
 };
 
 mp.Player.prototype.cloneEx ??= function (isNetwork, bScriptHostPed, copyHeadBlendFlag, p4) {
-    let $res = natives.clonePedAlt(this.handle, isNetwork | 0, bScriptHostPed | 0, copyHeadBlendFlag | 0, p4 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.cloneEx.apply(this, [this.handle, isNetwork, bScriptHostPed, copyHeadBlendFlag, p4]);
 };
 
 mp.Ped.prototype.cloneEx ??= function (isNetwork, bScriptHostPed, copyHeadBlendFlag, p4) {
-    let $res = natives.clonePedAlt(this.handle, isNetwork | 0, bScriptHostPed | 0, copyHeadBlendFlag | 0, p4 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.cloneEx.apply(this, [this.handle, isNetwork, bScriptHostPed, copyHeadBlendFlag, p4]);
 };
 
 mp.Player.prototype.cloneToTarget ??= function (targetPed) {
-    let $res = natives.clonePedToTarget(this.handle, targetPed);
+    return mp.game2.ped.cloneToTarget.apply(this, [this.handle, targetPed]);
 };
 
 mp.Ped.prototype.cloneToTarget ??= function (targetPed) {
-    let $res = natives.clonePedToTarget(this.handle, targetPed);
+    return mp.game2.ped.cloneToTarget.apply(this, [this.handle, targetPed]);
 };
 
 mp.Player.prototype.cloneToTargetEx ??= function (targetPed, p2) {
-    let $res = natives.clonePedToTargetAlt(this.handle, targetPed, p2 | 0);
+    return mp.game2.ped.cloneToTargetEx.apply(this, [this.handle, targetPed, p2]);
 };
 
 mp.Ped.prototype.cloneToTargetEx ??= function (targetPed, p2) {
-    let $res = natives.clonePedToTargetAlt(this.handle, targetPed, p2 | 0);
+    return mp.game2.ped.cloneToTargetEx.apply(this, [this.handle, targetPed, p2]);
 };
 
 mp.Player.prototype.isInVehicle ??= function (vehicle, atGetIn) {
-    let $res = natives.isPedInVehicle(this.handle, vehicle, atGetIn | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInVehicle.apply(this, [this.handle, vehicle, atGetIn]);
 };
 
 mp.Ped.prototype.isInVehicle ??= function (vehicle, atGetIn) {
-    let $res = natives.isPedInVehicle(this.handle, vehicle, atGetIn | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInVehicle.apply(this, [this.handle, vehicle, atGetIn]);
 };
 
 mp.Player.prototype.isInModel ??= function (modelHash) {
-    let $res = natives.isPedInModel(this.handle, modelHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInModel.apply(this, [this.handle, modelHash]);
 };
 
 mp.Ped.prototype.isInModel ??= function (modelHash) {
-    let $res = natives.isPedInModel(this.handle, modelHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInModel.apply(this, [this.handle, modelHash]);
 };
 
 mp.Player.prototype.isInAnyVehicle ??= function (atGetIn) {
-    let $res = natives.isPedInAnyVehicle(this.handle, atGetIn | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInAnyVehicle.apply(this, [this.handle, atGetIn]);
 };
 
 mp.Ped.prototype.isInAnyVehicle ??= function (atGetIn) {
-    let $res = natives.isPedInAnyVehicle(this.handle, atGetIn | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInAnyVehicle.apply(this, [this.handle, atGetIn]);
 };
 
 mp.Player.prototype.isInjured ??= function () {
-    let $res = natives.isPedInjured(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInjured.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isInjured ??= function () {
-    let $res = natives.isPedInjured(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInjured.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isHurt ??= function () {
-    let $res = natives.isPedHurt(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isHurt.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isHurt ??= function () {
-    let $res = natives.isPedHurt(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isHurt.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isFatallyInjured ??= function () {
-    let $res = natives.isPedFatallyInjured(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isFatallyInjured.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isFatallyInjured ??= function () {
-    let $res = natives.isPedFatallyInjured(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isFatallyInjured.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isDeadOrDying ??= function (p1) {
-    let $res = natives.isPedDeadOrDying(this.handle, p1 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isDeadOrDying.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.isDeadOrDying ??= function (p1) {
-    let $res = natives.isPedDeadOrDying(this.handle, p1 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isDeadOrDying.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.isConversationDead ??= function () {
-    let $res = natives.isConversationPedDead(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isConversationDead.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isConversationDead ??= function () {
-    let $res = natives.isConversationPedDead(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isConversationDead.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isAimingFromCover ??= function () {
-    let $res = natives.isPedAimingFromCover(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isAimingFromCover.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isAimingFromCover ??= function () {
-    let $res = natives.isPedAimingFromCover(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isAimingFromCover.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isReloading ??= function () {
-    let $res = natives.isPedReloading(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isReloading.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isReloading ??= function () {
-    let $res = natives.isPedReloading(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isReloading.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isAPlayer ??= function () {
-    let $res = natives.isPedAPlayer(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isAPlayer.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isAPlayer ??= function () {
-    let $res = natives.isPedAPlayer(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isAPlayer.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.createInsideVehicle ??= function (pedType, modelHash, seat, isNetwork, bScriptHostPed) {
-    let $res = natives.createPedInsideVehicle(this.handle, pedType, modelHash, seat, isNetwork | 0, bScriptHostPed | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.createInsideVehicle.apply(this, [this.handle, pedType, modelHash, seat, isNetwork, bScriptHostPed]);
 };
 
 mp.Player.prototype.setDesiredHeading ??= function (heading) {
-    let $res = natives.setPedDesiredHeading(this.handle, heading);
+    return mp.game2.ped.setDesiredHeading.apply(this, [this.handle, heading]);
 };
 
 mp.Ped.prototype.setDesiredHeading ??= function (heading) {
-    let $res = natives.setPedDesiredHeading(this.handle, heading);
+    return mp.game2.ped.setDesiredHeading.apply(this, [this.handle, heading]);
 };
 
 mp.Player.prototype.freezeCameraRotation ??= function () {
-    let $res = natives.forceAllHeadingValuesToAlign(this.handle);
+    return mp.game2.ped.freezeCameraRotation.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.freezeCameraRotation ??= function () {
-    let $res = natives.forceAllHeadingValuesToAlign(this.handle);
+    return mp.game2.ped.freezeCameraRotation.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isFacingPed ??= function (otherPed, angle) {
-    let $res = natives.isPedFacingPed(this.handle, otherPed, angle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isFacingPed.apply(this, [this.handle, otherPed, angle]);
 };
 
 mp.Ped.prototype.isFacingPed ??= function (otherPed, angle) {
-    let $res = natives.isPedFacingPed(this.handle, otherPed, angle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isFacingPed.apply(this, [this.handle, otherPed, angle]);
 };
 
 mp.Player.prototype.isInMeleeCombat ??= function () {
-    let $res = natives.isPedInMeleeCombat(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInMeleeCombat.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isInMeleeCombat ??= function () {
-    let $res = natives.isPedInMeleeCombat(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInMeleeCombat.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isStopped ??= function () {
-    let $res = natives.isPedStopped(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isStopped.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isStopped ??= function () {
-    let $res = natives.isPedStopped(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isStopped.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isShootingInArea ??= function (x1, y1, z1, x2, y2, z2, p7, p8) {
-    let $res = natives.isPedShootingInArea(this.handle, x1, y1, z1, x2, y2, z2, p7 | 0, p8 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isShootingInArea.apply(this, [this.handle, x1, y1, z1, x2, y2, z2, p7, p8]);
 };
 
 mp.Ped.prototype.isShootingInArea ??= function (x1, y1, z1, x2, y2, z2, p7, p8) {
-    let $res = natives.isPedShootingInArea(this.handle, x1, y1, z1, x2, y2, z2, p7 | 0, p8 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isShootingInArea.apply(this, [this.handle, x1, y1, z1, x2, y2, z2, p7, p8]);
 };
 
 mp.Player.prototype.isShooting ??= function () {
-    let $res = natives.isPedShooting(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isShooting.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isShooting ??= function () {
-    let $res = natives.isPedShooting(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isShooting.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setAccuracy ??= function (accuracy) {
-    let $res = natives.setPedAccuracy(this.handle, accuracy);
+    return mp.game2.ped.setAccuracy.apply(this, [this.handle, accuracy]);
 };
 
 mp.Ped.prototype.setAccuracy ??= function (accuracy) {
-    let $res = natives.setPedAccuracy(this.handle, accuracy);
+    return mp.game2.ped.setAccuracy.apply(this, [this.handle, accuracy]);
 };
 
 mp.Player.prototype.getAccuracy ??= function () {
-    let $res = natives.getPedAccuracy(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getAccuracy.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getAccuracy ??= function () {
-    let $res = natives.getPedAccuracy(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getAccuracy.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isModel ??= function (modelHash) {
-    let $res = natives.isPedModel(this.handle, modelHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isModel.apply(this, [this.handle, modelHash]);
 };
 
 mp.Ped.prototype.isModel ??= function (modelHash) {
-    let $res = natives.isPedModel(this.handle, modelHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isModel.apply(this, [this.handle, modelHash]);
 };
 
 mp.Player.prototype.explodeHead ??= function (weaponHash) {
-    let $res = natives.explodePedHead(this.handle, weaponHash);
+    return mp.game2.ped.explodeHead.apply(this, [this.handle, weaponHash]);
 };
 
 mp.Ped.prototype.explodeHead ??= function (weaponHash) {
-    let $res = natives.explodePedHead(this.handle, weaponHash);
+    return mp.game2.ped.explodeHead.apply(this, [this.handle, weaponHash]);
 };
 
 mp.Player.prototype.addArmourTo ??= function (amount) {
-    let $res = natives.addArmourToPed(this.handle, amount);
+    return mp.game2.ped.addArmourTo.apply(this, [this.handle, amount]);
 };
 
 mp.Ped.prototype.addArmourTo ??= function (amount) {
-    let $res = natives.addArmourToPed(this.handle, amount);
+    return mp.game2.ped.addArmourTo.apply(this, [this.handle, amount]);
 };
 
 mp.Player.prototype.setArmour ??= function (amount) {
-    let $res = natives.setPedArmour(this.handle, amount);
+    return mp.game2.ped.setArmour.apply(this, [this.handle, amount]);
 };
 
 mp.Ped.prototype.setArmour ??= function (amount) {
-    let $res = natives.setPedArmour(this.handle, amount);
+    return mp.game2.ped.setArmour.apply(this, [this.handle, amount]);
 };
 
 mp.Player.prototype.setIntoVehicle ??= function (vehicle, seatIndex) {
-    let $res = natives.setPedIntoVehicle(this.handle, vehicle, seatIndex);
+    return mp.game2.ped.setIntoVehicle.apply(this, [this.handle, vehicle, seatIndex]);
 };
 
 mp.Ped.prototype.setIntoVehicle ??= function (vehicle, seatIndex) {
-    let $res = natives.setPedIntoVehicle(this.handle, vehicle, seatIndex);
+    return mp.game2.ped.setIntoVehicle.apply(this, [this.handle, vehicle, seatIndex]);
 };
 
 mp.Player.prototype.setAllowVehiclesOverride ??= function (toggle) {
-    let $res = natives.setPedAllowVehiclesOverride(this.handle, toggle | 0);
+    return mp.game2.ped.setAllowVehiclesOverride.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setAllowVehiclesOverride ??= function (toggle) {
-    let $res = natives.setPedAllowVehiclesOverride(this.handle, toggle | 0);
+    return mp.game2.ped.setAllowVehiclesOverride.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.createRandomAsDriver ??= function (returnHandle) {
-    let $res = natives.createRandomPedAsDriver(this.handle, returnHandle | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.createRandomAsDriver.apply(this, [this.handle, returnHandle]);
 };
 
 mp.Player.prototype.setMoveAnimsBlendOut ??= function () {
-    let $res = natives.setPedMoveAnimsBlendOut(this.handle);
+    return mp.game2.ped.setMoveAnimsBlendOut.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.setMoveAnimsBlendOut ??= function () {
-    let $res = natives.setPedMoveAnimsBlendOut(this.handle);
+    return mp.game2.ped.setMoveAnimsBlendOut.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setCanBeDraggedOut ??= function (toggle) {
-    let $res = natives.setPedCanBeDraggedOut(this.handle, toggle | 0);
+    return mp.game2.ped.setCanBeDraggedOut.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setCanBeDraggedOut ??= function (toggle) {
-    let $res = natives.setPedCanBeDraggedOut(this.handle, toggle | 0);
+    return mp.game2.ped.setCanBeDraggedOut.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.isMale ??= function () {
-    let $res = natives.isPedMale(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isMale.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isMale ??= function () {
-    let $res = natives.isPedMale(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isMale.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isHuman ??= function () {
-    let $res = natives.isPedHuman(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isHuman.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isHuman ??= function () {
-    let $res = natives.isPedHuman(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isHuman.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getVehicleIsIn ??= function (includeLastVehicle) {
-    let $res = natives.getVehiclePedIsIn(this.handle, includeLastVehicle | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getVehicleIsIn.apply(this, [this.handle, includeLastVehicle]);
 };
 
 mp.Player.prototype.resetLastVehicle ??= function () {
-    let $res = natives.resetPedLastVehicle(this.handle);
+    return mp.game2.ped.resetLastVehicle.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.resetLastVehicle ??= function () {
-    let $res = natives.resetPedLastVehicle(this.handle);
+    return mp.game2.ped.resetLastVehicle.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setDensityMultiplierThisFrame ??= function () {
-    let $res = natives.setPedDensityMultiplierThisFrame(this.handle);
+    return mp.game2.ped.setDensityMultiplierThisFrame.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.setDensityMultiplierThisFrame ??= function () {
-    let $res = natives.setPedDensityMultiplierThisFrame(this.handle);
+    return mp.game2.ped.setDensityMultiplierThisFrame.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setNonCreationArea ??= function (y1, z1, x2, y2, z2) {
-    let $res = natives.setPedNonCreationArea(this.handle, y1, z1, x2, y2, z2);
+    return mp.game2.ped.setNonCreationArea.apply(this, [this.handle, y1, z1, x2, y2, z2]);
 };
 
 mp.Ped.prototype.setNonCreationArea ??= function (y1, z1, x2, y2, z2) {
-    let $res = natives.setPedNonCreationArea(this.handle, y1, z1, x2, y2, z2);
+    return mp.game2.ped.setNonCreationArea.apply(this, [this.handle, y1, z1, x2, y2, z2]);
 };
 
 mp.Player.prototype.isOnMount ??= function () {
-    let $res = natives.isPedOnMount(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isOnMount.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isOnMount ??= function () {
-    let $res = natives.isPedOnMount(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isOnMount.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getMount ??= function () {
-    let $res = natives.getMount(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getMount.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getMount ??= function () {
-    let $res = natives.getMount(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getMount.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isOnVehicle ??= function () {
-    let $res = natives.isPedOnVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isOnVehicle.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isOnVehicle ??= function () {
-    let $res = natives.isPedOnVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isOnVehicle.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isOnSpecificVehicle ??= function (vehicle) {
-    let $res = natives.isPedOnSpecificVehicle(this.handle, vehicle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isOnSpecificVehicle.apply(this, [this.handle, vehicle]);
 };
 
 mp.Ped.prototype.isOnSpecificVehicle ??= function (vehicle) {
-    let $res = natives.isPedOnSpecificVehicle(this.handle, vehicle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isOnSpecificVehicle.apply(this, [this.handle, vehicle]);
 };
 
 mp.Player.prototype.setMoney ??= function (amount) {
-    let $res = natives.setPedMoney(this.handle, amount);
+    return mp.game2.ped.setMoney.apply(this, [this.handle, amount]);
 };
 
 mp.Ped.prototype.setMoney ??= function (amount) {
-    let $res = natives.setPedMoney(this.handle, amount);
+    return mp.game2.ped.setMoney.apply(this, [this.handle, amount]);
 };
 
 mp.Player.prototype.getMoney ??= function () {
-    let $res = natives.getPedMoney(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getMoney.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getMoney ??= function () {
-    let $res = natives.getPedMoney(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getMoney.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setSuffersCriticalHits ??= function (toggle) {
-    let $res = natives.setPedSuffersCriticalHits(this.handle, toggle | 0);
+    return mp.game2.ped.setSuffersCriticalHits.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setSuffersCriticalHits ??= function (toggle) {
-    let $res = natives.setPedSuffersCriticalHits(this.handle, toggle | 0);
+    return mp.game2.ped.setSuffersCriticalHits.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.isSittingInVehicle ??= function (vehicle) {
-    let $res = natives.isPedSittingInVehicle(this.handle, vehicle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isSittingInVehicle.apply(this, [this.handle, vehicle]);
 };
 
 mp.Ped.prototype.isSittingInVehicle ??= function (vehicle) {
-    let $res = natives.isPedSittingInVehicle(this.handle, vehicle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isSittingInVehicle.apply(this, [this.handle, vehicle]);
 };
 
 mp.Player.prototype.isSittingInAnyVehicle ??= function () {
-    let $res = natives.isPedSittingInAnyVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isSittingInAnyVehicle.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isSittingInAnyVehicle ??= function () {
-    let $res = natives.isPedSittingInAnyVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isSittingInAnyVehicle.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isOnFoot ??= function () {
-    let $res = natives.isPedOnFoot(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isOnFoot.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isOnFoot ??= function () {
-    let $res = natives.isPedOnFoot(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isOnFoot.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isOnAnyBike ??= function () {
-    let $res = natives.isPedOnAnyBike(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isOnAnyBike.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isOnAnyBike ??= function () {
-    let $res = natives.isPedOnAnyBike(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isOnAnyBike.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isPlantingBomb ??= function () {
-    let $res = natives.isPedPlantingBomb(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isPlantingBomb.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isPlantingBomb ??= function () {
-    let $res = natives.isPedPlantingBomb(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isPlantingBomb.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getDeadPickupCoords ??= function (p1, p2) {
-    let $res = natives.getDeadPedPickupCoords(this.handle, p1, p2);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.ped.getDeadPickupCoords.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Ped.prototype.getDeadPickupCoords ??= function (p1, p2) {
-    let $res = natives.getDeadPedPickupCoords(this.handle, p1, p2);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.ped.getDeadPickupCoords.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Player.prototype.isInAnyBoat ??= function () {
-    let $res = natives.isPedInAnyBoat(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInAnyBoat.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isInAnyBoat ??= function () {
-    let $res = natives.isPedInAnyBoat(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInAnyBoat.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isInAnySub ??= function () {
-    let $res = natives.isPedInAnySub(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInAnySub.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isInAnySub ??= function () {
-    let $res = natives.isPedInAnySub(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInAnySub.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isInAnyHeli ??= function () {
-    let $res = natives.isPedInAnyHeli(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInAnyHeli.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isInAnyHeli ??= function () {
-    let $res = natives.isPedInAnyHeli(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInAnyHeli.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isInAnyPlane ??= function () {
-    let $res = natives.isPedInAnyPlane(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInAnyPlane.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isInAnyPlane ??= function () {
-    let $res = natives.isPedInAnyPlane(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInAnyPlane.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isInFlyingVehicle ??= function () {
-    let $res = natives.isPedInFlyingVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInFlyingVehicle.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isInFlyingVehicle ??= function () {
-    let $res = natives.isPedInFlyingVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInFlyingVehicle.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setDiesInWater ??= function (toggle) {
-    let $res = natives.setPedDiesInWater(this.handle, toggle | 0);
+    return mp.game2.ped.setDiesInWater.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setDiesInWater ??= function (toggle) {
-    let $res = natives.setPedDiesInWater(this.handle, toggle | 0);
+    return mp.game2.ped.setDiesInWater.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setDiesInSinkingVehicle ??= function (toggle) {
-    let $res = natives.setPedDiesInSinkingVehicle(this.handle, toggle | 0);
+    return mp.game2.ped.setDiesInSinkingVehicle.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setDiesInSinkingVehicle ??= function (toggle) {
-    let $res = natives.setPedDiesInSinkingVehicle(this.handle, toggle | 0);
+    return mp.game2.ped.setDiesInSinkingVehicle.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.getArmour ??= function () {
-    let $res = natives.getPedArmour(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getArmour.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getArmour ??= function () {
-    let $res = natives.getPedArmour(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getArmour.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setStayInVehicleWhenJacked ??= function (toggle) {
-    let $res = natives.setPedStayInVehicleWhenJacked(this.handle, toggle | 0);
+    return mp.game2.ped.setStayInVehicleWhenJacked.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setStayInVehicleWhenJacked ??= function (toggle) {
-    let $res = natives.setPedStayInVehicleWhenJacked(this.handle, toggle | 0);
+    return mp.game2.ped.setStayInVehicleWhenJacked.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setCanBeShotInVehicle ??= function (toggle) {
-    let $res = natives.setPedCanBeShotInVehicle(this.handle, toggle | 0);
+    return mp.game2.ped.setCanBeShotInVehicle.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setCanBeShotInVehicle ??= function (toggle) {
-    let $res = natives.setPedCanBeShotInVehicle(this.handle, toggle | 0);
+    return mp.game2.ped.setCanBeShotInVehicle.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.getLastDamageBone ??= function () {
-    let $res = natives.getPedLastDamageBone(this.handle, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.outBone = $res[1];
-    return $res[0] == 1 ? $resObj.outBone : undefined;
+    return mp.game2.ped.getLastDamageBone.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getLastDamageBone ??= function () {
-    let $res = natives.getPedLastDamageBone(this.handle, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.outBone = $res[1];
-    return $res[0] == 1 ? $resObj.outBone : undefined;
+    return mp.game2.ped.getLastDamageBone.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.clearLastDamageBone ??= function () {
-    let $res = natives.clearPedLastDamageBone(this.handle);
+    return mp.game2.ped.clearLastDamageBone.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.clearLastDamageBone ??= function () {
-    let $res = natives.clearPedLastDamageBone(this.handle);
+    return mp.game2.ped.clearLastDamageBone.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setCanBeTargetted ??= function (toggle) {
-    let $res = natives.setPedCanBeTargetted(this.handle, toggle | 0);
+    return mp.game2.ped.setCanBeTargetted.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setCanBeTargetted ??= function (toggle) {
-    let $res = natives.setPedCanBeTargetted(this.handle, toggle | 0);
+    return mp.game2.ped.setCanBeTargetted.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setCanBeTargettedByTeam ??= function (team, toggle) {
-    let $res = natives.setPedCanBeTargettedByTeam(this.handle, team, toggle | 0);
+    return mp.game2.ped.setCanBeTargettedByTeam.apply(this, [this.handle, team, toggle]);
 };
 
 mp.Ped.prototype.setCanBeTargettedByTeam ??= function (team, toggle) {
-    let $res = natives.setPedCanBeTargettedByTeam(this.handle, team, toggle | 0);
+    return mp.game2.ped.setCanBeTargettedByTeam.apply(this, [this.handle, team, toggle]);
 };
 
 mp.Player.prototype.setCanBeTargettedByPlayer ??= function (player, toggle) {
-    let $res = natives.setPedCanBeTargettedByPlayer(this.handle, player, toggle | 0);
+    return mp.game2.ped.setCanBeTargettedByPlayer.apply(this, [this.handle, player, toggle]);
 };
 
 mp.Ped.prototype.setCanBeTargettedByPlayer ??= function (player, toggle) {
-    let $res = natives.setPedCanBeTargettedByPlayer(this.handle, player, toggle | 0);
+    return mp.game2.ped.setCanBeTargettedByPlayer.apply(this, [this.handle, player, toggle]);
 };
 
 mp.Player.prototype.isInAnyPoliceVehicle ??= function () {
-    let $res = natives.isPedInAnyPoliceVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInAnyPoliceVehicle.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isInAnyPoliceVehicle ??= function () {
-    let $res = natives.isPedInAnyPoliceVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInAnyPoliceVehicle.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.forceToOpenParachute ??= function () {
-    let $res = natives.forcePedToOpenParachute(this.handle);
+    return mp.game2.ped.forceToOpenParachute.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.forceToOpenParachute ??= function () {
-    let $res = natives.forcePedToOpenParachute(this.handle);
+    return mp.game2.ped.forceToOpenParachute.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isInParachuteFreeFall ??= function () {
-    let $res = natives.isPedInParachuteFreeFall(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInParachuteFreeFall.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isInParachuteFreeFall ??= function () {
-    let $res = natives.isPedInParachuteFreeFall(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInParachuteFreeFall.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isFalling ??= function () {
-    let $res = natives.isPedFalling(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isFalling.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isFalling ??= function () {
-    let $res = natives.isPedFalling(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isFalling.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isJumping ??= function () {
-    let $res = natives.isPedJumping(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isJumping.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isJumping ??= function () {
-    let $res = natives.isPedJumping(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isJumping.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isClimbing ??= function () {
-    let $res = natives.isPedClimbing(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isClimbing.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isClimbing ??= function () {
-    let $res = natives.isPedClimbing(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isClimbing.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isVaulting ??= function () {
-    let $res = natives.isPedVaulting(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isVaulting.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isVaulting ??= function () {
-    let $res = natives.isPedVaulting(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isVaulting.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isDiving ??= function () {
-    let $res = natives.isPedDiving(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isDiving.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isDiving ??= function () {
-    let $res = natives.isPedDiving(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isDiving.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isJumpingOutOfVehicle ??= function () {
-    let $res = natives.isPedJumpingOutOfVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isJumpingOutOfVehicle.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isJumpingOutOfVehicle ??= function () {
-    let $res = natives.isPedJumpingOutOfVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isJumpingOutOfVehicle.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isOpeningADoor ??= function () {
-    let $res = natives.isPedOpeningDoor(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isOpeningADoor.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isOpeningADoor ??= function () {
-    let $res = natives.isPedOpeningDoor(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isOpeningADoor.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getParachuteState ??= function () {
-    let $res = natives.getPedParachuteState(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getParachuteState.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getParachuteState ??= function () {
-    let $res = natives.getPedParachuteState(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getParachuteState.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getParachuteLandingType ??= function () {
-    let $res = natives.getPedParachuteLandingType(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getParachuteLandingType.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getParachuteLandingType ??= function () {
-    let $res = natives.getPedParachuteLandingType(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getParachuteLandingType.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setParachuteTintIndex ??= function (tintIndex) {
-    let $res = natives.setPedParachuteTintIndex(this.handle, tintIndex);
+    return mp.game2.ped.setParachuteTintIndex.apply(this, [this.handle, tintIndex]);
 };
 
 mp.Ped.prototype.setParachuteTintIndex ??= function (tintIndex) {
-    let $res = natives.setPedParachuteTintIndex(this.handle, tintIndex);
+    return mp.game2.ped.setParachuteTintIndex.apply(this, [this.handle, tintIndex]);
 };
 
 mp.Player.prototype.getParachuteTintIndex ??= function () {
-    let $res = natives.getPedParachuteTintIndex(this.handle, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.outTintIndex = $res[1];
-    return $resObj.outTintIndex;
+    return mp.game2.ped.getParachuteTintIndex.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getParachuteTintIndex ??= function () {
-    let $res = natives.getPedParachuteTintIndex(this.handle, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.outTintIndex = $res[1];
-    return $resObj.outTintIndex;
+    return mp.game2.ped.getParachuteTintIndex.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setReserveParachuteTintIndex ??= function (p1) {
-    let $res = natives.setPedReserveParachuteTintIndex(this.handle, p1);
+    return mp.game2.ped.setReserveParachuteTintIndex.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.setReserveParachuteTintIndex ??= function (p1) {
-    let $res = natives.setPedReserveParachuteTintIndex(this.handle, p1);
+    return mp.game2.ped.setReserveParachuteTintIndex.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.createParachuteBagObject ??= function (p1, p2) {
-    let $res = natives.createParachuteBagObject(this.handle, p1 | 0, p2 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.createParachuteBagObject.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Ped.prototype.createParachuteBagObject ??= function (p1, p2) {
-    let $res = natives.createParachuteBagObject(this.handle, p1 | 0, p2 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.createParachuteBagObject.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Player.prototype.setDucking ??= function (toggle) {
-    let $res = natives.setPedDucking(this.handle, toggle | 0);
+    return mp.game2.ped.setDucking.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setDucking ??= function (toggle) {
-    let $res = natives.setPedDucking(this.handle, toggle | 0);
+    return mp.game2.ped.setDucking.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.isDucking ??= function () {
-    let $res = natives.isPedDucking(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isDucking.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isDucking ??= function () {
-    let $res = natives.isPedDucking(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isDucking.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isInAnyTaxi ??= function () {
-    let $res = natives.isPedInAnyTaxi(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInAnyTaxi.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isInAnyTaxi ??= function () {
-    let $res = natives.isPedInAnyTaxi(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInAnyTaxi.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setIdRange ??= function (value) {
-    let $res = natives.setPedIdRange(this.handle, value);
+    return mp.game2.ped.setIdRange.apply(this, [this.handle, value]);
 };
 
 mp.Ped.prototype.setIdRange ??= function (value) {
-    let $res = natives.setPedIdRange(this.handle, value);
+    return mp.game2.ped.setIdRange.apply(this, [this.handle, value]);
 };
 
 mp.Player.prototype.setHighlyPerceptive ??= function (toggle) {
-    let $res = natives.setPedHighlyPerceptive(this.handle, toggle | 0);
+    return mp.game2.ped.setHighlyPerceptive.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setHighlyPerceptive ??= function (toggle) {
-    let $res = natives.setPedHighlyPerceptive(this.handle, toggle | 0);
+    return mp.game2.ped.setHighlyPerceptive.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setSeeingRange ??= function (value) {
-    let $res = natives.setPedSeeingRange(this.handle, value);
+    return mp.game2.ped.setSeeingRange.apply(this, [this.handle, value]);
 };
 
 mp.Ped.prototype.setSeeingRange ??= function (value) {
-    let $res = natives.setPedSeeingRange(this.handle, value);
+    return mp.game2.ped.setSeeingRange.apply(this, [this.handle, value]);
 };
 
 mp.Player.prototype.setHearingRange ??= function (value) {
-    let $res = natives.setPedHearingRange(this.handle, value);
+    return mp.game2.ped.setHearingRange.apply(this, [this.handle, value]);
 };
 
 mp.Ped.prototype.setHearingRange ??= function (value) {
-    let $res = natives.setPedHearingRange(this.handle, value);
+    return mp.game2.ped.setHearingRange.apply(this, [this.handle, value]);
 };
 
 mp.Player.prototype.setVisualFieldMinAngle ??= function (value) {
-    let $res = natives.setPedVisualFieldMinAngle(this.handle, value);
+    return mp.game2.ped.setVisualFieldMinAngle.apply(this, [this.handle, value]);
 };
 
 mp.Ped.prototype.setVisualFieldMinAngle ??= function (value) {
-    let $res = natives.setPedVisualFieldMinAngle(this.handle, value);
+    return mp.game2.ped.setVisualFieldMinAngle.apply(this, [this.handle, value]);
 };
 
 mp.Player.prototype.setVisualFieldMaxAngle ??= function (value) {
-    let $res = natives.setPedVisualFieldMaxAngle(this.handle, value);
+    return mp.game2.ped.setVisualFieldMaxAngle.apply(this, [this.handle, value]);
 };
 
 mp.Ped.prototype.setVisualFieldMaxAngle ??= function (value) {
-    let $res = natives.setPedVisualFieldMaxAngle(this.handle, value);
+    return mp.game2.ped.setVisualFieldMaxAngle.apply(this, [this.handle, value]);
 };
 
 mp.Player.prototype.setVisualFieldMinElevationAngle ??= function (angle) {
-    let $res = natives.setPedVisualFieldMinElevationAngle(this.handle, angle);
+    return mp.game2.ped.setVisualFieldMinElevationAngle.apply(this, [this.handle, angle]);
 };
 
 mp.Ped.prototype.setVisualFieldMinElevationAngle ??= function (angle) {
-    let $res = natives.setPedVisualFieldMinElevationAngle(this.handle, angle);
+    return mp.game2.ped.setVisualFieldMinElevationAngle.apply(this, [this.handle, angle]);
 };
 
 mp.Player.prototype.setVisualFieldMaxElevationAngle ??= function (angle) {
-    let $res = natives.setPedVisualFieldMaxElevationAngle(this.handle, angle);
+    return mp.game2.ped.setVisualFieldMaxElevationAngle.apply(this, [this.handle, angle]);
 };
 
 mp.Ped.prototype.setVisualFieldMaxElevationAngle ??= function (angle) {
-    let $res = natives.setPedVisualFieldMaxElevationAngle(this.handle, angle);
+    return mp.game2.ped.setVisualFieldMaxElevationAngle.apply(this, [this.handle, angle]);
 };
 
 mp.Player.prototype.setVisualFieldPeripheralRange ??= function (range) {
-    let $res = natives.setPedVisualFieldPeripheralRange(this.handle, range);
+    return mp.game2.ped.setVisualFieldPeripheralRange.apply(this, [this.handle, range]);
 };
 
 mp.Ped.prototype.setVisualFieldPeripheralRange ??= function (range) {
-    let $res = natives.setPedVisualFieldPeripheralRange(this.handle, range);
+    return mp.game2.ped.setVisualFieldPeripheralRange.apply(this, [this.handle, range]);
 };
 
 mp.Player.prototype.setVisualFieldCenterAngle ??= function (angle) {
-    let $res = natives.setPedVisualFieldCenterAngle(this.handle, angle);
+    return mp.game2.ped.setVisualFieldCenterAngle.apply(this, [this.handle, angle]);
 };
 
 mp.Ped.prototype.setVisualFieldCenterAngle ??= function (angle) {
-    let $res = natives.setPedVisualFieldCenterAngle(this.handle, angle);
+    return mp.game2.ped.setVisualFieldCenterAngle.apply(this, [this.handle, angle]);
 };
 
 mp.Player.prototype.getVisualFieldCenterAngle ??= function () {
-    let $res = natives.getPedVisualFieldCenterAngle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getVisualFieldCenterAngle.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getVisualFieldCenterAngle ??= function () {
-    let $res = natives.getPedVisualFieldCenterAngle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getVisualFieldCenterAngle.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setStealthMovement ??= function (p1, action) {
-    if (typeof action != "string") action = null;
-    let $res = natives.setPedStealthMovement(this.handle, p1 | 0, action);
+    return mp.game2.ped.setStealthMovement.apply(this, [this.handle, p1, action]);
 };
 
 mp.Ped.prototype.setStealthMovement ??= function (p1, action) {
-    if (typeof action != "string") action = null;
-    let $res = natives.setPedStealthMovement(this.handle, p1 | 0, action);
+    return mp.game2.ped.setStealthMovement.apply(this, [this.handle, p1, action]);
 };
 
 mp.Player.prototype.getStealthMovement ??= function () {
-    let $res = natives.getPedStealthMovement(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.getStealthMovement.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getStealthMovement ??= function () {
-    let $res = natives.getPedStealthMovement(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.getStealthMovement.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setAsGroupLeader ??= function (groupId) {
-    let $res = natives.setPedAsGroupLeader(this.handle, groupId);
+    return mp.game2.ped.setAsGroupLeader.apply(this, [this.handle, groupId]);
 };
 
 mp.Ped.prototype.setAsGroupLeader ??= function (groupId) {
-    let $res = natives.setPedAsGroupLeader(this.handle, groupId);
+    return mp.game2.ped.setAsGroupLeader.apply(this, [this.handle, groupId]);
 };
 
 mp.Player.prototype.setAsGroupMember ??= function (groupId) {
-    let $res = natives.setPedAsGroupMember(this.handle, groupId);
+    return mp.game2.ped.setAsGroupMember.apply(this, [this.handle, groupId]);
 };
 
 mp.Ped.prototype.setAsGroupMember ??= function (groupId) {
-    let $res = natives.setPedAsGroupMember(this.handle, groupId);
+    return mp.game2.ped.setAsGroupMember.apply(this, [this.handle, groupId]);
 };
 
 mp.Player.prototype.setCanTeleportToGroupLeader ??= function (groupHandle, toggle) {
-    let $res = natives.setPedCanTeleportToGroupLeader(this.handle, groupHandle, toggle | 0);
+    return mp.game2.ped.setCanTeleportToGroupLeader.apply(this, [this.handle, groupHandle, toggle]);
 };
 
 mp.Ped.prototype.setCanTeleportToGroupLeader ??= function (groupHandle, toggle) {
-    let $res = natives.setPedCanTeleportToGroupLeader(this.handle, groupHandle, toggle | 0);
+    return mp.game2.ped.setCanTeleportToGroupLeader.apply(this, [this.handle, groupHandle, toggle]);
 };
 
 mp.Player.prototype.removeFromGroup ??= function () {
-    let $res = natives.removePedFromGroup(this.handle);
+    return mp.game2.ped.removeFromGroup.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.removeFromGroup ??= function () {
-    let $res = natives.removePedFromGroup(this.handle);
+    return mp.game2.ped.removeFromGroup.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isGroupMember ??= function (groupId) {
-    let $res = natives.isPedGroupMember(this.handle, groupId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isGroupMember.apply(this, [this.handle, groupId]);
 };
 
 mp.Ped.prototype.isGroupMember ??= function (groupId) {
-    let $res = natives.isPedGroupMember(this.handle, groupId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isGroupMember.apply(this, [this.handle, groupId]);
 };
 
 mp.Player.prototype.isHangingOnToVehicle ??= function () {
-    let $res = natives.isPedHangingOnToVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isHangingOnToVehicle.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isHangingOnToVehicle ??= function () {
-    let $res = natives.isPedHangingOnToVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isHangingOnToVehicle.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setMinGroundTimeForStungun ??= function (ms) {
-    let $res = natives.setPedMinGroundTimeForStungun(this.handle, ms);
+    return mp.game2.ped.setMinGroundTimeForStungun.apply(this, [this.handle, ms]);
 };
 
 mp.Ped.prototype.setMinGroundTimeForStungun ??= function (ms) {
-    let $res = natives.setPedMinGroundTimeForStungun(this.handle, ms);
+    return mp.game2.ped.setMinGroundTimeForStungun.apply(this, [this.handle, ms]);
 };
 
 mp.Player.prototype.isProne ??= function () {
-    let $res = natives.isPedProne(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isProne.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isProne ??= function () {
-    let $res = natives.isPedProne(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isProne.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isInCombat ??= function (target) {
-    let $res = natives.isPedInCombat(this.handle, target);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInCombat.apply(this, [this.handle, target]);
 };
 
 mp.Ped.prototype.isInCombat ??= function (target) {
-    let $res = natives.isPedInCombat(this.handle, target);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInCombat.apply(this, [this.handle, target]);
 };
 
 mp.Player.prototype.getTaskCombatTarget ??= function (p1) {
-    let $res = natives.getPedTargetFromCombatPed(this.handle, p1);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getTaskCombatTarget.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.getTaskCombatTarget ??= function (p1) {
-    let $res = natives.getPedTargetFromCombatPed(this.handle, p1);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getTaskCombatTarget.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.canInCombatSeeTarget ??= function (target) {
-    let $res = natives.canPedInCombatSeeTarget(this.handle, target);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.canInCombatSeeTarget.apply(this, [this.handle, target]);
 };
 
 mp.Ped.prototype.canInCombatSeeTarget ??= function (target) {
-    let $res = natives.canPedInCombatSeeTarget(this.handle, target);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.canInCombatSeeTarget.apply(this, [this.handle, target]);
 };
 
 mp.Player.prototype.isDoingDriveby ??= function () {
-    let $res = natives.isPedDoingDriveby(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isDoingDriveby.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isDoingDriveby ??= function () {
-    let $res = natives.isPedDoingDriveby(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isDoingDriveby.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isJacking ??= function () {
-    let $res = natives.isPedJacking(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isJacking.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isJacking ??= function () {
-    let $res = natives.isPedJacking(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isJacking.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isBeingJacked ??= function () {
-    let $res = natives.isPedBeingJacked(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isBeingJacked.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isBeingJacked ??= function () {
-    let $res = natives.isPedBeingJacked(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isBeingJacked.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isBeingStunned ??= function (p1) {
-    let $res = natives.isPedBeingStunned(this.handle, p1);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isBeingStunned.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.isBeingStunned ??= function (p1) {
-    let $res = natives.isPedBeingStunned(this.handle, p1);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isBeingStunned.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.getPedsJacker ??= function () {
-    let $res = natives.getPedsJacker(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getPedsJacker.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getPedsJacker ??= function () {
-    let $res = natives.getPedsJacker(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getPedsJacker.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getJackTarget ??= function () {
-    let $res = natives.getJackTarget(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getJackTarget.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getJackTarget ??= function () {
-    let $res = natives.getJackTarget(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getJackTarget.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isFleeing ??= function () {
-    let $res = natives.isPedFleeing(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isFleeing.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isFleeing ??= function () {
-    let $res = natives.isPedFleeing(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isFleeing.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isInCover ??= function (exceptUseWeapon) {
-    let $res = natives.isPedInCover(this.handle, exceptUseWeapon | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInCover.apply(this, [this.handle, exceptUseWeapon]);
 };
 
 mp.Ped.prototype.isInCover ??= function (exceptUseWeapon) {
-    let $res = natives.isPedInCover(this.handle, exceptUseWeapon | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInCover.apply(this, [this.handle, exceptUseWeapon]);
 };
 
 mp.Player.prototype.isInCoverFacingLeft ??= function () {
-    let $res = natives.isPedInCoverFacingLeft(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInCoverFacingLeft.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isInCoverFacingLeft ??= function () {
-    let $res = natives.isPedInCoverFacingLeft(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInCoverFacingLeft.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isInHighCover ??= function () {
-    let $res = natives.isPedInHighCover(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInHighCover.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isInHighCover ??= function () {
-    let $res = natives.isPedInHighCover(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInHighCover.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isGoingIntoCover ??= function () {
-    let $res = natives.isPedGoingIntoCover(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isGoingIntoCover.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isGoingIntoCover ??= function () {
-    let $res = natives.isPedGoingIntoCover(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isGoingIntoCover.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setPinnedDown ??= function (pinned, i) {
-    let $res = natives.setPedPinnedDown(this.handle, pinned | 0, i);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.setPinnedDown.apply(this, [this.handle, pinned, i]);
 };
 
 mp.Ped.prototype.setPinnedDown ??= function (pinned, i) {
-    let $res = natives.setPedPinnedDown(this.handle, pinned | 0, i);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.setPinnedDown.apply(this, [this.handle, pinned, i]);
 };
 
 mp.Player.prototype.getSeatIsTryingToEnter ??= function () {
-    let $res = natives.getSeatPedIsTryingToEnter(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getSeatIsTryingToEnter.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getSeatIsTryingToEnter ??= function () {
-    let $res = natives.getSeatPedIsTryingToEnter(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getSeatIsTryingToEnter.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getVehicleIsTryingToEnter ??= function () {
-    let $res = natives.getVehiclePedIsTryingToEnter(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getVehicleIsTryingToEnter.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getSourceOfDeath ??= function () {
-    let $res = natives.getPedSourceOfDeath(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getSourceOfDeath.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getSourceOfDeath ??= function () {
-    let $res = natives.getPedSourceOfDeath(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getSourceOfDeath.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getCauseOfDeath ??= function () {
-    let $res = natives.getPedCauseOfDeath(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getCauseOfDeath.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getCauseOfDeath ??= function () {
-    let $res = natives.getPedCauseOfDeath(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getCauseOfDeath.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getTimeOfDeath ??= function () {
-    let $res = natives.getPedTimeOfDeath(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getTimeOfDeath.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getTimeOfDeath ??= function () {
-    let $res = natives.getPedTimeOfDeath(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getTimeOfDeath.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setRelationshipGroupDefaultHash ??= function (hash) {
-    let $res = natives.setPedRelationshipGroupDefaultHash(this.handle, hash);
+    return mp.game2.ped.setRelationshipGroupDefaultHash.apply(this, [this.handle, hash]);
 };
 
 mp.Ped.prototype.setRelationshipGroupDefaultHash ??= function (hash) {
-    let $res = natives.setPedRelationshipGroupDefaultHash(this.handle, hash);
+    return mp.game2.ped.setRelationshipGroupDefaultHash.apply(this, [this.handle, hash]);
 };
 
 mp.Player.prototype.setRelationshipGroupHash ??= function (hash) {
-    let $res = natives.setPedRelationshipGroupHash(this.handle, hash);
+    return mp.game2.ped.setRelationshipGroupHash.apply(this, [this.handle, hash]);
 };
 
 mp.Ped.prototype.setRelationshipGroupHash ??= function (hash) {
-    let $res = natives.setPedRelationshipGroupHash(this.handle, hash);
+    return mp.game2.ped.setRelationshipGroupHash.apply(this, [this.handle, hash]);
 };
 
 mp.Player.prototype.getRelationshipBetweenS ??= function (ped2) {
-    let $res = natives.getRelationshipBetweenPeds(this.handle, ped2);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getRelationshipBetweenS.apply(this, [this.handle, ped2]);
 };
 
 mp.Ped.prototype.getRelationshipBetweenS ??= function (ped2) {
-    let $res = natives.getRelationshipBetweenPeds(this.handle, ped2);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getRelationshipBetweenS.apply(this, [this.handle, ped2]);
 };
 
 mp.Player.prototype.getRelationshipGroupDefaultHash ??= function () {
-    let $res = natives.getPedRelationshipGroupDefaultHash(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getRelationshipGroupDefaultHash.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getRelationshipGroupDefaultHash ??= function () {
-    let $res = natives.getPedRelationshipGroupDefaultHash(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getRelationshipGroupDefaultHash.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getRelationshipGroupHash ??= function () {
-    let $res = natives.getPedRelationshipGroupHash(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getRelationshipGroupHash.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getRelationshipGroupHash ??= function () {
-    let $res = natives.getPedRelationshipGroupHash(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getRelationshipGroupHash.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setToInformRespectedFriends ??= function (radius, maxFriends) {
-    let $res = natives.setPedToInformRespectedFriends(this.handle, radius, maxFriends);
+    return mp.game2.ped.setToInformRespectedFriends.apply(this, [this.handle, radius, maxFriends]);
 };
 
 mp.Ped.prototype.setToInformRespectedFriends ??= function (radius, maxFriends) {
-    let $res = natives.setPedToInformRespectedFriends(this.handle, radius, maxFriends);
+    return mp.game2.ped.setToInformRespectedFriends.apply(this, [this.handle, radius, maxFriends]);
 };
 
 mp.Player.prototype.isRespondingToEvent ??= function (event) {
-    let $res = natives.isPedRespondingToEvent(this.handle, event);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isRespondingToEvent.apply(this, [this.handle, event]);
 };
 
 mp.Ped.prototype.isRespondingToEvent ??= function (event) {
-    let $res = natives.isPedRespondingToEvent(this.handle, event);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isRespondingToEvent.apply(this, [this.handle, event]);
 };
 
 mp.Player.prototype.getEventData ??= function (eventType) {
-    let $res = natives.getPosFromFiredEvent(this.handle, eventType, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.outData = $res[0];
-    return $res[0] == 1 ? $resObj.outData : undefined;
+    return mp.game2.ped.getEventData.apply(this, [this.handle, eventType]);
 };
 
 mp.Ped.prototype.getEventData ??= function (eventType) {
-    let $res = natives.getPosFromFiredEvent(this.handle, eventType, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.outData = $res[0];
-    return $res[0] == 1 ? $resObj.outData : undefined;
+    return mp.game2.ped.getEventData.apply(this, [this.handle, eventType]);
 };
 
 mp.Player.prototype.setFiringPattern ??= function (patternHash) {
-    let $res = natives.setPedFiringPattern(this.handle, patternHash);
+    return mp.game2.ped.setFiringPattern.apply(this, [this.handle, patternHash]);
 };
 
 mp.Ped.prototype.setFiringPattern ??= function (patternHash) {
-    let $res = natives.setPedFiringPattern(this.handle, patternHash);
+    return mp.game2.ped.setFiringPattern.apply(this, [this.handle, patternHash]);
 };
 
 mp.Player.prototype.setShootRate ??= function (shootRate) {
-    let $res = natives.setPedShootRate(this.handle, shootRate);
+    return mp.game2.ped.setShootRate.apply(this, [this.handle, shootRate]);
 };
 
 mp.Ped.prototype.setShootRate ??= function (shootRate) {
-    let $res = natives.setPedShootRate(this.handle, shootRate);
+    return mp.game2.ped.setShootRate.apply(this, [this.handle, shootRate]);
 };
 
 mp.Player.prototype.setCombatFloat ??= function (combatType, p2) {
-    let $res = natives.setCombatFloat(this.handle, combatType, p2);
+    return mp.game2.ped.setCombatFloat.apply(this, [this.handle, combatType, p2]);
 };
 
 mp.Ped.prototype.setCombatFloat ??= function (combatType, p2) {
-    let $res = natives.setCombatFloat(this.handle, combatType, p2);
+    return mp.game2.ped.setCombatFloat.apply(this, [this.handle, combatType, p2]);
 };
 
 mp.Player.prototype.getCombatFloat ??= function (p1) {
-    let $res = natives.getCombatFloat(this.handle, p1);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getCombatFloat.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.getCombatFloat ??= function (p1) {
-    let $res = natives.getCombatFloat(this.handle, p1);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getCombatFloat.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.getGroupIndex ??= function () {
-    let $res = natives.getPedGroupIndex(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getGroupIndex.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getGroupIndex ??= function () {
-    let $res = natives.getPedGroupIndex(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getGroupIndex.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isInGroup ??= function () {
-    let $res = natives.isPedInGroup(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInGroup.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isInGroup ??= function () {
-    let $res = natives.isPedInGroup(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInGroup.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getPlayerIsFollowing ??= function () {
-    let $res = natives.getPlayerPedIsFollowing(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getPlayerIsFollowing.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getPlayerIsFollowing ??= function () {
-    let $res = natives.getPlayerPedIsFollowing(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getPlayerIsFollowing.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getVehicleIsUsing ??= function () {
-    let $res = natives.getVehiclePedIsUsing(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getVehicleIsUsing.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getVehicleIsEntering ??= function () {
-    let $res = natives.getVehiclePedIsEntering(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getVehicleIsEntering.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setGravity ??= function (toggle) {
-    let $res = natives.setPedGravity(this.handle, toggle | 0);
+    return mp.game2.ped.setGravity.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setGravity ??= function (toggle) {
-    let $res = natives.setPedGravity(this.handle, toggle | 0);
+    return mp.game2.ped.setGravity.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.applyDamageTo ??= function (damageAmount, p2, p3) {
-    let $res = natives.applyDamageToPed(this.handle, damageAmount, p2 | 0, p3 | 0);
+    return mp.game2.ped.applyDamageTo.apply(this, [this.handle, damageAmount, p2, p3]);
 };
 
 mp.Ped.prototype.applyDamageTo ??= function (damageAmount, p2, p3) {
-    let $res = natives.applyDamageToPed(this.handle, damageAmount, p2 | 0, p3 | 0);
+    return mp.game2.ped.applyDamageTo.apply(this, [this.handle, damageAmount, p2, p3]);
 };
 
 mp.Player.prototype.getTimeOfLastWeaponDamage ??= function (weaponHash) {
-    let $res = natives.getTimePedDamagedByWeapon(this.handle, weaponHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getTimeOfLastWeaponDamage.apply(this, [this.handle, weaponHash]);
 };
 
 mp.Ped.prototype.getTimeOfLastWeaponDamage ??= function (weaponHash) {
-    let $res = natives.getTimePedDamagedByWeapon(this.handle, weaponHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getTimeOfLastWeaponDamage.apply(this, [this.handle, weaponHash]);
 };
 
 mp.Player.prototype.setAllowedToDuck ??= function (toggle) {
-    let $res = natives.setPedAllowedToDuck(this.handle, toggle | 0);
+    return mp.game2.ped.setAllowedToDuck.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setAllowedToDuck ??= function (toggle) {
-    let $res = natives.setPedAllowedToDuck(this.handle, toggle | 0);
+    return mp.game2.ped.setAllowedToDuck.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setNeverLeavesGroup ??= function (toggle) {
-    let $res = natives.setPedNeverLeavesGroup(this.handle, toggle | 0);
+    return mp.game2.ped.setNeverLeavesGroup.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setNeverLeavesGroup ??= function (toggle) {
-    let $res = natives.setPedNeverLeavesGroup(this.handle, toggle | 0);
+    return mp.game2.ped.setNeverLeavesGroup.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setAsCop ??= function (toggle) {
-    let $res = natives.setPedAsCop(this.handle, toggle | 0);
+    return mp.game2.ped.setAsCop.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setAsCop ??= function (toggle) {
-    let $res = natives.setPedAsCop(this.handle, toggle | 0);
+    return mp.game2.ped.setAsCop.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setMaxTimeInWater ??= function (value) {
-    let $res = natives.setPedMaxTimeInWater(this.handle, value);
+    return mp.game2.ped.setMaxTimeInWater.apply(this, [this.handle, value]);
 };
 
 mp.Ped.prototype.setMaxTimeInWater ??= function (value) {
-    let $res = natives.setPedMaxTimeInWater(this.handle, value);
+    return mp.game2.ped.setMaxTimeInWater.apply(this, [this.handle, value]);
 };
 
 mp.Player.prototype.setMaxTimeUnderwater ??= function (value) {
-    let $res = natives.setPedMaxTimeUnderwater(this.handle, value);
+    return mp.game2.ped.setMaxTimeUnderwater.apply(this, [this.handle, value]);
 };
 
 mp.Ped.prototype.setMaxTimeUnderwater ??= function (value) {
-    let $res = natives.setPedMaxTimeUnderwater(this.handle, value);
+    return mp.game2.ped.setMaxTimeUnderwater.apply(this, [this.handle, value]);
 };
 
 mp.Player.prototype.setVehicleForcedSeatUsage ??= function (vehicle, seatIndex, flags, p4) {
-    let $res = natives.setPedVehicleForcedSeatUsage(this.handle, vehicle, seatIndex, flags, p4);
+    return mp.game2.ped.setVehicleForcedSeatUsage.apply(this, [this.handle, vehicle, seatIndex, flags, p4]);
 };
 
 mp.Ped.prototype.setVehicleForcedSeatUsage ??= function (vehicle, seatIndex, flags, p4) {
-    let $res = natives.setPedVehicleForcedSeatUsage(this.handle, vehicle, seatIndex, flags, p4);
+    return mp.game2.ped.setVehicleForcedSeatUsage.apply(this, [this.handle, vehicle, seatIndex, flags, p4]);
 };
 
 mp.Player.prototype.clearAllVehicleForcedSeatUsage ??= function () {
-    let $res = natives.clearAllPedVehicleForcedSeatUsage(this.handle);
+    return mp.game2.ped.clearAllVehicleForcedSeatUsage.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.clearAllVehicleForcedSeatUsage ??= function () {
-    let $res = natives.clearAllPedVehicleForcedSeatUsage(this.handle);
+    return mp.game2.ped.clearAllVehicleForcedSeatUsage.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setCanBeKnockedOffVehicle ??= function (state) {
-    let $res = natives.setPedCanBeKnockedOffVehicle(this.handle, state);
+    return mp.game2.ped.setCanBeKnockedOffVehicle.apply(this, [this.handle, state]);
 };
 
 mp.Ped.prototype.setCanBeKnockedOffVehicle ??= function (state) {
-    let $res = natives.setPedCanBeKnockedOffVehicle(this.handle, state);
+    return mp.game2.ped.setCanBeKnockedOffVehicle.apply(this, [this.handle, state]);
 };
 
 mp.Player.prototype.canKnockOffVehicle ??= function () {
-    let $res = natives.canKnockPedOffVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.canKnockOffVehicle.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.canKnockOffVehicle ??= function () {
-    let $res = natives.canKnockPedOffVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.canKnockOffVehicle.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.knockOffVehicle ??= function () {
-    let $res = natives.knockPedOffVehicle(this.handle);
+    return mp.game2.ped.knockOffVehicle.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.knockOffVehicle ??= function () {
-    let $res = natives.knockPedOffVehicle(this.handle);
+    return mp.game2.ped.knockOffVehicle.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setCoordsNoGang ??= function (posX, posY, posZ) {
-    let $res = natives.setPedCoordsNoGang(this.handle, posX, posY, posZ);
+    return mp.game2.ped.setCoordsNoGang.apply(this, [this.handle, posX, posY, posZ]);
 };
 
 mp.Ped.prototype.setCoordsNoGang ??= function (posX, posY, posZ) {
-    let $res = natives.setPedCoordsNoGang(this.handle, posX, posY, posZ);
+    return mp.game2.ped.setCoordsNoGang.apply(this, [this.handle, posX, posY, posZ]);
 };
 
 mp.Player.prototype.getAsGroupMember ??= function (memberNumber) {
-    let $res = natives.getPedAsGroupMember(this.handle, memberNumber);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getAsGroupMember.apply(this, [this.handle, memberNumber]);
 };
 
 mp.Ped.prototype.getAsGroupMember ??= function (memberNumber) {
-    let $res = natives.getPedAsGroupMember(this.handle, memberNumber);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getAsGroupMember.apply(this, [this.handle, memberNumber]);
 };
 
 mp.Player.prototype.getAsGroupLeader ??= function () {
-    let $res = natives.getPedAsGroupLeader(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getAsGroupLeader.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getAsGroupLeader ??= function () {
-    let $res = natives.getPedAsGroupLeader(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getAsGroupLeader.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setKeepTask ??= function (toggle) {
-    let $res = natives.setPedKeepTask(this.handle, toggle | 0);
+    return mp.game2.ped.setKeepTask.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setKeepTask ??= function (toggle) {
-    let $res = natives.setPedKeepTask(this.handle, toggle | 0);
+    return mp.game2.ped.setKeepTask.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.isSwimming ??= function () {
-    let $res = natives.isPedSwimming(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isSwimming.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isSwimming ??= function () {
-    let $res = natives.isPedSwimming(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isSwimming.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isSwimmingUnderWater ??= function () {
-    let $res = natives.isPedSwimmingUnderWater(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isSwimmingUnderWater.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isSwimmingUnderWater ??= function () {
-    let $res = natives.isPedSwimmingUnderWater(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isSwimmingUnderWater.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setCoordsKeepVehicle ??= function (posX, posY, posZ) {
-    let $res = natives.setPedCoordsKeepVehicle(this.handle, posX, posY, posZ);
+    return mp.game2.ped.setCoordsKeepVehicle.apply(this, [this.handle, posX, posY, posZ]);
 };
 
 mp.Ped.prototype.setCoordsKeepVehicle ??= function (posX, posY, posZ) {
-    let $res = natives.setPedCoordsKeepVehicle(this.handle, posX, posY, posZ);
+    return mp.game2.ped.setCoordsKeepVehicle.apply(this, [this.handle, posX, posY, posZ]);
 };
 
 mp.Player.prototype.setDiesInVehicle ??= function (toggle) {
-    let $res = natives.setPedDiesInVehicle(this.handle, toggle | 0);
+    return mp.game2.ped.setDiesInVehicle.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setDiesInVehicle ??= function (toggle) {
-    let $res = natives.setPedDiesInVehicle(this.handle, toggle | 0);
+    return mp.game2.ped.setDiesInVehicle.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setAsEnemy ??= function (toggle) {
-    let $res = natives.setPedAsEnemy(this.handle, toggle | 0);
+    return mp.game2.ped.setAsEnemy.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setAsEnemy ??= function (toggle) {
-    let $res = natives.setPedAsEnemy(this.handle, toggle | 0);
+    return mp.game2.ped.setAsEnemy.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setCanSmashGlass ??= function (p1, p2) {
-    let $res = natives.setPedCanSmashGlass(this.handle, p1 | 0, p2 | 0);
+    return mp.game2.ped.setCanSmashGlass.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Ped.prototype.setCanSmashGlass ??= function (p1, p2) {
-    let $res = natives.setPedCanSmashGlass(this.handle, p1 | 0, p2 | 0);
+    return mp.game2.ped.setCanSmashGlass.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Player.prototype.isInAnyTrain ??= function () {
-    let $res = natives.isPedInAnyTrain(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInAnyTrain.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isInAnyTrain ??= function () {
-    let $res = natives.isPedInAnyTrain(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isInAnyTrain.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isGettingIntoAVehicle ??= function () {
-    let $res = natives.isPedGettingIntoAVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isGettingIntoAVehicle.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isGettingIntoAVehicle ??= function () {
-    let $res = natives.isPedGettingIntoAVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isGettingIntoAVehicle.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isTryingToEnterALockedVehicle ??= function () {
-    let $res = natives.isPedTryingToEnterALockedVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isTryingToEnterALockedVehicle.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isTryingToEnterALockedVehicle ??= function () {
-    let $res = natives.isPedTryingToEnterALockedVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isTryingToEnterALockedVehicle.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setEnableHandcuffs ??= function (toggle) {
-    let $res = natives.setEnableHandcuffs(this.handle, toggle | 0);
+    return mp.game2.ped.setEnableHandcuffs.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setEnableHandcuffs ??= function (toggle) {
-    let $res = natives.setEnableHandcuffs(this.handle, toggle | 0);
+    return mp.game2.ped.setEnableHandcuffs.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setEnableBoundAnkles ??= function (toggle) {
-    let $res = natives.setEnableBoundAnkles(this.handle, toggle | 0);
+    return mp.game2.ped.setEnableBoundAnkles.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setEnableBoundAnkles ??= function (toggle) {
-    let $res = natives.setEnableBoundAnkles(this.handle, toggle | 0);
+    return mp.game2.ped.setEnableBoundAnkles.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setEnableScuba ??= function (toggle) {
-    let $res = natives.setEnableScuba(this.handle, toggle | 0);
+    return mp.game2.ped.setEnableScuba.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setEnableScuba ??= function (toggle) {
-    let $res = natives.setEnableScuba(this.handle, toggle | 0);
+    return mp.game2.ped.setEnableScuba.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setCanAttackFriendly ??= function (toggle, p2) {
-    let $res = natives.setCanAttackFriendly(this.handle, toggle | 0, p2 | 0);
+    return mp.game2.ped.setCanAttackFriendly.apply(this, [this.handle, toggle, p2]);
 };
 
 mp.Ped.prototype.setCanAttackFriendly ??= function (toggle, p2) {
-    let $res = natives.setCanAttackFriendly(this.handle, toggle | 0, p2 | 0);
+    return mp.game2.ped.setCanAttackFriendly.apply(this, [this.handle, toggle, p2]);
 };
 
 mp.Player.prototype.getAlertness ??= function () {
-    let $res = natives.getPedAlertness(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getAlertness.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getAlertness ??= function () {
-    let $res = natives.getPedAlertness(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getAlertness.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setAlertness ??= function (value) {
-    let $res = natives.setPedAlertness(this.handle, value);
+    return mp.game2.ped.setAlertness.apply(this, [this.handle, value]);
 };
 
 mp.Ped.prototype.setAlertness ??= function (value) {
-    let $res = natives.setPedAlertness(this.handle, value);
+    return mp.game2.ped.setAlertness.apply(this, [this.handle, value]);
 };
 
 mp.Player.prototype.setGetOutUpsideDownVehicle ??= function (toggle) {
-    let $res = natives.setPedGetOutUpsideDownVehicle(this.handle, toggle | 0);
+    return mp.game2.ped.setGetOutUpsideDownVehicle.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setGetOutUpsideDownVehicle ??= function (toggle) {
-    let $res = natives.setPedGetOutUpsideDownVehicle(this.handle, toggle | 0);
+    return mp.game2.ped.setGetOutUpsideDownVehicle.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setMovementClipset ??= function (clipSet, transitionSpeed) {
-    if (typeof clipSet != "string") clipSet = null;
-    let $res = natives.setPedMovementClipset(this.handle, clipSet, transitionSpeed);
+    return mp.game2.ped.setMovementClipset.apply(this, [this.handle, clipSet, transitionSpeed]);
 };
 
 mp.Ped.prototype.setMovementClipset ??= function (clipSet, transitionSpeed) {
-    if (typeof clipSet != "string") clipSet = null;
-    let $res = natives.setPedMovementClipset(this.handle, clipSet, transitionSpeed);
+    return mp.game2.ped.setMovementClipset.apply(this, [this.handle, clipSet, transitionSpeed]);
 };
 
 mp.Player.prototype.resetMovementClipset ??= function (p1) {
-    let $res = natives.resetPedMovementClipset(this.handle, p1);
+    return mp.game2.ped.resetMovementClipset.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.resetMovementClipset ??= function (p1) {
-    let $res = natives.resetPedMovementClipset(this.handle, p1);
+    return mp.game2.ped.resetMovementClipset.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.setStrafeClipset ??= function (clipSet) {
-    if (typeof clipSet != "string") clipSet = null;
-    let $res = natives.setPedStrafeClipset(this.handle, clipSet);
+    return mp.game2.ped.setStrafeClipset.apply(this, [this.handle, clipSet]);
 };
 
 mp.Ped.prototype.setStrafeClipset ??= function (clipSet) {
-    if (typeof clipSet != "string") clipSet = null;
-    let $res = natives.setPedStrafeClipset(this.handle, clipSet);
+    return mp.game2.ped.setStrafeClipset.apply(this, [this.handle, clipSet]);
 };
 
 mp.Player.prototype.resetStrafeClipset ??= function () {
-    let $res = natives.resetPedStrafeClipset(this.handle);
+    return mp.game2.ped.resetStrafeClipset.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.resetStrafeClipset ??= function () {
-    let $res = natives.resetPedStrafeClipset(this.handle);
+    return mp.game2.ped.resetStrafeClipset.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setWeaponMovementClipset ??= function (clipSet) {
-    if (typeof clipSet != "string") clipSet = null;
-    let $res = natives.setPedWeaponMovementClipset(this.handle, clipSet);
+    return mp.game2.ped.setWeaponMovementClipset.apply(this, [this.handle, clipSet]);
 };
 
 mp.Ped.prototype.setWeaponMovementClipset ??= function (clipSet) {
-    if (typeof clipSet != "string") clipSet = null;
-    let $res = natives.setPedWeaponMovementClipset(this.handle, clipSet);
+    return mp.game2.ped.setWeaponMovementClipset.apply(this, [this.handle, clipSet]);
 };
 
 mp.Player.prototype.resetWeaponMovementClipset ??= function () {
-    let $res = natives.resetPedWeaponMovementClipset(this.handle);
+    return mp.game2.ped.resetWeaponMovementClipset.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.resetWeaponMovementClipset ??= function () {
-    let $res = natives.resetPedWeaponMovementClipset(this.handle);
+    return mp.game2.ped.resetWeaponMovementClipset.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setDriveByClipsetOverride ??= function (clipset) {
-    if (typeof clipset != "string") clipset = null;
-    let $res = natives.setPedDriveByClipsetOverride(this.handle, clipset);
+    return mp.game2.ped.setDriveByClipsetOverride.apply(this, [this.handle, clipset]);
 };
 
 mp.Ped.prototype.setDriveByClipsetOverride ??= function (clipset) {
-    if (typeof clipset != "string") clipset = null;
-    let $res = natives.setPedDriveByClipsetOverride(this.handle, clipset);
+    return mp.game2.ped.setDriveByClipsetOverride.apply(this, [this.handle, clipset]);
 };
 
 mp.Player.prototype.clearDriveByClipsetOverride ??= function () {
-    let $res = natives.clearPedDriveByClipsetOverride(this.handle);
+    return mp.game2.ped.clearDriveByClipsetOverride.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.clearDriveByClipsetOverride ??= function () {
-    let $res = natives.clearPedDriveByClipsetOverride(this.handle);
+    return mp.game2.ped.clearDriveByClipsetOverride.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setCoverClipsetOverride ??= function (p1) {
-    if (typeof p1 != "string") p1 = null;
-    let $res = natives.setPedMotionInCoverClipsetOverride(this.handle, p1);
+    return mp.game2.ped.setCoverClipsetOverride.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.setCoverClipsetOverride ??= function (p1) {
-    if (typeof p1 != "string") p1 = null;
-    let $res = natives.setPedMotionInCoverClipsetOverride(this.handle, p1);
+    return mp.game2.ped.setCoverClipsetOverride.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.clearCoverClipsetOverride ??= function () {
-    let $res = natives.clearPedMotionInCoverClipsetOverride(this.handle);
+    return mp.game2.ped.clearCoverClipsetOverride.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.clearCoverClipsetOverride ??= function () {
-    let $res = natives.clearPedMotionInCoverClipsetOverride(this.handle);
+    return mp.game2.ped.clearCoverClipsetOverride.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setInVehicleContext ??= function (context) {
-    let $res = natives.setPedInVehicleContext(this.handle, context);
+    return mp.game2.ped.setInVehicleContext.apply(this, [this.handle, context]);
 };
 
 mp.Ped.prototype.setInVehicleContext ??= function (context) {
-    let $res = natives.setPedInVehicleContext(this.handle, context);
+    return mp.game2.ped.setInVehicleContext.apply(this, [this.handle, context]);
 };
 
 mp.Player.prototype.resetInVehicleContext ??= function () {
-    let $res = natives.resetPedInVehicleContext(this.handle);
+    return mp.game2.ped.resetInVehicleContext.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.resetInVehicleContext ??= function () {
-    let $res = natives.resetPedInVehicleContext(this.handle);
+    return mp.game2.ped.resetInVehicleContext.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isScriptedScenarioUsingConditionalAnim ??= function (animDict, anim) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof anim != "string") anim = null;
-    let $res = natives.isScriptedScenarioPedUsingConditionalAnim(this.handle, animDict, anim);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isScriptedScenarioUsingConditionalAnim.apply(this, [this.handle, animDict, anim]);
 };
 
 mp.Ped.prototype.isScriptedScenarioUsingConditionalAnim ??= function (animDict, anim) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof anim != "string") anim = null;
-    let $res = natives.isScriptedScenarioPedUsingConditionalAnim(this.handle, animDict, anim);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isScriptedScenarioUsingConditionalAnim.apply(this, [this.handle, animDict, anim]);
 };
 
 mp.Player.prototype.setAlternateWalkAnim ??= function (animDict, animName, p3, p4) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.setPedAlternateWalkAnim(this.handle, animDict, animName, p3, p4 | 0);
+    return mp.game2.ped.setAlternateWalkAnim.apply(this, [this.handle, animDict, animName, p3, p4]);
 };
 
 mp.Ped.prototype.setAlternateWalkAnim ??= function (animDict, animName, p3, p4) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.setPedAlternateWalkAnim(this.handle, animDict, animName, p3, p4 | 0);
+    return mp.game2.ped.setAlternateWalkAnim.apply(this, [this.handle, animDict, animName, p3, p4]);
 };
 
 mp.Player.prototype.clearAlternateWalkAnim ??= function (p1) {
-    let $res = natives.clearPedAlternateWalkAnim(this.handle, p1);
+    return mp.game2.ped.clearAlternateWalkAnim.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.clearAlternateWalkAnim ??= function (p1) {
-    let $res = natives.clearPedAlternateWalkAnim(this.handle, p1);
+    return mp.game2.ped.clearAlternateWalkAnim.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.setAlternateMovementAnim ??= function (stance, animDictionary, animationName, p4, p5) {
-    if (typeof animDictionary != "string") animDictionary = null;
-    if (typeof animationName != "string") animationName = null;
-    let $res = natives.setPedAlternateMovementAnim(this.handle, stance, animDictionary, animationName, p4, p5 | 0);
+    return mp.game2.ped.setAlternateMovementAnim.apply(this, [this.handle, stance, animDictionary, animationName, p4, p5]);
 };
 
 mp.Ped.prototype.setAlternateMovementAnim ??= function (stance, animDictionary, animationName, p4, p5) {
-    if (typeof animDictionary != "string") animDictionary = null;
-    if (typeof animationName != "string") animationName = null;
-    let $res = natives.setPedAlternateMovementAnim(this.handle, stance, animDictionary, animationName, p4, p5 | 0);
+    return mp.game2.ped.setAlternateMovementAnim.apply(this, [this.handle, stance, animDictionary, animationName, p4, p5]);
 };
 
 mp.Player.prototype.clearAlternateMovementAnim ??= function (stance, p2) {
-    let $res = natives.clearPedAlternateMovementAnim(this.handle, stance, p2);
+    return mp.game2.ped.clearAlternateMovementAnim.apply(this, [this.handle, stance, p2]);
 };
 
 mp.Ped.prototype.clearAlternateMovementAnim ??= function (stance, p2) {
-    let $res = natives.clearPedAlternateMovementAnim(this.handle, stance, p2);
+    return mp.game2.ped.clearAlternateMovementAnim.apply(this, [this.handle, stance, p2]);
 };
 
 mp.Player.prototype.setGestureGroup ??= function (animGroupGesture) {
-    if (typeof animGroupGesture != "string") animGroupGesture = null;
-    let $res = natives.setPedGestureGroup(this.handle, animGroupGesture);
+    return mp.game2.ped.setGestureGroup.apply(this, [this.handle, animGroupGesture]);
 };
 
 mp.Ped.prototype.setGestureGroup ??= function (animGroupGesture) {
-    if (typeof animGroupGesture != "string") animGroupGesture = null;
-    let $res = natives.setPedGestureGroup(this.handle, animGroupGesture);
+    return mp.game2.ped.setGestureGroup.apply(this, [this.handle, animGroupGesture]);
 };
 
 mp.Player.prototype.getDrawableVariation ??= function (componentId) {
-    let $res = natives.getPedDrawableVariation(this.handle, componentId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getDrawableVariation.apply(this, [this.handle, componentId]);
 };
 
 mp.Ped.prototype.getDrawableVariation ??= function (componentId) {
-    let $res = natives.getPedDrawableVariation(this.handle, componentId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getDrawableVariation.apply(this, [this.handle, componentId]);
 };
 
 mp.Player.prototype.getNumberOfDrawableVariations ??= function (componentId) {
-    let $res = natives.getNumberOfPedDrawableVariations(this.handle, componentId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getNumberOfDrawableVariations.apply(this, [this.handle, componentId]);
 };
 
 mp.Ped.prototype.getNumberOfDrawableVariations ??= function (componentId) {
-    let $res = natives.getNumberOfPedDrawableVariations(this.handle, componentId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getNumberOfDrawableVariations.apply(this, [this.handle, componentId]);
 };
 
 mp.Player.prototype.getTextureVariation ??= function (componentId) {
-    let $res = natives.getPedTextureVariation(this.handle, componentId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getTextureVariation.apply(this, [this.handle, componentId]);
 };
 
 mp.Ped.prototype.getTextureVariation ??= function (componentId) {
-    let $res = natives.getPedTextureVariation(this.handle, componentId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getTextureVariation.apply(this, [this.handle, componentId]);
 };
 
 mp.Player.prototype.getNumberOfTextureVariations ??= function (componentId, drawableId) {
-    let $res = natives.getNumberOfPedTextureVariations(this.handle, componentId, drawableId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getNumberOfTextureVariations.apply(this, [this.handle, componentId, drawableId]);
 };
 
 mp.Ped.prototype.getNumberOfTextureVariations ??= function (componentId, drawableId) {
-    let $res = natives.getNumberOfPedTextureVariations(this.handle, componentId, drawableId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getNumberOfTextureVariations.apply(this, [this.handle, componentId, drawableId]);
 };
 
 mp.Player.prototype.getNumberOfPropDrawableVariations ??= function (propId) {
-    let $res = natives.getNumberOfPedPropDrawableVariations(this.handle, propId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getNumberOfPropDrawableVariations.apply(this, [this.handle, propId]);
 };
 
 mp.Ped.prototype.getNumberOfPropDrawableVariations ??= function (propId) {
-    let $res = natives.getNumberOfPedPropDrawableVariations(this.handle, propId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getNumberOfPropDrawableVariations.apply(this, [this.handle, propId]);
 };
 
 mp.Player.prototype.getNumberOfPropTextureVariations ??= function (propId, drawableId) {
-    let $res = natives.getNumberOfPedPropTextureVariations(this.handle, propId, drawableId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getNumberOfPropTextureVariations.apply(this, [this.handle, propId, drawableId]);
 };
 
 mp.Ped.prototype.getNumberOfPropTextureVariations ??= function (propId, drawableId) {
-    let $res = natives.getNumberOfPedPropTextureVariations(this.handle, propId, drawableId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getNumberOfPropTextureVariations.apply(this, [this.handle, propId, drawableId]);
 };
 
 mp.Player.prototype.getPaletteVariation ??= function (componentId) {
-    let $res = natives.getPedPaletteVariation(this.handle, componentId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getPaletteVariation.apply(this, [this.handle, componentId]);
 };
 
 mp.Ped.prototype.getPaletteVariation ??= function (componentId) {
-    let $res = natives.getPedPaletteVariation(this.handle, componentId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getPaletteVariation.apply(this, [this.handle, componentId]);
 };
 
 mp.Player.prototype.isComponentVariationValid ??= function (componentId, drawableId, textureId) {
-    let $res = natives.isPedComponentVariationValid(this.handle, componentId, drawableId, textureId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isComponentVariationValid.apply(this, [this.handle, componentId, drawableId, textureId]);
 };
 
 mp.Ped.prototype.isComponentVariationValid ??= function (componentId, drawableId, textureId) {
-    let $res = natives.isPedComponentVariationValid(this.handle, componentId, drawableId, textureId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isComponentVariationValid.apply(this, [this.handle, componentId, drawableId, textureId]);
 };
 
 mp.Player.prototype.setComponentVariation ??= function (componentId, drawableId, textureId, paletteId) {
-    let $res = natives.setPedComponentVariation(this.handle, componentId, drawableId, textureId, paletteId);
+    return mp.game2.ped.setComponentVariation.apply(this, [this.handle, componentId, drawableId, textureId, paletteId]);
 };
 
 mp.Ped.prototype.setComponentVariation ??= function (componentId, drawableId, textureId, paletteId) {
-    let $res = natives.setPedComponentVariation(this.handle, componentId, drawableId, textureId, paletteId);
+    return mp.game2.ped.setComponentVariation.apply(this, [this.handle, componentId, drawableId, textureId, paletteId]);
 };
 
 mp.Player.prototype.setRandomComponentVariation ??= function (p1) {
-    let $res = natives.setPedRandomComponentVariation(this.handle, p1 | 0);
+    return mp.game2.ped.setRandomComponentVariation.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.setRandomComponentVariation ??= function (p1) {
-    let $res = natives.setPedRandomComponentVariation(this.handle, p1 | 0);
+    return mp.game2.ped.setRandomComponentVariation.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.setRandomProps ??= function () {
-    let $res = natives.setPedRandomProps(this.handle);
+    return mp.game2.ped.setRandomProps.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.setRandomProps ??= function () {
-    let $res = natives.setPedRandomProps(this.handle);
+    return mp.game2.ped.setRandomProps.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setDefaultComponentVariation ??= function () {
-    let $res = natives.setPedDefaultComponentVariation(this.handle);
+    return mp.game2.ped.setDefaultComponentVariation.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.setDefaultComponentVariation ??= function () {
-    let $res = natives.setPedDefaultComponentVariation(this.handle);
+    return mp.game2.ped.setDefaultComponentVariation.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setBlendFromParents ??= function (p1, p2, p3, p4) {
-    let $res = natives.setPedBlendFromParents(this.handle, p1, p2, p3, p4);
+    return mp.game2.ped.setBlendFromParents.apply(this, [this.handle, p1, p2, p3, p4]);
 };
 
 mp.Ped.prototype.setBlendFromParents ??= function (p1, p2, p3, p4) {
-    let $res = natives.setPedBlendFromParents(this.handle, p1, p2, p3, p4);
+    return mp.game2.ped.setBlendFromParents.apply(this, [this.handle, p1, p2, p3, p4]);
 };
 
 mp.Player.prototype.setHeadBlendData ??= function (shapeFirstID, shapeSecondID, shapeThirdID, skinFirstID, skinSecondID, skinThirdID, shapeMix, skinMix, thirdMix, isParent) {
-    let $res = natives.setPedHeadBlendData(this.handle, shapeFirstID, shapeSecondID, shapeThirdID, skinFirstID, skinSecondID, skinThirdID, shapeMix, skinMix, thirdMix, isParent | 0);
+    return mp.game2.ped.setHeadBlendData.apply(this, [this.handle, shapeFirstID, shapeSecondID, shapeThirdID, skinFirstID, skinSecondID, skinThirdID, shapeMix, skinMix, thirdMix, isParent]);
 };
 
 mp.Ped.prototype.setHeadBlendData ??= function (shapeFirstID, shapeSecondID, shapeThirdID, skinFirstID, skinSecondID, skinThirdID, shapeMix, skinMix, thirdMix, isParent) {
-    let $res = natives.setPedHeadBlendData(this.handle, shapeFirstID, shapeSecondID, shapeThirdID, skinFirstID, skinSecondID, skinThirdID, shapeMix, skinMix, thirdMix, isParent | 0);
+    return mp.game2.ped.setHeadBlendData.apply(this, [this.handle, shapeFirstID, shapeSecondID, shapeThirdID, skinFirstID, skinSecondID, skinThirdID, shapeMix, skinMix, thirdMix, isParent]);
 };
 
 mp.Player.prototype.getHeadBlendData ??= function () {
-    let $res = natives.getPedHeadBlendData(this.handle, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.headBlendData = $res[0];
-    return $res[0] == 1 ? $resObj.headBlendData : undefined;
+    return mp.game2.ped.getHeadBlendData.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getHeadBlendData ??= function () {
-    let $res = natives.getPedHeadBlendData(this.handle, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.headBlendData = $res[0];
-    return $res[0] == 1 ? $resObj.headBlendData : undefined;
+    return mp.game2.ped.getHeadBlendData.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.updateHeadBlendData ??= function (shapeMix, skinMix, thirdMix) {
-    let $res = natives.updatePedHeadBlendData(this.handle, shapeMix, skinMix, thirdMix);
+    return mp.game2.ped.updateHeadBlendData.apply(this, [this.handle, shapeMix, skinMix, thirdMix]);
 };
 
 mp.Ped.prototype.updateHeadBlendData ??= function (shapeMix, skinMix, thirdMix) {
-    let $res = natives.updatePedHeadBlendData(this.handle, shapeMix, skinMix, thirdMix);
+    return mp.game2.ped.updateHeadBlendData.apply(this, [this.handle, shapeMix, skinMix, thirdMix]);
 };
 
 mp.Ped.prototype.setEyeColor ??= function (index) {
-    let $res = natives.setHeadBlendEyeColor(this.handle, index);
+    return mp.game2.ped.setEyeColor.apply(this, [this.handle, index]);
 };
 
 mp.Player.prototype.getEyeColor ??= function () {
-    let $res = natives.getHeadBlendEyeColor(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getEyeColor.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getEyeColor ??= function () {
-    let $res = natives.getHeadBlendEyeColor(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getEyeColor.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.setHeadOverlay ??= function (overlayID, index, opacity) {
-    let $res = natives.setPedHeadOverlay(this.handle, overlayID, index, opacity);
+    return mp.game2.ped.setHeadOverlay.apply(this, [this.handle, overlayID, index, opacity]);
 };
 
 mp.Player.prototype.getHeadOverlayValue ??= function (overlayID) {
-    let $res = natives.getPedHeadOverlay(this.handle, overlayID);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getHeadOverlayValue.apply(this, [this.handle, overlayID]);
 };
 
 mp.Ped.prototype.getHeadOverlayValue ??= function (overlayID) {
-    let $res = natives.getPedHeadOverlay(this.handle, overlayID);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getHeadOverlayValue.apply(this, [this.handle, overlayID]);
 };
 
 mp.Player.prototype.getHeadOverlayNum ??= function () {
-    let $res = natives.getPedHeadOverlayNum(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getHeadOverlayNum.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getHeadOverlayNum ??= function () {
-    let $res = natives.getPedHeadOverlayNum(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getHeadOverlayNum.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setHeadOverlayColor ??= function (overlayID, colorType, colorID, secondColorID) {
-    let $res = natives.setPedHeadOverlayTint(this.handle, overlayID, colorType, colorID, secondColorID);
+    return mp.game2.ped.setHeadOverlayColor.apply(this, [this.handle, overlayID, colorType, colorID, secondColorID]);
 };
 
 mp.Ped.prototype.setHeadOverlayColor ??= function (overlayID, colorType, colorID, secondColorID) {
-    let $res = natives.setPedHeadOverlayTint(this.handle, overlayID, colorType, colorID, secondColorID);
+    return mp.game2.ped.setHeadOverlayColor.apply(this, [this.handle, overlayID, colorType, colorID, secondColorID]);
 };
 
 mp.Ped.prototype.setHairColor ??= function (colorID, highlightColorID) {
-    let $res = natives.setPedHairTint(this.handle, colorID, highlightColorID);
+    return mp.game2.ped.setHairColor.apply(this, [this.handle, colorID, highlightColorID]);
 };
 
 mp.Player.prototype.getHairRgbColor ??= function () {
-    let $res = natives.getPedHairTintColor(this.handle, 0, 0, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.outR = $res[1];
-    $resObj.outG = $res[2];
-    $resObj.outB = $res[3];
-    return $resObj;
+    return mp.game2.ped.getHairRgbColor.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getHairRgbColor ??= function () {
-    let $res = natives.getPedHairTintColor(this.handle, 0, 0, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.outR = $res[1];
-    $resObj.outG = $res[2];
-    $resObj.outB = $res[3];
-    return $resObj;
+    return mp.game2.ped.getHairRgbColor.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getMakeupRgbColor ??= function () {
-    let $res = natives.getPedMakeupTintColor(this.handle, 0, 0, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.outR = $res[1];
-    $resObj.outG = $res[2];
-    $resObj.outB = $res[3];
-    return $resObj;
+    return mp.game2.ped.getMakeupRgbColor.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getMakeupRgbColor ??= function () {
-    let $res = natives.getPedMakeupTintColor(this.handle, 0, 0, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.outR = $res[1];
-    $resObj.outG = $res[2];
-    $resObj.outB = $res[3];
-    return $resObj;
+    return mp.game2.ped.getMakeupRgbColor.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isHairColorValid2 ??= function () {
-    let $res = natives.isPedHairTintForCreator(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isHairColorValid2.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isHairColorValid2 ??= function () {
-    let $res = natives.isPedHairTintForCreator(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isHairColorValid2.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isLipstickColorValid2 ??= function () {
-    let $res = natives.isPedLipstickTintForCreator(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isLipstickColorValid2.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isLipstickColorValid2 ??= function () {
-    let $res = natives.isPedLipstickTintForCreator(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isLipstickColorValid2.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isBlushColorValid2 ??= function () {
-    let $res = natives.isPedBlushTintForCreator(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isBlushColorValid2.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isBlushColorValid2 ??= function () {
-    let $res = natives.isPedBlushTintForCreator(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isBlushColorValid2.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isHairColorValid ??= function () {
-    let $res = natives.isPedHairTintForBarber(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isHairColorValid.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isHairColorValid ??= function () {
-    let $res = natives.isPedHairTintForBarber(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isHairColorValid.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isLipstickColorValid ??= function () {
-    let $res = natives.isPedLipstickTintForBarber(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isLipstickColorValid.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isLipstickColorValid ??= function () {
-    let $res = natives.isPedLipstickTintForBarber(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isLipstickColorValid.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isBlushColorValid ??= function () {
-    let $res = natives.isPedBlushTintForBarber(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isBlushColorValid.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isBlushColorValid ??= function () {
-    let $res = natives.isPedBlushTintForBarber(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isBlushColorValid.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isBodyBlemishValid ??= function () {
-    let $res = natives.isPedBlushFacepaintTintForBarber(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isBodyBlemishValid.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isBodyBlemishValid ??= function () {
-    let $res = natives.isPedBlushFacepaintTintForBarber(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isBodyBlemishValid.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.setFaceFeature ??= function (index, scale) {
-    let $res = natives.setPedMicroMorph(this.handle, index, scale);
+    return mp.game2.ped.setFaceFeature.apply(this, [this.handle, index, scale]);
 };
 
 mp.Player.prototype.hasHeadBlendFinished ??= function () {
-    let $res = natives.hasPedHeadBlendFinished(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.hasHeadBlendFinished.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.hasHeadBlendFinished ??= function () {
-    let $res = natives.hasPedHeadBlendFinished(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.hasHeadBlendFinished.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.finalizeHeadBlend ??= function () {
-    let $res = natives.finalizeHeadBlend(this.handle);
+    return mp.game2.ped.finalizeHeadBlend.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.finalizeHeadBlend ??= function () {
-    let $res = natives.finalizeHeadBlend(this.handle);
+    return mp.game2.ped.finalizeHeadBlend.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setHeadBlendPaletteColor ??= function (r, g, b, id) {
-    let $res = natives.setHeadBlendPaletteColor(this.handle, r, g, b, id);
+    return mp.game2.ped.setHeadBlendPaletteColor.apply(this, [this.handle, r, g, b, id]);
 };
 
 mp.Ped.prototype.setHeadBlendPaletteColor ??= function (r, g, b, id) {
-    let $res = natives.setHeadBlendPaletteColor(this.handle, r, g, b, id);
+    return mp.game2.ped.setHeadBlendPaletteColor.apply(this, [this.handle, r, g, b, id]);
 };
 
 mp.Player.prototype.disableHeadBlendPaletteColor ??= function () {
-    let $res = natives.disableHeadBlendPaletteColor(this.handle);
+    return mp.game2.ped.disableHeadBlendPaletteColor.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.disableHeadBlendPaletteColor ??= function () {
-    let $res = natives.disableHeadBlendPaletteColor(this.handle);
+    return mp.game2.ped.disableHeadBlendPaletteColor.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getHeadBlendFirstIndex ??= function () {
-    let $res = natives.getPedHeadBlendFirstIndex(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getHeadBlendFirstIndex.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getHeadBlendFirstIndex ??= function () {
-    let $res = natives.getPedHeadBlendFirstIndex(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getHeadBlendFirstIndex.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getHeadBlendNumHeads ??= function () {
-    let $res = natives.getPedHeadBlendNumHeads(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getHeadBlendNumHeads.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getHeadBlendNumHeads ??= function () {
-    let $res = natives.getPedHeadBlendNumHeads(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getHeadBlendNumHeads.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setPreloadVariationData ??= function (slot, drawableId, textureId) {
-    let $res = natives.setPedPreloadVariationData(this.handle, slot, drawableId, textureId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.setPreloadVariationData.apply(this, [this.handle, slot, drawableId, textureId]);
 };
 
 mp.Ped.prototype.setPreloadVariationData ??= function (slot, drawableId, textureId) {
-    let $res = natives.setPedPreloadVariationData(this.handle, slot, drawableId, textureId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.setPreloadVariationData.apply(this, [this.handle, slot, drawableId, textureId]);
 };
 
 mp.Player.prototype.hasPreloadVariationDataFinished ??= function () {
-    let $res = natives.hasPedPreloadVariationDataFinished(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.hasPreloadVariationDataFinished.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.hasPreloadVariationDataFinished ??= function () {
-    let $res = natives.hasPedPreloadVariationDataFinished(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.hasPreloadVariationDataFinished.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.releasePreloadVariationData ??= function () {
-    let $res = natives.releasePedPreloadVariationData(this.handle);
+    return mp.game2.ped.releasePreloadVariationData.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.releasePreloadVariationData ??= function () {
-    let $res = natives.releasePedPreloadVariationData(this.handle);
+    return mp.game2.ped.releasePreloadVariationData.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setPreloadPropData ??= function (componentId, drawableId, TextureId) {
-    let $res = natives.setPedPreloadPropData(this.handle, componentId, drawableId, TextureId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.setPreloadPropData.apply(this, [this.handle, componentId, drawableId, TextureId]);
 };
 
 mp.Ped.prototype.setPreloadPropData ??= function (componentId, drawableId, TextureId) {
-    let $res = natives.setPedPreloadPropData(this.handle, componentId, drawableId, TextureId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.setPreloadPropData.apply(this, [this.handle, componentId, drawableId, TextureId]);
 };
 
 mp.Player.prototype.hasPreloadPropDataFinished ??= function () {
-    let $res = natives.hasPedPreloadPropDataFinished(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.hasPreloadPropDataFinished.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.hasPreloadPropDataFinished ??= function () {
-    let $res = natives.hasPedPreloadPropDataFinished(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.hasPreloadPropDataFinished.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.releasePreloadPropData ??= function () {
-    let $res = natives.releasePedPreloadPropData(this.handle);
+    return mp.game2.ped.releasePreloadPropData.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.releasePreloadPropData ??= function () {
-    let $res = natives.releasePedPreloadPropData(this.handle);
+    return mp.game2.ped.releasePreloadPropData.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getPropIndex ??= function (componentId) {
-    let $res = natives.getPedPropIndex(this.handle, componentId, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getPropIndex.apply(this, [this.handle, componentId]);
 };
 
 mp.Ped.prototype.getPropIndex ??= function (componentId) {
-    let $res = natives.getPedPropIndex(this.handle, componentId, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getPropIndex.apply(this, [this.handle, componentId]);
 };
 
 mp.Player.prototype.setPropIndex ??= function (componentId, drawableId, TextureId, attach) {
-    let $res = natives.setPedPropIndex(this.handle, componentId, drawableId, TextureId, attach | 0, 0);
+    return mp.game2.ped.setPropIndex.apply(this, [this.handle, componentId, drawableId, TextureId, attach]);
 };
 
 mp.Ped.prototype.setPropIndex ??= function (componentId, drawableId, TextureId, attach) {
-    let $res = natives.setPedPropIndex(this.handle, componentId, drawableId, TextureId, attach | 0, 0);
+    return mp.game2.ped.setPropIndex.apply(this, [this.handle, componentId, drawableId, TextureId, attach]);
 };
 
 mp.Player.prototype.knockOffProp ??= function (p1, p2, p3, p4) {
-    let $res = natives.knockOffPedProp(this.handle, p1 | 0, p2 | 0, p3 | 0, p4 | 0);
+    return mp.game2.ped.knockOffProp.apply(this, [this.handle, p1, p2, p3, p4]);
 };
 
 mp.Ped.prototype.knockOffProp ??= function (p1, p2, p3, p4) {
-    let $res = natives.knockOffPedProp(this.handle, p1 | 0, p2 | 0, p3 | 0, p4 | 0);
+    return mp.game2.ped.knockOffProp.apply(this, [this.handle, p1, p2, p3, p4]);
 };
 
 mp.Player.prototype.clearProp ??= function (propId) {
-    let $res = natives.clearPedProp(this.handle, propId, 0);
+    return mp.game2.ped.clearProp.apply(this, [this.handle, propId]);
 };
 
 mp.Ped.prototype.clearProp ??= function (propId) {
-    let $res = natives.clearPedProp(this.handle, propId, 0);
+    return mp.game2.ped.clearProp.apply(this, [this.handle, propId]);
 };
 
 mp.Player.prototype.clearAllProps ??= function () {
-    let $res = natives.clearAllPedProps(this.handle, 0);
+    return mp.game2.ped.clearAllProps.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.clearAllProps ??= function () {
-    let $res = natives.clearAllPedProps(this.handle, 0);
+    return mp.game2.ped.clearAllProps.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.dropAmbientProp ??= function () {
-    let $res = natives.dropAmbientProp(this.handle);
+    return mp.game2.ped.dropAmbientProp.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.dropAmbientProp ??= function () {
-    let $res = natives.dropAmbientProp(this.handle);
+    return mp.game2.ped.dropAmbientProp.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getPropTextureIndex ??= function (componentId) {
-    let $res = natives.getPedPropTextureIndex(this.handle, componentId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getPropTextureIndex.apply(this, [this.handle, componentId]);
 };
 
 mp.Ped.prototype.getPropTextureIndex ??= function (componentId) {
-    let $res = natives.getPedPropTextureIndex(this.handle, componentId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getPropTextureIndex.apply(this, [this.handle, componentId]);
 };
 
 mp.Player.prototype.clearParachutePackVariation ??= function () {
-    let $res = natives.clearPedParachutePackVariation(this.handle);
+    return mp.game2.ped.clearParachutePackVariation.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.clearParachutePackVariation ??= function () {
-    let $res = natives.clearPedParachutePackVariation(this.handle);
+    return mp.game2.ped.clearParachutePackVariation.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setScubaGearVariation ??= function () {
-    let $res = natives.setPedScubaGearVariation(this.handle);
+    return mp.game2.ped.setScubaGearVariation.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.setScubaGearVariation ??= function () {
-    let $res = natives.setPedScubaGearVariation(this.handle);
+    return mp.game2.ped.setScubaGearVariation.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.clearScubaGearVariation ??= function () {
-    let $res = natives.clearPedScubaGearVariation(this.handle);
+    return mp.game2.ped.clearScubaGearVariation.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.clearScubaGearVariation ??= function () {
-    let $res = natives.clearPedScubaGearVariation(this.handle);
+    return mp.game2.ped.clearScubaGearVariation.apply(this, [this.handle]);
 };
 
 mp.Blip.prototype.setBlockingOfNonTemporaryEvents ??= function (toggle) {
-    let $res = natives.setBlockingOfNonTemporaryEvents(this.handle, toggle | 0);
+    return mp.game2.ped.setBlockingOfNonTemporaryEvents.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setBoundsOrientation ??= function (p1, p2, p3, p4, p5) {
-    let $res = natives.setPedBoundsOrientation(this.handle, p1, p2, p3, p4, p5);
+    return mp.game2.ped.setBoundsOrientation.apply(this, [this.handle, p1, p2, p3, p4, p5]);
 };
 
 mp.Ped.prototype.setBoundsOrientation ??= function (p1, p2, p3, p4, p5) {
-    let $res = natives.setPedBoundsOrientation(this.handle, p1, p2, p3, p4, p5);
+    return mp.game2.ped.setBoundsOrientation.apply(this, [this.handle, p1, p2, p3, p4, p5]);
 };
 
 mp.Player.prototype.registerTarget ??= function (target) {
-    let $res = natives.registerTarget(this.handle, target);
+    return mp.game2.ped.registerTarget.apply(this, [this.handle, target]);
 };
 
 mp.Ped.prototype.registerTarget ??= function (target) {
-    let $res = natives.registerTarget(this.handle, target);
+    return mp.game2.ped.registerTarget.apply(this, [this.handle, target]);
 };
 
 mp.Player.prototype.registerHatedTargetsAround ??= function (radius) {
-    let $res = natives.registerHatedTargetsAroundPed(this.handle, radius);
+    return mp.game2.ped.registerHatedTargetsAround.apply(this, [this.handle, radius]);
 };
 
 mp.Ped.prototype.registerHatedTargetsAround ??= function (radius) {
-    let $res = natives.registerHatedTargetsAroundPed(this.handle, radius);
+    return mp.game2.ped.registerHatedTargetsAround.apply(this, [this.handle, radius]);
 };
 
 mp.Player.prototype.setDriverRacingModifier ??= function (modifier) {
-    let $res = natives.setDriverRacingModifier(this.handle, modifier);
+    return mp.game2.ped.setDriverRacingModifier.apply(this, [this.handle, modifier]);
 };
 
 mp.Ped.prototype.setDriverRacingModifier ??= function (modifier) {
-    let $res = natives.setDriverRacingModifier(this.handle, modifier);
+    return mp.game2.ped.setDriverRacingModifier.apply(this, [this.handle, modifier]);
 };
 
 mp.Player.prototype.setDriverAbility ??= function (ability) {
-    let $res = natives.setDriverAbility(this.handle, ability);
+    return mp.game2.ped.setDriverAbility.apply(this, [this.handle, ability]);
 };
 
 mp.Ped.prototype.setDriverAbility ??= function (ability) {
-    let $res = natives.setDriverAbility(this.handle, ability);
+    return mp.game2.ped.setDriverAbility.apply(this, [this.handle, ability]);
 };
 
 mp.Player.prototype.setDriverAggressiveness ??= function (aggressiveness) {
-    let $res = natives.setDriverAggressiveness(this.handle, aggressiveness);
+    return mp.game2.ped.setDriverAggressiveness.apply(this, [this.handle, aggressiveness]);
 };
 
 mp.Ped.prototype.setDriverAggressiveness ??= function (aggressiveness) {
-    let $res = natives.setDriverAggressiveness(this.handle, aggressiveness);
+    return mp.game2.ped.setDriverAggressiveness.apply(this, [this.handle, aggressiveness]);
 };
 
 mp.Player.prototype.canRagdoll ??= function () {
-    let $res = natives.canPedRagdoll(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.canRagdoll.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.canRagdoll ??= function () {
-    let $res = natives.canPedRagdoll(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.canRagdoll.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setToRagdoll ??= function (time1, time2, ragdollType, p4, p5, p6) {
-    let $res = natives.setPedToRagdoll(this.handle, time1, time2, ragdollType, p4 | 0, p5 | 0, p6 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.setToRagdoll.apply(this, [this.handle, time1, time2, ragdollType, p4, p5, p6]);
 };
 
 mp.Ped.prototype.setToRagdoll ??= function (time1, time2, ragdollType, p4, p5, p6) {
-    let $res = natives.setPedToRagdoll(this.handle, time1, time2, ragdollType, p4 | 0, p5 | 0, p6 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.setToRagdoll.apply(this, [this.handle, time1, time2, ragdollType, p4, p5, p6]);
 };
 
 mp.Player.prototype.setToRagdollWithFall ??= function (time, p2, ragdollType, x, y, z, p7, p8, p9, p10, p11, p12, p13) {
-    let $res = natives.setPedToRagdollWithFall(this.handle, time, p2, ragdollType, x, y, z, p7, p8, p9, p10, p11, p12, p13);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.setToRagdollWithFall.apply(this, [this.handle, time, p2, ragdollType, x, y, z, p7, p8, p9, p10, p11, p12, p13]);
 };
 
 mp.Ped.prototype.setToRagdollWithFall ??= function (time, p2, ragdollType, x, y, z, p7, p8, p9, p10, p11, p12, p13) {
-    let $res = natives.setPedToRagdollWithFall(this.handle, time, p2, ragdollType, x, y, z, p7, p8, p9, p10, p11, p12, p13);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.setToRagdollWithFall.apply(this, [this.handle, time, p2, ragdollType, x, y, z, p7, p8, p9, p10, p11, p12, p13]);
 };
 
 mp.Player.prototype.setRagdollOnCollision ??= function (toggle) {
-    let $res = natives.setPedRagdollOnCollision(this.handle, toggle | 0);
+    return mp.game2.ped.setRagdollOnCollision.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setRagdollOnCollision ??= function (toggle) {
-    let $res = natives.setPedRagdollOnCollision(this.handle, toggle | 0);
+    return mp.game2.ped.setRagdollOnCollision.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.isRagdoll ??= function () {
-    let $res = natives.isPedRagdoll(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isRagdoll.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isRagdoll ??= function () {
-    let $res = natives.isPedRagdoll(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isRagdoll.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isRunningRagdollTask ??= function () {
-    let $res = natives.isPedRunningRagdollTask(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isRunningRagdollTask.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isRunningRagdollTask ??= function () {
-    let $res = natives.isPedRunningRagdollTask(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isRunningRagdollTask.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setRagdollForceFall ??= function () {
-    let $res = natives.setPedRagdollForceFall(this.handle);
+    return mp.game2.ped.setRagdollForceFall.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.setRagdollForceFall ??= function () {
-    let $res = natives.setPedRagdollForceFall(this.handle);
+    return mp.game2.ped.setRagdollForceFall.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.resetRagdollTimer ??= function () {
-    let $res = natives.resetPedRagdollTimer(this.handle);
+    return mp.game2.ped.resetRagdollTimer.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.resetRagdollTimer ??= function () {
-    let $res = natives.resetPedRagdollTimer(this.handle);
+    return mp.game2.ped.resetRagdollTimer.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setCanRagdoll ??= function (toggle) {
-    let $res = natives.setPedCanRagdoll(this.handle, toggle | 0);
+    return mp.game2.ped.setCanRagdoll.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setCanRagdoll ??= function (toggle) {
-    let $res = natives.setPedCanRagdoll(this.handle, toggle | 0);
+    return mp.game2.ped.setCanRagdoll.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.isRunningMeleeTask ??= function () {
-    let $res = natives.isPedRunningMeleeTask(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isRunningMeleeTask.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isRunningMeleeTask ??= function () {
-    let $res = natives.isPedRunningMeleeTask(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isRunningMeleeTask.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isRunningMobilePhoneTask ??= function () {
-    let $res = natives.isPedRunningMobilePhoneTask(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isRunningMobilePhoneTask.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isRunningMobilePhoneTask ??= function () {
-    let $res = natives.isPedRunningMobilePhoneTask(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isRunningMobilePhoneTask.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isMobilePhoneToEar ??= function () {
-    let $res = natives.isMobilePhoneToPedEar(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isMobilePhoneToEar.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isMobilePhoneToEar ??= function () {
-    let $res = natives.isMobilePhoneToPedEar(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isMobilePhoneToEar.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setRagdollBlockingFlags ??= function (flags) {
-    let $res = natives.setRagdollBlockingFlags(this.handle, flags);
+    return mp.game2.ped.setRagdollBlockingFlags.apply(this, [this.handle, flags]);
 };
 
 mp.Ped.prototype.setRagdollBlockingFlags ??= function (flags) {
-    let $res = natives.setRagdollBlockingFlags(this.handle, flags);
+    return mp.game2.ped.setRagdollBlockingFlags.apply(this, [this.handle, flags]);
 };
 
 mp.Player.prototype.clearRagdollBlockingFlags ??= function (flags) {
-    let $res = natives.clearRagdollBlockingFlags(this.handle, flags);
+    return mp.game2.ped.clearRagdollBlockingFlags.apply(this, [this.handle, flags]);
 };
 
 mp.Ped.prototype.clearRagdollBlockingFlags ??= function (flags) {
-    let $res = natives.clearRagdollBlockingFlags(this.handle, flags);
+    return mp.game2.ped.clearRagdollBlockingFlags.apply(this, [this.handle, flags]);
 };
 
 mp.Player.prototype.setAngledDefensiveArea ??= function (p1, p2, p3, p4, p5, p6, p7, p8, p9) {
-    let $res = natives.setPedAngledDefensiveArea(this.handle, p1, p2, p3, p4, p5, p6, p7, p8 | 0, p9 | 0);
+    return mp.game2.ped.setAngledDefensiveArea.apply(this, [this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9]);
 };
 
 mp.Ped.prototype.setAngledDefensiveArea ??= function (p1, p2, p3, p4, p5, p6, p7, p8, p9) {
-    let $res = natives.setPedAngledDefensiveArea(this.handle, p1, p2, p3, p4, p5, p6, p7, p8 | 0, p9 | 0);
+    return mp.game2.ped.setAngledDefensiveArea.apply(this, [this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9]);
 };
 
 mp.Player.prototype.setSphereDefensiveArea ??= function (x, y, z, radius, p5, p6) {
-    let $res = natives.setPedSphereDefensiveArea(this.handle, x, y, z, radius, p5 | 0, p6 | 0);
+    return mp.game2.ped.setSphereDefensiveArea.apply(this, [this.handle, x, y, z, radius, p5, p6]);
 };
 
 mp.Ped.prototype.setSphereDefensiveArea ??= function (x, y, z, radius, p5, p6) {
-    let $res = natives.setPedSphereDefensiveArea(this.handle, x, y, z, radius, p5 | 0, p6 | 0);
+    return mp.game2.ped.setSphereDefensiveArea.apply(this, [this.handle, x, y, z, radius, p5, p6]);
 };
 
 mp.Player.prototype.setDefensiveSphereAttachedToPed ??= function (target, xOffset, yOffset, zOffset, radius, p6) {
-    let $res = natives.setPedDefensiveSphereAttachedToPed(this.handle, target, xOffset, yOffset, zOffset, radius, p6 | 0);
+    return mp.game2.ped.setDefensiveSphereAttachedToPed.apply(this, [this.handle, target, xOffset, yOffset, zOffset, radius, p6]);
 };
 
 mp.Ped.prototype.setDefensiveSphereAttachedToPed ??= function (target, xOffset, yOffset, zOffset, radius, p6) {
-    let $res = natives.setPedDefensiveSphereAttachedToPed(this.handle, target, xOffset, yOffset, zOffset, radius, p6 | 0);
+    return mp.game2.ped.setDefensiveSphereAttachedToPed.apply(this, [this.handle, target, xOffset, yOffset, zOffset, radius, p6]);
 };
 
 mp.Player.prototype.setDefensiveSphereAttachedToVehicle ??= function (target, xOffset, yOffset, zOffset, radius, p6) {
-    let $res = natives.setPedDefensiveSphereAttachedToVehicle(this.handle, target, xOffset, yOffset, zOffset, radius, p6 | 0);
+    return mp.game2.ped.setDefensiveSphereAttachedToVehicle.apply(this, [this.handle, target, xOffset, yOffset, zOffset, radius, p6]);
 };
 
 mp.Ped.prototype.setDefensiveSphereAttachedToVehicle ??= function (target, xOffset, yOffset, zOffset, radius, p6) {
-    let $res = natives.setPedDefensiveSphereAttachedToVehicle(this.handle, target, xOffset, yOffset, zOffset, radius, p6 | 0);
+    return mp.game2.ped.setDefensiveSphereAttachedToVehicle.apply(this, [this.handle, target, xOffset, yOffset, zOffset, radius, p6]);
 };
 
 mp.Player.prototype.setDefensiveAreaAttachedToPed ??= function (attachPed, p2, p3, p4, p5, p6, p7, p8, p9, p10) {
-    let $res = natives.setPedDefensiveAreaAttachedToPed(this.handle, attachPed, p2, p3, p4, p5, p6, p7, p8, p9 | 0, p10 | 0);
+    return mp.game2.ped.setDefensiveAreaAttachedToPed.apply(this, [this.handle, attachPed, p2, p3, p4, p5, p6, p7, p8, p9, p10]);
 };
 
 mp.Ped.prototype.setDefensiveAreaAttachedToPed ??= function (attachPed, p2, p3, p4, p5, p6, p7, p8, p9, p10) {
-    let $res = natives.setPedDefensiveAreaAttachedToPed(this.handle, attachPed, p2, p3, p4, p5, p6, p7, p8, p9 | 0, p10 | 0);
+    return mp.game2.ped.setDefensiveAreaAttachedToPed.apply(this, [this.handle, attachPed, p2, p3, p4, p5, p6, p7, p8, p9, p10]);
 };
 
 mp.Player.prototype.setDefensiveAreaDirection ??= function (p1, p2, p3, p4) {
-    let $res = natives.setPedDefensiveAreaDirection(this.handle, p1, p2, p3, p4 | 0);
+    return mp.game2.ped.setDefensiveAreaDirection.apply(this, [this.handle, p1, p2, p3, p4]);
 };
 
 mp.Ped.prototype.setDefensiveAreaDirection ??= function (p1, p2, p3, p4) {
-    let $res = natives.setPedDefensiveAreaDirection(this.handle, p1, p2, p3, p4 | 0);
+    return mp.game2.ped.setDefensiveAreaDirection.apply(this, [this.handle, p1, p2, p3, p4]);
 };
 
 mp.Player.prototype.removeDefensiveArea ??= function (toggle) {
-    let $res = natives.removePedDefensiveArea(this.handle, toggle | 0);
+    return mp.game2.ped.removeDefensiveArea.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.removeDefensiveArea ??= function (toggle) {
-    let $res = natives.removePedDefensiveArea(this.handle, toggle | 0);
+    return mp.game2.ped.removeDefensiveArea.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.getDefensiveAreaPosition ??= function (p1) {
-    let $res = natives.getPedDefensiveAreaPosition(this.handle, p1 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.ped.getDefensiveAreaPosition.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.getDefensiveAreaPosition ??= function (p1) {
-    let $res = natives.getPedDefensiveAreaPosition(this.handle, p1 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.ped.getDefensiveAreaPosition.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.isDefensiveAreaActive ??= function (p1) {
-    let $res = natives.isPedDefensiveAreaActive(this.handle, p1 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isDefensiveAreaActive.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.isDefensiveAreaActive ??= function (p1) {
-    let $res = natives.isPedDefensiveAreaActive(this.handle, p1 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isDefensiveAreaActive.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.setPreferredCoverSet ??= function (itemSet) {
-    let $res = natives.setPedPreferredCoverSet(this.handle, itemSet);
+    return mp.game2.ped.setPreferredCoverSet.apply(this, [this.handle, itemSet]);
 };
 
 mp.Ped.prototype.setPreferredCoverSet ??= function (itemSet) {
-    let $res = natives.setPedPreferredCoverSet(this.handle, itemSet);
+    return mp.game2.ped.setPreferredCoverSet.apply(this, [this.handle, itemSet]);
 };
 
 mp.Player.prototype.removePreferredCoverSet ??= function () {
-    let $res = natives.removePedPreferredCoverSet(this.handle);
+    return mp.game2.ped.removePreferredCoverSet.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.removePreferredCoverSet ??= function () {
-    let $res = natives.removePedPreferredCoverSet(this.handle);
+    return mp.game2.ped.removePreferredCoverSet.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.reviveInjured ??= function () {
-    let $res = natives.reviveInjuredPed(this.handle);
+    return mp.game2.ped.reviveInjured.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.reviveInjured ??= function () {
-    let $res = natives.reviveInjuredPed(this.handle);
+    return mp.game2.ped.reviveInjured.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.resurrect ??= function () {
-    let $res = natives.resurrectPed(this.handle);
+    return mp.game2.ped.resurrect.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.resurrect ??= function () {
-    let $res = natives.resurrectPed(this.handle);
+    return mp.game2.ped.resurrect.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setNameDebug ??= function (name) {
-    if (typeof name != "string") name = null;
-    let $res = natives.setPedNameDebug(this.handle, name);
+    return mp.game2.ped.setNameDebug.apply(this, [this.handle, name]);
 };
 
 mp.Ped.prototype.setNameDebug ??= function (name) {
-    if (typeof name != "string") name = null;
-    let $res = natives.setPedNameDebug(this.handle, name);
+    return mp.game2.ped.setNameDebug.apply(this, [this.handle, name]);
 };
 
 mp.Player.prototype.getExtractedDisplacement ??= function (worldSpace) {
-    let $res = natives.getPedExtractedDisplacement(this.handle, worldSpace | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.ped.getExtractedDisplacement.apply(this, [this.handle, worldSpace]);
 };
 
 mp.Ped.prototype.getExtractedDisplacement ??= function (worldSpace) {
-    let $res = natives.getPedExtractedDisplacement(this.handle, worldSpace | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.ped.getExtractedDisplacement.apply(this, [this.handle, worldSpace]);
 };
 
 mp.Player.prototype.setDiesWhenInjured ??= function (toggle) {
-    let $res = natives.setPedDiesWhenInjured(this.handle, toggle | 0);
+    return mp.game2.ped.setDiesWhenInjured.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setDiesWhenInjured ??= function (toggle) {
-    let $res = natives.setPedDiesWhenInjured(this.handle, toggle | 0);
+    return mp.game2.ped.setDiesWhenInjured.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setEnableWeaponBlocking ??= function (toggle) {
-    let $res = natives.setPedEnableWeaponBlocking(this.handle, toggle | 0);
+    return mp.game2.ped.setEnableWeaponBlocking.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setEnableWeaponBlocking ??= function (toggle) {
-    let $res = natives.setPedEnableWeaponBlocking(this.handle, toggle | 0);
+    return mp.game2.ped.setEnableWeaponBlocking.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.resetVisibleDamage ??= function () {
-    let $res = natives.resetPedVisibleDamage(this.handle);
+    return mp.game2.ped.resetVisibleDamage.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.resetVisibleDamage ??= function () {
-    let $res = natives.resetPedVisibleDamage(this.handle);
+    return mp.game2.ped.resetVisibleDamage.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.applyBloodDamageByZone ??= function (p1, p2, p3, p4) {
-    let $res = natives.applyPedBloodDamageByZone(this.handle, p1, p2, p3, p4);
+    return mp.game2.ped.applyBloodDamageByZone.apply(this, [this.handle, p1, p2, p3, p4]);
 };
 
 mp.Ped.prototype.applyBloodDamageByZone ??= function (p1, p2, p3, p4) {
-    let $res = natives.applyPedBloodDamageByZone(this.handle, p1, p2, p3, p4);
+    return mp.game2.ped.applyBloodDamageByZone.apply(this, [this.handle, p1, p2, p3, p4]);
 };
 
 mp.Player.prototype.applyBlood ??= function (boneIndex, xRot, yRot, zRot, woundType) {
-    if (typeof woundType != "string") woundType = null;
-    let $res = natives.applyPedBlood(this.handle, boneIndex, xRot, yRot, zRot, woundType);
+    return mp.game2.ped.applyBlood.apply(this, [this.handle, boneIndex, xRot, yRot, zRot, woundType]);
 };
 
 mp.Ped.prototype.applyBlood ??= function (boneIndex, xRot, yRot, zRot, woundType) {
-    if (typeof woundType != "string") woundType = null;
-    let $res = natives.applyPedBlood(this.handle, boneIndex, xRot, yRot, zRot, woundType);
+    return mp.game2.ped.applyBlood.apply(this, [this.handle, boneIndex, xRot, yRot, zRot, woundType]);
 };
 
 mp.Player.prototype.applyBloodByZone ??= function (p1, p2, p3, p4) {
-    if (typeof p4 != "string") p4 = null;
-    let $res = natives.applyPedBloodByZone(this.handle, p1, p2, p3, p4);
+    return mp.game2.ped.applyBloodByZone.apply(this, [this.handle, p1, p2, p3, p4]);
 };
 
 mp.Ped.prototype.applyBloodByZone ??= function (p1, p2, p3, p4) {
-    if (typeof p4 != "string") p4 = null;
-    let $res = natives.applyPedBloodByZone(this.handle, p1, p2, p3, p4);
+    return mp.game2.ped.applyBloodByZone.apply(this, [this.handle, p1, p2, p3, p4]);
 };
 
 mp.Player.prototype.applyBloodSpecific ??= function (p1, p2, p3, p4, p5, p6, p7, p8) {
-    if (typeof p8 != "string") p8 = null;
-    let $res = natives.applyPedBloodSpecific(this.handle, p1, p2, p3, p4, p5, p6, p7, p8);
+    return mp.game2.ped.applyBloodSpecific.apply(this, [this.handle, p1, p2, p3, p4, p5, p6, p7, p8]);
 };
 
 mp.Ped.prototype.applyBloodSpecific ??= function (p1, p2, p3, p4, p5, p6, p7, p8) {
-    if (typeof p8 != "string") p8 = null;
-    let $res = natives.applyPedBloodSpecific(this.handle, p1, p2, p3, p4, p5, p6, p7, p8);
+    return mp.game2.ped.applyBloodSpecific.apply(this, [this.handle, p1, p2, p3, p4, p5, p6, p7, p8]);
 };
 
 mp.Player.prototype.applyDamageDecal ??= function (damageZone, xOffset, yOffset, heading, scale, alpha, variation, fadeIn, decalName) {
-    if (typeof decalName != "string") decalName = null;
-    let $res = natives.applyPedDamageDecal(this.handle, damageZone, xOffset, yOffset, heading, scale, alpha, variation, fadeIn | 0, decalName);
+    return mp.game2.ped.applyDamageDecal.apply(this, [this.handle, damageZone, xOffset, yOffset, heading, scale, alpha, variation, fadeIn, decalName]);
 };
 
 mp.Ped.prototype.applyDamageDecal ??= function (damageZone, xOffset, yOffset, heading, scale, alpha, variation, fadeIn, decalName) {
-    if (typeof decalName != "string") decalName = null;
-    let $res = natives.applyPedDamageDecal(this.handle, damageZone, xOffset, yOffset, heading, scale, alpha, variation, fadeIn | 0, decalName);
+    return mp.game2.ped.applyDamageDecal.apply(this, [this.handle, damageZone, xOffset, yOffset, heading, scale, alpha, variation, fadeIn, decalName]);
 };
 
 mp.Player.prototype.applyDamagePack ??= function (damagePack, damage, mult) {
-    if (typeof damagePack != "string") damagePack = null;
-    let $res = natives.applyPedDamagePack(this.handle, damagePack, damage, mult);
+    return mp.game2.ped.applyDamagePack.apply(this, [this.handle, damagePack, damage, mult]);
 };
 
 mp.Ped.prototype.applyDamagePack ??= function (damagePack, damage, mult) {
-    if (typeof damagePack != "string") damagePack = null;
-    let $res = natives.applyPedDamagePack(this.handle, damagePack, damage, mult);
+    return mp.game2.ped.applyDamagePack.apply(this, [this.handle, damagePack, damage, mult]);
 };
 
 mp.Player.prototype.clearBloodDamage ??= function () {
-    let $res = natives.clearPedBloodDamage(this.handle);
+    return mp.game2.ped.clearBloodDamage.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.clearBloodDamage ??= function () {
-    let $res = natives.clearPedBloodDamage(this.handle);
+    return mp.game2.ped.clearBloodDamage.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.clearBloodDamageByZone ??= function (p1) {
-    let $res = natives.clearPedBloodDamageByZone(this.handle, p1);
+    return mp.game2.ped.clearBloodDamageByZone.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.clearBloodDamageByZone ??= function (p1) {
-    let $res = natives.clearPedBloodDamageByZone(this.handle, p1);
+    return mp.game2.ped.clearBloodDamageByZone.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.hideBloodDamageByZone ??= function (p1, p2) {
-    let $res = natives.hidePedBloodDamageByZone(this.handle, p1, p2 | 0);
+    return mp.game2.ped.hideBloodDamageByZone.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Ped.prototype.hideBloodDamageByZone ??= function (p1, p2) {
-    let $res = natives.hidePedBloodDamageByZone(this.handle, p1, p2 | 0);
+    return mp.game2.ped.hideBloodDamageByZone.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Player.prototype.clearDamageDecalByZone ??= function (p1, p2) {
-    if (typeof p2 != "string") p2 = null;
-    let $res = natives.clearPedDamageDecalByZone(this.handle, p1, p2);
+    return mp.game2.ped.clearDamageDecalByZone.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Ped.prototype.clearDamageDecalByZone ??= function (p1, p2) {
-    if (typeof p2 != "string") p2 = null;
-    let $res = natives.clearPedDamageDecalByZone(this.handle, p1, p2);
+    return mp.game2.ped.clearDamageDecalByZone.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Player.prototype.getDecorationsState ??= function () {
-    let $res = natives.getPedDecorationsState(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getDecorationsState.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getDecorationsState ??= function () {
-    let $res = natives.getPedDecorationsState(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getDecorationsState.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.clearWetness ??= function () {
-    let $res = natives.clearPedWetness(this.handle);
+    return mp.game2.ped.clearWetness.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.clearWetness ??= function () {
-    let $res = natives.clearPedWetness(this.handle);
+    return mp.game2.ped.clearWetness.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setWetnessHeight ??= function (height) {
-    let $res = natives.setPedWetnessHeight(this.handle, height);
+    return mp.game2.ped.setWetnessHeight.apply(this, [this.handle, height]);
 };
 
 mp.Ped.prototype.setWetnessHeight ??= function (height) {
-    let $res = natives.setPedWetnessHeight(this.handle, height);
+    return mp.game2.ped.setWetnessHeight.apply(this, [this.handle, height]);
 };
 
 mp.Player.prototype.setWetnessEnabledThisFrame ??= function () {
-    let $res = natives.setPedWetnessEnabledThisFrame(this.handle);
+    return mp.game2.ped.setWetnessEnabledThisFrame.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.setWetnessEnabledThisFrame ??= function () {
-    let $res = natives.setPedWetnessEnabledThisFrame(this.handle);
+    return mp.game2.ped.setWetnessEnabledThisFrame.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.clearEnvDirt ??= function () {
-    let $res = natives.clearPedEnvDirt(this.handle);
+    return mp.game2.ped.clearEnvDirt.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.clearEnvDirt ??= function () {
-    let $res = natives.clearPedEnvDirt(this.handle);
+    return mp.game2.ped.clearEnvDirt.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setSweat ??= function (sweat) {
-    let $res = natives.setPedSweat(this.handle, sweat);
+    return mp.game2.ped.setSweat.apply(this, [this.handle, sweat]);
 };
 
 mp.Ped.prototype.setSweat ??= function (sweat) {
-    let $res = natives.setPedSweat(this.handle, sweat);
+    return mp.game2.ped.setSweat.apply(this, [this.handle, sweat]);
 };
 
 mp.Player.prototype.addDecorationFromHashes ??= function (collection, overlay) {
-    let $res = natives.addPedDecorationFromHashes(this.handle, collection, overlay);
+    return mp.game2.ped.addDecorationFromHashes.apply(this, [this.handle, collection, overlay]);
 };
 
 mp.Ped.prototype.addDecorationFromHashes ??= function (collection, overlay) {
-    let $res = natives.addPedDecorationFromHashes(this.handle, collection, overlay);
+    return mp.game2.ped.addDecorationFromHashes.apply(this, [this.handle, collection, overlay]);
 };
 
 mp.Player.prototype.addDecorationFromHashesInCorona ??= function (collection, overlay) {
-    let $res = natives.addPedDecorationFromHashesInCorona(this.handle, collection, overlay);
+    return mp.game2.ped.addDecorationFromHashesInCorona.apply(this, [this.handle, collection, overlay]);
 };
 
 mp.Ped.prototype.addDecorationFromHashesInCorona ??= function (collection, overlay) {
-    let $res = natives.addPedDecorationFromHashesInCorona(this.handle, collection, overlay);
+    return mp.game2.ped.addDecorationFromHashesInCorona.apply(this, [this.handle, collection, overlay]);
 };
 
 mp.Player.prototype.getDecorationZoneFromHashes ??= function (overlay) {
-    let $res = natives.getPedDecorationZoneFromHashes(this.handle, overlay);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getDecorationZoneFromHashes.apply(this, [this.handle, overlay]);
 };
 
 mp.Ped.prototype.getDecorationZoneFromHashes ??= function (overlay) {
-    let $res = natives.getPedDecorationZoneFromHashes(this.handle, overlay);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getDecorationZoneFromHashes.apply(this, [this.handle, overlay]);
 };
 
 mp.Player.prototype.clearDecorations ??= function () {
-    let $res = natives.clearPedDecorations(this.handle);
+    return mp.game2.ped.clearDecorations.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.clearDecorations ??= function () {
-    let $res = natives.clearPedDecorations(this.handle);
+    return mp.game2.ped.clearDecorations.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.clearDecorationsLeaveScars ??= function () {
-    let $res = natives.clearPedDecorationsLeaveScars(this.handle);
+    return mp.game2.ped.clearDecorationsLeaveScars.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.clearDecorationsLeaveScars ??= function () {
-    let $res = natives.clearPedDecorationsLeaveScars(this.handle);
+    return mp.game2.ped.clearDecorationsLeaveScars.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.wasSkeletonUpdated ??= function () {
-    let $res = natives.wasPedSkeletonUpdated(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.wasSkeletonUpdated.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.wasSkeletonUpdated ??= function () {
-    let $res = natives.wasPedSkeletonUpdated(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.wasSkeletonUpdated.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getBoneCoords ??= function (boneId, offsetX, offsetY, offsetZ) {
-    let $res = natives.getPedBoneCoords(this.handle, boneId, offsetX, offsetY, offsetZ);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.ped.getBoneCoords.apply(this, [this.handle, boneId, offsetX, offsetY, offsetZ]);
 };
 
 mp.Ped.prototype.getBoneCoords ??= function (boneId, offsetX, offsetY, offsetZ) {
-    let $res = natives.getPedBoneCoords(this.handle, boneId, offsetX, offsetY, offsetZ);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.ped.getBoneCoords.apply(this, [this.handle, boneId, offsetX, offsetY, offsetZ]);
 };
 
 mp.Player.prototype.giveNmMessage ??= function () {
-    let $res = natives.givePedNmMessage(this.handle);
+    return mp.game2.ped.giveNmMessage.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.giveNmMessage ??= function () {
-    let $res = natives.givePedNmMessage(this.handle);
+    return mp.game2.ped.giveNmMessage.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isUsingScenario ??= function (scenario) {
-    if (typeof scenario != "string") scenario = null;
-    let $res = natives.isPedUsingScenario(this.handle, scenario);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isUsingScenario.apply(this, [this.handle, scenario]);
 };
 
 mp.Ped.prototype.isUsingScenario ??= function (scenario) {
-    if (typeof scenario != "string") scenario = null;
-    let $res = natives.isPedUsingScenario(this.handle, scenario);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isUsingScenario.apply(this, [this.handle, scenario]);
 };
 
 mp.Player.prototype.isUsingAnyScenario ??= function () {
-    let $res = natives.isPedUsingAnyScenario(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isUsingAnyScenario.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isUsingAnyScenario ??= function () {
-    let $res = natives.isPedUsingAnyScenario(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isUsingAnyScenario.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setPanicExitScenario ??= function (p1, p2, p3) {
-    let $res = natives.setPedPanicExitScenario(this.handle, p1, p2, p3);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.setPanicExitScenario.apply(this, [this.handle, p1, p2, p3]);
 };
 
 mp.Ped.prototype.setPanicExitScenario ??= function (p1, p2, p3) {
-    let $res = natives.setPedPanicExitScenario(this.handle, p1, p2, p3);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.setPanicExitScenario.apply(this, [this.handle, p1, p2, p3]);
 };
 
 mp.Player.prototype.setShouldPlayDirectedScenarioExit ??= function (p1, p2, p3) {
-    let $res = natives.setPedShouldPlayDirectedNormalScenarioExit(this.handle, p1, p2, p3);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.setShouldPlayDirectedScenarioExit.apply(this, [this.handle, p1, p2, p3]);
 };
 
 mp.Ped.prototype.setShouldPlayDirectedScenarioExit ??= function (p1, p2, p3) {
-    let $res = natives.setPedShouldPlayDirectedNormalScenarioExit(this.handle, p1, p2, p3);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.setShouldPlayDirectedScenarioExit.apply(this, [this.handle, p1, p2, p3]);
 };
 
 mp.Player.prototype.setShouldPlayNormalScenarioExit ??= function () {
-    let $res = natives.setPedShouldPlayNormalScenarioExit(this.handle);
+    return mp.game2.ped.setShouldPlayNormalScenarioExit.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.setShouldPlayNormalScenarioExit ??= function () {
-    let $res = natives.setPedShouldPlayNormalScenarioExit(this.handle);
+    return mp.game2.ped.setShouldPlayNormalScenarioExit.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setShouldPlayImmediateScenarioExit ??= function () {
-    let $res = natives.setPedShouldPlayImmediateScenarioExit(this.handle);
+    return mp.game2.ped.setShouldPlayImmediateScenarioExit.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.setShouldPlayImmediateScenarioExit ??= function () {
-    let $res = natives.setPedShouldPlayImmediateScenarioExit(this.handle);
+    return mp.game2.ped.setShouldPlayImmediateScenarioExit.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setShouldPlayFleeScenarioExit ??= function (p1, p2, p3) {
-    let $res = natives.setPedShouldPlayFleeScenarioExit(this.handle, p1, p2, p3);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.setShouldPlayFleeScenarioExit.apply(this, [this.handle, p1, p2, p3]);
 };
 
 mp.Ped.prototype.setShouldPlayFleeScenarioExit ??= function (p1, p2, p3) {
-    let $res = natives.setPedShouldPlayFleeScenarioExit(this.handle, p1, p2, p3);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.setShouldPlayFleeScenarioExit.apply(this, [this.handle, p1, p2, p3]);
 };
 
 mp.Player.prototype.playFacialAnim ??= function (animName, animDict) {
-    if (typeof animName != "string") animName = null;
-    if (typeof animDict != "string") animDict = null;
-    let $res = natives.playFacialAnim(this.handle, animName, animDict);
+    return mp.game2.ped.playFacialAnim.apply(this, [this.handle, animName, animDict]);
 };
 
 mp.Ped.prototype.playFacialAnim ??= function (animName, animDict) {
-    if (typeof animName != "string") animName = null;
-    if (typeof animDict != "string") animDict = null;
-    let $res = natives.playFacialAnim(this.handle, animName, animDict);
+    return mp.game2.ped.playFacialAnim.apply(this, [this.handle, animName, animDict]);
 };
 
 mp.Player.prototype.setFacialClipsetOverride ??= function (animDict) {
-    if (typeof animDict != "string") animDict = null;
-    let $res = natives.setFacialClipset(this.handle, animDict);
+    return mp.game2.ped.setFacialClipsetOverride.apply(this, [this.handle, animDict]);
 };
 
 mp.Ped.prototype.setFacialClipsetOverride ??= function (animDict) {
-    if (typeof animDict != "string") animDict = null;
-    let $res = natives.setFacialClipset(this.handle, animDict);
+    return mp.game2.ped.setFacialClipsetOverride.apply(this, [this.handle, animDict]);
 };
 
 mp.Player.prototype.setFacialIdleAnimOverride ??= function (animName, animDict) {
-    if (typeof animName != "string") animName = null;
-    if (typeof animDict != "string") animDict = null;
-    let $res = natives.setFacialIdleAnimOverride(this.handle, animName, animDict);
+    return mp.game2.ped.setFacialIdleAnimOverride.apply(this, [this.handle, animName, animDict]);
 };
 
 mp.Ped.prototype.setFacialIdleAnimOverride ??= function (animName, animDict) {
-    if (typeof animName != "string") animName = null;
-    if (typeof animDict != "string") animDict = null;
-    let $res = natives.setFacialIdleAnimOverride(this.handle, animName, animDict);
+    return mp.game2.ped.setFacialIdleAnimOverride.apply(this, [this.handle, animName, animDict]);
 };
 
 mp.Player.prototype.clearFacialIdleAnimOverride ??= function () {
-    let $res = natives.clearFacialIdleAnimOverride(this.handle);
+    return mp.game2.ped.clearFacialIdleAnimOverride.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.clearFacialIdleAnimOverride ??= function () {
-    let $res = natives.clearFacialIdleAnimOverride(this.handle);
+    return mp.game2.ped.clearFacialIdleAnimOverride.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setCanPlayGestureAnims ??= function (toggle) {
-    let $res = natives.setPedCanPlayGestureAnims(this.handle, toggle | 0);
+    return mp.game2.ped.setCanPlayGestureAnims.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setCanPlayGestureAnims ??= function (toggle) {
-    let $res = natives.setPedCanPlayGestureAnims(this.handle, toggle | 0);
+    return mp.game2.ped.setCanPlayGestureAnims.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setCanPlayVisemeAnims ??= function (toggle, p2) {
-    let $res = natives.setPedCanPlayVisemeAnims(this.handle, toggle | 0, p2 | 0);
+    return mp.game2.ped.setCanPlayVisemeAnims.apply(this, [this.handle, toggle, p2]);
 };
 
 mp.Ped.prototype.setCanPlayVisemeAnims ??= function (toggle, p2) {
-    let $res = natives.setPedCanPlayVisemeAnims(this.handle, toggle | 0, p2 | 0);
+    return mp.game2.ped.setCanPlayVisemeAnims.apply(this, [this.handle, toggle, p2]);
 };
 
 mp.Player.prototype.setCanPlayInjuredAnims ??= function (p1) {
-    let $res = natives.setPedIsIgnoredByAutoOpenDoors(this.handle, p1 | 0);
+    return mp.game2.ped.setCanPlayInjuredAnims.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.setCanPlayInjuredAnims ??= function (p1) {
-    let $res = natives.setPedIsIgnoredByAutoOpenDoors(this.handle, p1 | 0);
+    return mp.game2.ped.setCanPlayInjuredAnims.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.setCanPlayAmbientAnims ??= function (toggle) {
-    let $res = natives.setPedCanPlayAmbientAnims(this.handle, toggle | 0);
+    return mp.game2.ped.setCanPlayAmbientAnims.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setCanPlayAmbientAnims ??= function (toggle) {
-    let $res = natives.setPedCanPlayAmbientAnims(this.handle, toggle | 0);
+    return mp.game2.ped.setCanPlayAmbientAnims.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setCanPlayAmbientBaseAnims ??= function (toggle) {
-    let $res = natives.setPedCanPlayAmbientBaseAnims(this.handle, toggle | 0);
+    return mp.game2.ped.setCanPlayAmbientBaseAnims.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setCanPlayAmbientBaseAnims ??= function (toggle) {
-    let $res = natives.setPedCanPlayAmbientBaseAnims(this.handle, toggle | 0);
+    return mp.game2.ped.setCanPlayAmbientBaseAnims.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setCanArmIk ??= function (toggle) {
-    let $res = natives.setPedCanArmIk(this.handle, toggle | 0);
+    return mp.game2.ped.setCanArmIk.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setCanArmIk ??= function (toggle) {
-    let $res = natives.setPedCanArmIk(this.handle, toggle | 0);
+    return mp.game2.ped.setCanArmIk.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setCanHeadIk ??= function (toggle) {
-    let $res = natives.setPedCanHeadIk(this.handle, toggle | 0);
+    return mp.game2.ped.setCanHeadIk.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setCanHeadIk ??= function (toggle) {
-    let $res = natives.setPedCanHeadIk(this.handle, toggle | 0);
+    return mp.game2.ped.setCanHeadIk.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setCanLegIk ??= function (toggle) {
-    let $res = natives.setPedCanLegIk(this.handle, toggle | 0);
+    return mp.game2.ped.setCanLegIk.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setCanLegIk ??= function (toggle) {
-    let $res = natives.setPedCanLegIk(this.handle, toggle | 0);
+    return mp.game2.ped.setCanLegIk.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setCanTorsoIk ??= function (toggle) {
-    let $res = natives.setPedCanTorsoIk(this.handle, toggle | 0);
+    return mp.game2.ped.setCanTorsoIk.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setCanTorsoIk ??= function (toggle) {
-    let $res = natives.setPedCanTorsoIk(this.handle, toggle | 0);
+    return mp.game2.ped.setCanTorsoIk.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setCanTorsoReactIk ??= function (p1) {
-    let $res = natives.setPedCanTorsoReactIk(this.handle, p1 | 0);
+    return mp.game2.ped.setCanTorsoReactIk.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.setCanTorsoReactIk ??= function (p1) {
-    let $res = natives.setPedCanTorsoReactIk(this.handle, p1 | 0);
+    return mp.game2.ped.setCanTorsoReactIk.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.setCanUseAutoConversationLookat ??= function (toggle) {
-    let $res = natives.setPedCanUseAutoConversationLookat(this.handle, toggle | 0);
+    return mp.game2.ped.setCanUseAutoConversationLookat.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setCanUseAutoConversationLookat ??= function (toggle) {
-    let $res = natives.setPedCanUseAutoConversationLookat(this.handle, toggle | 0);
+    return mp.game2.ped.setCanUseAutoConversationLookat.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.isHeadtrackingPed ??= function (ped2) {
-    let $res = natives.isPedHeadtrackingPed(this.handle, ped2);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isHeadtrackingPed.apply(this, [this.handle, ped2]);
 };
 
 mp.Ped.prototype.isHeadtrackingPed ??= function (ped2) {
-    let $res = natives.isPedHeadtrackingPed(this.handle, ped2);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isHeadtrackingPed.apply(this, [this.handle, ped2]);
 };
 
 mp.Player.prototype.isHeadtrackingEntity ??= function (entity) {
-    let $res = natives.isPedHeadtrackingEntity(this.handle, entity);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isHeadtrackingEntity.apply(this, [this.handle, entity]);
 };
 
 mp.Ped.prototype.isHeadtrackingEntity ??= function (entity) {
-    let $res = natives.isPedHeadtrackingEntity(this.handle, entity);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isHeadtrackingEntity.apply(this, [this.handle, entity]);
 };
 
 mp.Player.prototype.setPrimaryLookat ??= function (lookAt) {
-    let $res = natives.setPedPrimaryLookat(this.handle, lookAt);
+    return mp.game2.ped.setPrimaryLookat.apply(this, [this.handle, lookAt]);
 };
 
 mp.Ped.prototype.setPrimaryLookat ??= function (lookAt) {
-    let $res = natives.setPedPrimaryLookat(this.handle, lookAt);
+    return mp.game2.ped.setPrimaryLookat.apply(this, [this.handle, lookAt]);
 };
 
 mp.Player.prototype.setClothPackageIndex ??= function (p1) {
-    let $res = natives.setPedClothPinFrames(this.handle, p1);
+    return mp.game2.ped.setClothPackageIndex.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.setClothPackageIndex ??= function (p1) {
-    let $res = natives.setPedClothPinFrames(this.handle, p1);
+    return mp.game2.ped.setClothPackageIndex.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.setClothProne ??= function (p1) {
-    let $res = natives.setPedClothPackageIndex(this.handle, p1);
+    return mp.game2.ped.setClothProne.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.setClothProne ??= function (p1) {
-    let $res = natives.setPedClothPackageIndex(this.handle, p1);
+    return mp.game2.ped.setClothProne.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.setConfigFlag ??= function (flagId, value) {
-    let $res = natives.setPedConfigFlag(this.handle, flagId, value | 0);
+    return mp.game2.ped.setConfigFlag.apply(this, [this.handle, flagId, value]);
 };
 
 mp.Ped.prototype.setConfigFlag ??= function (flagId, value) {
-    let $res = natives.setPedConfigFlag(this.handle, flagId, value | 0);
+    return mp.game2.ped.setConfigFlag.apply(this, [this.handle, flagId, value]);
 };
 
 mp.Player.prototype.setResetFlag ??= function (flagId, doReset) {
-    let $res = natives.setPedResetFlag(this.handle, flagId, doReset | 0);
+    return mp.game2.ped.setResetFlag.apply(this, [this.handle, flagId, doReset]);
 };
 
 mp.Ped.prototype.setResetFlag ??= function (flagId, doReset) {
-    let $res = natives.setPedResetFlag(this.handle, flagId, doReset | 0);
+    return mp.game2.ped.setResetFlag.apply(this, [this.handle, flagId, doReset]);
 };
 
 mp.Player.prototype.getConfigFlag ??= function (flagId, p2) {
-    let $res = natives.getPedConfigFlag(this.handle, flagId, p2 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.getConfigFlag.apply(this, [this.handle, flagId, p2]);
 };
 
 mp.Ped.prototype.getConfigFlag ??= function (flagId, p2) {
-    let $res = natives.getPedConfigFlag(this.handle, flagId, p2 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.getConfigFlag.apply(this, [this.handle, flagId, p2]);
 };
 
 mp.Player.prototype.getResetFlag ??= function (flagId) {
-    let $res = natives.getPedResetFlag(this.handle, flagId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.getResetFlag.apply(this, [this.handle, flagId]);
 };
 
 mp.Ped.prototype.getResetFlag ??= function (flagId) {
-    let $res = natives.getPedResetFlag(this.handle, flagId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.getResetFlag.apply(this, [this.handle, flagId]);
 };
 
 mp.Player.prototype.setGroupMemberPassengerIndex ??= function (index) {
-    let $res = natives.setPedGroupMemberPassengerIndex(this.handle, index);
+    return mp.game2.ped.setGroupMemberPassengerIndex.apply(this, [this.handle, index]);
 };
 
 mp.Ped.prototype.setGroupMemberPassengerIndex ??= function (index) {
-    let $res = natives.setPedGroupMemberPassengerIndex(this.handle, index);
+    return mp.game2.ped.setGroupMemberPassengerIndex.apply(this, [this.handle, index]);
 };
 
 mp.Player.prototype.setCanEvasiveDive ??= function (toggle) {
-    let $res = natives.setPedCanEvasiveDive(this.handle, toggle | 0);
+    return mp.game2.ped.setCanEvasiveDive.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setCanEvasiveDive ??= function (toggle) {
-    let $res = natives.setPedCanEvasiveDive(this.handle, toggle | 0);
+    return mp.game2.ped.setCanEvasiveDive.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.isEvasiveDiving ??= function () {
-    let $res = natives.isPedEvasiveDiving(this.handle, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.evadingEntity = $res[1];
-    return $res[0] == 1 ? $resObj.evadingEntity : undefined;
+    return mp.game2.ped.isEvasiveDiving.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isEvasiveDiving ??= function () {
-    let $res = natives.isPedEvasiveDiving(this.handle, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.evadingEntity = $res[1];
-    return $res[0] == 1 ? $resObj.evadingEntity : undefined;
+    return mp.game2.ped.isEvasiveDiving.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setShootsAtCoord ??= function (x, y, z, toggle) {
-    let $res = natives.setPedShootsAtCoord(this.handle, x, y, z, toggle | 0);
+    return mp.game2.ped.setShootsAtCoord.apply(this, [this.handle, x, y, z, toggle]);
 };
 
 mp.Ped.prototype.setShootsAtCoord ??= function (x, y, z, toggle) {
-    let $res = natives.setPedShootsAtCoord(this.handle, x, y, z, toggle | 0);
+    return mp.game2.ped.setShootsAtCoord.apply(this, [this.handle, x, y, z, toggle]);
 };
 
 mp.Player.prototype.setModelIsSuppressed ??= function (toggle) {
-    let $res = natives.setPedModelIsSuppressed(this.handle, toggle | 0);
+    return mp.game2.ped.setModelIsSuppressed.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setModelIsSuppressed ??= function (toggle) {
-    let $res = natives.setPedModelIsSuppressed(this.handle, toggle | 0);
+    return mp.game2.ped.setModelIsSuppressed.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setCanBeTargetedWhenInjured ??= function (toggle) {
-    let $res = natives.setPedCanBeTargetedWhenInjured(this.handle, toggle | 0);
+    return mp.game2.ped.setCanBeTargetedWhenInjured.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setCanBeTargetedWhenInjured ??= function (toggle) {
-    let $res = natives.setPedCanBeTargetedWhenInjured(this.handle, toggle | 0);
+    return mp.game2.ped.setCanBeTargetedWhenInjured.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setGeneratesDeadBodyEvents ??= function (toggle) {
-    let $res = natives.setPedGeneratesDeadBodyEvents(this.handle, toggle | 0);
+    return mp.game2.ped.setGeneratesDeadBodyEvents.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setGeneratesDeadBodyEvents ??= function (toggle) {
-    let $res = natives.setPedGeneratesDeadBodyEvents(this.handle, toggle | 0);
+    return mp.game2.ped.setGeneratesDeadBodyEvents.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.blockDeadBodyShockingEvents ??= function (toggle) {
-    let $res = natives.blockPedFromGeneratingDeadBodyEventsWhenDead(this.handle, toggle | 0);
+    return mp.game2.ped.blockDeadBodyShockingEvents.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.blockDeadBodyShockingEvents ??= function (toggle) {
-    let $res = natives.blockPedFromGeneratingDeadBodyEventsWhenDead(this.handle, toggle | 0);
+    return mp.game2.ped.blockDeadBodyShockingEvents.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setCanRagdollFromPlayerImpact ??= function (toggle) {
-    let $res = natives.setPedCanRagdollFromPlayerImpact(this.handle, toggle | 0);
+    return mp.game2.ped.setCanRagdollFromPlayerImpact.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setCanRagdollFromPlayerImpact ??= function (toggle) {
-    let $res = natives.setPedCanRagdollFromPlayerImpact(this.handle, toggle | 0);
+    return mp.game2.ped.setCanRagdollFromPlayerImpact.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.giveHelmet ??= function (cannotRemove, helmetFlag, textureIndex) {
-    let $res = natives.givePedHelmet(this.handle, cannotRemove | 0, helmetFlag, textureIndex);
+    return mp.game2.ped.giveHelmet.apply(this, [this.handle, cannotRemove, helmetFlag, textureIndex]);
 };
 
 mp.Ped.prototype.giveHelmet ??= function (cannotRemove, helmetFlag, textureIndex) {
-    let $res = natives.givePedHelmet(this.handle, cannotRemove | 0, helmetFlag, textureIndex);
+    return mp.game2.ped.giveHelmet.apply(this, [this.handle, cannotRemove, helmetFlag, textureIndex]);
 };
 
 mp.Player.prototype.removeHelmet ??= function (instantly) {
-    let $res = natives.removePedHelmet(this.handle, instantly | 0);
+    return mp.game2.ped.removeHelmet.apply(this, [this.handle, instantly]);
 };
 
 mp.Ped.prototype.removeHelmet ??= function (instantly) {
-    let $res = natives.removePedHelmet(this.handle, instantly | 0);
+    return mp.game2.ped.removeHelmet.apply(this, [this.handle, instantly]);
 };
 
 mp.Player.prototype.isTakingOffHelmet ??= function () {
-    let $res = natives.isPedTakingOffHelmet(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isTakingOffHelmet.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isTakingOffHelmet ??= function () {
-    let $res = natives.isPedTakingOffHelmet(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isTakingOffHelmet.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setHelmet ??= function (canWearHelmet) {
-    let $res = natives.setPedHelmet(this.handle, canWearHelmet | 0);
+    return mp.game2.ped.setHelmet.apply(this, [this.handle, canWearHelmet]);
 };
 
 mp.Ped.prototype.setHelmet ??= function (canWearHelmet) {
-    let $res = natives.setPedHelmet(this.handle, canWearHelmet | 0);
+    return mp.game2.ped.setHelmet.apply(this, [this.handle, canWearHelmet]);
 };
 
 mp.Player.prototype.setHelmetFlag ??= function (helmetFlag) {
-    let $res = natives.setPedHelmetFlag(this.handle, helmetFlag);
+    return mp.game2.ped.setHelmetFlag.apply(this, [this.handle, helmetFlag]);
 };
 
 mp.Ped.prototype.setHelmetFlag ??= function (helmetFlag) {
-    let $res = natives.setPedHelmetFlag(this.handle, helmetFlag);
+    return mp.game2.ped.setHelmetFlag.apply(this, [this.handle, helmetFlag]);
 };
 
 mp.Player.prototype.setHelmetPropIndex ??= function (propIndex, p2) {
-    let $res = natives.setPedHelmetPropIndex(this.handle, propIndex, p2 | 0);
+    return mp.game2.ped.setHelmetPropIndex.apply(this, [this.handle, propIndex, p2]);
 };
 
 mp.Ped.prototype.setHelmetPropIndex ??= function (propIndex, p2) {
-    let $res = natives.setPedHelmetPropIndex(this.handle, propIndex, p2 | 0);
+    return mp.game2.ped.setHelmetPropIndex.apply(this, [this.handle, propIndex, p2]);
 };
 
 mp.Player.prototype.setHelmetUnk ??= function (p1, p2, p3) {
-    let $res = natives.setPedHelmetVisorPropIndices(this.handle, p1 | 0, p2, p3);
+    return mp.game2.ped.setHelmetUnk.apply(this, [this.handle, p1, p2, p3]);
 };
 
 mp.Ped.prototype.setHelmetUnk ??= function (p1, p2, p3) {
-    let $res = natives.setPedHelmetVisorPropIndices(this.handle, p1 | 0, p2, p3);
+    return mp.game2.ped.setHelmetUnk.apply(this, [this.handle, p1, p2, p3]);
 };
 
 mp.Player.prototype.isHelmetUnk ??= function () {
-    let $res = natives.isPedHelmetVisorUp(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isHelmetUnk.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isHelmetUnk ??= function () {
-    let $res = natives.isPedHelmetVisorUp(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isHelmetUnk.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setHelmetTextureIndex ??= function (textureIndex) {
-    let $res = natives.setPedHelmetTextureIndex(this.handle, textureIndex);
+    return mp.game2.ped.setHelmetTextureIndex.apply(this, [this.handle, textureIndex]);
 };
 
 mp.Ped.prototype.setHelmetTextureIndex ??= function (textureIndex) {
-    let $res = natives.setPedHelmetTextureIndex(this.handle, textureIndex);
+    return mp.game2.ped.setHelmetTextureIndex.apply(this, [this.handle, textureIndex]);
 };
 
 mp.Player.prototype.isWearingHelmet ??= function () {
-    let $res = natives.isPedWearingHelmet(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isWearingHelmet.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isWearingHelmet ??= function () {
-    let $res = natives.isPedWearingHelmet(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isWearingHelmet.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.clearStoredHatProp ??= function () {
-    let $res = natives.clearPedStoredHatProp(this.handle);
+    return mp.game2.ped.clearStoredHatProp.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.clearStoredHatProp ??= function () {
-    let $res = natives.clearPedStoredHatProp(this.handle);
+    return mp.game2.ped.clearStoredHatProp.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getHelmetStoredHatPropIndex ??= function () {
-    let $res = natives.getPedHelmetStoredHatPropIndex(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getHelmetStoredHatPropIndex.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getHelmetStoredHatPropIndex ??= function () {
-    let $res = natives.getPedHelmetStoredHatPropIndex(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getHelmetStoredHatPropIndex.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getHelmetStoredHatTexIndex ??= function () {
-    let $res = natives.getPedHelmetStoredHatTexIndex(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getHelmetStoredHatTexIndex.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getHelmetStoredHatTexIndex ??= function () {
-    let $res = natives.getPedHelmetStoredHatTexIndex(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getHelmetStoredHatTexIndex.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setToLoadCover ??= function (toggle) {
-    let $res = natives.setPedToLoadCover(this.handle, toggle | 0);
+    return mp.game2.ped.setToLoadCover.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setToLoadCover ??= function (toggle) {
-    let $res = natives.setPedToLoadCover(this.handle, toggle | 0);
+    return mp.game2.ped.setToLoadCover.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setCanCowerInCover ??= function (toggle) {
-    let $res = natives.setPedCanCowerInCover(this.handle, toggle | 0);
+    return mp.game2.ped.setCanCowerInCover.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setCanCowerInCover ??= function (toggle) {
-    let $res = natives.setPedCanCowerInCover(this.handle, toggle | 0);
+    return mp.game2.ped.setCanCowerInCover.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setCanPeekInCover ??= function (toggle) {
-    let $res = natives.setPedCanPeekInCover(this.handle, toggle | 0);
+    return mp.game2.ped.setCanPeekInCover.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setCanPeekInCover ??= function (toggle) {
-    let $res = natives.setPedCanPeekInCover(this.handle, toggle | 0);
+    return mp.game2.ped.setCanPeekInCover.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setPlaysHeadOnHornAnimWhenDiesInVehicle ??= function (toggle) {
-    let $res = natives.setPedPlaysHeadOnHornAnimWhenDiesInVehicle(this.handle, toggle | 0);
+    return mp.game2.ped.setPlaysHeadOnHornAnimWhenDiesInVehicle.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setPlaysHeadOnHornAnimWhenDiesInVehicle ??= function (toggle) {
-    let $res = natives.setPedPlaysHeadOnHornAnimWhenDiesInVehicle(this.handle, toggle | 0);
+    return mp.game2.ped.setPlaysHeadOnHornAnimWhenDiesInVehicle.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setLegIkMode ??= function (mode) {
-    let $res = natives.setPedLegIkMode(this.handle, mode);
+    return mp.game2.ped.setLegIkMode.apply(this, [this.handle, mode]);
 };
 
 mp.Ped.prototype.setLegIkMode ??= function (mode) {
-    let $res = natives.setPedLegIkMode(this.handle, mode);
+    return mp.game2.ped.setLegIkMode.apply(this, [this.handle, mode]);
 };
 
 mp.Player.prototype.setCanSwitchWeapon ??= function (toggle) {
-    let $res = natives.setPedCanSwitchWeapon(this.handle, toggle | 0);
+    return mp.game2.ped.setCanSwitchWeapon.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setCanSwitchWeapon ??= function (toggle) {
-    let $res = natives.setPedCanSwitchWeapon(this.handle, toggle | 0);
+    return mp.game2.ped.setCanSwitchWeapon.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setDiesInstantlyInWater ??= function (toggle) {
-    let $res = natives.setPedDiesInstantlyInWater(this.handle, toggle | 0);
+    return mp.game2.ped.setDiesInstantlyInWater.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setDiesInstantlyInWater ??= function (toggle) {
-    let $res = natives.setPedDiesInstantlyInWater(this.handle, toggle | 0);
+    return mp.game2.ped.setDiesInstantlyInWater.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.stopWeaponFiringWhenDropped ??= function () {
-    let $res = natives.stopPedWeaponFiringWhenDropped(this.handle);
+    return mp.game2.ped.stopWeaponFiringWhenDropped.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.stopWeaponFiringWhenDropped ??= function () {
-    let $res = natives.stopPedWeaponFiringWhenDropped(this.handle);
+    return mp.game2.ped.stopWeaponFiringWhenDropped.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setScriptedAnimSeatOffset ??= function (p1) {
-    let $res = natives.setScriptedAnimSeatOffset(this.handle, p1);
+    return mp.game2.ped.setScriptedAnimSeatOffset.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.setScriptedAnimSeatOffset ??= function (p1) {
-    let $res = natives.setScriptedAnimSeatOffset(this.handle, p1);
+    return mp.game2.ped.setScriptedAnimSeatOffset.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.setCombatMovement ??= function (combatMovement) {
-    let $res = natives.setPedCombatMovement(this.handle, combatMovement);
+    return mp.game2.ped.setCombatMovement.apply(this, [this.handle, combatMovement]);
 };
 
 mp.Ped.prototype.setCombatMovement ??= function (combatMovement) {
-    let $res = natives.setPedCombatMovement(this.handle, combatMovement);
+    return mp.game2.ped.setCombatMovement.apply(this, [this.handle, combatMovement]);
 };
 
 mp.Player.prototype.getCombatMovement ??= function () {
-    let $res = natives.getPedCombatMovement(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getCombatMovement.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getCombatMovement ??= function () {
-    let $res = natives.getPedCombatMovement(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getCombatMovement.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setCombatAbility ??= function (abilityLevel) {
-    let $res = natives.setPedCombatAbility(this.handle, abilityLevel);
+    return mp.game2.ped.setCombatAbility.apply(this, [this.handle, abilityLevel]);
 };
 
 mp.Ped.prototype.setCombatAbility ??= function (abilityLevel) {
-    let $res = natives.setPedCombatAbility(this.handle, abilityLevel);
+    return mp.game2.ped.setCombatAbility.apply(this, [this.handle, abilityLevel]);
 };
 
 mp.Player.prototype.setCombatRange ??= function (combatRange) {
-    let $res = natives.setPedCombatRange(this.handle, combatRange);
+    return mp.game2.ped.setCombatRange.apply(this, [this.handle, combatRange]);
 };
 
 mp.Ped.prototype.setCombatRange ??= function (combatRange) {
-    let $res = natives.setPedCombatRange(this.handle, combatRange);
+    return mp.game2.ped.setCombatRange.apply(this, [this.handle, combatRange]);
 };
 
 mp.Player.prototype.getCombatRange ??= function () {
-    let $res = natives.getPedCombatRange(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getCombatRange.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getCombatRange ??= function () {
-    let $res = natives.getPedCombatRange(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getCombatRange.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setCombatAttributes ??= function (attributeId, enabled) {
-    let $res = natives.setPedCombatAttributes(this.handle, attributeId, enabled | 0);
+    return mp.game2.ped.setCombatAttributes.apply(this, [this.handle, attributeId, enabled]);
 };
 
 mp.Ped.prototype.setCombatAttributes ??= function (attributeId, enabled) {
-    let $res = natives.setPedCombatAttributes(this.handle, attributeId, enabled | 0);
+    return mp.game2.ped.setCombatAttributes.apply(this, [this.handle, attributeId, enabled]);
 };
 
 mp.Player.prototype.setTargetLossResponse ??= function (responseType) {
-    let $res = natives.setPedTargetLossResponse(this.handle, responseType);
+    return mp.game2.ped.setTargetLossResponse.apply(this, [this.handle, responseType]);
 };
 
 mp.Ped.prototype.setTargetLossResponse ??= function (responseType) {
-    let $res = natives.setPedTargetLossResponse(this.handle, responseType);
+    return mp.game2.ped.setTargetLossResponse.apply(this, [this.handle, responseType]);
 };
 
 mp.Player.prototype.isPerformingMeleeAction ??= function () {
-    let $res = natives.isPedPerformingMeleeAction(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isPerformingMeleeAction.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isPerformingMeleeAction ??= function () {
-    let $res = natives.isPedPerformingMeleeAction(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isPerformingMeleeAction.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isPerformingStealthKill ??= function () {
-    let $res = natives.isPedPerformingStealthKill(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isPerformingStealthKill.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isPerformingStealthKill ??= function () {
-    let $res = natives.isPedPerformingStealthKill(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isPerformingStealthKill.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isPerformingDependentComboLimit ??= function () {
-    let $res = natives.isPedPerformingACounterAttack(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isPerformingDependentComboLimit.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isPerformingDependentComboLimit ??= function () {
-    let $res = natives.isPedPerformingACounterAttack(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isPerformingDependentComboLimit.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isBeingStealthKilled ??= function () {
-    let $res = natives.isPedBeingStealthKilled(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isBeingStealthKilled.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isBeingStealthKilled ??= function () {
-    let $res = natives.isPedBeingStealthKilled(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isBeingStealthKilled.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getMeleeTargetFor ??= function () {
-    let $res = natives.getMeleeTargetForPed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getMeleeTargetFor.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getMeleeTargetFor ??= function () {
-    let $res = natives.getMeleeTargetForPed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getMeleeTargetFor.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.wasKilledByStealth ??= function () {
-    let $res = natives.wasPedKilledByStealth(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.wasKilledByStealth.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.wasKilledByStealth ??= function () {
-    let $res = natives.wasPedKilledByStealth(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.wasKilledByStealth.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.wasKilledByTakedown ??= function () {
-    let $res = natives.wasPedKilledByTakedown(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.wasKilledByTakedown.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.wasKilledByTakedown ??= function () {
-    let $res = natives.wasPedKilledByTakedown(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.wasKilledByTakedown.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.wasKnockedOut ??= function () {
-    let $res = natives.wasPedKnockedOut(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.wasKnockedOut.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.wasKnockedOut ??= function () {
-    let $res = natives.wasPedKnockedOut(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.wasKnockedOut.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setFleeAttributes ??= function (attributeFlags, enable) {
-    let $res = natives.setPedFleeAttributes(this.handle, attributeFlags, enable | 0);
+    return mp.game2.ped.setFleeAttributes.apply(this, [this.handle, attributeFlags, enable]);
 };
 
 mp.Ped.prototype.setFleeAttributes ??= function (attributeFlags, enable) {
-    let $res = natives.setPedFleeAttributes(this.handle, attributeFlags, enable | 0);
+    return mp.game2.ped.setFleeAttributes.apply(this, [this.handle, attributeFlags, enable]);
 };
 
 mp.Player.prototype.setCowerHash ??= function (p1) {
-    if (typeof p1 != "string") p1 = null;
-    let $res = natives.setPedCowerHash(this.handle, p1);
+    return mp.game2.ped.setCowerHash.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.setCowerHash ??= function (p1) {
-    if (typeof p1 != "string") p1 = null;
-    let $res = natives.setPedCowerHash(this.handle, p1);
+    return mp.game2.ped.setCowerHash.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.setSteersAroundPeds ??= function (toggle) {
-    let $res = natives.setPedSteersAroundPeds(this.handle, toggle | 0);
+    return mp.game2.ped.setSteersAroundPeds.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setSteersAroundPeds ??= function (toggle) {
-    let $res = natives.setPedSteersAroundPeds(this.handle, toggle | 0);
+    return mp.game2.ped.setSteersAroundPeds.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setSteersAroundObjects ??= function (toggle) {
-    let $res = natives.setPedSteersAroundObjects(this.handle, toggle | 0);
+    return mp.game2.ped.setSteersAroundObjects.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setSteersAroundObjects ??= function (toggle) {
-    let $res = natives.setPedSteersAroundObjects(this.handle, toggle | 0);
+    return mp.game2.ped.setSteersAroundObjects.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setSteersAroundVehicles ??= function (toggle) {
-    let $res = natives.setPedSteersAroundVehicles(this.handle, toggle | 0);
+    return mp.game2.ped.setSteersAroundVehicles.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setSteersAroundVehicles ??= function (toggle) {
-    let $res = natives.setPedSteersAroundVehicles(this.handle, toggle | 0);
+    return mp.game2.ped.setSteersAroundVehicles.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setIncreasedAvoidanceRadius ??= function () {
-    let $res = natives.setPedIncreasedAvoidanceRadius(this.handle);
+    return mp.game2.ped.setIncreasedAvoidanceRadius.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.setIncreasedAvoidanceRadius ??= function () {
-    let $res = natives.setPedIncreasedAvoidanceRadius(this.handle);
+    return mp.game2.ped.setIncreasedAvoidanceRadius.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setBlocksPathingWhenDead ??= function (toggle) {
-    let $res = natives.setPedBlocksPathingWhenDead(this.handle, toggle | 0);
+    return mp.game2.ped.setBlocksPathingWhenDead.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setBlocksPathingWhenDead ??= function (toggle) {
-    let $res = natives.setPedBlocksPathingWhenDead(this.handle, toggle | 0);
+    return mp.game2.ped.setBlocksPathingWhenDead.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.isHeadingTowardsPosition ??= function (x, y, z, p4) {
-    let $res = natives.isPedHeadingTowardsPosition(this.handle, x, y, z, p4);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isHeadingTowardsPosition.apply(this, [this.handle, x, y, z, p4]);
 };
 
 mp.Ped.prototype.isHeadingTowardsPosition ??= function (x, y, z, p4) {
-    let $res = natives.isPedHeadingTowardsPosition(this.handle, x, y, z, p4);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isHeadingTowardsPosition.apply(this, [this.handle, x, y, z, p4]);
 };
 
 mp.Player.prototype.requestVisibilityTracking ??= function () {
-    let $res = natives.requestPedVisibilityTracking(this.handle);
+    return mp.game2.ped.requestVisibilityTracking.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.requestVisibilityTracking ??= function () {
-    let $res = natives.requestPedVisibilityTracking(this.handle);
+    return mp.game2.ped.requestVisibilityTracking.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.requestVehicleVisibilityTracking ??= function (p1) {
-    let $res = natives.requestPedVehicleVisibilityTracking(this.handle, p1 | 0);
+    return mp.game2.ped.requestVehicleVisibilityTracking.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.requestVehicleVisibilityTracking ??= function (p1) {
-    let $res = natives.requestPedVehicleVisibilityTracking(this.handle, p1 | 0);
+    return mp.game2.ped.requestVehicleVisibilityTracking.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.isTrackedVisible ??= function () {
-    let $res = natives.isTrackedPedVisible(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isTrackedVisible.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isTrackedVisible ??= function () {
-    let $res = natives.isTrackedPedVisible(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isTrackedVisible.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isTracked ??= function () {
-    let $res = natives.isPedTracked(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isTracked.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isTracked ??= function () {
-    let $res = natives.isPedTracked(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isTracked.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.hasReceivedEvent ??= function (eventId) {
-    let $res = natives.hasPedReceivedEvent(this.handle, eventId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.hasReceivedEvent.apply(this, [this.handle, eventId]);
 };
 
 mp.Ped.prototype.hasReceivedEvent ??= function (eventId) {
-    let $res = natives.hasPedReceivedEvent(this.handle, eventId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.hasReceivedEvent.apply(this, [this.handle, eventId]);
 };
 
 mp.Player.prototype.canSeeHatedPed ??= function (ped2) {
-    let $res = natives.canPedSeeHatedPed(this.handle, ped2);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.canSeeHatedPed.apply(this, [this.handle, ped2]);
 };
 
 mp.Ped.prototype.canSeeHatedPed ??= function (ped2) {
-    let $res = natives.canPedSeeHatedPed(this.handle, ped2);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.canSeeHatedPed.apply(this, [this.handle, ped2]);
 };
 
 mp.Player.prototype.getBoneIndex ??= function (boneId) {
-    let $res = natives.getPedBoneIndex(this.handle, boneId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getBoneIndex.apply(this, [this.handle, boneId]);
 };
 
 mp.Ped.prototype.getBoneIndex ??= function (boneId) {
-    let $res = natives.getPedBoneIndex(this.handle, boneId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getBoneIndex.apply(this, [this.handle, boneId]);
 };
 
 mp.Player.prototype.getRagdollBoneIndex ??= function (bone) {
-    let $res = natives.getPedRagdollBoneIndex(this.handle, bone);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getRagdollBoneIndex.apply(this, [this.handle, bone]);
 };
 
 mp.Ped.prototype.getRagdollBoneIndex ??= function (bone) {
-    let $res = natives.getPedRagdollBoneIndex(this.handle, bone);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getRagdollBoneIndex.apply(this, [this.handle, bone]);
 };
 
 mp.Player.prototype.setEnveffScale ??= function (value) {
-    let $res = natives.setPedEnveffScale(this.handle, value);
+    return mp.game2.ped.setEnveffScale.apply(this, [this.handle, value]);
 };
 
 mp.Ped.prototype.setEnveffScale ??= function (value) {
-    let $res = natives.setPedEnveffScale(this.handle, value);
+    return mp.game2.ped.setEnveffScale.apply(this, [this.handle, value]);
 };
 
 mp.Player.prototype.getEnveffScale ??= function () {
-    let $res = natives.getPedEnveffScale(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getEnveffScale.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getEnveffScale ??= function () {
-    let $res = natives.getPedEnveffScale(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getEnveffScale.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setEnableEnveffScale ??= function (toggle) {
-    let $res = natives.setEnablePedEnveffScale(this.handle, toggle | 0);
+    return mp.game2.ped.setEnableEnveffScale.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setEnableEnveffScale ??= function (toggle) {
-    let $res = natives.setEnablePedEnveffScale(this.handle, toggle | 0);
+    return mp.game2.ped.setEnableEnveffScale.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setEnveffColorModulator ??= function (p1, p2, p3) {
-    let $res = natives.setPedEnveffColorModulator(this.handle, p1, p2, p3);
+    return mp.game2.ped.setEnveffColorModulator.apply(this, [this.handle, p1, p2, p3]);
 };
 
 mp.Ped.prototype.setEnveffColorModulator ??= function (p1, p2, p3) {
-    let $res = natives.setPedEnveffColorModulator(this.handle, p1, p2, p3);
+    return mp.game2.ped.setEnveffColorModulator.apply(this, [this.handle, p1, p2, p3]);
 };
 
 mp.Player.prototype.setEmissiveIntensity ??= function (intensity) {
-    let $res = natives.setPedEmissiveScale(this.handle, intensity);
+    return mp.game2.ped.setEmissiveIntensity.apply(this, [this.handle, intensity]);
 };
 
 mp.Ped.prototype.setEmissiveIntensity ??= function (intensity) {
-    let $res = natives.setPedEmissiveScale(this.handle, intensity);
+    return mp.game2.ped.setEmissiveIntensity.apply(this, [this.handle, intensity]);
 };
 
 mp.Player.prototype.getEmissiveIntensity ??= function () {
-    let $res = natives.getPedEmissiveScale(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getEmissiveIntensity.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getEmissiveIntensity ??= function () {
-    let $res = natives.getPedEmissiveScale(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getEmissiveIntensity.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isShaderEffectValid ??= function () {
-    let $res = natives.isPedShaderReady(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isShaderEffectValid.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isShaderEffectValid ??= function () {
-    let $res = natives.isPedShaderReady(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isShaderEffectValid.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setAoBlobRendering ??= function (toggle) {
-    let $res = natives.setPedAoBlobRendering(this.handle, toggle | 0);
+    return mp.game2.ped.setAoBlobRendering.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setAoBlobRendering ??= function (toggle) {
-    let $res = natives.setPedAoBlobRendering(this.handle, toggle | 0);
+    return mp.game2.ped.setAoBlobRendering.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.forceMotionState ??= function (state, p2) {
-    let $res = natives.taskForceMotionState(this.handle, state, p2 | 0);
+    return mp.game2.task.forceMotionState.apply(this, [this.handle, state, p2]);
 };
 
 mp.Ped.prototype.forceMotionState ??= function (state, p2) {
-    let $res = natives.taskForceMotionState(this.handle, state, p2 | 0);
+    return mp.game2.task.forceMotionState.apply(this, [this.handle, state, p2]);
 };
 
 mp.Player.prototype.getCurrentMovementSpeed ??= function () {
-    let $res = natives.getPedCurrentMoveBlendRatio(this.handle, 0, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.speedX = $res[1];
-    $resObj.speedY = $res[2];
-    $resObj.result = $res[0] == 1;
-    return $resObj;
+    return mp.game2.ped.getCurrentMovementSpeed.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getCurrentMovementSpeed ??= function () {
-    let $res = natives.getPedCurrentMoveBlendRatio(this.handle, 0, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.speedX = $res[1];
-    $resObj.speedY = $res[2];
-    $resObj.result = $res[0] == 1;
-    return $resObj;
+    return mp.game2.ped.getCurrentMovementSpeed.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setMaxMoveBlendRatio ??= function (value) {
-    let $res = natives.setPedMaxMoveBlendRatio(this.handle, value);
+    return mp.game2.ped.setMaxMoveBlendRatio.apply(this, [this.handle, value]);
 };
 
 mp.Ped.prototype.setMaxMoveBlendRatio ??= function (value) {
-    let $res = natives.setPedMaxMoveBlendRatio(this.handle, value);
+    return mp.game2.ped.setMaxMoveBlendRatio.apply(this, [this.handle, value]);
 };
 
 mp.Player.prototype.setMinMoveBlendRatio ??= function (value) {
-    let $res = natives.setPedMinMoveBlendRatio(this.handle, value);
+    return mp.game2.ped.setMinMoveBlendRatio.apply(this, [this.handle, value]);
 };
 
 mp.Ped.prototype.setMinMoveBlendRatio ??= function (value) {
-    let $res = natives.setPedMinMoveBlendRatio(this.handle, value);
+    return mp.game2.ped.setMinMoveBlendRatio.apply(this, [this.handle, value]);
 };
 
 mp.Player.prototype.setMoveRateOverride ??= function (value) {
-    let $res = natives.setPedMoveRateOverride(this.handle, value);
+    return mp.game2.ped.setMoveRateOverride.apply(this, [this.handle, value]);
 };
 
 mp.Ped.prototype.setMoveRateOverride ??= function (value) {
-    let $res = natives.setPedMoveRateOverride(this.handle, value);
+    return mp.game2.ped.setMoveRateOverride.apply(this, [this.handle, value]);
 };
 
 mp.Player.prototype.getNearbyVehicles ??= function () {
-    let $res = natives.getPedNearbyVehicles(this.handle, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.sizeAndVehs = $res[0];
-    $resObj.result = $res[0];
-    return $resObj;
+    return mp.game2.ped.getNearbyVehicles.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getNearbyVehicles ??= function () {
-    let $res = natives.getPedNearbyVehicles(this.handle, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.sizeAndVehs = $res[0];
-    $resObj.result = $res[0];
-    return $resObj;
+    return mp.game2.ped.getNearbyVehicles.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getNearbyPeds ??= function (ignore) {
-    let $res = natives.getPedNearbyPeds(this.handle, 0, ignore);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.sizeAndPeds = $res[0];
-    $resObj.result = $res[0];
-    return $resObj;
+    return mp.game2.ped.getNearbyPeds.apply(this, [this.handle, ignore]);
 };
 
 mp.Ped.prototype.getNearbyPeds ??= function (ignore) {
-    let $res = natives.getPedNearbyPeds(this.handle, 0, ignore);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.sizeAndPeds = $res[0];
-    $resObj.result = $res[0];
-    return $resObj;
+    return mp.game2.ped.getNearbyPeds.apply(this, [this.handle, ignore]);
 };
 
 mp.Player.prototype.haveAllStreamingRequestsCompleted ??= function () {
-    let $res = natives.haveAllStreamingRequestsCompleted(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.haveAllStreamingRequestsCompleted.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.haveAllStreamingRequestsCompleted ??= function () {
-    let $res = natives.haveAllStreamingRequestsCompleted(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.haveAllStreamingRequestsCompleted.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isUsingActionMode ??= function () {
-    let $res = natives.isPedUsingActionMode(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isUsingActionMode.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isUsingActionMode ??= function () {
-    let $res = natives.isPedUsingActionMode(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isUsingActionMode.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setUsingActionMode ??= function (p1, p2, action) {
-    if (typeof action != "string") action = null;
-    let $res = natives.setPedUsingActionMode(this.handle, p1 | 0, p2, action);
+    return mp.game2.ped.setUsingActionMode.apply(this, [this.handle, p1, p2, action]);
 };
 
 mp.Ped.prototype.setUsingActionMode ??= function (p1, p2, action) {
-    if (typeof action != "string") action = null;
-    let $res = natives.setPedUsingActionMode(this.handle, p1 | 0, p2, action);
+    return mp.game2.ped.setUsingActionMode.apply(this, [this.handle, p1, p2, action]);
 };
 
 mp.Player.prototype.setMovementModeOverride ??= function (name) {
-    if (typeof name != "string") name = null;
-    let $res = natives.setMovementModeOverride(this.handle, name);
+    return mp.game2.ped.setMovementModeOverride.apply(this, [this.handle, name]);
 };
 
 mp.Ped.prototype.setMovementModeOverride ??= function (name) {
-    if (typeof name != "string") name = null;
-    let $res = natives.setMovementModeOverride(this.handle, name);
+    return mp.game2.ped.setMovementModeOverride.apply(this, [this.handle, name]);
 };
 
 mp.Player.prototype.setCapsule ??= function (value) {
-    let $res = natives.setPedCapsule(this.handle, value);
+    return mp.game2.ped.setCapsule.apply(this, [this.handle, value]);
 };
 
 mp.Ped.prototype.setCapsule ??= function (value) {
-    let $res = natives.setPedCapsule(this.handle, value);
+    return mp.game2.ped.setCapsule.apply(this, [this.handle, value]);
 };
 
 mp.Player.prototype.registerHeadshot ??= function () {
-    let $res = natives.registerPedheadshot(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.registerHeadshot.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.registerHeadshot ??= function () {
-    let $res = natives.registerPedheadshot(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.registerHeadshot.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.registerHeadshot3 ??= function () {
-    let $res = natives.registerPedheadshotHires(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.registerHeadshot3.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.registerHeadshot3 ??= function () {
-    let $res = natives.registerPedheadshotHires(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.registerHeadshot3.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.registerHeadshotTransparent ??= function () {
-    let $res = natives.registerPedheadshotTransparent(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.registerHeadshotTransparent.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.registerHeadshotTransparent ??= function () {
-    let $res = natives.registerPedheadshotTransparent(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.registerHeadshotTransparent.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isHeadshotValid ??= function () {
-    let $res = natives.isPedheadshotValid(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isHeadshotValid.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isHeadshotValid ??= function () {
-    let $res = natives.isPedheadshotValid(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isHeadshotValid.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isHeadshotReady ??= function () {
-    let $res = natives.isPedheadshotReady(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isHeadshotReady.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isHeadshotReady ??= function () {
-    let $res = natives.isPedheadshotReady(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isHeadshotReady.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getHeadshotTxdString ??= function () {
-    let $res = natives.getPedheadshotTxdString(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getHeadshotTxdString.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getHeadshotTxdString ??= function () {
-    let $res = natives.getPedheadshotTxdString(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.ped.getHeadshotTxdString.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setHeatscaleOverride ??= function (heatScale) {
-    let $res = natives.setPedHeatscaleOverride(this.handle, heatScale);
+    return mp.game2.ped.setHeatscaleOverride.apply(this, [this.handle, heatScale]);
 };
 
 mp.Ped.prototype.setHeatscaleOverride ??= function (heatScale) {
-    let $res = natives.setPedHeatscaleOverride(this.handle, heatScale);
+    return mp.game2.ped.setHeatscaleOverride.apply(this, [this.handle, heatScale]);
 };
 
 mp.Player.prototype.disableHeatscaleOverride ??= function () {
-    let $res = natives.disablePedHeatscaleOverride(this.handle);
+    return mp.game2.ped.disableHeatscaleOverride.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.disableHeatscaleOverride ??= function () {
-    let $res = natives.disablePedHeatscaleOverride(this.handle);
+    return mp.game2.ped.disableHeatscaleOverride.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setIkTarget ??= function (ikIndex, entityLookAt, boneLookAt, offsetX, offsetY, offsetZ, p7, blendInDuration, blendOutDuration) {
-    let $res = natives.setIkTarget(this.handle, ikIndex, entityLookAt, boneLookAt, offsetX, offsetY, offsetZ, p7, blendInDuration, blendOutDuration);
+    return mp.game2.ped.setIkTarget.apply(this, [this.handle, ikIndex, entityLookAt, boneLookAt, offsetX, offsetY, offsetZ, p7, blendInDuration, blendOutDuration]);
 };
 
 mp.Ped.prototype.setIkTarget ??= function (ikIndex, entityLookAt, boneLookAt, offsetX, offsetY, offsetZ, p7, blendInDuration, blendOutDuration) {
-    let $res = natives.setIkTarget(this.handle, ikIndex, entityLookAt, boneLookAt, offsetX, offsetY, offsetZ, p7, blendInDuration, blendOutDuration);
+    return mp.game2.ped.setIkTarget.apply(this, [this.handle, ikIndex, entityLookAt, boneLookAt, offsetX, offsetY, offsetZ, p7, blendInDuration, blendOutDuration]);
 };
 
 mp.Player.prototype.setLodMultiplier ??= function (multiplier) {
-    let $res = natives.setPedLodMultiplier(this.handle, multiplier);
+    return mp.game2.ped.setLodMultiplier.apply(this, [this.handle, multiplier]);
 };
 
 mp.Ped.prototype.setLodMultiplier ??= function (multiplier) {
-    let $res = natives.setPedLodMultiplier(this.handle, multiplier);
+    return mp.game2.ped.setLodMultiplier.apply(this, [this.handle, multiplier]);
 };
 
 mp.Player.prototype.setCanLosePropsOnDamage ??= function (toggle, p2) {
-    let $res = natives.setPedCanLosePropsOnDamage(this.handle, toggle | 0, p2);
+    return mp.game2.ped.setCanLosePropsOnDamage.apply(this, [this.handle, toggle, p2]);
 };
 
 mp.Ped.prototype.setCanLosePropsOnDamage ??= function (toggle, p2) {
-    let $res = natives.setPedCanLosePropsOnDamage(this.handle, toggle | 0, p2);
+    return mp.game2.ped.setCanLosePropsOnDamage.apply(this, [this.handle, toggle, p2]);
 };
 
 mp.Player.prototype.setForceFootstepUpdate ??= function (toggle) {
-    let $res = natives.setForceFootstepUpdate(this.handle, toggle | 0);
+    return mp.game2.ped.setForceFootstepUpdate.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setForceFootstepUpdate ??= function (toggle) {
-    let $res = natives.setForceFootstepUpdate(this.handle, toggle | 0);
+    return mp.game2.ped.setForceFootstepUpdate.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setForceStepType ??= function (p1, type, p3) {
-    let $res = natives.setForceStepType(this.handle, p1 | 0, type, p3);
+    return mp.game2.ped.setForceStepType.apply(this, [this.handle, p1, type, p3]);
 };
 
 mp.Ped.prototype.setForceStepType ??= function (p1, type, p3) {
-    let $res = natives.setForceStepType(this.handle, p1 | 0, type, p3);
+    return mp.game2.ped.setForceStepType.apply(this, [this.handle, p1, type, p3]);
 };
 
 mp.Player.prototype.isAnyHostileNearPoint ??= function (x, y, z, radius) {
-    let $res = natives.isAnyHostilePedNearPoint(this.handle, x, y, z, radius);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isAnyHostileNearPoint.apply(this, [this.handle, x, y, z, radius]);
 };
 
 mp.Ped.prototype.isAnyHostileNearPoint ??= function (x, y, z, radius) {
-    let $res = natives.isAnyHostilePedNearPoint(this.handle, x, y, z, radius);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isAnyHostileNearPoint.apply(this, [this.handle, x, y, z, radius]);
 };
 
 mp.Player.prototype.setCanPlayInCarIdles ??= function (toggle) {
-    let $res = natives.setPedCanPlayInCarIdles(this.handle, toggle | 0);
+    return mp.game2.ped.setCanPlayInCarIdles.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setCanPlayInCarIdles ??= function (toggle) {
-    let $res = natives.setPedCanPlayInCarIdles(this.handle, toggle | 0);
+    return mp.game2.ped.setCanPlayInCarIdles.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.isTargetInPerceptionArea ??= function (targetPed, p2, p3, p4, p5) {
-    let $res = natives.isTargetPedInPerceptionArea(this.handle, targetPed, p2, p3, p4, p5);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isTargetInPerceptionArea.apply(this, [this.handle, targetPed, p2, p3, p4, p5]);
 };
 
 mp.Ped.prototype.isTargetInPerceptionArea ??= function (targetPed, p2, p3, p4, p5) {
-    let $res = natives.isTargetPedInPerceptionArea(this.handle, targetPed, p2, p3, p4, p5);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isTargetInPerceptionArea.apply(this, [this.handle, targetPed, p2, p3, p4, p5]);
 };
 
 mp.Player.prototype.setDisableFallDamage ??= function (toggle) {
-    let $res = natives.setDisableHighFallDeath(this.handle, toggle | 0);
+    return mp.game2.ped.setDisableFallDamage.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setDisableFallDamage ??= function (toggle) {
-    let $res = natives.setDisableHighFallDeath(this.handle, toggle | 0);
+    return mp.game2.ped.setDisableFallDamage.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.isSwappingWeapon ??= function () {
-    let $res = natives.isPedSwitchingWeapon(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isSwappingWeapon.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isSwappingWeapon ??= function () {
-    let $res = natives.isPedSwitchingWeapon(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isSwappingWeapon.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setEnableScubaGearLight ??= function (toggle) {
-    let $res = natives.enableMpLight(this.handle, toggle | 0);
+    return mp.game2.ped.setEnableScubaGearLight.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setEnableScubaGearLight ??= function (toggle) {
-    let $res = natives.enableMpLight(this.handle, toggle | 0);
+    return mp.game2.ped.setEnableScubaGearLight.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.isScubaGearLightEnabled ??= function () {
-    let $res = natives.getMpLightEnabled(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isScubaGearLightEnabled.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isScubaGearLightEnabled ??= function () {
-    let $res = natives.getMpLightEnabled(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.ped.isScubaGearLightEnabled.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.clearFacialClipsetOverride ??= function () {
-    let $res = natives.clearCoverPointForPed(this.handle);
+    return mp.game2.ped.clearFacialClipsetOverride.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.clearFacialClipsetOverride ??= function () {
-    let $res = natives.clearCoverPointForPed(this.handle);
+    return mp.game2.ped.clearFacialClipsetOverride.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setDamping ??= function (vertex, value) {
-    let $res = natives.setDamping(this.handle, vertex, value);
+    return mp.game2.physics.setDamping.apply(this, [this.handle, vertex, value]);
 };
 
 mp.Ped.prototype.setDamping ??= function (vertex, value) {
-    let $res = natives.setDamping(this.handle, vertex, value);
+    return mp.game2.physics.setDamping.apply(this, [this.handle, vertex, value]);
 };
 
 mp.Object.prototype.setDamping ??= function (vertex, value) {
-    let $res = natives.setDamping(this.handle, vertex, value);
+    return mp.game2.physics.setDamping.apply(this, [this.handle, vertex, value]);
 };
 
 mp.Vehicle.prototype.setDamping ??= function (vertex, value) {
-    let $res = natives.setDamping(this.handle, vertex, value);
+    return mp.game2.physics.setDamping.apply(this, [this.handle, vertex, value]);
 };
 
 mp.Player.prototype.activate ??= function () {
-    let $res = natives.activatePhysics(this.handle);
+    return mp.game2.physics.activate.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.activate ??= function () {
-    let $res = natives.activatePhysics(this.handle);
+    return mp.game2.physics.activate.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.activate ??= function () {
-    let $res = natives.activatePhysics(this.handle);
+    return mp.game2.physics.activate.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.activate ??= function () {
-    let $res = natives.activatePhysics(this.handle);
+    return mp.game2.physics.activate.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setCgoffset ??= function (x, y, z) {
-    let $res = natives.setCgoffset(this.handle, x, y, z);
+    return mp.game2.physics.setCgoffset.apply(this, [this.handle, x, y, z]);
 };
 
 mp.Ped.prototype.setCgoffset ??= function (x, y, z) {
-    let $res = natives.setCgoffset(this.handle, x, y, z);
+    return mp.game2.physics.setCgoffset.apply(this, [this.handle, x, y, z]);
 };
 
 mp.Object.prototype.setCgoffset ??= function (x, y, z) {
-    let $res = natives.setCgoffset(this.handle, x, y, z);
+    return mp.game2.physics.setCgoffset.apply(this, [this.handle, x, y, z]);
 };
 
 mp.Vehicle.prototype.setCgoffset ??= function (x, y, z) {
-    let $res = natives.setCgoffset(this.handle, x, y, z);
+    return mp.game2.physics.setCgoffset.apply(this, [this.handle, x, y, z]);
 };
 
 mp.Player.prototype.getCgoffset ??= function () {
-    let $res = natives.getCgoffset(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.physics.getCgoffset.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getCgoffset ??= function () {
-    let $res = natives.getCgoffset(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.physics.getCgoffset.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getCgoffset ??= function () {
-    let $res = natives.getCgoffset(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.physics.getCgoffset.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getCgoffset ??= function () {
-    let $res = natives.getCgoffset(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.physics.getCgoffset.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setCgAtBoundcenter ??= function () {
-    let $res = natives.setCgAtBoundcenter(this.handle);
+    return mp.game2.physics.setCgAtBoundcenter.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.setCgAtBoundcenter ??= function () {
-    let $res = natives.setCgAtBoundcenter(this.handle);
+    return mp.game2.physics.setCgAtBoundcenter.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.setCgAtBoundcenter ??= function () {
-    let $res = natives.setCgAtBoundcenter(this.handle);
+    return mp.game2.physics.setCgAtBoundcenter.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setCgAtBoundcenter ??= function () {
-    let $res = natives.setCgAtBoundcenter(this.handle);
+    return mp.game2.physics.setCgAtBoundcenter.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.breakEntityGlass ??= function (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) {
-    let $res = natives.breakEntityGlass(this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10 | 0);
+    return mp.game2.physics.breakEntityGlass.apply(this, [this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10]);
 };
 
 mp.Ped.prototype.breakEntityGlass ??= function (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) {
-    let $res = natives.breakEntityGlass(this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10 | 0);
+    return mp.game2.physics.breakEntityGlass.apply(this, [this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10]);
 };
 
 mp.Object.prototype.breakEntityGlass ??= function (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) {
-    let $res = natives.breakEntityGlass(this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10 | 0);
+    return mp.game2.physics.breakEntityGlass.apply(this, [this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10]);
 };
 
 mp.Vehicle.prototype.breakEntityGlass ??= function (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) {
-    let $res = natives.breakEntityGlass(this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10 | 0);
+    return mp.game2.physics.breakEntityGlass.apply(this, [this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10]);
 };
 
 mp.Object.prototype.getHasObjectFragInst ??= function () {
-    let $res = natives.getIsEntityAFrag(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.physics.getHasObjectFragInst.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.setDisableBreaking ??= function (toggle) {
-    let $res = natives.setDisableBreaking(this.handle, toggle | 0);
+    return mp.game2.physics.setDisableBreaking.apply(this, [this.handle, toggle]);
 };
 
 mp.Object.prototype.setDisableFragDamage ??= function (toggle) {
-    let $res = natives.setDisableFragDamage(this.handle, toggle | 0);
+    return mp.game2.physics.setDisableFragDamage.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.startShapeTestBoundingBox ??= function (flags1, flags2) {
-    let $res = natives.startShapeTestBoundingBox(this.handle, flags1, flags2);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.shapetest.startShapeTestBoundingBox.apply(this, [this.handle, flags1, flags2]);
 };
 
 mp.Ped.prototype.startShapeTestBoundingBox ??= function (flags1, flags2) {
-    let $res = natives.startShapeTestBoundingBox(this.handle, flags1, flags2);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.shapetest.startShapeTestBoundingBox.apply(this, [this.handle, flags1, flags2]);
 };
 
 mp.Object.prototype.startShapeTestBoundingBox ??= function (flags1, flags2) {
-    let $res = natives.startShapeTestBoundingBox(this.handle, flags1, flags2);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.shapetest.startShapeTestBoundingBox.apply(this, [this.handle, flags1, flags2]);
 };
 
 mp.Vehicle.prototype.startShapeTestBoundingBox ??= function (flags1, flags2) {
-    let $res = natives.startShapeTestBoundingBox(this.handle, flags1, flags2);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.shapetest.startShapeTestBoundingBox.apply(this, [this.handle, flags1, flags2]);
 };
 
 mp.Player.prototype.startShapeTestBound ??= function (flags1, flags2) {
-    let $res = natives.startShapeTestBound(this.handle, flags1, flags2);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.shapetest.startShapeTestBound.apply(this, [this.handle, flags1, flags2]);
 };
 
 mp.Ped.prototype.startShapeTestBound ??= function (flags1, flags2) {
-    let $res = natives.startShapeTestBound(this.handle, flags1, flags2);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.shapetest.startShapeTestBound.apply(this, [this.handle, flags1, flags2]);
 };
 
 mp.Object.prototype.startShapeTestBound ??= function (flags1, flags2) {
-    let $res = natives.startShapeTestBound(this.handle, flags1, flags2);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.shapetest.startShapeTestBound.apply(this, [this.handle, flags1, flags2]);
 };
 
 mp.Vehicle.prototype.startShapeTestBound ??= function (flags1, flags2) {
-    let $res = natives.startShapeTestBound(this.handle, flags1, flags2);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.shapetest.startShapeTestBound.apply(this, [this.handle, flags1, flags2]);
 };
 
 mp.Player.prototype.releaseScriptGuidFromEntity ??= function () {
-    let $res = natives.releaseScriptGuidFromEntity(this.handle);
+    return mp.game2.shapetest.releaseScriptGuidFromEntity.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.releaseScriptGuidFromEntity ??= function () {
-    let $res = natives.releaseScriptGuidFromEntity(this.handle);
+    return mp.game2.shapetest.releaseScriptGuidFromEntity.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.releaseScriptGuidFromEntity ??= function () {
-    let $res = natives.releaseScriptGuidFromEntity(this.handle);
+    return mp.game2.shapetest.releaseScriptGuidFromEntity.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.releaseScriptGuidFromEntity ??= function () {
-    let $res = natives.releaseScriptGuidFromEntity(this.handle);
+    return mp.game2.shapetest.releaseScriptGuidFromEntity.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setVehiclePopulationBudget ??= function () {
-    let $res = natives.setVehiclePopulationBudget(this.handle);
+    return mp.game2.streaming.setVehiclePopulationBudget.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setPedPopulationBudget ??= function () {
-    let $res = natives.setPedPopulationBudget(this.handle);
+    return mp.game2.streaming.setPedPopulationBudget.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.setPedPopulationBudget ??= function () {
-    let $res = natives.setPedPopulationBudget(this.handle);
+    return mp.game2.streaming.setPedPopulationBudget.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setFocusEntity ??= function () {
-    let $res = natives.setFocusEntity(this.handle);
+    return mp.game2.streaming.setFocusEntity.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.setFocusEntity ??= function () {
-    let $res = natives.setFocusEntity(this.handle);
+    return mp.game2.streaming.setFocusEntity.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.setFocusEntity ??= function () {
-    let $res = natives.setFocusEntity(this.handle);
+    return mp.game2.streaming.setFocusEntity.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setFocusEntity ??= function () {
-    let $res = natives.setFocusEntity(this.handle);
+    return mp.game2.streaming.setFocusEntity.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isEntityFocus ??= function () {
-    let $res = natives.isEntityFocus(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.streaming.isEntityFocus.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isEntityFocus ??= function () {
-    let $res = natives.isEntityFocus(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.streaming.isEntityFocus.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.isEntityFocus ??= function () {
-    let $res = natives.isEntityFocus(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.streaming.isEntityFocus.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isEntityFocus ??= function () {
-    let $res = natives.isEntityFocus(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.streaming.isEntityFocus.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.startPlayerSwitch ??= function (to, flags, switchType) {
-    let $res = natives.startPlayerSwitch(this.handle, to, flags, switchType);
+    return mp.game2.streaming.startPlayerSwitch.apply(this, [this.handle, to, flags, switchType]);
 };
 
 mp.Ped.prototype.startPlayerSwitch ??= function (to, flags, switchType) {
-    let $res = natives.startPlayerSwitch(this.handle, to, flags, switchType);
+    return mp.game2.streaming.startPlayerSwitch.apply(this, [this.handle, to, flags, switchType]);
 };
 
 mp.Player.prototype.switchOutPlayer ??= function (flags, switchType) {
-    let $res = natives.switchToMultiFirstpart(this.handle, flags, switchType);
+    return mp.game2.streaming.switchOutPlayer.apply(this, [this.handle, flags, switchType]);
 };
 
 mp.Ped.prototype.switchOutPlayer ??= function (flags, switchType) {
-    let $res = natives.switchToMultiFirstpart(this.handle, flags, switchType);
+    return mp.game2.streaming.switchOutPlayer.apply(this, [this.handle, flags, switchType]);
 };
 
 mp.Player.prototype.switchInPlayer ??= function () {
-    let $res = natives.switchToMultiSecondpart(this.handle);
+    return mp.game2.streaming.switchInPlayer.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.switchInPlayer ??= function () {
-    let $res = natives.switchToMultiSecondpart(this.handle);
+    return mp.game2.streaming.switchInPlayer.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.pause ??= function (ms) {
-    let $res = natives.taskPause(this.handle, ms);
+    return mp.game2.task.pause.apply(this, [this.handle, ms]);
 };
 
 mp.Ped.prototype.pause ??= function (ms) {
-    let $res = natives.taskPause(this.handle, ms);
+    return mp.game2.task.pause.apply(this, [this.handle, ms]);
 };
 
 mp.Player.prototype.standStill ??= function (time) {
-    let $res = natives.taskStandStill(this.handle, time);
+    return mp.game2.task.standStill.apply(this, [this.handle, time]);
 };
 
 mp.Ped.prototype.standStill ??= function (time) {
-    let $res = natives.taskStandStill(this.handle, time);
+    return mp.game2.task.standStill.apply(this, [this.handle, time]);
 };
 
 mp.Player.prototype.jump ??= function (unused, p2, p3) {
-    let $res = natives.taskJump(this.handle, unused | 0, p2 | 0, p3 | 0);
+    return mp.game2.task.jump.apply(this, [this.handle, unused, p2, p3]);
 };
 
 mp.Ped.prototype.jump ??= function (unused, p2, p3) {
-    let $res = natives.taskJump(this.handle, unused | 0, p2 | 0, p3 | 0);
+    return mp.game2.task.jump.apply(this, [this.handle, unused, p2, p3]);
 };
 
 mp.Player.prototype.cower ??= function (duration) {
-    let $res = natives.taskCower(this.handle, duration);
+    return mp.game2.task.cower.apply(this, [this.handle, duration]);
 };
 
 mp.Ped.prototype.cower ??= function (duration) {
-    let $res = natives.taskCower(this.handle, duration);
+    return mp.game2.task.cower.apply(this, [this.handle, duration]);
 };
 
 mp.Player.prototype.handsUp ??= function (duration, facingPed, p3, p4) {
-    let $res = natives.taskHandsUp(this.handle, duration, facingPed, p3, p4 | 0);
+    return mp.game2.task.handsUp.apply(this, [this.handle, duration, facingPed, p3, p4]);
 };
 
 mp.Ped.prototype.handsUp ??= function (duration, facingPed, p3, p4) {
-    let $res = natives.taskHandsUp(this.handle, duration, facingPed, p3, p4 | 0);
+    return mp.game2.task.handsUp.apply(this, [this.handle, duration, facingPed, p3, p4]);
 };
 
 mp.Player.prototype.updateHandsUpDuration ??= function (duration) {
-    let $res = natives.updateTaskHandsUpDuration(this.handle, duration);
+    return mp.game2.task.updateHandsUpDuration.apply(this, [this.handle, duration]);
 };
 
 mp.Ped.prototype.updateHandsUpDuration ??= function (duration) {
-    let $res = natives.updateTaskHandsUpDuration(this.handle, duration);
+    return mp.game2.task.updateHandsUpDuration.apply(this, [this.handle, duration]);
 };
 
 mp.Player.prototype.openVehicleDoor ??= function (vehicle, timeOut, seat, speed) {
-    let $res = natives.taskOpenVehicleDoor(this.handle, vehicle, timeOut, seat, speed);
+    return mp.game2.task.openVehicleDoor.apply(this, [this.handle, vehicle, timeOut, seat, speed]);
 };
 
 mp.Ped.prototype.openVehicleDoor ??= function (vehicle, timeOut, seat, speed) {
-    let $res = natives.taskOpenVehicleDoor(this.handle, vehicle, timeOut, seat, speed);
+    return mp.game2.task.openVehicleDoor.apply(this, [this.handle, vehicle, timeOut, seat, speed]);
 };
 
 mp.Player.prototype.enterVehicle ??= function (vehicle, timeout, seat, speed, flag, p6) {
-    if (typeof p6 != "string") p6 = null;
-    let $res = natives.taskEnterVehicle(this.handle, vehicle, timeout, seat, speed, flag, p6);
+    return mp.game2.task.enterVehicle.apply(this, [this.handle, vehicle, timeout, seat, speed, flag, p6]);
 };
 
 mp.Ped.prototype.enterVehicle ??= function (vehicle, timeout, seat, speed, flag, p6) {
-    if (typeof p6 != "string") p6 = null;
-    let $res = natives.taskEnterVehicle(this.handle, vehicle, timeout, seat, speed, flag, p6);
+    return mp.game2.task.enterVehicle.apply(this, [this.handle, vehicle, timeout, seat, speed, flag, p6]);
 };
 
 mp.Player.prototype.leaveVehicle ??= function (vehicle, flags) {
-    let $res = natives.taskLeaveVehicle(this.handle, vehicle, flags);
+    return mp.game2.task.leaveVehicle.apply(this, [this.handle, vehicle, flags]);
 };
 
 mp.Ped.prototype.leaveVehicle ??= function (vehicle, flags) {
-    let $res = natives.taskLeaveVehicle(this.handle, vehicle, flags);
+    return mp.game2.task.leaveVehicle.apply(this, [this.handle, vehicle, flags]);
 };
 
 mp.Player.prototype.getOffBoat ??= function (boat) {
-    let $res = natives.taskGetOffBoat(this.handle, boat);
+    return mp.game2.task.getOffBoat.apply(this, [this.handle, boat]);
 };
 
 mp.Ped.prototype.getOffBoat ??= function (boat) {
-    let $res = natives.taskGetOffBoat(this.handle, boat);
+    return mp.game2.task.getOffBoat.apply(this, [this.handle, boat]);
 };
 
 mp.Player.prototype.skyDive ??= function (p1) {
-    let $res = natives.taskSkyDive(this.handle, p1 | 0);
+    return mp.game2.task.skyDive.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.skyDive ??= function (p1) {
-    let $res = natives.taskSkyDive(this.handle, p1 | 0);
+    return mp.game2.task.skyDive.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.parachute ??= function (p1, p2) {
-    let $res = natives.taskParachute(this.handle, p1 | 0, p2 | 0);
+    return mp.game2.task.parachute.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Ped.prototype.parachute ??= function (p1, p2) {
-    let $res = natives.taskParachute(this.handle, p1 | 0, p2 | 0);
+    return mp.game2.task.parachute.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Player.prototype.parachuteToTarget ??= function (x, y, z) {
-    let $res = natives.taskParachuteToTarget(this.handle, x, y, z);
+    return mp.game2.task.parachuteToTarget.apply(this, [this.handle, x, y, z]);
 };
 
 mp.Ped.prototype.parachuteToTarget ??= function (x, y, z) {
-    let $res = natives.taskParachuteToTarget(this.handle, x, y, z);
+    return mp.game2.task.parachuteToTarget.apply(this, [this.handle, x, y, z]);
 };
 
 mp.Player.prototype.setParachuteTarget ??= function (x, y, z) {
-    let $res = natives.setParachuteTaskTarget(this.handle, x, y, z);
+    return mp.game2.task.setParachuteTarget.apply(this, [this.handle, x, y, z]);
 };
 
 mp.Ped.prototype.setParachuteTarget ??= function (x, y, z) {
-    let $res = natives.setParachuteTaskTarget(this.handle, x, y, z);
+    return mp.game2.task.setParachuteTarget.apply(this, [this.handle, x, y, z]);
 };
 
 mp.Player.prototype.setParachuteThrust ??= function (thrust) {
-    let $res = natives.setParachuteTaskThrust(this.handle, thrust);
+    return mp.game2.task.setParachuteThrust.apply(this, [this.handle, thrust]);
 };
 
 mp.Ped.prototype.setParachuteThrust ??= function (thrust) {
-    let $res = natives.setParachuteTaskThrust(this.handle, thrust);
+    return mp.game2.task.setParachuteThrust.apply(this, [this.handle, thrust]);
 };
 
 mp.Player.prototype.rappelFromHeli ??= function (p1) {
-    let $res = natives.taskRappelFromHeli(this.handle, p1);
+    return mp.game2.task.rappelFromHeli.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.rappelFromHeli ??= function (p1) {
-    let $res = natives.taskRappelFromHeli(this.handle, p1);
+    return mp.game2.task.rappelFromHeli.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.vehicleDriveToCoord ??= function (vehicle, x, y, z, speed, p6, vehicleModel, drivingMode, stopRange, p10) {
-    let $res = natives.taskVehicleDriveToCoord(this.handle, vehicle, x, y, z, speed, p6, vehicleModel, drivingMode, stopRange, p10);
+    return mp.game2.task.vehicleDriveToCoord.apply(this, [this.handle, vehicle, x, y, z, speed, p6, vehicleModel, drivingMode, stopRange, p10]);
 };
 
 mp.Ped.prototype.vehicleDriveToCoord ??= function (vehicle, x, y, z, speed, p6, vehicleModel, drivingMode, stopRange, p10) {
-    let $res = natives.taskVehicleDriveToCoord(this.handle, vehicle, x, y, z, speed, p6, vehicleModel, drivingMode, stopRange, p10);
+    return mp.game2.task.vehicleDriveToCoord.apply(this, [this.handle, vehicle, x, y, z, speed, p6, vehicleModel, drivingMode, stopRange, p10]);
 };
 
 mp.Player.prototype.vehicleDriveToCoordLongrange ??= function (vehicle, x, y, z, speed, driveMode, stopRange) {
-    let $res = natives.taskVehicleDriveToCoordLongrange(this.handle, vehicle, x, y, z, speed, driveMode, stopRange);
+    return mp.game2.task.vehicleDriveToCoordLongrange.apply(this, [this.handle, vehicle, x, y, z, speed, driveMode, stopRange]);
 };
 
 mp.Ped.prototype.vehicleDriveToCoordLongrange ??= function (vehicle, x, y, z, speed, driveMode, stopRange) {
-    let $res = natives.taskVehicleDriveToCoordLongrange(this.handle, vehicle, x, y, z, speed, driveMode, stopRange);
+    return mp.game2.task.vehicleDriveToCoordLongrange.apply(this, [this.handle, vehicle, x, y, z, speed, driveMode, stopRange]);
 };
 
 mp.Player.prototype.vehicleDriveWander ??= function (vehicle, speed, drivingStyle) {
-    let $res = natives.taskVehicleDriveWander(this.handle, vehicle, speed, drivingStyle);
+    return mp.game2.task.vehicleDriveWander.apply(this, [this.handle, vehicle, speed, drivingStyle]);
 };
 
 mp.Ped.prototype.vehicleDriveWander ??= function (vehicle, speed, drivingStyle) {
-    let $res = natives.taskVehicleDriveWander(this.handle, vehicle, speed, drivingStyle);
+    return mp.game2.task.vehicleDriveWander.apply(this, [this.handle, vehicle, speed, drivingStyle]);
 };
 
 mp.Player.prototype.followToOffsetOfEntity ??= function (entity, offsetX, offsetY, offsetZ, movementSpeed, timeout, stoppingRange, persistFollowing) {
-    let $res = natives.taskFollowToOffsetOfEntity(this.handle, entity, offsetX, offsetY, offsetZ, movementSpeed, timeout, stoppingRange, persistFollowing | 0);
+    return mp.game2.task.followToOffsetOfEntity.apply(this, [this.handle, entity, offsetX, offsetY, offsetZ, movementSpeed, timeout, stoppingRange, persistFollowing]);
 };
 
 mp.Ped.prototype.followToOffsetOfEntity ??= function (entity, offsetX, offsetY, offsetZ, movementSpeed, timeout, stoppingRange, persistFollowing) {
-    let $res = natives.taskFollowToOffsetOfEntity(this.handle, entity, offsetX, offsetY, offsetZ, movementSpeed, timeout, stoppingRange, persistFollowing | 0);
+    return mp.game2.task.followToOffsetOfEntity.apply(this, [this.handle, entity, offsetX, offsetY, offsetZ, movementSpeed, timeout, stoppingRange, persistFollowing]);
 };
 
 mp.Player.prototype.goStraightToCoord ??= function (x, y, z, speed, timeout, targetHeading, distanceToSlide) {
-    let $res = natives.taskGoStraightToCoord(this.handle, x, y, z, speed, timeout, targetHeading, distanceToSlide);
+    return mp.game2.task.goStraightToCoord.apply(this, [this.handle, x, y, z, speed, timeout, targetHeading, distanceToSlide]);
 };
 
 mp.Ped.prototype.goStraightToCoord ??= function (x, y, z, speed, timeout, targetHeading, distanceToSlide) {
-    let $res = natives.taskGoStraightToCoord(this.handle, x, y, z, speed, timeout, targetHeading, distanceToSlide);
+    return mp.game2.task.goStraightToCoord.apply(this, [this.handle, x, y, z, speed, timeout, targetHeading, distanceToSlide]);
 };
 
 mp.Player.prototype.goStraightToCoordRelativeToEntity ??= function (entity2, p2, p3, p4, p5, p6) {
-    let $res = natives.taskGoStraightToCoordRelativeToEntity(this.handle, entity2, p2, p3, p4, p5, p6);
+    return mp.game2.task.goStraightToCoordRelativeToEntity.apply(this, [this.handle, entity2, p2, p3, p4, p5, p6]);
 };
 
 mp.Ped.prototype.goStraightToCoordRelativeToEntity ??= function (entity2, p2, p3, p4, p5, p6) {
-    let $res = natives.taskGoStraightToCoordRelativeToEntity(this.handle, entity2, p2, p3, p4, p5, p6);
+    return mp.game2.task.goStraightToCoordRelativeToEntity.apply(this, [this.handle, entity2, p2, p3, p4, p5, p6]);
 };
 
 mp.Object.prototype.goStraightToCoordRelativeToEntity ??= function (entity2, p2, p3, p4, p5, p6) {
-    let $res = natives.taskGoStraightToCoordRelativeToEntity(this.handle, entity2, p2, p3, p4, p5, p6);
+    return mp.game2.task.goStraightToCoordRelativeToEntity.apply(this, [this.handle, entity2, p2, p3, p4, p5, p6]);
 };
 
 mp.Vehicle.prototype.goStraightToCoordRelativeToEntity ??= function (entity2, p2, p3, p4, p5, p6) {
-    let $res = natives.taskGoStraightToCoordRelativeToEntity(this.handle, entity2, p2, p3, p4, p5, p6);
+    return mp.game2.task.goStraightToCoordRelativeToEntity.apply(this, [this.handle, entity2, p2, p3, p4, p5, p6]);
 };
 
 mp.Player.prototype.achieveHeading ??= function (heading, timeout) {
-    let $res = natives.taskAchieveHeading(this.handle, heading, timeout);
+    return mp.game2.task.achieveHeading.apply(this, [this.handle, heading, timeout]);
 };
 
 mp.Ped.prototype.achieveHeading ??= function (heading, timeout) {
-    let $res = natives.taskAchieveHeading(this.handle, heading, timeout);
+    return mp.game2.task.achieveHeading.apply(this, [this.handle, heading, timeout]);
 };
 
 mp.Player.prototype.followPointRoute ??= function (speed, unknown) {
-    let $res = natives.taskFollowPointRoute(this.handle, speed, unknown);
+    return mp.game2.task.followPointRoute.apply(this, [this.handle, speed, unknown]);
 };
 
 mp.Ped.prototype.followPointRoute ??= function (speed, unknown) {
-    let $res = natives.taskFollowPointRoute(this.handle, speed, unknown);
+    return mp.game2.task.followPointRoute.apply(this, [this.handle, speed, unknown]);
 };
 
 mp.Player.prototype.goToEntity ??= function (target, duration, distance, speed, p5, p6) {
-    let $res = natives.taskGoToEntity(this.handle, target, duration, distance, speed, p5, p6);
+    return mp.game2.task.goToEntity.apply(this, [this.handle, target, duration, distance, speed, p5, p6]);
 };
 
 mp.Ped.prototype.goToEntity ??= function (target, duration, distance, speed, p5, p6) {
-    let $res = natives.taskGoToEntity(this.handle, target, duration, distance, speed, p5, p6);
+    return mp.game2.task.goToEntity.apply(this, [this.handle, target, duration, distance, speed, p5, p6]);
 };
 
 mp.Object.prototype.goToEntity ??= function (target, duration, distance, speed, p5, p6) {
-    let $res = natives.taskGoToEntity(this.handle, target, duration, distance, speed, p5, p6);
+    return mp.game2.task.goToEntity.apply(this, [this.handle, target, duration, distance, speed, p5, p6]);
 };
 
 mp.Vehicle.prototype.goToEntity ??= function (target, duration, distance, speed, p5, p6) {
-    let $res = natives.taskGoToEntity(this.handle, target, duration, distance, speed, p5, p6);
+    return mp.game2.task.goToEntity.apply(this, [this.handle, target, duration, distance, speed, p5, p6]);
 };
 
 mp.Player.prototype.smartFleeCoord ??= function (x, y, z, distance, time, p6, p7) {
-    let $res = natives.taskSmartFleeCoord(this.handle, x, y, z, distance, time, p6 | 0, p7 | 0);
+    return mp.game2.task.smartFleeCoord.apply(this, [this.handle, x, y, z, distance, time, p6, p7]);
 };
 
 mp.Ped.prototype.smartFleeCoord ??= function (x, y, z, distance, time, p6, p7) {
-    let $res = natives.taskSmartFleeCoord(this.handle, x, y, z, distance, time, p6 | 0, p7 | 0);
+    return mp.game2.task.smartFleeCoord.apply(this, [this.handle, x, y, z, distance, time, p6, p7]);
 };
 
 mp.Player.prototype.smartFleePed ??= function (fleeTarget, distance, fleeTime, p4, p5) {
-    let $res = natives.taskSmartFleePed(this.handle, fleeTarget, distance, fleeTime, p4 | 0, p5 | 0);
+    return mp.game2.task.smartFleePed.apply(this, [this.handle, fleeTarget, distance, fleeTime, p4, p5]);
 };
 
 mp.Ped.prototype.smartFleePed ??= function (fleeTarget, distance, fleeTime, p4, p5) {
-    let $res = natives.taskSmartFleePed(this.handle, fleeTarget, distance, fleeTime, p4 | 0, p5 | 0);
+    return mp.game2.task.smartFleePed.apply(this, [this.handle, fleeTarget, distance, fleeTime, p4, p5]);
 };
 
 mp.Player.prototype.reactAndFleePed ??= function (fleeTarget) {
-    let $res = natives.taskReactAndFleePed(this.handle, fleeTarget);
+    return mp.game2.task.reactAndFleePed.apply(this, [this.handle, fleeTarget]);
 };
 
 mp.Ped.prototype.reactAndFleePed ??= function (fleeTarget) {
-    let $res = natives.taskReactAndFleePed(this.handle, fleeTarget);
+    return mp.game2.task.reactAndFleePed.apply(this, [this.handle, fleeTarget]);
 };
 
 mp.Player.prototype.shockingEventReact ??= function (eventHandle) {
-    let $res = natives.taskShockingEventReact(this.handle, eventHandle);
+    return mp.game2.task.shockingEventReact.apply(this, [this.handle, eventHandle]);
 };
 
 mp.Ped.prototype.shockingEventReact ??= function (eventHandle) {
-    let $res = natives.taskShockingEventReact(this.handle, eventHandle);
+    return mp.game2.task.shockingEventReact.apply(this, [this.handle, eventHandle]);
 };
 
 mp.Player.prototype.wanderInArea ??= function (x, y, z, radius, minimalLength, timeBetweenWalks) {
-    let $res = natives.taskWanderInArea(this.handle, x, y, z, radius, minimalLength, timeBetweenWalks);
+    return mp.game2.task.wanderInArea.apply(this, [this.handle, x, y, z, radius, minimalLength, timeBetweenWalks]);
 };
 
 mp.Ped.prototype.wanderInArea ??= function (x, y, z, radius, minimalLength, timeBetweenWalks) {
-    let $res = natives.taskWanderInArea(this.handle, x, y, z, radius, minimalLength, timeBetweenWalks);
+    return mp.game2.task.wanderInArea.apply(this, [this.handle, x, y, z, radius, minimalLength, timeBetweenWalks]);
 };
 
 mp.Player.prototype.wanderStandard ??= function (p1, p2) {
-    let $res = natives.taskWanderStandard(this.handle, p1, p2);
+    return mp.game2.task.wanderStandard.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Ped.prototype.wanderStandard ??= function (p1, p2) {
-    let $res = natives.taskWanderStandard(this.handle, p1, p2);
+    return mp.game2.task.wanderStandard.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Player.prototype.vehiclePark ??= function (vehicle, x, y, z, heading, mode, radius, keepEngineOn) {
-    let $res = natives.taskVehiclePark(this.handle, vehicle, x, y, z, heading, mode, radius, keepEngineOn | 0);
+    return mp.game2.task.vehiclePark.apply(this, [this.handle, vehicle, x, y, z, heading, mode, radius, keepEngineOn]);
 };
 
 mp.Ped.prototype.vehiclePark ??= function (vehicle, x, y, z, heading, mode, radius, keepEngineOn) {
-    let $res = natives.taskVehiclePark(this.handle, vehicle, x, y, z, heading, mode, radius, keepEngineOn | 0);
+    return mp.game2.task.vehiclePark.apply(this, [this.handle, vehicle, x, y, z, heading, mode, radius, keepEngineOn]);
 };
 
 mp.Player.prototype.stealthKill ??= function (target, actionType, p3, p4) {
-    let $res = natives.taskStealthKill(this.handle, target, actionType, p3, p4 | 0);
+    return mp.game2.task.stealthKill.apply(this, [this.handle, target, actionType, p3, p4]);
 };
 
 mp.Ped.prototype.stealthKill ??= function (target, actionType, p3, p4) {
-    let $res = natives.taskStealthKill(this.handle, target, actionType, p3, p4 | 0);
+    return mp.game2.task.stealthKill.apply(this, [this.handle, target, actionType, p3, p4]);
 };
 
 mp.Player.prototype.plantBomb ??= function (x, y, z, heading) {
-    let $res = natives.taskPlantBomb(this.handle, x, y, z, heading);
+    return mp.game2.task.plantBomb.apply(this, [this.handle, x, y, z, heading]);
 };
 
 mp.Ped.prototype.plantBomb ??= function (x, y, z, heading) {
-    let $res = natives.taskPlantBomb(this.handle, x, y, z, heading);
+    return mp.game2.task.plantBomb.apply(this, [this.handle, x, y, z, heading]);
 };
 
 mp.Player.prototype.followNavMeshToCoord ??= function (x, y, z, speed, timeout, stoppingRange, persistFollowing, unk) {
-    let $res = natives.taskFollowNavMeshToCoord(this.handle, x, y, z, speed, timeout, stoppingRange, persistFollowing | 0, unk);
+    return mp.game2.task.followNavMeshToCoord.apply(this, [this.handle, x, y, z, speed, timeout, stoppingRange, persistFollowing, unk]);
 };
 
 mp.Ped.prototype.followNavMeshToCoord ??= function (x, y, z, speed, timeout, stoppingRange, persistFollowing, unk) {
-    let $res = natives.taskFollowNavMeshToCoord(this.handle, x, y, z, speed, timeout, stoppingRange, persistFollowing | 0, unk);
+    return mp.game2.task.followNavMeshToCoord.apply(this, [this.handle, x, y, z, speed, timeout, stoppingRange, persistFollowing, unk]);
 };
 
 mp.Player.prototype.followNavMeshToCoordAdvanced ??= function (x, y, z, speed, timeout, unkFloat, unkInt, unkX, unkY, unkZ, unk_40000f) {
-    let $res = natives.taskFollowNavMeshToCoordAdvanced(this.handle, x, y, z, speed, timeout, unkFloat, unkInt, unkX, unkY, unkZ, unk_40000f);
+    return mp.game2.task.followNavMeshToCoordAdvanced.apply(this, [this.handle, x, y, z, speed, timeout, unkFloat, unkInt, unkX, unkY, unkZ, unk_40000f]);
 };
 
 mp.Ped.prototype.followNavMeshToCoordAdvanced ??= function (x, y, z, speed, timeout, unkFloat, unkInt, unkX, unkY, unkZ, unk_40000f) {
-    let $res = natives.taskFollowNavMeshToCoordAdvanced(this.handle, x, y, z, speed, timeout, unkFloat, unkInt, unkX, unkY, unkZ, unk_40000f);
+    return mp.game2.task.followNavMeshToCoordAdvanced.apply(this, [this.handle, x, y, z, speed, timeout, unkFloat, unkInt, unkX, unkY, unkZ, unk_40000f]);
 };
 
 mp.Player.prototype.setPedPathCanUseClimbovers ??= function (Toggle) {
-    let $res = natives.setPedPathCanUseClimbovers(this.handle, Toggle | 0);
+    return mp.game2.task.setPedPathCanUseClimbovers.apply(this, [this.handle, Toggle]);
 };
 
 mp.Ped.prototype.setPedPathCanUseClimbovers ??= function (Toggle) {
-    let $res = natives.setPedPathCanUseClimbovers(this.handle, Toggle | 0);
+    return mp.game2.task.setPedPathCanUseClimbovers.apply(this, [this.handle, Toggle]);
 };
 
 mp.Player.prototype.setPedPathCanUseLadders ??= function (Toggle) {
-    let $res = natives.setPedPathCanUseLadders(this.handle, Toggle | 0);
+    return mp.game2.task.setPedPathCanUseLadders.apply(this, [this.handle, Toggle]);
 };
 
 mp.Ped.prototype.setPedPathCanUseLadders ??= function (Toggle) {
-    let $res = natives.setPedPathCanUseLadders(this.handle, Toggle | 0);
+    return mp.game2.task.setPedPathCanUseLadders.apply(this, [this.handle, Toggle]);
 };
 
 mp.Player.prototype.setPedPathCanDropFromHeight ??= function (Toggle) {
-    let $res = natives.setPedPathCanDropFromHeight(this.handle, Toggle | 0);
+    return mp.game2.task.setPedPathCanDropFromHeight.apply(this, [this.handle, Toggle]);
 };
 
 mp.Ped.prototype.setPedPathCanDropFromHeight ??= function (Toggle) {
-    let $res = natives.setPedPathCanDropFromHeight(this.handle, Toggle | 0);
+    return mp.game2.task.setPedPathCanDropFromHeight.apply(this, [this.handle, Toggle]);
 };
 
 mp.Player.prototype.setPedPathClimbCostModifier ??= function (modifier) {
-    let $res = natives.setPedPathClimbCostModifier(this.handle, modifier);
+    return mp.game2.task.setPedPathClimbCostModifier.apply(this, [this.handle, modifier]);
 };
 
 mp.Ped.prototype.setPedPathClimbCostModifier ??= function (modifier) {
-    let $res = natives.setPedPathClimbCostModifier(this.handle, modifier);
+    return mp.game2.task.setPedPathClimbCostModifier.apply(this, [this.handle, modifier]);
 };
 
 mp.Player.prototype.setPedPathMayEnterWater ??= function (mayEnterWater) {
-    let $res = natives.setPedPathMayEnterWater(this.handle, mayEnterWater | 0);
+    return mp.game2.task.setPedPathMayEnterWater.apply(this, [this.handle, mayEnterWater]);
 };
 
 mp.Ped.prototype.setPedPathMayEnterWater ??= function (mayEnterWater) {
-    let $res = natives.setPedPathMayEnterWater(this.handle, mayEnterWater | 0);
+    return mp.game2.task.setPedPathMayEnterWater.apply(this, [this.handle, mayEnterWater]);
 };
 
 mp.Player.prototype.setPedPathPreferToAvoidWater ??= function (avoidWater) {
-    let $res = natives.setPedPathPreferToAvoidWater(this.handle, avoidWater | 0);
+    return mp.game2.task.setPedPathPreferToAvoidWater.apply(this, [this.handle, avoidWater]);
 };
 
 mp.Ped.prototype.setPedPathPreferToAvoidWater ??= function (avoidWater) {
-    let $res = natives.setPedPathPreferToAvoidWater(this.handle, avoidWater | 0);
+    return mp.game2.task.setPedPathPreferToAvoidWater.apply(this, [this.handle, avoidWater]);
 };
 
 mp.Player.prototype.setPedPathAvoidFire ??= function (avoidFire) {
-    let $res = natives.setPedPathAvoidFire(this.handle, avoidFire | 0);
+    return mp.game2.task.setPedPathAvoidFire.apply(this, [this.handle, avoidFire]);
 };
 
 mp.Ped.prototype.setPedPathAvoidFire ??= function (avoidFire) {
-    let $res = natives.setPedPathAvoidFire(this.handle, avoidFire | 0);
+    return mp.game2.task.setPedPathAvoidFire.apply(this, [this.handle, avoidFire]);
 };
 
 mp.Player.prototype.getNavmeshRouteDistanceRemaining ??= function () {
-    let $res = natives.getNavmeshRouteDistanceRemaining(this.handle, 0, false);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.distanceRemaining = $res[1];
-    $resObj.isPathReady = $res[2] == 1;
-    $resObj.result = $res[0];
-    return $resObj;
+    return mp.game2.task.getNavmeshRouteDistanceRemaining.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getNavmeshRouteDistanceRemaining ??= function () {
-    let $res = natives.getNavmeshRouteDistanceRemaining(this.handle, 0, false);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.distanceRemaining = $res[1];
-    $resObj.isPathReady = $res[2] == 1;
-    $resObj.result = $res[0];
-    return $resObj;
+    return mp.game2.task.getNavmeshRouteDistanceRemaining.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getNavmeshRouteResult ??= function () {
-    let $res = natives.getNavmeshRouteResult(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.task.getNavmeshRouteResult.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getNavmeshRouteResult ??= function () {
-    let $res = natives.getNavmeshRouteResult(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.task.getNavmeshRouteResult.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.goToCoordAnyMeans ??= function (x, y, z, speed, p5, p6, walkingStyle, p8) {
-    let $res = natives.taskGoToCoordAnyMeans(this.handle, x, y, z, speed, p5, p6 | 0, walkingStyle, p8);
+    return mp.game2.task.goToCoordAnyMeans.apply(this, [this.handle, x, y, z, speed, p5, p6, walkingStyle, p8]);
 };
 
 mp.Ped.prototype.goToCoordAnyMeans ??= function (x, y, z, speed, p5, p6, walkingStyle, p8) {
-    let $res = natives.taskGoToCoordAnyMeans(this.handle, x, y, z, speed, p5, p6 | 0, walkingStyle, p8);
+    return mp.game2.task.goToCoordAnyMeans.apply(this, [this.handle, x, y, z, speed, p5, p6, walkingStyle, p8]);
 };
 
 mp.Player.prototype.goToCoordAnyMeansExtraParams ??= function (x, y, z, speed, p5, p6, walkingStyle, p8, p9, p10, p11, p12) {
-    let $res = natives.taskGoToCoordAnyMeansExtraParams(this.handle, x, y, z, speed, p5, p6 | 0, walkingStyle, p8, p9, p10, p11, p12 | 0);
+    return mp.game2.task.goToCoordAnyMeansExtraParams.apply(this, [this.handle, x, y, z, speed, p5, p6, walkingStyle, p8, p9, p10, p11, p12]);
 };
 
 mp.Ped.prototype.goToCoordAnyMeansExtraParams ??= function (x, y, z, speed, p5, p6, walkingStyle, p8, p9, p10, p11, p12) {
-    let $res = natives.taskGoToCoordAnyMeansExtraParams(this.handle, x, y, z, speed, p5, p6 | 0, walkingStyle, p8, p9, p10, p11, p12 | 0);
+    return mp.game2.task.goToCoordAnyMeansExtraParams.apply(this, [this.handle, x, y, z, speed, p5, p6, walkingStyle, p8, p9, p10, p11, p12]);
 };
 
 mp.Player.prototype.goToCoordAnyMeansExtraParamsWithCruiseSpeed ??= function (x, y, z, speed, p5, p6, walkingStyle, p8, p9, p10, p11, p12, p13) {
-    let $res = natives.taskGoToCoordAnyMeansExtraParamsWithCruiseSpeed(this.handle, x, y, z, speed, p5, p6 | 0, walkingStyle, p8, p9, p10, p11, p12, p13 | 0);
+    return mp.game2.task.goToCoordAnyMeansExtraParamsWithCruiseSpeed.apply(this, [this.handle, x, y, z, speed, p5, p6, walkingStyle, p8, p9, p10, p11, p12, p13]);
 };
 
 mp.Ped.prototype.goToCoordAnyMeansExtraParamsWithCruiseSpeed ??= function (x, y, z, speed, p5, p6, walkingStyle, p8, p9, p10, p11, p12, p13) {
-    let $res = natives.taskGoToCoordAnyMeansExtraParamsWithCruiseSpeed(this.handle, x, y, z, speed, p5, p6 | 0, walkingStyle, p8, p9, p10, p11, p12, p13 | 0);
+    return mp.game2.task.goToCoordAnyMeansExtraParamsWithCruiseSpeed.apply(this, [this.handle, x, y, z, speed, p5, p6, walkingStyle, p8, p9, p10, p11, p12, p13]);
 };
 
 mp.Player.prototype.playAnimAdvanced ??= function (animDict, animName, posX, posY, posZ, rotX, rotY, rotZ, animEnterSpeed, animExitSpeed, duration, flag, animTime, p14, p15) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.taskPlayAnimAdvanced(this.handle, animDict, animName, posX, posY, posZ, rotX, rotY, rotZ, animEnterSpeed, animExitSpeed, duration, flag, animTime, p14, p15);
+    return mp.game2.task.playAnimAdvanced.apply(this, [this.handle, animDict, animName, posX, posY, posZ, rotX, rotY, rotZ, animEnterSpeed, animExitSpeed, duration, flag, animTime, p14, p15]);
 };
 
 mp.Ped.prototype.playAnimAdvanced ??= function (animDict, animName, posX, posY, posZ, rotX, rotY, rotZ, animEnterSpeed, animExitSpeed, duration, flag, animTime, p14, p15) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.taskPlayAnimAdvanced(this.handle, animDict, animName, posX, posY, posZ, rotX, rotY, rotZ, animEnterSpeed, animExitSpeed, duration, flag, animTime, p14, p15);
+    return mp.game2.task.playAnimAdvanced.apply(this, [this.handle, animDict, animName, posX, posY, posZ, rotX, rotY, rotZ, animEnterSpeed, animExitSpeed, duration, flag, animTime, p14, p15]);
 };
 
 mp.Player.prototype.scriptedAnimation ??= function (p4, p5) {
-    let $res = natives.taskScriptedAnimation(this.handle, 0, 0, 0, p4, p5);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.p1 = $res[1];
-    $resObj.p2 = $res[2];
-    $resObj.p3 = $res[3];
-    return $resObj;
+    return mp.game2.task.scriptedAnimation.apply(this, [this.handle, p4, p5]);
 };
 
 mp.Ped.prototype.scriptedAnimation ??= function (p4, p5) {
-    let $res = natives.taskScriptedAnimation(this.handle, 0, 0, 0, p4, p5);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.p1 = $res[1];
-    $resObj.p2 = $res[2];
-    $resObj.p3 = $res[3];
-    return $resObj;
+    return mp.game2.task.scriptedAnimation.apply(this, [this.handle, p4, p5]);
 };
 
 mp.Player.prototype.stopAnimPlayback ??= function (p1, p2) {
-    let $res = natives.stopAnimPlayback(this.handle, p1, p2 | 0);
+    return mp.game2.task.stopAnimPlayback.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Ped.prototype.stopAnimPlayback ??= function (p1, p2) {
-    let $res = natives.stopAnimPlayback(this.handle, p1, p2 | 0);
+    return mp.game2.task.stopAnimPlayback.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Player.prototype.setAnimPlaybackTime ??= function (p1, p2, p3) {
-    let $res = natives.setAnimPhase(this.handle, p1, p2, p3 | 0);
+    return mp.game2.task.setAnimPlaybackTime.apply(this, [this.handle, p1, p2, p3]);
 };
 
 mp.Ped.prototype.setAnimPlaybackTime ??= function (p1, p2, p3) {
-    let $res = natives.setAnimPhase(this.handle, p1, p2, p3 | 0);
+    return mp.game2.task.setAnimPlaybackTime.apply(this, [this.handle, p1, p2, p3]);
 };
 
 mp.Object.prototype.setAnimPlaybackTime ??= function (p1, p2, p3) {
-    let $res = natives.setAnimPhase(this.handle, p1, p2, p3 | 0);
+    return mp.game2.task.setAnimPlaybackTime.apply(this, [this.handle, p1, p2, p3]);
 };
 
 mp.Vehicle.prototype.setAnimPlaybackTime ??= function (p1, p2, p3) {
-    let $res = natives.setAnimPhase(this.handle, p1, p2, p3 | 0);
+    return mp.game2.task.setAnimPlaybackTime.apply(this, [this.handle, p1, p2, p3]);
 };
 
 mp.Player.prototype.playPhoneGestureAnimation ??= function (animDict, animation, boneMaskType, p4, p5, p6, p7) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animation != "string") animation = null;
-    if (typeof boneMaskType != "string") boneMaskType = null;
-    let $res = natives.taskPlayPhoneGestureAnimation(this.handle, animDict, animation, boneMaskType, p4, p5, p6 | 0, p7 | 0);
+    return mp.game2.task.playPhoneGestureAnimation.apply(this, [this.handle, animDict, animation, boneMaskType, p4, p5, p6, p7]);
 };
 
 mp.Ped.prototype.playPhoneGestureAnimation ??= function (animDict, animation, boneMaskType, p4, p5, p6, p7) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animation != "string") animation = null;
-    if (typeof boneMaskType != "string") boneMaskType = null;
-    let $res = natives.taskPlayPhoneGestureAnimation(this.handle, animDict, animation, boneMaskType, p4, p5, p6 | 0, p7 | 0);
+    return mp.game2.task.playPhoneGestureAnimation.apply(this, [this.handle, animDict, animation, boneMaskType, p4, p5, p6, p7]);
 };
 
 mp.Player.prototype.stopPhoneGestureAnimation ??= function (p1) {
-    let $res = natives.taskStopPhoneGestureAnimation(this.handle, p1 | 0);
+    return mp.game2.task.stopPhoneGestureAnimation.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.stopPhoneGestureAnimation ??= function (p1) {
-    let $res = natives.taskStopPhoneGestureAnimation(this.handle, p1 | 0);
+    return mp.game2.task.stopPhoneGestureAnimation.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.isPlayingPhoneGestureAnim ??= function () {
-    let $res = natives.isPlayingPhoneGestureAnim(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isPlayingPhoneGestureAnim.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isPlayingPhoneGestureAnim ??= function () {
-    let $res = natives.isPlayingPhoneGestureAnim(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isPlayingPhoneGestureAnim.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getPhoneGestureAnimCurrentTime ??= function () {
-    let $res = natives.getPhoneGestureAnimCurrentTime(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.task.getPhoneGestureAnimCurrentTime.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getPhoneGestureAnimCurrentTime ??= function () {
-    let $res = natives.getPhoneGestureAnimCurrentTime(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.task.getPhoneGestureAnimCurrentTime.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getPhoneGestureAnimTotalTime ??= function () {
-    let $res = natives.getPhoneGestureAnimTotalTime(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.task.getPhoneGestureAnimTotalTime.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getPhoneGestureAnimTotalTime ??= function () {
-    let $res = natives.getPhoneGestureAnimTotalTime(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.task.getPhoneGestureAnimTotalTime.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.vehiclePlayAnim ??= function (animationSet, animationName) {
-    if (typeof animationSet != "string") animationSet = null;
-    if (typeof animationName != "string") animationName = null;
-    let $res = natives.taskVehiclePlayAnim(this.handle, animationSet, animationName);
+    return mp.game2.task.vehiclePlayAnim.apply(this, [this.handle, animationSet, animationName]);
 };
 
 mp.Player.prototype.lookAtCoord ??= function (x, y, z, duration, p5, p6) {
-    let $res = natives.taskLookAtCoord(this.handle, x, y, z, duration, p5, p6);
+    return mp.game2.task.lookAtCoord.apply(this, [this.handle, x, y, z, duration, p5, p6]);
 };
 
 mp.Ped.prototype.lookAtCoord ??= function (x, y, z, duration, p5, p6) {
-    let $res = natives.taskLookAtCoord(this.handle, x, y, z, duration, p5, p6);
+    return mp.game2.task.lookAtCoord.apply(this, [this.handle, x, y, z, duration, p5, p6]);
 };
 
 mp.Object.prototype.lookAtCoord ??= function (x, y, z, duration, p5, p6) {
-    let $res = natives.taskLookAtCoord(this.handle, x, y, z, duration, p5, p6);
+    return mp.game2.task.lookAtCoord.apply(this, [this.handle, x, y, z, duration, p5, p6]);
 };
 
 mp.Vehicle.prototype.lookAtCoord ??= function (x, y, z, duration, p5, p6) {
-    let $res = natives.taskLookAtCoord(this.handle, x, y, z, duration, p5, p6);
+    return mp.game2.task.lookAtCoord.apply(this, [this.handle, x, y, z, duration, p5, p6]);
 };
 
 mp.Player.prototype.lookAtEntity ??= function (lookAt, duration, unknown1, unknown2) {
-    let $res = natives.taskLookAtEntity(this.handle, lookAt, duration, unknown1, unknown2);
+    return mp.game2.task.lookAtEntity.apply(this, [this.handle, lookAt, duration, unknown1, unknown2]);
 };
 
 mp.Ped.prototype.lookAtEntity ??= function (lookAt, duration, unknown1, unknown2) {
-    let $res = natives.taskLookAtEntity(this.handle, lookAt, duration, unknown1, unknown2);
+    return mp.game2.task.lookAtEntity.apply(this, [this.handle, lookAt, duration, unknown1, unknown2]);
 };
 
 mp.Player.prototype.clearLookAt ??= function () {
-    let $res = natives.taskClearLookAt(this.handle);
+    return mp.game2.task.clearLookAt.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.clearLookAt ??= function () {
-    let $res = natives.taskClearLookAt(this.handle);
+    return mp.game2.task.clearLookAt.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.performSequence ??= function (taskSequenceId) {
-    let $res = natives.taskPerformSequence(this.handle, taskSequenceId);
+    return mp.game2.task.performSequence.apply(this, [this.handle, taskSequenceId]);
 };
 
 mp.Ped.prototype.performSequence ??= function (taskSequenceId) {
-    let $res = natives.taskPerformSequence(this.handle, taskSequenceId);
+    return mp.game2.task.performSequence.apply(this, [this.handle, taskSequenceId]);
 };
 
 mp.Player.prototype.performSequenceLocally ??= function (taskSequenceId) {
-    let $res = natives.taskPerformSequenceLocally(this.handle, taskSequenceId);
+    return mp.game2.task.performSequenceLocally.apply(this, [this.handle, taskSequenceId]);
 };
 
 mp.Ped.prototype.performSequenceLocally ??= function (taskSequenceId) {
-    let $res = natives.taskPerformSequenceLocally(this.handle, taskSequenceId);
+    return mp.game2.task.performSequenceLocally.apply(this, [this.handle, taskSequenceId]);
 };
 
 mp.Player.prototype.getSequenceProgress ??= function () {
-    let $res = natives.getSequenceProgress(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.task.getSequenceProgress.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getSequenceProgress ??= function () {
-    let $res = natives.getSequenceProgress(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.task.getSequenceProgress.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getIsActive ??= function (taskIndex) {
-    let $res = natives.getIsTaskActive(this.handle, taskIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.getIsActive.apply(this, [this.handle, taskIndex]);
 };
 
 mp.Ped.prototype.getIsActive ??= function (taskIndex) {
-    let $res = natives.getIsTaskActive(this.handle, taskIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.getIsActive.apply(this, [this.handle, taskIndex]);
 };
 
 mp.Player.prototype.getScriptStatus ??= function (taskHash) {
-    let $res = natives.getScriptTaskStatus(this.handle, taskHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.task.getScriptStatus.apply(this, [this.handle, taskHash]);
 };
 
 mp.Ped.prototype.getScriptStatus ??= function (taskHash) {
-    let $res = natives.getScriptTaskStatus(this.handle, taskHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.task.getScriptStatus.apply(this, [this.handle, taskHash]);
 };
 
 mp.Vehicle.prototype.getActiveVehicleMissionType ??= function () {
-    let $res = natives.getActiveVehicleMissionType(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.task.getActiveVehicleMissionType.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.leaveAnyVehicle ??= function (p1, flags) {
-    let $res = natives.taskLeaveAnyVehicle(this.handle, p1, flags);
+    return mp.game2.task.leaveAnyVehicle.apply(this, [this.handle, p1, flags]);
 };
 
 mp.Ped.prototype.leaveAnyVehicle ??= function (p1, flags) {
-    let $res = natives.taskLeaveAnyVehicle(this.handle, p1, flags);
+    return mp.game2.task.leaveAnyVehicle.apply(this, [this.handle, p1, flags]);
 };
 
 mp.Player.prototype.aimGunScripted ??= function (scriptTask, p2, p3) {
-    let $res = natives.taskAimGunScripted(this.handle, scriptTask, p2 | 0, p3 | 0);
+    return mp.game2.task.aimGunScripted.apply(this, [this.handle, scriptTask, p2, p3]);
 };
 
 mp.Ped.prototype.aimGunScripted ??= function (scriptTask, p2, p3) {
-    let $res = natives.taskAimGunScripted(this.handle, scriptTask, p2 | 0, p3 | 0);
+    return mp.game2.task.aimGunScripted.apply(this, [this.handle, scriptTask, p2, p3]);
 };
 
 mp.Player.prototype.updateAimGunScriptedTarget ??= function (p1, p2, p3, p4, p5) {
-    let $res = natives.updateTaskAimGunScriptedTarget(this.handle, p1, p2, p3, p4, p5 | 0);
+    return mp.game2.task.updateAimGunScriptedTarget.apply(this, [this.handle, p1, p2, p3, p4, p5]);
 };
 
 mp.Ped.prototype.updateAimGunScriptedTarget ??= function (p1, p2, p3, p4, p5) {
-    let $res = natives.updateTaskAimGunScriptedTarget(this.handle, p1, p2, p3, p4, p5 | 0);
+    return mp.game2.task.updateAimGunScriptedTarget.apply(this, [this.handle, p1, p2, p3, p4, p5]);
 };
 
 mp.Player.prototype.aimGunAtEntity ??= function (entity, duration, p3) {
-    let $res = natives.taskAimGunAtEntity(this.handle, entity, duration, p3 | 0);
+    return mp.game2.task.aimGunAtEntity.apply(this, [this.handle, entity, duration, p3]);
 };
 
 mp.Ped.prototype.aimGunAtEntity ??= function (entity, duration, p3) {
-    let $res = natives.taskAimGunAtEntity(this.handle, entity, duration, p3 | 0);
+    return mp.game2.task.aimGunAtEntity.apply(this, [this.handle, entity, duration, p3]);
 };
 
 mp.Player.prototype.turnPedToFaceEntity ??= function (entity, duration) {
-    let $res = natives.taskTurnPedToFaceEntity(this.handle, entity, duration);
+    return mp.game2.task.turnPedToFaceEntity.apply(this, [this.handle, entity, duration]);
 };
 
 mp.Ped.prototype.turnPedToFaceEntity ??= function (entity, duration) {
-    let $res = natives.taskTurnPedToFaceEntity(this.handle, entity, duration);
+    return mp.game2.task.turnPedToFaceEntity.apply(this, [this.handle, entity, duration]);
 };
 
 mp.Player.prototype.aimGunAtCoord ??= function (x, y, z, time, p5, p6) {
-    let $res = natives.taskAimGunAtCoord(this.handle, x, y, z, time, p5 | 0, p6 | 0);
+    return mp.game2.task.aimGunAtCoord.apply(this, [this.handle, x, y, z, time, p5, p6]);
 };
 
 mp.Ped.prototype.aimGunAtCoord ??= function (x, y, z, time, p5, p6) {
-    let $res = natives.taskAimGunAtCoord(this.handle, x, y, z, time, p5 | 0, p6 | 0);
+    return mp.game2.task.aimGunAtCoord.apply(this, [this.handle, x, y, z, time, p5, p6]);
 };
 
 mp.Player.prototype.shootAtCoord ??= function (x, y, z, duration, firingPattern) {
-    let $res = natives.taskShootAtCoord(this.handle, x, y, z, duration, firingPattern);
+    return mp.game2.task.shootAtCoord.apply(this, [this.handle, x, y, z, duration, firingPattern]);
 };
 
 mp.Ped.prototype.shootAtCoord ??= function (x, y, z, duration, firingPattern) {
-    let $res = natives.taskShootAtCoord(this.handle, x, y, z, duration, firingPattern);
+    return mp.game2.task.shootAtCoord.apply(this, [this.handle, x, y, z, duration, firingPattern]);
 };
 
 mp.Player.prototype.shuffleToNextVehicleSeat ??= function (vehicle, p2) {
-    let $res = natives.taskShuffleToNextVehicleSeat(this.handle, vehicle, p2 | 0);
+    return mp.game2.task.shuffleToNextVehicleSeat.apply(this, [this.handle, vehicle, p2]);
 };
 
 mp.Ped.prototype.shuffleToNextVehicleSeat ??= function (vehicle, p2) {
-    let $res = natives.taskShuffleToNextVehicleSeat(this.handle, vehicle, p2 | 0);
+    return mp.game2.task.shuffleToNextVehicleSeat.apply(this, [this.handle, vehicle, p2]);
 };
 
 mp.Player.prototype.clearPedS ??= function () {
-    let $res = natives.clearPedTasks(this.handle);
+    return mp.game2.task.clearPedS.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.clearPedS ??= function () {
-    let $res = natives.clearPedTasks(this.handle);
+    return mp.game2.task.clearPedS.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.clearPedSecondary ??= function () {
-    let $res = natives.clearPedSecondaryTask(this.handle);
+    return mp.game2.task.clearPedSecondary.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.clearPedSecondary ??= function () {
-    let $res = natives.clearPedSecondaryTask(this.handle);
+    return mp.game2.task.clearPedSecondary.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.everyoneLeaveVehicle ??= function () {
-    let $res = natives.taskEveryoneLeaveVehicle(this.handle);
+    return mp.game2.task.everyoneLeaveVehicle.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.gotoEntityOffset ??= function (p1, p2, x, y, z, duration) {
-    let $res = natives.taskGotoEntityOffset(this.handle, p1, p2, x, y, z, duration);
+    return mp.game2.task.gotoEntityOffset.apply(this, [this.handle, p1, p2, x, y, z, duration]);
 };
 
 mp.Ped.prototype.gotoEntityOffset ??= function (p1, p2, x, y, z, duration) {
-    let $res = natives.taskGotoEntityOffset(this.handle, p1, p2, x, y, z, duration);
+    return mp.game2.task.gotoEntityOffset.apply(this, [this.handle, p1, p2, x, y, z, duration]);
 };
 
 mp.Player.prototype.turnPedToFaceCoord ??= function (x, y, z, duration) {
-    let $res = natives.taskTurnPedToFaceCoord(this.handle, x, y, z, duration);
+    return mp.game2.task.turnPedToFaceCoord.apply(this, [this.handle, x, y, z, duration]);
 };
 
 mp.Ped.prototype.turnPedToFaceCoord ??= function (x, y, z, duration) {
-    let $res = natives.taskTurnPedToFaceCoord(this.handle, x, y, z, duration);
+    return mp.game2.task.turnPedToFaceCoord.apply(this, [this.handle, x, y, z, duration]);
 };
 
 mp.Player.prototype.vehicleTempAction ??= function (vehicle, action, time) {
-    let $res = natives.taskVehicleTempAction(this.handle, vehicle, action, time);
+    return mp.game2.task.vehicleTempAction.apply(this, [this.handle, vehicle, action, time]);
 };
 
 mp.Ped.prototype.vehicleTempAction ??= function (vehicle, action, time) {
-    let $res = natives.taskVehicleTempAction(this.handle, vehicle, action, time);
+    return mp.game2.task.vehicleTempAction.apply(this, [this.handle, vehicle, action, time]);
 };
 
 mp.Player.prototype.vehicleMission ??= function (vehicle, vehicleTarget, missionType, p4, p5, p6, p7, DriveAgainstTraffic) {
-    let $res = natives.taskVehicleMission(this.handle, vehicle, vehicleTarget, missionType, p4, p5, p6, p7, DriveAgainstTraffic | 0);
+    return mp.game2.task.vehicleMission.apply(this, [this.handle, vehicle, vehicleTarget, missionType, p4, p5, p6, p7, DriveAgainstTraffic]);
 };
 
 mp.Ped.prototype.vehicleMission ??= function (vehicle, vehicleTarget, missionType, p4, p5, p6, p7, DriveAgainstTraffic) {
-    let $res = natives.taskVehicleMission(this.handle, vehicle, vehicleTarget, missionType, p4, p5, p6, p7, DriveAgainstTraffic | 0);
+    return mp.game2.task.vehicleMission.apply(this, [this.handle, vehicle, vehicleTarget, missionType, p4, p5, p6, p7, DriveAgainstTraffic]);
 };
 
 mp.Player.prototype.vehicleMissionPedTarget ??= function (vehicle, pedTarget, missionType, maxSpeed, drivingStyle, minDistance, p7, DriveAgainstTraffic) {
-    let $res = natives.taskVehicleMissionPedTarget(this.handle, vehicle, pedTarget, missionType, maxSpeed, drivingStyle, minDistance, p7, DriveAgainstTraffic | 0);
+    return mp.game2.task.vehicleMissionPedTarget.apply(this, [this.handle, vehicle, pedTarget, missionType, maxSpeed, drivingStyle, minDistance, p7, DriveAgainstTraffic]);
 };
 
 mp.Ped.prototype.vehicleMissionPedTarget ??= function (vehicle, pedTarget, missionType, maxSpeed, drivingStyle, minDistance, p7, DriveAgainstTraffic) {
-    let $res = natives.taskVehicleMissionPedTarget(this.handle, vehicle, pedTarget, missionType, maxSpeed, drivingStyle, minDistance, p7, DriveAgainstTraffic | 0);
+    return mp.game2.task.vehicleMissionPedTarget.apply(this, [this.handle, vehicle, pedTarget, missionType, maxSpeed, drivingStyle, minDistance, p7, DriveAgainstTraffic]);
 };
 
 mp.Player.prototype.vehicleMissionCoorsTarget ??= function (vehicle, x, y, z, p5, p6, p7, p8, p9, DriveAgainstTraffic) {
-    let $res = natives.taskVehicleMissionCoorsTarget(this.handle, vehicle, x, y, z, p5, p6, p7, p8, p9, DriveAgainstTraffic | 0);
+    return mp.game2.task.vehicleMissionCoorsTarget.apply(this, [this.handle, vehicle, x, y, z, p5, p6, p7, p8, p9, DriveAgainstTraffic]);
 };
 
 mp.Ped.prototype.vehicleMissionCoorsTarget ??= function (vehicle, x, y, z, p5, p6, p7, p8, p9, DriveAgainstTraffic) {
-    let $res = natives.taskVehicleMissionCoorsTarget(this.handle, vehicle, x, y, z, p5, p6, p7, p8, p9, DriveAgainstTraffic | 0);
+    return mp.game2.task.vehicleMissionCoorsTarget.apply(this, [this.handle, vehicle, x, y, z, p5, p6, p7, p8, p9, DriveAgainstTraffic]);
 };
 
 mp.Player.prototype.vehicleEscort ??= function (vehicle, targetVehicle, mode, speed, drivingStyle, minDistance, p7, noRoadsDistance) {
-    let $res = natives.taskVehicleEscort(this.handle, vehicle, targetVehicle, mode, speed, drivingStyle, minDistance, p7, noRoadsDistance);
+    return mp.game2.task.vehicleEscort.apply(this, [this.handle, vehicle, targetVehicle, mode, speed, drivingStyle, minDistance, p7, noRoadsDistance]);
 };
 
 mp.Ped.prototype.vehicleEscort ??= function (vehicle, targetVehicle, mode, speed, drivingStyle, minDistance, p7, noRoadsDistance) {
-    let $res = natives.taskVehicleEscort(this.handle, vehicle, targetVehicle, mode, speed, drivingStyle, minDistance, p7, noRoadsDistance);
+    return mp.game2.task.vehicleEscort.apply(this, [this.handle, vehicle, targetVehicle, mode, speed, drivingStyle, minDistance, p7, noRoadsDistance]);
 };
 
 mp.Player.prototype.vehicleFollow ??= function (vehicle, targetEntity, speed, drivingStyle, minDistance) {
-    let $res = natives.taskVehicleFollow(this.handle, vehicle, targetEntity, speed, drivingStyle, minDistance);
+    return mp.game2.task.vehicleFollow.apply(this, [this.handle, vehicle, targetEntity, speed, drivingStyle, minDistance]);
 };
 
 mp.Ped.prototype.vehicleFollow ??= function (vehicle, targetEntity, speed, drivingStyle, minDistance) {
-    let $res = natives.taskVehicleFollow(this.handle, vehicle, targetEntity, speed, drivingStyle, minDistance);
+    return mp.game2.task.vehicleFollow.apply(this, [this.handle, vehicle, targetEntity, speed, drivingStyle, minDistance]);
 };
 
 mp.Player.prototype.vehicleChase ??= function (targetEnt) {
-    let $res = natives.taskVehicleChase(this.handle, targetEnt);
+    return mp.game2.task.vehicleChase.apply(this, [this.handle, targetEnt]);
 };
 
 mp.Ped.prototype.vehicleChase ??= function (targetEnt) {
-    let $res = natives.taskVehicleChase(this.handle, targetEnt);
+    return mp.game2.task.vehicleChase.apply(this, [this.handle, targetEnt]);
 };
 
 mp.Player.prototype.vehicleHeliProtect ??= function (vehicle, entityToFollow, targetSpeed, p4, radius, altitude, p7) {
-    let $res = natives.taskVehicleHeliProtect(this.handle, vehicle, entityToFollow, targetSpeed, p4, radius, altitude, p7);
+    return mp.game2.task.vehicleHeliProtect.apply(this, [this.handle, vehicle, entityToFollow, targetSpeed, p4, radius, altitude, p7]);
 };
 
 mp.Ped.prototype.vehicleHeliProtect ??= function (vehicle, entityToFollow, targetSpeed, p4, radius, altitude, p7) {
-    let $res = natives.taskVehicleHeliProtect(this.handle, vehicle, entityToFollow, targetSpeed, p4, radius, altitude, p7);
+    return mp.game2.task.vehicleHeliProtect.apply(this, [this.handle, vehicle, entityToFollow, targetSpeed, p4, radius, altitude, p7]);
 };
 
 mp.Player.prototype.setVehicleChaseBehaviorFlag ??= function (flag, set) {
-    let $res = natives.setTaskVehicleChaseBehaviorFlag(this.handle, flag, set | 0);
+    return mp.game2.task.setVehicleChaseBehaviorFlag.apply(this, [this.handle, flag, set]);
 };
 
 mp.Ped.prototype.setVehicleChaseBehaviorFlag ??= function (flag, set) {
-    let $res = natives.setTaskVehicleChaseBehaviorFlag(this.handle, flag, set | 0);
+    return mp.game2.task.setVehicleChaseBehaviorFlag.apply(this, [this.handle, flag, set]);
 };
 
 mp.Player.prototype.setVehicleChaseIdealPursuitDistance ??= function (distance) {
-    let $res = natives.setTaskVehicleChaseIdealPursuitDistance(this.handle, distance);
+    return mp.game2.task.setVehicleChaseIdealPursuitDistance.apply(this, [this.handle, distance]);
 };
 
 mp.Ped.prototype.setVehicleChaseIdealPursuitDistance ??= function (distance) {
-    let $res = natives.setTaskVehicleChaseIdealPursuitDistance(this.handle, distance);
+    return mp.game2.task.setVehicleChaseIdealPursuitDistance.apply(this, [this.handle, distance]);
 };
 
 mp.Player.prototype.heliChase ??= function (entityToFollow, x, y, z) {
-    let $res = natives.taskHeliChase(this.handle, entityToFollow, x, y, z);
+    return mp.game2.task.heliChase.apply(this, [this.handle, entityToFollow, x, y, z]);
 };
 
 mp.Ped.prototype.heliChase ??= function (entityToFollow, x, y, z) {
-    let $res = natives.taskHeliChase(this.handle, entityToFollow, x, y, z);
+    return mp.game2.task.heliChase.apply(this, [this.handle, entityToFollow, x, y, z]);
 };
 
 mp.Player.prototype.planeChase ??= function (entityToFollow, x, y, z) {
-    let $res = natives.taskPlaneChase(this.handle, entityToFollow, x, y, z);
+    return mp.game2.task.planeChase.apply(this, [this.handle, entityToFollow, x, y, z]);
 };
 
 mp.Ped.prototype.planeChase ??= function (entityToFollow, x, y, z) {
-    let $res = natives.taskPlaneChase(this.handle, entityToFollow, x, y, z);
+    return mp.game2.task.planeChase.apply(this, [this.handle, entityToFollow, x, y, z]);
 };
 
 mp.Player.prototype.planeLand ??= function (plane, runwayStartX, runwayStartY, runwayStartZ, runwayEndX, runwayEndY, runwayEndZ) {
-    let $res = natives.taskPlaneLand(this.handle, plane, runwayStartX, runwayStartY, runwayStartZ, runwayEndX, runwayEndY, runwayEndZ);
+    return mp.game2.task.planeLand.apply(this, [this.handle, plane, runwayStartX, runwayStartY, runwayStartZ, runwayEndX, runwayEndY, runwayEndZ]);
 };
 
 mp.Ped.prototype.planeLand ??= function (plane, runwayStartX, runwayStartY, runwayStartZ, runwayEndX, runwayEndY, runwayEndZ) {
-    let $res = natives.taskPlaneLand(this.handle, plane, runwayStartX, runwayStartY, runwayStartZ, runwayEndX, runwayEndY, runwayEndZ);
+    return mp.game2.task.planeLand.apply(this, [this.handle, plane, runwayStartX, runwayStartY, runwayStartZ, runwayEndX, runwayEndY, runwayEndZ]);
 };
 
 mp.Vehicle.prototype.clearVehicleS ??= function () {
-    let $res = natives.clearPrimaryVehicleTask(this.handle);
+    return mp.game2.task.clearVehicleS.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.planeGotoPreciseVtol ??= function (vehicle, p2, p3, p4, p5, p6, p7, p8, p9) {
-    let $res = natives.taskPlaneGotoPreciseVtol(this.handle, vehicle, p2, p3, p4, p5, p6, p7, p8, p9);
+    return mp.game2.task.planeGotoPreciseVtol.apply(this, [this.handle, vehicle, p2, p3, p4, p5, p6, p7, p8, p9]);
 };
 
 mp.Ped.prototype.planeGotoPreciseVtol ??= function (vehicle, p2, p3, p4, p5, p6, p7, p8, p9) {
-    let $res = natives.taskPlaneGotoPreciseVtol(this.handle, vehicle, p2, p3, p4, p5, p6, p7, p8, p9);
+    return mp.game2.task.planeGotoPreciseVtol.apply(this, [this.handle, vehicle, p2, p3, p4, p5, p6, p7, p8, p9]);
 };
 
 mp.Player.prototype.heliMission ??= function (aircraft, targetVehicle, targetPed, destinationX, destinationY, destinationZ, missionFlag, maxSpeed, radius, targetHeading, maxHeight, minHeight, unk3, behaviorFlags) {
-    let $res = natives.taskHeliMission(this.handle, aircraft, targetVehicle, targetPed, destinationX, destinationY, destinationZ, missionFlag, maxSpeed, radius, targetHeading, maxHeight, minHeight, unk3, behaviorFlags);
+    return mp.game2.task.heliMission.apply(this, [this.handle, aircraft, targetVehicle, targetPed, destinationX, destinationY, destinationZ, missionFlag, maxSpeed, radius, targetHeading, maxHeight, minHeight, unk3, behaviorFlags]);
 };
 
 mp.Ped.prototype.heliMission ??= function (aircraft, targetVehicle, targetPed, destinationX, destinationY, destinationZ, missionFlag, maxSpeed, radius, targetHeading, maxHeight, minHeight, unk3, behaviorFlags) {
-    let $res = natives.taskHeliMission(this.handle, aircraft, targetVehicle, targetPed, destinationX, destinationY, destinationZ, missionFlag, maxSpeed, radius, targetHeading, maxHeight, minHeight, unk3, behaviorFlags);
+    return mp.game2.task.heliMission.apply(this, [this.handle, aircraft, targetVehicle, targetPed, destinationX, destinationY, destinationZ, missionFlag, maxSpeed, radius, targetHeading, maxHeight, minHeight, unk3, behaviorFlags]);
 };
 
 mp.Player.prototype.heliEscortHeli ??= function (heli1, heli2, p3, p4, p5) {
-    let $res = natives.taskHeliEscortHeli(this.handle, heli1, heli2, p3, p4, p5);
+    return mp.game2.task.heliEscortHeli.apply(this, [this.handle, heli1, heli2, p3, p4, p5]);
 };
 
 mp.Ped.prototype.heliEscortHeli ??= function (heli1, heli2, p3, p4, p5) {
-    let $res = natives.taskHeliEscortHeli(this.handle, heli1, heli2, p3, p4, p5);
+    return mp.game2.task.heliEscortHeli.apply(this, [this.handle, heli1, heli2, p3, p4, p5]);
 };
 
 mp.Player.prototype.planeMission ??= function (aircraft, targetVehicle, targetPed, destinationX, destinationY, destinationZ, missionFlag, angularDrag, unk, targetHeading, maxZ, minZ, p13) {
-    let $res = natives.taskPlaneMission(this.handle, aircraft, targetVehicle, targetPed, destinationX, destinationY, destinationZ, missionFlag, angularDrag, unk, targetHeading, maxZ, minZ, p13 | 0);
+    return mp.game2.task.planeMission.apply(this, [this.handle, aircraft, targetVehicle, targetPed, destinationX, destinationY, destinationZ, missionFlag, angularDrag, unk, targetHeading, maxZ, minZ, p13]);
 };
 
 mp.Ped.prototype.planeMission ??= function (aircraft, targetVehicle, targetPed, destinationX, destinationY, destinationZ, missionFlag, angularDrag, unk, targetHeading, maxZ, minZ, p13) {
-    let $res = natives.taskPlaneMission(this.handle, aircraft, targetVehicle, targetPed, destinationX, destinationY, destinationZ, missionFlag, angularDrag, unk, targetHeading, maxZ, minZ, p13 | 0);
+    return mp.game2.task.planeMission.apply(this, [this.handle, aircraft, targetVehicle, targetPed, destinationX, destinationY, destinationZ, missionFlag, angularDrag, unk, targetHeading, maxZ, minZ, p13]);
 };
 
 mp.Player.prototype.planeTaxi ??= function (aircraft, p2, p3, p4, p5, p6) {
-    let $res = natives.taskPlaneTaxi(this.handle, aircraft, p2, p3, p4, p5, p6);
+    return mp.game2.task.planeTaxi.apply(this, [this.handle, aircraft, p2, p3, p4, p5, p6]);
 };
 
 mp.Ped.prototype.planeTaxi ??= function (aircraft, p2, p3, p4, p5, p6) {
-    let $res = natives.taskPlaneTaxi(this.handle, aircraft, p2, p3, p4, p5, p6);
+    return mp.game2.task.planeTaxi.apply(this, [this.handle, aircraft, p2, p3, p4, p5, p6]);
 };
 
 mp.Player.prototype.boatMission ??= function (boat, p2, p3, x, y, z, p7, maxSpeed, drivingStyle, p10, p11) {
-    let $res = natives.taskBoatMission(this.handle, boat, p2, p3, x, y, z, p7, maxSpeed, drivingStyle, p10, p11);
+    return mp.game2.task.boatMission.apply(this, [this.handle, boat, p2, p3, x, y, z, p7, maxSpeed, drivingStyle, p10, p11]);
 };
 
 mp.Ped.prototype.boatMission ??= function (boat, p2, p3, x, y, z, p7, maxSpeed, drivingStyle, p10, p11) {
-    let $res = natives.taskBoatMission(this.handle, boat, p2, p3, x, y, z, p7, maxSpeed, drivingStyle, p10, p11);
+    return mp.game2.task.boatMission.apply(this, [this.handle, boat, p2, p3, x, y, z, p7, maxSpeed, drivingStyle, p10, p11]);
 };
 
 mp.Player.prototype.driveBy ??= function (targetPed, targetVehicle, targetX, targetY, targetZ, distanceToShoot, pedAccuracy, p8, firingPattern) {
-    let $res = natives.taskDriveBy(this.handle, targetPed, targetVehicle, targetX, targetY, targetZ, distanceToShoot, pedAccuracy, p8 | 0, firingPattern);
+    return mp.game2.task.driveBy.apply(this, [this.handle, targetPed, targetVehicle, targetX, targetY, targetZ, distanceToShoot, pedAccuracy, p8, firingPattern]);
 };
 
 mp.Ped.prototype.driveBy ??= function (targetPed, targetVehicle, targetX, targetY, targetZ, distanceToShoot, pedAccuracy, p8, firingPattern) {
-    let $res = natives.taskDriveBy(this.handle, targetPed, targetVehicle, targetX, targetY, targetZ, distanceToShoot, pedAccuracy, p8 | 0, firingPattern);
+    return mp.game2.task.driveBy.apply(this, [this.handle, targetPed, targetVehicle, targetX, targetY, targetZ, distanceToShoot, pedAccuracy, p8, firingPattern]);
 };
 
 mp.Player.prototype.setDrivebyTarget ??= function (targetPed, targetVehicle, x, y, z) {
-    let $res = natives.setDrivebyTaskTarget(this.handle, targetPed, targetVehicle, x, y, z);
+    return mp.game2.task.setDrivebyTarget.apply(this, [this.handle, targetPed, targetVehicle, x, y, z]);
 };
 
 mp.Ped.prototype.setDrivebyTarget ??= function (targetPed, targetVehicle, x, y, z) {
-    let $res = natives.setDrivebyTaskTarget(this.handle, targetPed, targetVehicle, x, y, z);
+    return mp.game2.task.setDrivebyTarget.apply(this, [this.handle, targetPed, targetVehicle, x, y, z]);
 };
 
 mp.Player.prototype.clearDrivebyUnderneathDrivingTask ??= function () {
-    let $res = natives.clearDrivebyTaskUnderneathDrivingTask(this.handle);
+    return mp.game2.task.clearDrivebyUnderneathDrivingTask.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.clearDrivebyUnderneathDrivingTask ??= function () {
-    let $res = natives.clearDrivebyTaskUnderneathDrivingTask(this.handle);
+    return mp.game2.task.clearDrivebyUnderneathDrivingTask.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isDrivebyUnderneathDrivingTask ??= function () {
-    let $res = natives.isDrivebyTaskUnderneathDrivingTask(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isDrivebyUnderneathDrivingTask.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isDrivebyUnderneathDrivingTask ??= function () {
-    let $res = natives.isDrivebyTaskUnderneathDrivingTask(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isDrivebyUnderneathDrivingTask.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.controlMountedWeapon ??= function () {
-    let $res = natives.controlMountedWeapon(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.controlMountedWeapon.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.controlMountedWeapon ??= function () {
-    let $res = natives.controlMountedWeapon(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.controlMountedWeapon.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setMountedWeaponTarget ??= function (targetPed, targetVehicle, x, y, z, p6, p7) {
-    let $res = natives.setMountedWeaponTarget(this.handle, targetPed, targetVehicle, x, y, z, p6 | 0, p7 | 0);
+    return mp.game2.task.setMountedWeaponTarget.apply(this, [this.handle, targetPed, targetVehicle, x, y, z, p6, p7]);
 };
 
 mp.Ped.prototype.setMountedWeaponTarget ??= function (targetPed, targetVehicle, x, y, z, p6, p7) {
-    let $res = natives.setMountedWeaponTarget(this.handle, targetPed, targetVehicle, x, y, z, p6 | 0, p7 | 0);
+    return mp.game2.task.setMountedWeaponTarget.apply(this, [this.handle, targetPed, targetVehicle, x, y, z, p6, p7]);
 };
 
 mp.Player.prototype.isMountedWeaponUnderneathDrivingTask ??= function () {
-    let $res = natives.isMountedWeaponTaskUnderneathDrivingTask(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isMountedWeaponUnderneathDrivingTask.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isMountedWeaponUnderneathDrivingTask ??= function () {
-    let $res = natives.isMountedWeaponTaskUnderneathDrivingTask(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isMountedWeaponUnderneathDrivingTask.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.useMobilePhone ??= function (p1, p2) {
-    let $res = natives.taskUseMobilePhone(this.handle, p1, p2 | 0);
+    return mp.game2.task.useMobilePhone.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Ped.prototype.useMobilePhone ??= function (p1, p2) {
-    let $res = natives.taskUseMobilePhone(this.handle, p1, p2 | 0);
+    return mp.game2.task.useMobilePhone.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Player.prototype.useMobilePhoneTimed ??= function (duration) {
-    let $res = natives.taskUseMobilePhoneTimed(this.handle, duration);
+    return mp.game2.task.useMobilePhoneTimed.apply(this, [this.handle, duration]);
 };
 
 mp.Ped.prototype.useMobilePhoneTimed ??= function (duration) {
-    let $res = natives.taskUseMobilePhoneTimed(this.handle, duration);
+    return mp.game2.task.useMobilePhoneTimed.apply(this, [this.handle, duration]);
 };
 
 mp.Player.prototype.chatToPed ??= function (target, p2, p3, p4, p5, p6, p7) {
-    let $res = natives.taskChatToPed(this.handle, target, p2, p3, p4, p5, p6, p7);
+    return mp.game2.task.chatToPed.apply(this, [this.handle, target, p2, p3, p4, p5, p6, p7]);
 };
 
 mp.Ped.prototype.chatToPed ??= function (target, p2, p3, p4, p5, p6, p7) {
-    let $res = natives.taskChatToPed(this.handle, target, p2, p3, p4, p5, p6, p7);
+    return mp.game2.task.chatToPed.apply(this, [this.handle, target, p2, p3, p4, p5, p6, p7]);
 };
 
 mp.Player.prototype.warpPedIntoVehicle ??= function (vehicle, seat) {
-    let $res = natives.taskWarpPedIntoVehicle(this.handle, vehicle, seat);
+    return mp.game2.task.warpPedIntoVehicle.apply(this, [this.handle, vehicle, seat]);
 };
 
 mp.Ped.prototype.warpPedIntoVehicle ??= function (vehicle, seat) {
-    let $res = natives.taskWarpPedIntoVehicle(this.handle, vehicle, seat);
+    return mp.game2.task.warpPedIntoVehicle.apply(this, [this.handle, vehicle, seat]);
 };
 
 mp.Player.prototype.shootAtEntity ??= function (target, duration, firingPattern) {
-    let $res = natives.taskShootAtEntity(this.handle, target, duration, firingPattern);
+    return mp.game2.task.shootAtEntity.apply(this, [this.handle, target, duration, firingPattern]);
 };
 
 mp.Ped.prototype.shootAtEntity ??= function (target, duration, firingPattern) {
-    let $res = natives.taskShootAtEntity(this.handle, target, duration, firingPattern);
+    return mp.game2.task.shootAtEntity.apply(this, [this.handle, target, duration, firingPattern]);
 };
 
 mp.Object.prototype.shootAtEntity ??= function (target, duration, firingPattern) {
-    let $res = natives.taskShootAtEntity(this.handle, target, duration, firingPattern);
+    return mp.game2.task.shootAtEntity.apply(this, [this.handle, target, duration, firingPattern]);
 };
 
 mp.Vehicle.prototype.shootAtEntity ??= function (target, duration, firingPattern) {
-    let $res = natives.taskShootAtEntity(this.handle, target, duration, firingPattern);
+    return mp.game2.task.shootAtEntity.apply(this, [this.handle, target, duration, firingPattern]);
 };
 
 mp.Player.prototype.climb ??= function (unused) {
-    let $res = natives.taskClimb(this.handle, unused | 0);
+    return mp.game2.task.climb.apply(this, [this.handle, unused]);
 };
 
 mp.Ped.prototype.climb ??= function (unused) {
-    let $res = natives.taskClimb(this.handle, unused | 0);
+    return mp.game2.task.climb.apply(this, [this.handle, unused]);
 };
 
 mp.Player.prototype.climbLadder ??= function (p1) {
-    let $res = natives.taskClimbLadder(this.handle, p1);
+    return mp.game2.task.climbLadder.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.climbLadder ??= function (p1) {
-    let $res = natives.taskClimbLadder(this.handle, p1);
+    return mp.game2.task.climbLadder.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.clearPedTasksImmediately ??= function () {
-    let $res = natives.clearPedTasksImmediately(this.handle);
+    return mp.game2.task.clearPedTasksImmediately.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.clearPedTasksImmediately ??= function () {
-    let $res = natives.clearPedTasksImmediately(this.handle);
+    return mp.game2.task.clearPedTasksImmediately.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setPedDesiredMoveBlendRatio ??= function (p1) {
-    let $res = natives.setPedDesiredMoveBlendRatio(this.handle, p1);
+    return mp.game2.task.setPedDesiredMoveBlendRatio.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.setPedDesiredMoveBlendRatio ??= function (p1) {
-    let $res = natives.setPedDesiredMoveBlendRatio(this.handle, p1);
+    return mp.game2.task.setPedDesiredMoveBlendRatio.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.getPedDesiredMoveBlendRatio ??= function () {
-    let $res = natives.getPedDesiredMoveBlendRatio(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.task.getPedDesiredMoveBlendRatio.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getPedDesiredMoveBlendRatio ??= function () {
-    let $res = natives.getPedDesiredMoveBlendRatio(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.task.getPedDesiredMoveBlendRatio.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.gotoEntityAiming ??= function (target, distanceToStopAt, StartAimingDist) {
-    let $res = natives.taskGotoEntityAiming(this.handle, target, distanceToStopAt, StartAimingDist);
+    return mp.game2.task.gotoEntityAiming.apply(this, [this.handle, target, distanceToStopAt, StartAimingDist]);
 };
 
 mp.Ped.prototype.gotoEntityAiming ??= function (target, distanceToStopAt, StartAimingDist) {
-    let $res = natives.taskGotoEntityAiming(this.handle, target, distanceToStopAt, StartAimingDist);
+    return mp.game2.task.gotoEntityAiming.apply(this, [this.handle, target, distanceToStopAt, StartAimingDist]);
 };
 
 mp.Player.prototype.pedSlideToCoord ??= function (x, y, z, heading, p5) {
-    let $res = natives.taskPedSlideToCoord(this.handle, x, y, z, heading, p5);
+    return mp.game2.task.pedSlideToCoord.apply(this, [this.handle, x, y, z, heading, p5]);
 };
 
 mp.Ped.prototype.pedSlideToCoord ??= function (x, y, z, heading, p5) {
-    let $res = natives.taskPedSlideToCoord(this.handle, x, y, z, heading, p5);
+    return mp.game2.task.pedSlideToCoord.apply(this, [this.handle, x, y, z, heading, p5]);
 };
 
 mp.Player.prototype.pedSlideToCoordHdgRate ??= function (x, y, z, heading, p5, p6) {
-    let $res = natives.taskPedSlideToCoordHdgRate(this.handle, x, y, z, heading, p5, p6);
+    return mp.game2.task.pedSlideToCoordHdgRate.apply(this, [this.handle, x, y, z, heading, p5, p6]);
 };
 
 mp.Ped.prototype.pedSlideToCoordHdgRate ??= function (x, y, z, heading, p5, p6) {
-    let $res = natives.taskPedSlideToCoordHdgRate(this.handle, x, y, z, heading, p5, p6);
+    return mp.game2.task.pedSlideToCoordHdgRate.apply(this, [this.handle, x, y, z, heading, p5, p6]);
 };
 
 mp.Player.prototype.combatPed ??= function (targetPed, p2, p3) {
-    let $res = natives.taskCombatPed(this.handle, targetPed, p2, p3);
+    return mp.game2.task.combatPed.apply(this, [this.handle, targetPed, p2, p3]);
 };
 
 mp.Ped.prototype.combatPed ??= function (targetPed, p2, p3) {
-    let $res = natives.taskCombatPed(this.handle, targetPed, p2, p3);
+    return mp.game2.task.combatPed.apply(this, [this.handle, targetPed, p2, p3]);
 };
 
 mp.Player.prototype.seekCoverFromPos ??= function (x, y, z, duration, p5) {
-    let $res = natives.taskSeekCoverFromPos(this.handle, x, y, z, duration, p5 | 0);
+    return mp.game2.task.seekCoverFromPos.apply(this, [this.handle, x, y, z, duration, p5]);
 };
 
 mp.Ped.prototype.seekCoverFromPos ??= function (x, y, z, duration, p5) {
-    let $res = natives.taskSeekCoverFromPos(this.handle, x, y, z, duration, p5 | 0);
+    return mp.game2.task.seekCoverFromPos.apply(this, [this.handle, x, y, z, duration, p5]);
 };
 
 mp.Player.prototype.seekCoverFromPed ??= function (target, duration, p3) {
-    let $res = natives.taskSeekCoverFromPed(this.handle, target, duration, p3 | 0);
+    return mp.game2.task.seekCoverFromPed.apply(this, [this.handle, target, duration, p3]);
 };
 
 mp.Ped.prototype.seekCoverFromPed ??= function (target, duration, p3) {
-    let $res = natives.taskSeekCoverFromPed(this.handle, target, duration, p3 | 0);
+    return mp.game2.task.seekCoverFromPed.apply(this, [this.handle, target, duration, p3]);
 };
 
 mp.Player.prototype.seekCoverToCoords ??= function (x1, y1, z1, x2, y2, z2, p7, p8) {
-    let $res = natives.taskSeekCoverToCoords(this.handle, x1, y1, z1, x2, y2, z2, p7, p8 | 0);
+    return mp.game2.task.seekCoverToCoords.apply(this, [this.handle, x1, y1, z1, x2, y2, z2, p7, p8]);
 };
 
 mp.Ped.prototype.seekCoverToCoords ??= function (x1, y1, z1, x2, y2, z2, p7, p8) {
-    let $res = natives.taskSeekCoverToCoords(this.handle, x1, y1, z1, x2, y2, z2, p7, p8 | 0);
+    return mp.game2.task.seekCoverToCoords.apply(this, [this.handle, x1, y1, z1, x2, y2, z2, p7, p8]);
 };
 
 mp.Player.prototype.putPedDirectlyIntoCover ??= function (x, y, z, timeout, p5, p6, p7, p8, p9, p10) {
-    let $res = natives.taskPutPedDirectlyIntoCover(this.handle, x, y, z, timeout, p5 | 0, p6, p7 | 0, p8 | 0, p9, p10 | 0);
+    return mp.game2.task.putPedDirectlyIntoCover.apply(this, [this.handle, x, y, z, timeout, p5, p6, p7, p8, p9, p10]);
 };
 
 mp.Ped.prototype.putPedDirectlyIntoCover ??= function (x, y, z, timeout, p5, p6, p7, p8, p9, p10) {
-    let $res = natives.taskPutPedDirectlyIntoCover(this.handle, x, y, z, timeout, p5 | 0, p6, p7 | 0, p8 | 0, p9, p10 | 0);
+    return mp.game2.task.putPedDirectlyIntoCover.apply(this, [this.handle, x, y, z, timeout, p5, p6, p7, p8, p9, p10]);
 };
 
 mp.Player.prototype.putPedDirectlyIntoMelee ??= function (meleeTarget, p2, p3, p4, p5) {
-    let $res = natives.taskPutPedDirectlyIntoMelee(this.handle, meleeTarget, p2, p3, p4, p5 | 0);
+    return mp.game2.task.putPedDirectlyIntoMelee.apply(this, [this.handle, meleeTarget, p2, p3, p4, p5]);
 };
 
 mp.Ped.prototype.putPedDirectlyIntoMelee ??= function (meleeTarget, p2, p3, p4, p5) {
-    let $res = natives.taskPutPedDirectlyIntoMelee(this.handle, meleeTarget, p2, p3, p4, p5 | 0);
+    return mp.game2.task.putPedDirectlyIntoMelee.apply(this, [this.handle, meleeTarget, p2, p3, p4, p5]);
 };
 
 mp.Player.prototype.guardCurrentPosition ??= function (p1, p2, p3) {
-    let $res = natives.taskGuardCurrentPosition(this.handle, p1, p2, p3 | 0);
+    return mp.game2.task.guardCurrentPosition.apply(this, [this.handle, p1, p2, p3]);
 };
 
 mp.Ped.prototype.guardCurrentPosition ??= function (p1, p2, p3) {
-    let $res = natives.taskGuardCurrentPosition(this.handle, p1, p2, p3 | 0);
+    return mp.game2.task.guardCurrentPosition.apply(this, [this.handle, p1, p2, p3]);
 };
 
 mp.Player.prototype.guardSphereDefensiveArea ??= function (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) {
-    let $res = natives.taskGuardSphereDefensiveArea(this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10);
+    return mp.game2.task.guardSphereDefensiveArea.apply(this, [this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10]);
 };
 
 mp.Ped.prototype.guardSphereDefensiveArea ??= function (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) {
-    let $res = natives.taskGuardSphereDefensiveArea(this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10);
+    return mp.game2.task.guardSphereDefensiveArea.apply(this, [this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10]);
 };
 
 mp.Player.prototype.standGuard ??= function (x, y, z, heading, scenarioName) {
-    if (typeof scenarioName != "string") scenarioName = null;
-    let $res = natives.taskStandGuard(this.handle, x, y, z, heading, scenarioName);
+    return mp.game2.task.standGuard.apply(this, [this.handle, x, y, z, heading, scenarioName]);
 };
 
 mp.Ped.prototype.standGuard ??= function (x, y, z, heading, scenarioName) {
-    if (typeof scenarioName != "string") scenarioName = null;
-    let $res = natives.taskStandGuard(this.handle, x, y, z, heading, scenarioName);
+    return mp.game2.task.standGuard.apply(this, [this.handle, x, y, z, heading, scenarioName]);
 };
 
 mp.Player.prototype.setDriveCruiseSpeed ??= function (cruiseSpeed) {
-    let $res = natives.setDriveTaskCruiseSpeed(this.handle, cruiseSpeed);
+    return mp.game2.task.setDriveCruiseSpeed.apply(this, [this.handle, cruiseSpeed]);
 };
 
 mp.Ped.prototype.setDriveCruiseSpeed ??= function (cruiseSpeed) {
-    let $res = natives.setDriveTaskCruiseSpeed(this.handle, cruiseSpeed);
+    return mp.game2.task.setDriveCruiseSpeed.apply(this, [this.handle, cruiseSpeed]);
 };
 
 mp.Player.prototype.setDriveDrivingStyle ??= function (drivingStyle) {
-    let $res = natives.setDriveTaskDrivingStyle(this.handle, drivingStyle);
+    return mp.game2.task.setDriveDrivingStyle.apply(this, [this.handle, drivingStyle]);
 };
 
 mp.Ped.prototype.setDriveDrivingStyle ??= function (drivingStyle) {
-    let $res = natives.setDriveTaskDrivingStyle(this.handle, drivingStyle);
+    return mp.game2.task.setDriveDrivingStyle.apply(this, [this.handle, drivingStyle]);
 };
 
 mp.Player.prototype.startScenarioInPlace ??= function (scenarioName, unkDelay, playEnterAnim) {
-    if (typeof scenarioName != "string") scenarioName = null;
-    let $res = natives.taskStartScenarioInPlace(this.handle, scenarioName, unkDelay, playEnterAnim | 0);
+    return mp.game2.task.startScenarioInPlace.apply(this, [this.handle, scenarioName, unkDelay, playEnterAnim]);
 };
 
 mp.Ped.prototype.startScenarioInPlace ??= function (scenarioName, unkDelay, playEnterAnim) {
-    if (typeof scenarioName != "string") scenarioName = null;
-    let $res = natives.taskStartScenarioInPlace(this.handle, scenarioName, unkDelay, playEnterAnim | 0);
+    return mp.game2.task.startScenarioInPlace.apply(this, [this.handle, scenarioName, unkDelay, playEnterAnim]);
 };
 
 mp.Player.prototype.startScenarioAtPosition ??= function (scenarioName, x, y, z, heading, duration, sittingScenario, teleport) {
-    if (typeof scenarioName != "string") scenarioName = null;
-    let $res = natives.taskStartScenarioAtPosition(this.handle, scenarioName, x, y, z, heading, duration, sittingScenario | 0, teleport | 0);
+    return mp.game2.task.startScenarioAtPosition.apply(this, [this.handle, scenarioName, x, y, z, heading, duration, sittingScenario, teleport]);
 };
 
 mp.Ped.prototype.startScenarioAtPosition ??= function (scenarioName, x, y, z, heading, duration, sittingScenario, teleport) {
-    if (typeof scenarioName != "string") scenarioName = null;
-    let $res = natives.taskStartScenarioAtPosition(this.handle, scenarioName, x, y, z, heading, duration, sittingScenario | 0, teleport | 0);
+    return mp.game2.task.startScenarioAtPosition.apply(this, [this.handle, scenarioName, x, y, z, heading, duration, sittingScenario, teleport]);
 };
 
 mp.Player.prototype.useNearestScenarioToCoord ??= function (x, y, z, distance, duration) {
-    let $res = natives.taskUseNearestScenarioToCoord(this.handle, x, y, z, distance, duration);
+    return mp.game2.task.useNearestScenarioToCoord.apply(this, [this.handle, x, y, z, distance, duration]);
 };
 
 mp.Ped.prototype.useNearestScenarioToCoord ??= function (x, y, z, distance, duration) {
-    let $res = natives.taskUseNearestScenarioToCoord(this.handle, x, y, z, distance, duration);
+    return mp.game2.task.useNearestScenarioToCoord.apply(this, [this.handle, x, y, z, distance, duration]);
 };
 
 mp.Player.prototype.useNearestScenarioToCoordWarp ??= function (x, y, z, radius, p5) {
-    let $res = natives.taskUseNearestScenarioToCoordWarp(this.handle, x, y, z, radius, p5);
+    return mp.game2.task.useNearestScenarioToCoordWarp.apply(this, [this.handle, x, y, z, radius, p5]);
 };
 
 mp.Ped.prototype.useNearestScenarioToCoordWarp ??= function (x, y, z, radius, p5) {
-    let $res = natives.taskUseNearestScenarioToCoordWarp(this.handle, x, y, z, radius, p5);
+    return mp.game2.task.useNearestScenarioToCoordWarp.apply(this, [this.handle, x, y, z, radius, p5]);
 };
 
 mp.Player.prototype.pedHasUseScenario ??= function () {
-    let $res = natives.pedHasUseScenarioTask(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.pedHasUseScenario.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.pedHasUseScenario ??= function () {
-    let $res = natives.pedHasUseScenarioTask(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.pedHasUseScenario.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.playAnimOnRunningScenario ??= function (animDict, animName) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.playAnimOnRunningScenario(this.handle, animDict, animName);
+    return mp.game2.task.playAnimOnRunningScenario.apply(this, [this.handle, animDict, animName]);
 };
 
 mp.Ped.prototype.playAnimOnRunningScenario ??= function (animDict, animName) {
-    if (typeof animDict != "string") animDict = null;
-    if (typeof animName != "string") animName = null;
-    let $res = natives.playAnimOnRunningScenario(this.handle, animDict, animName);
+    return mp.game2.task.playAnimOnRunningScenario.apply(this, [this.handle, animDict, animName]);
 };
 
 mp.Player.prototype.isPedActiveInScenario ??= function () {
-    let $res = natives.isPedActiveInScenario(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isPedActiveInScenario.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isPedActiveInScenario ??= function () {
-    let $res = natives.isPedActiveInScenario(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isPedActiveInScenario.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isPedPlayingBaseClipInScenario ??= function () {
-    let $res = natives.isPedPlayingBaseClipInScenario(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isPedPlayingBaseClipInScenario.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isPedPlayingBaseClipInScenario ??= function () {
-    let $res = natives.isPedPlayingBaseClipInScenario(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isPedPlayingBaseClipInScenario.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setPedCanPlayAmbientIdles ??= function (p1, p2) {
-    let $res = natives.setPedCanPlayAmbientIdles(this.handle, p1 | 0, p2 | 0);
+    return mp.game2.task.setPedCanPlayAmbientIdles.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Ped.prototype.setPedCanPlayAmbientIdles ??= function (p1, p2) {
-    let $res = natives.setPedCanPlayAmbientIdles(this.handle, p1 | 0, p2 | 0);
+    return mp.game2.task.setPedCanPlayAmbientIdles.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Player.prototype.combatHatedTargetsInArea ??= function (x, y, z, radius, p5) {
-    let $res = natives.taskCombatHatedTargetsInArea(this.handle, x, y, z, radius, p5);
+    return mp.game2.task.combatHatedTargetsInArea.apply(this, [this.handle, x, y, z, radius, p5]);
 };
 
 mp.Ped.prototype.combatHatedTargetsInArea ??= function (x, y, z, radius, p5) {
-    let $res = natives.taskCombatHatedTargetsInArea(this.handle, x, y, z, radius, p5);
+    return mp.game2.task.combatHatedTargetsInArea.apply(this, [this.handle, x, y, z, radius, p5]);
 };
 
 mp.Player.prototype.combatHatedTargetsAroundPed ??= function (radius, p2) {
-    let $res = natives.taskCombatHatedTargetsAroundPed(this.handle, radius, p2);
+    return mp.game2.task.combatHatedTargetsAroundPed.apply(this, [this.handle, radius, p2]);
 };
 
 mp.Ped.prototype.combatHatedTargetsAroundPed ??= function (radius, p2) {
-    let $res = natives.taskCombatHatedTargetsAroundPed(this.handle, radius, p2);
+    return mp.game2.task.combatHatedTargetsAroundPed.apply(this, [this.handle, radius, p2]);
 };
 
 mp.Player.prototype.throwProjectile ??= function (x, y, z, p4, p5) {
-    let $res = natives.taskThrowProjectile(this.handle, x, y, z, p4 | 0, p5 | 0);
+    return mp.game2.task.throwProjectile.apply(this, [this.handle, x, y, z, p4, p5]);
 };
 
 mp.Ped.prototype.throwProjectile ??= function (x, y, z, p4, p5) {
-    let $res = natives.taskThrowProjectile(this.handle, x, y, z, p4 | 0, p5 | 0);
+    return mp.game2.task.throwProjectile.apply(this, [this.handle, x, y, z, p4, p5]);
 };
 
 mp.Player.prototype.swapWeapon ??= function (p1) {
-    let $res = natives.taskSwapWeapon(this.handle, p1 | 0);
+    return mp.game2.task.swapWeapon.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.swapWeapon ??= function (p1) {
-    let $res = natives.taskSwapWeapon(this.handle, p1 | 0);
+    return mp.game2.task.swapWeapon.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.reloadWeapon ??= function (unused) {
-    let $res = natives.taskReloadWeapon(this.handle, unused | 0);
+    return mp.game2.task.reloadWeapon.apply(this, [this.handle, unused]);
 };
 
 mp.Ped.prototype.reloadWeapon ??= function (unused) {
-    let $res = natives.taskReloadWeapon(this.handle, unused | 0);
+    return mp.game2.task.reloadWeapon.apply(this, [this.handle, unused]);
 };
 
 mp.Player.prototype.isPedGettingUp ??= function () {
-    let $res = natives.isPedGettingUp(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isPedGettingUp.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isPedGettingUp ??= function () {
-    let $res = natives.isPedGettingUp(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isPedGettingUp.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.writhe ??= function (target, time, p3, p4, p5) {
-    let $res = natives.taskWrithe(this.handle, target, time, p3, p4 | 0, p5 | 0);
+    return mp.game2.task.writhe.apply(this, [this.handle, target, time, p3, p4, p5]);
 };
 
 mp.Ped.prototype.writhe ??= function (target, time, p3, p4, p5) {
-    let $res = natives.taskWrithe(this.handle, target, time, p3, p4 | 0, p5 | 0);
+    return mp.game2.task.writhe.apply(this, [this.handle, target, time, p3, p4, p5]);
 };
 
 mp.Player.prototype.isPedInWrithe ??= function () {
-    let $res = natives.isPedInWrithe(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isPedInWrithe.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isPedInWrithe ??= function () {
-    let $res = natives.isPedInWrithe(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isPedInWrithe.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.patrol ??= function (p1, p2, p3, p4) {
-    if (typeof p1 != "string") p1 = null;
-    let $res = natives.taskPatrol(this.handle, p1, p2, p3 | 0, p4 | 0);
+    return mp.game2.task.patrol.apply(this, [this.handle, p1, p2, p3, p4]);
 };
 
 mp.Ped.prototype.patrol ??= function (p1, p2, p3, p4) {
-    if (typeof p1 != "string") p1 = null;
-    let $res = natives.taskPatrol(this.handle, p1, p2, p3 | 0, p4 | 0);
+    return mp.game2.task.patrol.apply(this, [this.handle, p1, p2, p3, p4]);
 };
 
 mp.Player.prototype.stayInCover ??= function () {
-    let $res = natives.taskStayInCover(this.handle);
+    return mp.game2.task.stayInCover.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.stayInCover ??= function () {
-    let $res = natives.taskStayInCover(this.handle);
+    return mp.game2.task.stayInCover.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.addVehicleSubAttackCoord ??= function (x, y, z) {
-    let $res = natives.addVehicleSubtaskAttackCoord(this.handle, x, y, z);
+    return mp.game2.task.addVehicleSubAttackCoord.apply(this, [this.handle, x, y, z]);
 };
 
 mp.Ped.prototype.addVehicleSubAttackCoord ??= function (x, y, z) {
-    let $res = natives.addVehicleSubtaskAttackCoord(this.handle, x, y, z);
+    return mp.game2.task.addVehicleSubAttackCoord.apply(this, [this.handle, x, y, z]);
 };
 
 mp.Player.prototype.addVehicleSubAttackPed ??= function (ped2) {
-    let $res = natives.addVehicleSubtaskAttackPed(this.handle, ped2);
+    return mp.game2.task.addVehicleSubAttackPed.apply(this, [this.handle, ped2]);
 };
 
 mp.Ped.prototype.addVehicleSubAttackPed ??= function (ped2) {
-    let $res = natives.addVehicleSubtaskAttackPed(this.handle, ped2);
+    return mp.game2.task.addVehicleSubAttackPed.apply(this, [this.handle, ped2]);
 };
 
 mp.Player.prototype.vehicleShootAtPed ??= function (target, p2) {
-    let $res = natives.taskVehicleShootAtPed(this.handle, target, p2);
+    return mp.game2.task.vehicleShootAtPed.apply(this, [this.handle, target, p2]);
 };
 
 mp.Ped.prototype.vehicleShootAtPed ??= function (target, p2) {
-    let $res = natives.taskVehicleShootAtPed(this.handle, target, p2);
+    return mp.game2.task.vehicleShootAtPed.apply(this, [this.handle, target, p2]);
 };
 
 mp.Player.prototype.vehicleAimAtPed ??= function (target) {
-    let $res = natives.taskVehicleAimAtPed(this.handle, target);
+    return mp.game2.task.vehicleAimAtPed.apply(this, [this.handle, target]);
 };
 
 mp.Ped.prototype.vehicleAimAtPed ??= function (target) {
-    let $res = natives.taskVehicleAimAtPed(this.handle, target);
+    return mp.game2.task.vehicleAimAtPed.apply(this, [this.handle, target]);
 };
 
 mp.Player.prototype.vehicleShootAtCoord ??= function (x, y, z, p4) {
-    let $res = natives.taskVehicleShootAtCoord(this.handle, x, y, z, p4);
+    return mp.game2.task.vehicleShootAtCoord.apply(this, [this.handle, x, y, z, p4]);
 };
 
 mp.Ped.prototype.vehicleShootAtCoord ??= function (x, y, z, p4) {
-    let $res = natives.taskVehicleShootAtCoord(this.handle, x, y, z, p4);
+    return mp.game2.task.vehicleShootAtCoord.apply(this, [this.handle, x, y, z, p4]);
 };
 
 mp.Player.prototype.vehicleAimAtCoord ??= function (x, y, z) {
-    let $res = natives.taskVehicleAimAtCoord(this.handle, x, y, z);
+    return mp.game2.task.vehicleAimAtCoord.apply(this, [this.handle, x, y, z]);
 };
 
 mp.Ped.prototype.vehicleAimAtCoord ??= function (x, y, z) {
-    let $res = natives.taskVehicleAimAtCoord(this.handle, x, y, z);
+    return mp.game2.task.vehicleAimAtCoord.apply(this, [this.handle, x, y, z]);
 };
 
 mp.Player.prototype.vehicleGotoNavmesh ??= function (vehicle, x, y, z, speed, behaviorFlag, stoppingRange) {
-    let $res = natives.taskVehicleGotoNavmesh(this.handle, vehicle, x, y, z, speed, behaviorFlag, stoppingRange);
+    return mp.game2.task.vehicleGotoNavmesh.apply(this, [this.handle, vehicle, x, y, z, speed, behaviorFlag, stoppingRange]);
 };
 
 mp.Ped.prototype.vehicleGotoNavmesh ??= function (vehicle, x, y, z, speed, behaviorFlag, stoppingRange) {
-    let $res = natives.taskVehicleGotoNavmesh(this.handle, vehicle, x, y, z, speed, behaviorFlag, stoppingRange);
+    return mp.game2.task.vehicleGotoNavmesh.apply(this, [this.handle, vehicle, x, y, z, speed, behaviorFlag, stoppingRange]);
 };
 
 mp.Player.prototype.goToCoordWhileAimingAtCoord ??= function (x, y, z, aimAtX, aimAtY, aimAtZ, moveSpeed, p8, p9, p10, p11, flags, p13, firingPattern) {
-    let $res = natives.taskGoToCoordWhileAimingAtCoord(this.handle, x, y, z, aimAtX, aimAtY, aimAtZ, moveSpeed, p8 | 0, p9, p10, p11 | 0, flags, p13 | 0, firingPattern);
+    return mp.game2.task.goToCoordWhileAimingAtCoord.apply(this, [this.handle, x, y, z, aimAtX, aimAtY, aimAtZ, moveSpeed, p8, p9, p10, p11, flags, p13, firingPattern]);
 };
 
 mp.Ped.prototype.goToCoordWhileAimingAtCoord ??= function (x, y, z, aimAtX, aimAtY, aimAtZ, moveSpeed, p8, p9, p10, p11, flags, p13, firingPattern) {
-    let $res = natives.taskGoToCoordWhileAimingAtCoord(this.handle, x, y, z, aimAtX, aimAtY, aimAtZ, moveSpeed, p8 | 0, p9, p10, p11 | 0, flags, p13 | 0, firingPattern);
+    return mp.game2.task.goToCoordWhileAimingAtCoord.apply(this, [this.handle, x, y, z, aimAtX, aimAtY, aimAtZ, moveSpeed, p8, p9, p10, p11, flags, p13, firingPattern]);
 };
 
 mp.Player.prototype.goToCoordAndAimAtHatedEntitiesNearCoord ??= function (goToLocationX, goToLocationY, goToLocationZ, focusLocationX, focusLocationY, focusLocationZ, speed, shootAtEnemies, distanceToStopAt, noRoadsDistance, unkTrue, unkFlag, aimingFlag, firingPattern) {
-    let $res = natives.taskGoToCoordAndAimAtHatedEntitiesNearCoord(this.handle, goToLocationX, goToLocationY, goToLocationZ, focusLocationX, focusLocationY, focusLocationZ, speed, shootAtEnemies | 0, distanceToStopAt, noRoadsDistance, unkTrue | 0, unkFlag, aimingFlag | 0, firingPattern);
+    return mp.game2.task.goToCoordAndAimAtHatedEntitiesNearCoord.apply(this, [this.handle, goToLocationX, goToLocationY, goToLocationZ, focusLocationX, focusLocationY, focusLocationZ, speed, shootAtEnemies, distanceToStopAt, noRoadsDistance, unkTrue, unkFlag, aimingFlag, firingPattern]);
 };
 
 mp.Ped.prototype.goToCoordAndAimAtHatedEntitiesNearCoord ??= function (goToLocationX, goToLocationY, goToLocationZ, focusLocationX, focusLocationY, focusLocationZ, speed, shootAtEnemies, distanceToStopAt, noRoadsDistance, unkTrue, unkFlag, aimingFlag, firingPattern) {
-    let $res = natives.taskGoToCoordAndAimAtHatedEntitiesNearCoord(this.handle, goToLocationX, goToLocationY, goToLocationZ, focusLocationX, focusLocationY, focusLocationZ, speed, shootAtEnemies | 0, distanceToStopAt, noRoadsDistance, unkTrue | 0, unkFlag, aimingFlag | 0, firingPattern);
+    return mp.game2.task.goToCoordAndAimAtHatedEntitiesNearCoord.apply(this, [this.handle, goToLocationX, goToLocationY, goToLocationZ, focusLocationX, focusLocationY, focusLocationZ, speed, shootAtEnemies, distanceToStopAt, noRoadsDistance, unkTrue, unkFlag, aimingFlag, firingPattern]);
 };
 
 mp.Player.prototype.goToEntityWhileAimingAtEntity ??= function (entityToWalkTo, entityToAimAt, speed, shootatEntity, p5, p6, p7, p8, firingPattern) {
-    let $res = natives.taskGoToEntityWhileAimingAtEntity(this.handle, entityToWalkTo, entityToAimAt, speed, shootatEntity | 0, p5, p6, p7 | 0, p8 | 0, firingPattern);
+    return mp.game2.task.goToEntityWhileAimingAtEntity.apply(this, [this.handle, entityToWalkTo, entityToAimAt, speed, shootatEntity, p5, p6, p7, p8, firingPattern]);
 };
 
 mp.Ped.prototype.goToEntityWhileAimingAtEntity ??= function (entityToWalkTo, entityToAimAt, speed, shootatEntity, p5, p6, p7, p8, firingPattern) {
-    let $res = natives.taskGoToEntityWhileAimingAtEntity(this.handle, entityToWalkTo, entityToAimAt, speed, shootatEntity | 0, p5, p6, p7 | 0, p8 | 0, firingPattern);
+    return mp.game2.task.goToEntityWhileAimingAtEntity.apply(this, [this.handle, entityToWalkTo, entityToAimAt, speed, shootatEntity, p5, p6, p7, p8, firingPattern]);
 };
 
 mp.Player.prototype.setHighFall ??= function (p1, p2, p3) {
-    let $res = natives.setHighFallTask(this.handle, p1, p2, p3);
+    return mp.game2.task.setHighFall.apply(this, [this.handle, p1, p2, p3]);
 };
 
 mp.Ped.prototype.setHighFall ??= function (p1, p2, p3) {
-    let $res = natives.setHighFallTask(this.handle, p1, p2, p3);
+    return mp.game2.task.setHighFall.apply(this, [this.handle, p1, p2, p3]);
 };
 
 mp.Player.prototype.getPedWaypointProgress ??= function () {
-    let $res = natives.getPedWaypointProgress(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.task.getPedWaypointProgress.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getPedWaypointProgress ??= function () {
-    let $res = natives.getPedWaypointProgress(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.task.getPedWaypointProgress.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getPedWaypointDistance ??= function () {
-    let $res = natives.getPedWaypointDistance(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.task.getPedWaypointDistance.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getPedWaypointDistance ??= function () {
-    let $res = natives.getPedWaypointDistance(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.task.getPedWaypointDistance.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setPedWaypointRouteOffset ??= function (p1, p2, p3) {
-    let $res = natives.setPedWaypointRouteOffset(this.handle, p1, p2, p3);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.task.setPedWaypointRouteOffset.apply(this, [this.handle, p1, p2, p3]);
 };
 
 mp.Ped.prototype.setPedWaypointRouteOffset ??= function (p1, p2, p3) {
-    let $res = natives.setPedWaypointRouteOffset(this.handle, p1, p2, p3);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.task.setPedWaypointRouteOffset.apply(this, [this.handle, p1, p2, p3]);
 };
 
 mp.Player.prototype.vehicleFollowWaypointRecording ??= function (vehicle, WPRecording, p3, p4, p5, p6, p7, p8, p9) {
-    if (typeof WPRecording != "string") WPRecording = null;
-    let $res = natives.taskVehicleFollowWaypointRecording(this.handle, vehicle, WPRecording, p3, p4, p5, p6, p7, p8 | 0, p9);
+    return mp.game2.task.vehicleFollowWaypointRecording.apply(this, [this.handle, vehicle, WPRecording, p3, p4, p5, p6, p7, p8, p9]);
 };
 
 mp.Ped.prototype.vehicleFollowWaypointRecording ??= function (vehicle, WPRecording, p3, p4, p5, p6, p7, p8, p9) {
-    if (typeof WPRecording != "string") WPRecording = null;
-    let $res = natives.taskVehicleFollowWaypointRecording(this.handle, vehicle, WPRecording, p3, p4, p5, p6, p7, p8 | 0, p9);
+    return mp.game2.task.vehicleFollowWaypointRecording.apply(this, [this.handle, vehicle, WPRecording, p3, p4, p5, p6, p7, p8, p9]);
 };
 
 mp.Vehicle.prototype.isWaypointPlaybackGoingOnForVehicle ??= function () {
-    let $res = natives.isWaypointPlaybackGoingOnForVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isWaypointPlaybackGoingOnForVehicle.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getVehicleWaypointProgress ??= function () {
-    let $res = natives.getVehicleWaypointProgress(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.task.getVehicleWaypointProgress.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getVehicleWaypointTargetPoint ??= function () {
-    let $res = natives.getVehicleWaypointTargetPoint(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.task.getVehicleWaypointTargetPoint.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.vehicleWaypointPlaybackPause ??= function () {
-    let $res = natives.vehicleWaypointPlaybackPause(this.handle);
+    return mp.game2.task.vehicleWaypointPlaybackPause.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.vehicleWaypointPlaybackResume ??= function () {
-    let $res = natives.vehicleWaypointPlaybackResume(this.handle);
+    return mp.game2.task.vehicleWaypointPlaybackResume.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.vehicleWaypointPlaybackUseDefaultSpeed ??= function () {
-    let $res = natives.vehicleWaypointPlaybackUseDefaultSpeed(this.handle);
+    return mp.game2.task.vehicleWaypointPlaybackUseDefaultSpeed.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.vehicleWaypointPlaybackOverrideSpeed ??= function (speed) {
-    let $res = natives.vehicleWaypointPlaybackOverrideSpeed(this.handle, speed);
+    return mp.game2.task.vehicleWaypointPlaybackOverrideSpeed.apply(this, [this.handle, speed]);
 };
 
 mp.Player.prototype.setBlockingOfNonTemporaryEvents ??= function (toggle) {
-    let $res = natives.taskSetBlockingOfNonTemporaryEvents(this.handle, toggle | 0);
+    return mp.game2.task.setBlockingOfNonTemporaryEvents.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setBlockingOfNonTemporaryEvents ??= function (toggle) {
-    let $res = natives.taskSetBlockingOfNonTemporaryEvents(this.handle, toggle | 0);
+    return mp.game2.task.setBlockingOfNonTemporaryEvents.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.moveNetworkByName ??= function (task, multiplier, p3, animDict, flags) {
-    if (typeof task != "string") task = null;
-    if (typeof animDict != "string") animDict = null;
-    let $res = natives.taskMoveNetworkByName(this.handle, task, multiplier, p3 | 0, animDict, flags);
+    return mp.game2.task.moveNetworkByName.apply(this, [this.handle, task, multiplier, p3, animDict, flags]);
 };
 
 mp.Ped.prototype.moveNetworkByName ??= function (task, multiplier, p3, animDict, flags) {
-    if (typeof task != "string") task = null;
-    if (typeof animDict != "string") animDict = null;
-    let $res = natives.taskMoveNetworkByName(this.handle, task, multiplier, p3 | 0, animDict, flags);
+    return mp.game2.task.moveNetworkByName.apply(this, [this.handle, task, multiplier, p3, animDict, flags]);
 };
 
 mp.Player.prototype.moveNetworkAdvancedByName ??= function (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, animDict, flags) {
-    if (typeof p1 != "string") p1 = null;
-    if (typeof animDict != "string") animDict = null;
-    let $res = natives.taskMoveNetworkAdvancedByName(this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10 | 0, animDict, flags);
+    return mp.game2.task.moveNetworkAdvancedByName.apply(this, [this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, animDict, flags]);
 };
 
 mp.Ped.prototype.moveNetworkAdvancedByName ??= function (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, animDict, flags) {
-    if (typeof p1 != "string") p1 = null;
-    if (typeof animDict != "string") animDict = null;
-    let $res = natives.taskMoveNetworkAdvancedByName(this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10 | 0, animDict, flags);
+    return mp.game2.task.moveNetworkAdvancedByName.apply(this, [this.handle, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, animDict, flags]);
 };
 
 mp.Player.prototype.moveNetworkByNameWithInitParams ??= function (p1, p3, p4, animDict, flags) {
-    if (typeof p1 != "string") p1 = null;
-    if (typeof flags != "string") flags = null;
-    let $res = natives.taskMoveNetworkByNameWithInitParams(this.handle, p1, 0, p3, p4 | 0, animDict, flags);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.data = $res[1];
-    return $resObj.data;
+    return mp.game2.task.moveNetworkByNameWithInitParams.apply(this, [this.handle, p1, p3, p4, animDict, flags]);
 };
 
 mp.Ped.prototype.moveNetworkByNameWithInitParams ??= function (p1, p3, p4, animDict, flags) {
-    if (typeof p1 != "string") p1 = null;
-    if (typeof flags != "string") flags = null;
-    let $res = natives.taskMoveNetworkByNameWithInitParams(this.handle, p1, 0, p3, p4 | 0, animDict, flags);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.data = $res[1];
-    return $resObj.data;
+    return mp.game2.task.moveNetworkByNameWithInitParams.apply(this, [this.handle, p1, p3, p4, animDict, flags]);
 };
 
 mp.Player.prototype.isMoveNetworkActive ??= function () {
-    let $res = natives.isTaskMoveNetworkActive(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isMoveNetworkActive.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isMoveNetworkActive ??= function () {
-    let $res = natives.isTaskMoveNetworkActive(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isMoveNetworkActive.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isMoveNetworkReadyForTransition ??= function () {
-    let $res = natives.isTaskMoveNetworkReadyForTransition(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isMoveNetworkReadyForTransition.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isMoveNetworkReadyForTransition ??= function () {
-    let $res = natives.isTaskMoveNetworkReadyForTransition(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isMoveNetworkReadyForTransition.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.requestMoveNetworkStateTransition ??= function (name) {
-    if (typeof name != "string") name = null;
-    let $res = natives.requestTaskMoveNetworkStateTransition(this.handle, name);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.requestMoveNetworkStateTransition.apply(this, [this.handle, name]);
 };
 
 mp.Ped.prototype.requestMoveNetworkStateTransition ??= function (name) {
-    if (typeof name != "string") name = null;
-    let $res = natives.requestTaskMoveNetworkStateTransition(this.handle, name);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.requestMoveNetworkStateTransition.apply(this, [this.handle, name]);
 };
 
 mp.Player.prototype.getMoveNetworkState ??= function () {
-    let $res = natives.getTaskMoveNetworkState(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.task.getMoveNetworkState.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getMoveNetworkState ??= function () {
-    let $res = natives.getTaskMoveNetworkState(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.task.getMoveNetworkState.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setMoveNetworkSignalFloat ??= function (signalName, value) {
-    if (typeof signalName != "string") signalName = null;
-    let $res = natives.setTaskMoveNetworkSignalFloat(this.handle, signalName, value);
+    return mp.game2.task.setMoveNetworkSignalFloat.apply(this, [this.handle, signalName, value]);
 };
 
 mp.Ped.prototype.setMoveNetworkSignalFloat ??= function (signalName, value) {
-    if (typeof signalName != "string") signalName = null;
-    let $res = natives.setTaskMoveNetworkSignalFloat(this.handle, signalName, value);
+    return mp.game2.task.setMoveNetworkSignalFloat.apply(this, [this.handle, signalName, value]);
 };
 
 mp.Player.prototype.setMoveNetworkSignalFloat2 ??= function (signalName, value) {
-    if (typeof signalName != "string") signalName = null;
-    let $res = natives.setTaskMoveNetworkSignalLocalFloat(this.handle, signalName, value);
+    return mp.game2.task.setMoveNetworkSignalFloat2.apply(this, [this.handle, signalName, value]);
 };
 
 mp.Ped.prototype.setMoveNetworkSignalFloat2 ??= function (signalName, value) {
-    if (typeof signalName != "string") signalName = null;
-    let $res = natives.setTaskMoveNetworkSignalLocalFloat(this.handle, signalName, value);
+    return mp.game2.task.setMoveNetworkSignalFloat2.apply(this, [this.handle, signalName, value]);
 };
 
 mp.Player.prototype.setMoveNetworkSignalBool ??= function (signalName, value) {
-    if (typeof signalName != "string") signalName = null;
-    let $res = natives.setTaskMoveNetworkSignalBool(this.handle, signalName, value | 0);
+    return mp.game2.task.setMoveNetworkSignalBool.apply(this, [this.handle, signalName, value]);
 };
 
 mp.Ped.prototype.setMoveNetworkSignalBool ??= function (signalName, value) {
-    if (typeof signalName != "string") signalName = null;
-    let $res = natives.setTaskMoveNetworkSignalBool(this.handle, signalName, value | 0);
+    return mp.game2.task.setMoveNetworkSignalBool.apply(this, [this.handle, signalName, value]);
 };
 
 mp.Player.prototype.getMoveNetworkSignalFloat ??= function (signalName) {
-    if (typeof signalName != "string") signalName = null;
-    let $res = natives.getTaskMoveNetworkSignalFloat(this.handle, signalName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.task.getMoveNetworkSignalFloat.apply(this, [this.handle, signalName]);
 };
 
 mp.Ped.prototype.getMoveNetworkSignalFloat ??= function (signalName) {
-    if (typeof signalName != "string") signalName = null;
-    let $res = natives.getTaskMoveNetworkSignalFloat(this.handle, signalName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.task.getMoveNetworkSignalFloat.apply(this, [this.handle, signalName]);
 };
 
 mp.Player.prototype.getMoveNetworkSignalBool ??= function (signalName) {
-    if (typeof signalName != "string") signalName = null;
-    let $res = natives.getTaskMoveNetworkSignalBool(this.handle, signalName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.getMoveNetworkSignalBool.apply(this, [this.handle, signalName]);
 };
 
 mp.Ped.prototype.getMoveNetworkSignalBool ??= function (signalName) {
-    if (typeof signalName != "string") signalName = null;
-    let $res = natives.getTaskMoveNetworkSignalBool(this.handle, signalName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.getMoveNetworkSignalBool.apply(this, [this.handle, signalName]);
 };
 
 mp.Player.prototype.getMoveNetworkEvent ??= function (eventName) {
-    if (typeof eventName != "string") eventName = null;
-    let $res = natives.getTaskMoveNetworkEvent(this.handle, eventName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.getMoveNetworkEvent.apply(this, [this.handle, eventName]);
 };
 
 mp.Ped.prototype.getMoveNetworkEvent ??= function (eventName) {
-    if (typeof eventName != "string") eventName = null;
-    let $res = natives.getTaskMoveNetworkEvent(this.handle, eventName);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.getMoveNetworkEvent.apply(this, [this.handle, eventName]);
 };
 
 mp.Player.prototype.isMoveBlendRatioStill ??= function () {
-    let $res = natives.isMoveBlendRatioStill(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isMoveBlendRatioStill.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isMoveBlendRatioStill ??= function () {
-    let $res = natives.isMoveBlendRatioStill(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isMoveBlendRatioStill.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isMoveBlendRatioWalking ??= function () {
-    let $res = natives.isMoveBlendRatioWalking(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isMoveBlendRatioWalking.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isMoveBlendRatioWalking ??= function () {
-    let $res = natives.isMoveBlendRatioWalking(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isMoveBlendRatioWalking.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isMoveBlendRatioRunning ??= function () {
-    let $res = natives.isMoveBlendRatioRunning(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isMoveBlendRatioRunning.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isMoveBlendRatioRunning ??= function () {
-    let $res = natives.isMoveBlendRatioRunning(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isMoveBlendRatioRunning.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isMoveBlendRatioSprinting ??= function () {
-    let $res = natives.isMoveBlendRatioSprinting(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isMoveBlendRatioSprinting.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isMoveBlendRatioSprinting ??= function () {
-    let $res = natives.isMoveBlendRatioSprinting(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isMoveBlendRatioSprinting.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isPedStill ??= function () {
-    let $res = natives.isPedStill(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isPedStill.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isPedStill ??= function () {
-    let $res = natives.isPedStill(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isPedStill.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isPedWalking ??= function () {
-    let $res = natives.isPedWalking(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isPedWalking.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isPedWalking ??= function () {
-    let $res = natives.isPedWalking(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isPedWalking.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isPedRunning ??= function () {
-    let $res = natives.isPedRunning(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isPedRunning.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isPedRunning ??= function () {
-    let $res = natives.isPedRunning(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isPedRunning.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isPedSprinting ??= function () {
-    let $res = natives.isPedSprinting(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isPedSprinting.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isPedSprinting ??= function () {
-    let $res = natives.isPedSprinting(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isPedSprinting.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isPedStrafing ??= function () {
-    let $res = natives.isPedStrafing(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isPedStrafing.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isPedStrafing ??= function () {
-    let $res = natives.isPedStrafing(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isPedStrafing.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.synchronizedScene ??= function (scene, animDictionary, animationName, speed, speedMultiplier, duration, flag, playbackRate, p9) {
-    if (typeof animDictionary != "string") animDictionary = null;
-    if (typeof animationName != "string") animationName = null;
-    let $res = natives.taskSynchronizedScene(this.handle, scene, animDictionary, animationName, speed, speedMultiplier, duration, flag, playbackRate, p9);
+    return mp.game2.task.synchronizedScene.apply(this, [this.handle, scene, animDictionary, animationName, speed, speedMultiplier, duration, flag, playbackRate, p9]);
 };
 
 mp.Ped.prototype.synchronizedScene ??= function (scene, animDictionary, animationName, speed, speedMultiplier, duration, flag, playbackRate, p9) {
-    if (typeof animDictionary != "string") animDictionary = null;
-    if (typeof animationName != "string") animationName = null;
-    let $res = natives.taskSynchronizedScene(this.handle, scene, animDictionary, animationName, speed, speedMultiplier, duration, flag, playbackRate, p9);
+    return mp.game2.task.synchronizedScene.apply(this, [this.handle, scene, animDictionary, animationName, speed, speedMultiplier, duration, flag, playbackRate, p9]);
 };
 
 mp.Player.prototype.agitatedAction ??= function (ped2) {
-    let $res = natives.taskAgitatedActionConfrontResponse(this.handle, ped2);
+    return mp.game2.task.agitatedAction.apply(this, [this.handle, ped2]);
 };
 
 mp.Ped.prototype.agitatedAction ??= function (ped2) {
-    let $res = natives.taskAgitatedActionConfrontResponse(this.handle, ped2);
+    return mp.game2.task.agitatedAction.apply(this, [this.handle, ped2]);
 };
 
 mp.Player.prototype.sweepAimEntity ??= function (anim, p2, p3, p4, p5, vehicle, p7, p8) {
-    if (typeof anim != "string") anim = null;
-    if (typeof p2 != "string") p2 = null;
-    if (typeof p3 != "string") p3 = null;
-    if (typeof p4 != "string") p4 = null;
-    let $res = natives.taskSweepAimEntity(this.handle, anim, p2, p3, p4, p5, vehicle, p7, p8);
+    return mp.game2.task.sweepAimEntity.apply(this, [this.handle, anim, p2, p3, p4, p5, vehicle, p7, p8]);
 };
 
 mp.Ped.prototype.sweepAimEntity ??= function (anim, p2, p3, p4, p5, vehicle, p7, p8) {
-    if (typeof anim != "string") anim = null;
-    if (typeof p2 != "string") p2 = null;
-    if (typeof p3 != "string") p3 = null;
-    if (typeof p4 != "string") p4 = null;
-    let $res = natives.taskSweepAimEntity(this.handle, anim, p2, p3, p4, p5, vehicle, p7, p8);
+    return mp.game2.task.sweepAimEntity.apply(this, [this.handle, anim, p2, p3, p4, p5, vehicle, p7, p8]);
 };
 
 mp.Player.prototype.updateSweepAimEntity ??= function (entity) {
-    let $res = natives.updateTaskSweepAimEntity(this.handle, entity);
+    return mp.game2.task.updateSweepAimEntity.apply(this, [this.handle, entity]);
 };
 
 mp.Ped.prototype.updateSweepAimEntity ??= function (entity) {
-    let $res = natives.updateTaskSweepAimEntity(this.handle, entity);
+    return mp.game2.task.updateSweepAimEntity.apply(this, [this.handle, entity]);
 };
 
 mp.Player.prototype.arrestPed ??= function (target) {
-    let $res = natives.taskArrestPed(this.handle, target);
+    return mp.game2.task.arrestPed.apply(this, [this.handle, target]);
 };
 
 mp.Ped.prototype.arrestPed ??= function (target) {
-    let $res = natives.taskArrestPed(this.handle, target);
+    return mp.game2.task.arrestPed.apply(this, [this.handle, target]);
 };
 
 mp.Player.prototype.isPedRunningArrest ??= function () {
-    let $res = natives.isPedRunningArrestTask(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isPedRunningArrest.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isPedRunningArrest ??= function () {
-    let $res = natives.isPedRunningArrestTask(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isPedRunningArrest.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isPedBeingArrested ??= function () {
-    let $res = natives.isPedBeingArrested(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isPedBeingArrested.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isPedBeingArrested ??= function () {
-    let $res = natives.isPedBeingArrested(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isPedBeingArrested.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.uncuffPed ??= function () {
-    let $res = natives.uncuffPed(this.handle);
+    return mp.game2.task.uncuffPed.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.uncuffPed ??= function () {
-    let $res = natives.uncuffPed(this.handle);
+    return mp.game2.task.uncuffPed.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isPedCuffed ??= function () {
-    let $res = natives.isPedCuffed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isPedCuffed.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isPedCuffed ??= function () {
-    let $res = natives.isPedCuffed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.task.isPedCuffed.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setCanBeLockedOn ??= function (canBeLockedOn, unk) {
-    let $res = natives.setVehicleAllowHomingMissleLockonSynced(this.handle, canBeLockedOn | 0, unk | 0);
+    return mp.game2.vehicle.setCanBeLockedOn.apply(this, [this.handle, canBeLockedOn, unk]);
 };
 
 mp.Vehicle.prototype.setAllowNoPassengersLockon ??= function (toggle) {
-    let $res = natives.setVehicleAllowNoPassengersLockon(this.handle, toggle | 0);
+    return mp.game2.vehicle.setAllowNoPassengersLockon.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.getHomingLockonState ??= function () {
-    let $res = natives.getVehicleHomingLockonState(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getHomingLockonState.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isModel ??= function (model) {
-    let $res = natives.isVehicleModel(this.handle, model);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isModel.apply(this, [this.handle, model]);
 };
 
 mp.Vehicle.prototype.setOnGroundProperly ??= function (p1) {
-    let $res = natives.setVehicleOnGroundProperly(this.handle, p1 || 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.setOnGroundProperly.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.setUseCutsceneWheelCompression ??= function (p1, p2, p3) {
-    let $res = natives.setVehicleUseCutsceneWheelCompression(this.handle, p1 | 0, p2 | 0, p3 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.setUseCutsceneWheelCompression.apply(this, [this.handle, p1, p2, p3]);
 };
 
 mp.Vehicle.prototype.isStuckOnRoof ??= function () {
-    let $res = natives.isVehicleStuckOnRoof(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isStuckOnRoof.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isStopped ??= function () {
-    let $res = natives.isVehicleStopped(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isStopped.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getNumberOfPassengers ??= function () {
-    let $res = natives.getVehicleNumberOfPassengers(this.handle, false, false);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getNumberOfPassengers.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getMaxNumberOfPassengers ??= function () {
-    let $res = natives.getVehicleMaxNumberOfPassengers(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getMaxNumberOfPassengers.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getModelNumberOfSeats ??= function () {
-    let $res = natives.getVehicleModelNumberOfSeats(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getModelNumberOfSeats.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isSeatWarpOnly ??= function (seatIndex) {
-    let $res = natives.isSeatWarpOnly(this.handle, seatIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isSeatWarpOnly.apply(this, [this.handle, seatIndex]);
 };
 
 mp.Vehicle.prototype.isTurretSeat ??= function (seatIndex) {
-    let $res = natives.isTurretSeat(this.handle, seatIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isTurretSeat.apply(this, [this.handle, seatIndex]);
 };
 
 mp.Vehicle.prototype.doesAllowRappel ??= function () {
-    let $res = natives.doesVehicleAllowRappel(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.doesAllowRappel.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setDensityMultiplierThisFrame ??= function () {
-    let $res = natives.setVehicleDensityMultiplierThisFrame(this.handle);
+    return mp.game2.vehicle.setDensityMultiplierThisFrame.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setDoorsLocked ??= function (doorLockStatus) {
-    let $res = natives.setVehicleDoorsLocked(this.handle, doorLockStatus);
+    return mp.game2.vehicle.setDoorsLocked.apply(this, [this.handle, doorLockStatus]);
 };
 
 mp.Vehicle.prototype.setIndividualDoorsLocked ??= function (doorId, doorLockStatus) {
-    let $res = natives.setVehicleIndividualDoorsLocked(this.handle, doorId, doorLockStatus);
+    return mp.game2.vehicle.setIndividualDoorsLocked.apply(this, [this.handle, doorId, doorLockStatus]);
 };
 
 mp.Vehicle.prototype.setHasMutedSirens ??= function (toggle) {
-    let $res = natives.setVehicleHasMutedSirens(this.handle, toggle | 0);
+    return mp.game2.vehicle.setHasMutedSirens.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setDoorsLockedForPlayer ??= function (player, toggle) {
-    let $res = natives.setVehicleDoorsLockedForPlayer(this.handle, player, toggle | 0);
+    return mp.game2.vehicle.setDoorsLockedForPlayer.apply(this, [this.handle, player, toggle]);
 };
 
 mp.Vehicle.prototype.getDoorsLockedForPlayer ??= function (player) {
-    let $res = natives.getVehicleDoorsLockedForPlayer(this.handle, player);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.getDoorsLockedForPlayer.apply(this, [this.handle, player]);
 };
 
 mp.Vehicle.prototype.setDoorsLockedForAllPlayers ??= function (toggle) {
-    let $res = natives.setVehicleDoorsLockedForAllPlayers(this.handle, toggle | 0);
+    return mp.game2.vehicle.setDoorsLockedForAllPlayers.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setDoorsLockedForNonScriptPlayers ??= function (toggle) {
-    let $res = natives.setVehicleDoorsLockedForNonScriptPlayers(this.handle, toggle | 0);
+    return mp.game2.vehicle.setDoorsLockedForNonScriptPlayers.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setDoorsLockedForTeam ??= function (team, toggle) {
-    let $res = natives.setVehicleDoorsLockedForTeam(this.handle, team, toggle | 0);
+    return mp.game2.vehicle.setDoorsLockedForTeam.apply(this, [this.handle, team, toggle]);
 };
 
 mp.Vehicle.prototype.setDoorsLockedForUnk ??= function (toggle) {
-    let $res = natives.setVehicleDoorsLockedForAllTeams(this.handle, toggle | 0);
+    return mp.game2.vehicle.setDoorsLockedForUnk.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.explode ??= function (isAudible, isInvisible) {
-    let $res = natives.explodeVehicle(this.handle, isAudible | 0, isInvisible | 0);
+    return mp.game2.vehicle.explode.apply(this, [this.handle, isAudible, isInvisible]);
 };
 
 mp.Vehicle.prototype.setOutOfControl ??= function (killDriver, explodeOnImpact) {
-    let $res = natives.setVehicleOutOfControl(this.handle, killDriver | 0, explodeOnImpact | 0);
+    return mp.game2.vehicle.setOutOfControl.apply(this, [this.handle, killDriver, explodeOnImpact]);
 };
 
 mp.Vehicle.prototype.setTimedExplosion ??= function (ped, toggle) {
-    let $res = natives.setVehicleTimedExplosion(this.handle, ped, toggle | 0);
+    return mp.game2.vehicle.setTimedExplosion.apply(this, [this.handle, ped, toggle]);
 };
 
 mp.Vehicle.prototype.addPhoneExplosiveDevice ??= function () {
-    let $res = natives.addVehiclePhoneExplosiveDevice(this.handle);
+    return mp.game2.vehicle.addPhoneExplosiveDevice.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setTaxiLights ??= function (state) {
-    let $res = natives.setTaxiLights(this.handle, state | 0);
+    return mp.game2.vehicle.setTaxiLights.apply(this, [this.handle, state]);
 };
 
 mp.Vehicle.prototype.isTaxiLightOn ??= function () {
-    let $res = natives.isTaxiLightOn(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isTaxiLightOn.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setColours ??= function (colorPrimary, colorSecondary) {
-    let $res = natives.setVehicleColours(this.handle, colorPrimary, colorSecondary);
+    return mp.game2.vehicle.setColours.apply(this, [this.handle, colorPrimary, colorSecondary]);
 };
 
 mp.Vehicle.prototype.setFullbeam ??= function (toggle) {
-    let $res = natives.setVehicleFullbeam(this.handle, toggle | 0);
+    return mp.game2.vehicle.setFullbeam.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setIsRacing ??= function (toggle) {
-    let $res = natives.setVehicleIsRacing(this.handle, toggle | 0);
+    return mp.game2.vehicle.setIsRacing.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setCustomPrimaryColour ??= function (r, g, b) {
-    let $res = natives.setVehicleCustomPrimaryColour(this.handle, r, g, b);
+    return mp.game2.vehicle.setCustomPrimaryColour.apply(this, [this.handle, r, g, b]);
 };
 
 mp.Vehicle.prototype.getCustomPrimaryColour ??= function () {
-    let $res = natives.getVehicleCustomPrimaryColour(this.handle, 0, 0, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.r = $res[1];
-    $resObj.g = $res[2];
-    $resObj.b = $res[3];
-    return $resObj;
+    return mp.game2.vehicle.getCustomPrimaryColour.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.clearCustomPrimaryColour ??= function () {
-    let $res = natives.clearVehicleCustomPrimaryColour(this.handle);
+    return mp.game2.vehicle.clearCustomPrimaryColour.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getIsPrimaryColourCustom ??= function () {
-    let $res = natives.getIsVehiclePrimaryColourCustom(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.getIsPrimaryColourCustom.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setCustomSecondaryColour ??= function (r, g, b) {
-    let $res = natives.setVehicleCustomSecondaryColour(this.handle, r, g, b);
+    return mp.game2.vehicle.setCustomSecondaryColour.apply(this, [this.handle, r, g, b]);
 };
 
 mp.Vehicle.prototype.getCustomSecondaryColour ??= function () {
-    let $res = natives.getVehicleCustomSecondaryColour(this.handle, 0, 0, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.r = $res[1];
-    $resObj.g = $res[2];
-    $resObj.b = $res[3];
-    return $resObj;
+    return mp.game2.vehicle.getCustomSecondaryColour.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.clearCustomSecondaryColour ??= function () {
-    let $res = natives.clearVehicleCustomSecondaryColour(this.handle);
+    return mp.game2.vehicle.clearCustomSecondaryColour.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getIsSecondaryColourCustom ??= function () {
-    let $res = natives.getIsVehicleSecondaryColourCustom(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.getIsSecondaryColourCustom.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setEnveffScale ??= function (fade) {
-    let $res = natives.setVehicleEnveffScale(this.handle, fade);
+    return mp.game2.vehicle.setEnveffScale.apply(this, [this.handle, fade]);
 };
 
 mp.Vehicle.prototype.getEnveffScale ??= function () {
-    let $res = natives.getVehicleEnveffScale(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getEnveffScale.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setCanRespray ??= function (state) {
-    let $res = natives.setCanResprayVehicle(this.handle, state | 0);
+    return mp.game2.vehicle.setCanRespray.apply(this, [this.handle, state]);
 };
 
 mp.Vehicle.prototype.forceSubmarineSurfaceMode ??= function (toggle) {
-    let $res = natives.forceSubmarineSurfaceMode(this.handle, toggle | 0);
+    return mp.game2.vehicle.forceSubmarineSurfaceMode.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setSubmarineCrushDepths ??= function (p1, depth1, depth2, depth3) {
-    let $res = natives.setSubmarineCrushDepths(this.handle, p1 | 0, depth1, depth2, depth3);
+    return mp.game2.vehicle.setSubmarineCrushDepths.apply(this, [this.handle, p1, depth1, depth2, depth3]);
 };
 
 mp.Vehicle.prototype.getSubmarineIsBelowFirstCrushDepth ??= function () {
-    let $res = natives.getSubmarineIsUnderDesignDepth(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.getSubmarineIsBelowFirstCrushDepth.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getSubmarineCrushDepthWarningState ??= function () {
-    let $res = natives.getSubmarineNumberOfAirLeaks(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getSubmarineCrushDepthWarningState.apply(this, [this.handle]);
 };
 
 mp.Blip.prototype.setBoatAnchor ??= function (toggle) {
-    let $res = natives.setBoatAnchor(this.handle, toggle | 0);
+    return mp.game2.vehicle.setBoatAnchor.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.canAnchorBoatHere ??= function () {
-    let $res = natives.canAnchorBoatHere(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.canAnchorBoatHere.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.canAnchorBoatHere2 ??= function () {
-    let $res = natives.canAnchorBoatHereIgnorePlayers(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.canAnchorBoatHere2.apply(this, [this.handle]);
 };
 
 mp.Blip.prototype.setBoatFrozenWhenAnchored ??= function (toggle) {
-    let $res = natives.setBoatRemainsAnchoredWhilePlayerIsDriver(this.handle, toggle | 0);
+    return mp.game2.vehicle.setBoatFrozenWhenAnchored.apply(this, [this.handle, toggle]);
 };
 
 mp.Blip.prototype.setBoatMovementResistance ??= function (value) {
-    let $res = natives.setBoatLowLodAnchorDistance(this.handle, value);
+    return mp.game2.vehicle.setBoatMovementResistance.apply(this, [this.handle, value]);
 };
 
 mp.Blip.prototype.isBoatAnchoredAndFrozen ??= function () {
-    let $res = natives.isBoatAnchored(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isBoatAnchoredAndFrozen.apply(this, [this.handle]);
 };
 
 mp.Blip.prototype.setBoatSinksWhenWrecked ??= function (toggle) {
-    let $res = natives.setBoatSinksWhenWrecked(this.handle, toggle | 0);
+    return mp.game2.vehicle.setBoatSinksWhenWrecked.apply(this, [this.handle, toggle]);
 };
 
 mp.Blip.prototype.setBoatIsSinking ??= function () {
-    let $res = natives.setBoatWrecked(this.handle);
+    return mp.game2.vehicle.setBoatIsSinking.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setSiren ??= function (toggle) {
-    let $res = natives.setVehicleSiren(this.handle, toggle | 0);
+    return mp.game2.vehicle.setSiren.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.isSirenOn ??= function () {
-    let $res = natives.isVehicleSirenOn(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isSirenOn.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isSirenAudioOn ??= function () {
-    let $res = natives.isVehicleSirenAudioOn(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isSirenAudioOn.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setStrong ??= function (toggle) {
-    let $res = natives.setVehicleStrong(this.handle, toggle | 0);
+    return mp.game2.vehicle.setStrong.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.getColours ??= function () {
-    let $res = natives.getVehicleColours(this.handle, 0, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.colorPrimary = $res[1];
-    $resObj.colorSecondary = $res[2];
-    return $resObj;
+    return mp.game2.vehicle.getColours.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isSeatFree ??= function (seatIndex, isTaskRunning) {
-    let $res = natives.isVehicleSeatFree(this.handle, seatIndex, isTaskRunning | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isSeatFree.apply(this, [this.handle, seatIndex, isTaskRunning]);
 };
 
 mp.Player.prototype.getPedInSeat ??= function (seatIndex, p2) {
-    let $res = natives.getPedInVehicleSeat(this.handle, seatIndex, p2 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getPedInSeat.apply(this, [this.handle, seatIndex, p2]);
 };
 
 mp.Ped.prototype.getPedInSeat ??= function (seatIndex, p2) {
-    let $res = natives.getPedInVehicleSeat(this.handle, seatIndex, p2 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getPedInSeat.apply(this, [this.handle, seatIndex, p2]);
 };
 
 mp.Vehicle.prototype.getLastPedInSeat ??= function (seatIndex) {
-    let $res = natives.getLastPedInVehicleSeat(this.handle, seatIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getLastPedInSeat.apply(this, [this.handle, seatIndex]);
 };
 
 mp.Vehicle.prototype.getLightsState ??= function () {
-    let $res = natives.getVehicleLightsState(this.handle, false, false);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.lightsOn = $res[1] == 1;
-    $resObj.highbeamsOn = $res[2] == 1;
-    $resObj.result = $res[0] == 1;
-    return $resObj;
+    return mp.game2.vehicle.getLightsState.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isTyreBurst ??= function (wheelID, completely) {
-    let $res = natives.isVehicleTyreBurst(this.handle, wheelID, completely | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isTyreBurst.apply(this, [this.handle, wheelID, completely]);
 };
 
 mp.Vehicle.prototype.setForwardSpeed ??= function (speed) {
-    let $res = natives.setVehicleForwardSpeed(this.handle, speed);
+    return mp.game2.vehicle.setForwardSpeed.apply(this, [this.handle, speed]);
 };
 
 mp.Vehicle.prototype.bringToHalt ??= function (distance, duration, unknown) {
-    let $res = natives.bringVehicleToHalt(this.handle, distance, duration, unknown | 0);
+    return mp.game2.vehicle.bringToHalt.apply(this, [this.handle, distance, duration, unknown]);
 };
 
 mp.Vehicle.prototype.stopBringToHalt ??= function () {
-    let $res = natives.stopBringingVehicleToHalt(this.handle);
+    return mp.game2.vehicle.stopBringToHalt.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isBeingHalted ??= function () {
-    let $res = natives.isVehicleBeingBroughtToHalt(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isBeingHalted.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setForkliftForkHeight ??= function (height) {
-    let $res = natives.setForkliftForkHeight(this.handle, height);
+    return mp.game2.vehicle.setForkliftForkHeight.apply(this, [this.handle, height]);
 };
 
 mp.Player.prototype.isEntityAttachedToHandlerFrame ??= function (entity) {
-    let $res = natives.isEntityAttachedToHandlerFrame(this.handle, entity);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isEntityAttachedToHandlerFrame.apply(this, [this.handle, entity]);
 };
 
 mp.Ped.prototype.isEntityAttachedToHandlerFrame ??= function (entity) {
-    let $res = natives.isEntityAttachedToHandlerFrame(this.handle, entity);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isEntityAttachedToHandlerFrame.apply(this, [this.handle, entity]);
 };
 
 mp.Object.prototype.isEntityAttachedToHandlerFrame ??= function (entity) {
-    let $res = natives.isEntityAttachedToHandlerFrame(this.handle, entity);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isEntityAttachedToHandlerFrame.apply(this, [this.handle, entity]);
 };
 
 mp.Vehicle.prototype.isEntityAttachedToHandlerFrame ??= function (entity) {
-    let $res = natives.isEntityAttachedToHandlerFrame(this.handle, entity);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isEntityAttachedToHandlerFrame.apply(this, [this.handle, entity]);
 };
 
 mp.Vehicle.prototype.isAnyEntityAttachedToHandlerFrame ??= function () {
-    let $res = natives.isAnyEntityAttachedToHandlerFrame(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isAnyEntityAttachedToHandlerFrame.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.findCarryingThisEntity ??= function () {
-    let $res = natives.findHandlerVehicleContainerIsAttachedTo(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.findCarryingThisEntity.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.findCarryingThisEntity ??= function () {
-    let $res = natives.findHandlerVehicleContainerIsAttachedTo(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.findCarryingThisEntity.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.findCarryingThisEntity ??= function () {
-    let $res = natives.findHandlerVehicleContainerIsAttachedTo(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.findCarryingThisEntity.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.findCarryingThisEntity ??= function () {
-    let $res = natives.findHandlerVehicleContainerIsAttachedTo(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.findCarryingThisEntity.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isHandlerFrameAboveContainer ??= function (entity) {
-    let $res = natives.isHandlerFrameLinedUpWithContainer(this.handle, entity);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isHandlerFrameAboveContainer.apply(this, [this.handle, entity]);
 };
 
 mp.Vehicle.prototype.detachContainerFromHandlerFrame ??= function () {
-    let $res = natives.detachContainerFromHandlerFrame(this.handle);
+    return mp.game2.vehicle.detachContainerFromHandlerFrame.apply(this, [this.handle]);
 };
 
 mp.Blip.prototype.setBoatDisableAvoidance ??= function (p1) {
-    let $res = natives.setBoatDisableAvoidance(this.handle, p1 | 0);
+    return mp.game2.vehicle.setBoatDisableAvoidance.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.isHeliLandingAreaBlocked ??= function () {
-    let $res = natives.isHeliLandingAreaBlocked(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isHeliLandingAreaBlocked.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setHeliTurbulenceScalar ??= function (p1) {
-    let $res = natives.setHeliTurbulenceScalar(this.handle, p1);
+    return mp.game2.vehicle.setHeliTurbulenceScalar.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.setCarBootOpen ??= function () {
-    let $res = natives.setCarBootOpen(this.handle);
+    return mp.game2.vehicle.setCarBootOpen.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setTyreBurst ??= function (index, onRim, p3) {
-    let $res = natives.setVehicleTyreBurst(this.handle, index, onRim | 0, p3);
+    return mp.game2.vehicle.setTyreBurst.apply(this, [this.handle, index, onRim, p3]);
 };
 
 mp.Vehicle.prototype.setDoorsShut ??= function (closeInstantly) {
-    let $res = natives.setVehicleDoorsShut(this.handle, closeInstantly | 0);
+    return mp.game2.vehicle.setDoorsShut.apply(this, [this.handle, closeInstantly]);
 };
 
 mp.Vehicle.prototype.setTyresCanBurst ??= function (toggle) {
-    let $res = natives.setVehicleTyresCanBurst(this.handle, toggle | 0);
+    return mp.game2.vehicle.setTyresCanBurst.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.getTyresCanBurst ??= function () {
-    let $res = natives.getVehicleTyresCanBurst(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.getTyresCanBurst.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setWheelsCanBreak ??= function (enabled) {
-    let $res = natives.setVehicleWheelsCanBreak(this.handle, enabled | 0);
+    return mp.game2.vehicle.setWheelsCanBreak.apply(this, [this.handle, enabled]);
 };
 
 mp.Vehicle.prototype.setDoorOpen ??= function (doorId, loose, openInstantly) {
-    let $res = natives.setVehicleDoorOpen(this.handle, doorId, loose | 0, openInstantly | 0);
+    return mp.game2.vehicle.setDoorOpen.apply(this, [this.handle, doorId, loose, openInstantly]);
 };
 
 mp.Vehicle.prototype.removeWindow ??= function (windowIndex) {
-    let $res = natives.removeVehicleWindow(this.handle, windowIndex);
+    return mp.game2.vehicle.removeWindow.apply(this, [this.handle, windowIndex]);
 };
 
 mp.Vehicle.prototype.rollDownWindows ??= function () {
-    let $res = natives.rollDownWindows(this.handle);
+    return mp.game2.vehicle.rollDownWindows.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.rollDownWindow ??= function (windowIndex) {
-    let $res = natives.rollDownWindow(this.handle, windowIndex);
+    return mp.game2.vehicle.rollDownWindow.apply(this, [this.handle, windowIndex]);
 };
 
 mp.Vehicle.prototype.rollUpWindow ??= function (windowIndex) {
-    let $res = natives.rollUpWindow(this.handle, windowIndex);
+    return mp.game2.vehicle.rollUpWindow.apply(this, [this.handle, windowIndex]);
 };
 
 mp.Vehicle.prototype.smashWindow ??= function (index) {
-    let $res = natives.smashVehicleWindow(this.handle, index);
+    return mp.game2.vehicle.smashWindow.apply(this, [this.handle, index]);
 };
 
 mp.Vehicle.prototype.fixWindow ??= function (index) {
-    let $res = natives.fixVehicleWindow(this.handle, index);
+    return mp.game2.vehicle.fixWindow.apply(this, [this.handle, index]);
 };
 
 mp.Vehicle.prototype.popOutWindscreen ??= function () {
-    let $res = natives.popOutVehicleWindscreen(this.handle);
+    return mp.game2.vehicle.popOutWindscreen.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.ejectJb700Roof ??= function (x, y, z) {
-    let $res = natives.popOffVehicleRoofWithImpulse(this.handle, x, y, z);
+    return mp.game2.vehicle.ejectJb700Roof.apply(this, [this.handle, x, y, z]);
 };
 
 mp.Vehicle.prototype.setUsePlayerLightSettings ??= function (toggle) {
-    let $res = natives.setVehicleUsePlayerLightSettings(this.handle, toggle | 0);
+    return mp.game2.vehicle.setUsePlayerLightSettings.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setLightsMode ??= function (p1) {
-    let $res = natives.setVehicleHeadlightShadows(this.handle, p1);
+    return mp.game2.vehicle.setLightsMode.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.setAlarm ??= function (state) {
-    let $res = natives.setVehicleAlarm(this.handle, state | 0);
+    return mp.game2.vehicle.setAlarm.apply(this, [this.handle, state]);
 };
 
 mp.Vehicle.prototype.startAlarm ??= function () {
-    let $res = natives.startVehicleAlarm(this.handle);
+    return mp.game2.vehicle.startAlarm.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isAlarmActivated ??= function () {
-    let $res = natives.isVehicleAlarmActivated(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isAlarmActivated.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setInteriorlight ??= function (toggle) {
-    let $res = natives.setVehicleInteriorlight(this.handle, toggle | 0);
+    return mp.game2.vehicle.setInteriorlight.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setLightMultiplier ??= function (multiplier) {
-    let $res = natives.setVehicleLightMultiplier(this.handle, multiplier);
+    return mp.game2.vehicle.setLightMultiplier.apply(this, [this.handle, multiplier]);
 };
 
 mp.Vehicle.prototype.attachToTrailer ??= function (trailer, radius) {
-    let $res = natives.attachVehicleToTrailer(this.handle, trailer, radius);
+    return mp.game2.vehicle.attachToTrailer.apply(this, [this.handle, trailer, radius]);
 };
 
 mp.Vehicle.prototype.attachOnToTrailer ??= function (trailer, offsetX, offsetY, offsetZ, coordsX, coordsY, coordsZ, rotationX, rotationY, rotationZ, disableCollisions) {
-    let $res = natives.attachVehicleOnToTrailer(this.handle, trailer, offsetX, offsetY, offsetZ, coordsX, coordsY, coordsZ, rotationX, rotationY, rotationZ, disableCollisions);
+    return mp.game2.vehicle.attachOnToTrailer.apply(this, [this.handle, trailer, offsetX, offsetY, offsetZ, coordsX, coordsY, coordsZ, rotationX, rotationY, rotationZ, disableCollisions]);
 };
 
 mp.Vehicle.prototype.stabiliseEntityAttachedToHeli ??= function (entity, p2) {
-    let $res = natives.stabiliseEntityAttachedToHeli(this.handle, entity, p2);
+    return mp.game2.vehicle.stabiliseEntityAttachedToHeli.apply(this, [this.handle, entity, p2]);
 };
 
 mp.Vehicle.prototype.detachFromTrailer ??= function () {
-    let $res = natives.detachVehicleFromTrailer(this.handle);
+    return mp.game2.vehicle.detachFromTrailer.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isAttachedToTrailer ??= function () {
-    let $res = natives.isVehicleAttachedToTrailer(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isAttachedToTrailer.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setTrailerInverseMassScale ??= function (p1) {
-    let $res = natives.setTrailerInverseMassScale(this.handle, p1);
+    return mp.game2.vehicle.setTrailerInverseMassScale.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.setTrailerLegsRaised ??= function () {
-    let $res = natives.setTrailerLegsRaised(this.handle);
+    return mp.game2.vehicle.setTrailerLegsRaised.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setTyreFixed ??= function (tyreIndex) {
-    let $res = natives.setVehicleTyreFixed(this.handle, tyreIndex);
+    return mp.game2.vehicle.setTyreFixed.apply(this, [this.handle, tyreIndex]);
 };
 
 mp.Vehicle.prototype.setNumberPlateText ??= function (plateText) {
-    if (typeof plateText != "string") plateText = null;
-    let $res = natives.setVehicleNumberPlateText(this.handle, plateText);
+    return mp.game2.vehicle.setNumberPlateText.apply(this, [this.handle, plateText]);
 };
 
 mp.Vehicle.prototype.getNumberPlateText ??= function () {
-    let $res = natives.getVehicleNumberPlateText(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getNumberPlateText.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setNumberPlateTextIndex ??= function (plateIndex) {
-    let $res = natives.setVehicleNumberPlateTextIndex(this.handle, plateIndex);
+    return mp.game2.vehicle.setNumberPlateTextIndex.apply(this, [this.handle, plateIndex]);
 };
 
 mp.Vehicle.prototype.getNumberPlateTextIndex ??= function () {
-    let $res = natives.getVehicleNumberPlateTextIndex(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getNumberPlateTextIndex.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setTrainSpeed ??= function (speed) {
-    let $res = natives.setTrainSpeed(this.handle, speed);
+    return mp.game2.vehicle.setTrainSpeed.apply(this, [this.handle, speed]);
 };
 
 mp.Vehicle.prototype.setTrainCruiseSpeed ??= function (speed) {
-    let $res = natives.setTrainCruiseSpeed(this.handle, speed);
+    return mp.game2.vehicle.setTrainCruiseSpeed.apply(this, [this.handle, speed]);
 };
 
 mp.Vehicle.prototype.getRecordingId ??= function (script) {
-    if (typeof script != "string") script = null;
-    let $res = natives.getVehicleRecordingId(this.handle, script);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getRecordingId.apply(this, [this.handle, script]);
 };
 
 mp.Vehicle.prototype.hasRecordingBeenLoaded ??= function (script) {
-    if (typeof script != "string") script = null;
-    let $res = natives.hasVehicleRecordingBeenLoaded(this.handle, script);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.hasRecordingBeenLoaded.apply(this, [this.handle, script]);
 };
 
 mp.Vehicle.prototype.getPositionInRecording ??= function () {
-    let $res = natives.getPositionInRecording(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getPositionInRecording.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getTimePositionInRecording ??= function () {
-    let $res = natives.getTimePositionInRecording(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getTimePositionInRecording.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.startPlaybackRecorded ??= function (recording, script, p3) {
-    if (typeof script != "string") script = null;
-    let $res = natives.startPlaybackRecordedVehicle(this.handle, recording, script, p3 | 0);
+    return mp.game2.vehicle.startPlaybackRecorded.apply(this, [this.handle, recording, script, p3]);
 };
 
 mp.Vehicle.prototype.startPlaybackRecordedWithFlags ??= function (recording, script, flags, time, drivingStyle) {
-    if (typeof script != "string") script = null;
-    let $res = natives.startPlaybackRecordedVehicleWithFlags(this.handle, recording, script, flags, time, drivingStyle);
+    return mp.game2.vehicle.startPlaybackRecordedWithFlags.apply(this, [this.handle, recording, script, flags, time, drivingStyle]);
 };
 
 mp.Vehicle.prototype.forcePlaybackRecordedUpdate ??= function (p1) {
-    let $res = natives.forcePlaybackRecordedVehicleUpdate(this.handle, p1 | 0);
+    return mp.game2.vehicle.forcePlaybackRecordedUpdate.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.stopPlaybackRecorded ??= function () {
-    let $res = natives.stopPlaybackRecordedVehicle(this.handle);
+    return mp.game2.vehicle.stopPlaybackRecorded.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.pausePlaybackRecorded ??= function () {
-    let $res = natives.pausePlaybackRecordedVehicle(this.handle);
+    return mp.game2.vehicle.pausePlaybackRecorded.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.unpausePlaybackRecorded ??= function () {
-    let $res = natives.unpausePlaybackRecordedVehicle(this.handle);
+    return mp.game2.vehicle.unpausePlaybackRecorded.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isPlaybackGoingOnFor ??= function () {
-    let $res = natives.isPlaybackGoingOnForVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isPlaybackGoingOnFor.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isPlaybackUsingAiGoingOnFor ??= function () {
-    let $res = natives.isPlaybackUsingAiGoingOnForVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isPlaybackUsingAiGoingOnFor.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getCurrentPlaybackFor ??= function () {
-    let $res = natives.getCurrentPlaybackForVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getCurrentPlaybackFor.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.skipToEndAndStopPlaybackRecorded ??= function () {
-    let $res = natives.skipToEndAndStopPlaybackRecordedVehicle(this.handle);
+    return mp.game2.vehicle.skipToEndAndStopPlaybackRecorded.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setPlaybackSpeed ??= function (speed) {
-    let $res = natives.setPlaybackSpeed(this.handle, speed);
+    return mp.game2.vehicle.setPlaybackSpeed.apply(this, [this.handle, speed]);
 };
 
 mp.Vehicle.prototype.startPlaybackRecordedUsingAi ??= function (recording, script, speed, drivingStyle) {
-    if (typeof script != "string") script = null;
-    let $res = natives.startPlaybackRecordedVehicleUsingAi(this.handle, recording, script, speed, drivingStyle);
+    return mp.game2.vehicle.startPlaybackRecordedUsingAi.apply(this, [this.handle, recording, script, speed, drivingStyle]);
 };
 
 mp.Vehicle.prototype.skipTimeInPlaybackRecorded ??= function (time) {
-    let $res = natives.skipTimeInPlaybackRecordedVehicle(this.handle, time);
+    return mp.game2.vehicle.skipTimeInPlaybackRecorded.apply(this, [this.handle, time]);
 };
 
 mp.Vehicle.prototype.setPlaybackToUseAi ??= function (drivingStyle) {
-    let $res = natives.setPlaybackToUseAi(this.handle, drivingStyle);
+    return mp.game2.vehicle.setPlaybackToUseAi.apply(this, [this.handle, drivingStyle]);
 };
 
 mp.Vehicle.prototype.setPlaybackToUseAiTryToRevertBackLater ??= function (time, drivingStyle, p3) {
-    let $res = natives.setPlaybackToUseAiTryToRevertBackLater(this.handle, time, drivingStyle, p3 | 0);
+    return mp.game2.vehicle.setPlaybackToUseAiTryToRevertBackLater.apply(this, [this.handle, time, drivingStyle, p3]);
 };
 
 mp.Vehicle.prototype.explodeInCutscene ??= function (p1) {
-    let $res = natives.explodeVehicleInCutscene(this.handle, p1 | 0);
+    return mp.game2.vehicle.explodeInCutscene.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.setModelIsSuppressed ??= function (suppressed) {
-    let $res = natives.setVehicleModelIsSuppressed(this.handle, suppressed | 0);
+    return mp.game2.vehicle.setModelIsSuppressed.apply(this, [this.handle, suppressed]);
 };
 
 mp.Vehicle.prototype.getTrainCarriage ??= function (trailerNumber) {
-    let $res = natives.getTrainCarriage(this.handle, trailerNumber);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getTrainCarriage.apply(this, [this.handle, trailerNumber]);
 };
 
 mp.Vehicle.prototype.isMissionTrain ??= function () {
-    let $res = natives.isMissionTrain(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isMissionTrain.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setMissionTrainCoords ??= function (x, y, z) {
-    let $res = natives.setMissionTrainCoords(this.handle, x, y, z);
+    return mp.game2.vehicle.setMissionTrainCoords.apply(this, [this.handle, x, y, z]);
 };
 
 mp.Vehicle.prototype.setHeliBladesFullSpeed ??= function () {
-    let $res = natives.setHeliBladesFullSpeed(this.handle);
+    return mp.game2.vehicle.setHeliBladesFullSpeed.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setHeliBladesSpeed ??= function (speed) {
-    let $res = natives.setHeliBladesSpeed(this.handle, speed);
+    return mp.game2.vehicle.setHeliBladesSpeed.apply(this, [this.handle, speed]);
 };
 
 mp.Vehicle.prototype.setCanBeTargetted ??= function (state) {
-    let $res = natives.setVehicleCanBeTargetted(this.handle, state | 0);
+    return mp.game2.vehicle.setCanBeTargetted.apply(this, [this.handle, state]);
 };
 
 mp.Vehicle.prototype.setCanBeVisiblyDamaged ??= function (state) {
-    let $res = natives.setVehicleCanBeVisiblyDamaged(this.handle, state | 0);
+    return mp.game2.vehicle.setCanBeVisiblyDamaged.apply(this, [this.handle, state]);
 };
 
 mp.Vehicle.prototype.setHasUnbreakableLights ??= function (p1) {
-    let $res = natives.setVehicleHasUnbreakableLights(this.handle, p1 | 0);
+    return mp.game2.vehicle.setHasUnbreakableLights.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.getDirtLevel ??= function () {
-    let $res = natives.getVehicleDirtLevel(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getDirtLevel.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setDirtLevel ??= function (dirtLevel) {
-    let $res = natives.setVehicleDirtLevel(this.handle, dirtLevel);
+    return mp.game2.vehicle.setDirtLevel.apply(this, [this.handle, dirtLevel]);
 };
 
 mp.Vehicle.prototype.isDamaged ??= function () {
-    let $res = natives.getDoesVehicleHaveDamageDecals(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isDamaged.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isDoorFullyOpen ??= function (doorId) {
-    let $res = natives.isVehicleDoorFullyOpen(this.handle, doorId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isDoorFullyOpen.apply(this, [this.handle, doorId]);
 };
 
 mp.Vehicle.prototype.setEngineOn ??= function (value, instantly, disableAutoStart) {
-    let $res = natives.setVehicleEngineOn(this.handle, value | 0, instantly | 0, disableAutoStart | 0);
+    return mp.game2.vehicle.setEngineOn.apply(this, [this.handle, value, instantly, disableAutoStart]);
 };
 
 mp.Vehicle.prototype.setUndriveable ??= function (toggle) {
-    let $res = natives.setVehicleUndriveable(this.handle, toggle | 0);
+    return mp.game2.vehicle.setUndriveable.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setProvidesCover ??= function (toggle) {
-    let $res = natives.setVehicleProvidesCover(this.handle, toggle | 0);
+    return mp.game2.vehicle.setProvidesCover.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setDoorControl ??= function (doorId, speed, angle) {
-    let $res = natives.setVehicleDoorControl(this.handle, doorId, speed, angle);
+    return mp.game2.vehicle.setDoorControl.apply(this, [this.handle, doorId, speed, angle]);
 };
 
 mp.Vehicle.prototype.setDoorLatched ??= function (doorId, p2, p3, p4) {
-    let $res = natives.setVehicleDoorLatched(this.handle, doorId, p2 | 0, p3 | 0, p4 | 0);
+    return mp.game2.vehicle.setDoorLatched.apply(this, [this.handle, doorId, p2, p3, p4]);
 };
 
 mp.Vehicle.prototype.getDoorAngleRatio ??= function (doorId) {
-    let $res = natives.getVehicleDoorAngleRatio(this.handle, doorId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getDoorAngleRatio.apply(this, [this.handle, doorId]);
 };
 
 mp.Player.prototype.getPedUsingDoor ??= function (doord) {
-    let $res = natives.getPedUsingVehicleDoor(this.handle, doord);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getPedUsingDoor.apply(this, [this.handle, doord]);
 };
 
 mp.Ped.prototype.getPedUsingDoor ??= function (doord) {
-    let $res = natives.getPedUsingVehicleDoor(this.handle, doord);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getPedUsingDoor.apply(this, [this.handle, doord]);
 };
 
 mp.Vehicle.prototype.setDoorShut ??= function (doorId, closeInstantly) {
-    let $res = natives.setVehicleDoorShut(this.handle, doorId, closeInstantly | 0);
+    return mp.game2.vehicle.setDoorShut.apply(this, [this.handle, doorId, closeInstantly]);
 };
 
 mp.Vehicle.prototype.setDoorBroken ??= function (doorId, deleteDoor) {
-    let $res = natives.setVehicleDoorBroken(this.handle, doorId, deleteDoor | 0);
+    return mp.game2.vehicle.setDoorBroken.apply(this, [this.handle, doorId, deleteDoor]);
 };
 
 mp.Vehicle.prototype.setCanBreak ??= function (toggle) {
-    let $res = natives.setVehicleCanBreak(this.handle, toggle | 0);
+    return mp.game2.vehicle.setCanBreak.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.doesHaveRoof ??= function () {
-    let $res = natives.doesVehicleHaveRoof(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.doesHaveRoof.apply(this, [this.handle]);
 };
 
 mp.Blip.prototype.isBig ??= function () {
-    let $res = natives.isBigVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isBig.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getNumberOfColours ??= function () {
-    let $res = natives.getNumberOfVehicleColours(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getNumberOfColours.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setColourCombination ??= function (colorCombination) {
-    let $res = natives.setVehicleColourCombination(this.handle, colorCombination);
+    return mp.game2.vehicle.setColourCombination.apply(this, [this.handle, colorCombination]);
 };
 
 mp.Vehicle.prototype.getColourCombination ??= function () {
-    let $res = natives.getVehicleColourCombination(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getColourCombination.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setXenonLightsColor ??= function (colorIndex) {
-    let $res = natives.setVehicleXenonLightColorIndex(this.handle, colorIndex);
+    return mp.game2.vehicle.setXenonLightsColor.apply(this, [this.handle, colorIndex]);
 };
 
 mp.Vehicle.prototype.getXenonLightsColor ??= function () {
-    let $res = natives.getVehicleXenonLightColorIndex(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getXenonLightsColor.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setIsConsideredByPlayer ??= function (toggle) {
-    let $res = natives.setVehicleIsConsideredByPlayer(this.handle, toggle | 0);
+    return mp.game2.vehicle.setIsConsideredByPlayer.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.getDoorLockStatus ??= function () {
-    let $res = natives.getVehicleDoorLockStatus(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getDoorLockStatus.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getDoorDestroyType ??= function (doorId) {
-    let $res = natives.getVehicleIndividualDoorLockStatus(this.handle, doorId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getDoorDestroyType.apply(this, [this.handle, doorId]);
 };
 
 mp.Vehicle.prototype.isDoorDamaged ??= function (doorID) {
-    let $res = natives.isVehicleDoorDamaged(this.handle, doorID);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isDoorDamaged.apply(this, [this.handle, doorID]);
 };
 
 mp.Vehicle.prototype.setDoorCanBreak ??= function (doorId, isBreakable) {
-    let $res = natives.setDoorAllowedToBeBrokenOff(this.handle, doorId, isBreakable | 0);
+    return mp.game2.vehicle.setDoorCanBreak.apply(this, [this.handle, doorId, isBreakable]);
 };
 
 mp.Vehicle.prototype.isBumperBouncing ??= function (frontBumper) {
-    let $res = natives.isVehicleBumperBouncing(this.handle, frontBumper | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isBumperBouncing.apply(this, [this.handle, frontBumper]);
 };
 
 mp.Vehicle.prototype.isBumperBrokenOff ??= function (front) {
-    let $res = natives.isVehicleBumperBrokenOff(this.handle, front | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isBumperBrokenOff.apply(this, [this.handle, front]);
 };
 
 mp.Vehicle.prototype.isOnAllWheels ??= function () {
-    let $res = natives.isVehicleOnAllWheels(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isOnAllWheels.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getModelMonetaryValue ??= function () {
-    let $res = natives.getVehicleModelValue(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getModelMonetaryValue.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getLayoutHash ??= function () {
-    let $res = natives.getVehicleLayoutHash(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getLayoutHash.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setRenderTrainAsDerailed ??= function (toggle) {
-    let $res = natives.setRenderTrainAsDerailed(this.handle, toggle | 0);
+    return mp.game2.vehicle.setRenderTrainAsDerailed.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setExtraColours ??= function (pearlescentColor, wheelColor) {
-    let $res = natives.setVehicleExtraColours(this.handle, pearlescentColor, wheelColor);
+    return mp.game2.vehicle.setExtraColours.apply(this, [this.handle, pearlescentColor, wheelColor]);
 };
 
 mp.Vehicle.prototype.getExtraColours ??= function () {
-    let $res = natives.getVehicleExtraColours(this.handle, 0, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.pearlescentColor = $res[1];
-    $resObj.wheelColor = $res[2];
-    return $resObj;
+    return mp.game2.vehicle.getExtraColours.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setInteriorColor ??= function (color) {
-    let $res = natives.setVehicleExtraColour5(this.handle, color);
+    return mp.game2.vehicle.setInteriorColor.apply(this, [this.handle, color]);
 };
 
 mp.Vehicle.prototype.getInteriorColor ??= function () {
-    let $res = natives.getVehicleExtraColour5(this.handle, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.color = $res[1];
-    return $resObj.color;
+    return mp.game2.vehicle.getInteriorColor.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setDashboardColor ??= function (color) {
-    let $res = natives.setVehicleExtraColour6(this.handle, color);
+    return mp.game2.vehicle.setDashboardColor.apply(this, [this.handle, color]);
 };
 
 mp.Vehicle.prototype.getDashboardColor ??= function () {
-    let $res = natives.getVehicleExtraColour6(this.handle, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.color = $res[1];
-    return $resObj.color;
+    return mp.game2.vehicle.getDashboardColor.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setFixed ??= function () {
-    let $res = natives.setVehicleFixed(this.handle);
+    return mp.game2.vehicle.setFixed.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setDeformationFixed ??= function () {
-    let $res = natives.setVehicleDeformationFixed(this.handle);
+    return mp.game2.vehicle.setDeformationFixed.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setCanEngineOperateOnFire ??= function (toggle) {
-    let $res = natives.setVehicleCanEngineMissfire(this.handle, toggle | 0);
+    return mp.game2.vehicle.setCanEngineOperateOnFire.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setCanLeakOil ??= function (toggle) {
-    let $res = natives.setVehicleCanLeakOil(this.handle, toggle | 0);
+    return mp.game2.vehicle.setCanLeakOil.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setCanLeakPetrol ??= function (toggle) {
-    let $res = natives.setVehicleCanLeakPetrol(this.handle, toggle | 0);
+    return mp.game2.vehicle.setCanLeakPetrol.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setDisablePetrolTankFires ??= function (toggle) {
-    let $res = natives.setDisableVehiclePetrolTankFires(this.handle, toggle | 0);
+    return mp.game2.vehicle.setDisablePetrolTankFires.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setDisablePetrolTankDamage ??= function (toggle) {
-    let $res = natives.setDisableVehiclePetrolTankDamage(this.handle, toggle | 0);
+    return mp.game2.vehicle.setDisablePetrolTankDamage.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setDisableEngineFires ??= function (toggle) {
-    let $res = natives.setDisableVehicleEngineFires(this.handle, toggle | 0);
+    return mp.game2.vehicle.setDisableEngineFires.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setDisablePretendOccupants ??= function (toggle) {
-    let $res = natives.setDisablePretendOccupants(this.handle, toggle | 0);
+    return mp.game2.vehicle.setDisablePretendOccupants.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setSteerBias ??= function (value) {
-    let $res = natives.setVehicleSteerBias(this.handle, value);
+    return mp.game2.vehicle.setSteerBias.apply(this, [this.handle, value]);
 };
 
 mp.Vehicle.prototype.isExtraTurnedOn ??= function (extraId) {
-    let $res = natives.isVehicleExtraTurnedOn(this.handle, extraId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isExtraTurnedOn.apply(this, [this.handle, extraId]);
 };
 
 mp.Vehicle.prototype.setExtra ??= function (extraId, disable) {
-    let $res = natives.setVehicleExtra(this.handle, extraId, disable | 0);
+    return mp.game2.vehicle.setExtra.apply(this, [this.handle, extraId, disable]);
 };
 
 mp.Vehicle.prototype.doesExtraExist ??= function (extraId) {
-    let $res = natives.doesExtraExist(this.handle, extraId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.doesExtraExist.apply(this, [this.handle, extraId]);
 };
 
 mp.Vehicle.prototype.doesTyreExist ??= function (tyreIndex) {
-    let $res = natives.isExtraBrokenOff(this.handle, tyreIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.doesTyreExist.apply(this, [this.handle, tyreIndex]);
 };
 
 mp.Vehicle.prototype.setConvertibleRoof ??= function (p1) {
-    let $res = natives.setConvertibleRoof(this.handle, p1 | 0);
+    return mp.game2.vehicle.setConvertibleRoof.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.lowerConvertibleRoof ??= function (instantlyLower) {
-    let $res = natives.lowerConvertibleRoof(this.handle, instantlyLower | 0);
+    return mp.game2.vehicle.lowerConvertibleRoof.apply(this, [this.handle, instantlyLower]);
 };
 
 mp.Vehicle.prototype.raiseConvertibleRoof ??= function (instantlyRaise) {
-    let $res = natives.raiseConvertibleRoof(this.handle, instantlyRaise | 0);
+    return mp.game2.vehicle.raiseConvertibleRoof.apply(this, [this.handle, instantlyRaise]);
 };
 
 mp.Vehicle.prototype.getConvertibleRoofState ??= function () {
-    let $res = natives.getConvertibleRoofState(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getConvertibleRoofState.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isAConvertible ??= function (p1) {
-    let $res = natives.isVehicleAConvertible(this.handle, p1 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isAConvertible.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.transformToSubmarine ??= function (noAnimation) {
-    let $res = natives.transformToSubmarine(this.handle, noAnimation | 0);
+    return mp.game2.vehicle.transformToSubmarine.apply(this, [this.handle, noAnimation]);
 };
 
 mp.Vehicle.prototype.transformSubmarineTo ??= function (noAnimation) {
-    let $res = natives.transformToCar(this.handle, noAnimation | 0);
+    return mp.game2.vehicle.transformSubmarineTo.apply(this, [this.handle, noAnimation]);
 };
 
 mp.Vehicle.prototype.getIsSubmarineTransformed ??= function () {
-    let $res = natives.isVehicleInSubmarineMode(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.getIsSubmarineTransformed.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isStoppedAtTrafficLights ??= function () {
-    let $res = natives.isVehicleStoppedAtTrafficLights(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isStoppedAtTrafficLights.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setDamage ??= function (xOffset, yOffset, zOffset, damage, radius, focusOnModel) {
-    let $res = natives.setVehicleDamage(this.handle, xOffset, yOffset, zOffset, damage, radius, focusOnModel | 0);
+    return mp.game2.vehicle.setDamage.apply(this, [this.handle, xOffset, yOffset, zOffset, damage, radius, focusOnModel]);
 };
 
 mp.Vehicle.prototype.getEngineHealth ??= function () {
-    let $res = natives.getVehicleEngineHealth(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getEngineHealth.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setEngineHealth ??= function (health) {
-    let $res = natives.setVehicleEngineHealth(this.handle, health);
+    return mp.game2.vehicle.setEngineHealth.apply(this, [this.handle, health]);
 };
 
 mp.Vehicle.prototype.setPlaneEngineHealth ??= function (health) {
-    let $res = natives.setPlaneEngineHealth(this.handle, health);
+    return mp.game2.vehicle.setPlaneEngineHealth.apply(this, [this.handle, health]);
 };
 
 mp.Vehicle.prototype.getPetrolTankHealth ??= function () {
-    let $res = natives.getVehiclePetrolTankHealth(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getPetrolTankHealth.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setPetrolTankHealth ??= function (health) {
-    let $res = natives.setVehiclePetrolTankHealth(this.handle, health);
+    return mp.game2.vehicle.setPetrolTankHealth.apply(this, [this.handle, health]);
 };
 
 mp.Vehicle.prototype.isStuckTimerUp ??= function (p1, p2) {
-    let $res = natives.isVehicleStuckTimerUp(this.handle, p1, p2);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isStuckTimerUp.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Vehicle.prototype.resetStuckTimer ??= function (nullAttributes) {
-    let $res = natives.resetVehicleStuckTimer(this.handle, nullAttributes | 0);
+    return mp.game2.vehicle.resetStuckTimer.apply(this, [this.handle, nullAttributes]);
 };
 
 mp.Vehicle.prototype.isDriveable ??= function (isOnFireCheck) {
-    let $res = natives.isVehicleDriveable(this.handle, isOnFireCheck | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isDriveable.apply(this, [this.handle, isOnFireCheck]);
 };
 
 mp.Vehicle.prototype.setHasBeenOwnedByPlayer ??= function (owned) {
-    let $res = natives.setVehicleHasBeenOwnedByPlayer(this.handle, owned | 0);
+    return mp.game2.vehicle.setHasBeenOwnedByPlayer.apply(this, [this.handle, owned]);
 };
 
 mp.Vehicle.prototype.setNeedsToBeHotwired ??= function (toggle) {
-    let $res = natives.setVehicleNeedsToBeHotwired(this.handle, toggle | 0);
+    return mp.game2.vehicle.setNeedsToBeHotwired.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.startHorn ??= function (duration, mode, forever) {
-    let $res = natives.startVehicleHorn(this.handle, duration, mode, forever | 0);
+    return mp.game2.vehicle.startHorn.apply(this, [this.handle, duration, mode, forever]);
 };
 
 mp.Vehicle.prototype.setSilent ??= function (toggle) {
-    let $res = natives.setVehicleInCarModShop(this.handle, toggle | 0);
+    return mp.game2.vehicle.setSilent.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setHasStrongAxles ??= function (toggle) {
-    let $res = natives.setVehicleHasStrongAxles(this.handle, toggle | 0);
+    return mp.game2.vehicle.setHasStrongAxles.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.getDeformationAtPos ??= function (offsetX, offsetY, offsetZ) {
-    let $res = natives.getVehicleDeformationAtPos(this.handle, offsetX, offsetY, offsetZ);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.vehicle.getDeformationAtPos.apply(this, [this.handle, offsetX, offsetY, offsetZ]);
 };
 
 mp.Vehicle.prototype.setLivery ??= function (livery) {
-    let $res = natives.setVehicleLivery(this.handle, livery);
+    return mp.game2.vehicle.setLivery.apply(this, [this.handle, livery]);
 };
 
 mp.Vehicle.prototype.getLivery ??= function () {
-    let $res = natives.getVehicleLivery(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getLivery.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getLiveryCount ??= function () {
-    let $res = natives.getVehicleLiveryCount(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getLiveryCount.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setRoofLivery ??= function (livery) {
-    let $res = natives.setVehicleLivery2(this.handle, livery);
+    return mp.game2.vehicle.setRoofLivery.apply(this, [this.handle, livery]);
 };
 
 mp.Vehicle.prototype.getRoofLivery ??= function () {
-    let $res = natives.getVehicleLivery2(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getRoofLivery.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getRoofLiveryCount ??= function () {
-    let $res = natives.getVehicleLivery2Count(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getRoofLiveryCount.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isWindowIntact ??= function (windowIndex) {
-    let $res = natives.isVehicleWindowIntact(this.handle, windowIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isWindowIntact.apply(this, [this.handle, windowIndex]);
 };
 
 mp.Vehicle.prototype.areAllWindowsIntact ??= function () {
-    let $res = natives.areAllVehicleWindowsIntact(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.areAllWindowsIntact.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.areAnySeatsFree ??= function () {
-    let $res = natives.areAnyVehicleSeatsFree(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.areAnySeatsFree.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.resetWheels ??= function (toggle) {
-    let $res = natives.resetVehicleWheels(this.handle, toggle | 0);
+    return mp.game2.vehicle.resetWheels.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.isHeliPartBroken ??= function (p1, p2, p3) {
-    let $res = natives.isHeliPartBroken(this.handle, p1 | 0, p2 | 0, p3 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isHeliPartBroken.apply(this, [this.handle, p1, p2, p3]);
 };
 
 mp.Vehicle.prototype.getHeliMainRotorHealth ??= function () {
-    let $res = natives.getHeliMainRotorHealth(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getHeliMainRotorHealth.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getHeliTailRotorHealth ??= function () {
-    let $res = natives.getHeliTailRotorHealth(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getHeliTailRotorHealth.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getHeliTailBoomHealth ??= function () {
-    let $res = natives.getHeliTailBoomHealth(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getHeliTailBoomHealth.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setHeliMainRotorHealth ??= function (health) {
-    let $res = natives.setHeliMainRotorHealth(this.handle, health);
+    return mp.game2.vehicle.setHeliMainRotorHealth.apply(this, [this.handle, health]);
 };
 
 mp.Vehicle.prototype.setHeliTailRotorHealth ??= function (health) {
-    let $res = natives.setHeliTailRotorHealth(this.handle, health);
+    return mp.game2.vehicle.setHeliTailRotorHealth.apply(this, [this.handle, health]);
 };
 
 mp.Vehicle.prototype.setHeliTailExplodeThrowDashboard ??= function (p1) {
-    let $res = natives.setHeliTailBoomCanBreakOff(this.handle, p1 | 0);
+    return mp.game2.vehicle.setHeliTailExplodeThrowDashboard.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.setNameDebug ??= function (name) {
-    if (typeof name != "string") name = null;
-    let $res = natives.setVehicleNameDebug(this.handle, name);
+    return mp.game2.vehicle.setNameDebug.apply(this, [this.handle, name]);
 };
 
 mp.Vehicle.prototype.setExplodesOnHighExplosionDamage ??= function (toggle) {
-    let $res = natives.setVehicleExplodesOnHighExplosionDamage(this.handle, toggle | 0);
+    return mp.game2.vehicle.setExplodesOnHighExplosionDamage.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setDisableTowing ??= function (toggle) {
-    let $res = natives.setVehicleDisableTowing(this.handle, toggle | 0);
+    return mp.game2.vehicle.setDisableTowing.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.doesHaveLandingGear ??= function () {
-    let $res = natives.getVehicleHasLandingGear(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.doesHaveLandingGear.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.controlLandingGear ??= function (state) {
-    let $res = natives.controlLandingGear(this.handle, state);
+    return mp.game2.vehicle.controlLandingGear.apply(this, [this.handle, state]);
 };
 
 mp.Vehicle.prototype.getLandingGearState ??= function () {
-    let $res = natives.getLandingGearState(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getLandingGearState.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.requestHighDetailModel ??= function () {
-    let $res = natives.requestWeaponHighDetailModel(this.handle);
+    return mp.game2.weapon.requestHighDetailModel.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.removeHighDetailModel ??= function () {
-    let $res = natives.removeVehicleHighDetailModel(this.handle);
+    return mp.game2.vehicle.removeHighDetailModel.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isHighDetail ??= function () {
-    let $res = natives.isVehicleHighDetail(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isHighDetail.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.hasAssetLoaded ??= function () {
-    let $res = natives.hasVehicleAssetLoaded(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.hasAssetLoaded.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setTowTruckArmPosition ??= function (position) {
-    let $res = natives.setVehicleTowTruckArmPosition(this.handle, position);
+    return mp.game2.vehicle.setTowTruckArmPosition.apply(this, [this.handle, position]);
 };
 
 mp.Vehicle.prototype.attachToTowTruck ??= function (vehicle, rear, hookOffsetX, hookOffsetY, hookOffsetZ) {
-    let $res = natives.attachVehicleToTowTruck(this.handle, vehicle, rear | 0, hookOffsetX, hookOffsetY, hookOffsetZ);
+    return mp.game2.vehicle.attachToTowTruck.apply(this, [this.handle, vehicle, rear, hookOffsetX, hookOffsetY, hookOffsetZ]);
 };
 
 mp.Vehicle.prototype.detachFromTowTruck ??= function (vehicle) {
-    let $res = natives.detachVehicleFromTowTruck(this.handle, vehicle);
+    return mp.game2.vehicle.detachFromTowTruck.apply(this, [this.handle, vehicle]);
 };
 
 mp.Vehicle.prototype.detachFromAnyTowTruck ??= function () {
-    let $res = natives.detachVehicleFromAnyTowTruck(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.detachFromAnyTowTruck.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isAttachedToTowTruck ??= function (vehicle) {
-    let $res = natives.isVehicleAttachedToTowTruck(this.handle, vehicle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isAttachedToTowTruck.apply(this, [this.handle, vehicle]);
 };
 
 mp.Player.prototype.getEntityAttachedToTowTruck ??= function () {
-    let $res = natives.getEntityAttachedToTowTruck(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getEntityAttachedToTowTruck.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getEntityAttachedToTowTruck ??= function () {
-    let $res = natives.getEntityAttachedToTowTruck(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getEntityAttachedToTowTruck.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getEntityAttachedToTowTruck ??= function () {
-    let $res = natives.getEntityAttachedToTowTruck(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getEntityAttachedToTowTruck.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getEntityAttachedToTowTruck ??= function () {
-    let $res = natives.getEntityAttachedToTowTruck(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getEntityAttachedToTowTruck.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setAutomaticallyAttaches ??= function (p1, p2) {
-    let $res = natives.setVehicleAutomaticallyAttaches(this.handle, p1 | 0, p2);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.setAutomaticallyAttaches.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Vehicle.prototype.setBulldozerArmPosition ??= function (position, p2) {
-    let $res = natives.setVehicleBulldozerArmPosition(this.handle, position, p2 | 0);
+    return mp.game2.vehicle.setBulldozerArmPosition.apply(this, [this.handle, position, p2]);
 };
 
 mp.Vehicle.prototype.setTankTurretPosition ??= function (position, p2) {
-    let $res = natives.setVehicleTankTurretPosition(this.handle, position, p2 | 0);
+    return mp.game2.vehicle.setTankTurretPosition.apply(this, [this.handle, position, p2]);
 };
 
 mp.Vehicle.prototype.setTurretSpeedThisFrame ??= function (speed) {
-    let $res = natives.setVehicleTurretSpeedThisFrame(this.handle, speed);
+    return mp.game2.vehicle.setTurretSpeedThisFrame.apply(this, [this.handle, speed]);
 };
 
 mp.Vehicle.prototype.disableTurretMovementThisFrame ??= function () {
-    let $res = natives.disableVehicleTurretMovementThisFrame(this.handle);
+    return mp.game2.vehicle.disableTurretMovementThisFrame.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setFlightNozzlePosition ??= function (angleRatio) {
-    let $res = natives.setVehicleFlightNozzlePosition(this.handle, angleRatio);
+    return mp.game2.vehicle.setFlightNozzlePosition.apply(this, [this.handle, angleRatio]);
 };
 
 mp.Vehicle.prototype.setFlightNozzlePositionImmediate ??= function (angle) {
-    let $res = natives.setVehicleFlightNozzlePositionImmediate(this.handle, angle);
+    return mp.game2.vehicle.setFlightNozzlePositionImmediate.apply(this, [this.handle, angle]);
 };
 
 mp.Vehicle.prototype.getFlightNozzlePosition ??= function () {
-    let $res = natives.getVehicleFlightNozzlePosition(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getFlightNozzlePosition.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setDisableFlightNozzlePosition ??= function (toggle) {
-    let $res = natives.setDisableVerticalFlightModeTransition(this.handle, toggle | 0);
+    return mp.game2.vehicle.setDisableFlightNozzlePosition.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setBurnout ??= function (toggle) {
-    let $res = natives.setVehicleBurnout(this.handle, toggle | 0);
+    return mp.game2.vehicle.setBurnout.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.isInBurnout ??= function () {
-    let $res = natives.isVehicleInBurnout(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isInBurnout.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setReduceGrip ??= function (toggle) {
-    let $res = natives.setVehicleReduceGrip(this.handle, toggle | 0);
+    return mp.game2.vehicle.setReduceGrip.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setReduceTraction ??= function (val) {
-    let $res = natives.setVehicleReduceGripLevel(this.handle, val);
+    return mp.game2.vehicle.setReduceTraction.apply(this, [this.handle, val]);
 };
 
 mp.Vehicle.prototype.setIndicatorLights ??= function (turnSignal, toggle) {
-    let $res = natives.setVehicleIndicatorLights(this.handle, turnSignal, toggle | 0);
+    return mp.game2.vehicle.setIndicatorLights.apply(this, [this.handle, turnSignal, toggle]);
 };
 
 mp.Vehicle.prototype.setBrakeLights ??= function (toggle) {
-    let $res = natives.setVehicleBrakeLights(this.handle, toggle | 0);
+    return mp.game2.vehicle.setBrakeLights.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setHandbrake ??= function (toggle) {
-    let $res = natives.setVehicleHandbrake(this.handle, toggle | 0);
+    return mp.game2.vehicle.setHandbrake.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setBrake ??= function (toggle) {
-    let $res = natives.setVehicleBrake(this.handle, toggle | 0);
+    return mp.game2.vehicle.setBrake.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.getTrailerVehicle ??= function () {
-    let $res = natives.getVehicleTrailerVehicle(this.handle, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.trailer = $res[1];
-    return $res[0] == 1 ? $resObj.trailer : undefined;
+    return mp.game2.vehicle.getTrailerVehicle.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setUsesLargeRearRamp ??= function (toggle) {
-    let $res = natives.setVehicleUsesLargeRearRamp(this.handle, toggle | 0);
+    return mp.game2.vehicle.setUsesLargeRearRamp.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setRudderBroken ??= function (toggle) {
-    let $res = natives.setVehicleRudderBroken(this.handle, toggle | 0);
+    return mp.game2.vehicle.setRudderBroken.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setConvertibleRoofLatchState ??= function (state) {
-    let $res = natives.setConvertibleRoofLatchState(this.handle, state | 0);
+    return mp.game2.vehicle.setConvertibleRoofLatchState.apply(this, [this.handle, state]);
 };
 
 mp.Vehicle.prototype.getEstimatedMaxSpeed ??= function () {
-    let $res = natives.getVehicleEstimatedMaxSpeed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getEstimatedMaxSpeed.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getMaxBraking ??= function () {
-    let $res = natives.getVehicleMaxBraking(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getMaxBraking.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getMaxTraction ??= function () {
-    let $res = natives.getVehicleMaxTraction(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getMaxTraction.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getAcceleration ??= function () {
-    let $res = natives.getVehicleAcceleration(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getAcceleration.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getModelEstimatedMaxSpeed ??= function () {
-    let $res = natives.getVehicleModelEstimatedMaxSpeed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getModelEstimatedMaxSpeed.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getModelMaxBraking ??= function () {
-    let $res = natives.getVehicleModelMaxBraking(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getModelMaxBraking.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getModelMaxBrakingMaxMods ??= function () {
-    let $res = natives.getVehicleModelMaxBrakingMaxMods(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getModelMaxBrakingMaxMods.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getModelMaxTraction ??= function () {
-    let $res = natives.getVehicleModelMaxTraction(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getModelMaxTraction.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getModelAcceleration ??= function () {
-    let $res = natives.getVehicleModelAcceleration(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getModelAcceleration.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getModelEstimatedAgility ??= function () {
-    let $res = natives.getVehicleModelAccelerationMaxMods(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getModelEstimatedAgility.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getModelMaxKnots ??= function () {
-    let $res = natives.getFlyingVehicleModelAgility(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getModelMaxKnots.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getModelMoveResistance ??= function () {
-    let $res = natives.getBoatVehicleModelAgility(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getModelMoveResistance.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getClassEstimatedMaxSpeed ??= function () {
-    let $res = natives.getVehicleClassEstimatedMaxSpeed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getClassEstimatedMaxSpeed.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getClassMaxTraction ??= function () {
-    let $res = natives.getVehicleClassMaxTraction(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getClassMaxTraction.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getClassMaxAgility ??= function () {
-    let $res = natives.getVehicleClassMaxAgility(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getClassMaxAgility.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getClassMaxAcceleration ??= function () {
-    let $res = natives.getVehicleClassMaxAcceleration(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getClassMaxAcceleration.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getClassMaxBraking ??= function () {
-    let $res = natives.getVehicleClassMaxBraking(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getClassMaxBraking.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.openBombBayDoors ??= function () {
-    let $res = natives.openBombBayDoors(this.handle);
+    return mp.game2.vehicle.openBombBayDoors.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.closeBombBayDoors ??= function () {
-    let $res = natives.closeBombBayDoors(this.handle);
+    return mp.game2.vehicle.closeBombBayDoors.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.areBombBayDoorsOpen ??= function () {
-    let $res = natives.getAreBombBayDoorsOpen(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.areBombBayDoorsOpen.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isSearchlightOn ??= function () {
-    let $res = natives.isVehicleSearchlightOn(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isSearchlightOn.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setSearchlight ??= function (toggle, canBeUsedByAI) {
-    let $res = natives.setVehicleSearchlight(this.handle, toggle | 0, canBeUsedByAI | 0);
+    return mp.game2.vehicle.setSearchlight.apply(this, [this.handle, toggle, canBeUsedByAI]);
 };
 
 mp.Vehicle.prototype.doesHaveSearchlight ??= function () {
-    let $res = natives.doesVehicleHaveSearchlight(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.doesHaveSearchlight.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isSeatAccessible ??= function (vehicle, seatIndex, side, onEnter) {
-    let $res = natives.isEntryPointForSeatClear(this.handle, vehicle, seatIndex, side | 0, onEnter | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isSeatAccessible.apply(this, [this.handle, vehicle, seatIndex, side, onEnter]);
 };
 
 mp.Vehicle.prototype.getEntryPositionOfDoor ??= function (doorId) {
-    let $res = natives.getEntryPointPosition(this.handle, doorId);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.vehicle.getEntryPositionOfDoor.apply(this, [this.handle, doorId]);
 };
 
 mp.Vehicle.prototype.canShuffleSeat ??= function (seatIndex) {
-    let $res = natives.canShuffleSeat(this.handle, seatIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.canShuffleSeat.apply(this, [this.handle, seatIndex]);
 };
 
 mp.Vehicle.prototype.getNumModKits ??= function () {
-    let $res = natives.getNumModKits(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getNumModKits.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setModKit ??= function (modKit) {
-    let $res = natives.setVehicleModKit(this.handle, modKit);
+    return mp.game2.vehicle.setModKit.apply(this, [this.handle, modKit]);
 };
 
 mp.Vehicle.prototype.getModKit ??= function () {
-    let $res = natives.getVehicleModKit(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getModKit.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getModKitType ??= function () {
-    let $res = natives.getVehicleModKitType(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getModKitType.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setModColor1 ??= function (paintType, color, pearlescentColor) {
-    let $res = natives.setVehicleModColor1(this.handle, paintType, color, pearlescentColor);
+    return mp.game2.vehicle.setModColor1.apply(this, [this.handle, paintType, color, pearlescentColor]);
 };
 
 mp.Vehicle.prototype.setModColor2 ??= function (paintType, color) {
-    let $res = natives.setVehicleModColor2(this.handle, paintType, color);
+    return mp.game2.vehicle.setModColor2.apply(this, [this.handle, paintType, color]);
 };
 
 mp.Vehicle.prototype.getModColor1 ??= function () {
-    let $res = natives.getVehicleModColor1(this.handle, 0, 0, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.paintType = $res[1];
-    $resObj.color = $res[2];
-    $resObj.pearlescentColor = $res[3];
-    return $resObj;
+    return mp.game2.vehicle.getModColor1.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getModColor2 ??= function () {
-    let $res = natives.getVehicleModColor2(this.handle, 0, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.paintType = $res[1];
-    $resObj.color = $res[2];
-    return $resObj;
+    return mp.game2.vehicle.getModColor2.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getModColor1Name ??= function (p1) {
-    let $res = natives.getVehicleModColor1Name(this.handle, p1 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getModColor1Name.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.getModColor2Name ??= function () {
-    let $res = natives.getVehicleModColor2Name(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getModColor2Name.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.haveModsStreamedIn ??= function () {
-    let $res = natives.haveVehicleModsStreamedIn(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.haveModsStreamedIn.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getModVariation ??= function (modType) {
-    let $res = natives.getVehicleModVariation(this.handle, modType);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.getModVariation.apply(this, [this.handle, modType]);
 };
 
 mp.Vehicle.prototype.getNumMods ??= function (modType) {
-    let $res = natives.getNumVehicleMods(this.handle, modType);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getNumMods.apply(this, [this.handle, modType]);
 };
 
 mp.Vehicle.prototype.removeMod ??= function (modType) {
-    let $res = natives.removeVehicleMod(this.handle, modType);
+    return mp.game2.vehicle.removeMod.apply(this, [this.handle, modType]);
 };
 
 mp.Vehicle.prototype.toggleMod ??= function (modType, toggle) {
-    let $res = natives.toggleVehicleMod(this.handle, modType, toggle | 0);
+    return mp.game2.vehicle.toggleMod.apply(this, [this.handle, modType, toggle]);
 };
 
 mp.Vehicle.prototype.isToggleModOn ??= function (modType) {
-    let $res = natives.isToggleModOn(this.handle, modType);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isToggleModOn.apply(this, [this.handle, modType]);
 };
 
 mp.Vehicle.prototype.getModTextLabel ??= function (modType, modValue) {
-    let $res = natives.getModTextLabel(this.handle, modType, modValue);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getModTextLabel.apply(this, [this.handle, modType, modValue]);
 };
 
 mp.Vehicle.prototype.getModSlotName ??= function (modType) {
-    let $res = natives.getModSlotName(this.handle, modType);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getModSlotName.apply(this, [this.handle, modType]);
 };
 
 mp.Vehicle.prototype.getLiveryName ??= function (liveryIndex) {
-    let $res = natives.getLiveryName(this.handle, liveryIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getLiveryName.apply(this, [this.handle, liveryIndex]);
 };
 
 mp.Vehicle.prototype.getModModifierValue ??= function (modType, modIndex) {
-    let $res = natives.getVehicleModModifierValue(this.handle, modType, modIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getModModifierValue.apply(this, [this.handle, modType, modIndex]);
 };
 
 mp.Vehicle.prototype.getModIdentifierHash ??= function (modType, modIndex) {
-    let $res = natives.getVehicleModIdentifierHash(this.handle, modType, modIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getModIdentifierHash.apply(this, [this.handle, modType, modIndex]);
 };
 
 mp.Vehicle.prototype.releasePreloadMods ??= function () {
-    let $res = natives.releasePreloadMods(this.handle);
+    return mp.game2.vehicle.releasePreloadMods.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setTyreSmokeColor ??= function (r, g, b) {
-    let $res = natives.setVehicleTyreSmokeColor(this.handle, r, g, b);
+    return mp.game2.vehicle.setTyreSmokeColor.apply(this, [this.handle, r, g, b]);
 };
 
 mp.Vehicle.prototype.getTyreSmokeColor ??= function () {
-    let $res = natives.getVehicleTyreSmokeColor(this.handle, 0, 0, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.r = $res[1];
-    $resObj.g = $res[2];
-    $resObj.b = $res[3];
-    return $resObj;
+    return mp.game2.vehicle.getTyreSmokeColor.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getColor ??= function () {
-    let $res = natives.getVehicleColor(this.handle, 0, 0, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.r = $res[1];
-    $resObj.g = $res[2];
-    $resObj.b = $res[3];
-    return $resObj;
+    return mp.game2.vehicle.getColor.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getCauseOfDestruction ??= function () {
-    let $res = natives.getVehicleCauseOfDestruction(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getCauseOfDestruction.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.overrideOverheatHealth ??= function (health) {
-    let $res = natives.overridePlaneDamageThrehsold(this.handle, health);
+    return mp.game2.vehicle.overrideOverheatHealth.apply(this, [this.handle, health]);
 };
 
 mp.Vehicle.prototype.getIsLeftHeadlightDamaged ??= function () {
-    let $res = natives.getIsLeftVehicleHeadlightDamaged(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.getIsLeftHeadlightDamaged.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getIsRightHeadlightDamaged ??= function () {
-    let $res = natives.getIsRightVehicleHeadlightDamaged(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.getIsRightHeadlightDamaged.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isEngineOnFire ??= function () {
-    let $res = natives.getBothVehicleHeadlightsDamaged(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isEngineOnFire.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.modifyTopSpeed ??= function (value) {
-    let $res = natives.modifyVehicleTopSpeed(this.handle, value);
+    return mp.game2.vehicle.modifyTopSpeed.apply(this, [this.handle, value]);
 };
 
 mp.Vehicle.prototype.isAnyPedRappellingFromHeli ??= function () {
-    let $res = natives.isAnyPedRappellingFromHeli(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isAnyPedRappellingFromHeli.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setCheatPowerIncrease ??= function (value) {
-    let $res = natives.setVehicleCheatPowerIncrease(this.handle, value);
+    return mp.game2.vehicle.setCheatPowerIncrease.apply(this, [this.handle, value]);
 };
 
 mp.Vehicle.prototype.setIsWanted ??= function (state) {
-    let $res = natives.setVehicleIsWanted(this.handle, state | 0);
+    return mp.game2.vehicle.setIsWanted.apply(this, [this.handle, state]);
 };
 
 mp.Blip.prototype.setBoatBoomPositionRatio ??= function (ratio) {
-    let $res = natives.swingBoatBoomToRatio(this.handle, ratio);
+    return mp.game2.vehicle.setBoatBoomPositionRatio.apply(this, [this.handle, ratio]);
 };
 
 mp.Blip.prototype.getBoatBoomPositionRatio2 ??= function (p1) {
-    let $res = natives.swingBoatBoomFreely(this.handle, p1 | 0);
+    return mp.game2.vehicle.getBoatBoomPositionRatio2.apply(this, [this.handle, p1]);
 };
 
 mp.Blip.prototype.getBoatBoomPositionRatio3 ??= function (p1) {
-    let $res = natives.allowBoatBoomToAnimate(this.handle, p1 | 0);
+    return mp.game2.vehicle.getBoatBoomPositionRatio3.apply(this, [this.handle, p1]);
 };
 
 mp.Blip.prototype.getBoatBoomPositionRatio ??= function () {
-    let $res = natives.getBoatBoomPositionRatio(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getBoatBoomPositionRatio.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.disablePlaneAileron ??= function (p1, p2) {
-    let $res = natives.disablePlaneAileron(this.handle, p1 | 0, p2 | 0);
+    return mp.game2.vehicle.disablePlaneAileron.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Vehicle.prototype.getIsEngineRunning ??= function () {
-    let $res = natives.getIsVehicleEngineRunning(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.getIsEngineRunning.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setUseAlternateHandling ??= function (toggle) {
-    let $res = natives.setVehicleUseAlternateHandling(this.handle, toggle | 0);
+    return mp.game2.vehicle.setUseAlternateHandling.apply(this, [this.handle, toggle]);
 };
 
 mp.Blip.prototype.setBikeOnStand ??= function (x, y) {
-    let $res = natives.setBikeOnStand(this.handle, x, y);
+    return mp.game2.vehicle.setBikeOnStand.apply(this, [this.handle, x, y]);
 };
 
 mp.Vehicle.prototype.setLastDriven ??= function () {
-    let $res = natives.setLastDrivenVehicle(this.handle);
+    return mp.game2.vehicle.setLastDriven.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setHasBeenDrivenFlag ??= function (toggle) {
-    let $res = natives.setVehicleHasBeenDrivenFlag(this.handle, toggle | 0);
+    return mp.game2.vehicle.setHasBeenDrivenFlag.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setTaskGotoPlaneMinHeightAboveTerrain ??= function (height) {
-    let $res = natives.setTaskVehicleGotoPlaneMinHeightAboveTerrain(this.handle, height);
+    return mp.game2.vehicle.setTaskGotoPlaneMinHeightAboveTerrain.apply(this, [this.handle, height]);
 };
 
 mp.Vehicle.prototype.setLodMultiplier ??= function (multiplier) {
-    let $res = natives.setVehicleLodMultiplier(this.handle, multiplier);
+    return mp.game2.vehicle.setLodMultiplier.apply(this, [this.handle, multiplier]);
 };
 
 mp.Vehicle.prototype.setCanSaveInGarage ??= function (toggle) {
-    let $res = natives.setVehicleCanSaveInGarage(this.handle, toggle | 0);
+    return mp.game2.vehicle.setCanSaveInGarage.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.getNumberOfBrokenOffBones ??= function () {
-    let $res = natives.getVehicleNumOfBrokenOffParts(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getNumberOfBrokenOffBones.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getNumberOfBrokenBones ??= function () {
-    let $res = natives.getVehicleNumOfBrokenLoosenParts(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getNumberOfBrokenBones.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setGeneratesEngineShockingEvents ??= function (toggle) {
-    let $res = natives.setVehicleGeneratesEngineShockingEvents(this.handle, toggle | 0);
+    return mp.game2.vehicle.setGeneratesEngineShockingEvents.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.copyDamages ??= function (targetVehicle) {
-    let $res = natives.copyVehicleDamages(this.handle, targetVehicle);
+    return mp.game2.vehicle.copyDamages.apply(this, [this.handle, targetVehicle]);
 };
 
 mp.Vehicle.prototype.setShootAtTarget ??= function (entity, xTarget, yTarget, zTarget) {
-    let $res = natives.setVehicleShootAtTarget(this.handle, entity, xTarget, yTarget, zTarget);
+    return mp.game2.vehicle.setShootAtTarget.apply(this, [this.handle, entity, xTarget, yTarget, zTarget]);
 };
 
 mp.Vehicle.prototype.getLockOnTarget ??= function () {
-    let $res = natives.getVehicleLockOnTarget(this.handle, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.entity = $res[1];
-    return $res[0] == 1 ? $resObj.entity : undefined;
+    return mp.game2.vehicle.getLockOnTarget.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setForceHd ??= function (toggle) {
-    let $res = natives.setForceHdVehicle(this.handle, toggle | 0);
+    return mp.game2.vehicle.setForceHd.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.getPlateType ??= function () {
-    let $res = natives.getVehiclePlateType(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getPlateType.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.trackVisibility ??= function () {
-    let $res = natives.trackVehicleVisibility(this.handle);
+    return mp.game2.vehicle.trackVisibility.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setGravity ??= function (toggle) {
-    let $res = natives.setVehicleGravity(this.handle, toggle | 0);
+    return mp.game2.vehicle.setGravity.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.getCurrentSlipstreamDraft ??= function () {
-    let $res = natives.getVehicleCurrentTimeInSlipStream(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getCurrentSlipstreamDraft.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isSlipstreamLeader ??= function () {
-    let $res = natives.isVehicleProducingSlipStream(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isSlipstreamLeader.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setInactiveDuringPlayback ??= function (toggle) {
-    let $res = natives.setVehicleInactiveDuringPlayback(this.handle, toggle | 0);
+    return mp.game2.vehicle.setInactiveDuringPlayback.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setActiveDuringPlayback ??= function (p1) {
-    let $res = natives.setVehicleActiveDuringPlayback(this.handle, p1 | 0);
+    return mp.game2.vehicle.setActiveDuringPlayback.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.isSprayable ??= function () {
-    let $res = natives.isVehicleSprayable(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isSprayable.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setEngineCanDegrade ??= function (toggle) {
-    let $res = natives.setVehicleEngineCanDegrade(this.handle, toggle | 0);
+    return mp.game2.vehicle.setEngineCanDegrade.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setShadowEffect ??= function (p1, p2) {
-    let $res = natives.disableVehcileDynamicAmbientScales(this.handle, p1, p2);
+    return mp.game2.vehicle.setShadowEffect.apply(this, [this.handle, p1, p2]);
 };
 
 mp.Vehicle.prototype.removeShadowEffect ??= function () {
-    let $res = natives.enableVehicleDynamicAmbientScales(this.handle);
+    return mp.game2.vehicle.removeShadowEffect.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isPlaneLandingGearIntact ??= function () {
-    let $res = natives.isPlaneLandingGearIntact(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isPlaneLandingGearIntact.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.arePlanePropellersIntact ??= function () {
-    let $res = natives.arePlanePropellersIntact(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.arePlanePropellersIntact.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setPlanePropellersHealth ??= function (health) {
-    let $res = natives.setPlanePropellerHealth(this.handle, health);
+    return mp.game2.vehicle.setPlanePropellersHealth.apply(this, [this.handle, health]);
 };
 
 mp.Vehicle.prototype.setCanDeformWheels ??= function (toggle) {
-    let $res = natives.setVehicleCanDeformWheels(this.handle, toggle | 0);
+    return mp.game2.vehicle.setCanDeformWheels.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.isStolen ??= function () {
-    let $res = natives.isVehicleStolen(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isStolen.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setIsStolen ??= function (isStolen) {
-    let $res = natives.setVehicleIsStolen(this.handle, isStolen | 0);
+    return mp.game2.vehicle.setIsStolen.apply(this, [this.handle, isStolen]);
 };
 
 mp.Vehicle.prototype.setPlaneTurbulenceMultiplier ??= function (multiplier) {
-    let $res = natives.setPlaneTurbulenceMultiplier(this.handle, multiplier);
+    return mp.game2.vehicle.setPlaneTurbulenceMultiplier.apply(this, [this.handle, multiplier]);
 };
 
 mp.Vehicle.prototype.arePlaneWingsIntact ??= function () {
-    let $res = natives.areWingsOfPlaneIntact(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.arePlaneWingsIntact.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.detachFromCargobob ??= function (cargobob) {
-    let $res = natives.detachVehicleFromCargobob(this.handle, cargobob);
+    return mp.game2.vehicle.detachFromCargobob.apply(this, [this.handle, cargobob]);
 };
 
 mp.Vehicle.prototype.detachFromAnyCargobob ??= function () {
-    let $res = natives.detachVehicleFromAnyCargobob(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.detachFromAnyCargobob.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.detachEntityFromCargobob ??= function (entity) {
-    let $res = natives.detachEntityFromCargobob(this.handle, entity);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.detachEntityFromCargobob.apply(this, [this.handle, entity]);
 };
 
 mp.Vehicle.prototype.isAttachedToCargobob ??= function (vehicleAttached) {
-    let $res = natives.isVehicleAttachedToCargobob(this.handle, vehicleAttached);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isAttachedToCargobob.apply(this, [this.handle, vehicleAttached]);
 };
 
 mp.Vehicle.prototype.getAttachedToCargobob ??= function () {
-    let $res = natives.getVehicleAttachedToCargobob(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getAttachedToCargobob.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getEntityAttachedToCargobob ??= function () {
-    let $res = natives.getEntityAttachedToCargobob(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getEntityAttachedToCargobob.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getEntityAttachedToCargobob ??= function () {
-    let $res = natives.getEntityAttachedToCargobob(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getEntityAttachedToCargobob.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.getEntityAttachedToCargobob ??= function () {
-    let $res = natives.getEntityAttachedToCargobob(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getEntityAttachedToCargobob.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getEntityAttachedToCargobob ??= function () {
-    let $res = natives.getEntityAttachedToCargobob(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getEntityAttachedToCargobob.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.attachToCargobob ??= function (cargobob, p2, x, y, z) {
-    let $res = natives.attachVehicleToCargobob(this.handle, cargobob, p2, x, y, z);
+    return mp.game2.vehicle.attachToCargobob.apply(this, [this.handle, cargobob, p2, x, y, z]);
 };
 
 mp.Vehicle.prototype.setCargobobHookCanDetach ??= function (toggle) {
-    let $res = natives.setCargobobForceDontDetachVehicle(this.handle, toggle | 0);
+    return mp.game2.vehicle.setCargobobHookCanDetach.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.getCargobobHookPosition ??= function () {
-    let $res = natives.getAttachedPickUpHookPosition(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.vehicle.getCargobobHookPosition.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.doesCargobobHavePickUpRope ??= function () {
-    let $res = natives.doesCargobobHavePickUpRope(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.doesCargobobHavePickUpRope.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.createPickUpRopeForCargobob ??= function (state) {
-    let $res = natives.createPickUpRopeForCargobob(this.handle, state);
+    return mp.game2.vehicle.createPickUpRopeForCargobob.apply(this, [this.handle, state]);
 };
 
 mp.Vehicle.prototype.removePickUpRopeForCargobob ??= function () {
-    let $res = natives.removePickUpRopeForCargobob(this.handle);
+    return mp.game2.vehicle.removePickUpRopeForCargobob.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setPickupRopeLengthForCargobob ??= function (length1, length2, p3) {
-    let $res = natives.setPickupRopeLengthForCargobob(this.handle, length1, length2, p3 | 0);
+    return mp.game2.vehicle.setPickupRopeLengthForCargobob.apply(this, [this.handle, length1, length2, p3]);
 };
 
 mp.Vehicle.prototype.doesCargobobHavePickupMagnet ??= function () {
-    let $res = natives.doesCargobobHavePickupMagnet(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.doesCargobobHavePickupMagnet.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setCargobobPickupMagnetActive ??= function (isActive) {
-    let $res = natives.setCargobobPickupMagnetActive(this.handle, isActive | 0);
+    return mp.game2.vehicle.setCargobobPickupMagnetActive.apply(this, [this.handle, isActive]);
 };
 
 mp.Vehicle.prototype.setCargobobPickupMagnetStrength ??= function (strength) {
-    let $res = natives.setCargobobPickupMagnetStrength(this.handle, strength);
+    return mp.game2.vehicle.setCargobobPickupMagnetStrength.apply(this, [this.handle, strength]);
 };
 
 mp.Vehicle.prototype.setCargobobPickupMagnetEffectRadius ??= function (p1) {
-    let $res = natives.setCargobobPickupMagnetFalloff(this.handle, p1);
+    return mp.game2.vehicle.setCargobobPickupMagnetEffectRadius.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.setCargobobPickupMagnetReducedFalloff ??= function (p1) {
-    let $res = natives.setCargobobPickupMagnetReducedStrength(this.handle, p1);
+    return mp.game2.vehicle.setCargobobPickupMagnetReducedFalloff.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.setCargobobPickupMagnetPullRopeLength ??= function (p1) {
-    let $res = natives.setCargobobPickupMagnetReducedFalloff(this.handle, p1);
+    return mp.game2.vehicle.setCargobobPickupMagnetPullRopeLength.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.setCargobobPickupMagnetPullStrength ??= function (p1) {
-    let $res = natives.setCargobobPickupMagnetPullStrength(this.handle, p1);
+    return mp.game2.vehicle.setCargobobPickupMagnetPullStrength.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.setCargobobPickupMagnetFalloff ??= function (p1) {
-    let $res = natives.setCargobobPickupMagnetPullRopeLength(this.handle, p1);
+    return mp.game2.vehicle.setCargobobPickupMagnetFalloff.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.setCargobobPickupMagnetReducedStrength ??= function (cargobob) {
-    let $res = natives.setCargobobPickupMagnetSetTargetedMode(this.handle, cargobob);
+    return mp.game2.vehicle.setCargobobPickupMagnetReducedStrength.apply(this, [this.handle, cargobob]);
 };
 
 mp.Vehicle.prototype.doesHaveWeapons ??= function () {
-    let $res = natives.doesVehicleHaveWeapons(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.doesHaveWeapons.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isWeaponDisabled ??= function (vehicle, owner) {
-    let $res = natives.isVehicleWeaponDisabled(this.handle, vehicle, owner);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isWeaponDisabled.apply(this, [this.handle, vehicle, owner]);
 };
 
 mp.Vehicle.prototype.setActiveForPedNavigation ??= function (toggle) {
-    let $res = natives.setVehicleActiveForPedNavigation(this.handle, toggle | 0);
+    return mp.game2.vehicle.setActiveForPedNavigation.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.getClass ??= function () {
-    let $res = natives.getVehicleClass(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getClass.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getClassFromName ??= function () {
-    let $res = natives.getVehicleClassFromName(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getClassFromName.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setPlayersLast ??= function () {
-    let $res = natives.setPlayersLastVehicle(this.handle);
+    return mp.game2.vehicle.setPlayersLast.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setCanBeUsedByFleeingPeds ??= function (toggle) {
-    let $res = natives.setVehicleCanBeUsedByFleeingPeds(this.handle, toggle | 0);
+    return mp.game2.vehicle.setCanBeUsedByFleeingPeds.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setDropsMoneyWhenBlownUp ??= function (toggle) {
-    let $res = natives.setVehicleDropsMoneyWhenBlownUp(this.handle, toggle | 0);
+    return mp.game2.vehicle.setDropsMoneyWhenBlownUp.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setJetEngineOn ??= function (toggle) {
-    let $res = natives.setVehicleKeepEngineOnWhenAbandoned(this.handle, toggle | 0);
+    return mp.game2.vehicle.setJetEngineOn.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setHandlingHashForAi ??= function (hash) {
-    let $res = natives.setVehicleHandlingOverride(this.handle, hash);
+    return mp.game2.vehicle.setHandlingHashForAi.apply(this, [this.handle, hash]);
 };
 
 mp.Vehicle.prototype.setExtendedRemovalRange ??= function (range) {
-    let $res = natives.setVehicleExtendedRemovalRange(this.handle, range);
+    return mp.game2.vehicle.setExtendedRemovalRange.apply(this, [this.handle, range]);
 };
 
 mp.Vehicle.prototype.setSteeringBiasScalar ??= function (p1) {
-    let $res = natives.setVehicleSteeringBiasScalar(this.handle, p1);
+    return mp.game2.vehicle.setSteeringBiasScalar.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.setHelicopterRollPitchYawMult ??= function (multiplier) {
-    let $res = natives.setHeliControlLaggingRateScalar(this.handle, multiplier);
+    return mp.game2.vehicle.setHelicopterRollPitchYawMult.apply(this, [this.handle, multiplier]);
 };
 
 mp.Vehicle.prototype.setFrictionOverride ??= function (friction) {
-    let $res = natives.setVehicleFrictionOverride(this.handle, friction);
+    return mp.game2.vehicle.setFrictionOverride.apply(this, [this.handle, friction]);
 };
 
 mp.Vehicle.prototype.setWheelsCanBreakOffWhenBlowUp ??= function (toggle) {
-    let $res = natives.setVehicleWheelsCanBreakOffWhenBlowUp(this.handle, toggle | 0);
+    return mp.game2.vehicle.setWheelsCanBreakOffWhenBlowUp.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setCeilingHeight ??= function (height) {
-    let $res = natives.setVehicleCeilingHeight(this.handle, height);
+    return mp.game2.vehicle.setCeilingHeight.apply(this, [this.handle, height]);
 };
 
 mp.Vehicle.prototype.clearRouteHistory ??= function () {
-    let $res = natives.clearVehicleRouteHistory(this.handle);
+    return mp.game2.vehicle.clearRouteHistory.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setExclusiveDriver ??= function (ped, index) {
-    let $res = natives.setVehicleAiCanUseExclusiveSeats(this.handle, ped, index);
+    return mp.game2.vehicle.setExclusiveDriver.apply(this, [this.handle, ped, index]);
 };
 
 mp.Player.prototype.isPedExclusiveDriverOf ??= function (vehicle) {
-    let $res = natives.isPedExclusiveDriverOfVehicle(this.handle, vehicle, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.outIndex = $res[1];
-    return $res[0] == 1 ? $resObj.outIndex : undefined;
+    return mp.game2.vehicle.isPedExclusiveDriverOf.apply(this, [this.handle, vehicle]);
 };
 
 mp.Ped.prototype.isPedExclusiveDriverOf ??= function (vehicle) {
-    let $res = natives.isPedExclusiveDriverOfVehicle(this.handle, vehicle, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.outIndex = $res[1];
-    return $res[0] == 1 ? $resObj.outIndex : undefined;
+    return mp.game2.vehicle.isPedExclusiveDriverOf.apply(this, [this.handle, vehicle]);
 };
 
 mp.Vehicle.prototype.disableIndividualPlanePropeller ??= function (propeller) {
-    let $res = natives.disableIndividualPlanePropeller(this.handle, propeller);
+    return mp.game2.vehicle.disableIndividualPlanePropeller.apply(this, [this.handle, propeller]);
 };
 
 mp.Vehicle.prototype.setForceAfterburner ??= function (toggle) {
-    let $res = natives.setVehicleForceAfterburner(this.handle, toggle | 0);
+    return mp.game2.vehicle.setForceAfterburner.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setDisableWindowCollisions ??= function (toggle) {
-    let $res = natives.setDontProcessVehicleGlass(this.handle, toggle | 0);
+    return mp.game2.vehicle.setDisableWindowCollisions.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setNeonLightsColour ??= function (r, g, b) {
-    let $res = natives.setVehicleNeonColour(this.handle, r, g, b);
+    return mp.game2.vehicle.setNeonLightsColour.apply(this, [this.handle, r, g, b]);
 };
 
 mp.Vehicle.prototype.getNeonLightsColour ??= function () {
-    let $res = natives.getVehicleNeonColour(this.handle, 0, 0, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.r = $res[1];
-    $resObj.g = $res[2];
-    $resObj.b = $res[3];
-    return $resObj;
+    return mp.game2.vehicle.getNeonLightsColour.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setNeonLightEnabled ??= function (index, toggle) {
-    let $res = natives.setVehicleNeonEnabled(this.handle, index, toggle | 0);
+    return mp.game2.vehicle.setNeonLightEnabled.apply(this, [this.handle, index, toggle]);
 };
 
 mp.Vehicle.prototype.isNeonLightEnabled ??= function (index) {
-    let $res = natives.getVehicleNeonEnabled(this.handle, index);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isNeonLightEnabled.apply(this, [this.handle, index]);
 };
 
 mp.Vehicle.prototype.disableNeonLights ??= function (toggle) {
-    let $res = natives.suppressNeonsOnVehicle(this.handle, toggle | 0);
+    return mp.game2.vehicle.disableNeonLights.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setDisableSuperdummyMode ??= function (p1) {
-    let $res = natives.setDisableSuperdummy(this.handle, p1 | 0);
+    return mp.game2.vehicle.setDisableSuperdummyMode.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.requestDashboardScaleformMovie ??= function () {
-    let $res = natives.requestVehicleDial(this.handle);
+    return mp.game2.vehicle.requestDashboardScaleformMovie.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getBodyHealth ??= function () {
-    let $res = natives.getVehicleBodyHealth(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getBodyHealth.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setBodyHealth ??= function (value) {
-    let $res = natives.setVehicleBodyHealth(this.handle, value);
+    return mp.game2.vehicle.setBodyHealth.apply(this, [this.handle, value]);
 };
 
 mp.Vehicle.prototype.getSuspensionBounds ??= function () {
-    let $res = natives.getVehicleSize(this.handle, undefined, undefined);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.out1 = new mp.Vector3($res[1]);
-    $resObj.out2 = new mp.Vector3($res[2]);
-    return $resObj;
+    return mp.game2.vehicle.getSuspensionBounds.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getSuspensionHeight ??= function () {
-    let $res = natives.getFakeSuspensionLoweringAmount(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getSuspensionHeight.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getNumberOfDoors ??= function () {
-    let $res = natives.getNumberOfVehicleDoors(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getNumberOfDoors.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getBodyHealth2 ??= function (maxEngineHealth, maxPetrolTankHealth, maxBodyHealth, maxMainRotorHealth, maxTailRotorHealth, maxUnkHealth) {
-    let $res = natives.getVehicleHealthPercentage(this.handle, maxEngineHealth || 0, maxPetrolTankHealth || 0, maxBodyHealth || 0, maxMainRotorHealth || 0, maxTailRotorHealth || 0, maxUnkHealth || 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getBodyHealth2.apply(this, [this.handle, maxEngineHealth, maxPetrolTankHealth, maxBodyHealth, maxMainRotorHealth, maxTailRotorHealth, maxUnkHealth]);
 };
 
 mp.Vehicle.prototype.setKersAllowed ??= function (toggle) {
-    let $res = natives.setVehicleKersAllowed(this.handle, toggle | 0);
+    return mp.game2.vehicle.setKersAllowed.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.getHasKers ??= function () {
-    let $res = natives.getVehicleHasKers(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.getHasKers.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setHydraulicWheelValue ??= function (wheelId, value) {
-    let $res = natives.setHydraulicSuspensionRaiseFactor(this.handle, wheelId, value);
+    return mp.game2.vehicle.setHydraulicWheelValue.apply(this, [this.handle, wheelId, value]);
 };
 
 mp.Vehicle.prototype.getHydraulicWheelValue ??= function (wheelId) {
-    let $res = natives.getHydraulicSuspensionRaiseFactor(this.handle, wheelId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getHydraulicWheelValue.apply(this, [this.handle, wheelId]);
 };
 
 mp.Camera.prototype.setCamberedWheelsDisabled ??= function (p1) {
-    let $res = natives.setCanUseHydraulics(this.handle, p1);
+    return mp.game2.vehicle.setCamberedWheelsDisabled.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.setHydraulicWheelStateTransition ??= function (wheelId, state, value, p4) {
-    let $res = natives.setHydraulicWheelState(this.handle, wheelId, state, value, p4);
+    return mp.game2.vehicle.setHydraulicWheelStateTransition.apply(this, [this.handle, wheelId, state, value, p4]);
 };
 
 mp.Vehicle.prototype.setDamageModifier ??= function (p1) {
-    let $res = natives.setVehicleDamageScale(this.handle, p1);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.setDamageModifier.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.setUnkDamageMultiplier ??= function (multiplier) {
-    let $res = natives.setVehicleWeaponDamageScale(this.handle, multiplier);
+    return mp.game2.vehicle.setUnkDamageMultiplier.apply(this, [this.handle, multiplier]);
 };
 
 mp.Vehicle.prototype.setControlsInverted ??= function (state) {
-    let $res = natives.setInvertVehicleControls(this.handle, state | 0);
+    return mp.game2.vehicle.setControlsInverted.apply(this, [this.handle, state]);
 };
 
 mp.Vehicle.prototype.setRampLaunchModifier ??= function (p1) {
-    let $res = natives.setScriptRampImpulseScale(this.handle, p1);
+    return mp.game2.vehicle.setRampLaunchModifier.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.getIsDoorValid ??= function (doorId) {
-    let $res = natives.getIsDoorValid(this.handle, doorId);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.getIsDoorValid.apply(this, [this.handle, doorId]);
 };
 
 mp.Vehicle.prototype.setRocketBoostRefillTime ??= function (seconds) {
-    let $res = natives.setScriptRocketBoostRechargeTime(this.handle, seconds);
+    return mp.game2.vehicle.setRocketBoostRefillTime.apply(this, [this.handle, seconds]);
 };
 
 mp.Vehicle.prototype.getHasRocketBoost ??= function () {
-    let $res = natives.getHasRocketBoost(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.getHasRocketBoost.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.isRocketBoostActive ??= function () {
-    let $res = natives.isRocketBoostActive(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.isRocketBoostActive.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setRocketBoostActive ??= function (active) {
-    let $res = natives.setRocketBoostActive(this.handle, active | 0);
+    return mp.game2.vehicle.setRocketBoostActive.apply(this, [this.handle, active]);
 };
 
 mp.Vehicle.prototype.getHasRetractableWheels ??= function () {
-    let $res = natives.getHasRetractableWheels(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.getHasRetractableWheels.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getIsWheelsLoweredStateActive ??= function () {
-    let $res = natives.getIsWheelsRetracted(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.getIsWheelsLoweredStateActive.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.raiseRetractableWheels ??= function () {
-    let $res = natives.setWheelsExtendedInstantly(this.handle);
+    return mp.game2.vehicle.raiseRetractableWheels.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.lowerRetractableWheels ??= function () {
-    let $res = natives.setWheelsRetractedInstantly(this.handle);
+    return mp.game2.vehicle.lowerRetractableWheels.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getCanJump ??= function () {
-    let $res = natives.getCarHasJump(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.getCanJump.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setUseHigherJumpForce ??= function (toggle) {
-    let $res = natives.setUseHigherCarJump(this.handle, toggle | 0);
+    return mp.game2.vehicle.setUseHigherJumpForce.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setWeaponCapacity ??= function (weaponIndex, capacity) {
-    let $res = natives.setVehicleWeaponRestrictedAmmo(this.handle, weaponIndex, capacity);
+    return mp.game2.vehicle.setWeaponCapacity.apply(this, [this.handle, weaponIndex, capacity]);
 };
 
 mp.Vehicle.prototype.getWeaponCapacity ??= function (weaponIndex) {
-    let $res = natives.getVehicleWeaponRestrictedAmmo(this.handle, weaponIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getWeaponCapacity.apply(this, [this.handle, weaponIndex]);
 };
 
 mp.Vehicle.prototype.getHasParachute ??= function () {
-    let $res = natives.getVehicleHasParachute(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.getHasParachute.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getCanActivateParachute ??= function () {
-    let $res = natives.getVehicleCanDeployParachute(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.getCanActivateParachute.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setParachuteActive ??= function (active) {
-    let $res = natives.vehicleStartParachuting(this.handle, active | 0);
+    return mp.game2.vehicle.setParachuteActive.apply(this, [this.handle, active]);
 };
 
 mp.Vehicle.prototype.setReceivesRampDamage ??= function (toggle) {
-    let $res = natives.vehicleSetRampAndRammingCarsTakeDamage(this.handle, toggle | 0);
+    return mp.game2.vehicle.setReceivesRampDamage.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setRampSidewaysLaunchMotion ??= function (p1) {
-    let $res = natives.vehicleSetEnableRampCarSideImpulse(this.handle, p1);
+    return mp.game2.vehicle.setRampSidewaysLaunchMotion.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.setRampUpwardsLaunchMotion ??= function (p1) {
-    let $res = natives.vehicleSetEnableNormaliseRampCarVerticalVeloctiy(this.handle, p1);
+    return mp.game2.vehicle.setRampUpwardsLaunchMotion.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.setWeaponsDisabled ??= function (p1) {
-    let $res = natives.setVehicleWeaponCanTargetObjects(this.handle, p1);
+    return mp.game2.vehicle.setWeaponsDisabled.apply(this, [this.handle, p1]);
 };
 
 mp.Vehicle.prototype.setParachuteModel ??= function (modelHash) {
-    let $res = natives.vehicleSetParachuteModelOverride(this.handle, modelHash);
+    return mp.game2.vehicle.setParachuteModel.apply(this, [this.handle, modelHash]);
 };
 
 mp.Vehicle.prototype.setParachuteTextureVariation ??= function (textureVariation) {
-    let $res = natives.vehicleSetParachuteModelTintIndex(this.handle, textureVariation);
+    return mp.game2.vehicle.setParachuteTextureVariation.apply(this, [this.handle, textureVariation]);
 };
 
 mp.Vehicle.prototype.setRocketBoostPercentage ??= function (percentage) {
-    let $res = natives.setRocketBoostFill(this.handle, percentage);
+    return mp.game2.vehicle.setRocketBoostPercentage.apply(this, [this.handle, percentage]);
 };
 
 mp.Vehicle.prototype.setOppressorTransformState ??= function (state) {
-    let $res = natives.setGliderActive(this.handle, state | 0);
+    return mp.game2.vehicle.setOppressorTransformState.apply(this, [this.handle, state]);
 };
 
 mp.Vehicle.prototype.disableWorldCollision ??= function () {
-    let $res = natives.setDisableMapCollision(this.handle);
+    return mp.game2.vehicle.disableWorldCollision.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setCargobobHookCanAttach ??= function (toggle) {
-    let $res = natives.setHeliCanPickupEntityThatHasPickUpDisabled(this.handle, toggle | 0);
+    return mp.game2.vehicle.setCargobobHookCanAttach.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setBombCount ??= function (bombCount) {
-    let $res = natives.setVehicleBombAmmo(this.handle, bombCount);
+    return mp.game2.vehicle.setBombCount.apply(this, [this.handle, bombCount]);
 };
 
 mp.Vehicle.prototype.getBombCount ??= function () {
-    let $res = natives.getVehicleBombAmmo(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getBombCount.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setCountermeasureCount ??= function (counterMeasureCount) {
-    let $res = natives.setVehicleCountermeasureAmmo(this.handle, counterMeasureCount);
+    return mp.game2.vehicle.setCountermeasureCount.apply(this, [this.handle, counterMeasureCount]);
 };
 
 mp.Vehicle.prototype.getCountermeasureCount ??= function () {
-    let $res = natives.getVehicleCountermeasureAmmo(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getCountermeasureCount.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setHoverTransformRatio ??= function (ratio) {
-    let $res = natives.setSpecialFlightModeRatio(this.handle, ratio);
+    return mp.game2.vehicle.setHoverTransformRatio.apply(this, [this.handle, ratio]);
 };
 
 mp.Vehicle.prototype.setHoverTransformPercentage ??= function (percentage) {
-    let $res = natives.setSpecialFlightModeTargetRatio(this.handle, percentage);
+    return mp.game2.vehicle.setHoverTransformPercentage.apply(this, [this.handle, percentage]);
 };
 
 mp.Vehicle.prototype.setHoverTransformEnabled ??= function (toggle) {
-    let $res = natives.setSpecialFlightModeAllowed(this.handle, toggle | 0);
+    return mp.game2.vehicle.setHoverTransformEnabled.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.setHoverTransformActive ??= function (toggle) {
-    let $res = natives.setDisableHoverModeFlight(this.handle, toggle | 0);
+    return mp.game2.vehicle.setHoverTransformActive.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.findRandomPointInSpace ??= function () {
-    let $res = natives.findSpawnCoordinatesForHeli(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.vehicle.findRandomPointInSpace.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.findRandomPointInSpace ??= function () {
-    let $res = natives.findSpawnCoordinatesForHeli(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = new mp.Vector3(0, 0, 0);
-    $resObj.x = $res[0].x;
-    $resObj.y = $res[0].y;
-    $resObj.z = $res[0].z;
-    return $resObj;
+    return mp.game2.vehicle.findRandomPointInSpace.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setDeployHeliStubWings ??= function (deploy, p2) {
-    let $res = natives.setDeployFoldingWings(this.handle, deploy | 0, p2 | 0);
+    return mp.game2.vehicle.setDeployHeliStubWings.apply(this, [this.handle, deploy, p2]);
 };
 
 mp.Vehicle.prototype.areHeliStubWingsDeployed ??= function () {
-    let $res = natives.areFoldingWingsDeployed(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.areHeliStubWingsDeployed.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setTurretUnk ??= function (index, toggle) {
-    let $res = natives.setTurretHidden(this.handle, index, toggle | 0);
+    return mp.game2.vehicle.setTurretUnk.apply(this, [this.handle, index, toggle]);
 };
 
 mp.Vehicle.prototype.setSpecialflightWingRatio ??= function (ratio) {
-    let $res = natives.setHoverModeWingRatio(this.handle, ratio);
+    return mp.game2.vehicle.setSpecialflightWingRatio.apply(this, [this.handle, ratio]);
 };
 
 mp.Vehicle.prototype.setDisableTurretMovementThisFrame ??= function (turretId) {
-    let $res = natives.setDisableTurretMovement(this.handle, turretId);
+    return mp.game2.vehicle.setDisableTurretMovementThisFrame.apply(this, [this.handle, turretId]);
 };
 
 mp.Vehicle.prototype.setUnkFloat0X104ForSubmarineTask ??= function (value) {
-    let $res = natives.setTransformRateForAnimation(this.handle, value);
+    return mp.game2.vehicle.setUnkFloat0X104ForSubmarineTask.apply(this, [this.handle, value]);
 };
 
 mp.Vehicle.prototype.setUnkBool0X102ForSubmarineTask ??= function (value) {
-    let $res = natives.setTransformToSubmarineUsesAlternateInput(this.handle, value | 0);
+    return mp.game2.vehicle.setUnkBool0X102ForSubmarineTask.apply(this, [this.handle, value]);
 };
 
 mp.Vehicle.prototype.getIsShuntBoostActive ??= function () {
-    let $res = natives.getIsVehicleShunting(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.getIsShuntBoostActive.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getLastRammed ??= function () {
-    let $res = natives.getLastShuntVehicle(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getLastRammed.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.setNitroEnabled ??= function (toggle, level, power, rechargeTime, disableSound) {
-    let $res = natives.setOverrideNitrousLevel(this.handle, toggle | 0, level, power, rechargeTime, disableSound | 0);
+    return mp.game2.vehicle.setNitroEnabled.apply(this, [this.handle, toggle, level, power, rechargeTime, disableSound]);
 };
 
 mp.Vehicle.prototype.setWheelsDealDamage ??= function (toggle) {
-    let $res = natives.setIncreaseWheelCrushDamage(this.handle, toggle | 0);
+    return mp.game2.vehicle.setWheelsDealDamage.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.getDoesHaveTombstone ??= function () {
-    let $res = natives.getDoesVehicleHaveTombstone(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.getDoesHaveTombstone.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.hideTombstone ??= function (toggle) {
-    let $res = natives.hideTombstone(this.handle, toggle | 0);
+    return mp.game2.vehicle.hideTombstone.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.getIsEmpDisabled ??= function () {
-    let $res = natives.getIsVehicleDisabledByEmp(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.getIsEmpDisabled.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.getTyreHealth ??= function (wheelIndex) {
-    let $res = natives.getTyreHealth(this.handle, wheelIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getTyreHealth.apply(this, [this.handle, wheelIndex]);
 };
 
 mp.Vehicle.prototype.setTyreHealth ??= function (wheelIndex, health) {
-    let $res = natives.setTyreHealth(this.handle, wheelIndex, health);
+    return mp.game2.vehicle.setTyreHealth.apply(this, [this.handle, wheelIndex, health]);
 };
 
 mp.Vehicle.prototype.getTyreWearMultiplier ??= function (wheelIndex) {
-    let $res = natives.getTyreWearRate(this.handle, wheelIndex);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.vehicle.getTyreWearMultiplier.apply(this, [this.handle, wheelIndex]);
 };
 
 mp.Vehicle.prototype.setTyreWearMultiplier ??= function (wheelIndex, multiplier) {
-    let $res = natives.setTyreWearRate(this.handle, wheelIndex, multiplier);
+    return mp.game2.vehicle.setTyreWearMultiplier.apply(this, [this.handle, wheelIndex, multiplier]);
 };
 
 mp.Vehicle.prototype.setTyreSoftnessMultiplier ??= function (wheelIndex, multiplier) {
-    let $res = natives.setTyreWearRateScale(this.handle, wheelIndex, multiplier);
+    return mp.game2.vehicle.setTyreSoftnessMultiplier.apply(this, [this.handle, wheelIndex, multiplier]);
 };
 
 mp.Vehicle.prototype.setTyreTractionLossMultiplier ??= function (wheelIndex, multiplier) {
-    let $res = natives.setTyreMaximumGripDifferenceDueToWearRate(this.handle, wheelIndex, multiplier);
+    return mp.game2.vehicle.setTyreTractionLossMultiplier.apply(this, [this.handle, wheelIndex, multiplier]);
 };
 
 mp.Vehicle.prototype.setReduceDriftSuspension ??= function (enable) {
-    let $res = natives.setReducedSuspensionForce(this.handle, enable | 0);
+    return mp.game2.vehicle.setReduceDriftSuspension.apply(this, [this.handle, enable]);
 };
 
 mp.Vehicle.prototype.setDriftTyresEnabled ??= function (toggle) {
-    let $res = natives.setDriftTyres(this.handle, toggle | 0);
+    return mp.game2.vehicle.setDriftTyresEnabled.apply(this, [this.handle, toggle]);
 };
 
 mp.Vehicle.prototype.getDriftTyresEnabled ??= function () {
-    let $res = natives.getDriftTyresSet(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.vehicle.getDriftTyresEnabled.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.networkUseHighPrecisionBlending ??= function (toggle) {
-    let $res = natives.networkUseHighPrecisionTrainBlending(this.handle, toggle | 0);
+    return mp.game2.vehicle.networkUseHighPrecisionBlending.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setCurrentPed ??= function (weaponHash, bForceInHand) {
-    let $res = natives.setCurrentPedWeapon(this.handle, weaponHash, bForceInHand | 0);
+    return mp.game2.weapon.setCurrentPed.apply(this, [this.handle, weaponHash, bForceInHand]);
 };
 
 mp.Ped.prototype.setCurrentPed ??= function (weaponHash, bForceInHand) {
-    let $res = natives.setCurrentPedWeapon(this.handle, weaponHash, bForceInHand | 0);
+    return mp.game2.weapon.setCurrentPed.apply(this, [this.handle, weaponHash, bForceInHand]);
 };
 
 mp.Player.prototype.getCurrentPed ??= function (p2) {
-    let $res = natives.getCurrentPedWeapon(this.handle, 0, p2 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.weaponHash = $res[1];
-    return $res[0] == 1 ? $resObj.weaponHash : undefined;
+    return mp.game2.weapon.getCurrentPed.apply(this, [this.handle, p2]);
 };
 
 mp.Ped.prototype.getCurrentPed ??= function (p2) {
-    let $res = natives.getCurrentPedWeapon(this.handle, 0, p2 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.weaponHash = $res[1];
-    return $res[0] == 1 ? $resObj.weaponHash : undefined;
+    return mp.game2.weapon.getCurrentPed.apply(this, [this.handle, p2]);
 };
 
 mp.Player.prototype.getCurrentPedEntityIndex ??= function (p1) {
-    let $res = natives.getCurrentPedWeaponEntityIndex(this.handle, p1 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getCurrentPedEntityIndex.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.getCurrentPedEntityIndex ??= function (p1) {
-    let $res = natives.getCurrentPedWeaponEntityIndex(this.handle, p1 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getCurrentPedEntityIndex.apply(this, [this.handle, p1]);
 };
 
 mp.Blip.prototype.getBestPed ??= function (p1) {
-    let $res = natives.getBestPedWeapon(this.handle, p1 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getBestPed.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.setCurrentPedVehicle ??= function (weaponHash) {
-    let $res = natives.setCurrentPedVehicleWeapon(this.handle, weaponHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.setCurrentPedVehicle.apply(this, [this.handle, weaponHash]);
 };
 
 mp.Ped.prototype.setCurrentPedVehicle ??= function (weaponHash) {
-    let $res = natives.setCurrentPedVehicleWeapon(this.handle, weaponHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.setCurrentPedVehicle.apply(this, [this.handle, weaponHash]);
 };
 
 mp.Player.prototype.getCurrentPedVehicle ??= function () {
-    let $res = natives.getCurrentPedVehicleWeapon(this.handle, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.weaponHash = $res[1];
-    return $res[0] == 1 ? $resObj.weaponHash : undefined;
+    return mp.game2.weapon.getCurrentPedVehicle.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getCurrentPedVehicle ??= function () {
-    let $res = natives.getCurrentPedVehicleWeapon(this.handle, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.weaponHash = $res[1];
-    return $res[0] == 1 ? $resObj.weaponHash : undefined;
+    return mp.game2.weapon.getCurrentPedVehicle.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isPedArmed ??= function (typeFlags) {
-    let $res = natives.isPedArmed(this.handle, typeFlags);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.isPedArmed.apply(this, [this.handle, typeFlags]);
 };
 
 mp.Ped.prototype.isPedArmed ??= function (typeFlags) {
-    let $res = natives.isPedArmed(this.handle, typeFlags);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.isPedArmed.apply(this, [this.handle, typeFlags]);
 };
 
 mp.Player.prototype.hasPedGot ??= function (weaponHash, p2) {
-    let $res = natives.hasPedGotWeapon(this.handle, weaponHash, p2 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.hasPedGot.apply(this, [this.handle, weaponHash, p2]);
 };
 
 mp.Ped.prototype.hasPedGot ??= function (weaponHash, p2) {
-    let $res = natives.hasPedGotWeapon(this.handle, weaponHash, p2 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.hasPedGot.apply(this, [this.handle, weaponHash, p2]);
 };
 
 mp.Player.prototype.isPedReadyToShoot ??= function () {
-    let $res = natives.isPedWeaponReadyToShoot(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.isPedReadyToShoot.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isPedReadyToShoot ??= function () {
-    let $res = natives.isPedWeaponReadyToShoot(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.isPedReadyToShoot.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getPedTypeInSlot ??= function (weaponSlot) {
-    let $res = natives.getPedWeapontypeInSlot(this.handle, weaponSlot);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getPedTypeInSlot.apply(this, [this.handle, weaponSlot]);
 };
 
 mp.Ped.prototype.getPedTypeInSlot ??= function (weaponSlot) {
-    let $res = natives.getPedWeapontypeInSlot(this.handle, weaponSlot);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getPedTypeInSlot.apply(this, [this.handle, weaponSlot]);
 };
 
 mp.Player.prototype.getAmmoInPed ??= function (weaponhash) {
-    let $res = natives.getAmmoInPedWeapon(this.handle, weaponhash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getAmmoInPed.apply(this, [this.handle, weaponhash]);
 };
 
 mp.Ped.prototype.getAmmoInPed ??= function (weaponhash) {
-    let $res = natives.getAmmoInPedWeapon(this.handle, weaponhash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getAmmoInPed.apply(this, [this.handle, weaponhash]);
 };
 
 mp.Player.prototype.addAmmoToPed ??= function (weaponHash, ammo) {
-    let $res = natives.addAmmoToPed(this.handle, weaponHash, ammo);
+    return mp.game2.weapon.addAmmoToPed.apply(this, [this.handle, weaponHash, ammo]);
 };
 
 mp.Ped.prototype.addAmmoToPed ??= function (weaponHash, ammo) {
-    let $res = natives.addAmmoToPed(this.handle, weaponHash, ammo);
+    return mp.game2.weapon.addAmmoToPed.apply(this, [this.handle, weaponHash, ammo]);
 };
 
 mp.Player.prototype.setPedAmmo ??= function (weaponHash, ammo, p3) {
-    let $res = natives.setPedAmmo(this.handle, weaponHash, ammo, p3 | 0);
+    return mp.game2.weapon.setPedAmmo.apply(this, [this.handle, weaponHash, ammo, p3]);
 };
 
 mp.Ped.prototype.setPedAmmo ??= function (weaponHash, ammo, p3) {
-    let $res = natives.setPedAmmo(this.handle, weaponHash, ammo, p3 | 0);
+    return mp.game2.weapon.setPedAmmo.apply(this, [this.handle, weaponHash, ammo, p3]);
 };
 
 mp.Player.prototype.setPedInfiniteAmmo ??= function (toggle, weaponHash) {
-    let $res = natives.setPedInfiniteAmmo(this.handle, toggle | 0, weaponHash);
+    return mp.game2.weapon.setPedInfiniteAmmo.apply(this, [this.handle, toggle, weaponHash]);
 };
 
 mp.Ped.prototype.setPedInfiniteAmmo ??= function (toggle, weaponHash) {
-    let $res = natives.setPedInfiniteAmmo(this.handle, toggle | 0, weaponHash);
+    return mp.game2.weapon.setPedInfiniteAmmo.apply(this, [this.handle, toggle, weaponHash]);
 };
 
 mp.Player.prototype.setPedInfiniteAmmoClip ??= function (toggle) {
-    let $res = natives.setPedInfiniteAmmoClip(this.handle, toggle | 0);
+    return mp.game2.weapon.setPedInfiniteAmmoClip.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setPedInfiniteAmmoClip ??= function (toggle) {
-    let $res = natives.setPedInfiniteAmmoClip(this.handle, toggle | 0);
+    return mp.game2.weapon.setPedInfiniteAmmoClip.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.giveToPed ??= function (weaponHash, ammoCount, isHidden, bForceInHand) {
-    let $res = natives.giveWeaponToPed(this.handle, weaponHash, ammoCount, isHidden | 0, bForceInHand | 0);
+    return mp.game2.weapon.giveToPed.apply(this, [this.handle, weaponHash, ammoCount, isHidden, bForceInHand]);
 };
 
 mp.Ped.prototype.giveToPed ??= function (weaponHash, ammoCount, isHidden, bForceInHand) {
-    let $res = natives.giveWeaponToPed(this.handle, weaponHash, ammoCount, isHidden | 0, bForceInHand | 0);
+    return mp.game2.weapon.giveToPed.apply(this, [this.handle, weaponHash, ammoCount, isHidden, bForceInHand]);
 };
 
 mp.Player.prototype.giveDelayedToPed ??= function (weaponHash, ammoCount, bForceInHand) {
-    let $res = natives.giveDelayedWeaponToPed(this.handle, weaponHash, ammoCount, bForceInHand | 0);
+    return mp.game2.weapon.giveDelayedToPed.apply(this, [this.handle, weaponHash, ammoCount, bForceInHand]);
 };
 
 mp.Ped.prototype.giveDelayedToPed ??= function (weaponHash, ammoCount, bForceInHand) {
-    let $res = natives.giveDelayedWeaponToPed(this.handle, weaponHash, ammoCount, bForceInHand | 0);
+    return mp.game2.weapon.giveDelayedToPed.apply(this, [this.handle, weaponHash, ammoCount, bForceInHand]);
 };
 
 mp.Player.prototype.removeAllPedS ??= function (p1) {
-    let $res = natives.removeAllPedWeapons(this.handle, p1 | 0);
+    return mp.game2.weapon.removeAllPedS.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.removeAllPedS ??= function (p1) {
-    let $res = natives.removeAllPedWeapons(this.handle, p1 | 0);
+    return mp.game2.weapon.removeAllPedS.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.removeFromPed ??= function (weaponHash) {
-    let $res = natives.removeWeaponFromPed(this.handle, weaponHash);
+    return mp.game2.weapon.removeFromPed.apply(this, [this.handle, weaponHash]);
 };
 
 mp.Ped.prototype.removeFromPed ??= function (weaponHash) {
-    let $res = natives.removeWeaponFromPed(this.handle, weaponHash);
+    return mp.game2.weapon.removeFromPed.apply(this, [this.handle, weaponHash]);
 };
 
 mp.Player.prototype.hidePedForScriptedCutscene ??= function (toggle) {
-    let $res = natives.hidePedWeaponForScriptedCutscene(this.handle, toggle | 0);
+    return mp.game2.weapon.hidePedForScriptedCutscene.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.hidePedForScriptedCutscene ??= function (toggle) {
-    let $res = natives.hidePedWeaponForScriptedCutscene(this.handle, toggle | 0);
+    return mp.game2.weapon.hidePedForScriptedCutscene.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setPedCurrentVisible ??= function (visible, deselectWeapon, p3, p4) {
-    let $res = natives.setPedCurrentWeaponVisible(this.handle, visible | 0, deselectWeapon | 0, p3 | 0, p4 | 0);
+    return mp.game2.weapon.setPedCurrentVisible.apply(this, [this.handle, visible, deselectWeapon, p3, p4]);
 };
 
 mp.Ped.prototype.setPedCurrentVisible ??= function (visible, deselectWeapon, p3, p4) {
-    let $res = natives.setPedCurrentWeaponVisible(this.handle, visible | 0, deselectWeapon | 0, p3 | 0, p4 | 0);
+    return mp.game2.weapon.setPedCurrentVisible.apply(this, [this.handle, visible, deselectWeapon, p3, p4]);
 };
 
 mp.Player.prototype.setPedDropsWeaponsWhenDead ??= function (toggle) {
-    let $res = natives.setPedDropsWeaponsWhenDead(this.handle, toggle | 0);
+    return mp.game2.weapon.setPedDropsWeaponsWhenDead.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setPedDropsWeaponsWhenDead ??= function (toggle) {
-    let $res = natives.setPedDropsWeaponsWhenDead(this.handle, toggle | 0);
+    return mp.game2.weapon.setPedDropsWeaponsWhenDead.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.hasPedBeenDamagedBy ??= function (weaponHash, weaponType) {
-    let $res = natives.hasPedBeenDamagedByWeapon(this.handle, weaponHash, weaponType);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.hasPedBeenDamagedBy.apply(this, [this.handle, weaponHash, weaponType]);
 };
 
 mp.Ped.prototype.hasPedBeenDamagedBy ??= function (weaponHash, weaponType) {
-    let $res = natives.hasPedBeenDamagedByWeapon(this.handle, weaponHash, weaponType);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.hasPedBeenDamagedBy.apply(this, [this.handle, weaponHash, weaponType]);
 };
 
 mp.Player.prototype.clearPedLastDamage ??= function () {
-    let $res = natives.clearPedLastWeaponDamage(this.handle);
+    return mp.game2.weapon.clearPedLastDamage.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.clearPedLastDamage ??= function () {
-    let $res = natives.clearPedLastWeaponDamage(this.handle);
+    return mp.game2.weapon.clearPedLastDamage.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.hasEntityBeenDamagedBy ??= function (weaponHash, weaponType) {
-    let $res = natives.hasEntityBeenDamagedByWeapon(this.handle, weaponHash, weaponType);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.hasEntityBeenDamagedBy.apply(this, [this.handle, weaponHash, weaponType]);
 };
 
 mp.Ped.prototype.hasEntityBeenDamagedBy ??= function (weaponHash, weaponType) {
-    let $res = natives.hasEntityBeenDamagedByWeapon(this.handle, weaponHash, weaponType);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.hasEntityBeenDamagedBy.apply(this, [this.handle, weaponHash, weaponType]);
 };
 
 mp.Object.prototype.hasEntityBeenDamagedBy ??= function (weaponHash, weaponType) {
-    let $res = natives.hasEntityBeenDamagedByWeapon(this.handle, weaponHash, weaponType);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.hasEntityBeenDamagedBy.apply(this, [this.handle, weaponHash, weaponType]);
 };
 
 mp.Vehicle.prototype.hasEntityBeenDamagedBy ??= function (weaponHash, weaponType) {
-    let $res = natives.hasEntityBeenDamagedByWeapon(this.handle, weaponHash, weaponType);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.hasEntityBeenDamagedBy.apply(this, [this.handle, weaponHash, weaponType]);
 };
 
 mp.Player.prototype.clearEntityLastDamage ??= function () {
-    let $res = natives.clearEntityLastWeaponDamage(this.handle);
+    return mp.game2.weapon.clearEntityLastDamage.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.clearEntityLastDamage ??= function () {
-    let $res = natives.clearEntityLastWeaponDamage(this.handle);
+    return mp.game2.weapon.clearEntityLastDamage.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.clearEntityLastDamage ??= function () {
-    let $res = natives.clearEntityLastWeaponDamage(this.handle);
+    return mp.game2.weapon.clearEntityLastDamage.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.clearEntityLastDamage ??= function () {
-    let $res = natives.clearEntityLastWeaponDamage(this.handle);
+    return mp.game2.weapon.clearEntityLastDamage.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setPedDrops ??= function () {
-    let $res = natives.setPedDropsWeapon(this.handle);
+    return mp.game2.weapon.setPedDrops.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.setPedDrops ??= function () {
-    let $res = natives.setPedDropsWeapon(this.handle);
+    return mp.game2.weapon.setPedDrops.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setPedDropsInventory ??= function (weaponHash, xOffset, yOffset, zOffset, ammoCount) {
-    let $res = natives.setPedDropsInventoryWeapon(this.handle, weaponHash, xOffset, yOffset, zOffset, ammoCount);
+    return mp.game2.weapon.setPedDropsInventory.apply(this, [this.handle, weaponHash, xOffset, yOffset, zOffset, ammoCount]);
 };
 
 mp.Ped.prototype.setPedDropsInventory ??= function (weaponHash, xOffset, yOffset, zOffset, ammoCount) {
-    let $res = natives.setPedDropsInventoryWeapon(this.handle, weaponHash, xOffset, yOffset, zOffset, ammoCount);
+    return mp.game2.weapon.setPedDropsInventory.apply(this, [this.handle, weaponHash, xOffset, yOffset, zOffset, ammoCount]);
 };
 
 mp.Player.prototype.getMaxAmmoInClip ??= function (weaponHash, p2) {
-    let $res = natives.getMaxAmmoInClip(this.handle, weaponHash, p2 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getMaxAmmoInClip.apply(this, [this.handle, weaponHash, p2]);
 };
 
 mp.Ped.prototype.getMaxAmmoInClip ??= function (weaponHash, p2) {
-    let $res = natives.getMaxAmmoInClip(this.handle, weaponHash, p2 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getMaxAmmoInClip.apply(this, [this.handle, weaponHash, p2]);
 };
 
 mp.Player.prototype.getAmmoInClip ??= function (weaponHash) {
-    let $res = natives.getAmmoInClip(this.handle, weaponHash, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.ammo = $res[1];
-    return $res[0] == 1 ? $resObj.ammo : undefined;
+    return mp.game2.weapon.getAmmoInClip.apply(this, [this.handle, weaponHash]);
 };
 
 mp.Ped.prototype.getAmmoInClip ??= function (weaponHash) {
-    let $res = natives.getAmmoInClip(this.handle, weaponHash, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.ammo = $res[1];
-    return $res[0] == 1 ? $resObj.ammo : undefined;
+    return mp.game2.weapon.getAmmoInClip.apply(this, [this.handle, weaponHash]);
 };
 
 mp.Player.prototype.setAmmoInClip ??= function (weaponHash, ammo) {
-    let $res = natives.setAmmoInClip(this.handle, weaponHash, ammo);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.setAmmoInClip.apply(this, [this.handle, weaponHash, ammo]);
 };
 
 mp.Ped.prototype.setAmmoInClip ??= function (weaponHash, ammo) {
-    let $res = natives.setAmmoInClip(this.handle, weaponHash, ammo);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.setAmmoInClip.apply(this, [this.handle, weaponHash, ammo]);
 };
 
 mp.Player.prototype.getMaxAmmo ??= function (weaponHash) {
-    let $res = natives.getMaxAmmo(this.handle, weaponHash, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.ammo = $res[1];
-    return $res[0] == 1 ? $resObj.ammo : undefined;
+    return mp.game2.weapon.getMaxAmmo.apply(this, [this.handle, weaponHash]);
 };
 
 mp.Ped.prototype.getMaxAmmo ??= function (weaponHash) {
-    let $res = natives.getMaxAmmo(this.handle, weaponHash, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.ammo = $res[1];
-    return $res[0] == 1 ? $resObj.ammo : undefined;
+    return mp.game2.weapon.getMaxAmmo.apply(this, [this.handle, weaponHash]);
 };
 
 mp.Player.prototype.getMaxAmmoByType ??= function (ammoTypeHash) {
-    let $res = natives.getMaxAmmoByType(this.handle, ammoTypeHash, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.ammo = $res[1];
-    return $res[0] == 1 ? $resObj.ammo : undefined;
+    return mp.game2.weapon.getMaxAmmoByType.apply(this, [this.handle, ammoTypeHash]);
 };
 
 mp.Ped.prototype.getMaxAmmoByType ??= function (ammoTypeHash) {
-    let $res = natives.getMaxAmmoByType(this.handle, ammoTypeHash, 0);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.ammo = $res[1];
-    return $res[0] == 1 ? $resObj.ammo : undefined;
+    return mp.game2.weapon.getMaxAmmoByType.apply(this, [this.handle, ammoTypeHash]);
 };
 
 mp.Player.prototype.addAmmoToPedByType ??= function (ammoTypeHash, ammo) {
-    let $res = natives.addPedAmmoByType(this.handle, ammoTypeHash, ammo);
+    return mp.game2.weapon.addAmmoToPedByType.apply(this, [this.handle, ammoTypeHash, ammo]);
 };
 
 mp.Ped.prototype.addAmmoToPedByType ??= function (ammoTypeHash, ammo) {
-    let $res = natives.addPedAmmoByType(this.handle, ammoTypeHash, ammo);
+    return mp.game2.weapon.addAmmoToPedByType.apply(this, [this.handle, ammoTypeHash, ammo]);
 };
 
 mp.Player.prototype.setPedAmmoByType ??= function (ammoTypeHash, ammo) {
-    let $res = natives.setPedAmmoByType(this.handle, ammoTypeHash, ammo);
+    return mp.game2.weapon.setPedAmmoByType.apply(this, [this.handle, ammoTypeHash, ammo]);
 };
 
 mp.Ped.prototype.setPedAmmoByType ??= function (ammoTypeHash, ammo) {
-    let $res = natives.setPedAmmoByType(this.handle, ammoTypeHash, ammo);
+    return mp.game2.weapon.setPedAmmoByType.apply(this, [this.handle, ammoTypeHash, ammo]);
 };
 
 mp.Player.prototype.getPedAmmoByType ??= function (ammoTypeHash) {
-    let $res = natives.getPedAmmoByType(this.handle, ammoTypeHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getPedAmmoByType.apply(this, [this.handle, ammoTypeHash]);
 };
 
 mp.Ped.prototype.getPedAmmoByType ??= function (ammoTypeHash) {
-    let $res = natives.getPedAmmoByType(this.handle, ammoTypeHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getPedAmmoByType.apply(this, [this.handle, ammoTypeHash]);
 };
 
 mp.Player.prototype.setPedAmmoToDrop ??= function (p1) {
-    let $res = natives.setPedAmmoToDrop(this.handle, p1);
+    return mp.game2.weapon.setPedAmmoToDrop.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.setPedAmmoToDrop ??= function (p1) {
-    let $res = natives.setPedAmmoToDrop(this.handle, p1);
+    return mp.game2.weapon.setPedAmmoToDrop.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.getPedAmmoTypeFrom ??= function (weaponHash) {
-    let $res = natives.getPedAmmoTypeFromWeapon(this.handle, weaponHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getPedAmmoTypeFrom.apply(this, [this.handle, weaponHash]);
 };
 
 mp.Ped.prototype.getPedAmmoTypeFrom ??= function (weaponHash) {
-    let $res = natives.getPedAmmoTypeFromWeapon(this.handle, weaponHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getPedAmmoTypeFrom.apply(this, [this.handle, weaponHash]);
 };
 
 mp.Player.prototype.getPedAmmoTypeFrom2 ??= function (weaponHash) {
-    let $res = natives.getPedOriginalAmmoTypeFromWeapon(this.handle, weaponHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getPedAmmoTypeFrom2.apply(this, [this.handle, weaponHash]);
 };
 
 mp.Ped.prototype.getPedAmmoTypeFrom2 ??= function (weaponHash) {
-    let $res = natives.getPedOriginalAmmoTypeFromWeapon(this.handle, weaponHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getPedAmmoTypeFrom2.apply(this, [this.handle, weaponHash]);
 };
 
 mp.Player.prototype.getPedLastImpactCoord ??= function () {
-    let $res = natives.getPedLastWeaponImpactCoord(this.handle, undefined);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.coords = new mp.Vector3($res[1]);
-    return $res[0] == 1 ? $resObj.coords : undefined;
+    return mp.game2.weapon.getPedLastImpactCoord.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getPedLastImpactCoord ??= function () {
-    let $res = natives.getPedLastWeaponImpactCoord(this.handle, undefined);
-    if (!Array.isArray($res)) $res = [$res];
-    let $resObj = {};
-    $resObj.coords = new mp.Vector3($res[1]);
-    return $res[0] == 1 ? $resObj.coords : undefined;
+    return mp.game2.weapon.getPedLastImpactCoord.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setPedGadget ??= function (gadgetHash, p2) {
-    let $res = natives.setPedGadget(this.handle, gadgetHash, p2 | 0);
+    return mp.game2.weapon.setPedGadget.apply(this, [this.handle, gadgetHash, p2]);
 };
 
 mp.Ped.prototype.setPedGadget ??= function (gadgetHash, p2) {
-    let $res = natives.setPedGadget(this.handle, gadgetHash, p2 | 0);
+    return mp.game2.weapon.setPedGadget.apply(this, [this.handle, gadgetHash, p2]);
 };
 
 mp.Player.prototype.getIsPedGadgetEquipped ??= function (gadgetHash) {
-    let $res = natives.getIsPedGadgetEquipped(this.handle, gadgetHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.getIsPedGadgetEquipped.apply(this, [this.handle, gadgetHash]);
 };
 
 mp.Ped.prototype.getIsPedGadgetEquipped ??= function (gadgetHash) {
-    let $res = natives.getIsPedGadgetEquipped(this.handle, gadgetHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.getIsPedGadgetEquipped.apply(this, [this.handle, gadgetHash]);
 };
 
 mp.Player.prototype.getSelectedPed ??= function () {
-    let $res = natives.getSelectedPedWeapon(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getSelectedPed.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getSelectedPed ??= function () {
-    let $res = natives.getSelectedPedWeapon(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getSelectedPed.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.explodeProjectiles ??= function (weaponHash, p2) {
-    let $res = natives.explodeProjectiles(this.handle, weaponHash, p2 | 0);
+    return mp.game2.weapon.explodeProjectiles.apply(this, [this.handle, weaponHash, p2]);
 };
 
 mp.Ped.prototype.explodeProjectiles ??= function (weaponHash, p2) {
-    let $res = natives.explodeProjectiles(this.handle, weaponHash, p2 | 0);
+    return mp.game2.weapon.explodeProjectiles.apply(this, [this.handle, weaponHash, p2]);
 };
 
 mp.Player.prototype.getLockonDistanceOfCurrentPed ??= function () {
-    let $res = natives.getLockonDistanceOfCurrentPedWeapon(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getLockonDistanceOfCurrentPed.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getLockonDistanceOfCurrentPed ??= function () {
-    let $res = natives.getLockonDistanceOfCurrentPedWeapon(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getLockonDistanceOfCurrentPed.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.getMaxRangeOfCurrentPed ??= function () {
-    let $res = natives.getMaxRangeOfCurrentPedWeapon(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getMaxRangeOfCurrentPed.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.getMaxRangeOfCurrentPed ??= function () {
-    let $res = natives.getMaxRangeOfCurrentPedWeapon(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getMaxRangeOfCurrentPed.apply(this, [this.handle]);
 };
 
 mp.Vehicle.prototype.hasVehicleGotProjectileAttached ??= function (vehicle, weaponHash, p3) {
-    let $res = natives.hasVehicleGotProjectileAttached(this.handle, vehicle, weaponHash, p3);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.hasVehicleGotProjectileAttached.apply(this, [this.handle, vehicle, weaponHash, p3]);
 };
 
 mp.Player.prototype.giveComponentToPed ??= function (weaponHash, componentHash) {
-    let $res = natives.giveWeaponComponentToPed(this.handle, weaponHash, componentHash);
+    return mp.game2.weapon.giveComponentToPed.apply(this, [this.handle, weaponHash, componentHash]);
 };
 
 mp.Ped.prototype.giveComponentToPed ??= function (weaponHash, componentHash) {
-    let $res = natives.giveWeaponComponentToPed(this.handle, weaponHash, componentHash);
+    return mp.game2.weapon.giveComponentToPed.apply(this, [this.handle, weaponHash, componentHash]);
 };
 
 mp.Player.prototype.removeComponentFromPed ??= function (weaponHash, componentHash) {
-    let $res = natives.removeWeaponComponentFromPed(this.handle, weaponHash, componentHash);
+    return mp.game2.weapon.removeComponentFromPed.apply(this, [this.handle, weaponHash, componentHash]);
 };
 
 mp.Ped.prototype.removeComponentFromPed ??= function (weaponHash, componentHash) {
-    let $res = natives.removeWeaponComponentFromPed(this.handle, weaponHash, componentHash);
+    return mp.game2.weapon.removeComponentFromPed.apply(this, [this.handle, weaponHash, componentHash]);
 };
 
 mp.Player.prototype.hasPedGotComponent ??= function (weaponHash, componentHash) {
-    let $res = natives.hasPedGotWeaponComponent(this.handle, weaponHash, componentHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.hasPedGotComponent.apply(this, [this.handle, weaponHash, componentHash]);
 };
 
 mp.Ped.prototype.hasPedGotComponent ??= function (weaponHash, componentHash) {
-    let $res = natives.hasPedGotWeaponComponent(this.handle, weaponHash, componentHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.hasPedGotComponent.apply(this, [this.handle, weaponHash, componentHash]);
 };
 
 mp.Player.prototype.isPedComponentActive ??= function (weaponHash, componentHash) {
-    let $res = natives.isPedWeaponComponentActive(this.handle, weaponHash, componentHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.isPedComponentActive.apply(this, [this.handle, weaponHash, componentHash]);
 };
 
 mp.Ped.prototype.isPedComponentActive ??= function (weaponHash, componentHash) {
-    let $res = natives.isPedWeaponComponentActive(this.handle, weaponHash, componentHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.isPedComponentActive.apply(this, [this.handle, weaponHash, componentHash]);
 };
 
 mp.Player.prototype.refillAmmoInstantly ??= function () {
-    let $res = natives.refillAmmoInstantly(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.refillAmmoInstantly.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.refillAmmoInstantly ??= function () {
-    let $res = natives.refillAmmoInstantly(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.refillAmmoInstantly.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.makePedReload ??= function () {
-    let $res = natives.makePedReload(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.makePedReload.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.makePedReload ??= function () {
-    let $res = natives.makePedReload(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.makePedReload.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.giveComponentToWeaponObject ??= function (addonHash) {
-    let $res = natives.giveWeaponComponentToWeaponObject(this.handle, addonHash);
+    return mp.game2.weapon.giveComponentToWeaponObject.apply(this, [this.handle, addonHash]);
 };
 
 mp.Object.prototype.hasGotWeaponComponent ??= function (addonHash) {
-    let $res = natives.hasWeaponGotWeaponComponent(this.handle, addonHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.hasGotWeaponComponent.apply(this, [this.handle, addonHash]);
 };
 
 mp.Object.prototype.giveObjectToPed ??= function (ped) {
-    let $res = natives.giveWeaponObjectToPed(this.handle, ped);
+    return mp.game2.weapon.giveObjectToPed.apply(this, [this.handle, ped]);
 };
 
 mp.Player.prototype.getObjectFromPed ??= function (p1) {
-    let $res = natives.getWeaponObjectFromPed(this.handle, p1 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getObjectFromPed.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.getObjectFromPed ??= function (p1) {
-    let $res = natives.getWeaponObjectFromPed(this.handle, p1 | 0);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getObjectFromPed.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.giveLoadoutToPed ??= function (loadoutHash) {
-    let $res = natives.giveLoadoutToPed(this.handle, loadoutHash);
+    return mp.game2.weapon.giveLoadoutToPed.apply(this, [this.handle, loadoutHash]);
 };
 
 mp.Ped.prototype.giveLoadoutToPed ??= function (loadoutHash) {
-    let $res = natives.giveLoadoutToPed(this.handle, loadoutHash);
+    return mp.game2.weapon.giveLoadoutToPed.apply(this, [this.handle, loadoutHash]);
 };
 
 mp.Player.prototype.setPedTintIndex ??= function (weaponHash, tintIndex) {
-    let $res = natives.setPedWeaponTintIndex(this.handle, weaponHash, tintIndex);
+    return mp.game2.weapon.setPedTintIndex.apply(this, [this.handle, weaponHash, tintIndex]);
 };
 
 mp.Ped.prototype.setPedTintIndex ??= function (weaponHash, tintIndex) {
-    let $res = natives.setPedWeaponTintIndex(this.handle, weaponHash, tintIndex);
+    return mp.game2.weapon.setPedTintIndex.apply(this, [this.handle, weaponHash, tintIndex]);
 };
 
 mp.Player.prototype.getPedTintIndex ??= function (weaponHash) {
-    let $res = natives.getPedWeaponTintIndex(this.handle, weaponHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getPedTintIndex.apply(this, [this.handle, weaponHash]);
 };
 
 mp.Ped.prototype.getPedTintIndex ??= function (weaponHash) {
-    let $res = natives.getPedWeaponTintIndex(this.handle, weaponHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getPedTintIndex.apply(this, [this.handle, weaponHash]);
 };
 
 mp.Object.prototype.setObjectTintIndex ??= function (tintIndex) {
-    let $res = natives.setWeaponObjectTintIndex(this.handle, tintIndex);
+    return mp.game2.weapon.setObjectTintIndex.apply(this, [this.handle, tintIndex]);
 };
 
 mp.Object.prototype.getObjectTintIndex ??= function () {
-    let $res = natives.getWeaponObjectTintIndex(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getObjectTintIndex.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setPedLiveryColor ??= function (weaponHash, camoComponentHash, colorIndex) {
-    let $res = natives.setPedWeaponComponentTintIndex(this.handle, weaponHash, camoComponentHash, colorIndex);
+    return mp.game2.weapon.setPedLiveryColor.apply(this, [this.handle, weaponHash, camoComponentHash, colorIndex]);
 };
 
 mp.Ped.prototype.setPedLiveryColor ??= function (weaponHash, camoComponentHash, colorIndex) {
-    let $res = natives.setPedWeaponComponentTintIndex(this.handle, weaponHash, camoComponentHash, colorIndex);
+    return mp.game2.weapon.setPedLiveryColor.apply(this, [this.handle, weaponHash, camoComponentHash, colorIndex]);
 };
 
 mp.Player.prototype.getPedLiveryColor ??= function (weaponHash, camoComponentHash) {
-    let $res = natives.getPedWeaponComponentTintIndex(this.handle, weaponHash, camoComponentHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getPedLiveryColor.apply(this, [this.handle, weaponHash, camoComponentHash]);
 };
 
 mp.Ped.prototype.getPedLiveryColor ??= function (weaponHash, camoComponentHash) {
-    let $res = natives.getPedWeaponComponentTintIndex(this.handle, weaponHash, camoComponentHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getPedLiveryColor.apply(this, [this.handle, weaponHash, camoComponentHash]);
 };
 
 mp.Object.prototype.setObjectLiveryColor ??= function (camoComponentHash, colorIndex) {
-    let $res = natives.setWeaponObjectComponentTintIndex(this.handle, camoComponentHash, colorIndex);
+    return mp.game2.weapon.setObjectLiveryColor.apply(this, [this.handle, camoComponentHash, colorIndex]);
 };
 
 mp.Object.prototype.getObjectLiveryColor ??= function (camoComponentHash) {
-    let $res = natives.getWeaponObjectComponentTintIndex(this.handle, camoComponentHash);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.getObjectLiveryColor.apply(this, [this.handle, camoComponentHash]);
 };
 
 mp.Player.prototype.setPedChanceOfFiringBlanks ??= function (xBias, yBias) {
-    let $res = natives.setPedChanceOfFiringBlanks(this.handle, xBias, yBias);
+    return mp.game2.weapon.setPedChanceOfFiringBlanks.apply(this, [this.handle, xBias, yBias]);
 };
 
 mp.Ped.prototype.setPedChanceOfFiringBlanks ??= function (xBias, yBias) {
-    let $res = natives.setPedChanceOfFiringBlanks(this.handle, xBias, yBias);
+    return mp.game2.weapon.setPedChanceOfFiringBlanks.apply(this, [this.handle, xBias, yBias]);
 };
 
 mp.Player.prototype.setPedShootOrdnance ??= function (p1) {
-    let $res = natives.setPedShootOrdnanceWeapon(this.handle, p1);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.setPedShootOrdnance.apply(this, [this.handle, p1]);
 };
 
 mp.Ped.prototype.setPedShootOrdnance ??= function (p1) {
-    let $res = natives.setPedShootOrdnanceWeapon(this.handle, p1);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0];
+    return mp.game2.weapon.setPedShootOrdnance.apply(this, [this.handle, p1]);
 };
 
 mp.Player.prototype.requestHighDetailModel ??= function () {
-    let $res = natives.requestWeaponHighDetailModel(this.handle);
+    return mp.game2.weapon.requestHighDetailModel.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.requestHighDetailModel ??= function () {
-    let $res = natives.requestWeaponHighDetailModel(this.handle);
+    return mp.game2.weapon.requestHighDetailModel.apply(this, [this.handle]);
 };
 
 mp.Object.prototype.requestHighDetailModel ??= function () {
-    let $res = natives.requestWeaponHighDetailModel(this.handle);
+    return mp.game2.weapon.requestHighDetailModel.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isPedCurrentSilenced ??= function () {
-    let $res = natives.isPedCurrentWeaponSilenced(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.isPedCurrentSilenced.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isPedCurrentSilenced ??= function () {
-    let $res = natives.isPedCurrentWeaponSilenced(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.isPedCurrentSilenced.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.isFlashLightOn ??= function () {
-    let $res = natives.isFlashLightOn(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.isFlashLightOn.apply(this, [this.handle]);
 };
 
 mp.Ped.prototype.isFlashLightOn ??= function () {
-    let $res = natives.isFlashLightOn(this.handle);
-    if (!Array.isArray($res)) $res = [$res];
-    return $res[0] == 1;
+    return mp.game2.weapon.isFlashLightOn.apply(this, [this.handle]);
 };
 
 mp.Player.prototype.setFlashLightEnabled ??= function (toggle) {
-    let $res = natives.setFlashLightActiveHistory(this.handle, toggle | 0);
+    return mp.game2.weapon.setFlashLightEnabled.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setFlashLightEnabled ??= function (toggle) {
-    let $res = natives.setFlashLightActiveHistory(this.handle, toggle | 0);
+    return mp.game2.weapon.setFlashLightEnabled.apply(this, [this.handle, toggle]);
 };
 
 mp.Player.prototype.setAnimationOverride ??= function (animStyle) {
-    let $res = natives.setWeaponAnimationOverride(this.handle, animStyle);
+    return mp.game2.weapon.setAnimationOverride.apply(this, [this.handle, animStyle]);
 };
 
 mp.Ped.prototype.setAnimationOverride ??= function (animStyle) {
-    let $res = natives.setWeaponAnimationOverride(this.handle, animStyle);
+    return mp.game2.weapon.setAnimationOverride.apply(this, [this.handle, animStyle]);
 };
 
 mp.Player.prototype.setCanPedEquip ??= function (weaponHash, toggle) {
-    let $res = natives.setCanPedSelectInventoryWeapon(this.handle, weaponHash, toggle | 0);
+    return mp.game2.weapon.setCanPedEquip.apply(this, [this.handle, weaponHash, toggle]);
 };
 
 mp.Ped.prototype.setCanPedEquip ??= function (weaponHash, toggle) {
-    let $res = natives.setCanPedSelectInventoryWeapon(this.handle, weaponHash, toggle | 0);
+    return mp.game2.weapon.setCanPedEquip.apply(this, [this.handle, weaponHash, toggle]);
 };
 
 mp.Player.prototype.setCanPedEquipAllS ??= function (toggle) {
-    let $res = natives.setCanPedSelectAllWeapons(this.handle, toggle | 0);
+    return mp.game2.weapon.setCanPedEquipAllS.apply(this, [this.handle, toggle]);
 };
 
 mp.Ped.prototype.setCanPedEquipAllS ??= function (toggle) {
-    let $res = natives.setCanPedSelectAllWeapons(this.handle, toggle | 0);
+    return mp.game2.weapon.setCanPedEquipAllS.apply(this, [this.handle, toggle]);
 };
 hashes['0x4EDE34FBADD967A6'] = function(p0) {
     const $res = natives.wait(typeof (p0) == "number" ? p0 : 0);
@@ -48489,7 +44784,7 @@ hashes['0x5D6160275CAEC8DD'] = function(p0, p1, p2, p3) {
     return $res;
 }
 hashes['0xC17AD0E5752BECDA'] = function(p0) {
-    const $res = natives.getItemVariantsCount(typeof (p0) == "number" ? p0 : 0);
+    const $res = natives.getShopPedApparelVariantComponentCount(typeof (p0) == "number" ? p0 : 0);
     return $res;
 }
 hashes['0xD40AAC51E8E4C663'] = function(p0) {
@@ -48537,7 +44832,7 @@ hashes['0xE1CA84EBF72E691D'] = function(p0, p1, p2, p3, p4) {
     return $res[0];
 }
 hashes['0x341DE7ED1D2A1BFD'] = function(p0, p1, p2) {
-    const $res = natives.isTagRestricted(typeof (p0) == "number" ? p0 : 0, typeof (p1) == "number" ? p1 : 0, typeof (p2) == "number" ? p2 : 0);
+    const $res = natives.doesShopPedApparelHaveRestrictionTag(typeof (p0) == "number" ? p0 : 0, typeof (p1) == "number" ? p1 : 0, typeof (p2) == "number" ? p2 : 0);
     return $res;
 }
 hashes['0x7796B21B76221BC5'] = function(p0, p1, p2) {
@@ -51580,7 +47875,7 @@ hashes['0x488043841BBE156F'] = function() {
     return $res;
 }
 hashes['0x0AFC4AF510774B47'] = function() {
-    const $res = natives.blockWeaponWheelThisFrame();
+    const $res = natives.hudSuppressWeaponWheelResultsThisFrame();
     return $res;
 }
 hashes['0xA48931185F0536FE'] = function() {
@@ -51812,7 +48107,7 @@ hashes['0xB57D8DD645CFA2CF'] = function() {
     return $res;
 }
 hashes['0xF9904D11F1ACBEC3'] = function(p0, p1, p2, p3, p4) {
-    const $res = natives.getScreenCoordFromWorldCoord2(typeof (p0) == "number" ? p0 : 0, typeof (p1) == "number" ? p1 : 0, typeof (p2) == "number" ? p2 : 0, typeof (p3[0]) == "number" ? p3[0] : 0, typeof (p4[0]) == "number" ? p4[0] : 0);
+    const $res = natives.getHudScreenPositionFromWorldPosition(typeof (p0) == "number" ? p0 : 0, typeof (p1) == "number" ? p1 : 0, typeof (p2) == "number" ? p2 : 0, typeof (p3[0]) == "number" ? p3[0] : 0, typeof (p4[0]) == "number" ? p4[0] : 0);
     if (!Array.isArray($res)) return $res instanceof alt.Vector3 ? new mp.Vector3($res) : $res;
     p3[0] = $res[1];
     p4[0] = $res[2];
@@ -59971,7 +56266,7 @@ hashes['0x643ED62D5EA3BEBD'] = function() {
     return $res;
 }
 hashes['0x7F4724035FDCA1DD'] = function(p0) {
-    const $res = natives.disableInputGroup(typeof (p0) == "number" ? p0 : 0);
+    const $res = natives.allowAlternativeScriptControlsLayout(typeof (p0) == "number" ? p0 : 0);
     return $res;
 }
 hashes['0xBF1A602B5BA52FEE'] = function(p0, p1, p2, p3, p4, p5, p6, p7) {

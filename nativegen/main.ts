@@ -283,28 +283,33 @@ function cleanWrapperName(wrapperName) {
     return wrapperName;
 }
 
-function generateNativeCaller(native: ParsedNative, entity = false) {
-    const outArgs = entity ? [`this.handle`, ...native.callArguments.slice(1)] : native.callArguments;
-    const inArgs = native.functionArguments.slice(entity ? 1 : 0);
+function generateNativeCaller(native: ParsedNative, alias = null) {
+    const outArgs = native.callArguments;
+    const inArgs = native.functionArguments.slice(alias ? 1 : 0);
 
     // TODO: Do not create $res when it is not used
     let res = `function (${inArgs.join(', ')}) {\n`
-    for (let i = 0; i < native.functionArguments.length; i++) {
-        if (native.altNative.params[i]?.type == "string")
-            res += `    if (typeof ${native.functionArguments[i]} != "string") ${native.functionArguments[i]} = null;\n`;
-    }
-    for (let param of native.altNative.params) {
-    }
-    res += `    let $res = natives.${native.altNative.altName}(${outArgs.join(', ')});\n`;
-    // TODO: Avoid creating an array
-    if (native.return) res += `    if (!Array.isArray($res)) $res = [$res];\n`;
-    if (native.return && native.resObject && Object.values(native.resObject).length > 0) {
-        res += `    let $resObj = ${native.resObjectInitialValue ?? '{}'};\n`;
-        for (const [key, value] of Object.entries(native.resObject)) {
-            res += `    $resObj.${key} = ${value};\n`;
+
+    if (alias) {
+        res += `    return ${alias}.apply(this, [${['this.handle', ...inArgs].join(', ')}]);\n`
+    } else {
+        for (let i = 0; i < native.functionArguments.length; i++) {
+            if (native.altNative.params[i]?.type == "string")
+                res += `    if (typeof ${native.functionArguments[i]} != "string") ${native.functionArguments[i]} = null;\n`;
         }
+        for (let param of native.altNative.params) {
+        }
+        res += `    let $res = natives.${native.altNative.altName}(${outArgs.join(', ')});\n`;
+        // TODO: Avoid creating an array
+        if (native.return) res += `    if (!Array.isArray($res)) $res = [$res];\n`;
+        if (native.return && native.resObject && Object.values(native.resObject).length > 0) {
+            res += `    let $resObj = ${native.resObjectInitialValue ?? '{}'};\n`;
+            for (const [key, value] of Object.entries(native.resObject)) {
+                res += `    $resObj.${key} = ${value};\n`;
+            }
+        }
+        if (native.return) res += `    return ${native.return};\n`;
     }
-    if (native.return) res += `    return ${native.return};\n`;
     res += `}`;
     return res;
 }
@@ -320,6 +325,7 @@ const hashes = {};
 const prototypeCalls = {};
 
 let tempVars = {};
+let tempAliases: Record<string, { prototypes: string[], tempVar?: string, aliasName?: string }> = {};
 
 console.log('Starting to parse');
 esprima.parseScript(source, {}, (node) => {
@@ -407,10 +413,24 @@ esprima.parseScript(source, {}, (node) => {
         const expr = node.expression;
         if (expr.left.type === 'MemberExpression' && expr.left.object.type === 'Identifier' && expr.left.object.name in prototypes && expr.left.property.type === 'Identifier') {
             const prototype = prototypes[expr.left.object.name];
-            prototypeCalls[`${prototype}.prototype.${expr.left.property.name}`] = `${generateNativeCaller(nativeWrappers[name], true)};\n`;
-            if (prototype == "mp.Ped") foundNativeNames[expr.left.property.name] = nativeWrappers[name].altNative.altName;
+            // tempAliases[name] = tempAliases[name] ?? {
+            //     prototypes: []
+            // };
+            if (!tempAliases[name]) console.log('Oh my fucking god wtf', name);
+            tempAliases[name].prototypes.push(`${prototype}.prototype.${expr.left.property.name}`);
+            // tempAliases.push([`${prototype}.prototype.${expr.left.property.name}`])
+            // if (!tempAliases[name]) tempAliases[name] = [];
+            // tempAliases[name].push(`${prototype}.prototype.${expr.left.property.name}`);
+            // prototypeCalls[`${prototype}.prototype.${expr.left.property.name}`] = `${generateNativeCaller(nativeWrappers[name], true)};\n`;
+            // if (prototype == "mp.Ped") foundNativeNames[expr.left.property.name] = nativeWrappers[name].altNative.altName;
         } else if (expr.left.type === 'MemberExpression' && expr.left.object.type === 'Identifier' && expr.left.property.type === 'Identifier') {
             if (!tempVars[expr.left.object.name]) tempVars[expr.left.object.name] = [];
+            tempAliases[name] ??= {
+                aliasName: expr.left.property.name,
+                tempVar: expr.left.object.name,
+                prototypes: []
+            };
+
             tempVars[expr.left.object.name].push(`.${expr.left.property.name} ??= ${generateNativeCaller(nativeWrappers[name])};\n`);
         }
     }
@@ -431,10 +451,39 @@ esprima.parseScript(source, {}, (node) => {
         const buf = tempVars[node.expression.right.name];
         outputCode += buf.map(e => name + e).join('');
         console.log(`Flushed ${node.expression.right.name} with ${buf.length} natives to ${name}`);
+        // for (let bufElement of buf) {
+            // const cleanName = reverseNames[bufElement];
+            // if (!cleanName) {
+            //     console.log('oh my god', bufElement);
+            //     continue;
+            // }
+            //
+            // if (!tempAliases[cleanName]) {
+            //     console.log('oh my god 2', cleanName);
+            //     continue;
+            // }
+            //
+            // for (const alias of tempAliases[cleanName]) {
+            //     outputCode += `${alias} ??= ${generateNativeCaller(nativeWrappers[cleanName], name + bufElement)};\n`;
+            // }
+        // }
+        for (let [entry, value] of Object.entries(tempAliases)) {
+            if (value.tempVar != node.expression.right.name) {
+                continue;
+            }
+
+            for (let prototype of value.prototypes) {
+                prototypeCalls[prototype] = `${generateNativeCaller(nativeWrappers[entry], name + '.' + value.aliasName)};\n`;
+            }
+
+            delete tempAliases[entry];
+        }
+
         delete tempVars[node.expression.right.name];
     }
 });
 
+console.log(tempAliases);
 outputCode += Object.entries(prototypeCalls).map(([k, v]) => `${k} ??= ${v}`).join('\n');
 
 function generateInvokeFunction(native: AltNative) {
