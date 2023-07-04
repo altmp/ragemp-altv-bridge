@@ -15,6 +15,7 @@ export class _VirtualEntityBase extends _Entity {
 mp._initEventHandlers = () => {
     alt.on('worldObjectStreamIn', (ent) => {
         if (ent instanceof alt.VirtualEntity && ent.mp) ent.mp.streamIn();
+        // TODO: can this be emitted twice?
         mp.events.dispatch('entityStreamIn', toMp(ent));
     });
 

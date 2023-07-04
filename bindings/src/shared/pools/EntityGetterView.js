@@ -10,7 +10,7 @@ export class EntityGetterView extends EntityBaseView {
         this.idGetter = idGetter ?? ((id) => this.listGetter().find(e => e.id === id));
         if (!remoteIDGetter) alt.logWarning(name, 'Remote ID getter is not defined, polyfilling');
         this.remoteIDGetter = remoteIDGetter ?? (id => this.listGetter().find(e => e.remoteId == null ? (e.id === id) : (e.remoteId === id)));
-        this.scriptIDGetter = (scriptID => this.listGetter().find(e => e.valid && e.scriptID === scriptID)); // TODO: use scriptIDGetter
+        this.scriptIDGetter = (scriptID => this.listGetter().find(e => e.valid && (e.scriptID === scriptID || e.gameID === scriptID))); // TODO: use scriptIDGetter
         this.streamRangeGetter = streamRangeGetter;
         this.countGetter = countGetter ?? (() => this.listGetter().length);
     }

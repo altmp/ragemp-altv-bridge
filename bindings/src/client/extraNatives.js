@@ -305,15 +305,205 @@ mp.game.hud.getCurrentAreaNameHash = () => {
 mp.game.shapetest ??= {};
 mp.game.shapetest.releaseScriptGuidFromEntity = () => {};
 
-mp.game.hud.setBlipNameFromTextFile = (handle, gxt) => {
-    const blip = mp.blips.atHandle(handle);
-    if (blip) {
-        blip.alt.name = mp.game.gxt.get(gxt);
-        return;
-    }
+/**
+ * @param name {string}
+ * @param fn {function(import('alt-client').Blip, ...[*])}
+ */
+function patchBlipNative(name, fn) {
+    const orig = mp.game.hud[name];
+    mp.game.hud[name] = function (handle, ...args) {
+        const blip = this?.isMpWrapper ? this.alt : (handle >= 0 ? alt.Blip.getByScriptID(handle) : alt.Blip.getByID(-handle));
+        if (blip) {
+            return fn(blip, ...args);
+        }
 
-    natives.setBlipNameFromTextFile(handle, gxt);
-};
+        console.log('Cannot find blip ' + handle);
+        return orig(handle, ...args);
+    };
+}
+
+patchBlipNative('setBlipNameFromTextFile', (blip, gxt) => {
+    if (!blip.isRemote) {
+        blip.name = mp.game.gxt.get(gxt);
+    } else {
+        if (blip.isStreamedIn) {
+            natives.setBlipNameFromTextFile(blip.scriptID, gxt);
+        } else {
+            blip.mp._nextName = gxt;
+        }
+    }
+});
+
+patchBlipNative('setBlipNameToPlayerName', (blip, player) => {
+    blip.name = natives.getPlayerName(player);
+});
+
+patchBlipNative('setBlipRoute', (blip, enabled) => {
+    blip.route = enabled;
+});
+
+patchBlipNative('setBlipRouteColour', (blip, color) => {
+    const value = natives.getHudColour(color);
+    blip.routeColor = new alt.RGBA(value[1], value[2], value[3], value[4]);
+});
+
+patchBlipNative('setBlipCoords', (blip, posX, posY, posZ) => {
+    blip.pos = new alt.Vector3(posX, posY, posZ);
+});
+
+patchBlipNative('getBlipCoords', (blip) => {
+    return blip.pos;
+});
+
+patchBlipNative('setBlipSprite', (blip, spriteId) => {
+    blip.sprite = spriteId;
+});
+
+patchBlipNative('getBlipSprite', (blip) => {
+    return blip.sprite;
+});
+
+patchBlipNative('setBlipAlpha', (blip, alpha) => {
+    blip.alpha = alpha;
+});
+
+patchBlipNative('getBlipAlpha', (blip) => {
+    return blip.alpha;
+});
+
+patchBlipNative('setBlipFade', (blip, opacity, duration) => {
+    blip.fade(opacity, duration);
+});
+
+patchBlipNative('setBlipRotation', (blip, rotation) => {
+    blip.heading = rotation;
+});
+
+patchBlipNative('getBlipRotation', (blip) => {
+    return blip.heading;
+});
+
+patchBlipNative('setBlipSquaredRotation', (blip, heading) => {
+    blip.heading = heading;
+});
+
+patchBlipNative('setBlipFlashTimer', (blip, duration) => {
+    blip.flashTimer = duration;
+});
+
+patchBlipNative('setBlipFlashInterval', (blip, interval) => {
+    blip.flashInterval = interval;
+});
+
+patchBlipNative('setBlipColour', (blip, color) => {
+    blip.color = color;
+});
+
+patchBlipNative('getBlipColour', (blip) => {
+    return blip.color;
+});
+
+patchBlipNative('getBlipHudColour', (blip) => {
+    return blip.color;
+});
+
+patchBlipNative('setBlipSecondaryColour', (blip, r, g, b) => {
+    blip.secondaryColor = new alt.RGBA(r, g, b, 255);
+});
+
+patchBlipNative('setBlipHiddenOnLegend', (blip, hidden) => {
+    // blip.hidden = hidden;
+    // TODO
+});
+
+patchBlipNative('setBlipHighDetail', (blip, enabled) => {
+    blip.highDetail = enabled;
+});
+
+patchBlipNative('setBlipAsMissionCreatorBlip', (blip, enabled) => {
+    blip.asMissionCreator = enabled;
+});
+
+patchBlipNative('isMissionCreatorBlip', (blip) => {
+    return blip.asMissionCreator;
+});
+
+patchBlipNative('setBlipFlashes', (blip, enabled) => {
+    blip.flashes = enabled;
+});
+
+patchBlipNative('isBlipFlashing', (blip) => {
+    return blip.flashes;
+});
+
+patchBlipNative('setBlipFlashesAlternate', (blip, enabled) => {
+    blip.flashesAlternate = enabled;
+});
+
+patchBlipNative('setBlipAsShortRange', (blip, enabled) => {
+    blip.shortRange = enabled;
+});
+
+patchBlipNative('isBlipShortRange', (blip) => {
+    return blip.shortRange;
+});
+
+patchBlipNative('setBlipScale', (blip, scale) => {
+    blip.scale = scale;
+});
+
+patchBlipNative('setBlipScaleTransformation', (blip, xScale, yScale) => {
+    blip.size = new alt.Vector2(xScale, yScale);
+});
+
+patchBlipNative('setBlipPriority', (blip, priority) => {
+    blip.priority = priority;
+});
+
+patchBlipNative('setBlipDisplay', (blip, displayId) => {
+    blip.display = displayId;
+});
+
+patchBlipNative('setBlipCategory', (blip, category) => {
+    blip.category = category;
+});
+
+patchBlipNative('setBlipAsFriendly', (blip, enabled) => {
+    // TODO
+    // blip.friendIndicatorVisible = enabled;
+});
+
+patchBlipNative('showTickOnBlip', (blip, enabled) => {
+    blip.tickVisible = enabled;
+});
+
+patchBlipNative('showOutlineIndicatorOnBlip', (blip, enabled) => {
+    blip.outlineIndicatorVisible = enabled;
+});
+
+patchBlipNative('showFriendIndicatorOnBlip', (blip, enabled) => {
+    blip.friendIndicatorVisible = enabled;
+});
+
+patchBlipNative('showCrewIndicatorOnBlip', (blip, enabled) => {
+    blip.crewIndicatorVisible = enabled;
+});
+
+patchBlipNative('setBlipDisplayIndicatorOnBlip', (blip, enabled) => {
+    // TODO
+});
+
+patchBlipNative('setBlipAsMinimalOnEdge', (blip, enabled) => {
+    blip.shrinked = enabled;
+});
+
+patchBlipNative('setBlipBright', (blip, enabled) => {
+    blip.bright = enabled;
+});
+
+patchBlipNative('setBlipShowCone', (blip, enabled) => {
+    blip.showCone = enabled;
+});
 
 mp.game.gameplay.getModelDimensions = (model) => {
     const [, min, max] = natives.getModelDimensions(model);

@@ -86,14 +86,6 @@ export class _Blip extends _WorldObject {
         this.alt.destroy();
     }
 
-    get dimension() {
-        return this.alt.getSyncedMeta(mp.prefix + 'dimension');
-    }
-
-    set dimension(value) {
-        this.alt.setSyncedMeta(mp.prefix + 'dimension', value);
-    }
-
     type = 'blip';
 
     // TODO: routeFor

@@ -149,3 +149,15 @@ export class TemporaryContainer {
         });
     }
 }
+
+export const schedule = (predicate, fn, timeout = 2000) => {
+    if (predicate()) return void fn();
+    let timer;
+    const timeoutTimer = timeout ? alt.setTimeout(() => alt.clearTimer(timer), timeout) : 0;
+    timer = alt.everyTick(() => {
+        if (!predicate()) return;
+        alt.clearTimer(timeoutTimer);
+        alt.clearTimer(timer);
+        fn();
+    });
+};

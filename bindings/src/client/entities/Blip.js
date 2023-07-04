@@ -13,6 +13,7 @@ export class _Blip extends _WorldObject {
 
     get handle() {
         if (!this.alt.valid) return 0;
+        if (!this.alt.isStreamedIn) return -this.alt.id;
         return this.alt.scriptID;
     }
 
@@ -20,16 +21,6 @@ export class _Blip extends _WorldObject {
 
     destroy() {
         this.alt.destroy();
-    }
-
-    get dimension() {
-        if (this.alt.isRemote) return this.alt.getSyncedMeta(mp.prefix + 'dimension') ?? 0;
-        return this.alt.getMeta(mp.prefix + 'dimension') ?? 0;
-    }
-
-    set dimension(value) {
-        if (this.alt.isRemote) return;
-        this.alt.setMeta(mp.prefix + 'dimension', value);
     }
 
     //#region Natives
@@ -170,7 +161,7 @@ export class _Blip extends _WorldObject {
     }
 
     setNameFromTextFile(gxt) {
-        return mp.game.hud.setBlipNameFromTextFile(this.handle, gxt);
+        this.alt.name = mp.game.gxt.get(gxt);
     }
 
     get setCoords() {
@@ -186,39 +177,39 @@ export class _Blip extends _WorldObject {
     }
 
     getNextInfoId() {
-        return natives.getNextBlipInfoId(this.handle);
+        return mp.game.hud.getNextBlipInfoId.apply(this, [this.handle]);
     }
 
     getFirstInfoId() {
-        return natives.getFirstBlipInfoId(this.handle);
+        return mp.game.hud.getFirstBlipInfoId.apply(this, [this.handle]);
     }
 
     isMissionCreator() {
-        return natives.isMissionCreatorBlip(this.handle);
+        return mp.game.hud.isMissionCreatorBlip.apply(this, [this.handle]);
     }
 
     hideNumberOn() {
-        return natives.hideNumberOnBlip(this.handle);
+        return mp.game.hud.hideNumberOnBlip.apply(this, [this.handle]);
     }
 
-    showNumberOn() {
-        return natives.showNumberOnBlip(this.handle);
+    showNumberOn(number) {
+        return mp.game.hud.showNumberOnBlip.apply(this, [this.handle, number]);
     }
 
     setShowHeadingIndicator(state) {
-        return natives.showHeadingIndicatorOnBlip(this.handle, state);
+        return mp.game.hud.showHeadingIndicatorOnBlip.apply(this, [this.handle, state]);
     }
 
     pulse() {
-        return natives.pulseBlip(this.handle);
+        return mp.game.hud.pulseBlip.apply(this, [this.handle]);
     }
 
     addTextComponentSubstringName() {
-        return natives.addTextComponentSubstringBlipName(this.handle);
+        return mp.game.hud.addTextComponentSubstringBlipName.apply(this, [this.handle]);
     }
 
     endTextCommandSetName() {
-        return natives.endTextCommandSetBlipName(this.handle);
+        return mp.game.hud.endTextCommandSetBlipName.apply(this, [this.handle]);
     }
     //#endregion
 }
@@ -237,6 +228,7 @@ mp.blips.new = function(sprite, position, params = {}) {
     let blip;
     switch(sprite) {
         case 9:
+            console.log('CREATED RADIUS BLIP', params.radius);
             blip = new alt.RadiusBlip(position.x, position.y, position.z, params.radius ?? 100);
             break;
         case 5: {
@@ -262,22 +254,13 @@ mp.blips.new = function(sprite, position, params = {}) {
     if ('shortRange' in params && sprite !== 5) blip.shortRange = params.shortRange;
     if ('rotation' in params) blip.heading = params.rotation;
     blip.mp.dimension = params.dimension ?? 0;
-    blip.display = 0;
 
     return blip.mp;
 };
 
-if (mp._main) {
-    alt.setInterval(() => {
-        const playerDim = alt.Player.local.dimension;
-        for (const blip of alt.Blip.all) {
-            const dim = blip.mp.dimension;
-            const state = dim === -1 ? true : dim === playerDim;
-            if (state !== blip.mp._lastState) {
-                blip.display = state ? 2 : 0;
-                blip.mp._lastState = state;
-                mp.events.dispatch(state ? 'entityStreamIn' : 'entityStreamOut', blip);
-            }
-        }
-    }, 500);
-}
+alt.on('worldObjectStreamIn', (blip) => {
+    if (blip.mp._nextName) {
+        natives.setBlipNameFromTextFile(blip.scriptID, blip.mp._nextName);
+        blip.mp._nextName = null;
+    }
+});
