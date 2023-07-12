@@ -48,3 +48,5 @@ alt.on(mp.prefix + 'receiveEvents', (state) => {
 });
 
 alt.emit(mp.prefix + 'ready');
+
+window.experiment_a = true;
