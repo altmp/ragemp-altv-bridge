@@ -151,7 +151,9 @@ export class _Player extends _Entity {
 		console.warn('Voice methods are not supported');
 	}
 
-
+    giveWeapon() {
+        console.warn('Client-side weapon setters are not supported');
+    }
 
     type = 'player';
 
@@ -1034,7 +1036,7 @@ if (mp._main) {
         if (newVehicle !== lastVehicle) {
             console.log('Changed vehicle from ' + lastVehicle?.id + ' to ' + newVehicle?.id);
             if (lastVehicle) {
-                mp.events.dispatch('playerLeaveVehicle', lastVehicle, lastSeat);
+                mp.events.dispatch('playerLeaveVehicle', lastVehicle?.alt?.valid ? lastVehicle : null, lastSeat);
             }
 
             if (newVehicle) {
