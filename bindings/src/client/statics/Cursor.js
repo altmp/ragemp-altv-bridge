@@ -56,7 +56,7 @@ function dispatchClickEvent(leftOrRight, upOrDown) {
     const ray = natives.startExpensiveSynchronousShapeTestLosProbe(from.x, from.y, from.z, to.x, to.y, to.z, -1, alt.Player.local, 0);
     const [, hit, coords, , entity] = natives.getShapeTestResult(ray);
 
-    mp.events.dispatch('click', pos.x, pos.y, upOrDown, leftOrRight, pos.x, pos.y, hit ? new mp.Vector3(coords) : mp.Vector3.zero, hit ? entity : 0);
+    mp.events.dispatchLocal('click', pos.x, pos.y, upOrDown, leftOrRight, pos.x, pos.y, hit ? new mp.Vector3(coords) : mp.Vector3.zero, hit ? entity : 0);
 }
 
 alt.on('keydown', (key) => {

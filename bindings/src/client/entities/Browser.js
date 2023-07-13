@@ -20,11 +20,11 @@ export class _Browser extends _BaseObject {
         this.#_url = _alt.url;
 
         this.alt.on(mp.prefix + 'event', (evt, ...args) => {
-            mp.events.dispatch(evt, ...args);
+            mp.events.dispatchLocal(evt, ...args);
         });
 
         this.alt.on('load', () => {
-            mp.events.dispatch('browserDomReady', this);
+            mp.events.dispatchLocal('browserDomReady', this);
         });
 
         // this.alt.on(mp.prefix + 'ready', () => {
@@ -125,5 +125,5 @@ mp.browsers.new = function (url) {
 };
 
 alt.on('baseObjectCreate', (baseObject) => {
-    if (baseObject instanceof alt.WebView) mp.events.dispatch('browserCreated', baseObject.mp);
+    if (baseObject instanceof alt.WebView) mp.events.dispatchLocal('browserCreated', baseObject.mp);
 });

@@ -17,7 +17,7 @@ class DefaultChat {
     handleServer(player, msg) {
 
         if(msg[0] == '/') {
-            mp.events.dispatch('playerCommand', player.mp, msg.substring(1));
+            mp.events.dispatchLocal('playerCommand', player.mp, msg.substring(1));
 
             msg = msg.trim().slice(1);
 
@@ -29,13 +29,13 @@ class DefaultChat {
             }
         }
         else {
-            mp.events.dispatch('playerChat', player.mp, msg);
+            mp.events.dispatchLocal('playerChat', player.mp, msg);
         }
     }
 
     handleClient(msg) {
-        if(msg[0] == '/') mp.events.dispatch('playerCommand', msg.substring(1));
-        else mp.events.dispatch('playerChat', msg);
+        if(msg[0] == '/') mp.events.dispatchLocal('playerCommand', msg.substring(1));
+        else mp.events.dispatchLocal('playerChat', msg);
     }
 
     send(player, msg) {

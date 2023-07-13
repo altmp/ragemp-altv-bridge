@@ -356,21 +356,21 @@ mp.vehicles.new = function(model, position, options = {}) {
 };
 
 alt.on('vehicleDamage', (vehicle, attacker, bodyHealthDamage, additionalBodyHealthDamage, engineHealthDamage, petrolTankDamage, weapon) => {
-    mp.events.dispatch('vehicleDamage', vehicle.mp, bodyHealthDamage, engineHealthDamage);
+    mp.events.dispatchLocal('vehicleDamage', vehicle.mp, bodyHealthDamage, engineHealthDamage);
 });
 
 alt.on('vehicleAttach', (vehicle, attachedVehicle) => {
-    mp.events.dispatch('trailerAttached', vehicle.mp, attachedVehicle.mp);
+    mp.events.dispatchLocal('trailerAttached', vehicle.mp, attachedVehicle.mp);
 });
 
 alt.on('vehicleHorn', (vehicle, player, state) => {
-    mp.events.dispatch('vehicleHornToggle', vehicle.mp, state);
+    mp.events.dispatchLocal('vehicleHornToggle', vehicle.mp, state);
 });
 
 alt.on('vehicleSiren', (vehicle, player, state) => {
-    mp.events.dispatch('vehicleSirenToggle', vehicle.mp, state);
+    mp.events.dispatchLocal('vehicleSirenToggle', vehicle.mp, state);
 });
 
 alt.on('vehicleDestroy', (vehicle) => {
-    mp.events.dispatch('vehicleDeath', vehicle.mp);
+    mp.events.dispatchLocal('vehicleDeath', vehicle.mp);
 });

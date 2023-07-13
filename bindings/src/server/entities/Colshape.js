@@ -106,7 +106,7 @@ mp.colshapes.newTube = function(x, y, z, height, range, dimension = 0) {
 
 function enterColshape(shape, ent) {
     if (!(ent instanceof alt.Player) || shape instanceof alt.Checkpoint || !shape) return;
-    mp.events.dispatch('playerEnterColshape', ent.mp, shape.mp);
+    mp.events.dispatchLocal('playerEnterColshape', ent.mp, shape.mp);
     const keys = shape.getMetaDataKeys();
     ent.emit(mp.prefix + 'enterColshape', shape.pos, shape.dimension, shape.mp.shapeType, Object.fromEntries(keys.map(e => [e, shape.getMeta(e)])));
 }
@@ -115,7 +115,7 @@ alt.on('entityEnterColshape', enterColshape);
 
 function leaveColshape(shape, ent) {
     if (!(ent instanceof alt.Player) || shape instanceof alt.Checkpoint || !shape) return;
-    mp.events.dispatch('playerExitColshape', ent.mp, shape.mp);
+    mp.events.dispatchLocal('playerExitColshape', ent.mp, shape.mp);
     const keys = shape.getMetaDataKeys();
     ent.emit(mp.prefix + 'leaveColshape', shape.pos, shape.dimension, shape.mp.shapeType, Object.fromEntries(keys.map(e => [e, shape.getMeta(e)])));
 }

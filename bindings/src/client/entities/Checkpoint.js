@@ -23,7 +23,7 @@ export class _Checkpoint extends _BaseObject {
         if (!this.alt.valid) return;
 
         if (this.alt.isPointIn(alt.Player.local.pos))
-            mp.events.dispatch('playerExitCheckpoint', this);
+            mp.events.dispatchLocal('playerExitCheckpoint', this);
 
         this.alt.destroy();
     }
@@ -47,10 +47,10 @@ mp.checkpoints.new = function (type, pos, radius, options = {}) {
 
 alt.on('entityEnterColshape', (shape, ent) => {
     if (ent !== alt.Player.local || !(shape instanceof alt.Checkpoint) || !shape) return;
-    mp.events.dispatch('playerEnterCheckpoint', shape.mp);
+    mp.events.dispatchLocal('playerEnterCheckpoint', shape.mp);
 });
 
 alt.on('entityLeaveColshape', (shape, ent) => {
     if (ent !== alt.Player.local || !(shape instanceof alt.Checkpoint) || !shape) return;
-    mp.events.dispatch('playerExitCheckpoint', shape.mp);
+    mp.events.dispatchLocal('playerExitCheckpoint', shape.mp);
 });

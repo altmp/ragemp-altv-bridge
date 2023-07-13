@@ -16,12 +16,12 @@ mp._initEventHandlers = () => {
     alt.on('worldObjectStreamIn', (ent) => {
         if (ent instanceof alt.VirtualEntity && ent.mp) ent.mp.streamIn();
         // TODO: can this be emitted twice?
-        mp.events.dispatch('entityStreamIn', toMp(ent));
+        mp.events.dispatchLocal('entityStreamIn', toMp(ent));
     });
 
     alt.on('worldObjectStreamOut', (ent) => {
         if (ent instanceof alt.VirtualEntity && ent.mp) ent.mp.streamOut();
-        mp.events.dispatch('entityStreamOut', toMp(ent));
+        mp.events.dispatchLocal('entityStreamOut', toMp(ent));
     });
 
     alt.on('worldObjectPositionChange', (ent, oldPos) => {

@@ -204,7 +204,7 @@ export class _Player extends _Entity {
         const oldModel = this.alt.model;
         this.alt.deleteMeta(mp.prefix + 'headblendInit');
         this.alt.model = value;
-        mp.events.dispatch('entityModelChange', this, oldModel);
+        mp.events.dispatchLocal('entityModelChange', this, oldModel);
     }
 
     type = 'player';
@@ -409,7 +409,7 @@ export class _Player extends _Entity {
 
     spawn(pos) {
         this.alt.spawn(pos);
-        mp.events.dispatch('playerSpawn', this);
+        mp.events.dispatchLocal('playerSpawn', this);
     }
 
     stopAnimation() {
@@ -468,21 +468,21 @@ mp.Player = _Player;
 mp.players = new PlayerPool(EntityGetterView.fromClass(alt.Player));
 
 alt.on('playerDeath', (player, killer, weapon) => {
-    mp.events.dispatch('playerDeath', player.mp, weapon, killer && killer instanceof alt.Player ? killer.mp : null);
+    mp.events.dispatchLocal('playerDeath', player.mp, weapon, killer && killer instanceof alt.Player ? killer.mp : null);
     player.emit(mp.prefix + 'dead', weapon, killer && killer instanceof alt.Player ? killer : null);
 });
 
 alt.on('playerConnect', (player) => {
-    mp.events.dispatch('playerJoin', player.mp);
-    mp.events.dispatch('playerReady', player.mp);
+    mp.events.dispatchLocal('playerJoin', player.mp);
+    mp.events.dispatchLocal('playerReady', player.mp);
 });
 
 alt.on('playerDamage', (victim, attacker, healthDamage, armourDamage, weaponHash) => {
-    mp.events.dispatch('playerDamage', victim.mp, healthDamage, armourDamage);
+    mp.events.dispatchLocal('playerDamage', victim.mp, healthDamage, armourDamage);
 });
 
 alt.on('playerDisconnect', (player, reason) => {
-    mp.events.dispatch('playerQuit', player.mp, 'unimplemented', 'unimplemented'); //player, exitType: string, reason: string
+    mp.events.dispatchLocal('playerQuit', player.mp, 'unimplemented', 'unimplemented'); //player, exitType: string, reason: string
 });
 
 alt.onClient(mp.prefix + 'setModel', (player, model) => {
@@ -490,24 +490,24 @@ alt.onClient(mp.prefix + 'setModel', (player, model) => {
 });
 
 alt.on('playerEnteringVehicle', (player, vehicle, seat) => {
-    mp.events.dispatch('playerStartEnterVehicle', player.mp, vehicle?.mp, altSeatToMp(seat));
+    mp.events.dispatchLocal('playerStartEnterVehicle', player.mp, vehicle?.mp, altSeatToMp(seat));
 });
 
 alt.on('playerEnteredVehicle', (player, vehicle, seat) => {
-    mp.events.dispatch('playerEnterVehicle', player.mp, vehicle?.mp, altSeatToMp(seat));
+    mp.events.dispatchLocal('playerEnterVehicle', player.mp, vehicle?.mp, altSeatToMp(seat));
 });
 
 alt.on('playerChangedVehicleSeat', (player, vehicle, oldSeat, seat) => {
-    mp.events.dispatch('playerEnterVehicle', player.mp, vehicle?.mp, altSeatToMp(seat));
+    mp.events.dispatchLocal('playerEnterVehicle', player.mp, vehicle?.mp, altSeatToMp(seat));
 });
 
 alt.on('playerLeftVehicle', (player, vehicle, seat) => {
-    mp.events.dispatch('playerStartExitVehicle', player.mp, vehicle?.mp, altSeatToMp(seat));
-    mp.events.dispatch('playerExitVehicle', player.mp, vehicle?.mp, altSeatToMp(seat));
+    mp.events.dispatchLocal('playerStartExitVehicle', player.mp, vehicle?.mp, altSeatToMp(seat));
+    mp.events.dispatchLocal('playerExitVehicle', player.mp, vehicle?.mp, altSeatToMp(seat));
 });
 
 alt.on('playerWeaponChange', (player, oldWeapon, newWeapon) => {
-    mp.events.dispatch('playerWeaponChange', player.mp, oldWeapon, newWeapon);
+    mp.events.dispatchLocal('playerWeaponChange', player.mp, oldWeapon, newWeapon);
 });
 
 // TODO: playerStreamIn, playerStreamOut

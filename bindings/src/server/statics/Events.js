@@ -7,16 +7,18 @@ import { InternalChat } from 'shared/DefaultChat.js';
 
 let procHandlers = {};
 let cmdHandlers = {};
+let globalHandlers = {};
 class _Events extends BaseEvents {
 
     constructor() {
         super();
 
         alt.onClient((event, player, ...args) => {
-            this.dispatch(event, player, ...argsToMp(args));
+            this.dispatchGlobal(event, player, ...argsToMp(args));
         });
         alt.on((event, ...args) => {
-            this.dispatch(event, ...argsToMp(args));
+            if (event === 'playerSpawn') return;
+            this.dispatchLocal(event, ...argsToMp(args));
         });
         alt.onClient(mp.prefix + 'repl', (player, id, res) => {
             if (!player.__pendingRpc || !(id in player.__pendingRpc)) return;
@@ -37,25 +39,47 @@ class _Events extends BaseEvents {
         });
 
         alt.on('baseObjectCreate', (obj) => {
-            if (obj.mp) this.dispatch('entityCreated', obj.mp);
+            if (obj.mp) this.dispatchLocal('entityCreated', obj.mp);
         });
         alt.on('baseObjectRemove', (obj) => {
-            if (obj.mp) this.dispatch('entityDestroyed', obj.mp);
+            if (obj.mp) this.dispatchLocal('entityDestroyed', obj.mp);
         });
 
         alt.on('resourceStop', async () => {
-            await mp.events.dispatch('serverShutdown');
+            await mp.events.dispatchLocal('serverShutdown');
         });
 
         alt.on('serverStarted', () => {
-            mp.events.dispatch('packagesLoaded');
+            mp.events.dispatchLocal('packagesLoaded');
         });
     }
 
-    addLocal(event, fn) {
-        alt.on(event, (...args) => {
-            fn(...argsToMp(args));
-        });
+    on(key, fn){
+        super.add(key, fn);
+
+        if (typeof key === 'object' && key) {
+            for (const [innerKey, innerValue] of Object.entries(key))
+                this.add(innerKey, innerValue);
+            return;
+        }
+        if (mp.debug) alt.log('Registering', key);
+        if (!(key in globalHandlers)) {
+            if (mp.debug) alt.log('Registering2', key);
+            globalHandlers[key] = new Set;
+        }
+        globalHandlers[key].add(fn);
+    }
+
+    dispatchGlobal(event, ...args) {
+        super.dispatchLocal(event, ...args);
+
+        if (!(event in globalHandlers)) return;
+        argsToMp(args);
+        for (const handler of globalHandlers[event]) handler(...args);
+    }
+
+    addLocal(key, fn) {
+        super.add(key, fn);
     }
 
     /** @internal */

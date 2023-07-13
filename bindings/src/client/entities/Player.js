@@ -998,24 +998,24 @@ alt.on('gameEntityCreate', (player) => {
 });
 
 alt.onServer(mp.prefix + 'dead', (weapon, killer) => {
-    mp.events.dispatch('playerDeath', alt.Player.local.mp, weapon, toMp(killer));
+    mp.events.dispatchLocal('playerDeath', alt.Player.local.mp, weapon, toMp(killer));
 });
 
 alt.on('resourceStart', () => {
-    mp.events.dispatch('playerJoin', alt.Player.local.mp);
+    mp.events.dispatchLocal('playerJoin', alt.Player.local.mp);
 });
 
 alt.on('resourceStop', () => {
-    mp.events.dispatch('playerQuit', alt.Player.local.mp);
+    mp.events.dispatchLocal('playerQuit', alt.Player.local.mp);
 });
 
 alt.on('connectionComplete', () => {
-    mp.events.dispatch('playerReady', alt.Player.local.mp);
+    mp.events.dispatchLocal('playerReady', alt.Player.local.mp);
 });
 
 alt.on('spawned', () => {
-    mp.events.dispatch('playerResurrect');
-    mp.events.dispatch('playerSpawn', alt.Player.local.mp);
+    mp.events.dispatchLocal('playerResurrect');
+    mp.events.dispatchLocal('playerSpawn', alt.Player.local.mp);
 });
 
 function getSeat() {
@@ -1036,13 +1036,13 @@ if (mp._main) {
         if (newVehicle !== lastVehicle) {
             console.log('Changed vehicle from ' + lastVehicle?.id + ' to ' + newVehicle?.id);
             if (lastVehicle) {
-                mp.events.dispatch('playerLeaveVehicle', lastVehicle?.alt?.valid ? lastVehicle : null, lastSeat);
+                mp.events.dispatchLocal('playerLeaveVehicle', lastVehicle?.alt?.valid ? lastVehicle : null, lastSeat);
             }
 
             if (newVehicle) {
                 const newSeat = getSeat();
-                mp.events.dispatch('playerStartEnterVehicle', newVehicle, newSeat);
-                mp.events.dispatch('playerEnterVehicle', newVehicle, newSeat);
+                mp.events.dispatchLocal('playerStartEnterVehicle', newVehicle, newSeat);
+                mp.events.dispatchLocal('playerEnterVehicle', newVehicle, newSeat);
                 lastSeat = newSeat;
             }
 
@@ -1051,7 +1051,7 @@ if (mp._main) {
             const newSeat = getSeat();
             if (newSeat !== lastSeat) {
                 console.log('Changed vehicle seat from ' + lastSeat + ' to ' + newSeat);
-                mp.events.dispatch('playerEnterVehicle', newVehicle, newSeat);
+                mp.events.dispatchLocal('playerEnterVehicle', newVehicle, newSeat);
                 lastSeat = newSeat;
             }
         }
@@ -1059,7 +1059,7 @@ if (mp._main) {
 }
 
 alt.on('netOwnerChange', (ent, oldOwner, newOwner) => {
-    mp.events.dispatch('entityControllerChange', ent, toMp(newOwner));
+    mp.events.dispatchLocal('entityControllerChange', ent, toMp(newOwner));
 });
 
 alt.onServer(mp.prefix + 'notify', message => {
@@ -1071,5 +1071,5 @@ alt.on('spawned', () => {
 });
 
 alt.on('playerWeaponShoot', () => {
-    mp.events.dispatch('playerWeaponShot', new mp.Vector3(0, 0, 0), null); // TODO: get target data from core
+    mp.events.dispatchLocal('playerWeaponShot', new mp.Vector3(0, 0, 0), null); // TODO: get target data from core
 });

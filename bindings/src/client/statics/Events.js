@@ -14,11 +14,11 @@ class _Events extends BaseEvents {
         super();
 
         alt.onServer((event, ...args) => {
-            this.dispatch(event, ...argsToMp(args));
+            this.dispatchLocal(event, ...argsToMp(args));
         });
         alt.on((event, ...args) => {
             if (event === 'consoleCommand') return; // dispatched in Console.js
-            this.dispatch(event, ...argsToMp(args));
+            this.dispatchLocal(event, ...argsToMp(args));
         });
         alt.onServer(mp.prefix + 'repl', (id, res) => {
             __pendingRpc[id].resolve(toMp(res));
@@ -35,10 +35,10 @@ class _Events extends BaseEvents {
         // render event is now being dispatched in Nametags.js
 
         alt.on('gameEntityCreate', (entity) => {
-            this.dispatch('entityStreamIn', toMp(entity));
+            this.dispatchLocal('entityStreamIn', toMp(entity));
         });
         alt.on('gameEntityDestroy', (entity) => {
-            this.dispatch('entityStreamOut', toMp(entity));
+            this.dispatchLocal('entityStreamOut', toMp(entity));
         });
     }
 

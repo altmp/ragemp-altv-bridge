@@ -42,7 +42,7 @@ class _Nametags {
             if (this.orderByDistance) arr.sort((a, b) => a[4] - b[4]);
         }
 
-        mp.events.dispatch('render', arr);
+        mp.events.dispatchLocal('render', arr);
 
         if (!this.enabled) return;
 

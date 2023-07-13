@@ -66,7 +66,7 @@ export class _Checkpoint extends _Colshape {
 
         for (let player of alt.Player.all) {
             if (this.alt.isPointIn(player.pos))
-                mp.events.dispatch('playerExitCheckpoint', player.mp, this);
+                mp.events.dispatchLocal('playerExitCheckpoint', player.mp, this);
         }
 
         this.alt.destroy();
@@ -93,10 +93,10 @@ mp.checkpoints.new = function(type, position, radius, params = {}) {
 
 alt.on('entityEnterColshape', (shape, ent) => {
     if (!(ent instanceof alt.Player) || !(shape instanceof alt.Checkpoint) || !shape) return;
-    mp.events.dispatch('playerEnterCheckpoint', ent.mp, shape.mp);
+    mp.events.dispatchLocal('playerEnterCheckpoint', ent.mp, shape.mp);
 });
 
 alt.on('entityLeaveColshape', (shape, ent) => {
     if (!(ent instanceof alt.Player) || !(shape instanceof alt.Checkpoint) || !shape) return;
-    mp.events.dispatch('playerExitCheckpoint', ent.mp, shape.mp);
+    mp.events.dispatchLocal('playerExitCheckpoint', ent.mp, shape.mp);
 });

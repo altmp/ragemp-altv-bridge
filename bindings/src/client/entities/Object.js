@@ -344,7 +344,7 @@ mp.objects.newWeaponObject = (model, position, params = {}) => {
     if ('alpha' in params) obj.alt.alpha = params.alpha;
 
     setTimeout(() => {
-        mp.events.dispatch('entityStreamIn', obj); // TODO weapon objects in core
+        mp.events.dispatchLocal('entityStreamIn', obj); // TODO weapon objects in core
     }, 50);
     return obj;
 };

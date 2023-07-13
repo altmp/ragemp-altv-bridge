@@ -5,7 +5,7 @@ import * as alt from 'alt-shared';
 let handlers = {};
 export class BaseEvents {
 
-    add = (key, fn) => {
+    add(key, fn) {
         if (typeof key === 'object' && key) {
             for (const [innerKey, innerValue] of Object.entries(key))
                 this.add(innerKey, innerValue);
@@ -17,9 +17,9 @@ export class BaseEvents {
             handlers[key] = new Set;
         }
         handlers[key].add(fn);
-    };
+    }
 
-    remove = (key, fn) => {
+    remove(key, fn) {
         if (typeof key === 'object' && Array.isArray(key)) {
             for (const el of key)
                 this.remove(el);
@@ -30,7 +30,7 @@ export class BaseEvents {
             if (!fn) handlers[key].clear();
             else handlers[key].delete(fn);
         }
-    };
+    }
 
     getAllOf = (key) => {
         return key in handlers ? [...handlers[key].values()] : [];
@@ -45,20 +45,16 @@ export class BaseEvents {
     };
 
     /** @internal */
-    dispatch = (event, ...args) => {
-        if(event != 'render' && mp.debug)alt.log('Dispatching1', event, handlers[event] != null);
+    dispatchLocal(event, ...args) {
         if (!(event in handlers)) return;
         argsToMp(args);
-        if(event != 'render' && mp.debug)alt.log('Dispatching2', event);
         for (const handler of handlers[event]) handler(...args);
-    };
+    }
 
     /** @internal */
-    dispatchWithResults = (event, ...args) => {
-        if(event != 'render' && mp.debug)alt.log('dispatchWithResults1', event);
+    dispatchLocalWithResults(event, ...args) {
         if (!(event in handlers)) return;
         argsToMp(args);
-        if(event != 'render' && mp.debug)alt.log('dispatchWithResults2', event);
         return handlers[event].map(e => e(...args));
-    };
+    }
 }

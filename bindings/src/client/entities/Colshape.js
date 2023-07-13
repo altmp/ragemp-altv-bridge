@@ -46,7 +46,7 @@ export class _Colshape extends _WorldObject {
         if (!this.alt.valid) return;
 
         if (this.alt.isPointIn(alt.Player.local.pos))
-            mp.events.dispatch('playerExitColshape', this);
+            mp.events.dispatchLocal('playerExitColshape', this);
 
         this.alt.destroy();
     }
@@ -102,17 +102,17 @@ mp.colshapes.newTube = function(x, y, z, height, range, dimension = 0) {
 
 alt.on('entityEnterColshape', (shape, ent) => {
     if (ent !== alt.Player.local || shape instanceof alt.Checkpoint || !shape) return;
-    mp.events.dispatch('playerEnterColshape', shape.mp);
+    mp.events.dispatchLocal('playerEnterColshape', shape.mp);
 });
 
 alt.on('entityLeaveColshape', (shape, ent) => {
     if (ent !== alt.Player.local || shape instanceof alt.Checkpoint || !shape) return;
-    mp.events.dispatch('playerExitColshape', shape.mp);
+    mp.events.dispatchLocal('playerExitColshape', shape.mp);
 });
 
 // TODO: proper implementation
 alt.onServer(mp.prefix + 'enterColshape', (position, dimension, type, meta) => {
-    mp.events.dispatch('playerEnterColshape', {
+    mp.events.dispatchLocal('playerEnterColshape', {
         position: new mp.Vector3(position),
         dimension,
         shapeType: type,
@@ -130,7 +130,7 @@ alt.onServer(mp.prefix + 'enterColshape', (position, dimension, type, meta) => {
 });
 
 alt.onServer(mp.prefix + 'leaveColshape', (position, dimension, type, meta) => {
-    mp.events.dispatch('playerExitColshape', {
+    mp.events.dispatchLocal('playerExitColshape', {
         position: new mp.Vector3(position),
         dimension,
         shapeType: type,
