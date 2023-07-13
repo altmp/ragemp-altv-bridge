@@ -330,7 +330,7 @@ mp.objects.newWeak = (handle) => {
         if (!ent.alt.valid) return;
         const scriptID = ent.handle;
         natives.deleteObject(scriptID);
-        ent.alt.destroy();
+        ent.valid = false;
     };
 
     return ent;
