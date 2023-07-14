@@ -1074,6 +1074,17 @@ alt.on('playerWeaponShoot', () => {
     mp.events.dispatchLocal('playerWeaponShot', new mp.Vector3(0, 0, 0), null); // TODO: get target data from core
 });
 
+// const boneMap = {
+//     0: 11816,
+//     1: 0, // todo
+//     2: 0, // todo
+//     3: 0, // todo
+//     4: 0, // todo
+//     5: 0, // todo
+//     6: 0, // todo
+//     7: 24816,
+//     8: 24818,
+// }
 alt.on('weaponDamage', (target, weapon, damage, offset, bodyPart, sourceEntity) => {
-    mp.events.dispatchLocal('outgoingDamage', sourceEntity?.mp, target?.mp, alt.Player.local?.mp, weapon, 0, damage);
+    mp.events.dispatchLocal('outgoingDamage', sourceEntity?.mp ?? alt.Player.local.mp, target?.mp, alt.Player.local.mp, weapon, 0, damage);
 });
