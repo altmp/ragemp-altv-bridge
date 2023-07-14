@@ -237,15 +237,11 @@ mp.blips.new = function(sprite, position, params = {}) {
     let blip;
     switch(sprite) {
         case 9:
-            console.log('CREATED RADIUS BLIP', params.radius);
             blip = new alt.RadiusBlip(position.x, position.y, position.z, params.radius ?? 100);
             break;
         case 5: {
-            const side = (params.radius ?? 50) * 2;
-            blip = new alt.AreaBlip(position.x, position.y, position.z, side, side);
-            blip.shortRange = false;
-            // TODO: better fix for area blip issues
-            blip.sprite = 0;
+            blip = new alt.RadiusBlip(position.x, position.y, position.z, params.radius ?? 100);
+            blip.sprite = 5;
             break;
         }
         default:
