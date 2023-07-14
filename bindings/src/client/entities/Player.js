@@ -1073,3 +1073,7 @@ alt.on('spawned', () => {
 alt.on('playerWeaponShoot', () => {
     mp.events.dispatchLocal('playerWeaponShot', new mp.Vector3(0, 0, 0), null); // TODO: get target data from core
 });
+
+alt.on('weaponDamage', (target, weapon, damage, offset, bodyPart, sourceEntity) => {
+    mp.events.dispatchLocal('outgoingDamage', sourceEntity?.mp, target?.mp, alt.Player.local?.mp, weapon, 0, damage);
+});
