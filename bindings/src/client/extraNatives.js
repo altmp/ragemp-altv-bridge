@@ -266,10 +266,19 @@ mp.game.gxt.reset = function() {
 
 Object.defineProperty(mp.game.gameplay, 'enableSnow', {
     get() {
-        return false;
+        return alt.getConfigFlag('FORCE_SHOW_NIGHT_PROPS');
     },
     set(value) {
-        // TODO: enableSnow
+        alt.setConfigFlag('FORCE_SHOW_NIGHT_PROPS', value);
+    }
+});
+
+Object.defineProperty(mp.game.weapon, 'unequipEmptyWeapons', {
+    get() {
+        return !alt.getConfigFlag('DISABLE_AUTO_WEAPON_SWAP');
+    },
+    set(value) {
+        alt.setConfigFlag('DISABLE_AUTO_WEAPON_SWAP', !value);
     }
 });
 
