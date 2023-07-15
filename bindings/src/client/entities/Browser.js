@@ -121,6 +121,7 @@ mp.browsers = new ClientPool(EntityGetterView.fromClass(alt.Blip));
 
 mp.browsers.new = function (url) {
     const webview = new alt.WebView(transformUrl(url));
+    webview.focus();
     return webview.mp;
 };
 
