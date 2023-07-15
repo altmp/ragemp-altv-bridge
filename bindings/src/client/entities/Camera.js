@@ -130,5 +130,6 @@ mp.cameras.new = function(name, pos = mp.Vector3.zero, rot = mp.Vector3.zero, fo
     }
 
     const handle = natives.createCamWithParams(validNames.includes(name) ? name : 'DEFAULT_SCRIPTED_CAMERA', pos.x, pos.y, pos.z, rot.x, rot.y, rot.z, fov, false, 2);
+    natives.setCamActive(handle, true);
     return new _Camera(handle);
 };
