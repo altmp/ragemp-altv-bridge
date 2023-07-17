@@ -19,6 +19,7 @@ import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 let bannedHwids = {};
 const ipRegex = /^::ffff:([0-9.]+)$/;
 
+const mpModels = [alt.hash('mp_m_freemode_01'), alt.hash('mp_f_freemode_01')];
 export class _Player extends _Entity {
     /** @type {alt.Player} alt */
     alt;
@@ -30,10 +31,11 @@ export class _Player extends _Entity {
         this.data = new SyncedMetaProxy(alt);
     }
 
-    #ensureHeadblend() {
-        if (this.alt.hasMeta(mp.prefix + 'headblendInit')) return;
-        this.alt.setHeadBlendData(0, 0, 0, 0, 0, 0, 0, 0, 0);
-        this.alt.setMeta(mp.prefix + 'headblendInit', true);
+    #needHeadblend() {
+        return mpModels.includes(this.model);
+        // if (this.alt.hasMeta(mp.prefix + 'headblendInit')) return;
+        // this.alt.setHeadBlendData(0, 0, 0, 0, 0, 0, 0, 0, 0);
+        // this.alt.setMeta(mp.prefix + 'headblendInit', true);
     }
 
     get serial() {
@@ -68,11 +70,11 @@ export class _Player extends _Entity {
 
     _eyeColor = new TemporaryContainer(() => this.alt.valid && this.alt.getTimestamp);
     get eyeColor() {
-        this.#ensureHeadblend();
+        if (!this.#needHeadblend()) return 0;
         return (this._eyeColor.value ?? this.alt.getEyeColor());
     }
     set eyeColor(value) {
-        this.#ensureHeadblend();
+        if (!this.#needHeadblend()) return;
         this._eyeColor.value = value;
         this.alt.setEyeColor(value);
     }
@@ -82,22 +84,22 @@ export class _Player extends _Entity {
     }
 
     get hairColor() {
-        this.#ensureHeadblend();
+        if (!this.#needHeadblend()) return 0;
         return this.alt.getHairColor();
     }
 
     set hairColor(value) {
-        this.#ensureHeadblend();
+        if (!this.#needHeadblend()) return;
         this.alt.setHairColor(value);
     }
 
     get hairHighlightColor() {
-        this.#ensureHeadblend();
+        if (!this.#needHeadblend()) return 0;
         return this.alt.getHairHighlightColor();
     }
 
     set hairHighlightColor(value) {
-        this.#ensureHeadblend();
+        if (!this.#needHeadblend()) return;
         this.alt.setHairHighlightColor(value);
     }
 
@@ -201,9 +203,11 @@ export class _Player extends _Entity {
     }
 
     set model(value) {
+        value = hashIfNeeded(value);
         const oldModel = this.alt.model;
-        this.alt.deleteMeta(mp.prefix + 'headblendInit');
         this.alt.model = value;
+        if (mpModels.includes(value))
+            this.alt.setHeadBlendData(0, 0, 0, 0, 0, 0, 0, 0, 0);
         mp.events.dispatchLocal('entityModelChange', this, oldModel);
     }
 
@@ -248,7 +252,7 @@ export class _Player extends _Entity {
     // TODO: tattoos (decorations)
 
     getClothes(component) {
-        this.#ensureHeadblend();
+        if (!this.#needHeadblend()) return;
         return this.alt.getClothes(component);
     }
 
@@ -257,7 +261,6 @@ export class _Player extends _Entity {
     }
 
     getHeadBlend() {
-        this.#ensureHeadblend();
         const data = this.alt.getHeadBlendData();
         return {
             shapes: [data.shapeFirstID, data.shapeSecondID, data.shapeThirdID],
@@ -269,7 +272,7 @@ export class _Player extends _Entity {
     }
 
     getHeadOverlay(idx) {
-        this.#ensureHeadblend();
+        if (!this.#needHeadblend()) return;
         const data = this.alt.getHeadOverlay(idx);
         return [data.index, data.opacity, data.colorIndex, data.secondColorIndex];
     }
@@ -363,7 +366,7 @@ export class _Player extends _Entity {
     }
 
     setCustomization(gender, shapeFirst, shapeSecond, shapeThird, skinFirst, skinSecond, skinThird, shapeMix, skinMix, thirdMix, eyeColor, hairColor, highlightColor, faceFeatures) {
-        this.#ensureHeadblend();
+        if (!this.#needHeadblend()) return;
         if (gender === true) this.model = alt.hash('mp_m_freemode_01');
         else this.model = alt.hash('mp_f_freemode_01');
         this.alt.setHeadBlendData(shapeFirst, shapeSecond, shapeThird, skinFirst, skinSecond, skinThird, shapeMix, skinMix, thirdMix);
@@ -376,23 +379,23 @@ export class _Player extends _Entity {
     }
 
     setFaceFeature(idx, scale) {
-        this.#ensureHeadblend();
+        if (!this.#needHeadblend()) return;
         this.alt.setFaceFeature(idx, scale);
     }
 
     setHairColor(hairColor, hairHighlightColor) {
-        this.#ensureHeadblend();
+        if (!this.#needHeadblend()) return;
         this.alt.setHairColor(hairColor);
         if (hairHighlightColor != null) this.alt.setHairHighlightColor(hairHighlightColor);
     }
 
     setHeadBlend(shapeFirst, shapeSecond, shapeThird, skinFirst, skinSecond, skinThird, shapeMix, skinMix, thirdMix) {
-        this.#ensureHeadblend();
+        if (!this.#needHeadblend()) return;
         this.alt.setHeadBlendData(shapeFirst, shapeSecond, shapeThird, skinFirst, skinSecond, skinThird, shapeMix, skinMix, thirdMix);
     }
 
     setHeadOverlay(overlay, params) {
-        this.#ensureHeadblend();
+        if (!this.#needHeadblend()) return;
         const [index, opacity, firstColor, secondColor] = params;
         this.alt.setHeadOverlay(overlay, index, opacity);
 
@@ -417,7 +420,7 @@ export class _Player extends _Entity {
     }
 
     updateHeadBlend(shape, skin, third) {
-        this.#ensureHeadblend();
+        if (!this.#needHeadblend()) return;
         const headBlend = this.alt.getHeadBlendData();
         this.alt.setHeadBlendData(headBlend.shapeFirstID, headBlend.shapeSecondID, headBlend.shapeThirdID,
             headBlend.skinFirstID, headBlend.skinSecondID, headBlend.skinThirdID,
@@ -473,6 +476,9 @@ alt.on('playerDeath', (player, killer, weapon) => {
 });
 
 alt.on('playerConnect', (player) => {
+    // player.spawn('mp_m_freemode_01', new alt.Vector3(0, 0, 72));
+    // player.setHeadBlendData(0, 0, 0, 0, 0, 0, 0, 0, 0);
+
     mp.events.dispatchLocal('playerJoin', player.mp);
     mp.events.dispatchLocal('playerReady', player.mp);
 });
