@@ -5430,6 +5430,7 @@ mp.game2.graphics.forceRenderInGameUi ??= function (toggle) {
     let $res = natives.forceRenderInGameUi(toggle | 0);
 };
 mp.game2.graphics.requestStreamedTextureDict ??= function (textureDict, p1) {
+    console.log('Request texture dict! ', textureDict);
     if (typeof textureDict != "string") textureDict = null;
     let $res = natives.requestStreamedTextureDict(textureDict, p1 | 0);
 };
@@ -6173,6 +6174,7 @@ mp.game2.graphics.presetInteriorAmbientCache ??= function (timecycleModifierName
     let $res = natives.presetInteriorAmbientCache(timecycleModifierName);
 };
 mp.game2.graphics.setTimecycleModifier ??= function (modifierName) {
+    console.log('SET TC MODIFIER', modifierName, new Error().stack);
     if (typeof modifierName != "string") modifierName = null;
     let $res = natives.setTimecycleModifier(modifierName);
 };
@@ -6184,6 +6186,7 @@ mp.game2.graphics.setTransitionTimecycleModifier ??= function (modifierName, tra
     let $res = natives.setTransitionTimecycleModifier(modifierName, transition);
 };
 mp.game2.graphics.clearTimecycleModifier ??= function () {
+    console.log('CLEAR TC MODIFIER', new Error().stack);
     let $res = natives.clearTimecycleModifier();
 };
 mp.game2.graphics.getTimecycleModifierIndex ??= function () {
@@ -50395,7 +50398,7 @@ hashes['0xFDE8F069C542D126'] = function(p0, p1) {
     const $res = natives.cellCamActivate(Boolean(p0), Boolean(p1));
     return $res;
 }
-hashes['0x015C49A93E3E086E'] = function(p0) {
+hashes['0x015C49A93E3E086E'] = function(p0)  {
     const $res = natives.cellCamActivateSelfieMode(Boolean(p0));
     return $res;
 }
