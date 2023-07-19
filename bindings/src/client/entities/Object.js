@@ -313,10 +313,13 @@ mp.objects.new = (model, position, params = {}) => {
     model = hashIfNeeded(model);
     if (!natives.isModelValid(model)) model = alt.hash('prop_ecola_can');
     const obj = new alt.Object(model, position, new alt.Vector3(params.rotation ?? alt.Vector3.zero).toRadians(), true, false, true, mp.streamingDistance);
-    obj.setMeta(mp.prefix + 'bridge', true);
+    obj._mpOwned = true;
     if ('alpha' in params) obj.alpha = params.alpha;
     if ('dimension' in params) obj.dimension = mpDimensionToAlt(params.dimension);
 
+    if (obj.isStreamedIn) {
+        natives.freezeEntityPosition(obj, true);
+    }
     return obj.mp;
 };
 
@@ -350,7 +353,7 @@ mp.objects.newWeaponObject = (model, position, params = {}) => {
 };
 
 alt.on('gameEntityCreate',  (ent) => {
-    if (ent instanceof alt.Object && ent.getMeta(mp.prefix + 'bridge')) {
+    if (ent instanceof alt.Object && ent._mpOwned) {
         natives.freezeEntityPosition(ent.scriptID, true);
     }
 });
