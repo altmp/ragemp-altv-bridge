@@ -266,10 +266,10 @@ mp.game.gxt.reset = function() {
 
 Object.defineProperty(mp.game.gameplay, 'enableSnow', {
     get() {
-        return alt.getConfigFlag('FORCE_SHOW_NIGHT_PROPS');
+        return alt.getConfigFlag('FORCE_RENDER_SNOW');
     },
     set(value) {
-        alt.setConfigFlag('FORCE_SHOW_NIGHT_PROPS', value);
+        alt.setConfigFlag('FORCE_RENDER_SNOW', value);
     }
 });
 
