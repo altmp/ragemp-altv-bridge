@@ -27,6 +27,11 @@ export const toMp = (obj) => {
             return obj.map(toMp);
         }
 
+        switch (obj[mp.prefix + 'dataType']) {
+            case 'date':
+                return new Date(obj.value);
+        }
+
         if (obj.constructor && obj.constructor.name === 'Object') {
             const newObj = {};
             for (const key of Object.keys(obj)) {
@@ -46,6 +51,13 @@ export const toAlt = (obj) => {
             return obj.alt;
         }
 
+        if (obj instanceof Date) {
+            return {
+                [mp.prefix + 'dataType']: 'date',
+                value: obj.valueOf()
+            };
+        }
+
         if (Array.isArray(obj)) {
             return obj.map(toAlt);
         }
@@ -56,6 +68,10 @@ export const toAlt = (obj) => {
                 newObj[key] = toAlt(obj[key]);
             }
             return newObj;
+        }
+
+        if (typeof obj === 'function') {
+            return null;
         }
     }
 
