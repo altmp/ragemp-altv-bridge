@@ -310,6 +310,14 @@ mp.game.hud.getCurrentAreaNameHash = () => {
     return natives.getHashOfMapAreaAtCoords(pos.x, pos.y, pos.z);
 };
 
+mp.game.hud.setMinimapComponentValues = (name, alignX, alignY, posX, posY, sizeX, sizeY) => {
+    alt.setMinimapComponentPosition(name, alignX, alignY, posX, posY, sizeX, sizeY);
+};
+
+mp.game.hud.resetMinimapComponentValues = (name) => {
+    alt.resetMinimapComponentPosition(name);
+};
+
 // TODO: remove after fixed in core
 mp.game.shapetest ??= {};
 mp.game.shapetest.releaseScriptGuidFromEntity = () => {};
