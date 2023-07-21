@@ -11,17 +11,17 @@ import { mpDimensionToAlt } from '../../shared/utils';
 
 const store = new EntityStoreView();
 const view = new EntityMixedView(store, new EntityGetterView(
-    () => alt.Object.all,
-    (id) => alt.Object.all.find(e => e && e.mp.id === id),
+    () => alt.LocalObject.all,
+    (id) => alt.LocalObject.all.find(e => e && e.mp.id === id),
     {
-        remoteIDGetter: alt.Object.getByID,
-        scriptIDGetter: (scriptID) => alt.Object.all.find(e => e && e.scriptID === scriptID), // TODO: alt.Object.getByScriptID
-        streamRangeGetter: alt.Object.all.filter(e => e.scriptID !== 0)
+        remoteIDGetter: alt.LocalObject.getByID,
+        scriptIDGetter: (scriptID) => alt.LocalObject.all.find(e => e && e.scriptID === scriptID), // TODO: alt.LocalObject.getByScriptID
+        streamRangeGetter: alt.LocalObject.all.filter(e => e.scriptID !== 0)
     }
 ));
 
 export class _Object extends _Entity {
-    /** @param {alt.Object} alt */
+    /** @param {alt.LocalObject} alt */
     constructor(alt) {
         super(alt);
         this.alt = alt;
@@ -73,7 +73,7 @@ export class _Object extends _Entity {
         const rot = this.alt.rot;
         const alpha = this.alt.alpha;
         this.alt.destroy();
-        this.alt = new alt.Object(value, pos, rot, true, true, true, mp.streamingDistance);
+        this.alt = new alt.LocalObject(value, pos, rot, true, true, true, mp.streamingDistance);
         this.alt.alpha = alpha;
     }
 
@@ -301,7 +301,7 @@ export class _NetworkObject extends _Object {
 mp.Object = _Object;
 
 
-Object.defineProperty(alt.Object.prototype, 'mp', {
+Object.defineProperty(alt.LocalObject.prototype, 'mp', {
     get() {
         return this._mp ??= new _Object(this);
     }
@@ -312,7 +312,7 @@ mp.objects = new ClientPool(view);
 mp.objects.new = (model, position, params = {}) => {
     model = hashIfNeeded(model);
     if (!natives.isModelValid(model)) model = alt.hash('prop_ecola_can');
-    const obj = new alt.Object(model, position, new alt.Vector3(params.rotation ?? alt.Vector3.zero).toRadians(), true, false, true, mp.streamingDistance);
+    const obj = new alt.LocalObject(model, position, new alt.Vector3(params.rotation ?? alt.Vector3.zero).toRadians(), true, false, true, mp.streamingDistance);
     obj._mpOwned = true;
     if ('alpha' in params) obj.alpha = params.alpha;
     if ('dimension' in params) obj.dimension = mpDimensionToAlt(params.dimension);
@@ -324,7 +324,7 @@ mp.objects.new = (model, position, params = {}) => {
 };
 
 mp.objects.newWeak = (handle) => {
-    const obj = alt.Object.allWorld.find(e => e.scriptID === handle);
+    const obj = alt.LocalObject.allWorld.find(e => e.scriptID === handle);
 
     if (!obj) return null;
     const ent = obj.mp;
@@ -354,7 +354,7 @@ mp.objects.newWeaponObject = (model, position, params = {}) => {
 };
 
 alt.on('gameEntityCreate',  (ent) => {
-    if (ent instanceof alt.Object && ent._mpOwned) {
+    if (ent instanceof alt.LocalObject && ent._mpOwned) {
         natives.freezeEntityPosition(ent.scriptID, true);
     }
 });

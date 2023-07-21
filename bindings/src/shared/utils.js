@@ -177,3 +177,11 @@ export const schedule = (predicate, fn, timeout = 2000) => {
         fn();
     });
 };
+
+export const safeExecute = async (fn, what, bind, ...args) => {
+    try {
+        return await fn.apply(bind, args);
+    } catch (err) {
+        console.error('Error executing ' + what, err);
+    }
+};
