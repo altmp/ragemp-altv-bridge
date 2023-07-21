@@ -476,11 +476,10 @@ alt.on('playerDeath', (player, killer, weapon) => {
 });
 
 alt.on('playerConnect', (player) => {
-    // player.spawn('mp_m_freemode_01', new alt.Vector3(0, 0, 72));
-    // player.setHeadBlendData(0, 0, 0, 0, 0, 0, 0, 0, 0);
-
     mp.events.dispatchLocal('playerJoin', player.mp);
     mp.events.dispatchLocal('playerReady', player.mp);
+
+    alt.emitAllClients(mp.prefix + 'join', player);
 });
 
 alt.on('playerDamage', (victim, attacker, healthDamage, armourDamage, weaponHash) => {
@@ -488,6 +487,7 @@ alt.on('playerDamage', (victim, attacker, healthDamage, armourDamage, weaponHash
 });
 
 alt.on('playerDisconnect', (player, reason) => {
+    alt.emitAllClients(mp.prefix + 'quit', player);
     mp.events.dispatchLocal('playerQuit', player.mp, 'unimplemented', 'unimplemented'); //player, exitType: string, reason: string
 });
 

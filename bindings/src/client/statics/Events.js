@@ -14,6 +14,7 @@ class _Events extends BaseEvents {
         super();
 
         alt.onServer((event, ...args) => {
+            if (event.startsWith(mp.prefix)) return;
             this.dispatchLocal(event, ...argsToMp(args));
         });
         alt.on((event, ...args) => {

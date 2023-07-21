@@ -1001,6 +1001,16 @@ alt.onServer(mp.prefix + 'dead', (weapon, killer) => {
     mp.events.dispatchLocal('playerDeath', alt.Player.local.mp, weapon, toMp(killer));
 });
 
+alt.onServer(mp.prefix + 'join', (player) => {
+    if (player === alt.Player.local) return;
+    mp.events.dispatchLocal('playerJoin', toMp(player));
+});
+
+alt.onServer(mp.prefix + 'quit', (player) => {
+    if (player === alt.Player.local) return;
+    mp.events.dispatchLocal('playerQuit', toMp(player));
+});
+
 alt.on('resourceStart', () => {
     mp.events.dispatchLocal('playerJoin', alt.Player.local.mp);
 });
