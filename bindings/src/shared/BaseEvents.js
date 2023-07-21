@@ -1,5 +1,5 @@
 import mp from './mp';
-import {argsToMp} from './utils';
+import {argsToMp, safeExecute} from './utils';
 import * as alt from 'alt-shared';
 
 let handlers = {};
@@ -16,6 +16,7 @@ export class BaseEvents {
             if (mp.debug) alt.log('Registering2', key);
             handlers[key] = new Set;
         }
+        fn.from = String((new Error()).stack);
         handlers[key].add(fn);
     }
 
@@ -48,7 +49,9 @@ export class BaseEvents {
     dispatchLocal(event, ...args) {
         if (!(event in handlers)) return;
         argsToMp(args);
-        for (const handler of handlers[event]) handler(...args);
+        for (const handler of handlers[event]) {
+            safeExecute(handler, event + ' event handler', this, ...args);
+        }
     }
 
     /** @internal */
