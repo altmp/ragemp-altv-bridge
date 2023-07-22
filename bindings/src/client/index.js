@@ -87,10 +87,7 @@ if (alt.debug && mp._main) {
 }
 
 alt.loadDefaultIpls();
-
-alt.everyTick(() => {
-    natives.networkAllowRemoteSyncedSceneLocalPlayerRequests(1);
-});
+natives.networkAllowRemoteSyncedSceneLocalPlayerRequests(1);
 
 if (mp._main) {
     mp._initEventHandlers();
