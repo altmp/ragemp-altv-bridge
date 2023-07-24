@@ -225,8 +225,11 @@ mp.game.weapon.setCurrentDamageEventCritical = () => {
 
 mp.game.vehicle.isCopVehicleInArea3d = mp.game.vehicle.isCopInArea3D;
 
-mp.game.graphics.setLightsState = function() {
-    // TODO
+mp.game.graphics.setLightsState = function(id, state) {
+    if (id !== 0) return;
+    natives.setArtificialLightsState(state);
+    alt.setConfigFlag('FORCE_HIDE_NIGHT_PROPS', state);
+    alt.setConfigFlag('DISABLE_EMISSIVE_LIGHTS_RENDERING', state);
 };
 
 mp.game.weapon.setEnableLocalOutgoingDamage = function () {
