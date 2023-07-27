@@ -191,6 +191,9 @@ mp.game.player.hasTeleportFinished = mp.game.player.updateTeleport;
 // TODO: mp.streaming.getModelNameFromHash
 // TODO: mp.streaming.forceStreamingUpdate
 
+mp.streaming.forceStreamingUpdate = () => {
+};
+
 mp.game.vehicle.setExperimentalAttachmentSyncEnabled = () => {};
 mp.game.vehicle.setExperimentalHornSyncEnabled = () => {};
 // TODO: mp.vehicle.addModelOverride
