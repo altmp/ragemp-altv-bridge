@@ -347,9 +347,7 @@ mp.objects.newWeaponObject = (model, position, params = {}) => {
     if ('rotation' in params) obj.rotation = params.rotation;
     if ('alpha' in params) obj.alt.alpha = params.alpha;
 
-    setTimeout(() => {
-        mp.events.dispatchLocal('entityStreamIn', obj); // TODO weapon objects in core
-    }, 50);
+    mp.events.dispatchLocal('entityStreamIn', obj);
     return obj;
 };
 
