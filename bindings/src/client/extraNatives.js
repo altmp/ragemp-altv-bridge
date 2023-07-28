@@ -190,7 +190,7 @@ mp.game.player.hasTeleportFinished = mp.game.player.updateTeleport;
 // TODO: mp.streaming.getAllModelHashes
 // TODO: mp.streaming.getModelNameFromHash
 // TODO: mp.streaming.forceStreamingUpdate
-
+mp.streaming ??= {};
 mp.streaming.forceStreamingUpdate = () => {
 };
 
