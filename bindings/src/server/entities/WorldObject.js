@@ -1,6 +1,6 @@
 import * as alt from 'alt-server';
 import mp from '../../shared/mp';
-import {altDimensionToMp, mpDimensionToAlt, toAlt, toMp, vdist, vdist2} from '../../shared/utils';
+import {altDimensionToMp, internalName, mpDimensionToAlt, toAlt, toMp, vdist, vdist2} from '../../shared/utils';
 import { _BaseObject } from './BaseObject';
 
 export class _WorldObject extends _BaseObject {
@@ -47,7 +47,7 @@ export class _WorldObject extends _BaseObject {
 
     set dimension(value) {
         this.alt.dimension = mpDimensionToAlt(value);
-        this.setVariable(mp.prefix + 'dimension', value);
+        this.setVariable(internalName('dimension'), value);
     }
 
     get id() {

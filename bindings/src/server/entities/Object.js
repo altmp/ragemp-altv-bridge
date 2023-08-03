@@ -5,7 +5,7 @@ import {ServerPool} from '../pools/ServerPool';
 import {_Label} from './Label';
 import {VirtualEntityID} from '../../shared/VirtualEntityID';
 import {EntityStoreView} from '../../shared/pools/EntityStoreView';
-import {hashIfNeeded} from '../../shared/utils';
+import {hashIfNeeded, internalName} from '../../shared/utils';
 import {StreamSyncedMetaProxy} from '../../shared/meta';
 
 
@@ -59,7 +59,7 @@ export class _Object extends _Entity {
     }
     set model(value) {
         this.#model = value;
-        this.alt.setStreamSyncedMeta(mp.prefix + 'model', value);
+        this.alt.setStreamSyncedMeta(internalName('model'), value);
     }
 
     #alpha;
@@ -68,7 +68,7 @@ export class _Object extends _Entity {
     }
     set alpha(value) {
         this.#alpha = value;
-        this.alt.setStreamSyncedMeta(mp.prefix + 'alpha', value);
+        this.alt.setStreamSyncedMeta(internalName('alpha'), value);
     }
 
     #rotation;
@@ -77,7 +77,7 @@ export class _Object extends _Entity {
     }
     set rotation(value) {
         this.#rotation = value;
-        this.alt.setStreamSyncedMeta(mp.prefix + 'rotation', new alt.Vector3(value));
+        this.alt.setStreamSyncedMeta(internalName('rotation'), new alt.Vector3(value));
     }
 
     get notifyStreaming() {
@@ -107,7 +107,7 @@ const group = new alt.VirtualEntityGroup(255);
 mp.objects.new = (model, position, params = {}) => {
     model = hashIfNeeded(model);
     const virtualEnt = new alt.VirtualEntity(group, position, params.drawDistance ?? mp.streamingDistance);
-    virtualEnt.setStreamSyncedMeta(mp.prefix + 'type', VirtualEntityID.Object);
+    virtualEnt.setStreamSyncedMeta(internalName('type'), VirtualEntityID.Object);
     const ent = virtualEnt.mp;
     ent.model = model;
     ent.position = position;

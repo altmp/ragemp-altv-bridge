@@ -5,7 +5,7 @@ import {
     altSeatToMp,
     argsToAlt,
     deg2rad,
-    hashIfNeeded,
+    hashIfNeeded, internalName,
     rad2deg,
     TemporaryContainer,
     vdist,
@@ -15,6 +15,7 @@ import { _Entity } from './Entity.js';
 import { PlayerPool } from '../pools/PlayerPool';
 import { InternalChat } from '../../shared/DefaultChat.js';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
+import {emitAllClientsInternal, emitClient, emitClientInternal, emitClientUnreliable} from '../serverUtils';
 
 let bannedHwids = {};
 const ipRegex = /^::ffff:([0-9.]+)$/;
@@ -33,9 +34,9 @@ export class _Player extends _Entity {
 
     #needHeadblend() {
         return mpModels.includes(this.model);
-        // if (this.alt.hasMeta(mp.prefix + 'headblendInit')) return;
+        // if (this.alt.hasMeta(internalName('headblendInit'))) return;
         // this.alt.setHeadBlendData(0, 0, 0, 0, 0, 0, 0, 0, 0);
-        // this.alt.setMeta(mp.prefix + 'headblendInit', true);
+        // this.alt.setMeta(internalName('headblendInit'), true);
     }
 
     get serial() {
@@ -191,11 +192,11 @@ export class _Player extends _Entity {
     }
 
     get alpha() {
-        return this.alt.getStreamSyncedMeta(mp.prefix + 'alpha');
+        return this.alt.getStreamSyncedMeta(internalName('alpha'));
     }
 
     set alpha(value) {
-        this.alt.setStreamSyncedMeta(mp.prefix + 'alpha', value);
+        this.alt.setStreamSyncedMeta(internalName('alpha'), value);
     }
 
     get model() {
@@ -218,11 +219,11 @@ export class _Player extends _Entity {
     }
 
     call(evt, args = []) {
-        this.alt.emit(evt, ...argsToAlt(args));
+        emitClient(this.alt, evt, ...argsToAlt(args));
     }
 
     callUnreliable(evt, args = []) {
-        (mp._forceReliable ? alt.emitClient : alt.emitClientUnreliable)(this.alt, evt, ...argsToAlt(args));
+        emitClientUnreliable(this.alt, evt, ...argsToAlt(args));
     }
 
     callProc(evt, args = []) {
@@ -239,14 +240,14 @@ export class _Player extends _Entity {
 
     callToStreamed(includeSelf, evt, args) {
         const altArgs = argsToAlt(args);
-        if (includeSelf) this.alt.emitClient(evt, ...altArgs);
-        alt.emitClient(alt.Player.all.filter(p => this.alt.isEntityInStreamRange(p)), evt, ...altArgs);
+        if (includeSelf) emitClient(this.alt, evt, ...altArgs);
+        emitClient(alt.Player.all.filter(p => this.alt.isEntityInStreamRange(p)), evt, ...altArgs);
     }
 
     callToStreamedUnreliable(includeSelf, evt, args) {
         const altArgs = argsToAlt(args);
-        if (includeSelf) this.alt.emitClient(evt, ...altArgs);
-        (mp._forceReliable ? alt.emitClient : alt.emitClientUnreliable)(alt.Player.all.filter(p => this.alt.isEntityInStreamRange(p)), evt, ...altArgs);
+        if (includeSelf) emitClientUnreliable(this.alt, evt, ...altArgs);
+        emitClientUnreliable(alt.Player.all.filter(p => this.alt.isEntityInStreamRange(p)), evt, ...altArgs);
     }
 
     // TODO: tattoos (decorations)
@@ -306,7 +307,7 @@ export class _Player extends _Entity {
     }
 
     invoke(native, ...args) {
-        this.alt.emit(mp.prefix + 'invoke', native, ...argsToAlt(args));
+        emitClientInternal(this.alt, 'invoke', native, ...argsToAlt(args));
     }
 
     isStreamed(player) {
@@ -337,7 +338,7 @@ export class _Player extends _Entity {
     }
 
     notify(message) {
-        alt.emitClientRaw(this.alt, mp.prefix + 'notify', message);
+        emitClientInternal(this.alt, 'notify', message);
     }
 
     putIntoVehicle(vehicle, seat) {
@@ -472,14 +473,14 @@ mp.players = new PlayerPool(EntityGetterView.fromClass(alt.Player));
 
 alt.on('playerDeath', (player, killer, weapon) => {
     mp.events.dispatchLocal('playerDeath', player.mp, weapon, killer && killer instanceof alt.Player ? killer.mp : null);
-    player.emit(mp.prefix + 'dead', weapon, killer && killer instanceof alt.Player ? killer : null);
+    emitClientInternal(player, 'dead', weapon, killer && killer instanceof alt.Player ? killer : null);
 });
 
 alt.on('playerConnect', (player) => {
     mp.events.dispatchLocal('playerJoin', player.mp);
     mp.events.dispatchLocal('playerReady', player.mp);
 
-    alt.emitAllClients(mp.prefix + 'join', player);
+    emitAllClientsInternal('join', player);
 });
 
 alt.on('playerDamage', (victim, attacker, healthDamage, armourDamage, weaponHash) => {
@@ -487,11 +488,11 @@ alt.on('playerDamage', (victim, attacker, healthDamage, armourDamage, weaponHash
 });
 
 alt.on('playerDisconnect', (player, reason) => {
-    alt.emitAllClients(mp.prefix + 'quit', player);
+    emitAllClientsInternal('quit', player);
     mp.events.dispatchLocal('playerQuit', player.mp, 'unimplemented', 'unimplemented'); //player, exitType: string, reason: string
 });
 
-alt.onClient(mp.prefix + 'setModel', (player, model) => {
+alt.onClient(internalName('setModel'), (player, model) => {
     player.model = model;
 });
 

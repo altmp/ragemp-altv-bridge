@@ -7,7 +7,7 @@ import { LabelRenderer } from './LabelRenderer';
 import { VirtualEntityID } from '../../../shared/VirtualEntityID';
 import { _VirtualEntityBase } from '../VirtualEntityBase';
 import {EntityStoreView} from '../../../shared/pools/EntityStoreView';
-import {toAlt, toMp} from '../../../shared/utils';
+import {internalName, toAlt, toMp} from '../../../shared/utils';
 
 const view = new EntityStoreView(1, (e) => e.isStreamedIn);
 
@@ -70,12 +70,12 @@ export class _Label extends _VirtualEntityBase {
     }
 
     get drawDistance() {
-        return this.getVariable(mp.prefix + 'drawDistance');
+        return this.getVariable(internalName('drawDistance'));
     }
 
     set drawDistance(value) {
         if (this.alt.isRemote) return;
-        this.setVariable(mp.prefix + 'drawDistance', value);
+        this.setVariable(internalName('drawDistance'), value);
     }
 
     get font() {
@@ -118,7 +118,7 @@ const group = new alt.VirtualEntityGroup(40);
 
 mp.labels.new = (text, position, params = {}) => {
     const virtualEnt = new alt.VirtualEntity(group, position, params.drawDistance ?? 30);
-    virtualEnt.setMeta(mp.prefix + 'type', VirtualEntityID.Label);
+    virtualEnt.setMeta(internalName('type'), VirtualEntityID.Label);
     const ent = virtualEnt.mp;
     ent.text = text;
     ent.los = params.los ?? true;

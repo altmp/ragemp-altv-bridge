@@ -1,5 +1,7 @@
 import mp from '../../shared/mp.js';
 import * as alt from 'alt-server';
+import {emitAllClientsInternal} from '../serverUtils';
+import {internalName} from '../../shared/utils';
 
 //Todo apply on player join and send to players on change
 
@@ -50,7 +52,7 @@ class _Time {
             this.#minute = m;
             this.#second = s;
         }
-        alt.setSyncedMeta(mp.prefix + 'time', [this.#hour, this.#minute, this.#second]);
+        alt.setSyncedMeta(internalName('time'), [this.#hour, this.#minute, this.#second]);
     }
 }
 
@@ -74,21 +76,21 @@ export class _World {
 
     set weather(value) {
         this.#weather = value;
-        alt.setSyncedMeta(mp.prefix + 'weather', value);
-        alt.emitAllClients(mp.prefix + 'weather', value);
+        alt.setSyncedMeta(internalName('weather'), value);
+        emitAllClientsInternal('weather', value);
     }
 
     setWeatherTransition(weather, easeTime) {
         this.#weather = weather;
-        alt.setSyncedMeta(mp.prefix + 'weather', weather);
-        alt.emitAllClients(mp.prefix + 'weatherTransition', weather, easeTime);
+        alt.setSyncedMeta(internalName('weather'), weather);
+        emitAllClientsInternal('weatherTransition', weather, easeTime);
     }
 
     removeIpl(ipl) {
-        alt.emitAllClients(mp.prefix + 'removeIpl', ipl);
+        emitAllClientsInternal('removeIpl', ipl);
     }
     requestIpl(ipl) {
-        alt.emitAllClients(mp.prefix + 'requestIpl', ipl);
+        emitAllClientsInternal('requestIpl', ipl);
     }
 }
 

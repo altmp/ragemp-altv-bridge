@@ -4,6 +4,7 @@ import { _Entity } from './Entity';
 import { VirtualEntityID } from '../../shared/VirtualEntityID';
 import { ServerPool } from '../pools/ServerPool';
 import {EntityStoreView} from '../../shared/pools/EntityStoreView';
+import {internalName} from '../../shared/utils';
 
 const view = new EntityStoreView();
 
@@ -14,7 +15,7 @@ export class _Label extends _Entity {
         super(alt);
         this.alt = alt;
         view.add(this, this.id);
-        this.alt.setStreamSyncedMeta(mp.prefix + 'drawDistance', this.alt.streamingDistance);
+        this.alt.setStreamSyncedMeta(internalName('drawDistance'), this.alt.streamingDistance);
     }
 
     type = 'label';
@@ -53,7 +54,7 @@ export class _Label extends _Entity {
     set color(value) {
         value = new alt.RGBA(value);
         this.#color = value;
-        this.alt.setStreamSyncedMeta(mp.prefix + 'color', value);
+        this.alt.setStreamSyncedMeta(internalName('color'), value);
     }
 
     #font;
@@ -62,7 +63,7 @@ export class _Label extends _Entity {
     }
     set font(value) {
         this.#font = value;
-        this.alt.setStreamSyncedMeta(mp.prefix + 'font', value);
+        this.alt.setStreamSyncedMeta(internalName('font'), value);
     }
 
     #los = false;
@@ -71,7 +72,7 @@ export class _Label extends _Entity {
     }
     set los(value) {
         this.#los = value;
-        this.alt.setStreamSyncedMeta(mp.prefix + 'los', value);
+        this.alt.setStreamSyncedMeta(internalName('los'), value);
     }
 
     #text = '';
@@ -80,7 +81,7 @@ export class _Label extends _Entity {
     }
     set text(value) {
         this.#text = value;
-        this.alt.setStreamSyncedMeta(mp.prefix + 'text', value);
+        this.alt.setStreamSyncedMeta(internalName('text'), value);
     }
 }
 
@@ -95,7 +96,7 @@ mp.labels = new ServerPool(view);
 const group = new alt.VirtualEntityGroup(40);
 mp.labels.new = function(text, position, params = {}) {
     const virtualEnt = new alt.VirtualEntity(group, position, params.drawDistance ?? 30);
-    virtualEnt.setStreamSyncedMeta(mp.prefix + 'type', VirtualEntityID.Label);
+    virtualEnt.setStreamSyncedMeta(internalName('type'), VirtualEntityID.Label);
     const ent = virtualEnt.mp;
     ent.text = text;
     ent.los = params.los ?? false;

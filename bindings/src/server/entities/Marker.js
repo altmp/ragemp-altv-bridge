@@ -6,6 +6,7 @@ import { _Entity } from './Entity.js';
 import { _WorldObject } from './WorldObject.js';
 import { ServerPool } from '../pools/ServerPool';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
+import {emitClientInternal} from '../serverUtils';
 
 export class _Marker extends _Entity {
     alt;
@@ -20,11 +21,11 @@ export class _Marker extends _Entity {
     type = 'marker';
 
     showFor(player) {
-        alt.emitClientRaw(player.alt, mp.prefix + 'toggleMarker', this.alt.id, true);
+        emitClientInternal(player.alt, 'toggleMarker', this.alt.id, true);
     }
 
     hideFor(player) {
-        alt.emitClientRaw(player.alt, mp.prefix + 'toggleMarker', this.alt.id, false);
+        emitClientInternal(player.alt, 'toggleMarker', this.alt.id, false);
     }
 
     getColor() {

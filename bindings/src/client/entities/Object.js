@@ -6,7 +6,7 @@ import { ClientPool } from '../ClientPool';
 import {EntityStoreView} from '../../shared/pools/EntityStoreView';
 import {EntityMixedView} from '../../shared/pools/EntityMixedView';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
-import {hashIfNeeded, toAlt, toMp} from '../../shared/utils';
+import {hashIfNeeded, internalName, toAlt, toMp} from '../../shared/utils';
 import { mpDimensionToAlt } from '../../shared/utils';
 
 const store = new EntityStoreView();
@@ -225,11 +225,11 @@ export class _NetworkObject extends _Object {
         alt.loadModel(this.model);
         this.#handle = natives.createObject(this.model, this.alt.pos.x, this.alt.pos.y, this.alt.pos.z, false, false, false);
         store.add(this, undefined, this.#handle, undefined);
-        // natives.setEntityHeading(this.#handle, this.alt.getStreamSyncedMeta(mp.prefix + 'heading') ?? 0);
-        const rot = this.alt.getStreamSyncedMeta(mp.prefix + 'rotation') ?? alt.Vector3.zero;
+        // natives.setEntityHeading(this.#handle, this.alt.getStreamSyncedMeta(internalName('heading')) ?? 0);
+        const rot = this.alt.getStreamSyncedMeta(internalName('rotation')) ?? alt.Vector3.zero;
         natives.setEntityRotation(this.#handle, rot.x, rot.y, rot.z, 2, false);
         natives.activatePhysics(this.#handle);
-        const alpha = this.alt.getStreamSyncedMeta(mp.prefix + 'alpha') ?? 255;
+        const alpha = this.alt.getStreamSyncedMeta(internalName('alpha')) ?? 255;
         if (alpha < 255) {
             natives.setEntityAlpha(this.#handle, alpha, false);
         }
@@ -256,18 +256,18 @@ export class _NetworkObject extends _Object {
         store.add(this, this.id, undefined, this.remoteId);
     }
     update(key, value) {
-        if (key === (mp.prefix + 'rotation')) {
+        if (key === (internalName('rotation'))) {
             const rot = value ?? alt.Vector3.zero;
             natives.setEntityRotation(this.#handle, value.x, value.y, value.z, 2, false);
         }
-        if (key === (mp.prefix + 'alpha')) {
+        if (key === (internalName('alpha'))) {
             if (value >= 255) {
                 natives.resetEntityAlpha(this.#handle);
             } else {
                 natives.setEntityAlpha(this.#handle, value, false);
             }
         }
-        if (key === (mp.prefix + 'model')) {
+        if (key === (internalName('model'))) {
             this.streamOut();
             this.streamIn();
         }
@@ -276,19 +276,19 @@ export class _NetworkObject extends _Object {
     destroy() {}
 
     get rotation() {
-        return new mp.Vector3(this.alt.getStreamSyncedMeta(mp.prefix + 'rotation'));
+        return new mp.Vector3(this.alt.getStreamSyncedMeta(internalName('rotation')));
     }
 
     set rotation(value) {}
 
     get model() {
-        return this.alt.getStreamSyncedMeta(mp.prefix + 'model');
+        return this.alt.getStreamSyncedMeta(internalName('model'));
     }
 
     set model(value) {}
 
     get alpha() {
-        return this.alt.getStreamSyncedMeta(mp.prefix + 'alpha');
+        return this.alt.getStreamSyncedMeta(internalName('alpha'));
     }
 
     set alpha(value) {}

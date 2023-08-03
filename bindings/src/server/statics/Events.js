@@ -1,9 +1,11 @@
 import * as alt from 'alt-server';
 import mp from '../../shared/mp.js';
-import {argsToAlt, argsToMp, toAlt, toMp} from '../../shared/utils.js';
+import {argsToAlt, argsToMp, emit, internalName, toAlt, toMp} from '../../shared/utils.js';
 import { Deferred } from '../../shared/Deferred';
 import {BaseEvents} from '../../shared/BaseEvents';
 import { InternalChat } from 'shared/DefaultChat.js';
+import {emitClientRaw} from 'alt-server';
+import {emitClientInternal} from '../serverUtils';
 
 let procHandlers = {};
 let cmdHandlers = {};
@@ -20,20 +22,20 @@ class _Events extends BaseEvents {
             if (event === 'playerSpawn') return;
             this.dispatchLocal(event, ...argsToMp(args));
         });
-        alt.onClient(mp.prefix + 'repl', (player, id, res) => {
+        alt.onClient(internalName('repl'), (player, id, res) => {
             if (!player.__pendingRpc || !(id in player.__pendingRpc)) return;
             player.__pendingRpc[id].resolve(toMp(res));
             delete player.__pendingRpc[id];
         });
-        alt.onClient(mp.prefix + 'replError', (player, id, res) => {
+        alt.onClient(internalName('replError'), (player, id, res) => {
             if (!player.__pendingRpc || !(id in player.__pendingRpc)) return;
             player.__pendingRpc[id].reject(toMp(res));
             delete player.__pendingRpc[id];
         });
-        alt.onClient(mp.prefix + 'call', (player, event, id, ...args) => {
+        alt.onClient(internalName('call'), (player, event, id, ...args) => {
             this.dispatchRemoteProc(player, event, id, ...args);
         });
-        alt.on(mp.prefix + 'cmd', (cmd, player, all, ...args) => {
+        alt.on(internalName('cmd'), (cmd, player, all, ...args) => {
             if (!(cmd in cmdHandlers)) return;
             cmdHandlers[cmd](player.mp, all, ...args);
         });
@@ -85,12 +87,12 @@ class _Events extends BaseEvents {
     /** @internal */
     async dispatchRemoteProc(altPlayer, event, id, ...args) {
         const handler = procHandlers[event];
-        if (!handler) return altPlayer.emit(mp.prefix + 'replError', id, 'RPC not found');
+        if (!handler) return emitClientInternal(altPlayer, 'replError', id, 'RPC not found');
         try {
             const result = await handler(toMp(altPlayer), ...argsToMp(args));
-            altPlayer.emit(mp.prefix + 'repl', id, toAlt(result));
+            emitClientInternal(altPlayer, 'repl', id, toAlt(result));
         } catch(e) {
-            altPlayer.emit(mp.prefix + 'replError', id, toAlt(e));
+            emitClientInternal(altPlayer, 'replError', id, toAlt(e));
         }
     }
 
@@ -101,7 +103,7 @@ class _Events extends BaseEvents {
         const deferred = new Deferred();
         if (!player.__pendingRpc) player.__pendingRpc = {};
         player.__pendingRpc[id] = deferred;
-        player.emit(mp.prefix + 'call', event, id, ...argsToAlt(args));
+        emitClientInternal(player, 'call', event, id, ...argsToAlt(args));
         setTimeout(() => {
             deferred.reject(new Error('Timed-out'));
             delete player.__pendingRpc[id];
@@ -110,7 +112,7 @@ class _Events extends BaseEvents {
     }
 
     call(event, ...args) {
-        alt.emit(event, ...argsToAlt(args));
+        emit(event, ...argsToAlt(args));
     }
 
     callLocal = this.call;

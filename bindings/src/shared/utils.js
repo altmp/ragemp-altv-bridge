@@ -27,7 +27,7 @@ export const toMp = (obj) => {
             return obj.map(toMp);
         }
 
-        switch (obj[mp.prefix + 'dataType']) {
+        switch (obj[internalName('dataType')]) {
             case 'date':
                 return new Date(obj.value);
         }
@@ -53,7 +53,7 @@ export const toAlt = (obj) => {
 
         if (obj instanceof Date) {
             return {
-                [mp.prefix + 'dataType']: 'date',
+                [internalName('dataType')]: 'date',
                 value: obj.valueOf()
             };
         }
@@ -184,4 +184,17 @@ export const safeExecute = async (fn, what, bind, ...args) => {
     } catch (err) {
         console.error('Error executing ' + what, err);
     }
+};
+
+export const emit = (event, ...args) => {
+    if (mp._disableRawEmits) return alt.emit(event, ...args);
+    return alt.emitRaw(event, ...args);
+};
+
+export const internalName = (event) => {
+    return mp.prefix + event;
+};
+
+export const emitInternal = (event, ...args) => {
+    return emit(internalName(event), ...args);
 };

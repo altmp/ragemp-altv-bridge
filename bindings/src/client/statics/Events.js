@@ -1,8 +1,9 @@
 import * as alt from 'alt-client';
 import mp from '../../shared/mp.js';
-import {argsToAlt, argsToMp, toAlt, toMp} from '../../shared/utils.js';
+import {argsToAlt, argsToMp, emit, internalName, toAlt, toMp} from '../../shared/utils.js';
 import { Deferred } from '../../shared/Deferred';
 import {BaseEvents} from '../../shared/BaseEvents';
+import {emitServer, emitServerUnreliable} from '../clientUtils';
 
 let procHandlers = {};
 let rpcId = 0;
@@ -21,15 +22,15 @@ class _Events extends BaseEvents {
             if (event === 'consoleCommand') return; // dispatched in Console.js
             this.dispatchLocal(event, ...argsToMp(args));
         });
-        alt.onServer(mp.prefix + 'repl', (id, res) => {
+        alt.onServer(internalName('repl'), (id, res) => {
             __pendingRpc[id].resolve(toMp(res));
             delete __pendingRpc[id];
         });
-        alt.onServer(mp.prefix + 'replError', (id, res) => {
+        alt.onServer(internalName('replError'), (id, res) => {
             __pendingRpc[id].reject(toMp(res));
             delete __pendingRpc[id];
         });
-        alt.onServer(mp.prefix + 'call', (event, id, ...args) => {
+        alt.onServer(internalName('call'), (event, id, ...args) => {
             this.dispatchRemoteProc(event, id, ...args);
         });
 
@@ -55,7 +56,7 @@ class _Events extends BaseEvents {
 
     call(event, ...args) {
         if (mp.debug) console.log('Emitting ' + event);
-        alt.emit(event, ...argsToAlt(args));
+        emit(event, ...argsToAlt(args));
     }
 
     callLocal = this.call;
@@ -64,19 +65,19 @@ class _Events extends BaseEvents {
     //region RPC
     callRemote(event, ...args) {
         if(mp.debug)console.log('Emitting remote ' + event);
-        alt.emitServer(event, ...argsToAlt(args));
+        emitServer(event, ...argsToAlt(args));
     }
 
     callRemoteUnreliable(event, ...args) {
         if(mp.debug)console.log('Emitting remote unreliable ' + event);
-        (mp._forceReliable ? alt.emitServer : alt.emitServerUnreliable)(event, ...argsToAlt(args));
+        emitServerUnreliable(event, ...argsToAlt(args));
     }
 
     callRemoteProc(event, ...args) {
         const id = rpcId++;
         const deferred = new Deferred();
         __pendingRpc[id] = deferred;
-        alt.emitServer(mp.prefix + 'call', event, id, ...argsToAlt(args));
+        emitServer(internalName('call'), event, id, ...argsToAlt(args));
         setTimeout(() => {
             deferred.reject(new Error('Timed-out'));
             delete __pendingRpc[id];
@@ -86,12 +87,12 @@ class _Events extends BaseEvents {
 
     async dispatchRemoteProc(event, id, ...args) {
         const handler = procHandlers[event];
-        if (!handler) return alt.emitServer(mp.prefix + 'replError', id, 'RPC not found');
+        if (!handler) return emitServer(internalName('replError'), id, 'RPC not found');
         try {
             const result = await handler(...argsToMp(args));
-            alt.emitServer(mp.prefix + 'repl', id, toAlt(result));
+            emitServer(internalName('repl'), id, toAlt(result));
         } catch(e) {
-            alt.emitServer(mp.prefix + 'replError', id, toAlt(e));
+            emitServer(internalName('replError'), id, toAlt(e));
         }
     }
 

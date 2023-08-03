@@ -1,5 +1,7 @@
 import * as alt from 'alt-client';
 import * as natives from 'natives';
+import mp from '../shared/mp.js';
+import {internalName} from '../shared/utils';
 
 export function getRenderCorrection() {
     const localPlayer = alt.Player.local;
@@ -75,4 +77,18 @@ export const drawText2d = function(
     });
 
     natives.endTextCommandDisplayText(pos2d.x, pos2d.y, 0);
+};
+
+export const emitServer = (event, ...args) => {
+    if (mp._disableRawEmits) return alt.emitServer(event, ...args);
+    return alt.emitServerRaw(event, ...args);
+};
+
+export const emitServerUnreliable = (event, ...args) => {
+    if (mp._enableUnreliableEmits) return alt.emitServerUnreliable(event, ...args);
+    emitServer(event, ...args);
+};
+
+export const emitServerInternal = (event, ...args) => {
+    return alt.emitServerRaw(internalName(event), ...args);
 };

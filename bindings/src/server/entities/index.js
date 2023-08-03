@@ -12,12 +12,13 @@ import './Dummy.js';
 import './Pickup.js';
 import {_Label} from './Label.js';
 import {VirtualEntityID} from '../../shared/VirtualEntityID';
+import {internalName} from '../../shared/utils';
 
 Object.defineProperty(alt.VirtualEntity.prototype, 'mp', {
     /** @this {alt.VirtualEntity} */
     get() {
         if (this._mp) return this._mp;
-        const type = this.getStreamSyncedMeta(mp.prefix + 'type');
+        const type = this.getStreamSyncedMeta(internalName('type'));
         switch (type) {
             case VirtualEntityID.Label:
                 return this._mp = new _Label(this);

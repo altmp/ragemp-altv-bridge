@@ -3,6 +3,8 @@ import mp from '../../shared/mp.js';
 import {ClientPool} from '../ClientPool.js';
 import {_BaseObject} from './BaseObject.js';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
+import {emitServerInternal} from '../clientUtils';
+import {emitInternal} from '../../shared/utils';
 
 function transformUrl(url) {
     if (url.startsWith('package://')) return 'http://resource/' + url.substring(10);
@@ -33,8 +35,8 @@ export class _Browser extends _BaseObject {
 
         if (mp._main) {
             this.alt.on(mp.prefix + 'chat', (arg) => {
-                alt.emitServer(mp.prefix + 'onchat', arg);
-                alt.emit(mp.prefix + 'onchat', arg);
+                emitServerInternal('onchat', arg);
+                emitInternal('onchat', arg);
             });
         }
 

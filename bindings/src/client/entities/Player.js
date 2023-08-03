@@ -3,8 +3,9 @@ import * as natives from 'natives';
 import mp from '../../shared/mp.js';
 import {ClientPool} from '../ClientPool.js';
 import {_Entity} from './Entity.js';
-import {altSeatToMp, toMp} from '../../shared/utils';
+import {altSeatToMp, internalName, toMp} from '../../shared/utils';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
+import {emitServerInternal} from '../clientUtils';
 
 export class _Player extends _Entity {
     /** @type {import('alt-client').Player} */
@@ -62,7 +63,7 @@ export class _Player extends _Entity {
     async setModelAsync(value) {
         if (alt.Player.local !== this.alt) return;
         const scriptID = this.handle;
-        alt.emitServerRaw(mp.prefix + 'setModel', value);
+        emitServerInternal('setModel', value);
         await alt.Utils.waitFor(() => this.handle !== scriptID);
     }
 
@@ -973,7 +974,7 @@ mp.players.local = alt.Player.local.mp;
 
 alt.on('streamSyncedMetaChange', (player, key, newValue) => {
     if (!(player instanceof alt.Player)) return;
-    if (key === (mp.prefix + 'alpha')) {
+    if (key === (internalName('alpha'))) {
         if (newValue === 255) {
             natives.resetEntityAlpha(player);
         } else {
@@ -986,8 +987,8 @@ alt.on('gameEntityCreate', (player) => {
     if (!(player instanceof alt.Player)) return;
     alt.nextTick(() => {
         if (!player.valid || player.scriptID === 0) return;
-        if (player.hasStreamSyncedMeta(mp.prefix + 'alpha')) {
-            const value = player.getStreamSyncedMeta(mp.prefix + 'alpha');
+        if (player.hasStreamSyncedMeta(internalName('alpha'))) {
+            const value = player.getStreamSyncedMeta(internalName('alpha'));
             if (value === 255) {
                 natives.resetEntityAlpha(player);
             } else {
@@ -997,16 +998,16 @@ alt.on('gameEntityCreate', (player) => {
     });
 });
 
-alt.onServer(mp.prefix + 'dead', (weapon, killer) => {
+alt.onServer(internalName('dead'), (weapon, killer) => {
     mp.events.dispatchLocal('playerDeath', alt.Player.local.mp, weapon, toMp(killer));
 });
 
-alt.onServer(mp.prefix + 'join', (player) => {
+alt.onServer(internalName('join'), (player) => {
     if (player === alt.Player.local) return;
     mp.events.dispatchLocal('playerJoin', toMp(player));
 });
 
-alt.onServer(mp.prefix + 'quit', (player) => {
+alt.onServer(internalName('quit'), (player) => {
     if (player === alt.Player.local) return;
     mp.events.dispatchLocal('playerQuit', toMp(player));
 });
@@ -1072,7 +1073,7 @@ alt.on('netOwnerChange', (ent, oldOwner, newOwner) => {
     mp.events.dispatchLocal('entityControllerChange', ent, toMp(newOwner));
 });
 
-alt.onServer(mp.prefix + 'notify', message => {
+alt.onServer(internalName('notify'), message => {
     mp.game.graphics.notify(message);
 });
 

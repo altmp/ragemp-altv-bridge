@@ -5,7 +5,7 @@ import { _Entity } from './Entity';
 import { _WorldObject } from './WorldObject';
 import { _BaseObject } from './BaseObject';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
-import {mpDimensionToAlt} from '../../shared/utils';
+import {internalName, mpDimensionToAlt} from '../../shared/utils';
 
 const colshapeTypes = {
     0: 'sphere',
@@ -111,7 +111,7 @@ alt.on('entityLeaveColshape', (shape, ent) => {
 });
 
 // TODO: proper implementation
-alt.onServer(mp.prefix + 'enterColshape', (position, dimension, type, meta) => {
+alt.onServer(internalName('enterColshape'), (position, dimension, type, meta) => {
     mp.events.dispatchLocal('playerEnterColshape', {
         position: new mp.Vector3(position),
         dimension,
@@ -129,7 +129,7 @@ alt.onServer(mp.prefix + 'enterColshape', (position, dimension, type, meta) => {
     });
 });
 
-alt.onServer(mp.prefix + 'leaveColshape', (position, dimension, type, meta) => {
+alt.onServer(internalName('leaveColshape'), (position, dimension, type, meta) => {
     mp.events.dispatchLocal('playerExitColshape', {
         position: new mp.Vector3(position),
         dimension,

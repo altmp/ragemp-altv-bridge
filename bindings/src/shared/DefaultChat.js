@@ -1,6 +1,8 @@
 import alt from 'alt-shared';
 import mp from './mp';
 import { BaseEvents } from './BaseEvents';
+import {emitInternal, internalName} from './utils';
+import {emitAllClientsInternal, emitClientInternal} from '../server/serverUtils';
 
 class DefaultChat {
     constructor() {
@@ -8,9 +10,9 @@ class DefaultChat {
         this.enabled = true;
 
         if(alt.isServer) {
-            alt.onClient(mp.prefix + 'onchat', (player, msg) => this.handleServer(player, msg));
+            alt.onClient(internalName('onchat'), (player, msg) => this.handleServer(player, msg));
         } else {
-            alt.on(mp.prefix + 'onchat', msg => this.handleClient(msg));
+            alt.on(internalName('onchat'), msg => this.handleClient(msg));
         }
     }
 
@@ -25,7 +27,7 @@ class DefaultChat {
                 let args = msg.split(' ');
                 let cmd = args.shift();
 
-                alt.emit(mp.prefix + 'cmd', cmd, player, args.join(' '), ...args);
+                emitInternal('cmd', cmd, player, args.join(' '), ...args);
             }
         }
         else {
@@ -39,15 +41,15 @@ class DefaultChat {
     }
 
     send(player, msg) {
-        alt.emitClient(player, mp.prefix + 'tochat', null, msg);
+        emitClientInternal(player, 'tochat', null, msg);
     }
 
     broadcast(msg) {
-        alt.emitAllClients(mp.prefix + 'tochat', null, msg);
+        emitAllClientsInternal('tochat', null, msg);
     }
 
     push(msg) {
-        alt.emit(mp.prefix + 'tochat', null, msg);
+        emitInternal('tochat', null, msg);
     }
 
     activate(toggle) {

@@ -3,7 +3,7 @@ import mp from '../../shared/mp.js';
 import { ClientPool } from '../ClientPool.js';
 import { _WorldObject } from './WorldObject.js';
 import { _Entity } from './Entity';
-import {mpDimensionToAlt, deg2rad} from 'shared/utils';
+import {mpDimensionToAlt, deg2rad, internalName} from 'shared/utils';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 
 export class _Marker extends _Entity {
@@ -75,6 +75,6 @@ mp.markers.new = function(type, position, scale, options = {}) {
     return marker.mp;
 };
 
-alt.onServer(mp.prefix + 'toggleMarker', (id, toggle) => {
+alt.onServer(internalName('toggleMarker'), (id, toggle) => {
     alt.Marker.getByID(id).visible = toggle;
 });

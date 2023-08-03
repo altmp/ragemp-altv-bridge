@@ -1,8 +1,9 @@
 import mp from '../shared/mp.js';
 import alt from 'alt-server';
+import {internalName} from '../shared/utils';
 
 mp.streamingDistance = alt.getServerConfig().streamingDistance ?? 300;
-alt.setSyncedMeta(mp.prefix + 'streamingDistance', mp.streamingDistance);
+alt.setSyncedMeta(internalName('streamingDistance'), mp.streamingDistance);
 
 import './pools/index.js';
 import '../shared/index.js';

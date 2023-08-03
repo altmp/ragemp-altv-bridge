@@ -4,6 +4,7 @@ import {_WorldObject} from './WorldObject';
 import { ServerPool } from '../pools/ServerPool';
 import {mpDimensionToAlt, toAlt, toMp} from '../../shared/utils';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
+import {emitClientInternal} from '../serverUtils';
 
 const colshapeTypes = {
     0: 'sphere',
@@ -108,7 +109,7 @@ function enterColshape(shape, ent) {
     if (!(ent instanceof alt.Player) || shape instanceof alt.Checkpoint || !shape) return;
     mp.events.dispatchLocal('playerEnterColshape', ent.mp, shape.mp);
     const keys = shape.getMetaDataKeys();
-    ent.emit(mp.prefix + 'enterColshape', shape.pos, shape.dimension, shape.mp.shapeType, Object.fromEntries(keys.map(e => [e, shape.getMeta(e)])));
+    emitClientInternal('enterColshape', shape.pos, shape.dimension, shape.mp.shapeType, Object.fromEntries(keys.map(e => [e, shape.getMeta(e)])));
 }
 
 alt.on('entityEnterColshape', enterColshape);
@@ -117,7 +118,7 @@ function leaveColshape(shape, ent) {
     if (!(ent instanceof alt.Player) || shape instanceof alt.Checkpoint || !shape) return;
     mp.events.dispatchLocal('playerExitColshape', ent.mp, shape.mp);
     const keys = shape.getMetaDataKeys();
-    ent.emit(mp.prefix + 'leaveColshape', shape.pos, shape.dimension, shape.mp.shapeType, Object.fromEntries(keys.map(e => [e, shape.getMeta(e)])));
+    emitClientInternal('leaveColshape', shape.pos, shape.dimension, shape.mp.shapeType, Object.fromEntries(keys.map(e => [e, shape.getMeta(e)])));
 }
 
 alt.on('entityLeaveColshape', leaveColshape);
