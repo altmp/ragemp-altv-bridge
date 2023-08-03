@@ -193,6 +193,9 @@ mp.game.player.hasTeleportFinished = mp.game.player.updateTeleport;
 mp.streaming ??= {};
 mp.streaming.forceStreamingUpdate = () => {
 };
+mp.game.streaming ??= {};
+mp.game.streaming.forceStreamingUpdate = () => {
+};
 
 mp.game.vehicle.setExperimentalAttachmentSyncEnabled = () => {};
 mp.game.vehicle.setExperimentalHornSyncEnabled = () => {};
