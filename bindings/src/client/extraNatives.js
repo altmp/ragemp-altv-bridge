@@ -20,7 +20,7 @@ mp.gui = {};
 mp._findEntity = (scriptID) => {
     if (typeof scriptID != 'number') return scriptID;
     // TODO: optimize objects scriptid stuff
-    return mp.players.atHandle(scriptID) ?? mp.vehicles.atHandle(scriptID) ?? mp.objects.atHandle(scriptID) ?? scriptID;
+    return mp.players.atHandle(scriptID) ?? mp.vehicles.atHandle(scriptID) ?? mp.objects.atHandle(scriptID) ?? mp.peds.atHandle(scriptID) ?? scriptID;
 };
 // #region JOAAT
 
@@ -121,7 +121,7 @@ mp.game.wait = (ms) => {
 };
 // TODO: screenshot API
 
-mp.gui.isGpuRenderingEnabled = () => false;
+mp.gui.цуisGpuRenderingEnabled = () => false;
 
 mp.game.graphics.notify = (message) => {
     natives.beginTextCommandThefeedPost('STRING');
