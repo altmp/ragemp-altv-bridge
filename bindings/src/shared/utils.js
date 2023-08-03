@@ -187,8 +187,9 @@ export const safeExecute = async (fn, what, bind, ...args) => {
 };
 
 export const emit = (event, ...args) => {
-    if (mp._disableRawEmits) return alt.emit(event, ...args);
-    return alt.emitRaw(event, ...args);
+    return alt.emit(event, ...args);
+    // if (mp._disableRawEmits) return alt.emit(event, ...args);
+    // return alt.emitRaw(event, ...args);
 };
 
 export const internalName = (event) => {

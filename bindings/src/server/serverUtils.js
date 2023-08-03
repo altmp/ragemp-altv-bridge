@@ -9,7 +9,7 @@ export const emitClient = (player, event, ...args) => {
 
 export const emitClientUnreliable = (player, event, ...args) => {
     if (mp._enableUnreliableEmits) return alt.emitClientUnreliable(player, event, ...args);
-    emitClient(event, ...args);
+    emitClient(player, event, ...args);
 };
 
 export const emitAllClients = (event, ...args) => {

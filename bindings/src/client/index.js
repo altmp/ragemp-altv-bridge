@@ -4,7 +4,7 @@ import altShared from 'alt-shared';
 import {internalName} from '../shared/utils';
 
 mp.streamingDistance = alt.getSyncedMeta(internalName('streamingDistance')) ?? 300;
-mp._disableRawEmits = true;
+// mp._disableRawEmits = true;
 // TODO: pass streaming distance in core
 
 import natives from 'natives';
