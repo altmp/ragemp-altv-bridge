@@ -109,7 +109,7 @@ function enterColshape(shape, ent) {
     if (!(ent instanceof alt.Player) || shape instanceof alt.Checkpoint || !shape) return;
     mp.events.dispatchLocal('playerEnterColshape', ent.mp, shape.mp);
     const keys = shape.getMetaDataKeys();
-    emitClientInternal('enterColshape', shape.pos, shape.dimension, shape.mp.shapeType, Object.fromEntries(keys.map(e => [e, shape.getMeta(e)])));
+    emitClientInternal(ent, 'enterColshape', shape.pos, shape.dimension, shape.mp.shapeType, Object.fromEntries(keys.map(e => [e, shape.getMeta(e)])));
 }
 
 alt.on('entityEnterColshape', enterColshape);
@@ -118,7 +118,7 @@ function leaveColshape(shape, ent) {
     if (!(ent instanceof alt.Player) || shape instanceof alt.Checkpoint || !shape) return;
     mp.events.dispatchLocal('playerExitColshape', ent.mp, shape.mp);
     const keys = shape.getMetaDataKeys();
-    emitClientInternal('leaveColshape', shape.pos, shape.dimension, shape.mp.shapeType, Object.fromEntries(keys.map(e => [e, shape.getMeta(e)])));
+    emitClientInternal(ent, 'leaveColshape', shape.pos, shape.dimension, shape.mp.shapeType, Object.fromEntries(keys.map(e => [e, shape.getMeta(e)])));
 }
 
 alt.on('entityLeaveColshape', leaveColshape);
