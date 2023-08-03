@@ -114,10 +114,12 @@ export class _Player extends _Entity {
 
     _health = new TemporaryContainer(() => this.alt.valid && this.alt.getTimestamp);
     get health() {
-        return (this._health.value ?? this.alt.health) - 100;
+        const value = (this._health.value ?? this.alt.health) - 100;
+        return Math.max(value, 0);
     }
     set health(value) {
-        this._health.value = this.alt.health = value + 100;
+        const val = value <= 0 ? 99 : (value + 100);
+        this._health.value = this.alt.health = val;
     }
 
     get rgscId() {
