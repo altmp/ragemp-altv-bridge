@@ -32,6 +32,11 @@ export class _Blip extends _WorldObject {
         this.alt.destroy();
     }
 
+    setCoords(x, y, z) {
+        if (typeof x === 'number') return this.setBlipCoords(x, y, z);
+        return this.setBlipCoords(x.x, x.y, x.z);
+    }
+
     //#region Natives
     get setColour() {
         return this.setBlipColour; // setBlipColour
@@ -173,10 +178,6 @@ export class _Blip extends _WorldObject {
         this.alt.name = mp.game.gxt.get(gxt);
     }
 
-    get setCoords() {
-        return this.setBlipCoords; // setBlipCoords
-    }
-
     get setScale() {
         return this.setBlipScale; // setBlipScale
     }
@@ -249,9 +250,7 @@ mp.blips.new = function(sprite, position, params = {}) {
             blip.sprite = sprite;
     }
 
-    if ('name' in params) {
-        blip.name = params.name;
-    }
+    if ('name' in params) blip.name = params.name;
     if ('scale' in params) blip.scale = params.scale;
     if ('color' in params) blip.color = params.color;
     if ('alpha' in params) blip.alpha = params.alpha;
