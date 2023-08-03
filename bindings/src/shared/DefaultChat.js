@@ -2,7 +2,6 @@ import alt from 'alt-shared';
 import mp from './mp';
 import { BaseEvents } from './BaseEvents';
 import {emitInternal, internalName} from './utils';
-import {emitAllClientsInternal, emitClientInternal} from '../server/serverUtils';
 
 class DefaultChat {
     constructor() {
@@ -41,11 +40,11 @@ class DefaultChat {
     }
 
     send(player, msg) {
-        emitClientInternal(player, 'tochat', null, msg);
+        alt.emitClientRaw(player, internalName('tochat'), null, msg);
     }
 
     broadcast(msg) {
-        emitAllClientsInternal('tochat', null, msg);
+        alt.emitAllClientsRaw(internalName('tochat'), null, msg);
     }
 
     push(msg) {
