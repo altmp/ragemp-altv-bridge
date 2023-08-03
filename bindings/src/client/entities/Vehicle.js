@@ -520,9 +520,11 @@ mp.vehicles.new = function(model, position, params = {}) {
         if ('numberPlate' in params) ent.setNumberPlateText(params.numberPlate);
         if ('alpha' in params) ent.setAlpha(params.alpha, false);
         if ('color' in params) {
-            if (typeof params.color[0] === 'number') {
+            if (typeof params.color === 'number') {
+                ent.setColours(params.color, params.color);
+            } else if (Array.isArray(params.color) && typeof params.color[0] === 'number' && typeof params.color[1] === 'number') {
                 ent.setColours(params.color[0], params.color[1]);
-            } else {
+            } else if (Array.isArray(params.color[0]) && Array.isArray(params.color[1])) {
                 ent.setCustomPrimaryColour(params.color[0][0], params.color[0][1], params.color[0][2]);
                 ent.setCustomSecondaryColour(params.color[1][0], params.color[1][1], params.color[1][2]);
             }
