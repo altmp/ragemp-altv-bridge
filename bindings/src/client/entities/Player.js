@@ -943,11 +943,12 @@ export class _Player extends _Entity {
     }
 
     getHealth() {
-        return natives.getEntityHealth(this.alt) - 100;
+        const value = natives.getEntityHealth(this.alt) - 100;
+        return Math.max(value, 0);
     }
 
     setHealth(value) {
-        natives.setEntityHealth(this.alt, value + 100);
+        natives.setEntityHealth(this.alt, value <= 0 ? 99 : (value + 100));
     }
 
     get isAttachedTo() {
