@@ -39,6 +39,14 @@ export class _Player extends _Entity {
         // this.alt.setMeta(internalName('headblendInit'), true);
     }
 
+    set canRequestEntityControl(value) {
+        this.alt.netOwnershipDisabled = !value;
+    }
+
+    get canRequestEntityControl() {
+        return !this.alt.netOwnershipDisabled;
+    }
+
     get serial() {
         return this.alt.hwidHash + this.alt.hwidExHash;
     }
