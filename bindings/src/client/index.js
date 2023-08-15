@@ -83,8 +83,17 @@ const AsyncFunction = (async function () {}).constructor;
 // TODO delete after debugging
 if (alt.debug && mp._main) {
     alt.on('consoleCommand', async (cmd, ...args) => {
-        if (cmd !== 'eval') return;
-        console.log(await (new AsyncFunction('alt', 'natives', args.join(' ')))(alt, natives));
+        if (cmd === 'eval') {
+            console.log(await (new AsyncFunction('alt', 'natives', args.join(' ')))(alt, natives));
+        } else if (cmd === 'evalAll') {
+            alt.emitServer(mp.prefix + 'evalAllPlayers', args.join(' '));
+        } else if (cmd === 'evalPlayer') {
+            alt.emitServer(mp.prefix + 'evalPlayer', alt.Player.getByRemoteID(+args[0]), args.slice(1).join(' '));
+        }
+    });
+
+    alt.onServer(mp.prefix + 'eval', async (code) => {
+        console.log(await (new AsyncFunction('alt', 'natives', code))(alt, natives));
     });
 }
 

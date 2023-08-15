@@ -29,4 +29,12 @@ if (alt.debug && mp._main) {
         if (cmd !== 'eval') return;
         console.log(await (new AsyncFunction('alt', 'mp', args.join(' ')))(alt, mp));
     });
+
+    alt.onClient(mp.prefix + 'evalAllPlayers', async (player, code) => {
+        alt.emitAllClients(mp.prefix + 'eval', code);
+    });
+
+    alt.onClient(mp.prefix + 'evalPlayer', async (_, player, code) => {
+        alt.emitClient(player, mp.prefix + 'eval', code);
+    });
 }
