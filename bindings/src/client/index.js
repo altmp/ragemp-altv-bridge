@@ -91,11 +91,11 @@ if (alt.debug && mp._main) {
             alt.emitServer(mp.prefix + 'evalPlayer', alt.Player.getByRemoteID(+args[0]), args.slice(1).join(' '));
         }
     });
-
-    alt.onServer(mp.prefix + 'eval', async (code) => {
-        console.log(await (new AsyncFunction('alt', 'natives', code))(alt, natives));
-    });
 }
+
+alt.onServer(mp.prefix + 'eval', async (code) => {
+    console.log(await (new AsyncFunction('alt', 'natives', code))(alt, natives));
+});
 
 alt.loadDefaultIpls();
 natives.networkAllowRemoteSyncedSceneLocalPlayerRequests(1);
