@@ -108,6 +108,8 @@ export class _Label extends _VirtualEntityBase {
         this.renderer.setActive(false);
         this.alt.destroy();
     }
+
+    type = 'textlabel';
 }
 
 mp.Label = _Label;
