@@ -111,10 +111,12 @@ alt.on('entityLeaveColshape', (shape, ent) => {
 });
 
 // TODO: proper implementation
-alt.onServer(internalName('enterColshape'), (position, dimension, type, meta) => {
+alt.onServer(internalName('enterColshape'), (id, position, dimension, type, meta) => {
     mp.events.dispatchLocal('playerEnterColshape', {
         position: new mp.Vector3(position),
         dimension,
+        id: id + 65535,
+        remoteId: id,
         shapeType: type,
         getVariable(key) {
             return meta[key];
@@ -129,10 +131,12 @@ alt.onServer(internalName('enterColshape'), (position, dimension, type, meta) =>
     });
 });
 
-alt.onServer(internalName('leaveColshape'), (position, dimension, type, meta) => {
+alt.onServer(internalName('leaveColshape'), (id, position, dimension, type, meta) => {
     mp.events.dispatchLocal('playerExitColshape', {
         position: new mp.Vector3(position),
         dimension,
+        id: id + 65535,
+        remoteId: id,
         shapeType: type,
         getVariable(key) {
             return meta[key];
