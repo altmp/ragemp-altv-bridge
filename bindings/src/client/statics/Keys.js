@@ -6,13 +6,13 @@ class _Keys {
 
     constructor() {
         alt.on('keydown', (key) => {
-            if (alt.isConsoleOpen()) return;
+            if (alt.isMenuOpen() || alt.isConsoleOpen() || key === 119 || key === 112) return; // F8, F1
             const set = this.#bound.keydown[key];
             if (!set) return;
             for (const el of set) el();
         });
         alt.on('keyup', (key) => {
-            if (alt.isConsoleOpen()) return;
+            if (alt.isMenuOpen() || alt.isConsoleOpen() || key === 119 || key === 112) return; // F8, F1
             const set = this.#bound.keyup[key];
             if (!set) return;
             for (const el of set) el();

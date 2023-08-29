@@ -60,11 +60,13 @@ function dispatchClickEvent(leftOrRight, upOrDown) {
 }
 
 alt.on('keydown', (key) => {
+    if (alt.isMenuOpen() || alt.isConsoleOpen()) return;
     if (key != 0x1 && key != 0x2) return;
     dispatchClickEvent(key == 0x1 ? 'left' : 'right', 'down');
 });
 
 alt.on('keyup', (key) => {
+    if (alt.isMenuOpen() || alt.isConsoleOpen()) return;
     if (key != 0x1 && key != 0x2) return;
     dispatchClickEvent(key == 0x1 ? 'left' : 'right', 'up');
 });
