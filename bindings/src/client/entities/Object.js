@@ -341,20 +341,20 @@ mp.objects.newWeak = (handle) => {
 
 mp.objects.newWeaponObject = (model, position, params = {}) => {
     model = hashIfNeeded(model);
-    const handle = natives.createWeaponObject(model, params.ammo ?? 0, position.x, position.y, position.z, params.showWorldObject ?? false, params.scale ?? 1, 0, 0, 0);
-    natives.freezeEntityPosition(handle, true);
-    const obj = mp.objects.newWeak(handle);
-    if ('rotation' in params) obj.rotation = params.rotation;
-    if ('alpha' in params) obj.alt.alpha = params.alpha;
+    const obj = new alt.WeaponObject(model, position, params.rotation ?? alt.Vector3.zero, undefined, params.ammo ?? 0, params.showWorldObject ?? false, params.scale ?? 1, true, mp.streamingDistance);
+    obj._mpOwned = true;
 
-    alt.nextTick(() => {
-        mp.events.dispatchLocal('entityStreamIn', obj);
-    });
-    return obj;
+    if (obj.isSpawned) {
+        natives.freezeEntityPosition(obj.scriptID, true);
+    }
+
+    const ent = obj.mp;
+    if ('alpha' in params) ent.alpha = params.alpha;
+    return ent;
 };
 
 alt.on('gameEntityCreate',  (ent) => {
-    if (ent instanceof alt.LocalObject && ent._mpOwned) {
+    if ((ent instanceof alt.LocalObject || ent instanceof alt.WeaponObject) && ent._mpOwned) {
         natives.freezeEntityPosition(ent.scriptID, true);
     }
 });

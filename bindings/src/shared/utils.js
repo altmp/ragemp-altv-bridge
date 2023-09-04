@@ -125,7 +125,7 @@ export const altDimensionToMp = (altDimension) => {
 };
 
 export const hashIfNeeded = (value) => {
-    if (typeof value != 'string') return value;
+    if (typeof value != 'string') return value >>> 0;
     return alt.hash(value);
 };
 
