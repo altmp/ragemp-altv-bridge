@@ -350,6 +350,7 @@ mp.objects.newWeaponObject = (model, position, params = {}) => {
 
     const ent = obj.mp;
     if ('alpha' in params) ent.alpha = params.alpha;
+    if ('dimension' in params) obj.dimension = mpDimensionToAlt(params.dimension);
     return ent;
 };
 
