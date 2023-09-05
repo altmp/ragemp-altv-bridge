@@ -243,6 +243,7 @@ mp.blips.new = function(sprite, position, params = {}) {
         case 5: {
             blip = new alt.RadiusBlip(position.x, position.y, position.z, params.radius ?? 100);
             blip.sprite = 5;
+            blip.isHiddenOnLegend = true;
             break;
         }
         default:
