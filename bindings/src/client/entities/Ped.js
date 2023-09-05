@@ -873,6 +873,7 @@ alt.on('worldObjectStreamIn', (ent) => {
         natives.setPedCombatAttributes(ent, 20, false);
         natives.setPedCombatAttributes(ent, 292, true);
         natives.setPedCombatRange(ent, 2);
+        natives.blockAllSpeechFromPed(ent, true, true);
         natives.setPedKeepTask(ent, true);
         natives.setEntityAsMissionEntity(ent, true, false);
         natives.setPedCanRagdoll(ent, false);
