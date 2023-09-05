@@ -841,6 +841,11 @@ mp.Ped = _Ped;
 mp.peds = new ClientPool(view);
 
 mp.peds.new = function (model, position, heading = 0, dimension = 0) {
+    model = hashIfNeeded(model);
+    if (!natives.isModelValid(model)) {
+        console.warn('Tried to spawn ped with invalid model:', model);
+        model = alt.hash('ig_amandatownley');
+    }
     const ent = new alt.LocalPed(model, mpDimensionToAlt(dimension), new alt.Vector3(position), new alt.Vector3(0, 0, heading).toRadians(), true, mp.streamingDistance);
     ent.pos = new alt.Vector3(position);
     return ent.mp;
@@ -869,5 +874,17 @@ alt.on('worldObjectStreamIn', (ent) => {
         natives.setPedCombatAttributes(ent, 292, true);
         natives.setPedCombatRange(ent, 2);
         natives.setPedKeepTask(ent, true);
+        natives.setEntityAsMissionEntity(ent, true, false);
+        natives.setPedCanRagdoll(ent, false);
+        natives.setPedSeeingRange(ent, 0);
+        natives.setPedCanBeTargetted(ent, false);
+        natives.setPedCanBeKnockedOffVehicle(ent, 1);
+        natives.setPedCanBeDraggedOut(ent, false);
+        natives.setPedSuffersCriticalHits(ent, false);
+        natives.setPedDropsWeaponsWhenDead(ent, false);
+        natives.setPedDiesInstantlyInWater(ent, false);
+        natives.setPedDiesWhenInjured(ent, false);
+        natives.setPedGetOutUpsideDownVehicle(ent, false);
+        natives.setPedCanEvasiveDive(ent, false);
     }
 });
