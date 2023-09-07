@@ -73,15 +73,11 @@ class _Events extends BaseEvents {
     }
 
     dispatchGlobal(event, ...args) {
-        super.dispatchLocal(event, ...args);
+        super.dispatch(event, ...args);
 
         if (!(event in globalHandlers)) return;
         argsToMp(args);
         for (const handler of globalHandlers[event]) handler(...args);
-    }
-
-    addLocal(key, fn) {
-        super.add(key, fn);
     }
 
     /** @internal */

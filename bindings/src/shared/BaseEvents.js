@@ -3,6 +3,7 @@ import {argsToMp, safeExecute} from './utils';
 import * as alt from 'alt-shared';
 
 let handlers = {};
+let localHandlers = {};
 export class BaseEvents {
 
     add(key, fn) {
@@ -20,6 +21,21 @@ export class BaseEvents {
         handlers[key].add(fn);
     }
 
+    addLocal(key, fn) {
+        if (typeof key === 'object' && key) {
+            for (const [innerKey, innerValue] of Object.entries(key))
+                this.addLocal(innerKey, innerValue);
+            return;
+        }
+        if (mp.debug) alt.log('Registering', key);
+        if (!(key in localHandlers)) {
+            if (mp.debug) alt.log('Registering2', key);
+            localHandlers[key] = new Set;
+        }
+        fn.from = String((new Error()).stack);
+        localHandlers[key].add(fn);
+    }
+
     remove(key, fn) {
         if (typeof key === 'object' && Array.isArray(key)) {
             for (const el of key)
@@ -31,6 +47,11 @@ export class BaseEvents {
             if (!fn) handlers[key].clear();
             else handlers[key].delete(fn);
         }
+
+        if (key in localHandlers) {
+            if (!fn) localHandlers[key].clear();
+            else localHandlers[key].delete(fn);
+        }
     }
 
     getAllOf = (key) => {
@@ -39,6 +60,7 @@ export class BaseEvents {
 
     reset = () => {
         handlers = {};
+        localHandlers = {};
     };
 
     hasHandlers = (event) => {
@@ -46,11 +68,22 @@ export class BaseEvents {
     };
 
     /** @internal */
-    dispatchLocal(event, ...args) {
+    dispatch(event, ...args) {
         if (!(event in handlers)) return;
         argsToMp(args);
         for (const handler of handlers[event]) {
             safeExecute(handler, event + ' event handler', this, ...args);
+        }
+    }
+
+    /** @internal */
+    dispatchLocal(event, ...args) {
+        this.dispatch(event, ...args);
+
+        if (!(event in localHandlers)) return;
+        argsToMp(args);
+        for (const handler of localHandlers[event]) {
+            safeExecute(handler, event + ' local event handler', this, ...args);
         }
     }
 
