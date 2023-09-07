@@ -51,7 +51,7 @@ class _Camera {
 
     setActive(value) {
         natives.setCamActive(this.handle, value);
-        natives.renderScriptCams(true, false, 0, true, false, 0);
+        if (value) natives.renderScriptCams(true, false, 0, true, false, 0);
     }
 
     get valid() {
