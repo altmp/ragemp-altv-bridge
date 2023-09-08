@@ -6,9 +6,9 @@ export const vdist2 = (v1, v2, useZ = true) => {
         return -1;
     }
 
-    let dx = v1.x - v2.x;
-    let dy = v1.y - v2.y;
-    let dz = useZ ? v1.z - v2.z : 0;
+    let dx = (v1.x ?? 0) - (v2.x ?? 0);
+    let dy = (v1.y ?? 0) - (v2.y ?? 0);
+    let dz = useZ ? (v1.z ?? 0) - (v2.z ?? 0) : 0;
 
     return (dx * dx + dy * dy + dz * dz);
 };
