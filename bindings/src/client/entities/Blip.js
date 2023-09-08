@@ -32,6 +32,15 @@ export class _Blip extends _WorldObject {
         this.alt.destroy();
     }
 
+    get position() {
+        return this.alt.pos;
+    }
+
+    set position(value) {
+        this.alt.pos = value;
+    }
+
+
     setCoords(x, y, z) {
         if (typeof x === 'number') return this.setBlipCoords(x, y, z);
         return this.setBlipCoords(x.x, x.y, x.z);
