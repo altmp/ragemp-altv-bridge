@@ -32,12 +32,14 @@ export class _Colshape extends _WorldObject {
         return colshapeTypes[this.alt.colshapeType];
     }
 
+    // colshape doesnt have position field
+    _position = undefined;
     get position() {
-        return new mp.Vector3(this.alt.pos);
+        return this._position;
     }
 
     set position(value) {
-        this.alt.pos = value;
+        this._position = value;
     }
 
     type = 'colshape';
