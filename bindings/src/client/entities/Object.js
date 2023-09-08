@@ -224,6 +224,7 @@ export class _NetworkObject extends _Object {
     streamIn() {
         alt.loadModel(this.model);
         this.#handle = natives.createObject(this.model, this.alt.pos.x, this.alt.pos.y, this.alt.pos.z, false, false, false);
+        natives.setEntityCoordsNoOffset(this.#handle, this.alt.pos.x, this.alt.pos.y, this.alt.pos.z, false, false, false);
         store.add(this, undefined, this.#handle, undefined);
         // natives.setEntityHeading(this.#handle, this.alt.getStreamSyncedMeta(internalName('heading')) ?? 0);
         const rot = this.alt.getStreamSyncedMeta(internalName('rotation')) ?? alt.Vector3.zero;
