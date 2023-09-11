@@ -273,7 +273,7 @@ mp.blips.new = function(sprite, position, params = {}) {
 };
 
 alt.on('worldObjectStreamIn', (blip) => {
-    if (blip.mp._nextName) {
+    if (blip instanceof alt.Blip && blip.mp._nextName) {
         natives.setBlipNameFromTextFile(blip.scriptID, blip.mp._nextName);
         blip.mp._nextName = null;
     }
