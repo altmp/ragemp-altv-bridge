@@ -14,7 +14,7 @@ export class _WorldObject extends _BaseObject {
     }
 
     getVariable(key) {
-        return toMp(this.#alt.getSyncedMeta(key));
+        return toMp(!this.#alt.getStreamSyncedMeta || this.#alt.hasSyncedMeta(key) ? this.#alt.getSyncedMeta(key) : this.#alt.getStreamSyncedMeta(key));
     }
 
     hasVariable(key) {

@@ -302,6 +302,12 @@ export class _NetworkObject extends _Object {
 mp.Object = _Object;
 
 
+Object.defineProperty(alt.Object.prototype, 'mp', {
+    get() {
+        return this._mp ??= new _Object(this);
+    }
+});
+
 Object.defineProperty(alt.LocalObject.prototype, 'mp', {
     get() {
         return this._mp ??= new _Object(this);
