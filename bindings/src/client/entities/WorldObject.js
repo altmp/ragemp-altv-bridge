@@ -44,7 +44,7 @@ export class _WorldObject extends _BaseObject {
 
     get remoteId() {
         if (!this.alt.valid) return -1;
-        return this.alt.remoteId ?? this.alt.id;
+        return this.alt.remoteID ?? this.alt.id;
     }
 
     get handle() {
