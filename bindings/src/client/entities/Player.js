@@ -1070,7 +1070,7 @@ if (mp._main) {
     }, 500);
 }
 
-alt.on('netOwnerChange', (ent, oldOwner, newOwner) => {
+alt.on('netOwnerChange', (ent, newOwner, oldOwner) => {
     mp.events.dispatchLocal('entityControllerChange', ent, toMp(newOwner));
 });
 
