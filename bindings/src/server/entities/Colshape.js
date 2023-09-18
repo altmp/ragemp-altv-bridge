@@ -44,6 +44,7 @@ export class _Colshape extends _WorldObject {
     }
 
     getVariable(key) {
+        if (!this.hasVariable(key)) return undefined;
         return toMp(this.alt.getMeta(key));
     }
 

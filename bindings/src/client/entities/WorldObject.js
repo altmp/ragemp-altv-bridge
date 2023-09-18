@@ -14,11 +14,13 @@ export class _WorldObject extends _BaseObject {
     }
 
     getVariable(key) {
-        return toMp(!this.#alt.getStreamSyncedMeta || this.#alt.hasSyncedMeta(key) ? this.#alt.getSyncedMeta(key) : this.#alt.getStreamSyncedMeta(key));
+        if (this.#alt.hasSyncedMeta(key)) return toMp(this.#alt.getSyncedMeta(key));
+        if (this.#alt.getStreamSyncedMeta && this.#alt.hasStreamSyncedMeta(key)) return toMp(this.#alt.getStreamSyncedMeta(key));
+        return undefined;
     }
 
     hasVariable(key) {
-        return this.#alt.hasSyncedMeta(key);
+        return this.#alt.hasSyncedMeta(key) || this.#alt.hasStreamSyncedMeta(key);
     }
 
     dist(pos) {

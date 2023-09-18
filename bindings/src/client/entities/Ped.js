@@ -811,6 +811,7 @@ export class _LocalPed extends _Ped {
     }
 
     getVariable(key) {
+        if (!this.hasVariable(key)) return undefined;
         return toMp(this.alt.getMeta(key));
     }
 

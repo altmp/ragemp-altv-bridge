@@ -26,6 +26,7 @@ export class _WorldObject extends _BaseObject {
     }
 
     getVariable(key) {
+        if (!this.hasVariable(key)) return undefined;
         return toMp(this.#alt.getSyncedMeta(key));
     }
 

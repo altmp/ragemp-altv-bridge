@@ -26,6 +26,7 @@ export class _Entity extends _WorldObject {
     }
 
     getStreamVariable(key) {
+        if (!this.hasStreamVariable(key)) return undefined;
         return toMp(this.#alt.getStreamSyncedMeta(key));
     }
 

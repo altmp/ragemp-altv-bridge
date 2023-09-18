@@ -47,7 +47,12 @@ export class _Label extends _VirtualEntityBase {
     };
 
     getVariable(key) {
-        if (this.alt.isRemote) return toMp(this.alt.getStreamSyncedMeta(key));
+        if (this.alt.isRemote) {
+            if (!this.alt.hasStreamSyncedMeta(key)) return undefined;
+            return toMp(this.alt.getStreamSyncedMeta(key));
+        }
+
+        if (!this.alt.hasMeta(key)) return undefined;
         return toMp(this.alt.getMeta(key));
     }
 
