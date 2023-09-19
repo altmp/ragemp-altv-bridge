@@ -20,7 +20,9 @@ export class _WorldObject extends _BaseObject {
     }
 
     hasVariable(key) {
-        return this.#alt.hasSyncedMeta(key) || this.#alt.hasStreamSyncedMeta(key);
+        if (this.#alt.hasSyncedMeta(key)) return true;
+        if (this.#alt.hasStreamSyncedMeta && this.#alt.hasStreamSyncedMeta(key)) return true;
+        return false;
     }
 
     dist(pos) {
