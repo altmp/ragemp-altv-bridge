@@ -1,5 +1,7 @@
 /* global alt */
 
+console.log('Webview pre init');
+
 const mp = {
     prefix: globalThis.overrideBridgePrefix ?? '$bridge$'
 };
