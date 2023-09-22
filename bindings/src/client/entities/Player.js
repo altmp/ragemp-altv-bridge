@@ -969,7 +969,10 @@ Object.defineProperty(alt.Player.prototype, 'mp', {
 
 mp.Player = _Player;
 
-mp.players = new ClientPool(EntityGetterView.fromClass(alt.Player));
+const view = EntityGetterView.fromClass(alt.Player);
+view.streamRangeGetter = () => [alt.Player.local, ...alt.Player.streamedIn];
+
+mp.players = new ClientPool(view);
 
 mp.players.local = alt.Player.local.mp;
 
