@@ -1,4 +1,4 @@
-import util from 'util';
+import alt from 'alt-server';
 
 export class _BaseObject {
     get isMpWrapper() {
@@ -9,7 +9,7 @@ export class _BaseObject {
         return `${this.constructor.name}<${this.id ?? -1}>`;
     }
 
-    [util.inspect.custom]() {
+    [alt.Utils.inspect.custom]() {
         return this.toString();
     }
 }
