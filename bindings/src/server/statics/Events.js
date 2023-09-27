@@ -19,7 +19,7 @@ class _Events extends BaseEvents {
             this.dispatchGlobal(event, player, ...argsToMp(args));
         });
         alt.on((event, ...args) => {
-            if (event === 'playerSpawn') return;
+            if (event === 'playerSpawn' || event === 'playerDeath') return;
             this.dispatchLocal(event, ...argsToMp(args));
         });
         alt.onClient(internalName('repl'), (player, id, res) => {

@@ -484,14 +484,14 @@ mp.players = new PlayerPool(EntityGetterView.fromClass(alt.Player));
 
 alt.on('playerDeath', (player, killer, weapon) => {
     mp.events.dispatchLocal('playerDeath', player.mp, weapon, killer && killer instanceof alt.Player ? killer.mp : null);
-    emitClientInternal(player, 'dead', weapon, killer && killer instanceof alt.Player ? killer : null);
+    if (mp._main) emitClientInternal(player, 'dead', weapon, killer && killer instanceof alt.Player ? killer : null);
 });
 
 alt.on('playerConnect', (player) => {
     mp.events.dispatchLocal('playerJoin', player.mp);
     mp.events.dispatchLocal('playerReady', player.mp);
 
-    emitAllClientsInternal('join', player);
+    if (mp._main) emitAllClientsInternal('join', player);
 });
 
 alt.on('playerDamage', (victim, attacker, healthDamage, armourDamage, weaponHash) => {
@@ -499,7 +499,7 @@ alt.on('playerDamage', (victim, attacker, healthDamage, armourDamage, weaponHash
 });
 
 alt.on('playerDisconnect', (player, reason) => {
-    emitAllClientsInternal('quit', player);
+    if (mp._main) emitAllClientsInternal('quit', player);
     mp.events.dispatchLocal('playerQuit', player.mp, 'unimplemented', 'unimplemented'); //player, exitType: string, reason: string
 });
 
