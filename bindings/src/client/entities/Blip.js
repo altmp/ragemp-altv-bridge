@@ -40,10 +40,13 @@ export class _Blip extends _WorldObject {
         this.alt.pos = value;
     }
 
-
     setCoords(x, y, z) {
         if (typeof x === 'number') return this.setBlipCoords(x, y, z);
         return this.setBlipCoords(x.x, x.y, x.z);
+    }
+
+    setPosition(x, y, z) {
+        return this.setCoords(x, y, z);
     }
 
     //#region Natives
