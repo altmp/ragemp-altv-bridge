@@ -352,10 +352,9 @@ patchBlipNative('setBlipNameFromTextFile', (blip, gxt) => {
     if (!blip.isRemote) {
         blip.name = mp.game.gxt.get(gxt);
     } else {
+        blip.mp._nextName = gxt;
         if (blip.isStreamedIn) {
             natives.setBlipNameFromTextFile(blip.scriptID, gxt);
-        } else {
-            blip.mp._nextName = gxt;
         }
     }
 });
