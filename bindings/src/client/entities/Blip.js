@@ -20,23 +20,28 @@ export class _Blip extends _WorldObject {
     type = 'blip';
 
     get radius() {
+        if (!this.alt.valid) return 0;
         return this.alt.radius ?? this.alt.size.x / 2;
     }
 
     set radius(value) {
+        if (!this.alt.valid) return;
         if (this.alt.radius != null) this.alt.radius = value;
         else this.alt.size = new alt.Vector2(value * 2, value * 2);
     }
 
     destroy() {
+        if (!this.alt.valid) return;
         this.alt.destroy();
     }
 
     get position() {
+        if (!this.alt.valid) return alt.Vector3.zero;
         return this.alt.pos;
     }
 
     set position(value) {
+        if (!this.alt.valid) return;
         this.alt.pos = value;
     }
 
