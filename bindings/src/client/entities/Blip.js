@@ -36,7 +36,7 @@ export class _Blip extends _WorldObject {
     }
 
     get position() {
-        if (!this.alt.valid) return alt.Vector3.zero;
+        if (!this.alt.valid) return mp.Vector3.zero;
         return this.alt.pos;
     }
 

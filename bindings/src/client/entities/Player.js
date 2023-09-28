@@ -18,6 +18,7 @@ export class _Player extends _Entity {
     }
 
     get position() {
+        if (!this.alt.valid) return mp.Vector3.zero;
         return new mp.Vector3(this.alt.pos);
     }
 

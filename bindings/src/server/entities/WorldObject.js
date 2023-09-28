@@ -68,7 +68,7 @@ export class _WorldObject extends _BaseObject {
     }
 
     get position() {
-        if (!this.#alt.valid) return alt.Vector3.zero;
+        if (!this.#alt.valid) return mp.Vector3.zero;
         return new mp.Vector3(this.#alt.pos);
     }
 
