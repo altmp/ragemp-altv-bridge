@@ -16,7 +16,7 @@ const view = new EntityMixedView(store, new EntityGetterView(
     {
         remoteIDGetter: alt.LocalObject.getByID,
         scriptIDGetter: (scriptID) => alt.LocalObject.all.find(e => e && e.scriptID === scriptID), // TODO: alt.LocalObject.getByScriptID
-        streamRangeGetter: alt.LocalObject.all.filter(e => e.scriptID !== 0)
+        streamRangeGetter: () => alt.LocalObject.all.filter(e => e.scriptID !== 0)
     }
 ));
 
