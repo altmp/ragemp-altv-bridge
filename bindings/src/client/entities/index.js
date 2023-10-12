@@ -13,6 +13,7 @@ import {_Label} from './label/Label.js';
 import {VirtualEntityID} from '../../shared/VirtualEntityID';
 import './Ped';
 import {_NetworkObject} from './Object';
+import {_NetworkMarker} from './Marker';
 
 Object.defineProperty(alt.VirtualEntity.prototype, 'mp', {
     /** @this {alt.VirtualEntity} */
@@ -24,6 +25,8 @@ Object.defineProperty(alt.VirtualEntity.prototype, 'mp', {
                 return this._mp = new _Label(this);
             case VirtualEntityID.Object:
                 return this._mp = new _NetworkObject(this);
+            case VirtualEntityID.Marker:
+                return this._mp = new _NetworkMarker(this);
         }
 
         return null;

@@ -62,7 +62,7 @@ export class _Object extends _Entity {
         this.alt.setStreamSyncedMeta(internalName('model'), value);
     }
 
-    #alpha;
+    #alpha = 255;
     get alpha() {
         return this.#alpha;
     }
@@ -71,7 +71,7 @@ export class _Object extends _Entity {
         this.alt.setStreamSyncedMeta(internalName('alpha'), value);
     }
 
-    #rotation;
+    #rotation = mp.Vector3.zero;
     get rotation() {
         return this.#rotation;
     }

@@ -13,6 +13,7 @@ import './Pickup.js';
 import {_Label} from './Label.js';
 import {VirtualEntityID} from '../../shared/VirtualEntityID';
 import {internalName} from '../../shared/utils';
+import {_Marker} from './Marker';
 
 Object.defineProperty(alt.VirtualEntity.prototype, 'mp', {
     /** @this {alt.VirtualEntity} */
@@ -24,6 +25,8 @@ Object.defineProperty(alt.VirtualEntity.prototype, 'mp', {
                 return this._mp = new _Label(this);
             case VirtualEntityID.Object:
                 return this._mp = new _Object(this);
+            case VirtualEntityID.Marker:
+                return this._mp = new _Marker(this);
         }
 
         return null;

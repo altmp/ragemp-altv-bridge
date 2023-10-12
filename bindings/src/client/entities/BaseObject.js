@@ -16,7 +16,7 @@ export class _BaseObject {
     toString() {
         if (!this.alt.valid)
             return `${this.constructor.name}<destroyed>`;
-        return `${this.constructor.name}<${this.id ?? -1}, ${this.remoteID ?? -1}>`;
+        return `${this.constructor.name}<${this.id ?? -1}, ${this.remoteId ?? -1}>`;
     }
 
     [alt.Utils.inspect.custom]() {

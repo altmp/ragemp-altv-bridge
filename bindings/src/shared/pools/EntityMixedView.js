@@ -4,8 +4,8 @@ import {EntityStoreView} from './EntityStoreView';
 
 export class EntityMixedView extends EntityBaseView {
     /**
-     * @param {EntityStoreView} store
-     * @param {EntityGetterView} getter
+     * @param {EntityBaseView} store
+     * @param {EntityBaseView} getter
      */
     constructor(store, getter) {
         super();

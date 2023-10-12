@@ -1,12 +1,17 @@
 import * as alt from 'alt-server';
-import { SyncedMetaProxy } from '../../shared/meta.js';
+import {StreamSyncedMetaProxy, SyncedMetaProxy} from '../../shared/meta.js';
 import mp from '../../shared/mp.js';
-import {deg2rad, mpDimensionToAlt} from '../../shared/utils.js';
+import {deg2rad, internalName, mpDimensionToAlt} from '../../shared/utils.js';
 import { _Entity } from './Entity.js';
 import { _WorldObject } from './WorldObject.js';
 import { ServerPool } from '../pools/ServerPool';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 import {emitClientInternal} from '../serverUtils';
+import {EntityStoreView} from '../../shared/pools/EntityStoreView';
+import {_Object} from './Object';
+import {VirtualEntityID} from '../../shared/VirtualEntityID';
+
+const view = new EntityStoreView();
 
 export class _Marker extends _Entity {
     alt;
@@ -15,75 +20,124 @@ export class _Marker extends _Entity {
     constructor(alt) {
         super(alt);
         this.alt = alt;
-        this.data = new SyncedMetaProxy(alt);
+        view.add(this, this.id);
+        this.data = new StreamSyncedMetaProxy(alt);
+    }
+
+    get id() {
+        return this.alt.id + 65536;
     }
 
     type = 'marker';
 
+    get setVariable() {
+        return this.setStreamVariable;
+    }
+
+    get getVariable() {
+        return this.getStreamVariable;
+    }
+
+    get hasVariable() {
+        return this.hasStreamVariable;
+    }
+
+    get position() {
+        return new mp.Vector3(this.alt.pos);
+    }
+
+    set position(value) {
+        this.alt.pos = value;
+    }
+
     showFor(player) {
-        emitClientInternal(player.alt, 'toggleMarker', this.alt.id, true);
+        emitClientInternal(player.alt, 'toggleMarker', this.id, true);
     }
 
     hideFor(player) {
-        emitClientInternal(player.alt, 'toggleMarker', this.alt.id, false);
+        emitClientInternal(player.alt, 'toggleMarker', this.id, false);
     }
 
-    getColor() {
-        return [ this.alt.color.r, this.alt.color.g, this.alt.color.b, this.alt.color.a ];
-    }
-
+    #color = [255, 255, 255, 255];
     setColor(value) {
-        this.alt.color = new alt.RGBA(value);
+        this.#color = value;
+        this.alt.setStreamSyncedMeta(internalName('color'), new alt.RGBA(value));
+    }
+    getColor() {
+        return this.#color;
     }
 
+    #scale = 1;
     get scale() {
-        return this.alt.scale.x;
+        return this.#scale;
     }
-
     set scale(value) {
-        this.alt.scale = new alt.Vector3(value, value, value);
+        this.#scale = value;
+        this.alt.setStreamSyncedMeta(internalName('scale'), value);
     }
 
+    #direction = mp.Vector3.zero;
     get direction() {
-        return new mp.Vector3(this.alt.dir.x, this.alt.dir.y, this.alt.dir.z);
+        return this.#direction;
     }
 
     set direction(value) {
-        this.alt.dir = new alt.Vector3(value.x, value.y, value.z);
+        this.#direction = value;
+        this.alt.setStreamSyncedMeta(internalName('direction'), new alt.Vector3(value.x, value.y, value.z));
     }
 
+    #rotation = mp.Vector3.zero;
+    get rotation() {
+        return this.#rotation;
+    }
+
+    set rotation(value) {
+        this.#rotation = value;
+        this.alt.setStreamSyncedMeta(internalName('rotation'), new alt.Vector3(value.x, value.y, value.z));
+    }
+
+    #visible = true;
     get visible() {
-        return this.alt.visible;
+        return this.#visible;
     }
 
     set visible(value) {
-        this.alt.visible = value;
+        this.#visible = value;
+        this.alt.setStreamSyncedMeta(internalName('visible'), value);
     }
 
     destroy() {
+        if (!this.alt.valid) return;
+        view.remove(this.id);
         this.alt.destroy();
     }
 }
 
-Object.defineProperty(alt.Marker.prototype, 'mp', {
-    get() {
-        return this._mp ??= new _Marker(this);
-    }
+alt.on('baseObjectRemove', (ent) => {
+    if (ent.mp instanceof _Object) view.remove(ent.mp.id);
 });
+
+// Object.defineProperty(alt.Marker.prototype, 'mp', {
+//     get() {
+//         return this._mp ??= new _Marker(this);
+//     }
+// });
 
 mp.Marker = _Marker;
 
-mp.markers = new ServerPool(EntityGetterView.fromClass(alt.Marker));
+mp.markers = new ServerPool(view);
 
+const group = new alt.VirtualEntityGroup(128);
 mp.markers.new = function(type, position, scale, options = {}) {
-    let color = new alt.RGBA(0, 0, 0, 255);
-    if ('color' in options) color = new alt.RGBA(options.color);
-    const marker = new alt.Marker(type, position, color);
-    marker.faceCamera = true;
-    if ('direction' in options) marker.dir = new alt.Vector3(options.direction.x, options.direction.y, options.direction.z);
-    if ('rotation' in options) marker.rot = new alt.Vector3(options.rotation.x * deg2rad, options.rotation.y * deg2rad, options.rotation.z * deg2rad);
-    if ('visible' in options) marker.visible = options.visible;
-    if ('dimension' in options) marker.mp.dimension = options.dimension;
-    marker.scale = new alt.Vector3(scale, scale, scale);
-    return marker.mp;
+    const virtualEnt = new alt.VirtualEntity(group, position, options.drawDistance ?? mp.streamingDistance);
+    virtualEnt.setStreamSyncedMeta(internalName('type'), VirtualEntityID.Marker);
+    virtualEnt.setStreamSyncedMeta(internalName('markerType'), type);
+    const ent = virtualEnt.mp;
+    if ('color' in options) ent.setColor(options.color);
+    if ('direction' in options) ent.direction = options.direction;
+    if ('rotation' in options) ent.rotation = options.rotation;
+    if ('visible' in options) ent.visible = options.visible;
+    if ('dimension' in options) ent.dimension = options.dimension;
+    ent.scale = scale;
+    return ent;
 };
