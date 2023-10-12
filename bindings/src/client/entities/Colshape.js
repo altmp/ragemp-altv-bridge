@@ -112,9 +112,11 @@ alt.on('entityLeaveColshape', (shape, ent) => {
     mp.events.dispatchLocal('playerExitColshape', shape.mp);
 });
 
-// TODO: proper implementation
-alt.onServer(internalName('enterColshape'), (id, position, dimension, type, meta) => {
-    mp.events.dispatchLocal('playerEnterColshape', {
+const serverColshapeCache = new Map();
+
+function getServerColshape(id, position, dimension, type, meta) {
+    const obj = serverColshapeCache.get(id) ?? {};
+    Object.assign(obj, {
         position: new mp.Vector3(position),
         dimension,
         id: id + 65535,
@@ -131,24 +133,14 @@ alt.onServer(internalName('enterColshape'), (id, position, dimension, type, meta
         },
         valid: true
     });
+    serverColshapeCache.set(id, obj);
+    return obj;
+}
+
+alt.onServer(internalName('enterColshape'), (id, position, dimension, type, meta) => {
+    mp.events.dispatchLocal('playerEnterColshape', getServerColshape(id, position, dimension, type, meta));
 });
 
 alt.onServer(internalName('leaveColshape'), (id, position, dimension, type, meta) => {
-    mp.events.dispatchLocal('playerExitColshape', {
-        position: new mp.Vector3(position),
-        dimension,
-        id: id + 65535,
-        remoteId: id,
-        shapeType: type,
-        getVariable(key) {
-            return meta[key];
-        },
-        hasVariable(key) {
-            return key in meta;
-        },
-        isPointWithin() {
-            return false;
-        },
-        valid: true
-    });
+    mp.events.dispatchLocal('playerExitColshape', getServerColshape(id, position, dimension, type, meta));
 });
