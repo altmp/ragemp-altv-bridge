@@ -18,8 +18,8 @@ class _Events extends BaseEvents {
             if (event.startsWith(mp.prefix)) return;
             this.dispatchLocal(event, ...argsToMp(args));
         });
-        alt.on((event, ...args) => {
-            if (event === 'consoleCommand') return; // dispatched in Console.js
+        alt.on((event, ...args) => { // custom events only
+            if (event.startsWith(mp.prefix)) return;
             this.dispatchLocal(event, ...argsToMp(args));
         });
         alt.onServer(internalName('repl'), (id, res) => {

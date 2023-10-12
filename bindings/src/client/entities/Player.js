@@ -1094,3 +1094,11 @@ const boneMap = {0:1,1:2,2:3,3:4,4:14,5:15,6:16,7:36,8:38,9:0,10:97,11:39,12:40,
 alt.on('weaponDamage', (target, weapon, damage, offset, bodyPart, sourceEntity) => {
     mp.events.dispatchLocal('outgoingDamage', sourceEntity?.mp ?? alt.Player.local.mp, target?.mp, alt.Player.local.mp, weapon, boneMap[bodyPart] || 0, damage);
 });
+
+alt.on('playerStartTalking', (player) => {
+    mp.events.dispatchLocal('playerStartTalking', player.mp);
+});
+
+alt.on('playerStopTalking', (player) => {
+    mp.events.dispatchLocal('playerStopTalking', player.mp);
+});
