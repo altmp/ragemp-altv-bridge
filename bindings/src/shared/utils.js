@@ -33,6 +33,7 @@ export const toMp = (obj) => {
         }
 
         if (obj.constructor && obj.constructor.name === 'Object') {
+            if (obj._passAsIs) return obj;
             const newObj = {};
             for (const key of Object.keys(obj)) {
                 newObj[key] = toMp(obj[key]);
@@ -63,6 +64,7 @@ export const toAlt = (obj) => {
         }
 
         if (obj.constructor && obj.constructor.name === 'Object') {
+            if (obj._passAsIs) return obj;
             const newObj = {};
             for (const key of Object.keys(obj)) {
                 newObj[key] = toAlt(obj[key]);

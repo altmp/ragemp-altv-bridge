@@ -131,7 +131,8 @@ function getServerColshape(id, position, dimension, type, meta) {
         isPointWithin() {
             return false;
         },
-        valid: true
+        valid: true,
+        _passAsIs: true
     });
     serverColshapeCache.set(id, obj);
     return obj;
