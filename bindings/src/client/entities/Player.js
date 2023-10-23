@@ -959,6 +959,10 @@ export class _Player extends _Entity {
     get hasClearLosTo() {
         return this.hasClearLosToEntity;
     }
+
+    getVehicleIsIn(includeEntering) {
+        return natives.getVehiclePedIsIn(this.handle, includeEntering);
+    }
     // #endregion
 }
 
