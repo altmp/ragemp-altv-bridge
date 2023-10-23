@@ -135,7 +135,7 @@ export class _Ped extends _Entity {
     }
 
     get taskSmartFlee() {
-        return this.smartFleeCoord; // taskSmartFleeCoord
+        return this.smartFleePed; // taskSmartFleePed
     }
 
     get taskPlaneMission() {
