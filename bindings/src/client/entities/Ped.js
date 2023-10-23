@@ -789,7 +789,7 @@ export class _Ped extends _Entity {
     }
 
     setHealth(value) {
-        natives.setEntityHealth(this.alt, value <= 0 ? 99 : (value + 100));
+        natives.setEntityHealth(this.alt, value <= 0 ? 99 : (value + 100), 0);
     }
     //#endregion
 }
