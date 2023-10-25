@@ -423,7 +423,7 @@ export class _Player extends _Entity {
 
     spawn(pos) {
         this.alt.removeAllWeapons();
-        this.alt.spawn({ x: pos.x, y: pos.y, z: pos.z - 1 });
+        this.alt.spawn({ x: pos.x, y: pos.y, z: pos.z - 0.95 });
         mp.events.dispatchLocal('playerSpawn', this);
     }
 
