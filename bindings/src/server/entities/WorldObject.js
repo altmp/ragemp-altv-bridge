@@ -19,6 +19,11 @@ export class _WorldObject extends _BaseObject {
             return;
         }
 
+        if (!mp._syncedMeta && this.#alt.setStreamSyncedMeta) {
+            this.#alt.setStreamSyncedMeta(key, toAlt(value));
+            return;
+        }
+
         this.#alt.setSyncedMeta(key, toAlt(value));
     }
 
@@ -28,11 +33,19 @@ export class _WorldObject extends _BaseObject {
 
     getVariable(key) {
         if (!this.hasVariable(key)) return undefined;
+
+        if (!mp._syncedMeta && this.#alt.getStreamSyncedMeta)
+            return toMp(this.#alt.getStreamSyncedMeta(key));
+
         return toMp(this.#alt.getSyncedMeta(key));
     }
 
     hasVariable(key) {
         if (!this.#alt.valid) return false;
+
+        if (!mp._syncedMeta && this.#alt.hasStreamSyncedMeta)
+            return this.#alt.hasStreamSyncedMeta(key);
+
         return this.#alt.hasSyncedMeta(key);
     }
 

@@ -15,15 +15,15 @@ export class _WorldObject extends _BaseObject {
 
     getVariable(key) {
         if (!this.alt.valid) return undefined;
-        if (this.#alt.hasSyncedMeta(key)) return toMp(this.#alt.getSyncedMeta(key));
         if (this.#alt.getStreamSyncedMeta && this.#alt.hasStreamSyncedMeta(key)) return toMp(this.#alt.getStreamSyncedMeta(key));
+        if (this.#alt.hasSyncedMeta(key)) return toMp(this.#alt.getSyncedMeta(key));
         return undefined;
     }
 
     hasVariable(key) {
         if (!this.alt.valid) return false;
-        if (this.#alt.hasSyncedMeta(key)) return true;
         if (this.#alt.hasStreamSyncedMeta && this.#alt.hasStreamSyncedMeta(key)) return true;
+        if (this.#alt.hasSyncedMeta(key)) return true;
         return false;
     }
 
