@@ -6,8 +6,8 @@ const mp = {
     debug: false,
     _forceReliable: false,
     _setSyncedMetaKey: 'setStreamSyncedMeta',
-    _getSyncedMetaKey: 'getStreamSyncedMeta',
-    _hasSyncedMetaKey: 'hasStreamSyncedMeta',
+    _getSyncedMetaKey: 'setStreamSyncedMeta',
+    _hasSyncedMetaKey: 'setStreamSyncedMeta',
 };
 
 // TODO: find a way to specify custom main resource name
