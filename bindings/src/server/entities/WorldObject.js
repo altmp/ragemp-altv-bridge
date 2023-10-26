@@ -19,7 +19,7 @@ export class _WorldObject extends _BaseObject {
             return;
         }
 
-        this.#alt.setSyncedMeta(key, toAlt(value));
+        this.#alt[mp._setSyncedMetaKey](key, toAlt(value));
     }
 
     setVariables(obj) {
@@ -28,12 +28,12 @@ export class _WorldObject extends _BaseObject {
 
     getVariable(key) {
         if (!this.hasVariable(key)) return undefined;
-        return toMp(this.#alt.getSyncedMeta(key));
+        return toMp(this.#alt[mp._getSyncedMetaKey](key));
     }
 
     hasVariable(key) {
         if (!this.#alt.valid) return false;
-        return this.#alt.hasSyncedMeta(key);
+        return this.#alt[mp._hasSyncedMetaKey](key);
     }
 
     dist(pos) {

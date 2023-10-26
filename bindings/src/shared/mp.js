@@ -4,7 +4,10 @@ import * as alt from 'alt-shared';
 const mp = {
     prefix: globalThis.overrideBridgePrefix ?? '$bridge$', // prefix for bridge events and metas
     debug: false,
-    _forceReliable: false
+    _forceReliable: false,
+    _setSyncedMetaKey: 'setStreamSyncedMeta',
+    _getSyncedMetaKey: 'setStreamSyncedMeta',
+    _hasSyncedMetaKey: 'setStreamSyncedMeta',
 };
 
 // TODO: find a way to specify custom main resource name

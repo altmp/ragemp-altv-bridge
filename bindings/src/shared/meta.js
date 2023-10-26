@@ -1,4 +1,5 @@
 import {toAlt, toMp} from './utils';
+import mp from './mp';
 
 class ExtendableProxy {
     constructor(...args) {
@@ -12,16 +13,16 @@ export class SyncedMetaProxy extends ExtendableProxy {
         super(obj, {
             get: (_, prop) => {
                 if (typeof prop != 'string') return obj[prop];
-                if (!target.hasSyncedMeta) return obj[prop];
-                if (target.hasSyncedMeta(prop)) return toMp(target.getSyncedMeta(prop));
+                if (!target[mp._hasSyncedMetaKey]) return obj[prop];
+                if (target[mp._hasSyncedMetaKey](prop)) return toMp(target[mp._getSyncedMetaKey](prop));
                 return obj[prop];
             },
             set: readOnly
                 ? (() => true)
                 : ((_, prop, value) => {
                     if (typeof prop != 'string') return true;
-                    if (!target.setSyncedMeta) return true;
-                    target.setSyncedMeta(prop, toAlt(value));
+                    if (!target[mp._setSyncedMetaKey]) return true;
+                    target[mp._setSyncedMetaKey](prop, toAlt(value));
                     return true;
                 })
         });
