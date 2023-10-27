@@ -22,9 +22,9 @@ class _Vector3 {
             this.z = 0;
         }
 
-        if (isNaN(this.x)) this.x = 0;
-        if (isNaN(this.y)) this.y = 0;
-        if (isNaN(this.z)) this.z = 0;
+        if (isNaN(this.x)) this.x = NaN;
+        if (isNaN(this.y)) this.y = NaN;
+        if (isNaN(this.z)) this.z = NaN;
     }
 
     negative() {
