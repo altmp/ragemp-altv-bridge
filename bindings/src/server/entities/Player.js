@@ -414,6 +414,7 @@ export class _Player extends _Entity {
     }
 
     setProp(prop, drawable, texture) {
+        this.alt.clearProp(prop);
         this.alt.setProp(prop, drawable, texture);
     }
 
