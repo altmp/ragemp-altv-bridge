@@ -15566,7 +15566,7 @@ mp.game2.object.getObjectFragmentDamageHealth ??= function (p0, p1) {
     return $res[0];
 };
 mp.game2.object.setActivatePhysicsAsSoonAsItIsUnfrozen ??= function (object, toggle) {
-    if (!entity) return;
+    if (!object) return;
     let $res = natives.setActivateObjectPhysicsAsSoonAsItIsUnfrozen(object, toggle | 0);
 };
 mp.game2.object.isAnyNearPoint ??= function (x, y, z, range, p4) {
