@@ -4332,6 +4332,7 @@ mp.game2.entity.applyForceToCenterOfMass ??= function (entity, forceType, x, y, 
     let $res = natives.applyForceToEntityCenterOfMass(entity, forceType, x, y, z, p5 | 0, isDirectionRel | 0, isForceRel | 0, p8 | 0);
 };
 mp.game2.entity.applyForceTo ??= function (entity, forceFlags, x, y, z, offX, offY, offZ, boneIndex, isDirectionRel, ignoreUpVec, isForceRel, p12, p13) {
+    if (!entity) return;
     let $res = natives.applyForceToEntity(entity, forceFlags, x, y, z, offX, offY, offZ, boneIndex, isDirectionRel | 0, ignoreUpVec | 0, isForceRel | 0, p12 | 0, p13 | 0);
 };
 mp.game2.entity.attachToEntity ??= function (entity1, entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9, useSoftPinning, collision, isPed, vertexIndex, fixedRot) {
@@ -4369,6 +4370,7 @@ mp.game2.entity.detach ??= function (entity, dynamic, collision) {
     let $res = natives.detachEntity(entity, dynamic | 0, collision | 0);
 };
 mp.game2.entity.freezePosition ??= function (entity, toggle) {
+    if (!entity) return;
     let $res = natives.freezeEntityPosition(entity, toggle | 0);
 };
 mp.game2.entity.setCleanupByEngine ??= function (entity, toggle) {
@@ -4528,6 +4530,7 @@ mp.game2.entity.setDynamic ??= function (entity, toggle) {
     let $res = natives.setEntityDynamic(entity, toggle | 0);
 };
 mp.game2.entity.setHeading ??= function (entity, heading) {
+    if (!entity) return;
     let $res = natives.setEntityHeading(entity, heading);
 };
 mp.game2.entity.setHealth ??= function (entity, health, p2) {
@@ -15563,6 +15566,7 @@ mp.game2.object.getObjectFragmentDamageHealth ??= function (p0, p1) {
     return $res[0];
 };
 mp.game2.object.setActivatePhysicsAsSoonAsItIsUnfrozen ??= function (object, toggle) {
+    if (!entity) return;
     let $res = natives.setActivateObjectPhysicsAsSoonAsItIsUnfrozen(object, toggle | 0);
 };
 mp.game2.object.isAnyNearPoint ??= function (x, y, z, range, p4) {
