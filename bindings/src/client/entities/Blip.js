@@ -49,8 +49,6 @@ export class _Blip extends _WorldObject {
         if (!this.alt.valid) return;
         if (typeof x === 'number') this.alt.pos = new alt.Vector3(x, y, z);
         else this.alt.pos = x;
-
-        return this.setBlipCoords(x.x, x.y, x.z);
     }
 
     setPosition(x, y, z) {
