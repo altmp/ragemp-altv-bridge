@@ -294,12 +294,14 @@ Object.defineProperty(mp.game.weapon, 'unequipEmptyWeapons', {
 mp.game.hud.getCurrentStreetNameString = () => {
     const pos = alt.Player.local.pos;
     const [, key] = natives.getStreetNameAtCoord(pos.x, pos.y, pos.z, 0, 0);
+    if (!key) return '';
     return natives.getStreetNameFromHashKey(key);
 };
 
 mp.game.hud.getCurrentStreetNameHash = () => {
     const pos = alt.Player.local.pos;
     const [, key] = natives.getStreetNameAtCoord(pos.x, pos.y, pos.z, 0, 0);
+    if (!key) return '';
     return key;
 };
 
