@@ -103,12 +103,12 @@ mp.colshapes.newTube = function(x, y, z, height, range, dimension = 0) {
 };
 
 alt.on('entityEnterColshape', (shape, ent) => {
-    if (ent !== alt.Player.local || shape instanceof alt.Checkpoint || !shape) return;
+    if (!(ent instanceof alt.Player) || shape instanceof alt.Checkpoint || !shape) return;
     mp.events.dispatchLocal('playerEnterColshape', shape.mp);
 });
 
 alt.on('entityLeaveColshape', (shape, ent) => {
-    if (ent !== alt.Player.local || shape instanceof alt.Checkpoint || !shape) return;
+    if (!(ent instanceof alt.Player) || shape instanceof alt.Checkpoint || !shape) return;
     mp.events.dispatchLocal('playerExitColshape', shape.mp);
 });
 
