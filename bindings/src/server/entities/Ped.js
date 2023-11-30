@@ -31,7 +31,7 @@ export class _Ped extends _Entity {
     }
 
     set controller(value) {
-        this.alt.setNetOwner(value, this.lockController);
+        this.alt.setNetOwner(value?.alt ?? null, this.lockController);
     }
 
 }
