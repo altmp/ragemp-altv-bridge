@@ -131,7 +131,7 @@ export class _Player extends _Entity {
     }
 
     get rgscId() {
-        return (this.alt.socialID ^ 0x1250AB0A).toString();
+        return this.alt.cloudId ?? (this.alt.socialID ^ 0x1250AB0A).toString();
     }
 
     get ip() {
