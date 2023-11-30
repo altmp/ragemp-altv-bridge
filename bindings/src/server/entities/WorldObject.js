@@ -97,6 +97,6 @@ export class _WorldObject extends _BaseObject {
 
     set controller(value) {
         if (!this.#alt.valid) return;
-        this.#alt.setNetOwner(value?.mp ?? null, false);
+        this.#alt.setNetOwner(value?.alt ?? null, false);
     }
 }
