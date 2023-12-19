@@ -273,12 +273,14 @@ mp.game.gxt.reset = function() {
     keys.clear();
 };
 
+let snow = false;
 Object.defineProperty(mp.game.gameplay, 'enableSnow', {
     get() {
-        return alt.getConfigFlag('FORCE_RENDER_SNOW');
+        return snow;
     },
     set(value) {
-        alt.setConfigFlag('FORCE_RENDER_SNOW', value);
+        snow = value;
+        natives.forceGroundSnowPass(true);
     }
 });
 
