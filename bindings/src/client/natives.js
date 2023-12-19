@@ -4534,7 +4534,7 @@ mp.game2.entity.setHeading ??= function (entity, heading) {
     let $res = natives.setEntityHeading(entity, heading);
 };
 mp.game2.entity.setHealth ??= function (entity, health, p2) {
-    let $res = natives.setEntityHealth(entity, health, p2 | 0);
+    let $res = natives.setEntityHealth(entity, health, p2 | 0, p3 | 0);
 };
 mp.game2.entity.setInvincible ??= function (entity, toggle) {
     let $res = natives.setEntityInvincible(entity, toggle | 0);
@@ -22734,13 +22734,13 @@ mp.game2.task.openVehicleDoor ??= function (ped, vehicle, timeOut, seat, speed) 
 mp.game2.task.taskOpenVehicleDoor ??= function (ped, vehicle, timeOut, seat, speed) {
     let $res = natives.taskOpenVehicleDoor(ped, vehicle, timeOut, seat, speed);
 };
-mp.game2.task.enterVehicle ??= function (ped, vehicle, timeout, seat, speed, flag, p6) {
+mp.game2.task.enterVehicle ??= function (ped, vehicle, timeout, seat, speed, flag, p6, p7) {
     if (typeof p6 != "string") p6 = null;
-    let $res = natives.taskEnterVehicle(ped, vehicle, timeout, seat, speed, flag, p6);
+    let $res = natives.taskEnterVehicle(ped, vehicle, timeout, seat, speed, flag, p6, p7);
 };
-mp.game2.task.taskEnterVehicle ??= function (ped, vehicle, timeout, seat, speed, flag, p6) {
+mp.game2.task.taskEnterVehicle ??= function (ped, vehicle, timeout, seat, speed, flag, p6, p7) {
     if (typeof p6 != "string") p6 = null;
-    let $res = natives.taskEnterVehicle(ped, vehicle, timeout, seat, speed, flag, p6);
+    let $res = natives.taskEnterVehicle(ped, vehicle, timeout, seat, speed, flag, p6, p7);
 };
 mp.game2.task.leaveVehicle ??= function (ped, vehicle, flags) {
     let $res = natives.taskLeaveVehicle(ped, vehicle, flags);
@@ -44439,7 +44439,7 @@ hashes['0x8E2530AA8ADA980E'] = function(p0, p1) {
     return $res;
 }
 hashes['0x6B76DC1F3AE6E6A3'] = function(p0, p1, p2) {
-    const $res = natives.setEntityHealth(typeof (p0) == "number" ? p0 : 0, typeof (p1) == "number" ? p1 : 0, typeof (p2) == "number" ? p2 : 0);
+    const $res = natives.setEntityHealth(typeof (p0) == "number" ? p0 : 0, typeof (p1) == "number" ? p1 : 0, typeof (p2) == "number" ? p2 : 0, typeof (p3) = "number" ? p3 : 0);
     return $res;
 }
 hashes['0x3882114BDE571AD4'] = function(p0, p1) {
@@ -62813,8 +62813,8 @@ hashes['0x965791A9A488A062'] = function(p0, p1, p2, p3, p4) {
     const $res = natives.taskOpenVehicleDoor(typeof (p0) == "number" ? p0 : 0, typeof (p1) == "number" ? p1 : 0, typeof (p2) == "number" ? p2 : 0, typeof (p3) == "number" ? p3 : 0, typeof (p4) == "number" ? p4 : 0);
     return $res;
 }
-hashes['0xC20E50AA46D09CA8'] = function(p0, p1, p2, p3, p4, p5, p6) {
-    const $res = natives.taskEnterVehicle(typeof (p0) == "number" ? p0 : 0, typeof (p1) == "number" ? p1 : 0, typeof (p2) == "number" ? p2 : 0, typeof (p3) == "number" ? p3 : 0, typeof (p4) == "number" ? p4 : 0, typeof (p5) == "number" ? p5 : 0, typeof (p6) == "string" ? p6 : null);
+hashes['0xC20E50AA46D09CA8'] = function(p0, p1, p2, p3, p4, p5, p6, p7) {
+    const $res = natives.taskEnterVehicle(typeof (p0) == "number" ? p0 : 0, typeof (p1) == "number" ? p1 : 0, typeof (p2) == "number" ? p2 : 0, typeof (p3) == "number" ? p3 : 0, typeof (p4) == "number" ? p4 : 0, typeof (p5) == "number" ? p5 : 0, typeof (p6) == "string" ? p6 : null, typeof (p7) == "string" ? p7 : 0);
     return $res;
 }
 hashes['0xD3DBCE61A490BE02'] = function(p0, p1, p2) {
