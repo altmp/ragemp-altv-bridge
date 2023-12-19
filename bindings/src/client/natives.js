@@ -44439,7 +44439,7 @@ hashes['0x8E2530AA8ADA980E'] = function(p0, p1) {
     return $res;
 }
 hashes['0x6B76DC1F3AE6E6A3'] = function(p0, p1, p2) {
-    const $res = natives.setEntityHealth(typeof (p0) == "number" ? p0 : 0, typeof (p1) == "number" ? p1 : 0, typeof (p2) == "number" ? p2 : 0, typeof (p3) = "number" ? p3 : 0);
+    const $res = natives.setEntityHealth(typeof (p0) == "number" ? p0 : 0, typeof (p1) == "number" ? p1 : 0, typeof (p2) == "number" ? p2 : 0, typeof (p3) == "number" ? p3 : 0);
     return $res;
 }
 hashes['0x3882114BDE571AD4'] = function(p0, p1) {
