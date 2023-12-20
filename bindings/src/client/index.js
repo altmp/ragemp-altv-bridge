@@ -95,13 +95,13 @@ if (alt.debug && mp._main) {
         } else if (cmd === 'profileStop') {
             const profile = JSON.stringify(alt.Profiler.stopProfiling('profile'));
             const filename = `profile-${Date.now()}.cpuprofile`;
-            const chunkSize = (alt.getSyncedMeta(internalName('eventSize')) ?? 8192) - 300;
+            const chunkSize = (alt.getSyncedMeta(internalName('eventSize')) ?? 8192) / 2 - 300;
             console.log(`Stopped profiling! Saving as ${filename}. Size: ${(profile.length / 1000).toFixed(1)} MB (chunking by ${chunkSize} B)`);
 
             const chunks = Math.ceil(profile.length / chunkSize);
             for (let chunk = 0; chunk < chunks; chunk++) {
                 const data = profile.substring(chunkSize * chunk, chunkSize * (chunk + 1));
-                if (mp.debug) console.log(`Emitting chunk ${chunk}, ${data.length}`);
+                // console.log(`Emitting chunk ${chunk}, ${data.length}`);
 
                 // Handled in resource/main-server.js
                 alt.emitServer('$bridge$profileSave', filename, chunk, chunks, data);

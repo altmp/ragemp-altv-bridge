@@ -1,6 +1,6 @@
 import * as alt from 'alt-client';
 import mp from '../../shared/mp.js';
-import {argsToAlt, argsToMp, emit, internalName, toAlt, toMp} from '../../shared/utils.js';
+import {argsToAlt, argsToMp, emit, internalName, safeExecute, toAlt, toMp} from '../../shared/utils.js';
 import { Deferred } from '../../shared/Deferred';
 import {BaseEvents} from '../../shared/BaseEvents';
 import {emitServer, emitServerUnreliable} from '../clientUtils';
@@ -45,13 +45,13 @@ class _Events extends BaseEvents {
     }
 
     addDataHandler(expectedKey, fn) {
-        function handler(entity, key, newData, oldData) {
+        function dataHandlerWrapper(entity, key, newData, oldData) {
             if (key !== expectedKey) return;
-            fn(toMp(entity), newData, oldData);
+            safeExecute(fn, `${expectedKey} data handler`, null, toMp(entity), newData, oldData);
         }
 
-        alt.on('syncedMetaChange', handler);
-        alt.on('streamSyncedMetaChange', handler);
+        alt.on('syncedMetaChange', dataHandlerWrapper);
+        alt.on('streamSyncedMetaChange', dataHandlerWrapper);
     }
 
     call(event, ...args) {
