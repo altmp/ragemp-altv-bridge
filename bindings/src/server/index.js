@@ -37,4 +37,6 @@ if (alt.debug && mp._main) {
     alt.onClient(mp.prefix + 'evalPlayer', async (_, player, code) => {
         alt.emitClient(player, mp.prefix + 'eval', code);
     });
+
+    alt.setSyncedMeta(internalName('eventSize'), alt.getServerConfig().maxClientScriptEventSize ?? 8192);
 }
