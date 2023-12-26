@@ -1008,6 +1008,7 @@ alt.on('gameEntityCreate', (player) => {
 });
 
 alt.onServer(internalName('dead'), (weapon, killer) => {
+    mp.notifyTrace('player', 'player death ', weapon, killer);
     mp.events.dispatchLocal('playerDeath', alt.Player.local.mp, weapon, toMp(killer));
 });
 
@@ -1034,6 +1035,7 @@ alt.on('connectionComplete', () => {
 });
 
 alt.on('spawned', () => {
+    mp.notifyTrace('player', 'player spawned');
     mp.events.dispatchLocal('playerResurrect');
     mp.events.dispatchLocal('playerSpawn', alt.Player.local.mp);
 });
@@ -1055,6 +1057,7 @@ if (mp._main) {
         const newVehicle = mp.players.local.vehicle;
         if (newVehicle !== lastVehicle) {
             console.log('Changed vehicle from ' + lastVehicle?.id + ' to ' + newVehicle?.id);
+            mp.notifyTrace('player', 'player changed vehicle from', lastVehicle, 'to', newVehicle);
             if (lastVehicle) {
                 mp.events.dispatchLocal('playerLeaveVehicle', lastVehicle?.alt?.valid ? lastVehicle : null, lastSeat);
             }

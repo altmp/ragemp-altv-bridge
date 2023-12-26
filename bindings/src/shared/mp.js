@@ -5,7 +5,9 @@ const mp = {
     prefix: globalThis.overrideBridgePrefix ?? '$bridge$', // prefix for bridge events and metas
     debug: false,
     _forceReliable: false,
-    _syncedMeta: false
+    _syncedMeta: false,
+    notifyTrace(category, msg) {
+    }
 };
 
 // TODO: find a way to specify custom main resource name

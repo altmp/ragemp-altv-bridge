@@ -16,10 +16,12 @@ class _Events extends BaseEvents {
 
         alt.onServer((event, ...args) => {
             if (event.startsWith(mp.prefix)) return;
+            mp.notifyTrace('event', 'server event ', event);
             this.dispatchLocal(event, ...argsToMp(args));
         });
         alt.on((event, ...args) => { // custom events only
             if (event.startsWith(mp.prefix)) return;
+            mp.notifyTrace('event', 'local event ', event);
             this.dispatchLocal(event, ...argsToMp(args));
         });
         alt.onServer(internalName('repl'), (id, res) => {
@@ -37,9 +39,11 @@ class _Events extends BaseEvents {
         // render event is now being dispatched in Nametags.js
 
         alt.on('gameEntityCreate', (entity) => {
+            mp.notifyTrace('event', 'entity create ', entity);
             this.dispatchLocal('entityStreamIn', toMp(entity));
         });
         alt.on('gameEntityDestroy', (entity) => {
+            mp.notifyTrace('event', 'entity destroy ', entity);
             this.dispatchLocal('entityStreamOut', toMp(entity));
         });
     }
@@ -47,6 +51,7 @@ class _Events extends BaseEvents {
     addDataHandler(expectedKey, fn) {
         function dataHandlerWrapper(entity, key, newData, oldData) {
             if (key !== expectedKey) return;
+            mp.notifyTrace('event', 'data change ', expectedKey);
             safeExecute(fn, `${expectedKey} data handler`, null, toMp(entity), newData, oldData);
         }
 
@@ -64,16 +69,17 @@ class _Events extends BaseEvents {
 
     //region RPC
     callRemote(event, ...args) {
-        if(mp.debug)console.log('Emitting remote ' + event);
+        mp.notifyTrace('event', 'call remote ', event);
         emitServer(event, ...argsToAlt(args));
     }
 
     callRemoteUnreliable(event, ...args) {
-        if(mp.debug)console.log('Emitting remote unreliable ' + event);
+        mp.notifyTrace('event', 'call remote unreliable ', event);
         emitServerUnreliable(event, ...argsToAlt(args));
     }
 
     callRemoteProc(event, ...args) {
+        mp.notifyTrace('event', 'call remote proc ', event);
         const id = rpcId++;
         const deferred = new Deferred();
         __pendingRpc[id] = deferred;
@@ -86,6 +92,7 @@ class _Events extends BaseEvents {
     }
 
     async dispatchRemoteProc(event, id, ...args) {
+        mp.notifyTrace('event', 'dispatch remote proc ', event);
         const handler = procHandlers[event];
         if (!handler) return emitServer(internalName('replError'), id, 'RPC not found');
         try {

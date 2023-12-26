@@ -842,6 +842,8 @@ mp.Ped = _Ped;
 mp.peds = new ClientPool(view);
 
 mp.peds.new = function (model, position, heading = 0, dimension = 0) {
+    mp.notifyTrace('entity', 'creating local ped', model, position);
+
     model = hashIfNeeded(model);
     if (!natives.isModelValid(model)) {
         console.warn('Tried to spawn ped with invalid model:', model);

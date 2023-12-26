@@ -510,6 +510,8 @@ mp.vehicles = new ClientPool(view);
 const initializers = {};
 
 mp.vehicles.new = function(model, position, params = {}) {
+    mp.notifyTrace('entity', 'creating local vehicle', model, position);
+
     model = hashIfNeeded(model);
     if (!natives.isModelValid(model)) model = alt.hash('kuruma');
 

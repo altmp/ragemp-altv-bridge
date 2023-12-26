@@ -320,6 +320,7 @@ Object.defineProperty(alt.LocalObject.prototype, 'mp', {
 mp.objects = new ClientPool(view);
 
 mp.objects.new = (model, position, params = {}) => {
+    mp.notifyTrace('entity', 'creating local object', model, position);
     model = hashIfNeeded(model);
     if (!natives.isModelValid(model)) model = alt.hash('prop_ecola_can');
     const obj = new alt.LocalObject(model, position, new alt.Vector3(params.rotation ?? alt.Vector3.zero).toRadians(), true, false, true, mp.streamingDistance);
