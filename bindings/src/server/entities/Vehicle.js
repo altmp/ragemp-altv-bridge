@@ -301,6 +301,7 @@ export class _Vehicle extends _Entity {
             this.alt.setMod(type, (index >= 255 || index < 0) ? 0 : index + 1);
         } catch(e) {
             console.log(`Failed to set mod ${type} to ${index} on vehicle ${this.id}: ${e}`);
+            alt.emit('resourceError', e, 'unknown', 0, e.stack);
         }
     }
 
@@ -340,6 +341,7 @@ mp.vehicles.new = function(model, position, options = {}) {
         veh = new alt.Vehicle(model, position, new alt.Vector3(0, 0, heading * deg2rad));
     } catch(e) {
         console.log('Failed to spawn vehicle model ' + model + ', falling back to kuruma: ' + (e?.stack ?? String(e)));
+        alt.emit('resourceError', e, 'unknown', 0, e.stack);
         veh = new alt.Vehicle(alt.hash('kuruma'), position, new alt.Vector3(0, 0, heading * deg2rad));
     }
     if (veh.modKitsCount > 0) veh.modKit = 1;

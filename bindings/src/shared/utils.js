@@ -185,6 +185,7 @@ export const safeExecute = async (fn, what, bind, ...args) => {
         return await fn.apply(bind, args);
     } catch (err) {
         console.error('Error executing ' + what, err);
+        alt.emit('resourceError', err, 'unknown', 0, err.stack);
     }
 };
 
