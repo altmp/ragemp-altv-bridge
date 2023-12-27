@@ -5,6 +5,10 @@ export class _BaseObject {
         return true;
     }
 
+    toJSON() {
+        return JSON.stringify(Object.fromEntries(Object.entries(this).filter(e => e[0] !== 'alt')));
+    }
+
     toString() {
         return `${this.constructor.name}<${this.id ?? -1}>`;
     }
