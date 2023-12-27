@@ -6,6 +6,7 @@ const mp = {
     debug: false,
     _forceReliable: false,
     _syncedMeta: false,
+    _enableInterResourceEvents: true,
     notifyTrace(category, msg) {
     }
 };

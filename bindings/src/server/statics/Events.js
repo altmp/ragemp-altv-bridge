@@ -10,6 +10,8 @@ import {emitClientInternal} from '../serverUtils';
 let procHandlers = {};
 let cmdHandlers = {};
 let globalHandlers = {};
+let ignoreLocal = false;
+
 class _Events extends BaseEvents {
 
     constructor() {
@@ -19,6 +21,8 @@ class _Events extends BaseEvents {
             this.dispatchGlobal(event, player, ...argsToMp(args));
         });
         alt.on((event, ...args) => {
+            if (ignoreLocal) return;
+            if (event.startsWith(mp.prefix)) return;
             if (event === 'playerSpawn' || event === 'playerDeath') return;
             this.dispatchLocal(event, ...argsToMp(args));
         });
@@ -108,7 +112,15 @@ class _Events extends BaseEvents {
     }
 
     call(event, ...args) {
-        emit(event, ...argsToAlt(args));
+        mp.events.dispatchLocal(event, ...args);
+        if (mp._enableInterResourceEvents) {
+            try {
+                ignoreLocal = true;
+                emit(event, ...argsToAlt(args));
+            } finally {
+                ignoreLocal = false;
+            }
+        }
     }
 
     callLocal = this.call;

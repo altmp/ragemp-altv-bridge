@@ -8,6 +8,7 @@ import {emitServer, emitServerUnreliable} from '../clientUtils';
 let procHandlers = {};
 let rpcId = 0;
 let __pendingRpc = {};
+let ignoreLocal = false;
 
 class _Events extends BaseEvents {
 
@@ -20,6 +21,7 @@ class _Events extends BaseEvents {
             this.dispatchLocal(event, ...argsToMp(args));
         });
         alt.on((event, ...args) => { // custom events only
+            if (ignoreLocal) return;
             if (event.startsWith(mp.prefix)) return;
             mp.notifyTrace('event', 'local event ', event);
             this.dispatchLocal(event, ...argsToMp(args));
@@ -60,8 +62,16 @@ class _Events extends BaseEvents {
     }
 
     call(event, ...args) {
-        if (mp.debug) console.log('Emitting ' + event);
-        emit(event, ...argsToAlt(args));
+        mp.notifyTrace('event', 'call local event ', event);
+        mp.events.dispatchLocal(event, ...args);
+        if (mp._enableInterResourceEvents) {
+            try {
+                ignoreLocal = true;
+                emit(event, ...argsToAlt(args));
+            } finally {
+                ignoreLocal = false;
+            }
+        }
     }
 
     callLocal = this.call;
