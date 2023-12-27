@@ -29,6 +29,7 @@ interface ParsedNative {
     resObject?: Record<string, string>; // Keys to set on resObject
     return?: string; // return value expression;
     hash: string;
+    requiredArguments: string[];
 }
 
 interface NativeInvoker {
@@ -61,7 +62,7 @@ while((result = reg.exec(nativesEnums)) != null) {
 }
 
 // hash (without 0x) to native object
-const rawAltNatives = await (await fetch('https://natives.altv.mp/natives')).json() as Record<string, Record<string, AltNative>>;
+const rawAltNatives = await (await fetch('https://natives.altv.mp/natives.json')).json() as Record<string, Record<string, AltNative>>;
 let altNatives: Record<string, AltNative> = {};
 for (const namespace of Object.values(rawAltNatives)) {
     for (const [hash, native] of Object.entries(namespace as Record<string, AltNative>)) {
@@ -103,6 +104,14 @@ const argumentBufferTypes = [
     'Uint32Array'
 ];
 
+// This set of types will be required if is located at the first argument
+const requiredTargetTypes = [
+    "Entity",
+    "Vehicle",
+    "Object",
+    "Ped"
+]
+
 let nativeInvokers: Record<string, NativeInvoker> = {};
 let argumentBuffers = [];
 let stringEncoder = '';
@@ -142,7 +151,8 @@ function registerNativeFunction(id: Identifier, fn: FunctionExpression, invoker:
         callArguments: Array(paramsCount),
         resObject: {},
         resObjectInitialValue: invoker.vector ? 'new mp.Vector3(0, 0, 0)' : '{}',
-        hash: '0x' + hash
+        hash: '0x' + hash,
+        requiredArguments: []
     };
 
     let resObjectIdentifier = '';
@@ -274,6 +284,10 @@ function registerNativeFunction(id: Identifier, fn: FunctionExpression, invoker:
         else parsed.callArguments[i] = '0';
     }
 
+    // Check if entity exists, where required
+    if (paramsCount > 0 && parsed.functionArguments.length > 0 && requiredTargetTypes.includes(parsed.altNative.params[0].type))
+        parsed.requiredArguments.push(parsed.functionArguments[0]);
+
     nativeWrappers[cleanWrapperName(id.name)] = parsed;
 }
 
@@ -293,12 +307,14 @@ function generateNativeCaller(native: ParsedNative, alias = null) {
     if (alias) {
         res += `    return ${alias}.apply(this, [${['this.handle', ...inArgs].join(', ')}]);\n`
     } else {
+        if (native.requiredArguments.length)
+            res += `    if (${native.requiredArguments.map(e => '!' + e).join(' || ')}) return warnInvalid('${native.altNative.name}', [${native.requiredArguments.map(e => `['${e}', ${e}]`).join(', ')}]);\n`;
+
         for (let i = 0; i < native.functionArguments.length; i++) {
             if (native.altNative.params[i]?.type == "string")
                 res += `    if (typeof ${native.functionArguments[i]} != "string") ${native.functionArguments[i]} = null;\n`;
         }
-        for (let param of native.altNative.params) {
-        }
+
         res += `    let $res = natives.${native.altNative.altName}(${outArgs.join(', ')});\n`;
         // TODO: Avoid creating an array
         if (native.return) res += `    if (!Array.isArray($res)) $res = [$res];\n`;
@@ -320,6 +336,13 @@ import * as alt from 'alt-client';
 import mp from '../shared/mp.js';
 mp.game2 ??= {};
 const hashes = {};
+
+function warnInvalid(name, args) {
+    const msg = 'Native ' + name + ' called with invalid arguments: ' + args.filter(e => !e[1]).map(e => e[0] + ' = ' + e[1]).join(', ');
+    if (alt.debug) console.warn(msg);
+    const err = new Error(msg);
+    alt.emit('resourceError', err, 'unknown', 0, err.stack, 'warning')
+}
 
 `;
 const prototypeCalls = {};
