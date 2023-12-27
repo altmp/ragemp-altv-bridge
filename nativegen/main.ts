@@ -183,6 +183,11 @@ function registerNativeFunction(id: Identifier, fn: FunctionExpression, invoker:
             if (argId < 0 || argId >= scriptParamsCount) continue;
 
             parsed.callArguments[argId] = escodegen.generate(el.expression.right);
+
+            const altParam = parsed.altNative.params[argId];
+            if (altParam && (altParam.type === "int" || altParam.type === "float")) {
+                parsed.callArguments[argId] = `optionalNumber(${parsed.callArguments[argId]})`
+            }
         }
 
         // If its a string argument statement ($n(6, someArg, $1d))
@@ -342,6 +347,10 @@ function warnInvalid(name, args) {
     if (alt.debug) console.warn(msg);
     const err = new Error(msg);
     alt.emit('resourceError', err, 'unknown', 0, err.stack, 'warning')
+}
+
+function optionalNumber(value) {
+    return +value || 0;
 }
 
 `;
