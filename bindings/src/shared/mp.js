@@ -7,6 +7,7 @@ const mp = {
     _forceReliable: false,
     _syncedMeta: false,
     _enableInterResourceEvents: true,
+    _broadcastJoinLeave: true,
     notifyTrace(category, msg) {
     }
 };

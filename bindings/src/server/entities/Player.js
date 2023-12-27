@@ -492,7 +492,7 @@ alt.on('playerConnect', (player) => {
     mp.events.dispatchLocal('playerJoin', player.mp);
     mp.events.dispatchLocal('playerReady', player.mp);
 
-    if (mp._main) emitAllClientsInternal('join', player);
+    if (mp._main && mp._broadcastJoinLeave) emitAllClientsInternal('join', player);
 });
 
 alt.on('playerDamage', (victim, attacker, healthDamage, armourDamage, weaponHash) => {
@@ -500,7 +500,7 @@ alt.on('playerDamage', (victim, attacker, healthDamage, armourDamage, weaponHash
 });
 
 alt.on('playerDisconnect', (player, reason) => {
-    if (mp._main) emitAllClientsInternal('quit', player);
+    if (mp._main && mp._broadcastJoinLeave) emitAllClientsInternal('quit', player);
     mp.events.dispatchLocal('playerQuit', player.mp, 'unimplemented', 'unimplemented'); //player, exitType: string, reason: string
 });
 
