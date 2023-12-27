@@ -949,7 +949,7 @@ export class _Player extends _Entity {
     }
 
     setHealth(value) {
-        natives.setEntityHealth(this.alt, value, 0);
+        natives.setEntityHealth(this.alt, value, 0, 0);
     }
 
     get isAttachedTo() {
