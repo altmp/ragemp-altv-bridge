@@ -51,14 +51,16 @@ class _Events extends BaseEvents {
     }
 
     addDataHandler(expectedKey, fn) {
-        function dataHandlerWrapper(entity, key, newData, oldData) {
+        function dataHandlerWrapper(type, entity, key, newData, oldData) {
+            if (entity === alt.Player.local && type === 'streamSyncedMetaChange') return; // use localMeta for local player
             if (key !== expectedKey) return;
             mp.notifyTrace('event', 'data change ', expectedKey);
             safeExecute(fn, `${expectedKey} data handler`, null, toMp(entity), newData, oldData);
         }
 
-        alt.on('syncedMetaChange', dataHandlerWrapper);
-        alt.on('streamSyncedMetaChange', dataHandlerWrapper);
+        alt.on('syncedMetaChange', dataHandlerWrapper.bind(null, 'syncedMetaChange'));
+        alt.on('streamSyncedMetaChange', dataHandlerWrapper.bind(null, 'streamSyncedMetaChange'));
+        alt.on('localMetaChange', dataHandlerWrapper.bind(null, 'localMetaChange'));
     }
 
     call(event, ...args) {
