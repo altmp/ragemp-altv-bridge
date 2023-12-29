@@ -23656,12 +23656,12 @@ mp.game2.task.taskOpenVehicleDoor ??= function (ped, vehicle, timeOut, seat, spe
 mp.game2.task.enterVehicle ??= function (ped, vehicle, timeout, seat, speed, flag, p6) {
     if (!ped) return warnInvalid('TASK_ENTER_VEHICLE', [['ped', ped]]);
     if (typeof p6 != "string") p6 = null;
-    let $res = natives.taskEnterVehicle(ped, vehicle, optionalNumber(timeout), optionalNumber(seat), optionalNumber(speed), optionalNumber(flag), p6, 0);
+    let $res = natives.taskEnterVehicle(ped, vehicle, optionalNumber(timeout), optionalNumber(seat), optionalNumber(speed), optionalNumber(flag), p6, null);
 };
 mp.game2.task.taskEnterVehicle ??= function (ped, vehicle, timeout, seat, speed, flag, p6) {
     if (!ped) return warnInvalid('TASK_ENTER_VEHICLE', [['ped', ped]]);
     if (typeof p6 != "string") p6 = null;
-    let $res = natives.taskEnterVehicle(ped, vehicle, optionalNumber(timeout), optionalNumber(seat), optionalNumber(speed), optionalNumber(flag), p6, 0);
+    let $res = natives.taskEnterVehicle(ped, vehicle, optionalNumber(timeout), optionalNumber(seat), optionalNumber(speed), optionalNumber(flag), p6, null);
 };
 mp.game2.task.leaveVehicle ??= function (ped, vehicle, flags) {
     if (!ped) return warnInvalid('TASK_LEAVE_VEHICLE', [['ped', ped]]);
