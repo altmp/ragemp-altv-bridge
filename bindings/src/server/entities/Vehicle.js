@@ -297,8 +297,26 @@ export class _Vehicle extends _Entity {
     }
 
     setMod(type, index) {
+        index = (index >= 255 || index < 0) ? 0 : index + 1;
+
         try {
-            this.alt.setMod(type, (index >= 255 || index < 0) ? 0 : index + 1);
+            switch(type) {
+                case 55:
+                    this.windowTint = index;
+                    break;
+                case 53:
+                    this.numberPlateType = index;
+                    break;
+                case 66:
+                    this.alt.primaryColor = index;
+                    break;
+                case 67:
+                    this.alt.secondaryColor = index;
+                    break;
+                default:
+                    this.alt.setMod(type, index);
+                    break;
+            }
         } catch(e) {
             console.log(`Failed to set mod ${type} to ${index} on vehicle ${this.id}: ${e}`);
             alt.emit('resourceError', e, 'unknown', 0, e.stack, 'warning');
