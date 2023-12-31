@@ -9,7 +9,7 @@ function warnInvalid(name, args) {
     const msg = 'Native ' + name + ' called with invalid arguments: ' + args.filter(e => !e[1]).map(e => e[0] + ' = ' + e[1]).join(', ');
     if (alt.debug) console.warn(msg);
     const err = new Error(msg);
-    alt.emit('resourceError', err, 'unknown', 0, err.stack, 'warning')
+    mp._notifyError(err, 'unknown', 0, err.stack, 'warning');
 }
 
 function optionalNumber(value) {

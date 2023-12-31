@@ -9,6 +9,15 @@ const mp = {
     _enableInterResourceEvents: true,
     _broadcastJoinLeave: true,
     notifyTrace(category, msg) {
+    },
+    _notifyError(...args) {
+        for (const handler of alt.getEventListeners('resourceError')) {
+            try {
+                handler(...args);
+            } catch(e) {
+                console.error(e);
+            }
+        }
     }
 };
 
