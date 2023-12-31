@@ -5,7 +5,12 @@ import mp from '../shared/mp.js';
 mp.game2 ??= {};
 const hashes = {};
 
-class NativeUseWarning extends Error {}
+class NativeUseWarning extends Error {
+    constructor(msg) {
+        super(msg);
+        this.name = "Invalid native usage warning";
+    }
+}
 
 function warnInvalid(name, args) {
     const msg = 'Native ' + name + ' called with invalid arguments: ' + args.filter(e => !e[1]).map(e => e[0] + ' = ' + e[1]).join(', ');
