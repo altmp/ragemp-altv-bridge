@@ -342,10 +342,12 @@ import mp from '../shared/mp.js';
 mp.game2 ??= {};
 const hashes = {};
 
+class NativeUseWarning extends Error {}
+
 function warnInvalid(name, args) {
     const msg = 'Native ' + name + ' called with invalid arguments: ' + args.filter(e => !e[1]).map(e => e[0] + ' = ' + e[1]).join(', ');
     if (alt.debug && mp._logWarnings) console.warn(msg);
-    const err = new Error(msg);
+    const err = new NativeUseWarning(msg);
     mp._notifyError(err, 'unknown', 0, err.stack, 'warning')
 }
 
