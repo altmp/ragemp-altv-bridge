@@ -4540,6 +4540,7 @@ mp.game2.entity.applyForceTo ??= function (entity, forceFlags, x, y, z, offX, of
     let $res = natives.applyForceToEntity(entity, optionalNumber(forceFlags), optionalNumber(x), optionalNumber(y), optionalNumber(z), optionalNumber(offX), optionalNumber(offY), optionalNumber(offZ), optionalNumber(boneIndex), isDirectionRel | 0, ignoreUpVec | 0, isForceRel | 0, p12 | 0, p13 | 0);
 };
 mp.game2.entity.attachToEntity ??= function (entity1, entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9, useSoftPinning, collision, isPed, vertexIndex, fixedRot) {
+    console.log('NATIVE attachToEntity', entity1, entity2, boneIndex, xPos, yPos, zPos, xRot, yRot, zRot, p9, useSoftPinning, collision, isPed, vertexIndex, fixedRot);
     if (!entity1) return warnInvalid('ATTACH_ENTITY_TO_ENTITY', [['entity1', entity1]]);
     let $res = natives.attachEntityToEntity(entity1, entity2, optionalNumber(boneIndex), optionalNumber(xPos), optionalNumber(yPos), optionalNumber(zPos), optionalNumber(xRot), optionalNumber(yRot), optionalNumber(zRot), p9 | 0, useSoftPinning | 0, collision | 0, isPed | 0, optionalNumber(vertexIndex), fixedRot | 0, 0);
 };
@@ -4579,6 +4580,7 @@ mp.game2.entity.delete ??= function (entity) {
     return $resObj.entity;
 };
 mp.game2.entity.detach ??= function (entity, dynamic, collision) {
+    console.log('NATIVE detach', entity, dynamic, collision);
     if (!entity) return warnInvalid('DETACH_ENTITY', [['entity', entity]]);
     let $res = natives.detachEntity(entity, dynamic | 0, collision | 0);
 };
