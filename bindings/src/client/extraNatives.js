@@ -280,7 +280,7 @@ Object.defineProperty(mp.game.gameplay, 'enableSnow', {
     },
     set(value) {
         snow = value;
-        natives.forceGroundSnowPass(true);
+        natives.forceGroundSnowPass(snow);
     }
 });
 
