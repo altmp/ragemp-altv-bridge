@@ -313,7 +313,7 @@ function generateNativeCaller(native: ParsedNative, alias = null) {
         res += `    return ${alias}.apply(this, [${['this.handle', ...inArgs].join(', ')}]);\n`
     } else {
         if (native.requiredArguments.length)
-            res += `    if (${native.requiredArguments.map(e => '!' + e).join(' || ')}) return warnInvalid('${native.altNative.name}', [${native.requiredArguments.map(e => `['${e}', ${e}]`).join(', ')}]);\n`;
+            res += `    if (mp._checkNativeCalls && (${native.requiredArguments.map(e => '!' + e).join(' || ')})) return warnInvalid('${native.altNative.name}', [${native.requiredArguments.map(e => `['${e}', ${e}]`).join(', ')}]);\n`;
 
         for (let i = 0; i < native.functionArguments.length; i++) {
             if (native.altNative.params[i]?.type == "string")

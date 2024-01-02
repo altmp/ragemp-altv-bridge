@@ -5,6 +5,7 @@ const mp = {
     prefix: globalThis.overrideBridgePrefix ?? '$bridge$', // prefix for bridge events and metas
     debug: false,
     _logWarnings: true,
+    _checkNativeCalls: true,
     _forceReliable: false,
     _syncedMeta: false,
     _enableInterResourceEvents: true,
