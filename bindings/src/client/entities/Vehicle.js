@@ -521,6 +521,8 @@ mp.vehicles.new = function(model, position, params = {}) {
     const ent = veh.mp;
 
     initializers[veh.id] = () => {
+        natives.setVehicleExtraColour5(ent.handle, 0);
+        natives.setVehicleExtraColour6(ent.handle, 0);
         if ('heading' in params) ent.setRotation(0, 0, params.heading, 2, false);
         if ('numberPlate' in params) ent.setNumberPlateText(params.numberPlate);
         if ('alpha' in params) ent.setAlpha(params.alpha, false);
