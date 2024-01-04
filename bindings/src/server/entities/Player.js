@@ -464,6 +464,10 @@ export class _Player extends _Entity {
     getOwnVariable(key) {
         return this.alt.getLocalMeta(key);
     }
+
+    toString() {
+        return `${this.constructor.name}<${this.id ?? -1}, '${this.name}', '${this.socialClub}'>`;
+    }
 }
 
 Object.defineProperty(alt.Player.prototype, 'mp', {
