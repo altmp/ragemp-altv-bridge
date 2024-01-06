@@ -59,6 +59,14 @@ export class _Player extends _Entity {
         // TODO
     }
 
+    get weapon() {
+        return this.alt.currentWeapon;
+    }
+
+    set weapon(value) {
+        natives.setCurrentPedWeapon(this.alt, value, true);
+    }
+
     get model() {
         return this.alt.model;
     }
