@@ -60,7 +60,7 @@ class _Events extends BaseEvents {
 
         alt.on('syncedMetaChange', dataHandlerWrapper.bind(null, 'syncedMetaChange'));
         alt.on('streamSyncedMetaChange', dataHandlerWrapper.bind(null, 'streamSyncedMetaChange'));
-        alt.on('localMetaChange', dataHandlerWrapper.bind(null, 'localMetaChange'));
+        alt.on('localMetaChange', dataHandlerWrapper.bind(null, 'localMetaChange', alt.Player.local));
     }
 
     call(event, ...args) {
