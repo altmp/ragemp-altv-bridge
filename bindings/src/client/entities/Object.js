@@ -168,7 +168,7 @@ export class _Object extends _Entity {
         return natives.getEntityAlpha(this.handle);
     }
 
-    setAlpha(alpha, skin) {
+    setAlpha(alpha, skin = false) {
         return natives.setEntityAlpha(this.handle, alpha, skin);
     }
 
@@ -323,7 +323,7 @@ mp.objects.new = (model, position, params = {}) => {
     mp.notifyTrace('entity', 'creating local object', model, position);
     model = hashIfNeeded(model);
     if (!natives.isModelValid(model)) model = alt.hash('prop_ecola_can');
-    const obj = new alt.LocalObject(model, position, new alt.Vector3(params.rotation ?? alt.Vector3.zero).toRadians(), true, false, true, mp.streamingDistance);
+    const obj = new alt.LocalObject(model, position, new alt.Vector3(params.rotation ?? alt.Vector3.zero).toRadians(), true, false, true, params?.streamingDistance ?? mp.streamingDistance);
     obj._mpOwned = true;
     if ('alpha' in params) obj.alpha = params.alpha;
     if ('dimension' in params) obj.dimension = mpDimensionToAlt(params.dimension);
