@@ -57,11 +57,15 @@ export class _Object extends _Entity {
     }
 
     get rotation() {
-        return new mp.Vector3(this.alt.rot.toDegrees());
+        if (!this.alt.valid) return mp.Vector3.zero;
+        if (!this.handle) return new mp.Vector3(this.alt.rot.toDegrees());
+        return natives.getEntityRotation(this.handle, 0);
     }
 
     set rotation(value) {
-        this.alt.rot = new alt.Vector3(value).toRadians();
+        if (!this.alt.valid) return;
+        if (!this.handle) this.alt.rot = new alt.Vector3(value).toRadians();
+        else natives.setEntityRotation(this.handle, value.x, value.y, value.z, 0, false);
     }
 
     get model() {
