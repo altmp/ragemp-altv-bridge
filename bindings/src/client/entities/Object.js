@@ -59,7 +59,7 @@ export class _Object extends _Entity {
     get rotation() {
         if (!this.alt.valid) return mp.Vector3.zero;
         if (!this.handle) return new mp.Vector3(this.alt.rot.toDegrees());
-        return natives.getEntityRotation(this.handle, 0);
+        return new mp.Vector3(natives.getEntityRotation(this.handle, 0));
     }
 
     set rotation(value) {
@@ -283,11 +283,17 @@ export class _NetworkObject extends _Object {
 
     destroy() {}
 
-    get rotation() {
-        return new mp.Vector3(this.alt.getStreamSyncedMeta(internalName('rotation')));
+
+    get position() {
+        if (!this.alt.valid) return mp.Vector3.zero;
+        if (!this.handle) return new mp.Vector3(this.alt.pos);
+        return new mp.Vector3(natives.getEntityCoords(this.handle, false));
     }
 
-    set rotation(value) {}
+    set position(value) {
+        if (!this.alt.valid || !this.handle) return;
+        natives.setEntityCoords(this.handle, value.x, value.y, value.z, false, false, false, false);
+    }
 
     get model() {
         return this.alt.getStreamSyncedMeta(internalName('model'));
