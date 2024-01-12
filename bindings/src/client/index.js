@@ -83,29 +83,33 @@ const AsyncFunction = (async function () {}).constructor;
 // TODO delete after debugging
 if (alt.debug && mp._main) {
     alt.on('consoleCommand', async (cmd, ...args) => {
-        if (cmd === 'eval') {
-            console.log(await (new AsyncFunction('alt', 'natives', args.join(' ')))(alt, natives));
-        } else if (cmd === 'evalAll') {
-            alt.emitServer(mp.prefix + 'evalAllPlayers', args.join(' '));
-        } else if (cmd === 'evalPlayer') {
-            alt.emitServer(mp.prefix + 'evalPlayer', alt.Player.getByRemoteID(+args[0]), args.slice(1).join(' '));
-        } else if (cmd === 'profileStart') {
-            console.log('Started profiling!');
-            alt.Profiler.startProfiling('profile');
-        } else if (cmd === 'profileStop') {
-            const profile = JSON.stringify(alt.Profiler.stopProfiling('profile'));
-            const filename = `profile-${Date.now()}.cpuprofile`;
-            const chunkSize = (alt.getSyncedMeta(internalName('eventSize')) ?? 8192) / 2 - 300;
-            console.log(`Stopped profiling! Saving as ${filename}. Size: ${(profile.length / 1000).toFixed(1)} MB (chunking by ${chunkSize} B)`);
+        try {
+            if (cmd === 'eval') {
+                console.log(await (new AsyncFunction('alt', 'natives', args.join(' ')))(alt, natives));
+            } else if (cmd === 'evalAll') {
+                alt.emitServer(mp.prefix + 'evalAllPlayers', args.join(' '));
+            } else if (cmd === 'evalPlayer') {
+                alt.emitServer(mp.prefix + 'evalPlayer', alt.Player.getByRemoteID(+args[0]), args.slice(1).join(' '));
+            } else if (cmd === 'profileStart') {
+                console.log('Started profiling!');
+                alt.Profiler.startProfiling('profile');
+            } else if (cmd === 'profileStop') {
+                const profile = JSON.stringify(alt.Profiler.stopProfiling('profile'));
+                const filename = `profile-${Date.now()}.cpuprofile`;
+                const chunkSize = (alt.getSyncedMeta(internalName('eventSize')) ?? 8192) / 2 - 300;
+                console.log(`Stopped profiling! Saving as ${filename}. Size: ${(profile.length / 1000).toFixed(1)} MB (chunking by ${chunkSize} B)`);
 
-            const chunks = Math.ceil(profile.length / chunkSize);
-            for (let chunk = 0; chunk < chunks; chunk++) {
-                const data = profile.substring(chunkSize * chunk, chunkSize * (chunk + 1));
-                // console.log(`Emitting chunk ${chunk}, ${data.length}`);
+                const chunks = Math.ceil(profile.length / chunkSize);
+                for (let chunk = 0; chunk < chunks; chunk++) {
+                    const data = profile.substring(chunkSize * chunk, chunkSize * (chunk + 1));
+                    // console.log(`Emitting chunk ${chunk}, ${data.length}`);
 
-                // Handled in resource/main-server.js
-                alt.emitServer('$bridge$profileSave', filename, chunk, chunks, data);
+                    // Handled in resource/main-server.js
+                    alt.emitServer('$bridge$profileSave', filename, chunk, chunks, data);
+                }
             }
+        } catch(e) {
+            console.error(e);
         }
     });
 }
