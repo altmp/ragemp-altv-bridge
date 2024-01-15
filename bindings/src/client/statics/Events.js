@@ -40,14 +40,16 @@ class _Events extends BaseEvents {
 
         // render event is now being dispatched in Nametags.js
 
-        alt.on('gameEntityCreate', (entity) => {
-            mp.notifyTrace('event', 'entity create ', entity);
-            this.dispatchLocal('entityStreamIn', toMp(entity));
-        });
-        alt.on('gameEntityDestroy', (entity) => {
-            mp.notifyTrace('event', 'entity destroy ', entity);
-            this.dispatchLocal('entityStreamOut', toMp(entity));
-        });
+        if (mp._main) {
+            alt.on('gameEntityCreate', (entity) => {
+                mp.notifyTrace('event', 'entity create ', entity);
+                this.dispatchLocal('entityStreamIn', toMp(entity));
+            });
+            alt.on('gameEntityDestroy', (entity) => {
+                mp.notifyTrace('event', 'entity destroy ', entity);
+                this.dispatchLocal('entityStreamOut', toMp(entity));
+            });
+        }
     }
 
     addDataHandler(expectedKey, fn) {
