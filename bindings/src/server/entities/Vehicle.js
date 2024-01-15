@@ -163,7 +163,8 @@ export class _Vehicle extends _Entity {
     }
 
     get velocity() {
-        return this.alt.velocity;
+        return new mp.Vector3(this.alt.velocity.div(15.973639016253246));
+        // TODO: remove division when https://github.com/altmp/altv-issues/issues/2192 is fixed
     }
 
     _setWindowTint = false;
