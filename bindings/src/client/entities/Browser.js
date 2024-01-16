@@ -119,7 +119,7 @@ Object.defineProperty(alt.WebView.prototype, 'mp', {
 
 mp.Browser = _Browser;
 
-mp.browsers = new ClientPool(EntityGetterView.fromClass(alt.Blip));
+mp.browsers = new ClientPool(EntityGetterView.fromClass(alt.WebView));
 
 mp.browsers.new = function (url) {
     const webview = new alt.WebView(transformUrl(url));
