@@ -63,6 +63,17 @@ class _Events extends BaseEvents {
         alt.on('syncedMetaChange', dataHandlerWrapper.bind(null, 'syncedMetaChange'));
         alt.on('streamSyncedMetaChange', dataHandlerWrapper.bind(null, 'streamSyncedMetaChange'));
         alt.on('localMetaChange', dataHandlerWrapper.bind(null, 'localMetaChange', alt.Player.local));
+
+        function streamInWrapper(entity) {
+            if (entity.hasStreamSyncedMeta && entity.hasStreamSyncedMeta(expectedKey)) {
+                safeExecute(fn, `${expectedKey} data handler`, null, toMp(entity), entity.getStreamSyncedMeta(expectedKey), undefined);
+            } else if (entity.hasSyncedMeta && entity.hasSyncedMeta(expectedKey)) {
+                safeExecute(fn, `${expectedKey} data handler`, null, toMp(entity), entity.getSyncedMeta(expectedKey), undefined);
+            }
+        }
+
+        alt.on('worldObjectStreamIn', streamInWrapper);
+        alt.on('gameEntityCreate', streamInWrapper);
     }
 
     call(event, ...args) {
