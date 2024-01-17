@@ -20,11 +20,12 @@ export class _Checkpoint extends _BaseObject {
     type = 'checkpoint';
 
     destroy() {
-        if (!this.alt.valid) return;
+        if (!this.valid) return;
 
         if (this.alt.isPointIn(alt.Player.local.pos))
             mp.events.dispatchLocal('playerExitCheckpoint', this);
 
+        this._markDestroyed();
         this.alt.destroy();
     }
 }

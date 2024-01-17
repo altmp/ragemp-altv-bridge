@@ -220,11 +220,6 @@ export class _Vehicle extends _Entity {
 
     type = 'vehicle';
 
-    destroy() {
-        if (!this.alt.valid) return;
-        this.alt.destroy();
-    }
-
     explode() {
         if (this.alt.netOwner) {
             this.alt.setTimedExplosion(true, this.alt.netOwner, 1);

@@ -107,9 +107,9 @@ export class _Marker extends _Entity {
     }
 
     destroy() {
-        if (!this.alt.valid) return;
+        if (!this.valid) return;
         view.remove(this.id);
-        this.alt.destroy();
+        super.destroy();
     }
 }
 

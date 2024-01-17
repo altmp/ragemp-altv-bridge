@@ -66,11 +66,6 @@ export class _Browser extends _BaseObject {
         this.execute(code);
     }
 
-    destroy() {
-        if (!this.alt.valid) return;
-        this.alt.destroy();
-    }
-
     markAsChat() {
 
     }

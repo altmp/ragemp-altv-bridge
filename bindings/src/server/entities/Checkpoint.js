@@ -62,13 +62,14 @@ export class _Checkpoint extends _Colshape {
     }
 
     destroy() {
-        if (!this.alt.valid) return;
+        if (!this.valid) return;
 
         for (let player of alt.Player.all) {
             if (this.alt.isPointIn(player.pos))
                 mp.events.dispatchLocal('playerExitCheckpoint', player.mp, this);
         }
 
+        this._markDestroyed();
         this.alt.destroy();
     }
 }

@@ -486,7 +486,8 @@ export class _LocalVehicle extends _Vehicle {
     }
 
     destroy() {
-        if (!this.alt.valid) return;
+        if (!this.valid) return;
+        this._markDestroyed();
         this.alt.destroy();
     }
 }

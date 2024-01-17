@@ -449,8 +449,6 @@ export class _Player extends _Entity {
     }
 
     destroy() {
-        if (!this.alt.valid) return;
-        this.alt.destroy();
     }
 
     setOwnVariable(key, value) {

@@ -26,7 +26,7 @@ export class _Ped extends _Entity {
     destroy() {
         if (!this.alt.valid) return;
         if (this.alt.isStreamedIn) this.streamOut(); // TODO: fix in core
-        this.alt.destroy();
+        super.destroy();
     }
 
     get isDynamic() {
@@ -802,7 +802,8 @@ export class _LocalPed extends _Ped {
     }
 
     destroy() {
-        if (!this.alt.valid) return;
+        if (!this.valid) return;
+        this._markDestroyed();
         this.alt.destroy();
     }
 

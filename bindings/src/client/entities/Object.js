@@ -42,11 +42,6 @@ export class _Object extends _Entity {
         this.alt.setMeta(key, toAlt(value));
     }
 
-    destroy() {
-        if (!this.alt.valid) return;
-        this.alt.destroy();
-    }
-
     get position() {
         if (!this.alt.valid) return mp.Vector3.zero;
         return new mp.Vector3(this.alt.pos);

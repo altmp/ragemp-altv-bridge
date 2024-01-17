@@ -30,11 +30,6 @@ export class _Blip extends _WorldObject {
         else this.alt.size = new alt.Vector2(value * 2, value * 2);
     }
 
-    destroy() {
-        if (!this.alt.valid) return;
-        this.alt.destroy();
-    }
-
     get position() {
         if (!this.alt.valid) return mp.Vector3.zero;
         return this.alt.pos;

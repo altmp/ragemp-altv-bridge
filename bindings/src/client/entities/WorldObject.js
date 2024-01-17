@@ -71,10 +71,6 @@ export class _WorldObject extends _BaseObject {
         this.alt.model = value;
     }
 
-    get valid() {
-        return this.alt.valid;
-    }
-
     get position() {
         if (!this.alt.valid) return mp.Vector3.zero;
         return this.alt.pos;

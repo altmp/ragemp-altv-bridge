@@ -45,11 +45,12 @@ export class _Colshape extends _WorldObject {
     type = 'colshape';
 
     destroy() {
-        if (!this.alt.valid) return;
+        if (!this.valid) return;
 
         if (this.alt.isPointIn(alt.Player.local.pos))
             mp.events.dispatchLocal('playerExitColshape', this);
 
+        this._markDestroyed();
         this.alt.destroy();
     }
 }
