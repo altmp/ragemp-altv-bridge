@@ -70,7 +70,6 @@ export class BaseEvents {
     /** @internal */
     dispatch(event, ...args) {
         if (!(event in handlers)) return;
-        argsToMp(args);
         for (const handler of handlers[event]) {
             safeExecute(handler, event + ' event handler', this, ...args);
         }
@@ -81,7 +80,6 @@ export class BaseEvents {
         this.dispatch(event, ...args);
 
         if (!(event in localHandlers)) return;
-        argsToMp(args);
         for (const handler of localHandlers[event]) {
             safeExecute(handler, event + ' local event handler', this, ...args);
         }
@@ -90,7 +88,6 @@ export class BaseEvents {
     /** @internal */
     dispatchLocalWithResults(event, ...args) {
         if (!(event in handlers)) return;
-        argsToMp(args);
         return handlers[event].map(e => e(...args));
     }
 }

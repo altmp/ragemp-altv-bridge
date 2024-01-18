@@ -4,7 +4,7 @@ import {ClientPool} from '../ClientPool.js';
 import {_BaseObject} from './BaseObject.js';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 import {emitServerInternal} from '../clientUtils';
-import {emitInternal} from '../../shared/utils';
+import {argsToMp, emitInternal} from '../../shared/utils';
 
 function transformUrl(url) {
     if (url.startsWith('package://')) return 'http://resource/' + url.substring(10);
@@ -22,7 +22,7 @@ export class _Browser extends _BaseObject {
         this.#_url = _alt.url;
 
         this.alt.on(mp.prefix + 'event', (evt, ...args) => {
-            mp.events.dispatchLocal(evt, ...args);
+            mp.events.dispatchLocal(evt, ...argsToMp(args));
         });
 
         this.alt.on('load', () => {

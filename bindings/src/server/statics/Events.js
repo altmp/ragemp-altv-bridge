@@ -18,7 +18,7 @@ class _Events extends BaseEvents {
         super();
 
         alt.onClient((event, player, ...args) => {
-            this.dispatchGlobal(event, player, ...argsToMp(args));
+            this.dispatchGlobal(event, toMp(player), ...argsToMp(args));
         });
         alt.on((event, ...args) => {
             if (ignoreLocal) return;
