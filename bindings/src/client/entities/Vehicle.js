@@ -31,6 +31,7 @@ export class _Vehicle extends _Entity {
 
     get position() {
         if (!this.alt.valid) return mp.Vector3.zero;
+        if (this.handle !== 0) return new mp.Vector3(natives.getEntityCoords(this.handle, false));
         return new mp.Vector3(this.alt.pos);
     }
 
