@@ -153,7 +153,7 @@ mp.Marker = _Marker;
 mp.markers = new ClientPool(new EntityMixedView(store, new EntityFilteredView(EntityGetterView.fromClass(alt.Marker), (e) => !e._network)));
 
 mp.markers.new = function(type, position, scale, options = {}) {
-    let color = new alt.RGBA(0, 0, 0, 255);
+    let color = alt.RGBA.white;
     if ('color' in options) color = new alt.RGBA(options.color);
     const marker = new alt.Marker(type, position, color, true, mp.streamingDistance);
     marker.faceCamera = true;
