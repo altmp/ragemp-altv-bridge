@@ -14,6 +14,7 @@ import {_Label} from './Label.js';
 import {VirtualEntityID} from '../../shared/VirtualEntityID';
 import {internalName} from '../../shared/utils';
 import {_Marker} from './Marker';
+import {_Checkpoint} from './Checkpoint';
 
 Object.defineProperty(alt.VirtualEntity.prototype, 'mp', {
     /** @this {alt.VirtualEntity} */
@@ -27,6 +28,8 @@ Object.defineProperty(alt.VirtualEntity.prototype, 'mp', {
                 return this._mp = new _Object(this);
             case VirtualEntityID.Marker:
                 return this._mp = new _Marker(this);
+            case VirtualEntityID.Checkpoint:
+                return this._mp = new _Checkpoint(this);
         }
 
         return null;

@@ -14,6 +14,7 @@ import {VirtualEntityID} from '../../shared/VirtualEntityID';
 import './Ped';
 import {_NetworkObject} from './Object';
 import {_NetworkMarker} from './Marker';
+import {_NetworkCheckpoint} from './Checkpoint';
 
 Object.defineProperty(alt.VirtualEntity.prototype, 'mp', {
     /** @this {alt.VirtualEntity} */
@@ -27,6 +28,8 @@ Object.defineProperty(alt.VirtualEntity.prototype, 'mp', {
                 return this._mp = new _NetworkObject(this);
             case VirtualEntityID.Marker:
                 return this._mp = new _NetworkMarker(this);
+            case VirtualEntityID.Checkpoint:
+                return this._mp = new _NetworkCheckpoint(this);
         }
 
         return null;

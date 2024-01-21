@@ -3,5 +3,6 @@ export const VirtualEntityID = {
     LocalVehicle: 1,
     Object: 2,
     Ped: 3,
-    Marker: 4
+    Marker: 4,
+    Checkpoint: 5
 };

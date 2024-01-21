@@ -3,101 +3,152 @@ import * as alt from 'alt-server';
 import {_WorldObject} from './WorldObject';
 import {_Colshape} from './Colshape';
 import { ServerPool } from '../pools/ServerPool';
-import {mpDimensionToAlt} from '../../shared/utils';
+import {altDimensionToMp, internalName, mpDimensionToAlt, TemporaryContainer} from '../../shared/utils';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
+import {VirtualEntityID} from '../../shared/VirtualEntityID';
+import {_Entity} from './Entity';
+import {EntityStoreView} from '../../shared/pools/EntityStoreView';
 
-export class _Checkpoint extends _Colshape {
-    /** @param {alt.Colshape} alt */
+const view = new EntityStoreView();
+
+export class _Checkpoint extends _Entity {
+    /** @type {alt.Colshape} alt */
+    colshape;
+
+    /** @param {alt.VirtualEntity} alt */
     constructor(alt) {
         super(alt);
         this.alt = alt;
-        // this.#lastColor = alt.color.toArray();
+        view.add(this, this.id);
     }
 
     type = 'checkpoint';
 
-    #visible = true;
-    #lastColor;
 
+    _position = new TemporaryContainer(() => this.alt.valid && this.alt.getTimestamp);
+    get position() {
+        return new mp.Vector3(this._position.value ?? this.alt.pos);
+    }
+    set position(value) {
+        this._position.value = this.alt.pos = this.colshape.pos = new alt.Vector3(value);
+    }
+
+    set dimension(value) {
+        if (!this.alt.valid) return;
+        this.alt.dimension = mpDimensionToAlt(value);
+        this.colshape.dimension = mpDimensionToAlt(value);
+        this.setVariable(internalName('dimension'), value);
+    }
+
+    get dimension() {
+        return altDimensionToMp(this.alt.dimension);
+    }
+
+    #color;
     getColor() {
-        return this.#lastColor;
+        return this.#color;
     }
 
     setColor(color) {
-        this.#lastColor = color;
-        this.alt.color = this.#visible ? new alt.RGBA(color) : new alt.RGBA(0, 0, 0, 0);
+        this.#color = color;
+        this.alt.setStreamSyncedMeta(internalName('color'), color);
     }
 
+    #destination;
     get destination() {
-        return new mp.Vector3(this.alt.nextPos);
+        return this.#destination;
     }
 
     set destination(pos) {
-        this.alt.nextPos = pos;
+        this.#destination = pos;
+        this.alt.setStreamSyncedMeta(internalName('nextPos'), pos);
     }
 
+    #radius;
     get radius() {
-        return this.alt.radius;
+        return this.#radius;
     }
-
     set radius(value) {
-        this.alt.radius = value;
+        this.#radius = value;
+        this.alt.setStreamSyncedMeta(internalName('radius'), value);
     }
 
+    #height;
     get height() {
-        return this.alt.height;
+        return this.#height;
     }
-
     set height(value) {
-        this.alt.height = value;
+        this.#height = value;
+        this.alt.setStreamSyncedMeta(internalName('height'), value);
     }
 
+    #visible;
     get visible() {
         return this.#visible;
     }
-
     set visible(value) {
         this.#visible = value;
-        this.alt.color = value ? new alt.RGBA(this.#lastColor) : new alt.RGBA(0, 0, 0, 0);
+        this.alt.setStreamSyncedMeta(internalName('visible'), value);
     }
 
     destroy() {
         if (!this.valid) return;
+        view.remove(this.id);
 
         for (let player of alt.Player.all) {
-            if (this.alt.isPointIn(player.pos))
+            if (this.colshape.isPointIn(player.pos))
                 mp.events.dispatchLocal('playerExitCheckpoint', player.mp, this);
         }
 
         this._markDestroyed();
         this.alt.destroy();
+        this.colshape.destroy();
     }
 }
 
-Object.defineProperty(alt.Checkpoint.prototype, 'mp', {
-    get() {
-        return this._mp ??= new _Checkpoint(this);
-    }
-});
-
 mp.Checkpoint = _Checkpoint;
 
-mp.checkpoints = new ServerPool(EntityGetterView.fromClass(alt.Checkpoint));
+mp.checkpoints = new ServerPool(view);
+
+const group = new alt.VirtualEntityGroup(50);
 
 mp.checkpoints.new = function(type, position, radius, params = {}) {
-    const checkpoint = new alt.Checkpoint(type, position, radius, 100, params.color ? new alt.RGBA(params.color) : alt.RGBA.white, mp.streamingDistance);
-    if ('visible' in params) checkpoint.mp.visible = params.visible;
-    if ('dimension' in params) checkpoint.mp.dimension = params.dimension ?? 0;
-    if ('direction' in params) checkpoint.nextPos = params.direction;
-    return checkpoint.mp;
+    const virtualEnt = new alt.VirtualEntity(group, position, mp.streamingDistance);
+    virtualEnt.setStreamSyncedMeta(internalName('type'), VirtualEntityID.Checkpoint);
+    virtualEnt.setStreamSyncedMeta(internalName('checkpointType'), type);
+
+    const ent = virtualEnt.mp;
+    ent.radius = radius;
+
+    ent.colshape = new alt.ColshapeCylinder(
+        position.x,
+        position.y,
+        position.z,
+        ent.radius,
+        ent.height
+    );
+    ent.colshape.dimension = alt.globalDimension;
+    ent.colshape._mp = ent;
+
+    ent.height = params.height ?? 1;
+    ent.visible = params.visible ?? true;
+    ent.dimension = params.dimension ?? 0;
+    ent.setColor(params.color ?? [255, 255, 255, 255]);
+    ent.destination = params.direction ?? new alt.Vector3(0, 0, 0);
+
+    return ent;
 };
 
 alt.on('entityEnterColshape', (shape, ent) => {
-    if (!(ent instanceof alt.Player) || !(shape instanceof alt.Checkpoint) || !shape) return;
+    if (!(ent instanceof alt.Player) || !shape || !(shape.mp instanceof _Checkpoint)) return;
     mp.events.dispatchLocal('playerEnterCheckpoint', ent.mp, shape.mp);
 });
 
 alt.on('entityLeaveColshape', (shape, ent) => {
-    if (!(ent instanceof alt.Player) || !(shape instanceof alt.Checkpoint) || !shape) return;
+    if (!(ent instanceof alt.Player) || !shape || !(shape.mp instanceof _Checkpoint)) return;
     mp.events.dispatchLocal('playerExitCheckpoint', ent.mp, shape.mp);
+});
+
+alt.on('baseObjectRemove', (ent) => {
+    if (ent.mp instanceof _Checkpoint) view.remove(ent.mp.id);
 });
