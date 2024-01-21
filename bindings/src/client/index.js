@@ -124,3 +124,8 @@ natives.networkAllowRemoteSyncedSceneLocalPlayerRequests(1);
 if (mp._main) {
     mp._initEventHandlers();
 }
+
+alt.on('connectionComplete', () => {
+    console.log('Connection complete!');
+    mp.events.callRemote('playerReady');
+});

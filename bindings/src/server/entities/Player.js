@@ -493,7 +493,6 @@ alt.on('playerDeath', (player, killer, weapon) => {
 alt.on('playerConnect', (player) => {
     alt.emit('earlyPlayerConnect', player);
     mp.events.dispatchLocal('playerJoin', player.mp);
-    mp.events.dispatchLocal('playerReady', player.mp);
 
     if (mp._main && mp._broadcastJoinLeave) emitAllClientsInternal('join', player);
 });
