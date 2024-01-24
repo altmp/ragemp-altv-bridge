@@ -408,6 +408,7 @@ export class _Player extends _Entity {
     setHeadOverlay(overlay, params) {
         if (!this.#needHeadblend()) return;
         const [index, opacity, firstColor, secondColor] = params;
+        if (typeof overlay !== 'number' || typeof index !== 'number' || typeof opacity !== 'number' || typeof firstColor !== 'number' || typeof secondColor !== 'number') return console.warn('Invalid head overlay params', overlay, params);
         this.alt.setHeadOverlay(overlay, index, opacity);
 
         this.alt.setHeadOverlayColor(overlay, overlay === 5 || overlay === 8 ? 2 : 1, firstColor, secondColor);
