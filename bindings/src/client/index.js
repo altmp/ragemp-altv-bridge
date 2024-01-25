@@ -84,11 +84,11 @@ const AsyncFunction = (async function () {}).constructor;
 if (alt.debug && mp._main) {
     alt.on('consoleCommand', async (cmd, ...args) => {
         try {
-            if (cmd === 'eval') {
+            if (cmd === 'eval' && mp._enableEval) {
                 console.log(await (new AsyncFunction('alt', 'natives', args.join(' ')))(alt, natives));
-            } else if (cmd === 'evalAll') {
+            } else if (cmd === 'evalAll' && mp._enableEval) {
                 alt.emitServer(mp.prefix + 'evalAllPlayers', args.join(' '));
-            } else if (cmd === 'evalPlayer') {
+            } else if (cmd === 'evalPlayer' && mp._enableEval) {
                 alt.emitServer(mp.prefix + 'evalPlayer', alt.Player.getByRemoteID(+args[0]), args.slice(1).join(' '));
             } else if (cmd === 'profileStart') {
                 console.log('Started profiling!');

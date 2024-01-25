@@ -10,6 +10,7 @@ const mp = {
     _syncedMeta: false,
     _enableInterResourceEvents: true,
     _broadcastJoinLeave: true,
+    _enableEval: true,
     notifyTrace(category, msg) {
     },
     _notifyError(...args) {
