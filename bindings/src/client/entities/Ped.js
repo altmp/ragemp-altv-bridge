@@ -891,5 +891,8 @@ alt.on('worldObjectStreamIn', (ent) => {
         natives.setPedDiesWhenInjured(ent, false);
         natives.setPedGetOutUpsideDownVehicle(ent, false);
         natives.setPedCanEvasiveDive(ent, false);
+        alt.nextTick(() => {
+            if (ent.valid) mp.events.dispatchLocal('entityStreamIn', toMp(ent));
+        });
     }
 });
