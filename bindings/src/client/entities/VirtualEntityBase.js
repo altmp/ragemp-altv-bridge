@@ -15,6 +15,7 @@ export class _VirtualEntityBase extends _Entity {
 mp._initEventHandlers = () => {
     alt.on('worldObjectStreamIn', (ent) => {
         if (ent instanceof alt.VirtualEntity && ent.mp) ent.mp.streamIn();
+        if (ent instanceof alt.LocalPed) return; // handled in Ped.js
         mp.events.dispatchLocal('entityStreamIn', toMp(ent));
     });
 
