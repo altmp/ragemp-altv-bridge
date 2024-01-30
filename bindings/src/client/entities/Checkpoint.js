@@ -45,11 +45,11 @@ export class _Checkpoint extends _BaseObject {
     }
 
     get radius() {
-        return this.alt.radius;
+        return this.alt.radius * 2;
     }
 
     set radius(value) {
-        this.alt.radius = value;
+        this.alt.radius = value / 2;
     }
 
     get height() {
@@ -112,7 +112,7 @@ export class _NetworkCheckpoint extends _Checkpoint {
     }
 
     get radius() {
-        return this.alt.getStreamSyncedMeta(internalName('radius'));
+        return this.alt.getStreamSyncedMeta(internalName('radius')) / 2;
     }
 
     set radius(value) {
@@ -150,7 +150,7 @@ export class _NetworkCheckpoint extends _Checkpoint {
             this.checkpoint.iconColor = this.checkpoint.color;
         }
         else if (key === internalName('nextPos')) this.checkpoint.nextPos = value;
-        else if (key === internalName('radius')) this.checkpoint.radius = value;
+        else if (key === internalName('radius')) this.checkpoint.radius = value / 2;
         else if (key === internalName('height')) this.checkpoint.height = value;
         else if (key === internalName('dimension')) {
             this.alt.dimension = value;

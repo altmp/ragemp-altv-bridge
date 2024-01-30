@@ -124,7 +124,7 @@ mp.checkpoints.new = function(type, position, radius, params = {}) {
         position.x,
         position.y,
         position.z,
-        ent.radius,
+        ent.radius / 2,
         ent.height
     );
     ent.colshape.dimension = alt.globalDimension;
