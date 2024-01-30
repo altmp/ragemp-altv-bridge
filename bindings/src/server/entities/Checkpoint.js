@@ -130,7 +130,7 @@ mp.checkpoints.new = function(type, position, radius, params = {}) {
     ent.colshape.dimension = alt.globalDimension;
     ent.colshape._mp = ent;
 
-    ent.height = params.height ?? 1;
+    ent.height = params.height ?? 100;
     ent.visible = params.visible ?? true;
     ent.dimension = params.dimension ?? 0;
     ent.setColor(params.color ?? [255, 255, 255, 255]);
