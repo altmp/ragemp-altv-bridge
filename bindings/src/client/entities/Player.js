@@ -991,7 +991,7 @@ mp.Player = _Player;
 const view = EntityGetterView.fromClass(alt.Player);
 view.streamRangeGetter = () => [alt.Player.local, ...alt.Player.streamedIn];
 
-mp.players = new ClientPool(view);
+mp.players = new ClientPool(view, [_Player]);
 
 mp.players.local = alt.Player.local.mp;
 

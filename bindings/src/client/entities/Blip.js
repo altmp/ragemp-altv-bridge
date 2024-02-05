@@ -245,7 +245,7 @@ Object.defineProperty(alt.Blip.prototype, 'mp', {
 
 mp.Blip = _Blip;
 
-mp.blips = new ClientPool(EntityGetterView.fromClass(alt.Blip));
+mp.blips = new ClientPool(EntityGetterView.fromClass(alt.Blip), [_Blip]);
 
 mp.blips.new = function(sprite, position, params = {}) {
     let blip;

@@ -101,7 +101,7 @@ mp.Object = _Object;
 //     }
 // });
 
-mp.objects = new ServerPool(view);
+mp.objects = new ServerPool(view, [_Object]);
 
 const group = new alt.VirtualEntityGroup(255);
 mp.objects.new = (model, position, params = {}) => {

@@ -840,7 +840,7 @@ Object.defineProperty(alt.LocalPed.prototype, 'mp', {
 
 mp.Ped = _Ped;
 
-mp.peds = new ClientPool(view);
+mp.peds = new ClientPool(view, [_Ped, _LocalPed]);
 
 mp.peds.new = function (model, position, heading = 0, dimension = 0) {
     mp.notifyTrace('entity', 'creating local ped', model, position);

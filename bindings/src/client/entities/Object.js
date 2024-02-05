@@ -322,7 +322,7 @@ Object.defineProperty(alt.LocalObject.prototype, 'mp', {
     }
 });
 
-mp.objects = new ClientPool(view);
+mp.objects = new ClientPool(view, [_Object, _NetworkObject]);
 
 mp.objects.new = (model, position, params = {}) => {
     mp.notifyTrace('entity', 'creating local object', model, position);

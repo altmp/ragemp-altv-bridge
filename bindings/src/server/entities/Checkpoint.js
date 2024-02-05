@@ -108,7 +108,7 @@ export class _Checkpoint extends _Entity {
 
 mp.Checkpoint = _Checkpoint;
 
-mp.checkpoints = new ServerPool(view);
+mp.checkpoints = new ServerPool(view, [_Checkpoint]);
 
 const group = new alt.VirtualEntityGroup(50);
 

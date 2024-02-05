@@ -507,7 +507,7 @@ Object.defineProperty(alt.LocalVehicle.prototype, 'mp', {
 
 mp.Vehicle = _Vehicle;
 
-mp.vehicles = new ClientPool(view);
+mp.vehicles = new ClientPool(view, [_Vehicle, _LocalVehicle]);
 
 const initializers = {};
 

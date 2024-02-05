@@ -91,7 +91,7 @@ alt.on('baseObjectRemove', (ent) => {
     if (ent.mp instanceof _Label) view.remove(ent.mp.id);
 });
 
-mp.labels = new ServerPool(view);
+mp.labels = new ServerPool(view, [_Label]);
 
 const group = new alt.VirtualEntityGroup(40);
 mp.labels.new = function(text, position, params = {}) {

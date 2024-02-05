@@ -48,7 +48,7 @@ export class _Dummy extends _MpEntity {
 }
 
 mp.Dummy = _Dummy;
-mp.dummies = new ServerPool(view);
+mp.dummies = new ServerPool(view, [_Dummy]);
 
 mp.dummies.forEachByType = (dummyEntityType, fn) => {
     mp.dummies.forEach(entity => {

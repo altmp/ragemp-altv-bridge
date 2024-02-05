@@ -125,7 +125,7 @@ alt.on('baseObjectRemove', (ent) => {
 
 mp.Marker = _Marker;
 
-mp.markers = new ServerPool(view);
+mp.markers = new ServerPool(view, [_Marker]);
 
 const group = new alt.VirtualEntityGroup(128);
 mp.markers.new = function(type, position, scale, options = {}) {

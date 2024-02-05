@@ -198,7 +198,10 @@ Object.defineProperty(alt.Checkpoint.prototype, 'mp', {
 
 mp.Checkpoint = _Checkpoint;
 
-mp.checkpoints = new ClientPool(new EntityMixedView(store, new EntityFilteredView(EntityGetterView.fromClass(alt.Checkpoint), (e) => !e._network)));
+mp.checkpoints = new ClientPool(
+    new EntityMixedView(store, new EntityFilteredView(EntityGetterView.fromClass(alt.Checkpoint), (e) => !e._network)),
+    [_NetworkCheckpoint, _Checkpoint]
+);
 
 mp.checkpoints.new = function (type, pos, radius, options = {}) {
     const color = options.color ? new alt.RGBA(...options.color) : alt.RGBA.red;

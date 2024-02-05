@@ -16,7 +16,7 @@ export class _Pickup extends _WorldObject {
 
 mp.Pickup = _Pickup;
 
-mp.pickups = new ClientPool(new EntityStoreView());
+mp.pickups = new ClientPool(new EntityStoreView(), [_Pickup]);
 
 mp.pickups.new = function() {
     return new _Pickup();

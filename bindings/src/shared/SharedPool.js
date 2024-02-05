@@ -5,9 +5,11 @@ import * as alt from 'alt-shared';
 export class SharedPool {
     /** @type {EntityBaseView} */
     #view;
+    #classes;
 
-    constructor(view) {
+    constructor(view, classes = []) {
         this.#view = view;
+        this.#classes = classes;
 
         alt.on('resourceStop', () => {
             this.toArray().forEach(e => {
@@ -25,7 +27,12 @@ export class SharedPool {
     }
 
     exists(id) {
-        if (typeof id === 'object' && id) return id.valid ?? id?.alt?.valid ?? false;
+        if (typeof id === 'object' && id) {
+            if (!(id.valid ?? id?.alt?.valid)) return false;
+            if (!this.#classes.length) return true;
+            return this.#classes.some(e => id instanceof e);
+        }
+
         if (id == null) return false;
         return this.#view.has(id);
     }

@@ -65,7 +65,7 @@ Object.defineProperty(alt.Colshape.prototype, 'mp', {
 
 mp.Colshape = _Colshape;
 
-mp.colshapes = new ClientPool(EntityGetterView.fromClass(alt.Colshape));
+mp.colshapes = new ClientPool(EntityGetterView.fromClass(alt.Colshape), [_Colshape]);
 
 mp.colshapes.newCircle = function(x, y, radius, dimension = 0) {
     const shape = new alt.ColshapeCircle(x, y, radius);

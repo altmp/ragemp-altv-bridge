@@ -102,7 +102,7 @@ class _GameplayCamera extends _Camera {
 
 mp.Camera = _Camera;
 
-mp.cameras = new ClientPool(view);
+mp.cameras = new ClientPool(view, [_Camera, _GameplayCamera]);
 
 // smart getter
 Object.defineProperty(mp.cameras, 'gameplay', {

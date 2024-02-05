@@ -5,8 +5,8 @@ export class ClientPool extends SharedPool {
     /** @type {EntityBaseView} */
     #view;
 
-    constructor(view) {
-        super(view);
+    constructor(view, classes) {
+        super(view, classes);
         this.#view = view;
     }
 

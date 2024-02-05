@@ -150,7 +150,10 @@ Object.defineProperty(alt.Marker.prototype, 'mp', {
 
 mp.Marker = _Marker;
 
-mp.markers = new ClientPool(new EntityMixedView(store, new EntityFilteredView(EntityGetterView.fromClass(alt.Marker), (e) => !e._network)));
+mp.markers = new ClientPool(
+    new EntityMixedView(store, new EntityFilteredView(EntityGetterView.fromClass(alt.Marker), (e) => !e._network)),
+    [_Marker, _NetworkMarker]
+);
 
 mp.markers.new = function(type, position, scale, options = {}) {
     let color = alt.RGBA.white;
