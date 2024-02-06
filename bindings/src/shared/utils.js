@@ -202,3 +202,7 @@ export const internalName = (event) => {
 export const emitInternal = (event, ...args) => {
     return emit(internalName(event), ...args);
 };
+
+export const clamp = (value, min, max) => {
+    return Math.min(Math.max(value, min), max);
+};
