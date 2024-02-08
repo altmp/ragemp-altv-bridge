@@ -63,9 +63,12 @@ Object.defineProperty(alt.Colshape.prototype, 'mp', {
     }
 });
 
+class _FakeColshape {
+}
+
 mp.Colshape = _Colshape;
 
-mp.colshapes = new ClientPool(EntityGetterView.fromClass(alt.Colshape), [_Colshape]);
+mp.colshapes = new ClientPool(EntityGetterView.fromClass(alt.Colshape), [_Colshape, _FakeColshape]);
 
 mp.colshapes.newCircle = function(x, y, radius, dimension = 0) {
     const shape = new alt.ColshapeCircle(x, y, radius);
@@ -116,7 +119,7 @@ alt.on('entityLeaveColshape', (shape, ent) => {
 const serverColshapeCache = new Map();
 
 function getServerColshape(id, position, dimension, type, meta) {
-    const obj = serverColshapeCache.get(id) ?? {};
+    const obj = serverColshapeCache.get(id) ?? new _FakeColshape();
     Object.assign(obj, {
         position: new mp.Vector3(position),
         dimension,
@@ -133,7 +136,8 @@ function getServerColshape(id, position, dimension, type, meta) {
             return false;
         },
         valid: true,
-        _passAsIs: true
+        _passAsIs: true,
+        _isColshape: true
     });
     serverColshapeCache.set(id, obj);
     return obj;
