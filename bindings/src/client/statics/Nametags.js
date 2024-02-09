@@ -22,6 +22,8 @@ class _Nametags {
 
         let arr = [];
         alt.Player.streamedIn.forEach(p => {
+            if (!p.valid) return;
+
             const offset = 1 + ((p.vehicle ? style.vehOffset : style.offset) || 0);
             const pos = p.pos.add(0, 0, offset);
             if (!alt.isPointOnScreen(p.pos)) return;
@@ -47,6 +49,8 @@ class _Nametags {
         if (!this.enabled) return;
 
         alt.Player.streamedIn.forEach(p => {
+            if (!p.valid) return;
+
             const offset = p.vehicle ? style.vehOffset : style.offset;
             const pos = p.pos.add(correction);
 
