@@ -241,7 +241,7 @@ export class _Vehicle extends _Entity {
     }
 
     getMod(id) {
-        return this.alt.getMod(id);
+        return this.alt.getMod(id) - 1;
     }
 
     _neonColor = new TemporaryContainer(() => this.alt.valid && this.alt.getTimestamp);
