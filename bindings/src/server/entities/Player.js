@@ -411,7 +411,7 @@ export class _Player extends _Entity {
         if (typeof overlay !== 'number' || typeof index !== 'number' || typeof opacity !== 'number'
             || typeof firstColor !== 'number' || typeof secondColor !== 'number') return console.warn('Invalid head overlay params', overlay, params);
 
-        this.alt.setHeadOverlay(overlay, index, clamp(opacity, 0, 255));
+        this.alt.setHeadOverlay(overlay, Math.max(index, 0), clamp(opacity, 0, 255));
 
         this.alt.setHeadOverlayColor(overlay, overlay === 5 || overlay === 8 ? 2 : 1, firstColor, secondColor);
     }
