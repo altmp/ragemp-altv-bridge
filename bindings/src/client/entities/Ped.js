@@ -784,12 +784,12 @@ export class _Ped extends _Entity {
 
 
     getHealth() {
-        const value = natives.getEntityHealth(this.alt) - 100;
+        const value = natives.getEntityHealth(this.handle) - 100;
         return Math.max(value, 0);
     }
 
     setHealth(value) {
-        natives.setEntityHealth(this.alt, value <= 0 ? 99 : (value + 100), 0, 0);
+        natives.setEntityHealth(this.handle, value <= 0 ? 99 : (value + 100), 0, 0);
     }
     //#endregion
 }
