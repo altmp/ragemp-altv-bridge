@@ -12,10 +12,14 @@ class _Vector3 {
                 this.y = x.y || 0;
                 this.z = x.z || 0;
             }
-        } else if (typeof x === 'number'){
+        } else if (typeof x === 'number') {
             this.x = x || 0;
             this.y = y || 0;
             this.z = z || 0;
+        } else if (typeof x === 'string') {
+            this.x = parseFloat(x) || 0;
+            this.y = parseFloat(y) || 0;
+            this.z = parseFloat(z) || 0;
         } else {
             this.x = 0;
             this.y = 0;
