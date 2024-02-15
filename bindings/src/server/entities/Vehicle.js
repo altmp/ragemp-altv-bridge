@@ -251,6 +251,7 @@ export class _Vehicle extends _Entity {
     }
 
     getOccupant(id) {
+        if (mpSeatToAlt(id) === 1) return this.alt.driver?.mp;
         // TODO: implement in core
         return alt.Player.all.find(p => p.vehicle === this.alt && p.seat === mpSeatToAlt(id))?.mp;
     }
