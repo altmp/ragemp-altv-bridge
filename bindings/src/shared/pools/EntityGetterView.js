@@ -32,12 +32,24 @@ export class EntityGetterView extends EntityBaseView {
         );
     }
 
+    #arrayCacheAlt;
+    #arrayCacheMp;
     toArray() {
-        return this.listGetter().map(toMp);
+        const list = this.listGetter();
+        if (this.#arrayCacheAlt === list) return this.#arrayCacheMp;
+        this.#arrayCacheAlt = list;
+        this.#arrayCacheMp = list.map(e => e.mp);
+        return this.#arrayCacheMp;
     }
 
+    #arrayStreamCacheAlt;
+    #arrayStreamCacheMp;
     toArrayInStreamRange() {
-        return this.streamRangeGetter?.().map(e => e.mp).filter(Boolean) ?? [];
+        const list = this.streamRangeGetter?.() ?? [];
+        if (this.#arrayStreamCacheAlt === list) return this.#arrayStreamCacheMp;
+        this.#arrayStreamCacheAlt = list;
+        this.#arrayStreamCacheMp = list.map(e => e.mp).filter(Boolean);
+        return this.#arrayStreamCacheMp;
     }
 
     getByID(id) {

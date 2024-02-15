@@ -44,7 +44,7 @@ Object.defineProperty(alt.Ped.prototype, 'mp', {
 
 mp.Ped = _Ped;
 
-mp.peds = new ServerPool(EntityGetterView.fromClass(alt.Ped), [_Ped]);
+mp.peds = new ServerPool(EntityGetterView.fromClass(alt.Ped), [_Ped], 4);
 
 mp.peds.new = function(model, position, params) {
     model = hashIfNeeded(model);

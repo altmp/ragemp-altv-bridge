@@ -345,7 +345,7 @@ Object.defineProperty(alt.Vehicle.prototype, 'mp', {
 
 mp.Vehicle = _Vehicle;
 
-mp.vehicles = new ServerPool(EntityGetterView.fromClass(alt.Vehicle), [_Vehicle]);
+mp.vehicles = new ServerPool(EntityGetterView.fromClass(alt.Vehicle), [_Vehicle], 2);
 
 mp.vehicles.new = function(model, position, options = {}) {
     model = hashIfNeeded(model);

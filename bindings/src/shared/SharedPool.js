@@ -65,8 +65,14 @@ export class SharedPool {
         const hasDimension = dimension != null;
         range = range ** 2;
         let arr = this.toArray();
-        if (hasDimension) arr = arr.filter(e => e.dimension === dimension);
-        return arr.filter(e => vdist2(e.position, pos) <= range);
+        const predicate = hasDimension
+            ? (e) => {
+                return e.dimension === dimension && vdist2(e.position, pos) <= range;
+            }
+            : (e) => {
+                return vdist2(e.position, pos) <= range;
+            };
+        return arr.filter(predicate);
     }
 
     forEachInDimension(dimension, fn) {
@@ -79,7 +85,14 @@ export class SharedPool {
         range = range ** 2;
         let arr = this.toArray();
         if (hasDimension) arr = arr.filter(e => e.dimension === dimension);
-        arr.filter(e => vdist2(e.position, pos) <= range).forEach(e => fn(e, e.id));
+        const predicate = hasDimension
+            ? (e) => {
+                return e.dimension === dimension && vdist2(e.position, pos) <= range;
+            }
+            : (e) => {
+                return vdist2(e.position, pos) <= range;
+            };
+        arr.filter(predicate).forEach(e => fn(e, e.id));
     }
 
     #getClosestFromArr(arr, pos, limit) {

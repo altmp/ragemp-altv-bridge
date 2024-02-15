@@ -486,7 +486,7 @@ alt.on('beforePlayerConnect', (info) => {
 
 mp.Player = _Player;
 
-mp.players = new PlayerPool(EntityGetterView.fromClass(alt.Player), [_Player]);
+mp.players = new PlayerPool(EntityGetterView.fromClass(alt.Player), [_Player], 1);
 
 alt.on('playerDeath', (player, killer, weapon) => {
     mp.events.dispatchLocal('playerDeath', player.mp, weapon, killer && killer instanceof alt.Player ? killer.mp : null);
