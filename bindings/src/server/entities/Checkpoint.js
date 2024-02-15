@@ -3,7 +3,13 @@ import * as alt from 'alt-server';
 import {_WorldObject} from './WorldObject';
 import {_Colshape} from './Colshape';
 import { ServerPool } from '../pools/ServerPool';
-import {altDimensionToMp, internalName, mpDimensionToAlt, TemporaryContainer} from '../../shared/utils';
+import {
+    altDimensionToMp,
+    internalName,
+    mpDimensionToAlt,
+    TemporaryContainer,
+    TickCacheContainer
+} from '../../shared/utils';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 import {VirtualEntityID} from '../../shared/VirtualEntityID';
 import {_Entity} from './Entity';
@@ -25,12 +31,13 @@ export class _Checkpoint extends _Entity {
     type = 'checkpoint';
 
 
-    _position = new TemporaryContainer(() => this.alt.valid && this.alt.getTimestamp);
+    #positionCache = new TickCacheContainer();
     get position() {
-        return new mp.Vector3(this._position.value ?? this.alt.pos);
+        return this.#positionCache.get(() => new mp.Vector3(this.alt.pos));
     }
     set position(value) {
-        this._position.value = this.alt.pos = this.colshape.pos = new alt.Vector3(value);
+        this.#positionCache.set(value);
+        this.alt.pos = this.colshape.pos = new alt.Vector3(value);
     }
 
     set dimension(value) {

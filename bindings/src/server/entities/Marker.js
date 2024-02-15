@@ -42,14 +42,6 @@ export class _Marker extends _Entity {
         return this.hasStreamVariable;
     }
 
-    get position() {
-        return new mp.Vector3(this.alt.pos);
-    }
-
-    set position(value) {
-        this.alt.pos = value;
-    }
-
     showFor(player) {
         emitClientInternal(player.alt, 'toggleMarker', this.id, true);
     }

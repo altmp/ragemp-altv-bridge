@@ -1,6 +1,15 @@
 import * as alt from 'alt-server';
 import mp from '../../shared/mp';
-import {altDimensionToMp, internalName, mpDimensionToAlt, toAlt, toMp, vdist, vdist2} from '../../shared/utils';
+import {
+    altDimensionToMp,
+    internalName,
+    mpDimensionToAlt,
+    TickCacheContainer,
+    toAlt,
+    toMp,
+    vdist,
+    vdist2
+} from '../../shared/utils';
 import { _BaseObject } from './BaseObject';
 
 export class _WorldObject extends _BaseObject {
@@ -85,14 +94,15 @@ export class _WorldObject extends _BaseObject {
         return this.#alt.id;
     }
 
+    #positionCache = new TickCacheContainer();
     get position() {
         if (!this.#alt.valid) return mp.Vector3.zero;
-        return new mp.Vector3(this.#alt.pos);
+        return this.#positionCache.get(() => new mp.Vector3(this.#alt.pos));
     }
 
     set position(value) {
         if (!this.#alt.valid) return;
-        this.#alt.pos = value;
+        this.#positionCache.set(value);
     }
 
     get controller() {

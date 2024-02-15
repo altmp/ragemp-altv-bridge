@@ -168,6 +168,23 @@ export class TemporaryContainer {
     }
 }
 
+export class TickCacheContainer {
+    _value;
+    _updateTick;
+
+    set(value) {
+        this._updateTick = mp._tickCount;
+        this._value = value;
+        return value;
+    }
+
+    get(getter) {
+        if (this._updateTick === mp._tickCount) return this._value;
+        if (!getter) return null;
+        return this.set(getter());
+    }
+}
+
 export const schedule = (predicate, fn, timeout = 2000) => {
     if (predicate()) return void fn();
     let timer;

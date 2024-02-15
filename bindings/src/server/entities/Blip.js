@@ -74,14 +74,6 @@ export class _Blip extends _WorldObject {
     set model(_) {
     }
 
-    get position() {
-        return new mp.Vector3(this.alt.pos);
-    }
-
-    set position(value) {
-        this.alt.pos = value;
-    }
-
     type = 'blip';
 
     // TODO: routeFor

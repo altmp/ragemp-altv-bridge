@@ -1,6 +1,6 @@
 import * as alt from 'alt-server';
 import { _WorldObject } from './WorldObject';
-import {TemporaryContainer, toAlt, toMp} from '../../shared/utils';
+import {rad2deg, TemporaryContainer, TickCacheContainer, toAlt, toMp} from '../../shared/utils';
 import mp from '../../shared/mp';
 
 export class _Entity extends _WorldObject {
@@ -34,20 +34,22 @@ export class _Entity extends _WorldObject {
         return this.#alt.hasStreamSyncedMeta(key);
     }
 
-    _position = new TemporaryContainer(() => this.alt.valid && this.alt.getTimestamp);
+    #positionCache = new TickCacheContainer();
     get position() {
-        return new mp.Vector3(this._position.value ?? this.alt.pos);
+        return this.#positionCache.get(() => new mp.Vector3(this.#alt.pos));
     }
     set position(value) {
-        this._position.value = this.alt.pos = new alt.Vector3(value);
+        this.#positionCache.set(value);
+        this.alt.pos = new alt.Vector3(value);
     }
 
-    _rotation = new TemporaryContainer(() => this.alt.valid && this.alt.getTimestamp);
+    #rotationCache = new TickCacheContainer();
     get rotation() {
-        return new mp.Vector3(new alt.Vector3(this._rotation.value ?? this.alt.rot).toDegrees());
+        return this.#rotationCache.get(() => new mp.Vector3(this.#alt.rot.x * rad2deg, this.#alt.rot.y * rad2deg, this.#alt.rot.z * rad2deg));
     }
     set rotation(value) {
-        this._rotation.value = this.alt.rot = new alt.Vector3(value).toRadians();
+        this.#rotationCache.set(value);
+        this.alt.rot = new alt.Vector3(value).toRadians();
     }
 
     get heading() {

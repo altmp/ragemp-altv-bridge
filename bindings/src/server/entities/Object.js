@@ -45,14 +45,6 @@ export class _Object extends _Entity {
         return this.hasStreamVariable;
     }
 
-    get position() {
-        return new mp.Vector3(this.alt.pos);
-    }
-
-    set position(value) {
-        this.alt.pos = value;
-    }
-
     #model;
     get model() {
         return this.#model;
