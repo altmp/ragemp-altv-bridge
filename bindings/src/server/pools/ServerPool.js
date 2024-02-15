@@ -12,13 +12,14 @@ export class ServerPool extends SharedPool {
 
     toArrayInRange(pos, range, dimension) {
         if (!this.#filterType) return super.toArrayInRange(pos, range, dimension);
-        return alt.getEntitiesInRange(pos, range, dimension, this.#filterType).map(e => e.mp);
+        const hasDimension = dimension != null;
+        return alt.getEntitiesInRange(pos, range, hasDimension ? dimension : alt.globalDimension, this.#filterType).map(e => e.mp);
     }
 
     forEachInRange(pos, range, dimension, fn) {
         if (!this.#filterType) return super.forEachInRange(pos, range, dimension, fn);
         const hasDimension = !!fn;
         if (!fn) fn = dimension;
-        return alt.getEntitiesInRange(pos, range, dimension, this.#filterType).forEach(e => fn(e.mp));
+        return alt.getEntitiesInRange(pos, range, hasDimension ? dimension : alt.globalDimension, this.#filterType).forEach(e => fn(e.mp));
     }
 }
