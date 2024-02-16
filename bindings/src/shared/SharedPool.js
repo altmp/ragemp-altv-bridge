@@ -27,13 +27,18 @@ export class SharedPool {
     }
 
     exists(id) {
-        if (typeof id === 'object' && id) {
-            if (!(id.valid ?? id?.alt?.valid)) return false;
-            if (!this.#classes.length) return true;
-            return this.#classes.some(e => id instanceof e);
+        if (id == null) return false;
+
+        if (typeof id === 'object') {
+            for (let i = 0; i < this.#classes.length; i++) {
+                if (this.#classes[i] === id.constructor) {
+                    if (!(id.valid ?? id?.alt?.valid)) return false;
+                }
+            }
+
+            return false;
         }
 
-        if (id == null) return false;
         return this.#view.has(id);
     }
 
