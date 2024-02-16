@@ -32,7 +32,7 @@ export class SharedPool {
         if (typeof id === 'object') {
             for (let i = 0; i < this.#classes.length; i++) {
                 if (this.#classes[i] === id.constructor) {
-                    if (!(id.valid ?? id?.alt?.valid)) return false;
+                    return id.valid ?? id?.alt?.valid;
                 }
             }
 
