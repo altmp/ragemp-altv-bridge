@@ -223,3 +223,38 @@ export const emitInternal = (event, ...args) => {
 export const clamp = (value, min, max) => {
     return Math.min(Math.max(value, min), max);
 };
+
+export const getValidXYZ = (x, y, z) => {
+    if (typeof x === 'object' && x != null) {
+        const item = x;
+        if (Array.isArray(item)) {
+            x = item[0] || 0;
+            y = item[1] || 0;
+            z = item[2] || 0;
+        } else {
+            x = item.x || 0;
+            y = item.y || 0;
+            z = item.z || 0;
+        }
+    }
+
+    if (typeof x === 'number') {
+        x = x || 0;
+        y = y || 0;
+        z = z || 0;
+    } else if (typeof x === 'string') {
+        x = parseFloat(x) || 0;
+        y = parseFloat(y) || 0;
+        z = parseFloat(z) || 0;
+    } else {
+        x = 0;
+        y = 0;
+        z = 0;
+    }
+
+    if (isNaN(x)) x = NaN;
+    if (isNaN(y)) y = NaN;
+    if (isNaN(z)) z = NaN;
+
+    return { x, y, z };
+};

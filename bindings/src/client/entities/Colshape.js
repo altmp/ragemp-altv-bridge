@@ -4,8 +4,8 @@ import { ClientPool } from '../ClientPool.js';
 import { _Entity } from './Entity';
 import { _WorldObject } from './WorldObject';
 import { _BaseObject } from './BaseObject';
-import {EntityGetterView} from '../../shared/pools/EntityGetterView';
-import {internalName, mpDimensionToAlt} from '../../shared/utils';
+import { EntityGetterView } from '../../shared/pools/EntityGetterView';
+import { getValidXYZ, internalName, mpDimensionToAlt } from '../../shared/utils';
 
 const colshapeTypes = {
     0: 'sphere',
@@ -78,14 +78,16 @@ mp.colshapes.newCircle = function(x, y, radius, dimension = 0) {
 };
 
 mp.colshapes.newSphere = function(x, y, z, range, dimension = 0) {
-    const shape = new alt.ColshapeSphere(x, y, z, range);
+    const validXYZ = getValidXYZ(x, y, z);
+    const shape = new alt.ColshapeSphere(validXYZ.x, validXYZ.y, validXYZ.z, range);
     shape.dimension = mpDimensionToAlt(dimension);
     shape.playersOnly = true;
     return shape.mp;
 };
 
 mp.colshapes.newCuboid = function(x, y, z, width, depth, height, dimension = 0) {
-    const shape = new alt.ColshapeCuboid(x - width / 2, y - depth / 2, z - height / 2, x + width / 2, y + depth / 2, z + height / 2);
+    const validXYZ = getValidXYZ(x, y, z);
+    const shape = new alt.ColshapeCuboid(validXYZ.x - width / 2, validXYZ.y - depth / 2, validXYZ.z - height / 2, validXYZ.x + width / 2, validXYZ.y + depth / 2, validXYZ.z + height / 2);
     shape.dimension = mpDimensionToAlt(dimension);
     shape.playersOnly = true;
     return shape.mp;
@@ -100,7 +102,8 @@ mp.colshapes.newRectangle = function(x, y, width, height, dimension = 0) {
 
 // RAGE MP docs don't have dimension arg here wtf
 mp.colshapes.newTube = function(x, y, z, height, range, dimension = 0) {
-    const shape = new alt.ColshapeCylinder(x, y, z, range, height);
+    const validXYZ = getValidXYZ(x, y, z);
+    const shape = new alt.ColshapeCylinder(validXYZ.x, validXYZ.y, validXYZ.z, range, height);
     shape.dimension = mpDimensionToAlt(dimension);
     shape.playersOnly = true;
     return shape.mp;

@@ -4,6 +4,8 @@ import { ClientPool } from '../ClientPool.js';
 import { _WorldObject } from './WorldObject.js';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 import * as natives from 'natives';
+import { getValidXYZ } from '../../shared/utils.js';
+
 export class _Blip extends _WorldObject {
     /** @param {alt.Blip} alt */
     constructor(alt) {
@@ -42,13 +44,15 @@ export class _Blip extends _WorldObject {
 
     setCoords(x, y, z) {
         if (!this.alt.valid) return;
-        if (typeof x === 'number') this.alt.pos = new alt.Vector3(x, y, z);
-        else if (typeof x === 'string') this.alt.pos = new alt.Vector3(parseFloat(x), parseFloat(y), parseFloat(z));
-        else this.alt.pos = x;
+        const validXYZ = getValidXYZ(x, y, z);
+
+        this.alt.pos = new alt.Vector3(validXYZ.x, validXYZ.y, validXYZ.z);
     }
 
     setPosition(x, y, z) {
-        return this.setCoords(x, y, z);
+        const validXYZ = getValidXYZ(x, y, z);
+
+        return this.setCoords(validXYZ.x, validXYZ.y, validXYZ.z);
     }
 
     //#region Natives

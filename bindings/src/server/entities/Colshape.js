@@ -2,7 +2,7 @@ import mp from '../../shared/mp';
 import * as alt from 'alt-server';
 import {_WorldObject} from './WorldObject';
 import { ServerPool } from '../pools/ServerPool';
-import {mpDimensionToAlt, toAlt, toMp} from '../../shared/utils';
+import { getValidXYZ, toAlt, toMp } from '../../shared/utils';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 import {emitClientInternal} from '../serverUtils';
 
@@ -79,14 +79,16 @@ mp.colshapes.newCircle = function(x, y, radius, dimension = 0) {
 };
 
 mp.colshapes.newSphere = function(x, y, z, range, dimension = 0) {
-    const shape = new alt.ColshapeSphere(x, y, z, range);
+    const validXYZ = getValidXYZ(x, y, z);
+    const shape = new alt.ColshapeSphere(validXYZ.x, validXYZ.y, validXYZ.z, range);
     shape.mp.dimension = dimension;
     shape.playersOnly = true;
     return shape.mp;
 };
 
 mp.colshapes.newCuboid = function(x, y, z, width, depth, height, dimension = 0) {
-    const shape = new alt.ColshapeCuboid(x - width / 2, y - depth / 2, z - height / 2, x + width / 2, y + depth / 2, z + height / 2);
+    const validXYZ = getValidXYZ(x, y, z);
+    const shape = new alt.ColshapeCuboid(validXYZ.x - width / 2, validXYZ.y - depth / 2, validXYZ.z - height / 2, validXYZ.x + width / 2, validXYZ.y + depth / 2, validXYZ.z + height / 2);
     shape.mp.dimension = dimension;
     shape.playersOnly = true;
     return shape.mp;
@@ -101,7 +103,8 @@ mp.colshapes.newRectangle = function(x, y, width, height, dimension = 0) {
 
 // RAGE MP docs don't have dimension arg here wtf
 mp.colshapes.newTube = function(x, y, z, height, range, dimension = 0) {
-    const shape = new alt.ColshapeCylinder(x, y, z, range, height);
+    const validXYZ = getValidXYZ(x, y, z);
+    const shape = new alt.ColshapeCylinder(validXYZ.x, validXYZ.y, validXYZ.z, range, height);
     shape.mp.dimension = dimension;
     shape.playersOnly = true;
     return shape.mp;

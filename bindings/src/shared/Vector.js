@@ -1,34 +1,13 @@
 import mp from './mp.js';
+import { getValidXYZ } from './utils.js';
 
 class _Vector3 {
     constructor(x, y, z) {
-        if (typeof x === 'object' && x != null) {
-            if (Array.isArray(x)) {
-                this.x = x[0] || 0;
-                this.y = x[1] || 0;
-                this.z = x[2] || 0;
-            } else {
-                this.x = x.x || 0;
-                this.y = x.y || 0;
-                this.z = x.z || 0;
-            }
-        } else if (typeof x === 'number') {
-            this.x = x || 0;
-            this.y = y || 0;
-            this.z = z || 0;
-        } else if (typeof x === 'string') {
-            this.x = parseFloat(x) || 0;
-            this.y = parseFloat(y) || 0;
-            this.z = parseFloat(z) || 0;
-        } else {
-            this.x = 0;
-            this.y = 0;
-            this.z = 0;
-        }
+        const validXYZ = getValidXYZ(x, y, z);
 
-        if (isNaN(this.x)) this.x = NaN;
-        if (isNaN(this.y)) this.y = NaN;
-        if (isNaN(this.z)) this.z = NaN;
+        this.x = validXYZ.x;
+        this.y = validXYZ.y;
+        this.z = validXYZ.z;
     }
 
     negative() {
@@ -92,9 +71,12 @@ class _Vector3 {
         return new _Vector3(this.x,this.y,this.z);
     }
     init(x, y, z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        const validXYZ = getValidXYZ(x, y, z);
+
+        this.x = validXYZ.x;
+        this.y = validXYZ.y;
+        this.z = validXYZ.z;
+
         return this;
     }
     toString() {
