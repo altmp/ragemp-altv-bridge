@@ -40,15 +40,13 @@ export class _Checkpoint extends _Entity {
         this.alt.pos = this.colshape.pos = new alt.Vector3(value);
     }
 
-    set dimension(value) {
-        if (!this.alt.valid) return;
-        this.alt.dimension = mpDimensionToAlt(value);
-        this.colshape.dimension = mpDimensionToAlt(value);
-        this.setVariable(internalName('dimension'), value);
+    get dimension() {
+        return super.dimension;
     }
 
-    get dimension() {
-        return altDimensionToMp(this.alt.dimension);
+    set dimension(value) {
+        this.colshape.dimension = mpDimensionToAlt(value);
+        super.dimension = value;
     }
 
     #color;

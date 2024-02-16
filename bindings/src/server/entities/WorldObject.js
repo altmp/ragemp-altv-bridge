@@ -78,15 +78,17 @@ export class _WorldObject extends _BaseObject {
         return vdist2(this.#alt.pos, pos);
     }
 
+    #dimensionCache = new TickCacheContainer();
     get dimension() {
         if (!this.#alt.valid) return 0;
-        return altDimensionToMp(this.#alt.dimension);
+        return this.#dimensionCache.get(() => altDimensionToMp(this.#alt.dimension));
     }
 
     set dimension(value) {
         if (!this.#alt.valid) return;
         this.#alt.dimension = mpDimensionToAlt(value);
         this.setVariable(internalName('dimension'), value);
+        this.#dimensionCache.set(value);
     }
 
     get id() {
