@@ -1,6 +1,6 @@
 import mp from '../shared/mp.js';
 import alt from 'alt-server';
-import {internalName} from '../shared/utils';
+import {internalName, measureExecuteWrapper} from '../shared/utils';
 
 mp.streamingDistance = alt.getServerConfig().streamingDistance ?? 300;
 mp._disableRawEmits = true;
@@ -11,6 +11,19 @@ import '../shared/index.js';
 import './statics/Events.js';
 import './entities/index.js';
 import './statics/index.js';
+
+globalThis.setTimeout_node = setTimeout;
+globalThis.clearTimeout_node = clearTimeout;
+globalThis.setInterval_node = setInterval;
+globalThis.clearInterval_node = clearInterval;
+
+globalThis.setTimeout = (fn, timeout = 0, ...args) => {
+    return globalThis.setTimeout_node(measureExecuteWrapper(fn, mp._measureTimers), timeout, ...args);
+};
+
+globalThis.setInterval = (fn, timeout = 0, ...args) => {
+    return globalThis.setInterval_node(measureExecuteWrapper(fn, mp._measureTimers), timeout, ...args);
+};
 
 globalThis.mp = mp;
 

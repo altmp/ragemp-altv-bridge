@@ -206,6 +206,36 @@ export const safeExecute = async (fn, what, bind, ...args) => {
     }
 };
 
+export const measureExecute = (fn, threshold = 10, what = 'Timer', stackOverride = null) => {
+    if (!threshold) return fn();
+    const start = Date.now();
+    const result = fn();
+    const end = Date.now();
+    const delta = end - start;
+    if (delta > threshold) {
+        const stack = stackOverride ?? new Error().stack.substring(8);
+        console.warn(what + ' took too long (' + delta + 'ms) at:\n' + stack);
+    }
+    return result;
+};
+
+export const measureExecuteWrapper = (fn, threshold = 10, what = 'Timer') => {
+    if (!threshold) return fn;
+
+    const stack = new Error().stack.substring(8);
+    const logStart = `${what} took too long (`;
+    const logEnd = `ms) at:\n${stack}`;
+
+    return (...args) => {
+        const start = Date.now();
+        const result = fn(...args);
+        const end = Date.now();
+        const delta = end - start;
+        if (delta > threshold) console.warn(logStart + delta + logEnd);
+        return result;
+    };
+};
+
 export const emit = (event, ...args) => {
     return alt.emit(event, ...args);
     // if (mp._disableRawEmits) return alt.emit(event, ...args);

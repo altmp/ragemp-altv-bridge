@@ -1,5 +1,5 @@
 import mp from './mp';
-import {argsToMp, safeExecute} from './utils';
+import {argsToMp, measureExecute, safeExecute} from './utils';
 import * as alt from 'alt-shared';
 
 let handlers = {};
@@ -17,7 +17,7 @@ export class BaseEvents {
             if (mp.debug) alt.log('Registering2', key);
             handlers[key] = new Set;
         }
-        fn.from = String((new Error()).stack);
+        fn.from = String((new Error()).stack.substring(8));
         handlers[key].add(fn);
     }
 
@@ -32,7 +32,7 @@ export class BaseEvents {
             if (mp.debug) alt.log('Registering2', key);
             localHandlers[key] = new Set;
         }
-        fn.from = String((new Error()).stack);
+        fn.from = String((new Error()).stack.substring(8));
         localHandlers[key].add(fn);
     }
 
@@ -70,8 +70,9 @@ export class BaseEvents {
     /** @internal */
     dispatch(event, ...args) {
         if (!(event in handlers)) return;
+        const what = event + ' event handler';
         for (const handler of handlers[event]) {
-            safeExecute(handler, event + ' event handler', this, ...args);
+            measureExecute(() => safeExecute(handler, what, this, ...args), mp._measureEvents, what, handler.from);
         }
     }
 
@@ -80,8 +81,9 @@ export class BaseEvents {
         this.dispatch(event, ...args);
 
         if (!(event in localHandlers)) return;
+        const what = event + ' local event handler';
         for (const handler of localHandlers[event]) {
-            safeExecute(handler, event + ' local event handler', this, ...args);
+            measureExecute(() => safeExecute(handler, what, this, ...args), mp._measureEvents, what, handler.from);
         }
     }
 

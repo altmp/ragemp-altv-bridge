@@ -1,6 +1,16 @@
 import * as alt from 'alt-client';
 import mp from '../../shared/mp.js';
-import {argsToAlt, argsToMp, emit, internalName, safeExecute, toAlt, toMp} from '../../shared/utils.js';
+import {
+    argsToAlt,
+    argsToMp,
+    emit,
+    internalName,
+    measureExecute,
+    measureExecuteWrapper,
+    safeExecute,
+    toAlt,
+    toMp
+} from '../../shared/utils.js';
 import { Deferred } from '../../shared/Deferred';
 import {BaseEvents} from '../../shared/BaseEvents';
 import {emitServer, emitServerUnreliable} from '../clientUtils';
@@ -53,27 +63,31 @@ class _Events extends BaseEvents {
     }
 
     addDataHandler(expectedKey, fn) {
+        const what = `${expectedKey} data handler`;
+
         function dataHandlerWrapper(type, entity, key, newData, oldData) {
             if (entity === alt.Player.local && type === 'streamSyncedMetaChange') return; // use localMeta for local player
             if (key !== expectedKey) return;
             mp.notifyTrace('event', 'data change ', expectedKey);
-            safeExecute(fn, `${expectedKey} data handler`, null, toMp(entity), newData, oldData);
+            safeExecute(fn, what, null, toMp(entity), newData, oldData);
         }
+        const dataHandlerMeasureWrapper = measureExecuteWrapper(dataHandlerWrapper, mp._measureEvents, what);
 
-        alt.on('syncedMetaChange', dataHandlerWrapper.bind(null, 'syncedMetaChange'));
-        alt.on('streamSyncedMetaChange', dataHandlerWrapper.bind(null, 'streamSyncedMetaChange'));
-        alt.on('localMetaChange', dataHandlerWrapper.bind(null, 'localMetaChange', alt.Player.local));
+        alt.on('syncedMetaChange', dataHandlerMeasureWrapper.bind(null, 'syncedMetaChange'));
+        alt.on('streamSyncedMetaChange', dataHandlerMeasureWrapper.bind(null, 'streamSyncedMetaChange'));
+        alt.on('localMetaChange', dataHandlerMeasureWrapper.bind(null, 'localMetaChange', alt.Player.local));
 
         function streamInWrapper(entity) {
             if (entity.hasStreamSyncedMeta && entity.hasStreamSyncedMeta(expectedKey)) {
-                safeExecute(fn, `${expectedKey} data handler`, null, toMp(entity), entity.getStreamSyncedMeta(expectedKey), undefined);
+                safeExecute(fn, what, null, toMp(entity), entity.getStreamSyncedMeta(expectedKey), undefined);
             } else if (entity.hasSyncedMeta && entity.hasSyncedMeta(expectedKey)) {
-                safeExecute(fn, `${expectedKey} data handler`, null, toMp(entity), entity.getSyncedMeta(expectedKey), undefined);
+                safeExecute(fn, what, null, toMp(entity), entity.getSyncedMeta(expectedKey), undefined);
             }
         }
+        const streamInMeasureWrapper = measureExecuteWrapper(streamInWrapper, mp._measureEvents, what);
 
-        alt.on('worldObjectStreamIn', streamInWrapper);
-        alt.on('gameEntityCreate', streamInWrapper);
+        alt.on('worldObjectStreamIn', streamInMeasureWrapper);
+        alt.on('gameEntityCreate', streamInMeasureWrapper);
     }
 
     call(event, ...args) {

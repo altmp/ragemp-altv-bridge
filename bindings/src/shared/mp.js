@@ -14,6 +14,8 @@ const mp = {
     _enableInterResourceEvents: true,
     _broadcastJoinLeave: true,
     _enableEval: true,
+    _measureTimers: false, // false or threshold in ms
+    _measureEvents: false, // false or threshold in ms
     get _tickCount() {
         return tickCount;
     },
