@@ -14,6 +14,7 @@ import { _BaseObject } from './BaseObject';
 
 export class _WorldObject extends _BaseObject {
     #alt;
+    #variableCache = new Map();
 
     /** @param {alt.Entity} alt */
     constructor(alt) {
@@ -26,6 +27,12 @@ export class _WorldObject extends _BaseObject {
         if (typeof key === 'object' && key) {
             for (const [innerKey, innerValue] of Object.entries(key)) this.setVariable(innerKey, innerValue);
             return;
+        }
+
+        if (value === undefined) {
+            this.#variableCache.delete(key);
+        } else {
+            this.#variableCache.set(key, value);
         }
 
         if (this.#alt.setLocalMeta) {
@@ -45,6 +52,9 @@ export class _WorldObject extends _BaseObject {
     }
 
     getVariable(key) {
+        if (!mp._shareVariablesBetweenResources)
+            return this.#variableCache.get(key);
+
         if (!this.hasVariable(key)) return undefined;
 
         if (this.#alt.hasLocalMeta && this.#alt.hasLocalMeta(key))
@@ -57,6 +67,9 @@ export class _WorldObject extends _BaseObject {
     }
 
     hasVariable(key) {
+        if (!mp._shareVariablesBetweenResources)
+            return this.#variableCache.has(key);
+
         if (!this.#alt.valid) return false;
 
         if (this.#alt.hasLocalMeta && this.#alt.hasLocalMeta(key))

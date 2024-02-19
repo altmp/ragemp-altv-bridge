@@ -5,6 +5,7 @@ import mp from '../../shared/mp';
 
 export class _Entity extends _WorldObject {
     #alt;
+    #streamVariableCache = new Map();
 
     /** @param {alt.Entity} alt */
     constructor(alt) {
@@ -18,6 +19,12 @@ export class _Entity extends _WorldObject {
             return;
         }
 
+        if (value === undefined) {
+            this.#streamVariableCache.delete(key);
+        } else {
+            this.#streamVariableCache.set(key, value);
+        }
+
         this.#alt.setStreamSyncedMeta(key, toAlt(value));
     }
 
@@ -26,11 +33,13 @@ export class _Entity extends _WorldObject {
     }
 
     getStreamVariable(key) {
+        if (!mp._shareVariablesBetweenResources) return this.#streamVariableCache.get(key);
         if (!this.hasStreamVariable(key)) return undefined;
         return toMp(this.#alt.getStreamSyncedMeta(key));
     }
 
     hasStreamVariable(key) {
+        if (!mp._shareVariablesBetweenResources) return this.#streamVariableCache.has(key);
         return this.#alt.hasStreamSyncedMeta(key);
     }
 

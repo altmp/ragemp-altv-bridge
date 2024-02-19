@@ -16,6 +16,7 @@ const mp = {
     _enableEval: true,
     _measureTimers: false, // false or threshold in ms
     _measureEvents: false, // false or threshold in ms
+    _shareVariablesBetweenResources: false,
     get _tickCount() {
         return tickCount;
     },
