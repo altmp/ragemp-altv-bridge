@@ -120,7 +120,7 @@ export class _Label extends _VirtualEntityBase {
 
 mp.Label = _Label;
 
-mp.labels = new ClientPool(view);
+mp.labels = new ClientPool(view, [_Label]);
 
 const group = new alt.VirtualEntityGroup(40);
 
