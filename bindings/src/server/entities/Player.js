@@ -413,7 +413,7 @@ export class _Player extends _Entity {
 
         this.alt.setHeadOverlay(overlay, Math.max(index, 0), clamp(opacity, 0, 255));
 
-        this.alt.setHeadOverlayColor(overlay, overlay === 5 || overlay === 8 ? 2 : 1, firstColor, secondColor);
+        this.alt.setHeadOverlayColor(overlay, overlay === 5 || overlay === 8 ? 2 : overlay === 4 ? 0 : 1, firstColor, secondColor);
     }
 
     setProp(prop, drawable, texture) {
