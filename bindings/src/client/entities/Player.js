@@ -3,7 +3,7 @@ import * as natives from 'natives';
 import mp from '../../shared/mp.js';
 import {ClientPool} from '../ClientPool.js';
 import {_Entity} from './Entity.js';
-import {altSeatToMp, internalName, toMp} from '../../shared/utils';
+import {altSeatToMp, getOverlayColorType, internalName, toMp} from '../../shared/utils';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 import {emitServerInternal} from '../clientUtils';
 
@@ -196,8 +196,11 @@ export class _Player extends _Entity {
         natives.setPedMicroMorph(this.alt, index, feature);
     }
 
-    setHeadOverlay(...arr) {
-        natives.setPedHeadOverlay(this.alt, ...arr);
+    setHeadOverlay(overlayId, index, opacity, color1, color2) {
+        natives.setPedHeadOverlay(this.alt, overlayId, index, opacity);
+        if (color1 != null && color2 != null)  {
+            natives.setPedHeadOverlayTint(this.alt, overlayId, getOverlayColorType(overlayId), color1, color2);
+        }
     }
 
     setHeadOverlayColor(...arr) {

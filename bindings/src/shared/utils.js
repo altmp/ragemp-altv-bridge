@@ -288,3 +288,5 @@ export const getValidXYZ = (x, y, z) => {
 
     return { x, y, z };
 };
+
+export const getOverlayColorType = (overlay) => overlay === 5 || overlay === 8 ? 2 : overlay === 4 ? 0 : 1;

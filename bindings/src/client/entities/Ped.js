@@ -8,7 +8,7 @@ import {EntityStoreView} from '../../shared/pools/EntityStoreView';
 import {EntityMixedView} from '../../shared/pools/EntityMixedView';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 import {VirtualEntityID} from '../../shared/VirtualEntityID';
-import {hashIfNeeded, mpDimensionToAlt, toAlt, toMp} from '../../shared/utils';
+import {getOverlayColorType, hashIfNeeded, mpDimensionToAlt, toAlt, toMp} from '../../shared/utils';
 import {_LocalVehicle} from './Vehicle';
 import {_Entity} from './Entity';
 
@@ -31,6 +31,13 @@ export class _Ped extends _Entity {
 
     get isDynamic() {
         return true;
+    }
+
+    setHeadOverlay(overlayId, index, opacity, color1, color2) {
+        natives.setPedHeadOverlay(this.alt, overlayId, index, opacity);
+        if (color1 != null && color2 != null)  {
+            natives.setPedHeadOverlayTint(this.alt, overlayId, getOverlayColorType(overlayId), color1, color2);
+        }
     }
 
     //#region Natives
