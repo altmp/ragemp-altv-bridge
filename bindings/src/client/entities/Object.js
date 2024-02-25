@@ -223,29 +223,52 @@ export class _NetworkObject extends _Object {
         return this.alt.remoteID + 65536;
     }
 
-    streamIn() {
-        alt.loadModel(this.model);
-        this.#handle = natives.createObject(this.model, this.alt.pos.x, this.alt.pos.y, this.alt.pos.z, false, false, false);
-        natives.setEntityCoordsNoOffset(this.#handle, this.alt.pos.x, this.alt.pos.y, this.alt.pos.z, false, false, false);
-        store.add(this, undefined, this.#handle, undefined);
-        // natives.setEntityHeading(this.#handle, this.alt.getStreamSyncedMeta(internalName('heading')) ?? 0);
-        const rot = this.alt.getStreamSyncedMeta(internalName('rotation')) ?? alt.Vector3.zero;
-        natives.setEntityRotation(this.#handle, rot.x, rot.y, rot.z, 2, false);
-        natives.activatePhysics(this.#handle);
-        const alpha = this.alt.getStreamSyncedMeta(internalName('alpha')) ?? 255;
-        if (alpha < 255) {
-            natives.setEntityAlpha(this.#handle, alpha, false);
+    #streamingCounter = 0;
+    async streamIn() {
+        try {
+            const counter = ++this.#streamingCounter;
+            const shouldCancel = () => counter !== this.#streamingCounter;
+
+            let model = this.model;
+            if (!model || !natives.isModelValid(model)) {
+                await alt.Utils.waitFor(() => this.model && natives.isModelValid(this.model));
+                model = this.model;
+            }
+            if (shouldCancel()) return;
+
+            await alt.Utils.requestModel(model);
+            if (shouldCancel()) return;
+
+            this.#handle = natives.createObject(model, this.alt.pos.x, this.alt.pos.y, this.alt.pos.z, false, false, false);
+            natives.setEntityCoordsNoOffset(this.#handle, this.alt.pos.x, this.alt.pos.y, this.alt.pos.z, false, false, false);
+            store.add(this, undefined, this.#handle, undefined);
+
+            const rot = this.alt.getStreamSyncedMeta(internalName('rotation')) ?? alt.Vector3.zero;
+            natives.setEntityRotation(this.#handle, rot.x, rot.y, rot.z, 2, false);
+            natives.activatePhysics(this.#handle);
+
+            const alpha = this.alt.getStreamSyncedMeta(internalName('alpha')) ?? 255;
+            if (alpha < 255) {
+                natives.setEntityAlpha(this.#handle, alpha, false);
+            }
+
+            natives.freezeEntityPosition(this.#handle, true);
+            natives.setVehicleColourCombination(this.#handle, 0);
+        } catch (e) {
+            console.warn('Failed to stream in Object:', e);
+            mp._notifyError(e, 'unknown', 0, e.stack, 'warning');
         }
-        natives.freezeEntityPosition(this.#handle, true);
-        // natives.setEntityCollision(this.#handle, false, true); // TODO: check if needed
-        natives.setVehicleColourCombination(this.#handle, 0);
     }
 
     streamOut() {
+        this.#streamingCounter++;
+
+        if (!this.#handle) return;
         natives.deleteObject(this.#handle);
         store.remove(undefined, this.#handle, undefined);
         this.#handle = 0;
-        natives.setModelAsNoLongerNeeded(this.model);
+        const model = this.model;
+        if (model) natives.setModelAsNoLongerNeeded(model);
     }
 
     posChange() {

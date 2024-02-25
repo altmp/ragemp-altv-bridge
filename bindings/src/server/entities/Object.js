@@ -97,6 +97,13 @@ mp.objects = new ServerPool(view, [_Object]);
 
 const group = new alt.VirtualEntityGroup(255);
 mp.objects.new = (model, position, params = {}) => {
+    if (model == null) {
+        const msg = 'Tried to create object with invalid model';
+        console.warn(msg, model);
+        const err = new Error(msg + ' ' + model);
+        mp._notifyError(err, 'unknown', 0, err.stack, 'warning');
+    }
+
     model = hashIfNeeded(model);
     const virtualEnt = new alt.VirtualEntity(group, position, params.drawDistance ?? mp.streamingDistance);
     virtualEnt.setStreamSyncedMeta(internalName('type'), VirtualEntityID.Object);
