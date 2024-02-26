@@ -1,7 +1,8 @@
 import * as alt from 'alt-client';
 import { _Entity } from './Entity';
 import mp from '../../shared/mp';
-import {toMp} from '../../shared/utils';
+import {internalName, toMp} from '../../shared/utils';
+import {VirtualEntityID} from '../../shared/VirtualEntityID';
 
 export class _VirtualEntityBase extends _Entity {
     streamIn() {}
@@ -16,6 +17,7 @@ mp._initEventHandlers = () => {
     alt.on('worldObjectStreamIn', (ent) => {
         if (ent instanceof alt.VirtualEntity && ent.mp) ent.mp.streamIn();
         if (ent instanceof alt.LocalPed) return; // handled in Ped.js
+        if (ent instanceof alt.VirtualEntity && ent.getStreamSyncedMeta(internalName('type')) === VirtualEntityID.Object) return; // handled in Object.js
         mp.events.dispatchLocal('entityStreamIn', toMp(ent));
     });
 

@@ -255,9 +255,11 @@ export class _NetworkObject extends _Object {
             natives.freezeEntityPosition(this.#handle, true);
             natives.setVehicleColourCombination(this.#handle, 0);
         } catch (e) {
-            console.warn('Failed to stream in Object:', e);
+            console.warn('Failed to stream in NetworkObject:', e);
             mp._notifyError(e, 'unknown', 0, e.stack, 'warning');
         }
+
+        if (this.alt.valid) mp.events.dispatchLocal('entityStreamIn', this);
     }
 
     streamOut() {
