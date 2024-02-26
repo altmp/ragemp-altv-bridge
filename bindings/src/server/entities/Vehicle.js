@@ -258,7 +258,15 @@ export class _Vehicle extends _Entity {
 
     getOccupants() {
         // TODO: implement in core
-        return alt.Player.all.filter(p => p.vehicle === this.alt).map(e => e.mp);
+        const occupants = [];
+        const driver = this.alt.driver;
+        if (driver) occupants.push(driver.mp);
+        for (let i = 0; i < alt.Player.count; i++) {
+            const player = alt.Player.all[i];
+            if (player !== driver && player.vehicle === this.alt) occupants.push(player.mp);
+        }
+
+        return occupants;
     }
 
     // TODO: getPaint
