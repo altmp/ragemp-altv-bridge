@@ -313,6 +313,7 @@ export class _Player extends _Entity {
             return;
         }
 
+        mp.events.dispatchLocal('_giveWeapon', this, weapon, ammo);
         this.alt.giveWeapon(weapon, ammo, true);
     }
 
