@@ -2,7 +2,7 @@ import * as alt from 'alt-client';
 import * as natives from 'natives';
 import mp from '../../shared/mp.js';
 import {drawText3d, getRenderCorrection} from '../clientUtils';
-import {BaseObjectType} from 'alt-shared';
+import {BaseObjectType} from '../../shared/BaseObjectType';
 
 class _Nametags {
     enabled = false;
@@ -16,20 +16,20 @@ class _Nametags {
         alt.everyTick(this.#tick.bind(this));
 
         alt.on('gameEntityCreate', (entity) => {
-            if (entity.type === BaseObjectType.Player) {
+            if (entity && entity.type === BaseObjectType.Player) {
                 this.#streamedPlayers.push(entity);
             }
         });
 
         alt.on('gameEntityDestroy', (entity) => {
-            if (entity.type === BaseObjectType.Player) {
+            if (entity && entity.type === BaseObjectType.Player) {
                 const index = this.#streamedPlayers.indexOf(entity);
                 if (index !== -1) this.#streamedPlayers.splice(index, 1);
             }
         });
 
         alt.on('baseObjectRemove', (entity) => {
-            if (entity.type === BaseObjectType.Player) {
+            if (entity && entity.type === BaseObjectType.Player) {
                 const index = this.#streamedPlayers.indexOf(entity);
                 if (index !== -1) this.#streamedPlayers.splice(index, 1);
             }
