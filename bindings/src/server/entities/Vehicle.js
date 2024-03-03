@@ -261,8 +261,12 @@ export class _Vehicle extends _Entity {
         const occupants = [];
         const driver = this.alt.driver;
         if (driver) occupants.push(driver.mp);
-        for (let i = 0; i < alt.Player.count; i++) {
-            const player = alt.Player.all[i];
+
+        const players = alt.Player.all;
+        const length = players.length;
+
+        for (let i = 0; i < length; i++) {
+            const player = players[i];
             if (player !== driver && player.vehicle === this.alt) occupants.push(player.mp);
         }
 
