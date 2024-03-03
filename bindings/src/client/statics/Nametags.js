@@ -2,43 +2,69 @@ import * as alt from 'alt-client';
 import * as natives from 'natives';
 import mp from '../../shared/mp.js';
 import {drawText3d, getRenderCorrection} from '../clientUtils';
+import {BaseObjectType} from 'alt-shared';
 
 class _Nametags {
     enabled = false;
 
     #style;
     #healthStyle;
+    #streamedPlayers = [];
 
     constructor() {
         this.update();
         alt.everyTick(this.#tick.bind(this));
+
+        alt.on('gameEntityCreate', (entity) => {
+            if (entity.type === BaseObjectType.Player) {
+                this.#streamedPlayers.push(entity);
+            }
+        });
+
+        alt.on('gameEntityDestroy', (entity) => {
+            if (entity.type === BaseObjectType.Player) {
+                const index = this.#streamedPlayers.indexOf(entity);
+                if (index !== -1) this.#streamedPlayers.splice(index, 1);
+            }
+        });
+
+        alt.on('baseObjectRemove', (entity) => {
+            if (entity.type === BaseObjectType.Player) {
+                const index = this.#streamedPlayers.indexOf(entity);
+                if (index !== -1) this.#streamedPlayers.splice(index, 1);
+            }
+        });
     }
 
     #tick() {
         const correction = getRenderCorrection();
+        const res = alt.getScreenResolution();
         const localPos = alt.Player.local.pos;
         const style = this.#style;
         const healthStyle = this.#healthStyle;
 
+        const players = this.#streamedPlayers;
+        const length = players.length;
         let arr = [];
-        alt.Player.streamedIn.forEach(p => {
-            if (!p.valid) return;
 
-            const offset = 1 + ((p.vehicle ? style.vehOffset : style.offset) || 0);
-            const pos = p.pos.add(0, 0, offset);
-            if (!alt.isPointOnScreen(p.pos)) return;
+        for (let i = 0; i < length; i++) {
+            const player = players[i];
+            if (!player.valid) continue;
+
+            const offset = 1 + ((player.vehicle ? style.vehOffset : style.offset) || 0);
+            const pos = player.pos.add(0, 0, offset);
+            if (!alt.isPointOnScreen(player.pos)) continue;
 
             const dist = pos.distanceToSquared(localPos);
             if (this.useScreen2dCoords) {
-                const res = alt.getScreenResolution();
                 const screenPos = alt.worldToScreen(pos);
-                arr.push([p.mp, screenPos.x / res.x, screenPos.y / res.y, dist]);
+                arr.push([player.mp, screenPos.x / res.x, screenPos.y / res.y, dist]);
             } else {
-                arr.push([p.mp, pos.x, pos.y, pos.z, dist]);
+                arr.push([player.mp, pos.x, pos.y, pos.z, dist]);
             }
-        });
+        }
 
-        if (this.useScreen2dCoords) {
+        if (this.useScreen2dCoords && arr.length) {
             if (this.orderByDistance) arr.sort((a, b) => a[3] - b[3]);
         } else {
             if (this.orderByDistance) arr.sort((a, b) => a[4] - b[4]);
@@ -48,8 +74,9 @@ class _Nametags {
 
         if (!this.enabled) return;
 
-        alt.Player.streamedIn.forEach(p => {
-            if (!p.valid) return;
+        const arrLength = arr.length;
+        for (let i = 0; i < arrLength; i++) {
+            const p = arr[i][0];
 
             const offset = p.vehicle ? style.vehOffset : style.offset;
             const pos = p.pos.add(correction);
@@ -64,7 +91,7 @@ class _Nametags {
                     healthStyle.color.r, healthStyle.color.g, healthStyle.color.b, healthStyle.color.a, false);
                 natives.clearDrawOrigin();
             }
-        });
+        }
     }
 
     update(font = 6, outline = true, size = 0.5, offset = 0.7, vehOffset = 1, color = [255, 255, 255, 255],
