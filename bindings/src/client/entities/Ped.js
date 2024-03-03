@@ -11,8 +11,9 @@ import {VirtualEntityID} from '../../shared/VirtualEntityID';
 import {getOverlayColorType, hashIfNeeded, mpDimensionToAlt, toAlt, toMp} from '../../shared/utils';
 import {_LocalVehicle} from './Vehicle';
 import {_Entity} from './Entity';
+import {BaseObjectType} from '../../shared/BaseObjectType';
 
-const view = EntityGetterView.fromClass(alt.Ped);
+const view = EntityGetterView.fromClass(alt.Ped, [BaseObjectType.Ped, BaseObjectType.LocalPed]);
 
 export class _Ped extends _Entity {
     /** @param {alt.Ped} alt */

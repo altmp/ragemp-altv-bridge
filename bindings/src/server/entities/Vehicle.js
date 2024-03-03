@@ -5,6 +5,7 @@ import {deg2rad, hashIfNeeded, mpSeatToAlt, rad2deg, TemporaryContainer} from '.
 import {_Entity} from './Entity.js';
 import {ServerPool} from '../pools/ServerPool';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
+import {BaseObjectType} from '../../shared/BaseObjectType';
 
 export class _Vehicle extends _Entity {
     /** @type {import('alt-server').Vehicle} */
@@ -148,7 +149,8 @@ export class _Vehicle extends _Entity {
     }
 
     get streamedPlayers() {
-        return alt.Player.all.filter(e => e.isEntityInStreamRange(this.alt)).map(e => e.mp); // TODO: implement in js module
+        const arr = alt.getEntitiesInRange(this.alt.pos, mp.streamingDistance, this.alt.dimension, 1);
+        return arr.filter(e => e.isEntityInStreamRange(this.alt)).map(e => e.mp); // TODO: implement in js module
     }
 
     // TODO: taxiLights
@@ -357,7 +359,7 @@ Object.defineProperty(alt.Vehicle.prototype, 'mp', {
 
 mp.Vehicle = _Vehicle;
 
-mp.vehicles = new ServerPool(EntityGetterView.fromClass(alt.Vehicle), [_Vehicle], 2);
+mp.vehicles = new ServerPool(EntityGetterView.fromClass(alt.Vehicle, [BaseObjectType.Vehicle]), [_Vehicle], 2);
 
 mp.vehicles.new = function(model, position, options = {}) {
     model = hashIfNeeded(model);

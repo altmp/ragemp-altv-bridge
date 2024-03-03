@@ -12,13 +12,16 @@ export class SharedPool {
         this.#classes = classes;
 
         alt.on('resourceStop', () => {
-            this.toArray().forEach(e => {
+            const arr = this.toArray();
+            const length = arr.length;
+            for (let i = 0; i < length; i++) {
+                const e = arr[i];
                 try {
                     e.destroy();
                 } catch(e) {
                     //
                 }
-            });
+            }
         });
     }
 
@@ -51,7 +54,12 @@ export class SharedPool {
     }
 
     forEach(fn) {
-        this.toArray().forEach(e => fn(e, e.id));
+        const arr = this.toArray();
+        const length = arr.length;
+        for (let i = 0; i < length; i++) {
+            const e = arr[i];
+            fn(e, e.id);
+        }
     }
 
     forEachFast(fn) {
@@ -81,7 +89,11 @@ export class SharedPool {
     }
 
     forEachInDimension(dimension, fn) {
-        this.toArray().filter(e => e.dimension === dimension).forEach(e => fn(e, e.id));
+        const arr = this.toArray();
+        for (let i = 0; i < arr.length; i++) {
+            const e = arr[i];
+            if (e.dimension === dimension) fn(e, e.id);
+        }
     }
 
     forEachInRange(pos, range, dimension, fn) {
@@ -90,14 +102,11 @@ export class SharedPool {
         range = range ** 2;
         let arr = this.toArray();
         if (hasDimension) arr = arr.filter(e => e.dimension === dimension);
-        const predicate = hasDimension
-            ? (e) => {
-                return e.dimension === dimension && vdist2(e.position, pos) <= range;
-            }
-            : (e) => {
-                return vdist2(e.position, pos) <= range;
-            };
-        arr.filter(predicate).forEach(e => fn(e, e.id));
+        for (let i = 0; i < arr.length; i++) {
+            const e = arr[i];
+            if (hasDimension && e.dimension !== dimension) continue;
+            if (vdist2(e.position, pos) <= range) fn(e, e.id);
+        }
     }
 
     #getClosestFromArr(arr, pos, limit) {

@@ -6,6 +6,7 @@ import { _Entity } from './Entity.js';
 import { _WorldObject } from './WorldObject.js';
 import { ServerPool } from '../pools/ServerPool';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
+import {BaseObjectType} from '../../shared/BaseObjectType';
 
 export class _Blip extends _WorldObject {
     alt;
@@ -88,7 +89,7 @@ Object.defineProperty(alt.Blip.prototype, 'mp', {
 
 mp.Blip = _Blip;
 
-mp.blips = new ServerPool(EntityGetterView.fromClass(alt.Blip));
+mp.blips = new ServerPool(EntityGetterView.fromClass(alt.Blip, [BaseObjectType.Blip]));
 
 mp.blips.new = function(sprite, position, params = {}) {
     const blip = new alt.PointBlip(new alt.Vector3(position.x, position.y, position.z), true);

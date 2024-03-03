@@ -5,6 +5,7 @@ import {_BaseObject} from './BaseObject.js';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 import {emitServerInternal} from '../clientUtils';
 import {argsToMp, emitInternal} from '../../shared/utils';
+import {BaseObjectType} from '../../shared/BaseObjectType';
 
 function transformUrl(url) {
     if (url.startsWith('package://')) return 'http://resource/' + url.substring(10);
@@ -114,7 +115,7 @@ Object.defineProperty(alt.WebView.prototype, 'mp', {
 
 mp.Browser = _Browser;
 
-mp.browsers = new ClientPool(EntityGetterView.fromClass(alt.WebView), [_Browser]);
+mp.browsers = new ClientPool(EntityGetterView.fromClass(alt.WebView, [BaseObjectType.WebView]), [_Browser]);
 
 mp.browsers.new = function (url) {
     const webview = new alt.WebView(transformUrl(url));

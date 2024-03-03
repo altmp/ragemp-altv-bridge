@@ -19,6 +19,11 @@ export class ClientPool extends SharedPool {
     }
 
     forEachInStreamRange(fn) {
-        this.#view.toArrayInStreamRange().forEach(e => fn(e, e.id));
+        const arr = this.#view.toArrayInStreamRange();
+        const length = arr.length;
+        for (let i = 0; i < length; i++) {
+            const e = arr[i];
+            fn(e, e.id);
+        }
     }
 }

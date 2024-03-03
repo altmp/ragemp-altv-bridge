@@ -6,6 +6,7 @@ import {_Entity} from './Entity.js';
 import {altSeatToMp, getOverlayColorType, internalName, toMp} from '../../shared/utils';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 import {emitServerInternal} from '../clientUtils';
+import {BaseObjectType} from '../../shared/BaseObjectType';
 
 export class _Player extends _Entity {
     /** @type {import('alt-client').Player} */
@@ -991,7 +992,7 @@ Object.defineProperty(alt.Player.prototype, 'mp', {
 
 mp.Player = _Player;
 
-const view = EntityGetterView.fromClass(alt.Player);
+const view = EntityGetterView.fromClass(alt.Player, [BaseObjectType.Player, BaseObjectType.LocalPlayer]);
 view.streamRangeGetter = () => [alt.Player.local, ...alt.Player.streamedIn];
 
 mp.players = new ClientPool(view, [_Player]);

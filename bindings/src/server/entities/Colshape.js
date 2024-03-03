@@ -5,6 +5,7 @@ import { ServerPool } from '../pools/ServerPool';
 import { getValidXYZ, toAlt, toMp } from '../../shared/utils';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 import {emitClientInternal} from '../serverUtils';
+import {BaseObjectType} from '../../shared/BaseObjectType';
 
 const colshapeTypes = {
     0: 'sphere',
@@ -51,7 +52,10 @@ export class _Colshape extends _WorldObject {
     destroy() {
         if (!this.valid) return;
 
-        for (let player of alt.Player.all) {
+        const players = alt.Player.all;
+        const length = players.length;
+        for (let i = 0; i < length; i++) {
+            const player = players[i];
             if (this.alt.isPointIn(player.pos))
                 leaveColshape(this.alt, player);
         }
@@ -69,7 +73,7 @@ Object.defineProperty(alt.Colshape.prototype, 'mp', {
 
 mp.Colshape = _Colshape;
 
-mp.colshapes = new ServerPool(EntityGetterView.fromClass(alt.Colshape), [_Colshape]);
+mp.colshapes = new ServerPool(EntityGetterView.fromClass(alt.Colshape, [BaseObjectType.Colshape]), [_Colshape]);
 
 mp.colshapes.newCircle = function(x, y, radius, dimension = 0) {
     const shape = new alt.ColshapeCircle(x, y, radius);

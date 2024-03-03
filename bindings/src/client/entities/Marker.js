@@ -8,6 +8,7 @@ import {VirtualEntityID} from '../../shared/VirtualEntityID';
 import {EntityStoreView} from '../../shared/pools/EntityStoreView';
 import {EntityMixedView} from '../../shared/pools/EntityMixedView';
 import {EntityFilteredView} from '../../shared/pools/EntityFilteredView';
+import {BaseObjectType} from '../../shared/BaseObjectType';
 
 const store = new EntityStoreView();
 
@@ -151,7 +152,7 @@ Object.defineProperty(alt.Marker.prototype, 'mp', {
 mp.Marker = _Marker;
 
 mp.markers = new ClientPool(
-    new EntityMixedView(store, new EntityFilteredView(EntityGetterView.fromClass(alt.Marker), (e) => !e._network)),
+    new EntityMixedView(store, new EntityFilteredView(EntityGetterView.fromClass(alt.Marker, [BaseObjectType.Marker]), (e) => !e._network)),
     [_Marker, _NetworkMarker]
 );
 
