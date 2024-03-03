@@ -5,6 +5,7 @@ import { ServerPool } from '../pools/ServerPool';
 import { getValidXYZ, toAlt, toMp } from '../../shared/utils';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 import {emitClientInternal} from '../serverUtils';
+import {BaseObjectType} from '../../shared/BaseObjectType';
 
 const colshapeTypes = {
     0: 'sphere',
@@ -72,7 +73,7 @@ Object.defineProperty(alt.Colshape.prototype, 'mp', {
 
 mp.Colshape = _Colshape;
 
-mp.colshapes = new ServerPool(EntityGetterView.fromClass(alt.Colshape), [_Colshape]);
+mp.colshapes = new ServerPool(EntityGetterView.fromClass(alt.Colshape, [BaseObjectType.Colshape]), [_Colshape]);
 
 mp.colshapes.newCircle = function(x, y, radius, dimension = 0) {
     const shape = new alt.ColshapeCircle(x, y, radius);

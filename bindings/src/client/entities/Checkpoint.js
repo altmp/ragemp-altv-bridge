@@ -7,6 +7,7 @@ import {internalName, mpDimensionToAlt} from '../../shared/utils';
 import {EntityStoreView} from '../../shared/pools/EntityStoreView';
 import {EntityMixedView} from '../../shared/pools/EntityMixedView';
 import {EntityFilteredView} from '../../shared/pools/EntityFilteredView';
+import {BaseObjectType} from '../../shared/BaseObjectType';
 
 const store = new EntityStoreView();
 
@@ -199,7 +200,7 @@ Object.defineProperty(alt.Checkpoint.prototype, 'mp', {
 mp.Checkpoint = _Checkpoint;
 
 mp.checkpoints = new ClientPool(
-    new EntityMixedView(store, new EntityFilteredView(EntityGetterView.fromClass(alt.Checkpoint), (e) => !e._network)),
+    new EntityMixedView(store, new EntityFilteredView(EntityGetterView.fromClass(alt.Checkpoint, [BaseObjectType.Checkpoint]), (e) => !e._network)),
     [_NetworkCheckpoint, _Checkpoint]
 );
 

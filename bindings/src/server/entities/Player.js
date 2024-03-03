@@ -16,6 +16,7 @@ import { PlayerPool } from '../pools/PlayerPool';
 import { InternalChat } from '../../shared/DefaultChat.js';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 import {emitAllClientsInternal, emitClient, emitClientInternal, emitClientUnreliable} from '../serverUtils';
+import {BaseObjectType} from '../../shared/BaseObjectType';
 
 let bannedHwids = {};
 const ipRegex = /^::ffff:([0-9.]+)$/;
@@ -487,7 +488,7 @@ alt.on('beforePlayerConnect', (info) => {
 
 mp.Player = _Player;
 
-mp.players = new PlayerPool(EntityGetterView.fromClass(alt.Player), [_Player], 1);
+mp.players = new PlayerPool(EntityGetterView.fromClass(alt.Player, [BaseObjectType.Player]), [_Player], 1);
 
 alt.on('playerDeath', (player, killer, weapon) => {
     mp.events.dispatchLocal('playerDeath', player.mp, weapon, killer && killer instanceof alt.Player ? killer.mp : null);

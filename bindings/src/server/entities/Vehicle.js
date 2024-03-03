@@ -5,6 +5,7 @@ import {deg2rad, hashIfNeeded, mpSeatToAlt, rad2deg, TemporaryContainer} from '.
 import {_Entity} from './Entity.js';
 import {ServerPool} from '../pools/ServerPool';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
+import {BaseObjectType} from '../../shared/BaseObjectType';
 
 export class _Vehicle extends _Entity {
     /** @type {import('alt-server').Vehicle} */
@@ -358,7 +359,7 @@ Object.defineProperty(alt.Vehicle.prototype, 'mp', {
 
 mp.Vehicle = _Vehicle;
 
-mp.vehicles = new ServerPool(EntityGetterView.fromClass(alt.Vehicle), [_Vehicle], 2);
+mp.vehicles = new ServerPool(EntityGetterView.fromClass(alt.Vehicle, [BaseObjectType.Vehicle]), [_Vehicle], 2);
 
 mp.vehicles.new = function(model, position, options = {}) {
     model = hashIfNeeded(model);

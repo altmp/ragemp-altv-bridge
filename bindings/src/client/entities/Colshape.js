@@ -6,6 +6,7 @@ import { _WorldObject } from './WorldObject';
 import { _BaseObject } from './BaseObject';
 import { EntityGetterView } from '../../shared/pools/EntityGetterView';
 import { getValidXYZ, internalName, mpDimensionToAlt } from '../../shared/utils';
+import {BaseObjectType} from '../../shared/BaseObjectType';
 
 const colshapeTypes = {
     0: 'sphere',
@@ -68,7 +69,7 @@ class _FakeColshape {
 
 mp.Colshape = _Colshape;
 
-mp.colshapes = new ClientPool(EntityGetterView.fromClass(alt.Colshape), [_Colshape, _FakeColshape]);
+mp.colshapes = new ClientPool(EntityGetterView.fromClass(alt.Colshape, [BaseObjectType.Colshape]), [_Colshape, _FakeColshape]);
 
 mp.colshapes.newCircle = function(x, y, radius, dimension = 0) {
     const shape = new alt.ColshapeCircle(x, y, radius);

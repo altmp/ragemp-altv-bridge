@@ -8,6 +8,7 @@ import {EntityMixedView} from '../../shared/pools/EntityMixedView';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 import {hashIfNeeded, internalName, toAlt, toMp} from '../../shared/utils';
 import { mpDimensionToAlt } from '../../shared/utils';
+import {BaseObjectType} from '../../shared/BaseObjectType';
 
 const store = new EntityStoreView();
 const view = new EntityMixedView(store, new EntityGetterView(
@@ -17,7 +18,8 @@ const view = new EntityMixedView(store, new EntityGetterView(
         remoteIDGetter: alt.LocalObject.getByID,
         scriptIDGetter: (scriptID) => alt.LocalObject.all.find(e => e && e.scriptID === scriptID), // TODO: alt.LocalObject.getByScriptID
         streamRangeGetter: () => alt.LocalObject.all.filter(e => e.scriptID !== 0)
-    }
+    },
+    [BaseObjectType.LocalObject]
 ));
 
 export class _Object extends _Entity {

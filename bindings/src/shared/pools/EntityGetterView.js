@@ -3,7 +3,11 @@ import {toMp} from '../utils';
 import alt from 'alt-shared';
 
 export class EntityGetterView extends EntityBaseView {
-    constructor(listGetter, idGetter, {remoteIDGetter, scriptIDGetter, countGetter, streamRangeGetter}, name = '') {
+    #entities = new Set;
+    #entityArrayCache = [];
+    #types = new Set;
+
+    constructor(listGetter, idGetter, {remoteIDGetter, scriptIDGetter, countGetter, streamRangeGetter}, types, name = '') {
         super();
         this.listGetter = () => listGetter().filter(e => e != null);
         if (!idGetter) alt.logWarning(name, 'ID getter is not defined, polyfilling');
@@ -13,9 +17,42 @@ export class EntityGetterView extends EntityBaseView {
         this.scriptIDGetter = (scriptID => this.listGetter().find(e => e.valid && (e.scriptID === scriptID || e.gameID === scriptID))); // TODO: use scriptIDGetter
         this.streamRangeGetter = streamRangeGetter;
         this.countGetter = countGetter ?? (() => this.listGetter().length);
+        this.#types = new Set(types);
+
+        const entities = this.listGetter();
+        for (const entity of entities) {
+            if (!entity.mp) continue;
+            this.#entities.add(entity.mp);
+        }
+        this.#updateEntityCache();
+
+        alt.on('baseObjectCreate', (baseObject) => {
+            if (!baseObject) return;
+            if (!this.#types.has(baseObject.type)) return;
+
+            const mpObject = baseObject.mp;
+            if (!mpObject) return;
+            this.#entities.add(mpObject);
+            this.#updateEntityCache();
+        });
+
+        alt.on('baseObjectRemove', (baseObject) => {
+            if (!baseObject) return;
+            if (!this.#types.has(baseObject.type)) return;
+
+            const mpObject = baseObject.mp;
+            if (!mpObject) return;
+            this.#entities.delete(mpObject);
+            this.#updateEntityCache();
+        });
     }
 
-    static fromClass(obj) {
+    #updateEntityCache() {
+        this.#entityArrayCache = Array.from(this.#entities); // TODO: maybe Object.freeze?
+    }
+
+    static fromClass(obj, type) {
+        if (type == null) throw new Error('Type required');
         return new EntityGetterView(
             () => obj.all,
             obj.getByID,
@@ -28,18 +65,13 @@ export class EntityGetterView extends EntityBaseView {
                 streamRangeGetter: () => (obj.streamedIn ?? []),
                 countGetter: () => obj.count
             },
+            type,
             obj.name
         );
     }
 
-    #arrayCacheAlt;
-    #arrayCacheMp;
     toArray() {
-        const list = this.listGetter();
-        if (this.#arrayCacheAlt === list) return this.#arrayCacheMp;
-        this.#arrayCacheAlt = list;
-        this.#arrayCacheMp = list.map(e => e.mp);
-        return this.#arrayCacheMp;
+        return this.#entityArrayCache;
     }
 
     #arrayStreamCacheAlt;
@@ -77,6 +109,6 @@ export class EntityGetterView extends EntityBaseView {
     }
 
     getCount() {
-        return this.countGetter();
+        return this.#entityArrayCache.length;
     }
 }
