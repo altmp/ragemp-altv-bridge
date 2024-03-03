@@ -20,6 +20,11 @@ export class ServerPool extends SharedPool {
         if (!this.#filterType) return super.forEachInRange(pos, range, dimension, fn);
         const hasDimension = !!fn;
         if (!fn) fn = dimension;
-        return alt.getEntitiesInRange(pos, range, hasDimension ? dimension : alt.globalDimension, this.#filterType).forEach(e => fn(e.mp));
+        const arr = alt.getEntitiesInRange(pos, range, hasDimension ? dimension : alt.globalDimension, this.#filterType);
+        const length = arr.length;
+        for (let i = 0; i < length; i++) {
+            const e = arr[i];
+            fn(e.mp);
+        }
     }
 }

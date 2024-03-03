@@ -100,7 +100,10 @@ export class _Checkpoint extends _Entity {
         if (!this.valid) return;
         view.remove(this.id);
 
-        for (let player of alt.Player.all) {
+        const players = alt.Player.all;
+        const length = players.length;
+        for (let i = 0; i < length; i++) {
+            const player = players[i];
             if (this.colshape.isPointIn(player.pos))
                 mp.events.dispatchLocal('playerExitCheckpoint', player.mp, this);
         }
