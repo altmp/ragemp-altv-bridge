@@ -2,8 +2,8 @@ import alt from 'alt-server';
 import { ServerPool } from './ServerPool.js';
 import mp from 'shared/mp';
 import { InternalChat } from 'shared/DefaultChat.js';
-import {argsToAlt, mpDimensionToAlt} from 'shared/utils';
-import {emitAllClients, emitAllClientsUnreliable, emitClient, emitClientUnreliable} from '../serverUtils';
+import { argsToAlt, mpDimensionToAlt } from 'shared/utils';
+import { emitAllClients, emitAllClientsUnreliable, emitClient, emitClientUnreliable } from '../serverUtils';
 
 export class PlayerPool extends ServerPool {
     broadcast(text) {
@@ -13,18 +13,18 @@ export class PlayerPool extends ServerPool {
     //mp.players.call(String eventName[, Array Arguments]);
     //mp.players.call(Array players, String eventName[, Array Arguments]);
     call(arg1, args1 = [], args2 = []) {
-        if(typeof arg1 === 'string') {
+        if (typeof arg1 === 'string') {
             emitAllClients(arg1, ...argsToAlt(args1));
-        } else if(typeof arg1 === 'object' && Array.isArray(arg1)) {
+        } else if (typeof arg1 === 'object' && Array.isArray(arg1)) {
             const players = arg1.map(p => p.alt).filter(Boolean);
             if (players.length) emitClient(players, args1, ...argsToAlt(args2));
         }
     }
 
     callUnreliable(arg1, args1 = [], args2 = []) {
-        if(typeof arg1 === 'string') {
+        if (typeof arg1 === 'string') {
             emitAllClientsUnreliable(arg1, ...argsToAlt(args1));
-        } else if(typeof arg1 === 'object' && Array.isArray(arg1)) {
+        } else if (typeof arg1 === 'object' && Array.isArray(arg1)) {
             const players = arg1.map(p => p.alt).filter(Boolean);
             if (players.length) emitClientUnreliable(players, args1, ...argsToAlt(args2));
         }
@@ -32,14 +32,17 @@ export class PlayerPool extends ServerPool {
 
     // todo: callInRange(pos, range, dimension, event, ...args)
     callInRange(pos, range, event, args) {
-        const rangeSquared = range ** 2;
-        const players = alt.Player.all.filter(e => e.pos.distanceToSquared(pos) <= rangeSquared);
+        // -1 = dimension (might be wrong) - 1 = BaseObjectFilterType.Player
+        const players = alt.getEntitiesInRange(pos, range, -1, 1);
+
         if (players.length) emitClient(players, event, ...argsToAlt(args));
     }
 
     callInDimension(dimension, event, args) {
         dimension = mpDimensionToAlt(dimension);
-        const players = alt.Player.all.filter(e => e.dimension === dimension);
+
+        // 1 = BaseObjectFilterType.Player
+        const players = alt.getEntitiesInDimension(dimension, 1);
         if (players.length) emitClient(players, event, ...argsToAlt(args));
     }
     /*
