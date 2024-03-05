@@ -32,8 +32,7 @@ export class PlayerPool extends ServerPool {
 
     // todo: callInRange(pos, range, dimension, event, ...args)
     callInRange(pos, range, event, args) {
-        // -1 = dimension (might be wrong) - 1 = BaseObjectFilterType.Player
-        const players = alt.getEntitiesInRange(pos, range, -1, 1);
+        const players = super.toArrayInRange(pos, range, null);
 
         if (players.length) emitClient(players, event, ...argsToAlt(args));
     }
@@ -41,8 +40,7 @@ export class PlayerPool extends ServerPool {
     callInDimension(dimension, event, args) {
         dimension = mpDimensionToAlt(dimension);
 
-        // 1 = BaseObjectFilterType.Player
-        const players = alt.getEntitiesInDimension(dimension, 1);
+        const players = alt.getEntitiesInDimension(dimension, this.filterType);
         if (players.length) emitClient(players, event, ...argsToAlt(args));
     }
     /*

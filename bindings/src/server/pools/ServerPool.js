@@ -27,4 +27,8 @@ export class ServerPool extends SharedPool {
             fn(e.mp);
         }
     }
+
+    get filterType() {
+        return this.#filterType;
+    }
 }
