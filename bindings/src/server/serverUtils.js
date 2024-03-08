@@ -4,7 +4,7 @@ import {internalName} from '../shared/utils';
 
 export const emitClient = mp._disableRawEmits ? alt.emitClient : alt.emitClientRaw;
 export const emitClientUnreliable = mp._enableUnreliableEmits ? alt.emitClientUnreliable : emitClient;
-export const emitAllClients = mp._disableRawEmits ? alt.emitAllClients : emitAllClientsRaw;
+export const emitAllClients = mp._disableRawEmits ? alt.emitAllClients : alt.emitAllClientsRaw;
 export const emitAllClientsUnreliable = mp._enableUnreliableEmits ? alt.emitAllClientsUnreliable : emitAllClients;
 
 // export const emitClient = (player, event, ...args) => {
