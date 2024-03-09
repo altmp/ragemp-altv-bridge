@@ -170,7 +170,8 @@ export class _Player extends _Entity {
     }
 
     get streamedPlayers() {
-        return alt.Player.all.filter(p => this.alt.isEntityInStreamRange(p)).map(p => p.mp); // TODO: implement in core
+        // return alt.Player.all.filter(p => this.alt.isEntityInStreamRange(p)).map(p => p.mp); // TODO: implement in core
+        return this.alt.streamedEntities.filter(e => e instanceof alt.Player).map(p => p.mp);
     }
 
     get vehicle() {
