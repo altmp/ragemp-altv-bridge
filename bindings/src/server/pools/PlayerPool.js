@@ -31,15 +31,16 @@ export class PlayerPool extends ServerPool {
     }
 
     // todo: callInRange(pos, range, dimension, event, ...args)
+    // TODO: callInRange in core
     callInRange(pos, range, event, args) {
-        const rangeSquared = range ** 2;
-        const players = alt.Player.all.filter(e => e.pos.distanceToSquared(pos) <= rangeSquared);
+        const players = alt.getEntitiesInRange(pos, range, alt.globalDimension, 1);
         if (players.length) emitClient(players, event, ...argsToAlt(args));
     }
 
+    // TODO: callInDimension in core
     callInDimension(dimension, event, args) {
         dimension = mpDimensionToAlt(dimension);
-        const players = alt.Player.all.filter(e => e.dimension === dimension);
+        const players = alt.getEntitiesInDimension(dimension, 1);
         if (players.length) emitClient(players, event, ...argsToAlt(args));
     }
     /*
