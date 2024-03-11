@@ -52,13 +52,13 @@ export class _Colshape extends _WorldObject {
     destroy() {
         if (!this.valid) return;
 
-        const players = alt.Player.all;
-        const length = players.length;
-        for (let i = 0; i < length; i++) {
-            const player = players[i];
-            if (this.alt.isPointIn(player.pos))
-                leaveColshape(this.alt, player);
-        }
+        // const players = alt.Player.all;
+        // const length = players.length;
+        // for (let i = 0; i < length; i++) {
+        //     const player = players[i];
+        //     if (this.alt.isPointIn(player.pos))
+        //         leaveColshape(this.alt, player);
+        // }
 
         this._markDestroyed();
         this.alt.destroy();
