@@ -255,7 +255,8 @@ export class _Vehicle extends _Entity {
     getOccupant(id) {
         if (mpSeatToAlt(id) === 1) return this.alt.driver?.mp;
         // TODO: implement in core
-        return alt.Player.all.find(p => p.vehicle === this.alt && p.seat === mpSeatToAlt(id))?.mp;
+
+        return this.alt.passengers?.[mpSeatToAlt(id)]?.mp;
     }
 
     getOccupants() {
@@ -264,13 +265,8 @@ export class _Vehicle extends _Entity {
         const driver = this.alt.driver;
         if (driver) occupants.push(driver.mp);
 
-        const players = alt.Player.all;
-        const length = players.length;
-
-        for (let i = 0; i < length; i++) {
-            const player = players[i];
-            if (player !== driver && player.vehicle === this.alt) occupants.push(player.mp);
-        }
+        const passengers = Object.values(this.alt.passengers);
+        if (passengers?.length) occupants.push(...passengers.map(p => p.mp));
 
         return occupants;
     }
