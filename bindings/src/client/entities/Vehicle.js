@@ -183,6 +183,9 @@ export class _Vehicle extends _Entity {
     }
 
     // TODO: forceStreamingUpdate?
+    forceStreamingUpdate() {
+        // Empty
+    }
 
 
 
