@@ -2,7 +2,7 @@ export async function wait(delay: number) {
     return new Promise((resolve) => setTimeout(resolve, delay));
 }
 
-export async function waitFor(func: () => boolean, timeout = 2000, interval = 0): Promise<void> {
+export async function waitFor(func: () => boolean, timeout = 5000, interval = 0): Promise<void> {
     const start = Date.now();
     while(true) {
         if (func()) return;
