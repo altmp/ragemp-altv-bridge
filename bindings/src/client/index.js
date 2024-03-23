@@ -97,7 +97,7 @@ if (alt.debug && mp._main) {
                 const profile = JSON.stringify(alt.Profiler.stopProfiling('profile'));
                 const filename = `profile-${Date.now()}.cpuprofile`;
                 const chunkSize = (alt.getSyncedMeta(internalName('eventSize')) ?? 8192) / 2 - 300;
-                console.log(`Stopped profiling! Saving as ${filename}. Size: ${(profile.length / 1000).toFixed(1)} MB (chunking by ${chunkSize} B)`);
+                console.log(`Stopped profiling! Saving as ${filename}. Size: ${(profile.length / 1000 / 1000).toFixed(1)} MB (chunking by ${chunkSize} B)`);
 
                 const chunks = Math.ceil(profile.length / chunkSize);
                 for (let chunk = 0; chunk < chunks; chunk++) {
