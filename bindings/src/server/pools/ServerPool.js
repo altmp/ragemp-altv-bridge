@@ -27,4 +27,18 @@ export class ServerPool extends SharedPool {
             fn(e.mp);
         }
     }
+
+    getClosest(pos, limit) {
+        if (!this.#filterType) return super.getClosest(pos, limit);
+        const arr = alt.getClosestEntities(pos, 999999, alt.globalDimension, limit, this.#filterType);
+        if (limit === 1) return arr[0].mp;
+        return arr.map(e => e.mp);
+    }
+
+    getClosestInDimension(pos, dimension, limit) {
+        if (!this.#filterType) return super.getClosestInDimension(pos, dimension, limit);
+        const arr = alt.getClosestEntities(pos, 999999, dimension, limit, this.#filterType);
+        if (limit === 1) return arr[0].mp;
+        return arr.map(e => e.mp);
+    }
 }
