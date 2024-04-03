@@ -1,6 +1,6 @@
 import mp from '../../shared/mp';
 import {_WorldObject} from './WorldObject';
-import { ClientPool } from '../ClientPool';
+import { ClientPool } from '../pools/ClientPool';
 import {EntityStoreView} from '../../shared/pools/EntityStoreView';
 
 export class _Pickup extends _WorldObject {

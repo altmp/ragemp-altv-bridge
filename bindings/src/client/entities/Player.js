@@ -1,7 +1,7 @@
 import * as alt from 'alt-client';
 import * as natives from 'natives';
 import mp from '../../shared/mp.js';
-import {ClientPool} from '../ClientPool.js';
+import {ClientPool} from '../pools/ClientPool.js';
 import {_Entity} from './Entity.js';
 import {altSeatToMp, getOverlayColorType, internalName, toMp} from '../../shared/utils';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';

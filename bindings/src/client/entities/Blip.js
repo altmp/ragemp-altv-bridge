@@ -1,6 +1,6 @@
 import * as alt from 'alt-client';
 import mp from '../../shared/mp.js';
-import { ClientPool } from '../ClientPool.js';
+import { ClientPool } from '../pools/ClientPool.js';
 import { _WorldObject } from './WorldObject.js';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 import * as natives from 'natives';

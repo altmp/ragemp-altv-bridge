@@ -1,6 +1,6 @@
 import * as alt from 'alt-client';
 import mp from '../../shared/mp.js';
-import {ClientPool} from '../ClientPool.js';
+import {ClientPool} from '../pools/ClientPool.js';
 import {_BaseObject} from './BaseObject.js';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 import {internalName, mpDimensionToAlt} from '../../shared/utils';

@@ -2,7 +2,7 @@ import * as alt from 'alt-client';
 import * as natives from 'natives';
 import mp from '../../shared/mp.js';
 import { rotToDir } from '../../shared/utils';
-import { ClientPool } from '../ClientPool';
+import { ClientPool } from '../pools/ClientPool';
 import {EntityStoreView} from '../../shared/pools/EntityStoreView';
 
 const view = new EntityStoreView();

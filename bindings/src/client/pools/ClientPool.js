@@ -1,5 +1,4 @@
-import { SharedPool } from '../shared/SharedPool';
-import { vdist2 } from '../shared/utils';
+import { SharedPool } from '../../shared/SharedPool';
 
 export class ClientPool extends SharedPool {
     /** @type {EntityBaseView} */

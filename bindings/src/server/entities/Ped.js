@@ -5,6 +5,7 @@ import { _Entity } from './Entity.js';
 import { ServerPool } from '../pools/ServerPool';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 import {BaseObjectType} from '../../shared/BaseObjectType';
+import { PedPool } from '../pools/PedPool.js';
 
 export class _Ped extends _Entity {
     alt;
@@ -45,7 +46,7 @@ Object.defineProperty(alt.Ped.prototype, 'mp', {
 
 mp.Ped = _Ped;
 
-mp.peds = new ServerPool(EntityGetterView.fromClass(alt.Ped, [BaseObjectType.Ped]), [_Ped], 4);
+mp.peds = new PedPool(EntityGetterView.fromClass(alt.Ped, [BaseObjectType.Ped]), [_Ped], 4);
 
 mp.peds.new = function(model, position, params) {
     model = hashIfNeeded(model);

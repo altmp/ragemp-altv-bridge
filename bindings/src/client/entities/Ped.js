@@ -1,6 +1,6 @@
 import * as alt from 'alt-client';
 import mp from '../../shared/mp.js';
-import {ClientPool} from '../ClientPool.js';
+import {ClientPool} from '../pools/ClientPool.js';
 import {_BaseObject} from './BaseObject.js';
 import natives from 'natives';
 import {_VirtualEntityBase} from './VirtualEntityBase';
@@ -12,6 +12,7 @@ import {getOverlayColorType, hashIfNeeded, mpDimensionToAlt, toAlt, toMp} from '
 import {_LocalVehicle} from './Vehicle';
 import {_Entity} from './Entity';
 import {BaseObjectType} from '../../shared/BaseObjectType';
+import { PedPool } from '../pools/PedPool.js';
 
 const view = EntityGetterView.fromClass(alt.Ped, [BaseObjectType.Ped, BaseObjectType.LocalPed]);
 
@@ -848,7 +849,7 @@ Object.defineProperty(alt.LocalPed.prototype, 'mp', {
 
 mp.Ped = _Ped;
 
-mp.peds = new ClientPool(view, [_Ped, _LocalPed]);
+mp.peds = new PedPool(view, [_Ped, _LocalPed]);
 
 mp.peds.new = function (model, position, heading = 0, dimension = 0) {
     mp.notifyTrace('entity', 'creating local ped', model, position);
