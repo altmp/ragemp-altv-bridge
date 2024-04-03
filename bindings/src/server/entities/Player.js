@@ -253,13 +253,13 @@ export class _Player extends _Entity {
     callToStreamed(includeSelf, evt, args) {
         const altArgs = argsToAlt(args);
         if (includeSelf) emitClient(this.alt, evt, ...altArgs);
-        emitClient(alt.Player.all.filter(p => this.alt.isEntityInStreamRange(p)), evt, ...altArgs);
+        emitClient(this.alt.streamedEntities.filter(e => e.entity instanceof alt.Player), evt, ...altArgs);
     }
 
     callToStreamedUnreliable(includeSelf, evt, args) {
         const altArgs = argsToAlt(args);
         if (includeSelf) emitClientUnreliable(this.alt, evt, ...altArgs);
-        emitClientUnreliable(alt.Player.all.filter(p => this.alt.isEntityInStreamRange(p)), evt, ...altArgs);
+        emitClientUnreliable(this.alt.streamedEntities.filter(e => e.entity instanceof alt.Player), evt, ...altArgs);
     }
 
     // TODO: tattoos (decorations)
