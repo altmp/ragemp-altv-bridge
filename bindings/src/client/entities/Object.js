@@ -2,7 +2,7 @@ import mp from '../../shared/mp';
 import * as alt from 'alt-client';
 import * as natives from 'natives';
 import {_Entity} from './Entity';
-import { ClientPool } from '../ClientPool';
+import { ClientPool } from '../pools/ClientPool';
 import {EntityStoreView} from '../../shared/pools/EntityStoreView';
 import {EntityMixedView} from '../../shared/pools/EntityMixedView';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';

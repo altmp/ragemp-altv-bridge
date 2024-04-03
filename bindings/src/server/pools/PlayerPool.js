@@ -1,6 +1,5 @@
 import alt from 'alt-server';
 import { ServerPool } from './ServerPool.js';
-import mp from 'shared/mp';
 import { InternalChat } from 'shared/DefaultChat.js';
 import {argsToAlt, mpDimensionToAlt} from 'shared/utils';
 import {emitAllClients, emitAllClientsUnreliable, emitClient, emitClientUnreliable} from '../serverUtils';
@@ -8,6 +7,17 @@ import {emitAllClients, emitAllClientsUnreliable, emitClient, emitClientUnreliab
 export class PlayerPool extends ServerPool {
     broadcast(text) {
         InternalChat.broadcast(text);
+    }
+
+    exists(player) {
+        if (player == null) return false;
+
+        if (typeof player === 'object') {
+            if (player.alt instanceof alt.Player) return player.alt.valid;
+            return false;
+        }
+
+        return super.exists(player);
     }
 
     //mp.players.call(String eventName[, Array Arguments]);

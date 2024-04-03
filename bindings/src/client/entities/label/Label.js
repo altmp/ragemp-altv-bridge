@@ -1,7 +1,7 @@
 import * as alt from 'alt-client';
 import * as natives from 'natives';
 import mp from '../../../shared/mp.js';
-import { ClientPool } from '../../ClientPool';
+import { ClientPool } from '../../pools/ClientPool.js';
 import { _Entity } from '../Entity';
 import { LabelRenderer } from './LabelRenderer';
 import { VirtualEntityID } from '../../../shared/VirtualEntityID';

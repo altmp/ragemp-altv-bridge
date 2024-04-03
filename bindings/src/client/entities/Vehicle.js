@@ -1,7 +1,7 @@
 import * as alt from 'alt-client';
 import * as natives from 'natives';
 import mp from '../../shared/mp.js';
-import { ClientPool } from '../ClientPool.js';
+import { ClientPool } from '../pools/ClientPool.js';
 import { _Entity } from './Entity.js';
 import { _Colshape } from './Colshape';
 import {VirtualEntityID} from '../../shared/VirtualEntityID';
@@ -10,6 +10,7 @@ import {EntityStoreView} from '../../shared/pools/EntityStoreView';
 import {EntityMixedView} from '../../shared/pools/EntityMixedView';
 import {hashIfNeeded, mpDimensionToAlt, toAlt, toMp} from '../../shared/utils';
 import {BaseObjectType} from '../../shared/BaseObjectType';
+import { VehiclePool } from '../pools/VehiclePool.js';
 
 /** @type {Record<string, string>} */
 const keys = {'handlingnamehash':'handlingNameHash','mass':'mass','initialdragcoeff':'initialDragCoeff','downforcemodifier':'downforceModifier','unkfloat1':'unkFloat1','unkfloat2':'unkFloat2','centreofmassoffset':'centreOfMassOffset','inertiamultiplier':'inertiaMultiplier','percentsubmerged':'percentSubmerged','percentsubmergedratio':'percentSubmergedRatio','drivebiasfront':'driveBiasFront','acceleration':'acceleration','initialdrivegears':'initialDriveGears','driveinertia':'driveInertia','clutchchangeratescaleupshift':'clutchChangeRateScaleUpShift','clutchchangeratescaledownshift':'clutchChangeRateScaleDownShift','initialdriveforce':'initialDriveForce','drivemaxflatvel':'driveMaxFlatVel','initialdrivemaxflatvel':'initialDriveMaxFlatVel','brakeforce':'brakeForce','unkfloat4':'unkFloat4','brakebiasfront':'brakeBiasFront','brakebiasrear':'brakeBiasRear','handbrakeforce':'handBrakeForce','steeringlock':'steeringLock','steeringlockratio':'steeringLockRatio','tractioncurvemax':'tractionCurveMax','tractioncurvemaxratio':'tractionCurveMaxRatio','tractioncurvemin':'tractionCurveMin','tractioncurveminratio':'tractionCurveMinRatio','tractioncurvelateral':'tractionCurveLateral','tractioncurvelateralratio':'tractionCurveLateralRatio','tractionspringdeltamax':'tractionSpringDeltaMax','tractionspringdeltamaxratio':'tractionSpringDeltaMaxRatio','lowspeedtractionlossmult':'lowSpeedTractionLossMult','camberstiffness':'camberStiffness','tractionbiasfront':'tractionBiasFront','tractionbiasrear':'tractionBiasRear','tractionlossmult':'tractionLossMult','suspensionforce':'suspensionForce','suspensioncompdamp':'suspensionCompDamp','suspensionrebounddamp':'suspensionReboundDamp','suspensionupperlimit':'suspensionUpperLimit','suspensionlowerlimit':'suspensionLowerLimit','suspensionraise':'suspensionRaise','suspensionbiasfront':'suspensionBiasFront','suspensionbiasrear':'suspensionBiasRear','antirollbarforce':'antiRollBarForce','antirollbarbiasfront':'antiRollBarBiasFront','antirollbarbiasrear':'antiRollBarBiasRear','rollcentreheightfront':'rollCentreHeightFront','rollcentreheightrear':'rollCentreHeightRear','collisiondamagemult':'collisionDamageMult','weapondamagemult':'weaponDamageMult','deformationdamagemult':'deformationDamageMult','enginedamagemult':'engineDamageMult','petroltankvolume':'petrolTankVolume','oilvolume':'oilVolume','unkfloat5':'unkFloat5','seatoffsetdistx':'seatOffsetDistX','seatoffsetdisty':'seatOffsetDistY','seatoffsetdistz':'seatOffsetDistZ','monetaryvalue':'monetaryValue','modelflags':'modelFlags','handlingflags':'handlingFlags','damageflags':'damageFlags'};
@@ -511,7 +512,7 @@ Object.defineProperty(alt.LocalVehicle.prototype, 'mp', {
 
 mp.Vehicle = _Vehicle;
 
-mp.vehicles = new ClientPool(view, [_Vehicle, _LocalVehicle]);
+mp.vehicles = new VehiclePool(view, [_Vehicle, _LocalVehicle]);
 
 const initializers = {};
 

@@ -1,6 +1,6 @@
 import * as alt from 'alt-client';
 import mp from '../../shared/mp.js';
-import { ClientPool } from '../ClientPool.js';
+import { ClientPool } from '../pools/ClientPool.js';
 import { _Entity } from './Entity';
 import { _WorldObject } from './WorldObject';
 import { _BaseObject } from './BaseObject';
