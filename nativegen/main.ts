@@ -29,6 +29,7 @@ interface ParsedNative {
     resObject?: Record<string, string>; // Keys to set on resObject
     return?: string; // return value expression;
     hash: string;
+    hasRef: boolean;
     requiredArguments: string[];
 }
 
@@ -152,6 +153,7 @@ function registerNativeFunction(id: Identifier, fn: FunctionExpression, invoker:
         resObject: {},
         resObjectInitialValue: invoker.vector ? 'new mp.Vector3(0, 0, 0)' : '{}',
         hash: '0x' + hash,
+        hasRef: altNatives[hash].params.some(e => e.ref),
         requiredArguments: []
     };
 
@@ -306,7 +308,6 @@ function generateNativeCaller(native: ParsedNative, alias = null) {
     const outArgs = native.callArguments;
     const inArgs = native.functionArguments.slice(alias ? 1 : 0);
 
-    // TODO: Do not create $res when it is not used
     let res = `function (${inArgs.join(', ')}) {\n`
 
     if (alias) {
@@ -320,16 +321,30 @@ function generateNativeCaller(native: ParsedNative, alias = null) {
                 res += `    if (typeof ${native.functionArguments[i]} != "string") ${native.functionArguments[i]} = null;\n`;
         }
 
-        res += `    let $res = natives.${native.altNative.altName}(${outArgs.join(', ')});\n`;
-        // TODO: Avoid creating an array
-        if (native.return) res += `    if (!Array.isArray($res)) $res = [$res];\n`;
-        if (native.return && native.resObject && Object.values(native.resObject).length > 0) {
-            res += `    let $resObj = ${native.resObjectInitialValue ?? '{}'};\n`;
-            for (const [key, value] of Object.entries(native.resObject)) {
-                res += `    $resObj.${key} = ${value};\n`;
-            }
+        const resInit = native.return ? 'let $res = ' : '';
+        res += `    ${resInit}natives.${native.altNative.altName}(${outArgs.join(', ')});\n`;
+
+        const inlineResult = (value: string) => {
+            if (native.hasRef) return value;
+
+            value = value.replaceAll('$res[0]', '$res');
+            if (value.match(/\$res\[\d+]/)) throw new Error('Native ' + native.altNative.name + ' had referenced argument ' + value + ', even though no references were captured earlier');
+            return value;
         }
-        if (native.return) res += `    return ${native.return};\n`;
+
+        if (native.return) {
+            // if (native.hasRef) res += `    if (!Array.isArray($res)) $res = [$res];\n`;
+            // if (!native.hasRef) res += `    if (Array.isArray($res)) $res = $res[0];\n`;
+
+            if (native.resObject && Object.values(native.resObject).length > 0) {
+                res += `    let $resObj = ${native.resObjectInitialValue ?? '{}'};\n`;
+                for (let [key, value] of Object.entries(native.resObject)) {
+                    res += `    $resObj.${key} = ${inlineResult(value)};\n`;
+                }
+            }
+
+            res += `    return ${inlineResult(native.return)};\n`;
+        }
     }
     res += `}`;
     return res;
