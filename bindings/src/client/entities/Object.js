@@ -10,14 +10,18 @@ import {hashIfNeeded, internalName, toAlt, toMp} from '../../shared/utils';
 import { mpDimensionToAlt } from '../../shared/utils';
 import {BaseObjectType} from '../../shared/BaseObjectType';
 
-const store = new EntityStoreView();
+const store = new EntityStoreView(1, (entity) => {
+    // works for _NetworkObject
+    // but what if entity is alt.LocalObject?
+    return entity.handle !== 0;
+});
 const view = new EntityMixedView(store, new EntityGetterView(
     () => alt.LocalObject.all,
     (id) => alt.LocalObject.all.find(e => e && e.mp.id === id),
     {
         remoteIDGetter: alt.LocalObject.getByID,
         scriptIDGetter: alt.LocalObject.getByScriptID,
-        streamRangeGetter: () => alt.LocalObject.all.filter(e => e.scriptID !== 0)
+        streamRangeGetter: () => alt.LocalObject.streamedIn
     },
     [BaseObjectType.LocalObject]
 ));
