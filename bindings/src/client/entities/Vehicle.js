@@ -442,6 +442,51 @@ export class _Vehicle extends _Entity {
     get hasClearLosTo() {
         return this.hasClearLosToEntity;
     }
+
+    // TODO: Implement new vehicle function from February 2024
+    breakOffWheel(wheelId, deleteMapObject) {
+    }
+
+    fixWheel(wheelId) {
+    }
+
+    isWheelBrokenOff(wheelId) {
+        return false;
+    }
+
+    breakOffBumper(front, deleteMapObject) {
+    }
+
+    fixBumper(front) {
+    }
+
+    set deleteBrokenWheelObjects(value) {
+    }
+
+    get deleteBrokenWheelObjects() {
+        return false;
+    }
+
+    set deleteBrokenPartObjects(value) {
+    }
+
+    get deleteBrokenPartObjects() {
+        return false;
+    }
+
+    set deleteBrokenDoorObjects(value) {
+    }
+
+    get deleteBrokenDoorObjects() {
+        return false;
+    }
+
+    setLiveryTexture(texDict, texName) {
+    }
+
+    setNumberPlateTexture(texDict, texName, texDictNormal, texNameNormal) {
+    }
+
     //#endregion
 }
 

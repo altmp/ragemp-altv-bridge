@@ -105,6 +105,47 @@ export class _Browser extends _BaseObject {
         if (!this.alt.valid) return;
         this.alt.isVisible = value;
     }
+
+    set headlessTextureDict(value) {
+    }
+
+    get headlessTextureDict() {
+        return '';
+    }
+
+    set headlessTextureName(value) {
+    }
+
+    get headlessTextureName() {
+        return '';
+    }
+
+    set headlessTextureHeightScale(value) {
+    }
+
+    get headlessTextureHeightScale() {
+        return '';
+    }
+
+    set inputEnabled(value) {
+    }
+
+    get inputEnabled() {
+        return '';
+    }
+
+    set mouseInputEnabled(value) {
+    }
+
+    get mouseInputEnabled() {
+        return true;
+    }
+
+    sendMouseClickEvent(value) {
+    }
+
+    sendMouseMoveEvent(value) {
+    }
 }
 
 Object.defineProperty(alt.WebView.prototype, 'mp', {
@@ -122,6 +163,9 @@ mp.browsers.new = function (url) {
     webview.focus();
     return webview.mp;
 };
+
+// TODO: Possible to implement compatibility with 3D CEF?
+mp.browsers.newHeadless = mp.browsers.new;
 
 alt.on('baseObjectCreate', (baseObject) => {
     if (baseObject instanceof alt.WebView) mp.events.dispatchLocal('browserCreated', baseObject.mp);

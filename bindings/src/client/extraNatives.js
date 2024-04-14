@@ -112,6 +112,10 @@ mp.game.hud.applyShowHudComponentsThisFrameBatch = function() {
 
 mp.gui.execute = () => {}; // seems to be doing nothing
 
+mp.gui.cursor.registerCustomIcon = (type, packageFilePath, offsetX, offsetY) => {
+    // TODO
+};
+
 mp.game.waitAsync = (ms) => {
     return new Promise(resolve => setTimeout(resolve, ms || 0));
 };
@@ -128,6 +132,23 @@ mp.game.graphics.notify = (message) => {
     natives.addTextComponentSubstringPlayerName(message);
     return natives.endTextCommandThefeedPostTicker(false, true);
 };
+
+mp.game.graphics.createWorldTextureSwap = (oldTexDict, oldTexName, newTexDict, newTexName) => {
+
+};
+
+mp.game.graphics.removeWorldTextureSwap = (oldTexDict, oldTexName) => {
+
+};
+
+mp.game.graphics.resetWorldTextureSwaps = () => {};
+
+mp.game.graphics.registerTextFontId = (fontName) => {};
+
+mp.game.audio.playPoliceCrimeReport = (position, crimeIndex, playDelay, isLocalPlayer) => {};
+
+mp.game.audio.playPoliceSpottedReport = (position, vehicle, speed, directionIndex) => {};
+
 
 //#region Renamed natives
 
@@ -173,7 +194,9 @@ mp.game.player.getEntityIsFreeAimingAt = () => {
     return mp._findEntity(res);
 };
 // TODO: mp.game.object.getAllByHash
+mp.game.object.getAllByHash = () => {};
 // TODO: mp.game.object.getAllInRange
+mp.game.object.getAllInRange = () => {};
 // TODO: minimap components
 
 mp.game.pathfind.loadAllPathNodes = (set) => natives.loadAllPathNodes(set);
@@ -187,8 +210,11 @@ mp.game.player.setHudAnimStopLevel = mp.game.player.unk._0xDE45D1A1EF45EE61;
 mp.game.player.setHudAnimStopLevel = mp.game.player.unk._0xDE45D1A1EF45EE61;
 mp.game.player.hasTeleportFinished = mp.game.player.updateTeleport;
 // TODO: mp.streaming.getAllModelNames
+mp.streaming.getAllModelNames = () => {};
 // TODO: mp.streaming.getAllModelHashes
+mp.streaming.getAllModelHashes = () => {};
 // TODO: mp.streaming.getModelNameFromHash
+mp.streaming.getModelNameFromHash = () => {};
 // TODO: mp.streaming.forceStreamingUpdate
 mp.streaming ??= {};
 mp.streaming.forceStreamingUpdate = () => {
@@ -199,12 +225,19 @@ mp.game.streaming.forceStreamingUpdate = () => {
 
 mp.game.vehicle.setExperimentalAttachmentSyncEnabled = () => {};
 mp.game.vehicle.setExperimentalHornSyncEnabled = () => {};
+
 // TODO: mp.vehicle.addModelOverride
+mp.vehicle.addModelOverride = () => {};
 // TODO: mp.vehicle.removeModelOverride
+mp.vehicle.removeModelOverride = () => {};
 // TODO: mp.vehicle.clearModelOverrides
+mp.vehicle.clearModelOverrides = () => {};
 // TODO: mp.game.weapon.getWeaponInfo <- idk how this shit is supposed to work on RAGE:MP, looks like it just doesn't /shrug
+mp.game.weapon.getWeaponInfo = () => {};
 // TODO: mp.game.weapon.getAccuracyModifier <- same story
+mp.game.weapon.getAccuracyModifier = () => {};
 // TODO: mp.game.weapon.getAllWeaponNames
+mp.game.weapon.getAllWeaponNames = () => {};
 
 // TODO: dlc1, dlc2
 
