@@ -1,11 +1,28 @@
 {
+    "name": "ragemp-altv-bridge",
+    "version": "0.0.1",
+    "description": "RAGE Multiplayer alt:V Bridge. This package provides a bridge between RAGE Multiplayer and alt:V. It allows you to use RAGEMP code in alt:V.",
+    "keywords": [
+        "ragemp",
+        "altv",
+        "bridge",
+        "bridge-ragemp-altv",
+        "ragemp-altv-bridge"
+    ],
+    "author": "alt:V Bridge Team",
+    "license": "MIT",
+    "homepage": "https://github.com/altmp/ragemp-altv-bridge",
+    "bugs": {
+        "url": "https://github.com/altmp/ragemp-altv-bridge/issues"
+    },
     "scripts": {
         "install": "cd bindings && npm install && cd ../nativegen && npm install && cd ../testlib && npm install && cd ../tests && npm install",
+        "ci": "cd bindings && npm ci && cd ../nativegen && npm ci && cd ../testlib && npm ci && cd ../tests && npm ci",
         "build": "cd bindings && npm run build",
         "update-natives": "cd nativegen && npm run start"
     },
     "devDependencies": {
-        "eslint": "^8.36.0",
+        "eslint": "^9.0.0",
         "shx": "^0.3.4"
     }
 }

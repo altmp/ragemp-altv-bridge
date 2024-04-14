@@ -6,12 +6,12 @@
         "build": "cd ../testlib && node build.mjs && cd ../tests && node build.mjs"
     },
     "devDependencies": {
-        "@altv/types-client": "^2.6.8",
-        "@altv/types-natives": "^1.5.3",
-        "@altv/types-server": "^2.7.3",
-        "@altv/types-shared": "^1.4.9",
+        "@altv/types-client": "^16.2.2",
+        "@altv/types-natives": "^16.2.0",
+        "@altv/types-server": "^16.2.1",
+        "@altv/types-shared": "^16.2.1",
         "@ragemp/types-client": "github:ragempcommunity/ragemp-types#types-client",
         "@ragemp/types-server": "github:ragempcommunity/ragemp-types#types-server",
-        "@types/chai": "^4.3.5"
+        "@types/chai": "^4.3.14"
     }
 }

@@ -6,15 +6,15 @@
         "start": "node --loader ts-node/esm main.ts"
     },
     "dependencies": {
-        "escodegen": "^2.0.0",
+        "escodegen": "^2.1.0",
         "esprima": "^4.0.1",
         "estree-walker": "^3.0.3",
-        "node-fetch": "^3.3.1"
+        "node-fetch": "^3.3.2"
     },
     "devDependencies": {
-        "@types/escodegen": "^0.0.7",
-        "@types/esprima": "^4.0.3",
-        "@types/node": "^18.15.5",
-        "ts-node": "^10.9.1"
+        "@types/escodegen": "^0.0.10",
+        "@types/esprima": "^4.0.6",
+        "@types/node": "^20.12.7",
+        "ts-node": "^10.9.2"
     }
 }
