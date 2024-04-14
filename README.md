@@ -161,7 +161,7 @@ We recommended adding this settings in server.toml for best performance
   [threads]
   streamer = 1
   migration = 1
-  syncSend = 10 # 
+  syncSend = 10
   syncReceive = 2
 
   # Limiting streamed entities. (RAGEMP has a limit of 200 streamed peds in total. Play around with these values to find the best value for your server)
