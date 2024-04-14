@@ -8,6 +8,9 @@ on:
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
+    
+    outputs:
+      package_version: ${{ steps.package_version.outputs.VERSION }}
 
     steps:
       - name: Check out code
@@ -26,7 +29,7 @@ jobs:
 
       - name: Extract version from package.json
         id: package_version
-        run: echo "::set-output name=VERSION::$(jq -r '.version' package.json)"
+        run: echo "VERSION=$(jq -r '.version' package.json)" >> "$GITHUB_OUTPUT"
 
       - name: Create Release
         id: create_release
@@ -39,17 +42,17 @@ jobs:
           draft: false
           prerelease: false
 
+      - name: Archive files
+        run: |
+          cd bindings/dist
+          zip -r bindings-${{ steps.package_version.outputs.VERSION }}.zip .
+
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./bindings/dist/
+          asset_path: ./bindings/dist/bindings-${{ steps.package_version.outputs.VERSION }}.zip
           asset_name: bindings-${{ steps.package_version.outputs.VERSION }}.zip
           asset_content_type: application/zip
-
-      - name: Archive files
-        run: |
-          cd bindings/dist
-          zip -r bindings-${{ steps.package_version.outputs.VERSION }}.zip .
