@@ -1,0 +1,55 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main  # or any other branch from which you want to deploy
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'  # Set this to the version of Node.js that your project uses
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Extract version from package.json
+        id: package_version
+        run: echo "::set-output name=VERSION::$(jq -r '.version' package.json)"
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.package_version.outputs.VERSION }}
+          release_name: Release ${{ steps.package_version.outputs.VERSION }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./bindings/dist/
+          asset_name: bindings-${{ steps.package_version.outputs.VERSION }}.zip
+          asset_content_type: application/zip
+
+      - name: Archive files
+        run: |
+          cd bindings/dist
+          zip -r bindings-${{ steps.package_version.outputs.VERSION }}.zip .
