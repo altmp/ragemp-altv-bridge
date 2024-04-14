@@ -17,6 +17,7 @@
     },
     "scripts": {
         "install": "cd bindings && npm install && cd ../nativegen && npm install && cd ../testlib && npm install && cd ../tests && npm install",
+        "ci": "cd bindings && npm ci && cd ../nativegen && npm ci && cd ../testlib && npm ci && cd ../tests && npm ci",
         "build": "cd bindings && npm run build",
         "update-natives": "cd nativegen && npm run start"
     },
