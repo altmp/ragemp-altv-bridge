@@ -21,7 +21,11 @@
     ·
     <a href="https://github.com/altmp/ragemp-altv-bridge/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
+
 </div>
+
+> [!NOTE]
+> This bridge only supports gamemodes written in JS, there is no bridge for C# at the moment.
 
 
 
