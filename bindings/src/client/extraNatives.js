@@ -13,7 +13,9 @@ mp.game.rope = mp.game.physics;
 mp.game.controls = mp.game.pad;
 mp.game.ui = mp.game.hud;
 mp.game.decisionevent = mp.game.event;
-mp.gui = {};
+mp.gui = {
+    cursor: {},
+};
 
 // #endregion
 
@@ -125,7 +127,7 @@ mp.game.wait = (ms) => {
 };
 // TODO: screenshot API
 
-mp.gui.цуisGpuRenderingEnabled = () => false;
+mp.gui.isGpuRenderingEnabled = () => false;
 
 mp.game.graphics.notify = (message) => {
     natives.beginTextCommandThefeedPost('STRING');
