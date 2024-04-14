@@ -134,6 +134,10 @@ Before installation, ensure that you have `alt:V` client and server modules inst
 ## Recommended settings
 We recommended adding this settings in server.toml for best performance
 ```toml
+
+  host = "1.2.3.4" # Your public IP address
+  outgoingInterface = "5.6.7.8" # If you have multiple IP addresses, you can specify the outgoing interface here for the server to use. For example 5.6.7.8 will be used to speak with masterlist server.
+
   mtu=1000 # Maximum safe value is 1200. Setting higher values may cause network issues.
   highThreadPriority = true # Forces the server to prioritize CPU resources for itself.
   hashClientResourceName = true # Hashes the resource names sent to the client.
@@ -150,12 +154,22 @@ We recommended adding this settings in server.toml for best performance
   spawnAfterConnect = true # RAGEMP spawns players after they connect, alt:V don't spawn unless you do it manually. This setting will spawn players after they connect.
   connectionQueue = false # Disables connection queue. (RAGEMP doesn't have connection queue)
 
+  # In order to handle more players, you can increase the worker ports. (aka sockets.conf in RAGEMP). Recommended value is 300 players per worker.
+  worker-ports = [7770, 7771, 7772, 7773, 7774, 7775]
+
+  # Values adjusted for Intel Xeon E-2388G CPU, for 2000 players. Adjust these values to your server's needs.
+  [threads]
+  streamer = 1
+  migration = 1
+  syncSend = 10 # 
+  syncReceive = 2
+
   # Limiting streamed entities. (RAGEMP has a limit of 200 streamed peds in total. Play around with these values to find the best value for your server)
-  [maxStreamedEntities]
-  player = 200
-  vehicle = 128
-  ped = 50
-  object = 256
+  [maxStreaming]
+  entities = 560 # Maximum value in alt:V (Limit 560)
+  vehicles = 128 # Maximum streamed vehicles (Limit 128)
+  peds = 220 # Maximum streamed peds (Limit 220)
+  objects = 120 # Maximum streamed server-sided objects. Doesn't affect streamed client-sided objects. (Limit 120)
 
   # Disables collision checks so client sided natives like setNoCollision will work.
   [antiCheat]
@@ -185,7 +199,7 @@ We recommended adding this settings in server.toml for best performance
 There are some systems that is impossible to port from `RAGE Multiplayer` to `alt:V` due to the differences in the platforms. Some of these systems include:
 
 - **Voice Chat**: `RAGE Multiplayer` uses different system for voice chat, while `alt:V` uses a channel voice chat system. To port voice chat, you will need to rewrite the voice chat system from scratch. Visit [alt:V Documentation](https://docs.altv.mp/articles/voice.html) for more details.
-- **Weapon damage system**: `RAGE Multiplayer` uses different weapon damage system, while `alt:V` uses a different system. You will need to rewrite the weapon damage system from scratch. (In `alt:V` it is very similar to `RAGE Multiplayer`. Visit [alt:V Documentation](https://docs.altv.mp/js/api/alt-server.IServerEvent.html#_altmp_altv_types_alt_server_IServerEvent_weaponDamage) for more details.
+- **Weapon damage system**: `RAGE Multiplayer` uses client-sided damage events only, while `alt:V` uses both server-sided and client-sided event system. You will need to rewrite the weapon damage system, and adjust damage. (In `alt:V` it is very similar to `RAGE Multiplayer`. Visit [alt:V Documentation](https://docs.altv.mp/js/api/alt-server.IServerEvent.html#_altmp_altv_types_alt_server_IServerEvent_weaponDamage) for more details.
 - **CEF Textures**: `RAGE Multiplayer` in March 2024 added `http://game-textures/put` endpoint to allow CEF textures to be loaded into game, which is currently not supported in `alt:V`.
 
 To rewrite this project for another platform, you will need deep understanding of the target platform’s API and possibly a complete overhaul of the networking code.
