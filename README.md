@@ -38,9 +38,10 @@
       </ul>
     </li>
     <li><a href="#recommended-settings">Usage</a></li>
-    <li><a href="#incompatible-systems">Usage</a></li>
+    <li><a href="#incompatible-systems">Incompatible Systems</a></li>
     <li><a href="#self-building">Self-Building</a></li>
     <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#commit-style">Commit Style</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -62,16 +63,16 @@ Next we will explain how to install the bridge in alt:V, as well as explain the 
 
 ### Prerequisites
 
-Before installation, ensure that you have `alt:v` client and server modules installed on your system. Visit [altV Official Site](https://altv.mp/) for more details:
+Before installation, ensure that you have `alt:V` client and server modules installed on your system. Visit [alt:V Official Site](https://altv.mp/) for more details:
 
-1. Create empty folder and install alt:V server using `npx altv-pkg dev` command inside new folder. (We recommend using the `dev` version for development purposes. And `npx altv-pkg release` for production purposes.)
+1. Create empty folder and install alt:V server using `npx altv-pkg release` command inside new folder. (We recommend using the `release` version for release purposes. And `npx altv-pkg dev` for development purposes only (E.g to test new features or to test your server before release))
 
 2. Create `resources` folder inside your project folder.
 
 ### Installation
 
 
-1. **Pre-requisites**: Before installation, ensure that you have `alt:v` client and server modules installed on your system. Visit [altV Official Site](https://altv.mp/) for more details.
+1. **Pre-requisites**: Before installation, ensure that you have `alt:V` client and server modules installed on your system. Visit [alt:V Official Site](https://altv.mp/) for more details.
    
 2. **Download**: Download the latest version of the bridge from the [Releases](https://github.com/altmp/ragemp-altv-bridge/releases) page.
 
@@ -96,7 +97,33 @@ Before installation, ensure that you have `alt:v` client and server modules inst
       ]
       ```
 
-4. **Start the Server**: Run your `alt:V` server as usual and ensure that the project module loads correctly.
+4. For `client_resources`, create file `resource.toml` inside `client_resources` folder with this content:
+    ```toml
+    type = "js"
+    client-main = "index.js"
+    client-files = [
+        "*"
+    ]
+
+    # Adjust this to your needs
+    required-permissions = [
+        "Screen Capture",
+        "WebRTC",
+        "Clipboard Access",
+        "Extended Voice API"
+    ]
+
+    [config]
+    bridge-main = true
+    ```
+
+5. For `server_resources`, create file `resource.toml` inside `server_resources` folder with this content:
+    ```toml
+    type = "js"
+    main = "index.js"
+    ```
+
+6. **Start the Server**: Run your `alt:V` server as usual and ensure that the project module loads correctly.
 
 
 <!-- SETTINGS-->
@@ -130,6 +157,23 @@ We recommended adding this settings in server.toml for best performance
   [antiCheat]
   collision = false
 ```
+
+<!-- DLC Resources -->
+## DLC Resources
+`alt:V` uses a different system for handling DLC resources. In `RAGE Multiplayer`, DLC resources are stored in `client_packages/game_resources/dlcpacks` folder, while in `alt:V` they are stored as separate resource. To port DLC resources from `RAGE Multiplayer` to `alt:V`, you will need to follow instuctions. Visit [alt:V Resource Documentation](https://docs.altv.mp/articles/resources.html) for more details.
+
+- `client_packages/game_resources/dlcpacks`: All your dlc.rpf files should be placed in `dlc_resources` folder in your `alt:V` server resources folder. (So it should look like `myproject/resources/dlc_resources`)
+
+- Anything that is not a dlc.rpf file should be placed in `game_resources` folder in your `alt:V` server resources folder. For example `x64`, `common`, `raw` and etc (So it should look like `myproject/resources/game_resources`).
+- Also make sure to add `resource.toml` file inside game_resources folder with this content:
+  ```toml
+    type = 'rpf'
+    client-files = [ 
+        'raw/*',
+        'x64/*',
+        'common/*'
+    ]
+  ```
 
 <!-- INCOMPATIBLE SYSTEMS -->
 ## Incompatible Systems
@@ -171,12 +215,30 @@ Contributions are what make the open source community such an amazing place to l
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
 
+To align with `alt:V`'s commitment to maintaining a clean commit history, please ensure that your commit messages follow our conventional commit format. This aids in automatic changelog generation and streamlines the versioning process. (See [Commit Style](#commit-style) for more details).
+
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+
+## Commit style
+At alt:V Multiplayer we follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) style.
+
+Breaking change indication is preferred via ! after change type.
+
+Recommended change types:
+- `fix`
+- `feat`
+- `build`
+- `ci`
+- `chore`
+- `refactor`
+- `test`
+- `perf`
+- `revert`
 
 <!-- LICENSE -->
 ## License
