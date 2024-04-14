@@ -135,45 +135,45 @@ Before installation, ensure that you have `alt:V` client and server modules inst
 We recommend adding this settings in server.toml for best performance
 ```toml
 
-  host = "1.2.3.4" # Your public IP address
-  outgoingInterface = "5.6.7.8" # If you have multiple IP addresses, you can specify the outgoing interface here for the server to use. For example 5.6.7.8 will be used to speak with masterlist server.
+host = "1.2.3.4" # Your public IP address
+outgoingInterface = "5.6.7.8" # If you have multiple IP addresses, you can specify the outgoing interface here for the server to use. For example 5.6.7.8 will be used to speak with masterlist server.
 
-  mtu=1000 # Maximum safe value is 1200. Setting higher values may cause network issues.
-  highThreadPriority = true # Forces the server to prioritize CPU resources for itself.
-  hashClientResourceName = true # Hashes the resource names sent to the client.
+mtu=1000 # Maximum safe value is 1200. Setting higher values may cause network issues.
+highThreadPriority = true # Forces the server to prioritize CPU resources for itself.
+hashClientResourceName = true # Hashes the resource names sent to the client.
 
-  disableOptionalProps = true # Disables GTA:O extra world objects. (May cause FPS drops for high load servers)
+disableOptionalProps = true # Disables GTA:O extra world objects. (May cause FPS drops for high load servers)
 
-  # Streamer settings, many high load servers in RAGEMP use ~200 distance for streaming. Majestic uses 300 in their server.
-  streamingDistance = 300.0
-  migrationDistance = 200.0
-  mapCellAreaSize = 100
+# Streamer settings, many high load servers in RAGEMP use ~200 distance for streaming. Majestic uses 300 in their server.
+streamingDistance = 300.0
+migrationDistance = 200.0
+mapCellAreaSize = 100
 
 
-  sendPlayerNames = false # Disables sending player names to the client. (Most RAGEMP servers use their own name tags system)
-  spawnAfterConnect = true # RAGEMP spawns players after they connect, alt:V don't spawn unless you do it manually. This setting will spawn players after they connect.
-  connectionQueue = false # Disables connection queue. (RAGEMP doesn't have connection queue)
+sendPlayerNames = false # Disables sending player names to the client. (Most RAGEMP servers use their own name tags system)
+spawnAfterConnect = true # RAGEMP spawns players after they connect, alt:V don't spawn unless you do it manually. This setting will spawn players after they connect.
+connectionQueue = false # Disables connection queue. (RAGEMP doesn't have connection queue)
 
-  # In order to handle more players, you can increase the worker ports. (aka sockets.conf in RAGEMP). Recommended value is 300 players per worker.
-  worker-ports = [7770, 7771, 7772, 7773, 7774, 7775]
+# In order to handle more players, you can increase the worker ports. (aka sockets.conf in RAGEMP). Recommended value is 300 players per worker.
+worker-ports = [7770, 7771, 7772, 7773, 7774, 7775]
 
-  # Values adjusted for Intel Xeon E-2388G CPU, for 2000 players. Adjust these values to your server's needs.
-  [threads]
-  streamer = 1
-  migration = 1
-  syncSend = 10
-  syncReceive = 2
+# Values adjusted for Intel Xeon E-2388G CPU, for 2000 players. Adjust these values to your server's needs.
+[threads]
+streamer = 1
+migration = 1
+syncSend = 10
+syncReceive = 2
 
-  # Limiting streamed entities. (RAGEMP has a limit of 200 streamed peds in total. Play around with these values to find the best value for your server)
-  [maxStreaming]
-  entities = 560 # Maximum value in alt:V (Limit 560)
-  vehicles = 128 # Maximum streamed vehicles (Limit 128)
-  peds = 220 # Maximum streamed peds (Limit 220)
-  objects = 120 # Maximum streamed server-sided objects. Doesn't affect streamed client-sided objects. (Limit 120)
+# Limiting streamed entities. (RAGEMP has a limit of 200 streamed peds in total. Play around with these values to find the best value for your server)
+[maxStreaming]
+entities = 560 # Maximum value in alt:V (Limit 560)
+vehicles = 128 # Maximum streamed vehicles (Limit 128)
+peds = 220 # Maximum streamed peds (Limit 220)
+objects = 120 # Maximum streamed server-sided objects. Doesn't affect streamed client-sided objects. (Limit 120)
 
-  # Disables collision checks so client sided natives like setNoCollision will work.
-  [antiCheat]
-  collision = false
+# Disables collision checks so client sided natives like setNoCollision will work.
+[antiCheat]
+collision = false
 ```
 
 <!-- DLC Resources -->
