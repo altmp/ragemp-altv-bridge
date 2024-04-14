@@ -41,7 +41,8 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#recommended-settings">Usage</a></li>
+    <li><a href="#recommended-settings">Recommended settings</a></li>
+    <li><a href="#dlc-resources">DLC Resources</a></li>
     <li><a href="#incompatible-systems">Incompatible Systems</a></li>
     <li><a href="#self-building">Self-Building</a></li>
     <li><a href="#contributing">Contributing</a></li>
@@ -127,7 +128,9 @@ Before installation, ensure that you have `alt:V` client and server modules inst
     main = "index.js"
     ```
 
-6. **Start the Server**: Run your `alt:V` server as usual and ensure that the project module loads correctly.
+6. For `game_resources` and `dlc_resources`, please follow the instructions in the [DLC Resources](#dlc-resources) section.
+
+7. **Start the Server**: Run your `alt:V` server as usual and ensure that the project module loads correctly.
 
 
 <!-- SETTINGS-->
@@ -199,7 +202,7 @@ We recommend adding this settings in server.toml for best performance
 There are some systems that is impossible to port from `RAGE Multiplayer` to `alt:V` due to the differences in the platforms. Some of these systems include:
 
 - **Voice Chat**: `RAGE Multiplayer` uses different system for voice chat, while `alt:V` uses a channel voice chat system. To port voice chat, you will need to rewrite the voice chat system from scratch. Visit [alt:V Documentation](https://docs.altv.mp/articles/voice.html) for more details.
-- **Weapon damage system**: `RAGE Multiplayer` uses client-sided damage events only, while `alt:V` uses both server-sided and client-sided event system. You will need to rewrite the weapon damage system, and adjust damage. (In `alt:V` it is very similar to `RAGE Multiplayer`. Visit [alt:V Documentation](https://docs.altv.mp/js/api/alt-server.IServerEvent.html#_altmp_altv_types_alt_server_IServerEvent_weaponDamage) for more details.
+- **Weapon damage system**: `RAGE Multiplayer` uses client-sided damage events only, while `alt:V` uses both server-sided and client-sided event system. You will need to rewrite the weapon damage system, and adjust damage. (In `alt:V` it is very similar to `RAGE Multiplayer`. Visit [alt:V Documentation](https://docs.altv.mp/js/api/alt-server.IServerEvent.html#_altmp_altv_types_alt_server_IServerEvent_weaponDamage) for more details.)
 - **CEF Textures**: `RAGE Multiplayer` in March 2024 added `http://game-textures/put` endpoint to allow CEF textures to be loaded into game, which is currently not supported in `alt:V`.
 
 To rewrite this project for another platform, you will need deep understanding of the target platform’s API and possibly a complete overhaul of the networking code.
