@@ -182,7 +182,7 @@ We recommended adding this settings in server.toml for best performance
 
 - `client_packages/game_resources/dlcpacks`: All your dlc.rpf files should be placed in `dlc_resources` folder in your `alt:V` server resources folder. (So it should look like `myproject/resources/dlc_resources`)
 
-- Anything that is not a dlc.rpf file should be placed in `game_resources` folder in your `alt:V` server resources folder. For example `x64`, `common`, `raw` and etc (So it should look like `myproject/resources/game_resources`).
+- Anything that is not a `dlc.rpf` file should be placed in `game_resources` folder in your `alt:V` server resources folder. For example `x64`, `common`, `raw` and etc (So it should look like `myproject/resources/game_resources`).
 - Also make sure to add `resource.toml` file inside game_resources folder with this content:
   ```toml
   type = 'rpf'
