@@ -180,10 +180,10 @@ We recommend adding this settings in server.toml for best performance
 ## DLC Resources
 `alt:V` uses a different system for handling DLC resources. In `RAGE Multiplayer`, DLC resources are stored in `client_packages/game_resources/dlcpacks` folder, while in `alt:V` they are stored as separate resource. To port DLC resources from `RAGE Multiplayer` to `alt:V`, you will need to follow instuctions. Visit [alt:V Resource Documentation](https://docs.altv.mp/articles/resources.html) for more details.
 
-- `client_packages/game_resources/dlcpacks`: All your dlc.rpf files should be placed in `dlc_resources` folder in your `alt:V` server resources folder. (So it should look like `myproject/resources/dlc_resources`)
+- `client_packages/game_resources/dlcpacks`: All your folders with `dlc.rpf` should be placed in `dlc_resources` folder in your `alt:V` server resources folder. (So it should look like `myproject/resources/dlc_resources`)
 
 - Anything that is not a `dlc.rpf` file should be placed in `game_resources` folder in your `alt:V` server resources folder. For example `x64`, `common`, `raw` and etc (So it should look like `myproject/resources/game_resources`).
-- Also make sure to add `resource.toml` file inside game_resources folder with this content:
+- Also make sure to add `resource.toml` file inside `game_resources` folder with this content:
   ```toml
   type = 'rpf'
   client-files = [ 
