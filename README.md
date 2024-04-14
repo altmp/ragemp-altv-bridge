@@ -132,7 +132,7 @@ Before installation, ensure that you have `alt:V` client and server modules inst
 
 <!-- SETTINGS-->
 ## Recommended settings
-We recommended adding this settings in server.toml for best performance
+We recommend adding this settings in server.toml for best performance
 ```toml
 
   host = "1.2.3.4" # Your public IP address
