@@ -70,18 +70,16 @@ Next we will explain how to install the bridge in alt:V, as well as explain the 
 
 Before installation, ensure that you have `alt:V` client and server modules installed on your system. Visit [alt:V Official Site](https://altv.mp/) for more details:
 
-1. Create empty folder and install alt:V server using `npx altv-pkg release` command inside new folder. (We recommend using the `release` version for release purposes. And `npx altv-pkg dev` for development purposes only (E.g to test new features or to test your server before release))
+1. Create empty folder and install alt:V server using `npx altv-pkg release` command inside new folder. (We recommend using the `release` version for release purposes. And `npx altv-pkg dev` for development purposes only (E.g to test new features or to test your server before release)). Please visit [alt:V pkg Docs](https://github.com/altmp/altv-pkg) for more details.
 
 2. Create `resources` folder inside your project folder.
 
 ### Installation
 
-
-1. **Pre-requisites**: Before installation, ensure that you have `alt:V` client and server modules installed on your system. Visit [alt:V Official Site](https://altv.mp/) for more details.
    
-2. **Download**: Download the latest version of the bridge from the [Releases](https://github.com/altmp/ragemp-altv-bridge/releases) page.
+1. **Download**: Download the latest version of the bridge from the [Releases](https://github.com/altmp/ragemp-altv-bridge/releases) page.
 
-3. **Installation**:
+2. **Installation**:
 
     - Extract folder to resources directory of your `alt:V` server. (So it should look like `myproject/resources/bridge`)
     - Create `server.toml` file, and adjust settings to your needs. Visit [alt:V Documentation](https://docs.altv.mp/articles/configs/server.html) for more details.
@@ -102,7 +100,7 @@ Before installation, ensure that you have `alt:V` client and server modules inst
       ]
       ```
 
-4. For `client_resources`, create file `resource.toml` inside `client_resources` folder with this content:
+3. For `client_resources`, create file `resource.toml` inside `client_resources` folder with this content:
     ```toml
     type = "js"
     client-main = "index.js"
@@ -122,15 +120,15 @@ Before installation, ensure that you have `alt:V` client and server modules inst
     bridge-main = true
     ```
 
-5. For `server_resources`, create file `resource.toml` inside `server_resources` folder with this content:
+4. For `server_resources`, create file `resource.toml` inside `server_resources` folder with this content:
     ```toml
     type = "js"
     main = "index.js"
     ```
 
-6. For `game_resources` and `dlc_resources`, please follow the instructions in the [DLC Resources](#dlc-resources) section.
+5. For `game_resources` and `dlc_resources`, please follow the instructions in the [DLC Resources](#dlc-resources) section.
 
-7. **Start the Server**: Run your `alt:V` server as usual and ensure that the project module loads correctly.
+6. **Start the Server**: Run your `alt:V` server as usual and ensure that the project module loads correctly.
 
 
 <!-- SETTINGS-->
