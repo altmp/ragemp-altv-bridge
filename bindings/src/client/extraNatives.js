@@ -211,13 +211,6 @@ mp.game.player.setAirDragMultiplierForsVehicle = mp.game.player.setAirDragMultip
 mp.game.player.setHudAnimStopLevel = mp.game.player.unk._0xDE45D1A1EF45EE61;
 mp.game.player.setHudAnimStopLevel = mp.game.player.unk._0xDE45D1A1EF45EE61;
 mp.game.player.hasTeleportFinished = mp.game.player.updateTeleport;
-// TODO: mp.streaming.getAllModelNames
-mp.streaming.getAllModelNames = () => {};
-// TODO: mp.streaming.getAllModelHashes
-mp.streaming.getAllModelHashes = () => {};
-// TODO: mp.streaming.getModelNameFromHash
-mp.streaming.getModelNameFromHash = () => {};
-// TODO: mp.streaming.forceStreamingUpdate
 mp.streaming ??= {};
 mp.streaming.forceStreamingUpdate = () => {
 };
@@ -225,8 +218,18 @@ mp.game.streaming ??= {};
 mp.game.streaming.forceStreamingUpdate = () => {
 };
 
+// TODO: mp.streaming.getAllModelNames
+mp.streaming.getAllModelNames = () => {};
+// TODO: mp.streaming.getAllModelHashes
+mp.streaming.getAllModelHashes = () => {};
+// TODO: mp.streaming.getModelNameFromHash
+mp.streaming.getModelNameFromHash = () => {};
+// TODO: mp.streaming.forceStreamingUpdate
+
 mp.game.vehicle.setExperimentalAttachmentSyncEnabled = () => {};
 mp.game.vehicle.setExperimentalHornSyncEnabled = () => {};
+
+mp.vehicle ??= {};
 
 // TODO: mp.vehicle.addModelOverride
 mp.vehicle.addModelOverride = () => {};
