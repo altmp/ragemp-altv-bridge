@@ -83,17 +83,13 @@ Before installation, ensure that you have `alt:V` client and server modules inst
 
     - Extract folder to resources directory of your `alt:V` server. (So it should look like `myproject/resources/bridge`)
     - Create `server.toml` file, and adjust settings to your needs. Visit [alt:V Documentation](https://docs.altv.mp/articles/configs/server.html) for more details.
-    - For bridge to work, you need to add `bridge` resource to your server configuration file `server.toml` by including the following lines:
+    - For bridge to work, you need to add `bridge` resource to your server configuration file `server.toml` by including a line like:
       ```toml
-      # List of modules (specific language support) that should be loaded
-      # (located in "modules" folder)
       modules = [
-          "js-module" # will try to load "modules/js-module.dll" (or .so on Linux)
+          "js-module"
       ]
 
-      # List of folders inside "resources" project folder
-      # For example to load resource inside "resources/bridge" folder you need to specify "bridge"
-      resources = [
+      resources = [    
           "dlc_resources/*", # aka client_packages/game_resources/dlcpacks folder
           "game_resources",  # aka client_packages/game_resources folder (common, raw, x64 and etc)
 
@@ -104,7 +100,7 @@ Before installation, ensure that you have `alt:V` client and server modules inst
       ]
       ```
 
-3. For `client_resources`, create file `resource.toml` inside `resources/client_resources` folder with this content:
+3. For `client_resources`, create file `resource.toml` inside `client_resources` folder with this content:
     ```toml
     type = "js"
     client-main = "index.js"
@@ -124,7 +120,7 @@ Before installation, ensure that you have `alt:V` client and server modules inst
     bridge-main = true
     ```
 
-4. For `server_resources`, create file `resource.toml` inside `resources/server_resources` folder with this content:
+4. For `server_resources`, create file `resource.toml` inside `server_resources` folder with this content:
     ```toml
     type = "js"
     main = "index.js"
@@ -207,7 +203,7 @@ There are some systems that is impossible to port from `RAGE Multiplayer` to `al
 - **Weapon damage system**: `RAGE Multiplayer` uses client-sided damage events only, while `alt:V` uses both server-sided and client-sided event system. You will need to rewrite the weapon damage system, and adjust damage. (In `alt:V` it is very similar to `RAGE Multiplayer`. Visit [alt:V Documentation](https://docs.altv.mp/js/api/alt-server.IServerEvent.html#_altmp_altv_types_alt_server_IServerEvent_weaponDamage) for more details.)
 - **CEF Textures**: `RAGE Multiplayer` in March 2024 added `http://game-textures/put` endpoint to allow CEF textures to be loaded into game, which is currently not supported in `alt:V`.
 
-To rewrite this project for another platform, you will need deep understanding of the target platform’s API and possibly a complete overhaul of the networking code.
+To migrate your project that uses these systems, you will need a deep understanding of alt:V & RAGEMP API and possibly a complete overhaul of your networking code.
 
 
 
