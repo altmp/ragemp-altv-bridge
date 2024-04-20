@@ -131,7 +131,7 @@ function getServerColshape(id, position, dimension, type, meta) {
         remoteId: id,
         shapeType: type,
         getVariable(key) {
-            return meta[key];
+            return meta[key] ?? null;
         },
         hasVariable(key) {
             return key in meta;

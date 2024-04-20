@@ -27,7 +27,7 @@ class _MpEntity {
     }
 
     getVariable(key) {
-        return toMp(this.#meta[key]);
+        return toMp(this.#meta[key]) ?? null;
     }
 
     hasVariable(key) {

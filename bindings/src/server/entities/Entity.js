@@ -33,9 +33,9 @@ export class _Entity extends _WorldObject {
     }
 
     getStreamVariable(key) {
-        if (!mp._shareVariablesBetweenResources) return this.#streamVariableCache.get(key);
-        if (!this.hasStreamVariable(key)) return undefined;
-        return toMp(this.#alt.getStreamSyncedMeta(key));
+        if (!mp._shareVariablesBetweenResources) return this.#streamVariableCache.get(key) ?? null;
+        if (!this.hasStreamVariable(key)) return null;
+        return toMp(this.#alt.getStreamSyncedMeta(key)) ?? null;
     }
 
     hasStreamVariable(key) {
