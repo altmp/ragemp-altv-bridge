@@ -53,17 +53,17 @@ export class _WorldObject extends _BaseObject {
 
     getVariable(key) {
         if (!mp._shareVariablesBetweenResources)
-            return this.#variableCache.get(key);
+            return this.#variableCache.get(key) ?? null;
 
-        if (!this.hasVariable(key)) return undefined;
+        if (!this.hasVariable(key)) return null;
 
         if (this.#alt.hasLocalMeta && this.#alt.hasLocalMeta(key))
-            return toMp(this.#alt.getLocalMeta(key));
+            return toMp(this.#alt.getLocalMeta(key)) ?? null;
 
         if (!mp._syncedMeta && this.#alt.getStreamSyncedMeta)
-            return toMp(this.#alt.getStreamSyncedMeta(key));
+            return toMp(this.#alt.getStreamSyncedMeta(key)) ?? null;
 
-        return toMp(this.#alt.getSyncedMeta(key));
+        return toMp(this.#alt.getSyncedMeta(key)) ?? null;
     }
 
     hasVariable(key) {
