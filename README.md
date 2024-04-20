@@ -83,13 +83,17 @@ Before installation, ensure that you have `alt:V` client and server modules inst
 
     - Extract folder to resources directory of your `alt:V` server. (So it should look like `myproject/resources/bridge`)
     - Create `server.toml` file, and adjust settings to your needs. Visit [alt:V Documentation](https://docs.altv.mp/articles/configs/server.html) for more details.
-    - For bridge to work, you need to add `bridge` resource to your server configuration file `server.toml` by including a line like:
+    - For bridge to work, you need to add `bridge` resource to your server configuration file `server.toml` by including the following lines:
       ```toml
+      # List of modules (specific language support) that should be loaded
+      # (located in "modules" folder)
       modules = [
-          "js-module"
+          "js-module" # will try to load "modules/js-module.dll" (or .so on Linux)
       ]
 
-      resources = [    
+      # List of folders inside "resources" project folder
+      # For example to load resource inside "resources/bridge" folder you need to specify "bridge"
+      resources = [
           "dlc_resources/*", # aka client_packages/game_resources/dlcpacks folder
           "game_resources",  # aka client_packages/game_resources folder (common, raw, x64 and etc)
 
@@ -100,7 +104,7 @@ Before installation, ensure that you have `alt:V` client and server modules inst
       ]
       ```
 
-3. For `client_resources`, create file `resource.toml` inside `client_resources` folder with this content:
+3. For `client_resources`, create file `resource.toml` inside `resources/client_resources` folder with this content:
     ```toml
     type = "js"
     client-main = "index.js"
@@ -120,7 +124,7 @@ Before installation, ensure that you have `alt:V` client and server modules inst
     bridge-main = true
     ```
 
-4. For `server_resources`, create file `resource.toml` inside `server_resources` folder with this content:
+4. For `server_resources`, create file `resource.toml` inside `resources/server_resources` folder with this content:
     ```toml
     type = "js"
     main = "index.js"
