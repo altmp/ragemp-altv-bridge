@@ -207,8 +207,7 @@ There are some systems that is impossible to port from `RAGE Multiplayer` to `al
 - **Weapon damage system**: `RAGE Multiplayer` uses client-sided damage events only, while `alt:V` uses both server-sided and client-sided event system. You will need to rewrite the weapon damage system, and adjust damage. (In `alt:V` it is very similar to `RAGE Multiplayer`. Visit [alt:V Documentation](https://docs.altv.mp/js/api/alt-server.IServerEvent.html#_altmp_altv_types_alt_server_IServerEvent_weaponDamage) for more details.)
 - **CEF Textures**: `RAGE Multiplayer` in March 2024 added `http://game-textures/put` endpoint to allow CEF textures to be loaded into game, which is currently not supported in `alt:V`.
 
-To rewrite this project for another platform, you will need deep understanding of the target platform’s API and possibly a complete overhaul of the networking code.
-
+To migrate your project that uses these systems, you will need a deep understanding of alt:V & RAGEMP API and possibly a complete overhaul of your networking code.
 
 
 <!-- SELF-BUILDING -->
