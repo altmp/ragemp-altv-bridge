@@ -19,7 +19,7 @@ export class _Player extends _Entity {
     }
 
     getVariable(key) {
-        if (!this.alt.valid) return undefined;
+        if (!this.alt.valid) return;
         if (this.alt === alt.Player.local && alt.hasLocalMeta(key)) return toMp(alt.getLocalMeta(key));
         return super.getVariable(key);
     }
