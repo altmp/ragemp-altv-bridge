@@ -524,8 +524,8 @@ export class _LocalVehicle extends _Vehicle {
     // TODO: override natives to use pos setter
 
     getVariable(key) {
-        if (!this.hasVariable(key)) return null;
-        return toMp(this.alt.getMeta(key)) ?? null;
+        if (!this.hasVariable(key)) return;
+        return toMp(this.alt.getMeta(key));
     }
 
     setVariable(key, value) {
