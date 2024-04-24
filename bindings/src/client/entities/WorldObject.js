@@ -14,10 +14,10 @@ export class _WorldObject extends _BaseObject {
     }
 
     getVariable(key) {
-        if (!this.alt.valid) return null;
+        if (!this.alt.valid) return undefined;
         if (this.#alt.getStreamSyncedMeta && this.#alt.hasStreamSyncedMeta(key)) return toMp(this.#alt.getStreamSyncedMeta(key)) ?? null;
-        if (this.#alt.hasSyncedMeta(key)) return toMp(this.#alt.getSyncedMeta(key)) ?? null;
-        return null;
+        if (this.#alt.hasSyncedMeta(key)) return toMp(this.#alt.getSyncedMeta(key));
+        return undefined;
     }
 
     hasVariable(key) {

@@ -36,8 +36,8 @@ export class _Object extends _Entity {
     type = 'object';
 
     getVariable(key) {
-        if (!this.hasVariable(key)) return null;
-        return toMp(this.alt.getMeta(key)) ?? null;
+        if (!this.hasVariable(key)) return undefined;
+        return toMp(this.alt.getMeta(key));
     }
 
     hasVariable(key) {
@@ -209,8 +209,8 @@ export class _NetworkObject extends _Object {
     }
 
     getVariable(key) {
-        if (!this.hasVariable(key)) return null;
-        return toMp(this.alt.getStreamSyncedMeta(key)) ?? null;
+        if (!this.hasVariable(key)) return undefined;
+        return toMp(this.alt.getStreamSyncedMeta(key));
     }
 
     hasVariable(key) {
