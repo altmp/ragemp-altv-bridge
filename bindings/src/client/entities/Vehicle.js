@@ -335,7 +335,7 @@ export class _Vehicle extends _Entity {
         return this.setTaskGotoPlaneMinHeightAboveTerrain;
     }
 
-    getPedInSeat(seatIndex, p2) {
+    getPedInSeat(seatIndex, p2 = false) {
         return natives.getPedInVehicleSeat(this.handle, seatIndex, p2);
     }
 
