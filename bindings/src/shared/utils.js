@@ -135,6 +135,10 @@ export const altSeatToMp = (altSeat) => {
     return altSeat - 1;
 };
 
+export const altSeatToClientMp = (altSeat) => {
+    return altSeat - 2;
+};
+
 export const mpSeatToAlt = (mpSeat) => {
     return mpSeat + 1;
 };
