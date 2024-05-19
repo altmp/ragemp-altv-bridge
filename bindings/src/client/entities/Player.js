@@ -3,7 +3,7 @@ import * as natives from 'natives';
 import mp from '../../shared/mp.js';
 import {ClientPool} from '../pools/ClientPool.js';
 import {_Entity} from './Entity.js';
-import {altSeatToMp, getOverlayColorType, internalName, toMp} from '../../shared/utils';
+import {altSeatToClientMp, getOverlayColorType, internalName, toMp} from '../../shared/utils';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
 import {emitServerInternal} from '../clientUtils';
 import {BaseObjectType} from '../../shared/BaseObjectType';
@@ -1068,37 +1068,6 @@ function getSeat() {
     }
 }
 
-if (mp._main) {
-    let lastVehicle = mp.players.local.vehicle;
-    let lastSeat = getSeat();
-    setInterval(() => {
-        const newVehicle = mp.players.local.vehicle;
-        if (newVehicle !== lastVehicle) {
-            console.log('Changed vehicle from ' + lastVehicle?.id + ' to ' + newVehicle?.id);
-            mp.notifyTrace('player', 'player changed vehicle from', lastVehicle, 'to', newVehicle);
-            if (lastVehicle) {
-                mp.events.dispatchLocal('playerLeaveVehicle', lastVehicle?.alt?.valid ? lastVehicle : null, lastSeat);
-            }
-
-            if (newVehicle) {
-                const newSeat = getSeat();
-                mp.events.dispatchLocal('playerStartEnterVehicle', newVehicle, newSeat);
-                mp.events.dispatchLocal('playerEnterVehicle', newVehicle, newSeat);
-                lastSeat = newSeat;
-            }
-
-            lastVehicle = newVehicle;
-        } else if (lastVehicle) {
-            const newSeat = getSeat();
-            if (newSeat !== lastSeat) {
-                console.log('Changed vehicle seat from ' + lastSeat + ' to ' + newSeat);
-                mp.events.dispatchLocal('playerEnterVehicle', newVehicle, newSeat);
-                lastSeat = newSeat;
-            }
-        }
-    }, 500);
-}
-
 alt.on('netOwnerChange', (ent, newOwner, oldOwner) => {
     mp.events.dispatchLocal('entityControllerChange', ent, toMp(newOwner));
 });
@@ -1126,4 +1095,22 @@ alt.on('playerStartTalking', (player) => {
 
 alt.on('playerStopTalking', (player) => {
     mp.events.dispatchLocal('playerStopTalking', player.mp);
+});
+
+
+alt.on('enteringVehicle', (vehicle, seat) => {
+    mp.events.dispatchLocal('playerStartEnterVehicle', vehicle?.mp, altSeatToClientMp(seat));
+});
+
+alt.on('enteredVehicle', (vehicle, seat) => {
+    mp.events.dispatchLocal('playerEnterVehicle', vehicle?.mp, altSeatToClientMp(seat));
+});
+
+alt.on('changedVehicleSeat', (vehicle, oldSeat, seat) => {
+    mp.events.dispatchLocal('playerEnterVehicle', vehicle?.mp, altSeatToClientMp(seat));
+});
+
+alt.on('leftVehicle', (vehicle, seat) => {
+    // mp.events.dispatchLocal('playerStartExitVehicle', vehicle?.mp, altSeatToClientMp(seat) - 1);
+    mp.events.dispatchLocal('playerLeaveVehicle', vehicle?.mp, altSeatToClientMp(seat));
 });
