@@ -246,6 +246,10 @@ export class _NetworkObject extends _Object {
             if (shouldCancel()) return;
 
             this.#handle = natives.createObject(model, this.alt.pos.x, this.alt.pos.y, this.alt.pos.z, false, false, false);
+            if (!this.#handle) {
+                console.error('Failed to create object using native:', model);
+                return;
+            }
             natives.setEntityCoordsNoOffset(this.#handle, this.alt.pos.x, this.alt.pos.y, this.alt.pos.z, false, false, false);
             store.add(this, undefined, this.#handle, undefined);
 
