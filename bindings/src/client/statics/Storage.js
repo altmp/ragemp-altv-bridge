@@ -9,10 +9,10 @@ class _Storage {
     }
 
     flush() {
-        for (const key in this.#dataCache)
-            alt.LocalStorage.set(key, this.#dataCache[key]);
-        for (const key in this.#sessionDataCache)
-            alt.setMeta(key, this.#sessionDataCache[key]);
+        for (const [key, value] of this.#dataCache)
+            alt.LocalStorage.set(key, value);
+        for (const [key, value] of this.#sessionDataCache)
+            alt.setMeta(key, value);
         alt.LocalStorage.save();
     }
 
