@@ -1,6 +1,6 @@
 {
     "name": "ragemp-altv-bridge",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "RAGE Multiplayer alt:V Bridge. This package provides a bridge between RAGE Multiplayer and alt:V. It allows you to use RAGEMP code in alt:V.",
     "keywords": [
         "ragemp",
