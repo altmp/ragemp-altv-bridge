@@ -394,7 +394,7 @@ alt.on('vehicleDestroy', (vehicle) => {
 });
 
 alt.on('playerEnteredVehicle', (player, vehicle, seat) => {
-    const occupants = vehicle.mp.__occupantsMap;
+    let occupants = vehicle.mp.__occupantsMap;
     if (!occupants) {
         occupants = new Map();
         vehicle.mp.__occupantsMap = occupants;
@@ -404,7 +404,7 @@ alt.on('playerEnteredVehicle', (player, vehicle, seat) => {
 });
 
 alt.on('playerLeftVehicle', (player, vehicle, seat) => {
-    const occupants = vehicle.mp.__occupantsMap;
+    let occupants = vehicle.mp.__occupantsMap;
     if (!occupants) {
         occupants = new Map();
         vehicle.mp.__occupantsMap = occupants;
@@ -418,7 +418,7 @@ alt.on('playerLeftVehicle', (player, vehicle, seat) => {
 });
 
 alt.on('playerChangedVehicleSeat', (player, vehicle, oldSeat, newSeat) => {
-    const occupants = vehicle.mp.__occupantsMap;
+    let occupants = vehicle.mp.__occupantsMap;
     if (!occupants) {
         occupants = new Map();
         vehicle.mp.__occupantsMap = occupants;
