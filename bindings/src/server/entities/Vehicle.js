@@ -1,7 +1,7 @@
 import * as alt from 'alt-server';
 import {SyncedMetaProxy} from '../../shared/meta.js';
 import mp from '../../shared/mp.js';
-import {deg2rad, hashIfNeeded, mpSeatToAlt, rad2deg, TemporaryContainer} from '../../shared/utils.js';
+import {deg2rad, hashIfNeeded, altSeatToMp, rad2deg, TemporaryContainer} from '../../shared/utils.js';
 import {_Entity} from './Entity.js';
 import {ServerPool} from '../pools/ServerPool';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
@@ -400,7 +400,7 @@ alt.on('playerEnteredVehicle', (player, vehicle, seat) => {
         vehicle.mp.__occupantsMap = occupants;
     }
 
-    occupants.set(seat, player);
+    occupants.set(altSeatToMp(seat), player);
 });
 
 alt.on('playerLeftVehicle', (player, vehicle, seat) => {
@@ -424,8 +424,8 @@ alt.on('playerChangedVehicleSeat', (player, vehicle, oldSeat, newSeat) => {
         vehicle.mp.__occupantsMap = occupants;
     }
 
-    occupants.delete(oldSeat);
-    occupants.set(newSeat, player);
+    occupants.delete(altSeatToMp(oldSeat));
+    occupants.set(altSeatToMp(newSeat), player);
 });
 
 alt.on('removeEntity', (entity) => {
