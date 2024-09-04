@@ -400,7 +400,7 @@ alt.on('playerEnteredVehicle', (player, vehicle, seat) => {
         vehicle.mp.__occupantsMap = occupants;
     }
 
-    occupants.set(altSeatToMp(seat), player);
+    occupants.set(altSeatToMp(seat), player.mp);
 });
 
 alt.on('playerLeftVehicle', (player, vehicle, seat) => {
@@ -411,7 +411,7 @@ alt.on('playerLeftVehicle', (player, vehicle, seat) => {
     }
 
     occupants.forEach((p, s) => {
-        if (p === player) {
+        if (p === player.mp) {
             occupants.delete(s);
         }
     });
@@ -425,7 +425,7 @@ alt.on('playerChangedVehicleSeat', (player, vehicle, oldSeat, newSeat) => {
     }
 
     occupants.delete(altSeatToMp(oldSeat));
-    occupants.set(altSeatToMp(newSeat), player);
+    occupants.set(altSeatToMp(newSeat), player.mp);
 });
 
 alt.on('removeEntity', (entity) => {
