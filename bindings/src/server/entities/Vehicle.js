@@ -1,7 +1,7 @@
 import * as alt from 'alt-server';
 import {SyncedMetaProxy} from '../../shared/meta.js';
 import mp from '../../shared/mp.js';
-import {deg2rad, hashIfNeeded, mpSeatToAlt, rad2deg, TemporaryContainer} from '../../shared/utils.js';
+import {deg2rad, hashIfNeeded, altSeatToMp, rad2deg, TemporaryContainer} from '../../shared/utils.js';
 import {_Entity} from './Entity.js';
 import {ServerPool} from '../pools/ServerPool';
 import {EntityGetterView} from '../../shared/pools/EntityGetterView';
@@ -254,22 +254,13 @@ export class _Vehicle extends _Entity {
     }
 
     getOccupant(id) {
-        if (mpSeatToAlt(id) === 1) return this.alt.driver?.mp;
-        // TODO: implement in core
-
-        return this.alt.passengers?.[mpSeatToAlt(id)]?.mp;
+        return this.__occupantsMap?.get(id);
     }
 
     getOccupants() {
-        // TODO: implement in core
-        const occupants = [];
-        const driver = this.alt.driver;
-        if (driver) occupants.push(driver.mp);
-
-        const passengers = Object.values(this.alt.passengers);
-        if (passengers?.length) occupants.push(...passengers.map(p => p.mp));
-
-        return occupants;
+        return this.__occupantsMap !== undefined
+            ? Array.from(this.__occupantsMap.values())
+            : [];
     }
 
     // TODO: getPaint
@@ -400,4 +391,45 @@ alt.on('vehicleSiren', (vehicle, player, state) => {
 
 alt.on('vehicleDestroy', (vehicle) => {
     mp.events.dispatchLocal('vehicleDeath', vehicle.mp);
+});
+
+alt.on('playerEnteredVehicle', (player, vehicle, seat) => {
+    let occupants = vehicle.mp.__occupantsMap;
+    if (!occupants) {
+        occupants = new Map();
+        vehicle.mp.__occupantsMap = occupants;
+    }
+
+    occupants.set(altSeatToMp(seat), player);
+});
+
+alt.on('playerLeftVehicle', (player, vehicle, seat) => {
+    let occupants = vehicle.mp.__occupantsMap;
+    if (!occupants) {
+        occupants = new Map();
+        vehicle.mp.__occupantsMap = occupants;
+    }
+
+    occupants.forEach((p, s) => {
+        if (p === player) {
+            occupants.delete(s);
+        }
+    });
+});
+
+alt.on('playerChangedVehicleSeat', (player, vehicle, oldSeat, newSeat) => {
+    let occupants = vehicle.mp.__occupantsMap;
+    if (!occupants) {
+        occupants = new Map();
+        vehicle.mp.__occupantsMap = occupants;
+    }
+
+    occupants.delete(altSeatToMp(oldSeat));
+    occupants.set(altSeatToMp(newSeat), player);
+});
+
+alt.on('removeEntity', (entity) => {
+    if (entity instanceof alt.Vehicle) {
+        delete entity.mp.__occupantsMap;
+    }
 });
