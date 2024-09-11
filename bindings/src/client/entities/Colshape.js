@@ -34,10 +34,12 @@ export class _Colshape extends _WorldObject {
     }
 
     get position() {
+        if (!this.alt.valid) return mp.Vector3.zero;
         return this.alt.pos;
     }
 
     set position(value) {
+        if (!this.alt.valid) return;
         this.alt.pos = value;
     }
 
