@@ -33,14 +33,12 @@ export class _Colshape extends _WorldObject {
         return colshapeTypes[this.alt.colshapeType];
     }
 
-    // colshape doesnt have position field
-    _position = undefined;
     get position() {
-        return this._position;
+        return this.alt.pos;
     }
 
     set position(value) {
-        this._position = value;
+        this.alt.pos = value;
     }
 
     type = 'colshape';
