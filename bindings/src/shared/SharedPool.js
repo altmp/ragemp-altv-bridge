@@ -6,16 +6,35 @@ export class SharedPool {
     /** @type {EntityBaseView} */
     #view;
     #classes;
+    isClientPool;
 
-    constructor(view, classes = []) {
+    constructor(view, classes = [], isClientPool = false) {
         this.#view = view;
         this.#classes = classes;
+        this.isClientPool = isClientPool;
 
         alt.on('resourceStop', () => {
             const arr = this.toArray();
             const length = arr.length;
             for (let i = 0; i < length; i++) {
                 const e = arr[i];
+
+                if (this.isClientPool &&
+                    (e.type == BaseObjectType.Player ||
+                     e.type == BaseObjectType.LocalPlayer ||
+                     e.type == BaseObjectType.Vehicle ||
+                     e.type == BaseObjectType.Object ||
+                     (e.type == BaseObjectType.VirtualEntity && e.isRemote) ||
+                     (e.type == BaseObjectType.VirtualEntityGroup && e.isRemote) ||
+                     (e.type == BaseObjectType.Colshape && e.isRemote) ||
+                     (e.type == BaseObjectType.LocalPed && e.isRemote) ||
+                     (e.type == BaseObjectType.LocalObject && e.isRemote) ||
+                     (e.type == BaseObjectType.LocalVehicle && e.isRemote) ||
+                     (e.type == BaseObjectType.Blip && e.isRemote)))
+                {
+                    continue;
+                }
+                
                 try {
                     e.destroy();
                 } catch(e) {
