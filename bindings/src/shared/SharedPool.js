@@ -9,7 +9,7 @@ export class SharedPool {
     #classes;
     isClientPool;
 
-    constructor(view, classes = [], isClientPool = false) {
+    constructor(view, classes = [], filterType = 0, isClientPool = false) {
         this.#view = view;
         this.#classes = classes;
         this.isClientPool = isClientPool;
