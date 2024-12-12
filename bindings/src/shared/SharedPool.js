@@ -1,4 +1,5 @@
 import {mpDimensionToAlt, vdist2} from '../shared/utils';
+import {BaseObjectType} from '../shared/BaseObjectType';
 import {EntityBaseView} from './pools/EntityBaseView';
 import * as alt from 'alt-shared';
 
@@ -18,19 +19,20 @@ export class SharedPool {
             const length = arr.length;
             for (let i = 0; i < length; i++) {
                 const e = arr[i];
-
+                const altEntity = e.alt;
+                
                 if (this.isClientPool &&
-                    (e.type == BaseObjectType.Player ||
-                     e.type == BaseObjectType.LocalPlayer ||
-                     e.type == BaseObjectType.Vehicle ||
-                     e.type == BaseObjectType.Object ||
-                     (e.type == BaseObjectType.VirtualEntity && e.isRemote) ||
-                     (e.type == BaseObjectType.VirtualEntityGroup && e.isRemote) ||
-                     (e.type == BaseObjectType.Colshape && e.isRemote) ||
-                     (e.type == BaseObjectType.LocalPed && e.isRemote) ||
-                     (e.type == BaseObjectType.LocalObject && e.isRemote) ||
-                     (e.type == BaseObjectType.LocalVehicle && e.isRemote) ||
-                     (e.type == BaseObjectType.Blip && e.isRemote)))
+                    (altEntity.type == BaseObjectType.Player ||
+                     altEntity.type == BaseObjectType.LocalPlayer ||
+                     altEntity.type == BaseObjectType.Vehicle ||
+                     altEntity.type == BaseObjectType.Object ||
+                     (altEntity.type == BaseObjectType.VirtualEntity && altEntity.isRemote) ||
+                     (altEntity.type == BaseObjectType.VirtualEntityGroup && altEntity.isRemote) ||
+                     (altEntity.type == BaseObjectType.Colshape && altEntity.isRemote) ||
+                     (altEntity.type == BaseObjectType.LocalPed && altEntity.isRemote) ||
+                     (altEntity.type == BaseObjectType.LocalObject && altEntity.isRemote) ||
+                     (altEntity.type == BaseObjectType.LocalVehicle && altEntity.isRemote) ||
+                     (altEntity.type == BaseObjectType.Blip && altEntity.isRemote)))
                 {
                     continue;
                 }
