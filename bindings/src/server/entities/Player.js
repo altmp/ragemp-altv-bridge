@@ -509,7 +509,7 @@ alt.on('playerDamage', (victim, attacker, healthDamage, armourDamage, weaponHash
 
 alt.on('playerDisconnect', (player, reason) => {
     if (mp._main && mp._broadcastJoinLeave) emitAllClientsInternal('quit', player);
-    mp.events.dispatchLocal('playerQuit', player.mp, 'unimplemented', 'unimplemented'); //player, exitType: string, reason: string
+    mp.events.dispatchLocal('playerQuit', player.mp, 'unimplemented', reason); //player, exitType: string, reason: string
 });
 
 alt.onClient(internalName('setModel'), (player, model) => {
