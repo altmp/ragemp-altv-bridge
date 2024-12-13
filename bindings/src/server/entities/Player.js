@@ -504,7 +504,7 @@ alt.on('playerConnect', (player) => {
 });
 
 alt.on('playerDamage', (victim, attacker, healthDamage, armourDamage, weaponHash) => {
-    mp.events.dispatchLocal('playerDamage', victim.mp, healthDamage, armourDamage);
+    mp.events.dispatchLocal('playerDamage', victim?.mp, healthDamage, armourDamage);
 });
 
 alt.on('playerDisconnect', (player, reason) => {
