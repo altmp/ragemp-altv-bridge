@@ -45,11 +45,11 @@ class _Events extends BaseEvents {
         });
 
         alt.on('baseObjectCreate', (obj) => {
-            if (!obj.mp) return;
+            if (!obj?.mp) return;
             if (obj.mp) this.dispatchLocal('entityCreated', obj.mp);
         });
         alt.on('baseObjectRemove', (obj) => {
-            if (!obj.mp) return;
+            if (!obj?.mp) return;
             if (obj.mp) this.dispatchLocal('entityDestroyed', obj.mp);
         });
 
