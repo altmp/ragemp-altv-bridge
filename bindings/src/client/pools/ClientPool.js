@@ -5,7 +5,7 @@ export class ClientPool extends SharedPool {
     #view;
 
     constructor(view, classes) {
-        super(view, classes);
+        super(view, classes, true);
         this.#view = view;
     }
 

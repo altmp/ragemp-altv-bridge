@@ -1,4 +1,5 @@
 import {mpDimensionToAlt, vdist2} from '../shared/utils';
+import {BaseObjectType} from '../shared/BaseObjectType';
 import {EntityBaseView} from './pools/EntityBaseView';
 import * as alt from 'alt-shared';
 
@@ -6,16 +7,36 @@ export class SharedPool {
     /** @type {EntityBaseView} */
     #view;
     #classes;
+    isClientPool;
 
-    constructor(view, classes = []) {
+    constructor(view, classes = [], filterType = 0, isClientPool = false) {
         this.#view = view;
         this.#classes = classes;
+        this.isClientPool = isClientPool;
 
         alt.on('resourceStop', () => {
             const arr = this.toArray();
             const length = arr.length;
             for (let i = 0; i < length; i++) {
                 const e = arr[i];
+                const altEntity = e.alt;
+                
+                if (this.isClientPool &&
+                    (altEntity.type == BaseObjectType.Player ||
+                     altEntity.type == BaseObjectType.LocalPlayer ||
+                     altEntity.type == BaseObjectType.Vehicle ||
+                     altEntity.type == BaseObjectType.Object ||
+                     (altEntity.type == BaseObjectType.VirtualEntity && altEntity.isRemote) ||
+                     (altEntity.type == BaseObjectType.VirtualEntityGroup && altEntity.isRemote) ||
+                     (altEntity.type == BaseObjectType.Colshape && altEntity.isRemote) ||
+                     (altEntity.type == BaseObjectType.LocalPed && altEntity.isRemote) ||
+                     (altEntity.type == BaseObjectType.LocalObject && altEntity.isRemote) ||
+                     (altEntity.type == BaseObjectType.LocalVehicle && altEntity.isRemote) ||
+                     (altEntity.type == BaseObjectType.Blip && altEntity.isRemote)))
+                {
+                    continue;
+                }
+                
                 try {
                     e.destroy();
                 } catch(e) {

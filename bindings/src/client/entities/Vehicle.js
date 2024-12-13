@@ -597,12 +597,16 @@ mp.vehicles.new = function(model, position, params = {}) {
 
 if (mp._main) {
     alt.on('worldObjectStreamIn', (entity) => {
+        if (!entity.mp) return;
+
         if (entity.mp instanceof _LocalVehicle && entity.id in initializers) {
             initializers[entity.id](entity);
         }
     });
 
     alt.on('baseObjectRemove', (entity) => {
+        if (!entity.mp) return;
+
         if (entity.mp instanceof _LocalVehicle) {
             delete initializers[entity.id];
         }

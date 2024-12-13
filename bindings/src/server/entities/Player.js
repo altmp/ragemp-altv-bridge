@@ -504,12 +504,12 @@ alt.on('playerConnect', (player) => {
 });
 
 alt.on('playerDamage', (victim, attacker, healthDamage, armourDamage, weaponHash) => {
-    mp.events.dispatchLocal('playerDamage', victim.mp, healthDamage, armourDamage);
+    mp.events.dispatchLocal('playerDamage', victim?.mp, healthDamage, armourDamage);
 });
 
 alt.on('playerDisconnect', (player, reason) => {
     if (mp._main && mp._broadcastJoinLeave) emitAllClientsInternal('quit', player);
-    mp.events.dispatchLocal('playerQuit', player.mp, 'unimplemented', 'unimplemented'); //player, exitType: string, reason: string
+    mp.events.dispatchLocal('playerQuit', player.mp, 'unimplemented', reason); //player, exitType: string, reason: string
 });
 
 alt.onClient(internalName('setModel'), (player, model) => {
