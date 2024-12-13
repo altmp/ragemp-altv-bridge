@@ -88,6 +88,7 @@ export class _Label extends _Entity {
 mp.TextLabel = _Label;
 
 alt.on('baseObjectRemove', (ent) => {
+    if (!ent.mp) return;
     if (ent.mp instanceof _Label) view.remove(ent.mp.id);
 });
 
