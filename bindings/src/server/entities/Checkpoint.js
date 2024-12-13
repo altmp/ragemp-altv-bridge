@@ -158,6 +158,6 @@ alt.on('entityLeaveColshape', (shape, ent) => {
 });
 
 alt.on('baseObjectRemove', (ent) => {
-    if (!ent.mp) return;
+    if (!ent?.mp) return;
     if (ent.mp instanceof _Checkpoint) view.remove(ent.mp.id);
 });

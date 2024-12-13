@@ -106,7 +106,7 @@ export class _Marker extends _Entity {
 }
 
 alt.on('baseObjectRemove', (ent) => {
-    if (!ent.mp) return;
+    if (!ent?.mp) return;
     if (ent.mp instanceof _Object) view.remove(ent.mp.id);
 });
 

@@ -605,7 +605,7 @@ if (mp._main) {
     });
 
     alt.on('baseObjectRemove', (entity) => {
-        if (!entity.mp) return;
+        if (!entity?.mp) return;
 
         if (entity.mp instanceof _LocalVehicle) {
             delete initializers[entity.id];
