@@ -294,10 +294,12 @@ export class _NetworkObject extends _Object {
     }
     update(key, value) {
         if (key === (internalName('rotation'))) {
+            if (!this.#handle) return; // TODO: Remove this error supressor once moved to Server-Sided objects
             const rot = value ?? alt.Vector3.zero;
             natives.setEntityRotation(this.#handle, value.x, value.y, value.z, 2, false);
         }
         if (key === (internalName('alpha'))) {
+            if (!this.#handle) return; // TODO: Remove this error supressor once moved to Server-Sided objects
             if (value >= 255) {
                 natives.resetEntityAlpha(this.#handle);
             } else {
