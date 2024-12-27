@@ -3,7 +3,6 @@ import alt from 'alt-server';
 import {internalName, measureExecuteWrapper} from '../shared/utils';
 
 mp.streamingDistance = alt.getServerConfig().streamingDistance ?? 300;
-mp._disableRawEmits = true;
 alt.setSyncedMeta(internalName('streamingDistance'), mp.streamingDistance);
 
 import './pools/index.js';
