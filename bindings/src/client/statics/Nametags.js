@@ -10,18 +10,23 @@ class _Nametags {
     #style;
     #healthStyle;
     #streamedPlayers = [];
+    #isNametagsProcessDisabled = false;
 
     constructor() {
         this.update();
         alt.everyTick(this.#tick.bind(this));
 
         alt.on('gameEntityCreate', (entity) => {
+            if (this.#isNametagsProcessDisabled) return;
+
             if (entity && entity.type === BaseObjectType.Player) {
                 this.#streamedPlayers.push(entity);
             }
         });
 
         alt.on('gameEntityDestroy', (entity) => {
+            if (this.#isNametagsProcessDisabled) return;
+
             if (entity && entity.type === BaseObjectType.Player) {
                 const index = this.#streamedPlayers.indexOf(entity);
                 if (index !== -1) this.#streamedPlayers.splice(index, 1);
@@ -29,6 +34,8 @@ class _Nametags {
         });
 
         alt.on('baseObjectRemove', (entity) => {
+            if (this.#isNametagsProcessDisabled) return;
+
             if (entity && entity.type === BaseObjectType.Player) {
                 const index = this.#streamedPlayers.indexOf(entity);
                 if (index !== -1) this.#streamedPlayers.splice(index, 1);
@@ -37,6 +44,8 @@ class _Nametags {
     }
 
     #tick() {
+        if (this.#isNametagsProcessDisabled) return mp.events.dispatchLocal('render');
+
         const correction = getRenderCorrection();
         const res = alt.getScreenResolution();
         const localPos = alt.Player.local.pos;
@@ -127,6 +136,14 @@ class _Nametags {
     useScreen2dCoords = true;
     // todo orderByDistance
     // todo useScreen2dCoordss
+
+    set returnRenderNametags(bool) {
+        this.#isNametagsProcessDisabled = !bool;
+
+        if (this.#isNametagsProcessDisabled) {
+            this.#streamedPlayers = [];
+        }
+    }
 }
 
 mp.nametags = new _Nametags;
