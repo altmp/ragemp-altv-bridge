@@ -44,7 +44,10 @@ class _Nametags {
     }
 
     #tick() {
-        if (this.#isNametagsProcessDisabled) return mp.events.dispatchLocal('render');
+        if (this.#isNametagsProcessDisabled) {
+            mp.events.dispatchLocal('render');
+            return;
+        }
 
         const correction = getRenderCorrection();
         const res = alt.getScreenResolution();
@@ -137,6 +140,10 @@ class _Nametags {
     // todo orderByDistance
     // todo useScreen2dCoordss
 
+    /**
+     * Enables or disables the nametags rendering process.
+     * @param {boolean} bool - If true, enables the nametags rendering process; if false, disables it.
+     */
     set returnRenderNametags(bool) {
         this.#isNametagsProcessDisabled = !bool;
 
