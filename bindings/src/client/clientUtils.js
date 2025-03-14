@@ -20,19 +20,34 @@ export const drawText3d = (
     outline = true,
     dropShadow = true) => {
 
-    const corr = globalThis.getCorr();
-    natives.setDrawOrigin(pos3d.x + corr.x, pos3d.y + corr.y, pos3d.z + corr.z, false);
-    natives.beginTextCommandDisplayText('STRING');
-    natives.addTextComponentSubstringPlayerName(text);
+    const corr = globalThis.getCorr() || { x: 0, y: 0, z: 0 };
+    natives.setDrawOrigin(
+        pos3d.x + corr.x,
+        pos3d.y + corr.y,
+        pos3d.z + (corr.z || 0),
+        false
+    );
+
+    natives.beginTextCommandDisplayText('CELL_EMAIL_BCON');
+    (text.match(/.{1,99}/g))?.forEach((textBlock) => {
+        natives.addTextComponentSubstringPlayerName(textBlock);
+    });
+
     natives.setTextFont(font);
+
+    if (typeof scale !== 'number' || isNaN(scale)) throw new Error('drawText3d | scale is not number');
     if (Array.isArray(scale)) {
         natives.setTextScale(scale[0], scale[1]);
     } else {
-        natives.setTextScale(1, scale);
+        natives.setTextScale(scale, scale);
     }
+
     natives.setTextWrap(0.0, 1.0);
     natives.setTextCentre(true);
-    natives.setTextColour(...color.toArray());
+
+    const colorArray = color.toArray();
+    if (colorArray.length !== 4) throw new Error('drawText3d | colorArray length != 4');
+    natives.setTextColour(...colorArray);
 
     if (outline) natives.setTextOutline();
     if (dropShadow) {
@@ -55,12 +70,17 @@ export const drawText2d = function(
 ) {
     natives.setTextFont(font);
     natives.setTextProportional(false);
+
+    if (typeof scale !== 'number' || isNaN(scale)) throw new Error('drawText3d | scale is not number');
     if (Array.isArray(scale)) {
         natives.setTextScale(scale[0], scale[1]);
     } else {
         natives.setTextScale(scale, scale);
     }
-    natives.setTextColour(...color.toArray());
+
+    const colorArray = color.toArray();
+    if (colorArray.length !== 4) throw new Error('drawText3d | colorArray length != 4');
+    natives.setTextColour(...colorArray);
     natives.setTextEdge(2, 0, 0, 0, 150);
 
     if (outline) natives.setTextOutline();
@@ -71,7 +91,6 @@ export const drawText2d = function(
 
     natives.setTextCentre(true);
     natives.beginTextCommandDisplayText('CELL_EMAIL_BCON');
-    // Split text into pieces of max 99 chars blocks
     (text.match(/.{1,99}/g))?.forEach((textBlock) => {
         natives.addTextComponentSubstringPlayerName(textBlock);
     });
