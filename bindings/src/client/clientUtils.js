@@ -35,10 +35,16 @@ export const drawText3d = (
 
     natives.setTextFont(font);
 
-    if (typeof scale !== 'number' || isNaN(scale)) throw new Error('drawText3d | scale is not number');
     if (Array.isArray(scale)) {
+        if (
+            typeof scale[0] !== 'number' ||
+            isNaN(scale[0]) ||
+            typeof scale[1] !== 'number' ||
+            isNaN(scale[1])
+        ) throw new Error('drawText3d | scale in array is not number');
         natives.setTextScale(scale[0], scale[1]);
     } else {
+        if (typeof scale !== 'number' || isNaN(scale)) throw new Error('drawText3d | scale is not number');
         natives.setTextScale(scale, scale);
     }
 
@@ -71,10 +77,16 @@ export const drawText2d = function(
     natives.setTextFont(font);
     natives.setTextProportional(false);
 
-    if (typeof scale !== 'number' || isNaN(scale)) throw new Error('drawText3d | scale is not number');
     if (Array.isArray(scale)) {
+        if (
+            typeof scale[0] !== 'number' ||
+            isNaN(scale[0]) ||
+            typeof scale[1] !== 'number' ||
+            isNaN(scale[1])
+        ) throw new Error('drawText3d | scale in array is not number');
         natives.setTextScale(scale[0], scale[1]);
     } else {
+        if (typeof scale !== 'number' || isNaN(scale)) throw new Error('drawText3d | scale is not number');
         natives.setTextScale(scale, scale);
     }
 
