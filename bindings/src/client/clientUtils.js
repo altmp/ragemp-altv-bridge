@@ -36,7 +36,7 @@ export const drawText3d = (
     });
 
     natives.setTextFont(font);
-    natives.setTextScale(scale || 1, scale || 1);
+    natives.setTextScale(scale[0] || scale || 1, scale[1] || scale || 1);
 
     natives.setTextWrap(0.0, 1.0);
     natives.setTextCentre(true);
@@ -71,7 +71,7 @@ export const drawText2d = function(
     natives.setTextFont(font);
     natives.setTextProportional(false);
 
-    natives.setTextScale(scale || 1, scale || 1);
+    natives.setTextScale(scale[0] || scale || 1, scale[1] || scale || 1);
 
     const colorArray = color.toArray();
     natives.setTextColour(
