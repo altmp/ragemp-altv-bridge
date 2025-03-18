@@ -3,6 +3,8 @@ import * as natives from 'natives';
 import mp from '../shared/mp.js';
 import {internalName} from '../shared/utils';
 
+const textChunkRegex = /.{1,99}/g;
+
 export function getRenderCorrection() {
     const localPlayer = alt.Player.local;
     const entity = localPlayer.vehicle ?? localPlayer;
@@ -29,7 +31,7 @@ export const drawText3d = (
     );
 
     natives.beginTextCommandDisplayText('CELL_EMAIL_BCON');
-    (text.match(/.{1,99}/g))?.forEach((textBlock) => {
+    (text.match(textChunkRegex))?.forEach((textBlock) => {
         natives.addTextComponentSubstringPlayerName(textBlock);
     });
 
@@ -78,7 +80,7 @@ export const drawText2d = function(
         colorArray[2] || 255,
         colorArray[3] || 255
     );
-    
+
     natives.setTextEdge(2, 0, 0, 0, 150);
 
     if (outline) natives.setTextOutline();
@@ -89,7 +91,7 @@ export const drawText2d = function(
 
     natives.setTextCentre(true);
     natives.beginTextCommandDisplayText('CELL_EMAIL_BCON');
-    (text.match(/.{1,99}/g))?.forEach((textBlock) => {
+    (text.match(textChunkRegex))?.forEach((textBlock) => {
         natives.addTextComponentSubstringPlayerName(textBlock);
     });
 
