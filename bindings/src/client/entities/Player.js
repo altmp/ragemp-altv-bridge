@@ -73,14 +73,16 @@ export class _Player extends _Entity {
     }
 
     set model(value) {
-        throw new Error('Setting player.model is not supported. Use player.setModelAsync instead');
+        throw new Error('Setting player.model is not supported. Set player.model on server side');
     }
 
     async setModelAsync(value) {
-        if (alt.Player.local !== this.alt) return;
-        const scriptID = this.handle;
-        emitServerInternal('setModel', value);
-        await alt.Utils.waitFor(() => this.handle !== scriptID);
+        throw new Error('Method setModelAsync is not supported. Set player.model on server side');
+
+        // if (alt.Player.local !== this.alt) return;
+        // const scriptID = this.handle;
+        // emitServerInternal('setModel', value);
+        // await alt.Utils.waitFor(() => this.handle !== scriptID);
     }
 
     get voiceVolume() {
