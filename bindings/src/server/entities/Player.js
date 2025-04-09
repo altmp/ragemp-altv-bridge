@@ -512,9 +512,9 @@ alt.on('playerDisconnect', (player, reason) => {
     mp.events.dispatchLocal('playerQuit', player.mp, 'unimplemented', reason); //player, exitType: string, reason: string
 });
 
-alt.onClient(internalName('setModel'), (player, model) => {
-    player.model = model;
-});
+// alt.onClient(internalName('setModel'), (player, model) => {
+//     player.model = model;
+// });
 
 alt.on('playerEnteringVehicle', (player, vehicle, seat) => {
     mp.events.dispatchLocal('playerStartEnterVehicle', player.mp, vehicle?.mp, altSeatToMp(seat));
