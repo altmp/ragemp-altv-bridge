@@ -3,6 +3,8 @@ import * as natives from 'natives';
 import mp from '../shared/mp.js';
 import {internalName} from '../shared/utils';
 
+const textChunkRegex = /.{1,99}/g;
+
 export function getRenderCorrection() {
     const localPlayer = alt.Player.local;
     const entity = localPlayer.vehicle ?? localPlayer;
@@ -20,19 +22,32 @@ export const drawText3d = (
     outline = true,
     dropShadow = true) => {
 
-    const corr = globalThis.getCorr();
-    natives.setDrawOrigin(pos3d.x + corr.x, pos3d.y + corr.y, pos3d.z + corr.z, false);
-    natives.beginTextCommandDisplayText('STRING');
-    natives.addTextComponentSubstringPlayerName(text);
+    const corr = globalThis.getCorr() || { x: 0, y: 0, z: 0 };
+    natives.setDrawOrigin(
+        pos3d.x + corr.x,
+        pos3d.y + corr.y,
+        pos3d.z + (corr.z || 0),
+        false
+    );
+
+    natives.beginTextCommandDisplayText('CELL_EMAIL_BCON');
+    (text.match(textChunkRegex))?.forEach((textBlock) => {
+        natives.addTextComponentSubstringPlayerName(textBlock);
+    });
+
     natives.setTextFont(font);
-    if (Array.isArray(scale)) {
-        natives.setTextScale(scale[0], scale[1]);
-    } else {
-        natives.setTextScale(1, scale);
-    }
+    natives.setTextScale(scale[0] || scale || 1, scale[1] || scale || 1);
+
     natives.setTextWrap(0.0, 1.0);
     natives.setTextCentre(true);
-    natives.setTextColour(...color.toArray());
+
+    const colorArray = color.toArray();
+    natives.setTextColour(
+        colorArray[0] || 255,
+        colorArray[1] || 255,
+        colorArray[2] || 255,
+        colorArray[3] || 255
+    );
 
     if (outline) natives.setTextOutline();
     if (dropShadow) {
@@ -55,12 +70,17 @@ export const drawText2d = function(
 ) {
     natives.setTextFont(font);
     natives.setTextProportional(false);
-    if (Array.isArray(scale)) {
-        natives.setTextScale(scale[0], scale[1]);
-    } else {
-        natives.setTextScale(scale, scale);
-    }
-    natives.setTextColour(...color.toArray());
+
+    natives.setTextScale(scale[0] || scale || 1, scale[1] || scale || 1);
+
+    const colorArray = color.toArray();
+    natives.setTextColour(
+        colorArray[0] || 255,
+        colorArray[1] || 255,
+        colorArray[2] || 255,
+        colorArray[3] || 255
+    );
+
     natives.setTextEdge(2, 0, 0, 0, 150);
 
     if (outline) natives.setTextOutline();
@@ -71,8 +91,7 @@ export const drawText2d = function(
 
     natives.setTextCentre(true);
     natives.beginTextCommandDisplayText('CELL_EMAIL_BCON');
-    // Split text into pieces of max 99 chars blocks
-    (text.match(/.{1,99}/g))?.forEach((textBlock) => {
+    (text.match(textChunkRegex))?.forEach((textBlock) => {
         natives.addTextComponentSubstringPlayerName(textBlock);
     });
 
