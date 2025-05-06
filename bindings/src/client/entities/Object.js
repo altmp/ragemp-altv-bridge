@@ -200,141 +200,13 @@ export class _Object extends _Entity {
 }
 
 export class _NetworkObject extends _Object {
-    #handle;
-
-    /** @param {alt.VirtualEntity} alt */
+    /** @param {alt.Object} alt */
     constructor(alt) {
         super(alt);
         this.alt = alt;
     }
 
-    getVariable(key) {
-        if (!this.hasVariable(key)) return;
-        return toMp(this.alt.getStreamSyncedMeta(key));
-    }
-
-    hasVariable(key) {
-        return this.alt.hasStreamSyncedMeta(key);
-    }
-
-    get handle() {
-        return this.#handle;
-    }
-
-    get id() {
-        return this.alt.remoteID + 65536;
-    }
-
-    get remoteId() {
-        return this.alt.remoteID + 65536;
-    }
-
-    #streamingCounter = 0;
-    async streamIn() {
-        try {
-            const counter = ++this.#streamingCounter;
-            const shouldCancel = () => counter !== this.#streamingCounter;
-
-            let model = this.model;
-            if (!model || !natives.isModelValid(model)) {
-                await alt.Utils.waitFor(() => this.model && natives.isModelValid(this.model));
-                model = this.model;
-            }
-            if (shouldCancel()) return;
-
-            await alt.Utils.requestModel(model);
-            if (shouldCancel()) return;
-
-            this.#handle = natives.createObject(model, this.alt.pos.x, this.alt.pos.y, this.alt.pos.z, false, false, false);
-            if (!this.#handle) {
-                throw new Error('Failed to create object using native:', model);
-            }
-            natives.setEntityCoordsNoOffset(this.#handle, this.alt.pos.x, this.alt.pos.y, this.alt.pos.z, false, false, false);
-            store.add(this, undefined, this.#handle, undefined);
-
-            const rot = this.alt.getStreamSyncedMeta(internalName('rotation')) ?? alt.Vector3.zero;
-            natives.setEntityRotation(this.#handle, rot.x, rot.y, rot.z, 2, false);
-            natives.activatePhysics(this.#handle);
-
-            const alpha = this.alt.getStreamSyncedMeta(internalName('alpha')) ?? 255;
-            if (alpha < 255) {
-                natives.setEntityAlpha(this.#handle, alpha, false);
-            }
-
-            natives.freezeEntityPosition(this.#handle, true);
-            natives.setVehicleColourCombination(this.#handle, 0);
-
-            if (this.alt.valid) mp.events.dispatchLocal('entityStreamIn', this);
-        } catch (e) {
-            console.warn('Failed to stream in NetworkObject:', e);
-            mp._notifyError(e, 'unknown', 0, e.stack, 'warning');
-        }
-    }
-
-    streamOut() {
-        this.#streamingCounter++;
-
-        if (!this.#handle) return;
-        natives.deleteObject(this.#handle);
-        store.remove(undefined, this.#handle, undefined);
-        this.#handle = 0;
-        const model = this.model;
-        if (model) natives.setModelAsNoLongerNeeded(model);
-    }
-
-    posChange() {
-        const pos = this.alt.pos;
-        natives.setEntityCoords(this.#handle, pos.x, pos.y, pos.z, false, false, false, false);
-    }
-    onDestroy() {
-        store.remove(this.id, this.handle, this.remoteId);
-    }
-    onCreate() {
-        store.add(this, this.id, undefined, this.remoteId);
-    }
-    update(key, value) {
-        if (key === (internalName('rotation'))) {
-            if (!this.#handle) return; // TODO: Remove this error supressor once moved to Server-Sided objects
-            const rot = value ?? alt.Vector3.zero;
-            natives.setEntityRotation(this.#handle, value.x, value.y, value.z, 2, false);
-        }
-        if (key === (internalName('alpha'))) {
-            if (!this.#handle) return; // TODO: Remove this error supressor once moved to Server-Sided objects
-            if (value >= 255) {
-                natives.resetEntityAlpha(this.#handle);
-            } else {
-                natives.setEntityAlpha(this.#handle, value, false);
-            }
-        }
-        if (key === (internalName('model'))) {
-            this.streamOut();
-            this.streamIn();
-        }
-    }
-
-    destroy() {}
-
-
-    get position() {
-        if (!this.alt.valid) return mp.Vector3.zero;
-        if (!this.handle) return new mp.Vector3(this.alt.pos);
-        return new mp.Vector3(natives.getEntityCoords(this.handle, false));
-    }
-
-    set position(value) {
-        if (!this.alt.valid || !this.handle) return;
-        natives.setEntityCoords(this.handle, value.x, value.y, value.z, false, false, false, false);
-    }
-
-    get model() {
-        return this.alt.getStreamSyncedMeta(internalName('model'));
-    }
-
     set model(value) {}
-
-    get alpha() {
-        return this.alt.getStreamSyncedMeta(internalName('alpha'));
-    }
 
     set alpha(value) {}
 
@@ -348,7 +220,7 @@ mp.Object = _Object;
 
 Object.defineProperty(alt.Object.prototype, 'mp', {
     get() {
-        return this._mp ??= new _Object(this);
+        return this._mp ??= new _NetworkObject(this);
     }
 });
 

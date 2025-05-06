@@ -7,69 +7,38 @@ import {VirtualEntityID} from '../../shared/VirtualEntityID';
 import {EntityStoreView} from '../../shared/pools/EntityStoreView';
 import {hashIfNeeded, internalName} from '../../shared/utils';
 import {StreamSyncedMetaProxy} from '../../shared/meta';
+import { ObjectPool } from 'server/pools/ObjectPool';
+import { BaseObjectType } from 'shared/BaseObjectType';
+import { EntityGetterView } from 'shared/pools/EntityGetterView';
 
 
 const view = new EntityStoreView();
 
 export class _Object extends _Entity {
 
-    /** @param {alt.VirtualEntity} alt */
+    /** @param {alt.Object} alt */
     constructor(alt) {
         super(alt);
         this.alt = alt;
-        view.add(this, this.id);
-        this.data = new StreamSyncedMetaProxy(alt);
     }
 
     type = 'object';
 
-    destroy() {
-        if (!this.valid) return;
-        view.remove(this.id);
-        super.destroy();
-    }
 
-    get id() {
-        return this.alt.id + 65536;
-    }
-
-    get setVariable() {
-        return this.setStreamVariable;
-    }
-
-    get getVariable() {
-        return this.getStreamVariable;
-    }
-
-    get hasVariable() {
-        return this.hasStreamVariable;
-    }
-
-    #model;
     get model() {
-        return this.#model;
+        return this.alt.model;
     }
     set model(value) {
-        this.#model = value;
-        this.alt.setStreamSyncedMeta(internalName('model'), value);
+        if (this.alt.model === value) return;
+        this.alt.model = value;
     }
 
-    #alpha = 255;
     get alpha() {
-        return this.#alpha;
+        return this.alpha;
     }
     set alpha(value) {
-        this.#alpha = value;
-        this.alt.setStreamSyncedMeta(internalName('alpha'), value);
-    }
-
-    #rotation = mp.Vector3.zero;
-    get rotation() {
-        return this.#rotation;
-    }
-    set rotation(value) {
-        this.#rotation = value;
-        this.alt.setStreamSyncedMeta(internalName('rotation'), new alt.Vector3(value));
+        if (this.alpha === value) return;
+        this.alpha = value;
     }
 
     get notifyStreaming() {
@@ -81,22 +50,21 @@ export class _Object extends _Entity {
     }
 }
 
-alt.on('baseObjectRemove', (ent) => {
-    if (!ent?.mp) return;
-    if (ent.mp instanceof _Object) view.remove(ent.mp.id);
-});
+// alt.on('baseObjectRemove', (ent) => {
+//     if (!ent?.mp) return;
+//     if (ent.mp instanceof _Object) view.remove(ent.mp.id);
+// });
 
 mp.Object = _Object;
 
-// Object.defineProperty(alt.NetworkObject.prototype, 'mp', {
-//     get() {
-//         return this._mp ??= new _Object(this);
-//     }
-// });
+Object.defineProperty(alt.Object.prototype, 'mp', {
+    get() {
+        return this._mp ??= new _Object(this);
+    }
+});
 
-mp.objects = new ServerPool(view, [_Object]);
+mp.objects = new ObjectPool(EntityGetterView.fromClass(alt.Object, [BaseObjectType.Object]), [_Object], 8);
 
-const group = new alt.VirtualEntityGroup(255);
 mp.objects.new = (model, position, params = {}) => {
     if (model == null) {
         const msg = 'Tried to create object with invalid model';
@@ -106,14 +74,19 @@ mp.objects.new = (model, position, params = {}) => {
     }
 
     model = hashIfNeeded(model);
-    const virtualEnt = new alt.VirtualEntity(group, position, params.drawDistance ?? mp.streamingDistance);
-    virtualEnt.setStreamSyncedMeta(internalName('type'), VirtualEntityID.Object);
-    const ent = virtualEnt.mp;
-    ent.model = model;
-    ent.position = position;
-    if ('rotation' in params) ent.rotation = params.rotation;
-    if ('alpha' in params) ent.alpha = params.alpha;
-    if ('dimension' in params) ent.dimension = params.dimension;
+    const objectEnt = new alt.Object(
+        model,
+        position,
+        'rotation' in params ? params.rotation : alt.Vector3.zero,
+        'alpha' in params ? params.alpha : 255,
+        'texture' in params ? params.texture : 0,
+        void null,
+        params.drawDistance ?? mp.streamingDistance,
+        false, // isStaticEntity
+    );
+    objectEnt.dimension = params.dimension ?? 0;
+
+    const ent = objectEnt.mp;
 
     return ent;
 };
