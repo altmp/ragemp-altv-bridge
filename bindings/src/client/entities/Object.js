@@ -15,18 +15,10 @@ const store = new EntityStoreView(1, (entity) => {
     // but what if entity is alt.LocalObject?
     return entity.handle !== 0;
 });
-const view = new EntityMixedView(store, new EntityGetterView(
-    () => alt.LocalObject.all,
-    (id) => alt.LocalObject.all.find(e => e && e.mp.id === id),
-    {
-        remoteIDGetter: alt.LocalObject.getByID,
-        scriptIDGetter: alt.LocalObject.getByScriptID,
-        streamRangeGetter: () => alt.LocalObject.streamedIn
-    },
-    [BaseObjectType.LocalObject]
-));
 
-export class _Object extends _Entity {
+const view = EntityGetterView.fromClass(alt.Object, [BaseObjectType.Object, BaseObjectType.LocalObject]);
+
+export class _LocalObject extends _Entity {
     /** @param {alt.LocalObject} alt */
     constructor(alt) {
         super(alt);
@@ -199,7 +191,7 @@ export class _Object extends _Entity {
     //#endregion Natives
 }
 
-export class _NetworkObject extends _Object {
+export class _Obect extends _LocalObject {
     /** @param {alt.Object} alt */
     constructor(alt) {
         super(alt);
@@ -215,22 +207,22 @@ export class _NetworkObject extends _Object {
     }
 }
 
-mp.Object = _Object;
+mp.Object = _LocalObject;
 
 
 Object.defineProperty(alt.Object.prototype, 'mp', {
     get() {
-        return this._mp ??= new _NetworkObject(this);
+        return this._mp ??= new _Obect(this);
     }
 });
 
 Object.defineProperty(alt.LocalObject.prototype, 'mp', {
     get() {
-        return this._mp ??= new _Object(this);
+        return this._mp ??= new _LocalObject(this);
     }
 });
 
-mp.objects = new ClientPool(view, [_Object, _NetworkObject]);
+mp.objects = new ClientPool(view, [_Obect, _LocalObject]);
 
 mp.objects.new = (model, position, params = {}) => {
     mp.notifyTrace('entity', 'creating local object', model, position);

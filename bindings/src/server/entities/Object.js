@@ -85,6 +85,7 @@ mp.objects.new = (model, position, params = {}) => {
         false, // isStaticEntity
     );
     objectEnt.dimension = params.dimension ?? 0;
+    objectEnt.frozen = params.frozen ?? true; // We freeze objects by default to simulate RAGEMP behavior
 
     const ent = objectEnt.mp;
 

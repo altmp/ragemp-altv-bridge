@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "devDependencies": {
-    "@altv/types-client": "^16.2.9",
+    "@altv/types-client": "^16.2.10",
     "@altv/types-natives": "^16.2.1",
     "@altv/types-server": "^16.2.6",
     "@altv/types-shared": "^16.2.4",
     "@fal-works/esbuild-plugin-global-externals": "^2.1.2",
-    "esbuild": "^0.20.2"
+    "esbuild": "^0.25.5"
   },
   "scripts": {
     "install": "shx cp -r node_modules/@altv src/types/",

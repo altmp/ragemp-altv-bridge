@@ -22,7 +22,7 @@
         "update-natives": "cd nativegen && npm run start"
     },
     "devDependencies": {
-        "eslint": "^9.0.0",
-        "shx": "^0.3.4"
+        "eslint": "^9.29.0",
+        "shx": "^0.4.0"
     }
 }
