@@ -429,7 +429,7 @@ alt.on('playerChangedVehicleSeat', (player, vehicle, oldSeat, newSeat) => {
 });
 
 alt.on('removeEntity', (entity) => {
-    if (entity instanceof alt.Vehicle) {
+    if (entity.type === alt.BaseObjectType.Vehicle) {
         delete entity.mp.__occupantsMap;
     }
 });

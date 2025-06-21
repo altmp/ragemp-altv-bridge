@@ -1002,7 +1002,7 @@ mp.players = new ClientPool(view, [_Player]);
 mp.players.local = alt.Player.local.mp;
 
 alt.on('streamSyncedMetaChange', (player, key, newValue) => {
-    if (!(player instanceof alt.Player)) return;
+    if (player.type !== alt.BaseObjectType.Player) return;
     if (key === (internalName('alpha'))) {
         if (newValue === 255) {
             natives.resetEntityAlpha(player);
@@ -1013,7 +1013,7 @@ alt.on('streamSyncedMetaChange', (player, key, newValue) => {
 });
 
 alt.on('gameEntityCreate', (player) => {
-    if (!(player instanceof alt.Player)) return;
+    if (player.type !== alt.BaseObjectType.Player) return;
     alt.nextTick(() => {
         if (!player.valid || player.scriptID === 0) return;
         if (player.hasStreamSyncedMeta(internalName('alpha'))) {

@@ -407,7 +407,7 @@ mp.objects.newWeaponObject = (model, position, params = {}) => {
 };
 
 alt.on('gameEntityCreate',  (ent) => {
-    if ((ent instanceof alt.LocalObject || ent instanceof alt.WeaponObject) && ent._mpOwned) {
+    if ((ent.type == alt.BaseObjectType.LocalObject || ent instanceof alt.WeaponObject) && ent._mpOwned) {
         natives.freezeEntityPosition(ent.scriptID, true);
     }
 });

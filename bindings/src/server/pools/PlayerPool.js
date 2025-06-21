@@ -13,7 +13,7 @@ export class PlayerPool extends ServerPool {
         if (player == null) return false;
 
         if (typeof player === 'object') {
-            if (player.alt instanceof alt.Player) return player.alt.valid;
+            if (player.alt?.type === alt.BaseObjectType.Player) return player.alt.valid;
             return false;
         }
 
