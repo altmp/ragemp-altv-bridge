@@ -13,7 +13,7 @@ export class PlayerPool extends ServerPool {
         if (player == null) return false;
 
         if (typeof player === 'object') {
-            if (player.alt instanceof alt.Player) return player.alt.valid;
+            if (player.alt?.type === alt.BaseObjectType.Player) return player.alt.valid;
             return false;
         }
 
@@ -23,21 +23,11 @@ export class PlayerPool extends ServerPool {
     //mp.players.call(String eventName[, Array Arguments]);
     //mp.players.call(Array players, String eventName[, Array Arguments]);
     call(arg1, args1 = [], args2 = []) {
-        if(typeof arg1 === 'string') {
-            emitAllClients(arg1, ...argsToAlt(args1));
-        } else if(typeof arg1 === 'object' && Array.isArray(arg1)) {
-            const players = arg1.map(p => p.alt).filter(Boolean);
-            if (players.length) emitClient(players, args1, ...argsToAlt(args2));
-        }
+        this.#_callLogic(false, arg1, args1, args2);
     }
 
     callUnreliable(arg1, args1 = [], args2 = []) {
-        if(typeof arg1 === 'string') {
-            emitAllClientsUnreliable(arg1, ...argsToAlt(args1));
-        } else if(typeof arg1 === 'object' && Array.isArray(arg1)) {
-            const players = arg1.map(p => p.alt).filter(Boolean);
-            if (players.length) emitClientUnreliable(players, args1, ...argsToAlt(args2));
-        }
+        this.#_callLogic(true, arg1, args1, args2);
     }
 
     // todo: callInRange(pos, range, dimension, event, ...args)
@@ -66,5 +56,43 @@ export class PlayerPool extends ServerPool {
 
     get size() {
         return alt.getServerConfig().players;
+    }
+
+    #_callLogic(isUnreliable, arg1, args1, args2) {
+        // --- Ветка 1: Вызов для всех игроков ---
+        if (typeof arg1 === 'string') {
+            const eventName = arg1;
+            const eventArgs = argsToAlt(args1); // Используется args1 как аргументы
+
+            if (isUnreliable) {
+                emitAllClientsUnreliable(eventName, ...eventArgs);
+            } else {
+                emitAllClients(eventName, ...eventArgs);
+            }
+            return;
+        }
+
+        // --- Ветка 2: Вызов для конкретных игроков ---
+        if (Array.isArray(arg1)) {
+            // Оптимизированное создание массива игроков
+            const altPlayers = [];
+            for (const p of arg1) {
+                if (p && p.alt) { // Добавили проверку на p, чтобы избежать ошибок
+                    altPlayers.push(p.alt);
+                }
+            }
+
+            if (altPlayers.length > 0) {
+                const eventName = args1; // Используется args1 как имя события
+                const eventArgs = argsToAlt(args2); // Используется args2 как аргументы
+
+                if (isUnreliable) {
+                    emitClientUnreliable(altPlayers, eventName, ...eventArgs);
+                } else {
+                    emitClient(altPlayers, eventName, ...eventArgs);
+                }
+            }
+            return;
+        }
     }
 }

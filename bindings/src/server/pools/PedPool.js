@@ -6,7 +6,7 @@ export class PedPool extends ServerPool {
         if (ped == null) return false;
 
         if (typeof ped === 'object') {
-            if (ped.alt instanceof alt.Ped) {
+            if (ped.alt?.type === alt.BaseObjectType.Ped) {
                 return ped.alt.valid;
             }
             return false;

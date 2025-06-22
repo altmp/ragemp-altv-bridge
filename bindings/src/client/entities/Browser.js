@@ -168,5 +168,5 @@ mp.browsers.new = function (url) {
 mp.browsers.newHeadless = mp.browsers.new;
 
 alt.on('baseObjectCreate', (baseObject) => {
-    if (baseObject instanceof alt.WebView) mp.events.dispatchLocal('browserCreated', baseObject.mp);
+    if (baseObject.type === alt.BaseObjectType.WebView) mp.events.dispatchLocal('browserCreated', baseObject.mp);
 });
