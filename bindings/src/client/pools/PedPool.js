@@ -6,7 +6,7 @@ export class PedPool extends ClientPool {
         if (ped == null) return false;
 
         if (typeof ped === 'object') {
-            if (ped.alt?.type === alt.BaseObjectType.Ped) return ped.alt.valid;
+            if (ped.alt?.type === alt.BaseObjectType.Ped || ped.alt?.type === alt.BaseObjectType.LocalPed) return ped.alt.valid;
             return false;
         }
 
