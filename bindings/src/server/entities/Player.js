@@ -170,8 +170,16 @@ export class _Player extends _Entity {
     }
 
     get streamedPlayers() {
-        // return alt.Player.all.filter(p => this.alt.isEntityInStreamRange(p)).map(p => p.mp); // TODO: implement in core
-        return this.alt.streamedEntities.filter(e => e.entity instanceof alt.Player).map(p => p.entity.mp);
+        const streamedMps = [];
+
+        // Современный и предпочтительный способ в alt:V
+        for (const streamed of this.alt.streamedEntities) {
+            if (streamed.entity.type === alt.BaseObjectType.Player) {
+                // Предполагается, что p.entity.mp - это то, что вам нужно
+                streamedMps.push(streamed.entity.mp);
+            }
+        }
+        return streamedMps;
     }
 
     get vehicle() {
@@ -253,13 +261,31 @@ export class _Player extends _Entity {
     callToStreamed(includeSelf, evt, args) {
         const altArgs = argsToAlt(args);
         if (includeSelf) emitClient(this.alt, evt, ...altArgs);
-        emitClient(this.alt.streamedEntities.filter(e => e.entity instanceof alt.Player), evt, ...altArgs);
+
+        const players = [];
+        for (const e of this.alt.streamedEntities) {
+            if (e.entity.type === alt.BaseObjectType.Player) {
+                players.push(e.entity);
+            }
+        }
+        if (players.length > 0) {
+            emitClient(players, evt, ...altArgs);
+        }
     }
 
     callToStreamedUnreliable(includeSelf, evt, args) {
         const altArgs = argsToAlt(args);
         if (includeSelf) emitClientUnreliable(this.alt, evt, ...altArgs);
-        emitClientUnreliable(this.alt.streamedEntities.filter(e => e.entity instanceof alt.Player), evt, ...altArgs);
+
+        const players = [];
+        for (const e of this.alt.streamedEntities) {
+            if (e.entity.type === alt.BaseObjectType.Player) {
+                players.push(e.entity);
+            }
+        }
+        if (players.length > 0) {
+            emitClientUnreliable(players, evt, ...altArgs);
+        }
     }
 
     // TODO: tattoos (decorations)
@@ -492,8 +518,8 @@ mp.Player = _Player;
 mp.players = new PlayerPool(EntityGetterView.fromClass(alt.Player, [BaseObjectType.Player]), [_Player], 1);
 
 alt.on('playerDeath', (player, killer, weapon) => {
-    mp.events.dispatchLocal('playerDeath', player.mp, weapon, killer && killer instanceof alt.Player ? killer.mp : null);
-    if (mp._main) emitClientInternal(player, 'dead', weapon, killer && killer instanceof alt.Player ? killer : null);
+    mp.events.dispatchLocal('playerDeath', player.mp, weapon, killer && killer.type === alt.BaseObjectType.Player ? killer.mp : null);
+    if (mp._main) emitClientInternal(player, 'dead', weapon, killer && killer.type === alt.BaseObjectType.Player ? killer : null);
 });
 
 alt.on('playerConnect', (player) => {
