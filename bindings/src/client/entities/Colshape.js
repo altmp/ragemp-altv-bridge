@@ -111,12 +111,12 @@ mp.colshapes.newTube = function(x, y, z, height, range, dimension = 0) {
 };
 
 alt.on('entityEnterColshape', (shape, ent) => {
-    if (ent.type !== alt.BaseObjectType.Player || shape.type == alt.BaseObjectType.Checkpoint || !shape) return;
+    if (!ent.valid || ent.type !== alt.BaseObjectType.Player || shape.type == alt.BaseObjectType.Checkpoint || !shape) return;
     mp.events.dispatchLocal('playerEnterColshape', shape.mp);
 });
 
 alt.on('entityLeaveColshape', (shape, ent) => {
-    if (ent.type !== alt.BaseObjectType.Player || shape.type == alt.BaseObjectType.Checkpoint || !shape) return;
+    if (!ent.valid || ent.type !== alt.BaseObjectType.Player || shape.type == alt.BaseObjectType.Checkpoint || !shape) return;
     mp.events.dispatchLocal('playerExitColshape', shape.mp);
 });
 

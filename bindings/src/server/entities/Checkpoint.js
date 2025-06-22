@@ -148,12 +148,12 @@ mp.checkpoints.new = function(type, position, radius, params = {}) {
 };
 
 alt.on('entityEnterColshape', (shape, ent) => {
-    if (ent.type !== alt.BaseObjectType.Player || !shape || !(shape.mp instanceof _Checkpoint)) return;
+    if (!ent.valid || ent.type !== alt.BaseObjectType.Player || !shape || !(shape.mp instanceof _Checkpoint)) return;
     mp.events.dispatchLocal('playerEnterCheckpoint', ent.mp, shape.mp);
 });
 
 alt.on('entityLeaveColshape', (shape, ent) => {
-    if (ent.type !== alt.BaseObjectType.Player || !shape || !(shape.mp instanceof _Checkpoint)) return;
+    if (!ent.valid || ent.type !== alt.BaseObjectType.Player || !shape || !(shape.mp instanceof _Checkpoint)) return;
     mp.events.dispatchLocal('playerExitCheckpoint', ent.mp, shape.mp);
 });
 
