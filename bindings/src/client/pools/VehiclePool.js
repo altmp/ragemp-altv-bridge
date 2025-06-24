@@ -6,7 +6,7 @@ export class VehiclePool extends ClientPool {
         if (vehicle == null) return false;
 
         if (typeof vehicle === 'object') {
-            if (vehicle.alt?.type === alt.BaseObjectType.Vehicle || vehicle.alt?.type === alt.BaseObjectType.LocalVehicle) {
+            if (vehicle.alt instanceof alt.Vehicle) {
                 return vehicle.alt.valid;
             }
             return false;

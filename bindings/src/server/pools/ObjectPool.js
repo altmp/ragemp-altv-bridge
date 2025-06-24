@@ -6,7 +6,7 @@ export class ObjectPool extends ServerPool {
         if (object == null) return false;
 
         if (typeof object === 'object') {
-            if (object.alt?.type === alt.BaseObjectType.Object) {
+            if (object.alt instanceof alt.Object) {
                 return object.alt.valid;
             }
             return false;
