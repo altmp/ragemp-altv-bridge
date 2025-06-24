@@ -7,7 +7,7 @@ export class PlayerPool extends ClientPool {
         if (player == null) return false;
 
         if (typeof player === 'object') {
-            if (player.alt?.type === alt.BaseObjectType.Player || player.alt?.type === alt.BaseObjectType.LocalPlayer) return player.alt.valid;
+            if (player.alt instanceof alt.Player) return player.alt.valid;
             return false;
         }
 
